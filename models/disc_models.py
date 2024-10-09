@@ -6,9 +6,9 @@ import torch.nn.functional as F
 import torch_sparse
 
 from torch import nn
-from models.sheaf_base import SheafDiffusion
-from models import laplacian_builders as lb
-from models.sheaf_models import LocalConcatSheafLearner, EdgeWeightLearner, LocalConcatSheafLearnerVariant
+from .sheaf_base import SheafDiffusion
+from . import laplacian_builders as lb
+from .sheaf_models import LocalConcatSheafLearner, EdgeWeightLearner, LocalConcatSheafLearnerVariant
 
 
 class DiscreteDiagSheafDiffusion(SheafDiffusion):
@@ -103,7 +103,7 @@ class DiscreteBundleSheafDiffusion(SheafDiffusion):
         assert args['d'] > 1
         assert not self.deg_normalised
 
-        self.lin_right_weights = nn.ModuleList()
+        self.lin_right_weights = nn.ModuleList()                
         self.lin_left_weights = nn.ModuleList()
 
         self.batch_norms = nn.ModuleList()

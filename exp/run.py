@@ -66,6 +66,7 @@ def run_exp(args, dataset, model_cls, fold):
     data = get_fixed_splits(data, args['dataset'], fold)
     data = data.to(args['device'])
 
+    #print(args)
     model = model_cls(data.edge_index, args)
     model = model.to(args['device'])
 

@@ -8,7 +8,7 @@ import numpy as np
 from typing import Tuple
 from abc import abstractmethod
 from torch import nn
-from lib import laplace as lap
+from ..lib import laplace as lap
 
 
 class SheafLearner(nn.Module):
@@ -54,7 +54,7 @@ class LocalConcatSheafLearner(SheafLearner):
         # maps = maps.abs().clamp(0.05, 1.0) * sign
 
         if len(self.out_shape) == 2:
-            return maps.view(-1, self.out_shape[0], self.out_shape[1])
+            return maps.view(-1, self.out_shape[0], self.out_shape[1])  # numer of edges, linear restriction map shape
         else:
             return maps.view(-1, self.out_shape[0])
 

@@ -6,7 +6,7 @@ channels:
 dependencies:
   - pip=21.3.1
   - pyg=2.0.4
-  - cudatoolkit=10.2
+  - cudatoolkit=11.8
   - python=3.9.9
   - pytorch=1.11.0
   - pip:
@@ -16,4 +16,10 @@ dependencies:
       - wandb==0.13.1
       - torchdiffeq==0.2.2
       - networkx==2.6.3
+      - einops==0.7.0
+      - argparse
+      - dataclasses
+      - typing
+      - numpy==1.22.4
+      - pandas==2.0.3
 name: nsd
