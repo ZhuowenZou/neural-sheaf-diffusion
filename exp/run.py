@@ -155,6 +155,9 @@ if __name__ == '__main__':
         model_cls = DiscreteBundleSheafDiffusion
     elif args.model == 'GeneralSheaf':
         model_cls = DiscreteGeneralSheafDiffusion
+    elif args.model == 'MambaSheaf':
+        from models.mamba_models import MambaSheafDiffusion
+        model_cls = MambaSheafDiffusion
     else:
         raise ValueError(f'Unknown model {args.model}')
 
