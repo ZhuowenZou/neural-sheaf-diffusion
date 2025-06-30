@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import torch
-from ..lib import laplace as lap
+from lib import laplace as lap
 
 from torch import nn
 from torch_scatter import scatter_add

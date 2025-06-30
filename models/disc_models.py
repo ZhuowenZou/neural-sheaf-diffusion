@@ -78,7 +78,6 @@ class DiscreteDiagSheafDiffusion(SheafDiffusion):
                 x = x.t().reshape(-1, self.final_d)
                 x = self.lin_left_weights[layer](x)
                 x = x.reshape(-1, self.graph_size * self.final_d).t()
-
             if self.right_weights:
                 x = self.lin_right_weights[layer](x)
 
