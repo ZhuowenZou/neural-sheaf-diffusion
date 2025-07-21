@@ -40,7 +40,6 @@ def train(model, optimizer, data):
     nll = F.nll_loss(out, data.y[data.train_mask])
     loss = nll
     loss.backward()
-
     optimizer.step()
     del out
 
@@ -156,7 +155,7 @@ if __name__ == '__main__':
     elif args.model == 'GeneralSheaf':
         model_cls = DiscreteGeneralSheafDiffusion
     elif args.model == 'MambaSheaf':
-        from models.mamba_models import MambaSheafDiffusion
+        from models.mamba_sheaf_diffusion import MambaSheafDiffusion
         model_cls = MambaSheafDiffusion
     else:
         raise ValueError(f'Unknown model {args.model}')

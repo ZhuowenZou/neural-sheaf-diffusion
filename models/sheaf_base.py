@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import torch
+import math
 from torch import nn
 
 
@@ -63,3 +64,57 @@ class SheafDiffusion(nn.Module):
         assert len(sheaf_learners) > 0
         assert len(sheaf_learners) + len(others) == len(list(self.parameters()))
         return sheaf_learners, others
+
+class TemporalSheafDiffusion(SheafDiffusion):
+    """
+    Base class for temporal sheaf diffusion models.
+    Extends SheafDiffusion to handle temporal graph data with TGB format.
+    """
+    
+    def __init__(self, edge_index, args):
+        super(TemporalSheafDiffusion, self).__init__(edge_index, args)
+        
+        # Temporal-specific parameters
+        self.temporal_coeff_fn = args.get('temporal_coeff_fn', 'linear')  # How to compute c(Δt)
+        self.base_temporal_coeff = args.get('base_temporal_coeff', 1.0)  # Base coefficient
+        self.max_temporal_steps = args.get('max_temporal_steps', 10)  # Max steps between batches
+        self.mamba_config = args.get('mamba_config', {})
+        
+        # Current timestamp tracking
+        self.current_time = 0.0
+        self.prev_time = 0.0
+        
+        # Optional 
+        # Node embeddings for temporal processing
+        self.node_embeddings = nn.Parameter(torch.randn(self.graph_size, self.hidden_channels))
+        nn.init.xavier_uniform_(self.node_embeddings)
+        
+    def compute_temporal_coefficient(self, time_delta: float) -> int:
+        """
+        Compute number of sheaf convolution steps based on time difference.
+        
+        Args:
+            time_delta: Time difference between consecutive batches
+            
+        Returns:
+            num_steps: Number of sheaf convolution steps to perform
+        """
+        if self.temporal_coeff_fn == 'linear':
+            coeff = self.base_temporal_coeff * time_delta
+        elif self.temporal_coeff_fn == 'log':
+            coeff = self.base_temporal_coeff * math.log(1 + time_delta)
+        elif self.temporal_coeff_fn == 'sqrt':
+            coeff = self.base_temporal_coeff * math.sqrt(time_delta)
+        else:
+            coeff = self.base_temporal_coeff
+            
+        # Round and clamp to reasonable range
+        num_steps = max(1, min(self.max_temporal_steps, round(coeff)))
+        return num_steps
+    
+    def reset_temporal_state(self):
+        """Reset temporal state for new sequence (called at start of forward)"""
+        self.current_time = 0.0
+        self.prev_time = 0.0
+        # Clear Mamba caches - to be implemented by subclasses
+        pass
