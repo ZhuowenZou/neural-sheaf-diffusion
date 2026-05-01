@@ -1,0 +1,4 @@
+split,edge_ids_used,raw_unique_timestamps,snapshots,compression_ratio,edges_per_snapshot_mean,edges_per_snapshot_max,active_nodes_mean,active_nodes_max,timestamp_start,timestamp_end,destination_offset,destination_size
+train,8,8,1,0.125,8.0,8,8.0,8,217,217,8227,1000
+val,4,4,1,0.25,4.0,4,8.0,8,1862671,1862671,8227,1000
+test,4,4,1,0.25,4.0,4,8.0,8,2218317,2218317,8227,1000

@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Activate conda environment
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate nsd
+
 PYTHONPATH=. python -m exp.run \
     --dataset=texas \
     --d=3 \

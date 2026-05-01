@@ -155,9 +155,12 @@ if __name__ == '__main__':
         model_cls = DiscreteBundleSheafDiffusion
     elif args.model == 'GeneralSheaf':
         model_cls = DiscreteGeneralSheafDiffusion
-    elif args.model == 'MambaSheaf':
+    elif args.model in ('MambaSheaf', 'TemporalMambaSheaf'):
         from models.mamba_models import MambaSheafDiffusion
         model_cls = MambaSheafDiffusion
+    elif args.model == 'SparseTemporalMambaSheaf':
+        from models.sparse_temporal_mamba import SparseTemporalMambaSheafDiffusion
+        model_cls = SparseTemporalMambaSheafDiffusion
     else:
         raise ValueError(f'Unknown model {args.model}')
 
@@ -203,4 +206,3 @@ if __name__ == '__main__':
     model_name = args.model if args.evectors == 0 else f"{args.model}+LP{args.evectors}"
     print(f'{model_name} on {args.dataset} | SHA: {sha}')
     print(f'Test acc: {test_acc_mean:.4f} +/- {test_acc_std:.4f} | Val acc: {val_acc_mean:.4f}')
-

@@ -1,0 +1,4 @@
+split,edge_ids_used,raw_unique_timestamps,snapshots,compression_ratio,snapshots_with_labels,snapshot_label_coverage,edges_per_snapshot_mean,edges_per_snapshot_max,active_nodes_mean,active_nodes_max,label_rows_total,label_rows_mean,timestamp_start,timestamp_end,snapshot_ids_with_labels
+train,337224,24,24,1.0,23,0.9583333333333334,14051.0,17788,221.875,242,5016,218.08695652173913,1986,2009,23
+val,73170,4,4,1.0,4,1.0,18292.5,18733,213.75,214,815,203.75,2010,2013,4
+test,57851,3,3,1.0,3,1.0,19283.666666666668,19371,228.0,228,610,203.33333333333334,2014,2016,3

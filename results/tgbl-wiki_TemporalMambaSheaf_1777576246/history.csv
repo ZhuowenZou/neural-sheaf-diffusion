@@ -1,0 +1,2 @@
+epoch,train_loss,evaluated,train_mrr,val_mrr,test_mrr,train_eval_loss,val_eval_loss,test_eval_loss,train_state_memory_norm,val_state_memory_norm,test_state_memory_norm
+0,6.981489181518555,True,,0.0,0.0,,6.603902816772461,7.297004699707031,11.492098808288574,16.253938674926758,19.907398223876953

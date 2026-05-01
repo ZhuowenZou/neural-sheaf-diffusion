@@ -1,0 +1,14 @@
+field,value
+hidden_channels,8
+layers,2
+dropout,0.0
+temporal_d_model,64
+input_dim,64
+graph_size,9227
+output_dim,1000
+destination_offset,8227
+stateful_temporal,True
+closure_hops,1
+optimizer,Adam
+optimizer_lr,0.01
+optimizer_weight_decay,0.0005

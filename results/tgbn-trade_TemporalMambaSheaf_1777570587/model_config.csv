@@ -1,0 +1,17 @@
+field,value
+d,2
+layers,2
+hidden_channels,8
+dropout,0.0
+temporal_d_model,64
+input_dim,64
+output_dim,255
+graph_size,255
+stateful_temporal,True
+closure_hops,1
+normalised,True
+deg_normalised,False
+left_weights,True
+right_weights,True
+orth,householder
+edge_weights,False
