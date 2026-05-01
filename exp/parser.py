@@ -54,6 +54,44 @@ def get_parser():
     parser.add_argument('--edge_weights', dest='edge_weights', type=str2bool, default=True,
                         help="Learn edge weights for connection Laplacian")
     parser.add_argument('--sparse_learner', dest='sparse_learner', type=str2bool, default=False)
+    parser.add_argument('--stateful_temporal', dest='stateful_temporal', type=str2bool, default=False,
+                        help="Persist nodewise Mamba state across successive temporal steps.")
+    parser.add_argument('--closure_hops', type=int, default=1,
+                        help="How many neighborhood hops to include in the active temporal closure.")
+    parser.add_argument('--temporal_d_model', type=int, default=None,
+                        help="Optional Mamba hidden size for the temporal learner.")
+    parser.add_argument('--temporal_dataset', type=str, default='tgbl-wiki-vs',
+                        help="Temporal benchmark dataset name.")
+    parser.add_argument('--temporal_train_edges', type=int, default=2048,
+                        help="Maximum number of training edges to use from the temporal dataset.")
+    parser.add_argument('--temporal_val_edges', type=int, default=256,
+                        help="Maximum number of validation edges to use from the temporal dataset.")
+    parser.add_argument('--temporal_test_edges', type=int, default=256,
+                        help="Maximum number of test edges to use from the temporal dataset.")
+    parser.add_argument('--temporal_max_edges_per_snapshot', type=int, default=None,
+                        help="Optional cap on edges per timestamp bucket when building snapshots.")
+    parser.add_argument('--temporal_snapshot_time_window', type=int, default=None,
+                        help="Optional temporal window size for snapshot bucketing. "
+                             "When unset, snapshots are grouped by exact timestamp. "
+                             "When set, all edges whose timestamps fall in the same window are merged "
+                             "into one snapshot, using the last real timestamp in the window as the "
+                             "snapshot timestamp.")
+    parser.add_argument('--temporal_epochs', type=int, default=2,
+                        help="Number of temporal training epochs for the benchmark runner.")
+    parser.add_argument('--temporal_bptt_steps', type=int, default=None,
+                        help="Optional number of temporal snapshots per training chunk. "
+                             "When set, training uses truncated backpropagation through time "
+                             "over chunks of this many snapshots.")
+    parser.add_argument('--temporal_epoch_progress_bar', dest='temporal_epoch_progress_bar',
+                        type=str2bool, default=False,
+                        help="Show a nested progress bar over training chunks within each epoch "
+                             "when temporal_bptt_steps is enabled.")
+    parser.add_argument('--temporal_eval_every', type=int, default=1,
+                        help="Run validation/test evaluation every N epochs. "
+                             "The final epoch is always evaluated.")
+    parser.add_argument('--temporal_skip_train_eval', dest='temporal_skip_train_eval',
+                        type=str2bool, default=True,
+                        help="Skip train-split evaluation during temporal training to save time and memory.")
 
     # Experiment parameters
     parser.add_argument('--dataset', default='texas')
@@ -61,7 +99,9 @@ def get_parser():
     parser.add_argument('--cuda', type=int, default=0)
     parser.add_argument('--folds', type=int, default=10)
     parser.add_argument('--model', type=str, choices=['DiagSheaf', 'BundleSheaf', 'GeneralSheaf', 'DiagSheafODE',
-                                                      'BundleSheafODE', 'GeneralSheafODE', 'MambaSheaf'], default=None)
+                                                      'BundleSheafODE', 'GeneralSheafODE', 'MambaSheaf',
+                                                      'TemporalMambaSheaf', 'SparseTemporalMambaSheaf',
+                                                      'RolloutTemporalMambaSheaf'], default=None)
     parser.add_argument('--entity', type=str, default=None)
     parser.add_argument('--evectors', type=int, default=0, help="Number of Laplacian PE eigenvectors to use.")
 
