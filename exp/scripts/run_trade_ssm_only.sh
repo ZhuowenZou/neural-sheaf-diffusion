@@ -1,0 +1,20 @@
+export TGB_SHEAF_D=4
+export TGB_LAYERS=3
+export TGB_HIDDEN_CHANNELS=64
+export TGB_DROPOUT=0.0
+\
+PYTHONPATH=. /home/zhuowez1/miniconda3/envs/nsd/bin/python -m exp.run_temporal \
+    --dataset=tgbn-trade \
+    --temporal_dataset=tgbn-trade \
+    --model=TemporalMambaSheafSSMOnly \
+    --lr=0.012487940706903825 \
+    --weight_decay=1.98417640446958e-07 \
+    --stateful_temporal=True \
+    --closure_hops=2 \
+    --temporal_d_model=32 \
+    --temporal_epochs=200 \
+    --temporal_train_edges=2048 \
+    --temporal_val_edges=256 \
+    --temporal_test_edges=256 \
+    --temporal_bptt_steps=8 \
+    --temporal_snapshot_time_window=3

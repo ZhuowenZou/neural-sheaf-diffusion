@@ -19,7 +19,11 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from exp.parser import get_parser
 from exp.temporal_utils import build_temporal_snapshots, sequence_loss
-from models.mamba_models import MambaSheafDiffusion
+from models.mamba_models import (
+    MambaSheafDiffusion,
+    TemporalMambaSheafSheafOnlyDiffusion,
+    TemporalMambaSheafSSMOnlyDiffusion,
+)
 from models.sparse_temporal_mamba import SparseTemporalMambaSheafDiffusion
 
 try:
@@ -104,7 +108,11 @@ def _make_model(edge_index, x, num_nodes, output_dim, device, args):
         "closure_hops": args.closure_hops,
         "temporal_d_model": args.temporal_d_model or _env_int("TGB_TEMPORAL_D_MODEL", 64),
     }
-    model_cls = SparseTemporalMambaSheafDiffusion if args.model == "SparseTemporalMambaSheaf" else MambaSheafDiffusion
+    model_cls = {
+        "TemporalMambaSheafSheafOnly": TemporalMambaSheafSheafOnlyDiffusion,
+        "TemporalMambaSheafSSMOnly": TemporalMambaSheafSSMOnlyDiffusion,
+        "SparseTemporalMambaSheaf": SparseTemporalMambaSheafDiffusion,
+    }.get(getattr(args, "model", None), MambaSheafDiffusion)
     return model_cls(_normalize_sheaf_edge_index(edge_index).to(device), model_args).to(device)
 
 
@@ -422,7 +430,13 @@ def main():
     parser = get_parser()
     args = parser.parse_args()
 
-    if args.model not in ("MambaSheaf", "TemporalMambaSheaf", "SparseTemporalMambaSheaf"):
+    if args.model not in (
+        "MambaSheaf",
+        "TemporalMambaSheaf",
+        "TemporalMambaSheafSheafOnly",
+        "TemporalMambaSheafSSMOnly",
+        "SparseTemporalMambaSheaf",
+    ):
         raise ValueError("run_temporal.py only supports the temporal Mamba sheaf model.")
 
     sha = _repo_sha()

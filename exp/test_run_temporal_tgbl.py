@@ -3,6 +3,7 @@
 
 from types import SimpleNamespace
 
+import pytest
 import torch
 
 import exp.run_temporal_tgbl as run_temporal_tgbl
@@ -151,3 +152,52 @@ def test_evaluate_model_streaming_returns_loss_and_state_for_train_split():
     assert metric != metric
     assert loss >= 0.0
     assert isinstance(state, TemporalMambaState)
+
+
+def test_edge_prediction_loss_rejects_non_finite_logits():
+    snapshot = SimpleNamespace(
+        src=torch.tensor([0], dtype=torch.long),
+        dst=torch.tensor([5], dtype=torch.long),
+    )
+
+    with pytest.raises(ValueError, match="training logits"):
+        run_temporal_tgbl._edge_prediction_loss(
+            [torch.tensor([[float("nan"), 0.0]], dtype=torch.float)],
+            [snapshot],
+            {"offset": 5, "size": 2},
+        )
+
+
+def test_evaluate_model_streaming_rejects_non_finite_eval_logits():
+    class DummyDataset:
+        eval_metric = "mrr"
+
+        def load_val_ns(self):
+            return None
+
+    class DummyModel(torch.nn.Module):
+        def forward_sequence(self, snapshots, initial_state=None):
+            logits = torch.tensor([[float("nan"), 0.0]], dtype=torch.float)
+            state = TemporalMambaState(memory=torch.ones(1, 1), spatial=torch.ones(1, 1))
+            return [logits], state
+
+    snapshot = SimpleNamespace(
+        src=torch.tensor([0], dtype=torch.long),
+        dst=torch.tensor([5], dtype=torch.long),
+        edge_timestamps=torch.tensor([1], dtype=torch.long),
+        edge_types=None,
+        timestamp=torch.tensor(1, dtype=torch.long),
+    )
+
+    with pytest.raises(ValueError, match="val logits"):
+        run_temporal_tgbl._evaluate_model_streaming(
+            dataset_name="tgbl-wiki",
+            dataset=DummyDataset(),
+            snapshots=[snapshot],
+            model=DummyModel(),
+            destination_spec={"offset": 5, "size": 2},
+            initial_state=None,
+            split_mode="val",
+            compute_metric=False,
+            compute_loss=True,
+        )

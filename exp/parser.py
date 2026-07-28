@@ -82,6 +82,13 @@ def get_parser():
                         help="Optional number of temporal snapshots per training chunk. "
                              "When set, training uses truncated backpropagation through time "
                              "over chunks of this many snapshots.")
+    parser.add_argument('--temporal_train_negatives_per_pos', type=int, default=32,
+                        help="Number of sampled negative destinations per positive event when "
+                             "training the event-based temporal link model.")
+    parser.add_argument('--temporal_candidate_chunk_size', type=int, default=2048,
+                        help="How many candidate destinations to score at once in the event-based "
+                             "temporal link model. Smaller values reduce peak memory during "
+                             "1-vs-all evaluation.")
     parser.add_argument('--temporal_epoch_progress_bar', dest='temporal_epoch_progress_bar',
                         type=str2bool, default=False,
                         help="Show a nested progress bar over training chunks within each epoch "
@@ -100,7 +107,9 @@ def get_parser():
     parser.add_argument('--folds', type=int, default=10)
     parser.add_argument('--model', type=str, choices=['DiagSheaf', 'BundleSheaf', 'GeneralSheaf', 'DiagSheafODE',
                                                       'BundleSheafODE', 'GeneralSheafODE', 'MambaSheaf',
-                                                      'TemporalMambaSheaf', 'SparseTemporalMambaSheaf'], default=None)
+                                                      'TemporalMambaSheaf', 'TemporalMambaSheafSheafOnly',
+                                                      'TemporalMambaSheafSSMOnly', 'SparseTemporalMambaSheaf',
+                                                      'EventTemporalMambaSheaf'], default=None)
     parser.add_argument('--entity', type=str, default=None)
     parser.add_argument('--evectors', type=int, default=0, help="Number of Laplacian PE eigenvectors to use.")
 

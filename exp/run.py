@@ -155,9 +155,16 @@ if __name__ == '__main__':
         model_cls = DiscreteBundleSheafDiffusion
     elif args.model == 'GeneralSheaf':
         model_cls = DiscreteGeneralSheafDiffusion
-    elif args.model in ('MambaSheaf', 'TemporalMambaSheaf'):
-        from models.mamba_models import MambaSheafDiffusion
-        model_cls = MambaSheafDiffusion
+    elif args.model in ('MambaSheaf', 'TemporalMambaSheaf', 'TemporalMambaSheafSheafOnly', 'TemporalMambaSheafSSMOnly'):
+        from models.mamba_models import (
+            MambaSheafDiffusion,
+            TemporalMambaSheafSheafOnlyDiffusion,
+            TemporalMambaSheafSSMOnlyDiffusion,
+        )
+        model_cls = {
+            'TemporalMambaSheafSheafOnly': TemporalMambaSheafSheafOnlyDiffusion,
+            'TemporalMambaSheafSSMOnly': TemporalMambaSheafSSMOnlyDiffusion,
+        }.get(args.model, MambaSheafDiffusion)
     elif args.model == 'SparseTemporalMambaSheaf':
         from models.sparse_temporal_mamba import SparseTemporalMambaSheafDiffusion
         model_cls = SparseTemporalMambaSheafDiffusion

@@ -723,31 +723,59 @@ def rerank_configs(
     try:
         for idx, config in enumerate(configs):
             config = dict(config)
-            snapshot_bundle = context.get_snapshot_bundle(config.get("time_window"))
-            result = train_single_config(
-                context=context,
-                snapshot_bundle=snapshot_bundle,
-                config=config,
-                seed=seed_base + idx,
-                keep_history=False,
-                trial=None,
-            )
-            rows.append(
-                {
-                    "rank_candidate": idx + 1,
-                    "metric_name": result["metric_name"],
-                    "best_epoch": result["best_epoch"],
-                    "best_train_metric": result["best_train_metric"],
-                    "best_val_metric": result["best_val_metric"],
-                    "best_test_metric": result["best_test_metric"],
-                    "best_train_loss": result["best_train_loss"],
-                    "best_val_loss": result["best_val_loss"],
-                    "best_test_loss": result["best_test_loss"],
-                    "time_window": _canonical_time_window(config.get("time_window")),
-                    "config_json": json.dumps(config, sort_keys=True),
-                }
-            )
+            row = {
+                "rank_candidate": idx + 1,
+                "metric_name": None,
+                "best_epoch": float("nan"),
+                "best_train_metric": float("nan"),
+                "best_val_metric": float("nan"),
+                "best_test_metric": float("nan"),
+                "best_train_loss": float("nan"),
+                "best_val_loss": float("nan"),
+                "best_test_loss": float("nan"),
+                "time_window": _canonical_time_window(config.get("time_window")),
+                "config_json": json.dumps(config, sort_keys=True),
+                "status": "failed",
+                "error_type": None,
+                "error_message": None,
+            }
+            try:
+                snapshot_bundle = context.get_snapshot_bundle(config.get("time_window"))
+                result = train_single_config(
+                    context=context,
+                    snapshot_bundle=snapshot_bundle,
+                    config=config,
+                    seed=seed_base + idx,
+                    keep_history=False,
+                    trial=None,
+                )
+            except Exception as exc:
+                row["error_type"] = type(exc).__name__
+                row["error_message"] = str(exc)
+            else:
+                row.update(
+                    {
+                        "metric_name": result["metric_name"],
+                        "best_epoch": result["best_epoch"],
+                        "best_train_metric": result["best_train_metric"],
+                        "best_val_metric": result["best_val_metric"],
+                        "best_test_metric": result["best_test_metric"],
+                        "best_train_loss": result["best_train_loss"],
+                        "best_val_loss": result["best_val_loss"],
+                        "best_test_loss": result["best_test_loss"],
+                        "status": "ok",
+                    }
+                )
+            rows.append(row)
             progress_bar.update(1)
     finally:
         progress_bar.close()
-    return pd.DataFrame(rows).sort_values(by="best_val_metric", ascending=False).reset_index(drop=True)
+    rerank_df = pd.DataFrame(rows)
+    if rerank_df.empty:
+        return rerank_df
+    rerank_df["_status_rank"] = rerank_df["status"].map({"ok": 0, "failed": 1}).fillna(2)
+    return rerank_df.sort_values(
+        by=["_status_rank", "best_val_metric"],
+        ascending=[True, False],
+        na_position="last",
+    ).drop(columns="_status_rank", errors="ignore").reset_index(drop=True)

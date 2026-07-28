@@ -5,7 +5,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch_sparse
-from torch_geometric.utils import degree
+from torch_geometric.utils import coalesce, degree, remove_self_loops, to_undirected
 
 from .disc_models import DiscreteBundleSheafDiffusion
 
@@ -120,6 +120,11 @@ class MambaSheafDiffusion(DiscreteBundleSheafDiffusion):
         self.stateful_temporal = bool(args.get('stateful_temporal', False))
         self.closure_hops = int(args.get('closure_hops', 1))
         self.temporal_d_model = int(args.get('temporal_d_model', self.hidden_dim))
+        self.sheaf_conditioning = str(args.get('sheaf_conditioning', 'history'))
+        if self.sheaf_conditioning not in ('history', 'current_only'):
+            raise ValueError(
+                f"sheaf_conditioning must be 'history' or 'current_only', got {self.sheaf_conditioning!r}."
+            )
 
         self.nodewise_learner = NodewiseMambaLearner(
             hidden_dim=self.hidden_dim,
@@ -143,7 +148,11 @@ class MambaSheafDiffusion(DiscreteBundleSheafDiffusion):
         self._temporal_state = None
 
     def _prepare_edge_index(self, edge_index):
-        return self.edge_index if edge_index is None else edge_index
+        edge_index = self.edge_index if edge_index is None else edge_index
+        edge_index, _ = remove_self_loops(edge_index)
+        edge_index = to_undirected(edge_index, num_nodes=self.graph_size)
+        edge_index, _ = coalesce(edge_index, None, self.graph_size, self.graph_size)
+        return edge_index.contiguous()
 
     def _encode_nodes(self, x: torch.Tensor) -> torch.Tensor:
         x = F.dropout(x, p=self.input_dropout, training=self.training)
@@ -186,10 +195,16 @@ class MambaSheafDiffusion(DiscreteBundleSheafDiffusion):
         if spatial_state is None:
             return torch.zeros(self.graph_size, self.hidden_dim, device=edge_index.device)
 
+        return self._mean_neighborhood_readout(spatial_state, edge_index)
+
+    def _mean_neighborhood_readout(self, node_state: torch.Tensor, edge_index: torch.Tensor) -> torch.Tensor:
+        if edge_index.numel() == 0:
+            return node_state
+
         row, col = edge_index
-        summary = torch.zeros_like(spatial_state)
-        summary.index_add_(0, row, spatial_state[col])
-        summary = summary + spatial_state
+        summary = torch.zeros_like(node_state)
+        summary.index_add_(0, row, node_state[col])
+        summary = summary + node_state
         deg = degree(row, num_nodes=self.graph_size).clamp_min(0).unsqueeze(-1) + 1.0
         return summary / deg
 
@@ -204,14 +219,40 @@ class MambaSheafDiffusion(DiscreteBundleSheafDiffusion):
     def _initial_memory(self, device: torch.device) -> torch.Tensor:
         return torch.zeros(self.graph_size, self.hidden_dim, device=device)
 
-    def _apply_discrete_diffusion(self, node_memory: torch.Tensor, edge_index: torch.Tensor):
+    def _apply_discrete_diffusion(
+        self,
+        node_memory: torch.Tensor,
+        edge_index: torch.Tensor,
+        sheaf_signal: Optional[torch.Tensor] = None,
+    ):
+        if edge_index.numel() == 0:
+            spatial_state = node_memory
+            logits = self.lin2(spatial_state)
+            return F.log_softmax(logits, dim=1), spatial_state
+
+        if (
+            self.edge_index is None
+            or self.edge_index.size() != edge_index.size()
+            or not torch.equal(self.edge_index, edge_index)
+        ):
+            self.update_edge_index(edge_index)
         x = node_memory.view(self.graph_size * self.final_d, -1)
         x0 = x
         L = None
 
+        # In 'current_only' mode the restriction maps are decoded from a parallel
+        # trajectory seeded by the history-free sheaf signal, so the persistent
+        # memory shapes the diffused features but never the spatial operator.
+        x_maps_state = None
+        x0_maps_state = None
+        if sheaf_signal is not None:
+            x_maps_state = sheaf_signal.view(self.graph_size * self.final_d, -1)
+            x0_maps_state = x_maps_state
+
         for layer in range(self.layers):
             if layer == 0 or self.nonlinear:
-                x_maps = F.dropout(x, p=self.dropout if layer > 0 else 0.0, training=self.training)
+                maps_source = x_maps_state if x_maps_state is not None else x
+                x_maps = F.dropout(maps_source, p=self.dropout if layer > 0 else 0.0, training=self.training)
                 x_maps = x_maps.reshape(self.graph_size, -1)
                 maps = self.sheaf_learners[layer](x_maps, edge_index)
                 edge_weights = self.weight_learners[layer](x_maps, edge_index) if self.use_edge_weights else None
@@ -229,6 +270,17 @@ class MambaSheafDiffusion(DiscreteBundleSheafDiffusion):
 
             x0 = (1 + torch.tanh(self.epsilons[layer]).tile(self.graph_size, 1)) * x0 - x
             x = x0
+
+            if x_maps_state is not None and self.nonlinear and layer + 1 < self.layers:
+                x_maps_state = F.dropout(x_maps_state, p=self.dropout, training=self.training)
+                x_maps_state = self.left_right_linear(x_maps_state, left, right)
+                x_maps_state = torch_sparse.spmm(L[0], L[1], x_maps_state.size(0), x_maps_state.size(0), x_maps_state)
+                if self.use_act:
+                    x_maps_state = F.elu(x_maps_state)
+                x0_maps_state = (
+                    (1 + torch.tanh(self.epsilons[layer]).tile(self.graph_size, 1)) * x0_maps_state - x_maps_state
+                )
+                x_maps_state = x0_maps_state
 
         spatial_state = x.reshape(self.graph_size, -1)
         logits = self.lin2(spatial_state)
@@ -259,7 +311,8 @@ class MambaSheafDiffusion(DiscreteBundleSheafDiffusion):
             active_mask=active_mask,
         )
 
-        logits, spatial_state = self._apply_discrete_diffusion(node_memory, edge_index)
+        sheaf_signal = node_signal if self.sheaf_conditioning == 'current_only' else None
+        logits, spatial_state = self._apply_discrete_diffusion(node_memory, edge_index, sheaf_signal=sheaf_signal)
         next_state = TemporalMambaState(memory=node_memory, spatial=spatial_state)
 
         if self.stateful_temporal and state is None:
@@ -286,13 +339,16 @@ class MambaSheafDiffusion(DiscreteBundleSheafDiffusion):
         for snapshot in snapshots:
             if isinstance(snapshot, dict):
                 x = snapshot["x"]
+                edge_index = snapshot.get("edge_index")
                 active_nodes = snapshot.get("active_nodes")
             else:
                 x = snapshot.x
+                edge_index = getattr(snapshot, "edge_index", None)
                 active_nodes = getattr(snapshot, "active_nodes", None)
 
             logits, state = self.step(
                 x,
+                edge_index=edge_index,
                 active_nodes=active_nodes,
                 state=state,
                 return_state=True,
@@ -306,6 +362,78 @@ class MambaSheafDiffusion(DiscreteBundleSheafDiffusion):
             )
 
         return outputs, state
+
+
+class TemporalMambaSheafSheafOnlyDiffusion(MambaSheafDiffusion):
+    """Ablation that removes temporal SSM memory and uses only current snapshot structure."""
+
+    def step(
+        self,
+        x: torch.Tensor,
+        edge_index: Optional[torch.Tensor] = None,
+        active_nodes: Optional[torch.Tensor] = None,
+        state: Optional[TemporalMambaState] = None,
+        return_state: bool = False,
+    ):
+        del active_nodes
+
+        edge_index = self._prepare_edge_index(edge_index).to(x.device)
+        node_signal = self._encode_nodes(x)
+        logits, spatial_state = self._apply_discrete_diffusion(node_signal, edge_index)
+        next_state = TemporalMambaState(memory=None, spatial=spatial_state)
+
+        if self.stateful_temporal and state is None:
+            self._temporal_state = TemporalMambaState(
+                memory=None,
+                spatial=spatial_state.detach(),
+            )
+
+        if return_state:
+            return logits, next_state
+        return logits
+
+
+class TemporalMambaSheafSSMOnlyDiffusion(MambaSheafDiffusion):
+    """Ablation that keeps nodewise temporal memory but replaces sheaf diffusion with local readout."""
+
+    def step(
+        self,
+        x: torch.Tensor,
+        edge_index: Optional[torch.Tensor] = None,
+        active_nodes: Optional[torch.Tensor] = None,
+        state: Optional[TemporalMambaState] = None,
+        return_state: bool = False,
+    ):
+        edge_index = self._prepare_edge_index(edge_index).to(x.device)
+        prev_state = state if state is not None else self._temporal_state
+
+        node_signal = self._encode_nodes(x)
+        prev_memory = prev_state.memory if prev_state is not None and prev_state.memory is not None else self._initial_memory(x.device)
+        lagged_readout = self._lagged_local_readout(prev_state.spatial if prev_state is not None else None, edge_index)
+        active_mask = self._expand_active_nodes(edge_index, active_nodes)
+        topology = self._topology_descriptor(edge_index, active_mask)
+
+        node_memory = self.nodewise_learner(
+            previous_memory=prev_memory,
+            node_signal=node_signal,
+            lagged_readout=lagged_readout,
+            topology=topology,
+            active_mask=active_mask,
+        )
+
+        spatial_state = self._mean_neighborhood_readout(node_memory, edge_index)
+        logits = F.log_softmax(self.lin2(spatial_state), dim=1)
+        next_state = TemporalMambaState(memory=node_memory, spatial=spatial_state)
+
+        if self.stateful_temporal and state is None:
+            self._temporal_state = TemporalMambaState(
+                memory=node_memory.detach(),
+                spatial=spatial_state.detach(),
+            )
+
+        if return_state:
+            return logits, next_state
+        return logits
 
 
 class TemporalEdgeMambaSheafDiffusion(MambaSheafDiffusion):

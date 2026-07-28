@@ -131,6 +131,7 @@ def _make_model_from_config(edge_index, x, num_nodes, output_dim, device, config
         "stateful_temporal": bool(config["stateful_temporal"]),
         "closure_hops": int(config["closure_hops"]),
         "temporal_d_model": int(config["temporal_d_model"]),
+        "sheaf_conditioning": str(config.get("sheaf_conditioning", "history")),
     }
     return MambaSheafDiffusion(_normalize_sheaf_edge_index(edge_index).to(device), model_args).to(device)
 
@@ -573,7 +574,7 @@ class TemporalExperimentContext:
     num_nodes: int
     output_dim: int
     split_edge_ids: Dict[str, torch.Tensor]
-    split_caps: Dict[str, int]
+    split_caps: Dict[str, Optional[int]]
     split_source: str
     metric_name: str
     snapshot_cache: Dict[Optional[int], Dict[str, Any]] = field(default_factory=dict)
@@ -646,7 +647,7 @@ class TemporalExperimentContext:
 
 def prepare_temporal_experiment_context(
     dataset_name: str,
-    split_caps: Dict[str, int],
+    split_caps: Dict[str, Optional[int]],
     *,
     device: Optional[torch.device] = None,
     seed: int = 43,
@@ -672,7 +673,10 @@ def prepare_temporal_experiment_context(
             "val": val_edge_ids,
             "test": test_edge_ids,
         },
-        split_caps={key: int(value) for key, value in split_caps.items()},
+        split_caps={
+            key: (None if value is None else int(value))
+            for key, value in split_caps.items()
+        },
         split_source=split_source,
         metric_name=getattr(dataset, "eval_metric", "ndcg"),
     )

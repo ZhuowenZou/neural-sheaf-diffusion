@@ -10,7 +10,15 @@ import torch
 from torch_geometric.utils import coalesce, remove_self_loops, to_undirected
 
 from exp.temporal_utils import TemporalSnapshot, build_temporal_snapshots
-from models.mamba_models import MambaSheafDiffusion
+from models.mamba_models import (
+    MambaSheafDiffusion,
+    TemporalMambaSheafSheafOnlyDiffusion,
+    TemporalMambaSheafSSMOnlyDiffusion,
+)
+from models.sparse_temporal_mamba import (
+    EventTemporalMambaSheafDiffusion,
+    SparseTemporalMambaSheafDiffusion,
+)
 
 
 DATASET_ALIASES = {
@@ -182,8 +190,18 @@ def make_model(edge_index, x, num_nodes, output_dim, device, args):
         "stateful_temporal": args.stateful_temporal,
         "closure_hops": args.closure_hops,
         "temporal_d_model": args.temporal_d_model or _env_int("TGB_TEMPORAL_D_MODEL", 64),
+        "num_relations": int(getattr(args, "temporal_num_relations", 0) or 0),
+        "train_negatives_per_pos": int(getattr(args, "temporal_train_negatives_per_pos", 32)),
+        "candidate_chunk_size": int(getattr(args, "temporal_candidate_chunk_size", 2048)),
+        "max_score_elements": int(getattr(args, "temporal_max_score_elements", 4_000_000)),
     }
-    return MambaSheafDiffusion(_normalize_sheaf_edge_index(edge_index).to(device), model_args).to(device)
+    model_cls = {
+        "TemporalMambaSheafSheafOnly": TemporalMambaSheafSheafOnlyDiffusion,
+        "TemporalMambaSheafSSMOnly": TemporalMambaSheafSSMOnlyDiffusion,
+        "SparseTemporalMambaSheaf": SparseTemporalMambaSheafDiffusion,
+        "EventTemporalMambaSheaf": EventTemporalMambaSheafDiffusion,
+    }.get(getattr(args, "model", None), MambaSheafDiffusion)
+    return model_cls(_normalize_sheaf_edge_index(edge_index).to(device), model_args).to(device)
 
 
 def split_edge_ids(dataset, temporal_data):
@@ -533,6 +551,70 @@ def node_property_loss(outputs: Sequence[torch.Tensor], dataset, snapshots: Sequ
     return torch.stack(losses).mean()
 
 
+def _uses_event_scoring(model) -> bool:
+    return bool(getattr(model, "supports_event_scoring", False))
+
+
+def _sample_uniform_negative_destinations(
+    positive_dst: torch.Tensor,
+    *,
+    num_nodes: int,
+    negatives_per_positive: int,
+) -> Optional[torch.Tensor]:
+    if positive_dst.numel() == 0 or negatives_per_positive <= 0 or num_nodes <= 1:
+        return None
+
+    positive_dst = positive_dst.long()
+    sampled = torch.randint(
+        low=0,
+        high=max(num_nodes - 1, 1),
+        size=(positive_dst.numel(), negatives_per_positive),
+        device=positive_dst.device,
+    )
+    sampled = sampled + (sampled >= positive_dst.view(-1, 1)).long()
+    return sampled.long()
+
+
+def _event_pairwise_ranking_loss(
+    positive_scores: torch.Tensor,
+    negative_scores: Optional[torch.Tensor],
+):
+    from torch.nn import functional as F
+
+    if negative_scores is None or negative_scores.numel() == 0:
+        return F.softplus(-positive_scores).mean()
+    return F.softplus(negative_scores - positive_scores.unsqueeze(-1)).mean()
+
+
+def event_link_prediction_loss(model, outputs, snapshots: Sequence[TemporalSnapshot]):
+    losses = []
+    for output, snapshot in zip(outputs, snapshots):
+        if snapshot.src.numel() == 0:
+            continue
+
+        device = output["spatial"].device
+        pos_src = snapshot.src.to(device)
+        pos_dst = snapshot.dst.to(device)
+        edge_type = snapshot.edge_types.to(device) if snapshot.edge_types is not None else None
+
+        positive_scores = model.score_event_pairs(output, pos_src, pos_dst, edge_type=edge_type)
+        negative_dst = _sample_uniform_negative_destinations(
+            pos_dst,
+            num_nodes=model.graph_size,
+            negatives_per_positive=getattr(model, "train_negatives_per_pos", 32),
+        )
+        negative_scores = None
+        if negative_dst is not None:
+            negative_scores = model.score_event_candidates(output, pos_src, negative_dst, edge_type=edge_type)
+        losses.append(_event_pairwise_ranking_loss(positive_scores, negative_scores))
+
+    if not losses:
+        output = outputs[0] if outputs else None
+        device = output["spatial"].device if output is not None else "cpu"
+        return torch.tensor(0.0, device=device)
+    return torch.stack(losses).mean()
+
+
 def link_prediction_loss(outputs: Sequence[torch.Tensor], snapshots: Sequence[TemporalSnapshot]):
     from torch.nn import functional as F
 
@@ -546,9 +628,11 @@ def link_prediction_loss(outputs: Sequence[torch.Tensor], snapshots: Sequence[Te
     return torch.stack(losses).mean()
 
 
-def sequence_loss_for_task(spec: DatasetSpec, outputs, dataset, snapshots):
+def sequence_loss_for_task(spec: DatasetSpec, outputs, dataset, snapshots, model=None):
     if spec.task_family == "nodeprop":
         return node_property_loss(outputs, dataset, snapshots)
+    if _uses_event_scoring(model):
+        return event_link_prediction_loss(model, outputs, snapshots)
     return link_prediction_loss(outputs, snapshots)
 
 
@@ -627,13 +711,15 @@ def evaluate_model_streaming(
         elif split_mode == "test" and hasattr(dataset, "load_test_ns"):
             dataset.load_test_ns()
 
+    use_event_scoring = spec.task_family != "nodeprop" and _uses_event_scoring(model)
     model.eval()
     with torch.no_grad():
         for snapshot in snapshots:
             outputs, state = model.forward_sequence([snapshot], initial_state=state)
-            logits = outputs[0]
+            model_output = outputs[0]
 
             if spec.task_family == "nodeprop":
+                logits = model_output
                 label_batch = _next_snapshot_labels(dataset, snapshot)
                 if label_batch is None:
                     continue
@@ -650,6 +736,72 @@ def evaluate_model_streaming(
                     all_y_true.append(labels.detach().cpu())
                 continue
 
+            if use_event_scoring:
+                device = model_output["spatial"].device
+                pos_src = snapshot.src.to(device)
+                pos_dst = snapshot.dst.to(device)
+                edge_type = snapshot.edge_types.to(device) if snapshot.edge_types is not None else None
+                if pos_src.numel() == 0:
+                    continue
+
+                positive_scores = model.score_event_pairs(
+                    model_output,
+                    pos_src,
+                    pos_dst,
+                    edge_type=edge_type,
+                )
+
+                negative_scores = None
+                if split_mode in ("val", "test"):
+                    pos_ts = snapshot.edge_timestamps
+                    if pos_ts is None:
+                        pos_ts = snapshot.timestamp.expand(snapshot.src.numel())
+                    neg_samples = dataset.negative_sampler.query_batch(
+                        snapshot.src.cpu(),
+                        snapshot.dst.cpu(),
+                        pos_ts.cpu(),
+                        edge_type=snapshot.edge_types.cpu() if snapshot.edge_types is not None else None,
+                        split_mode=split_mode,
+                    )
+                    neg_samples = _trim_negative_samples(neg_samples)
+                    if neg_samples is not None:
+                        neg_dst = torch.as_tensor(neg_samples, dtype=torch.long, device=device)
+                        negative_scores = model.score_event_candidates(
+                            model_output,
+                            pos_src,
+                            neg_dst,
+                            edge_type=edge_type,
+                        )
+
+                if compute_loss:
+                    loss_negatives = negative_scores
+                    if loss_negatives is None:
+                        sampled_neg_dst = _sample_uniform_negative_destinations(
+                            pos_dst,
+                            num_nodes=model.graph_size,
+                            negatives_per_positive=getattr(model, "train_negatives_per_pos", 32),
+                        )
+                        if sampled_neg_dst is not None:
+                            loss_negatives = model.score_event_candidates(
+                                model_output,
+                                pos_src,
+                                sampled_neg_dst,
+                                edge_type=edge_type,
+                            )
+                    losses.append(_event_pairwise_ranking_loss(positive_scores, loss_negatives).detach().cpu())
+
+                if compute_metric and split_mode in ("val", "test") and negative_scores is not None:
+                    score = evaluator.eval({
+                        "y_pred_pos": positive_scores,
+                        "y_pred_neg": negative_scores,
+                        "eval_metric": [dataset.eval_metric],
+                    })
+                    metric_val = list(score.values())[0] if isinstance(score, dict) else score
+                    metric_sum += float(metric_val) * int(pos_src.numel())
+                    metric_examples += int(pos_src.numel())
+                continue
+
+            logits = model_output
             pos_src = snapshot.src.to(logits.device)
             pos_dst = snapshot.dst.to(logits.device)
             if pos_src.numel() == 0:
@@ -721,10 +873,24 @@ def run_epoch(
     tqdm_factory=None,
 ):
     model.train()
+    use_event_scoring = _uses_event_scoring(model)
     if bptt_steps is None or bptt_steps <= 0:
+        if use_event_scoring:
+            optimizer.zero_grad()
+            state = None
+            losses = []
+            for snapshot in train_snapshots:
+                outputs, state = model.forward_sequence([snapshot], initial_state=state)
+                losses.append(sequence_loss_for_task(spec, outputs, dataset, [snapshot], model=model))
+            if not losses:
+                return 0.0
+            loss = torch.stack(losses).mean()
+            loss.backward()
+            optimizer.step()
+            return float(loss.detach().cpu())
         optimizer.zero_grad()
         outputs, _ = model.forward_sequence(train_snapshots)
-        loss = sequence_loss_for_task(spec, outputs, dataset, train_snapshots)
+        loss = sequence_loss_for_task(spec, outputs, dataset, train_snapshots, model=model)
         loss.backward()
         optimizer.step()
         return float(loss.detach().cpu())
@@ -743,8 +909,19 @@ def run_epoch(
     for start in chunk_starts:
         chunk = train_snapshots[start:start + bptt_steps]
         optimizer.zero_grad()
-        outputs, state = model.forward_sequence(chunk, initial_state=state)
-        loss = sequence_loss_for_task(spec, outputs, dataset, chunk)
+        if use_event_scoring:
+            chunk_state = state
+            loss_terms = []
+            for snapshot in chunk:
+                outputs, chunk_state = model.forward_sequence([snapshot], initial_state=chunk_state)
+                loss_terms.append(sequence_loss_for_task(spec, outputs, dataset, [snapshot], model=model))
+            state = chunk_state
+            if not loss_terms:
+                continue
+            loss = torch.stack(loss_terms).mean()
+        else:
+            outputs, state = model.forward_sequence(chunk, initial_state=state)
+            loss = sequence_loss_for_task(spec, outputs, dataset, chunk, model=model)
 
         if loss.requires_grad:
             loss.backward()

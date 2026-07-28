@@ -1,0 +1,4 @@
+,validation_ndcg,validation_ndcg,validation_ndcg,test_ndcg,test_ndcg,test_ndcg
+,mean,std,count,mean,std,count
+variant,,,,,,
+current_only,0.8087,0.0415,5,0.8554,0.0455,5

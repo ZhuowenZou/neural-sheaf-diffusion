@@ -228,6 +228,21 @@ def _global_to_local_destination(dst, destination_spec):
     return dst_local
 
 
+def _assert_finite_tensor(tensor, label):
+    if tensor is None:
+        return
+    if torch.isfinite(tensor).all():
+        return
+
+    bad_mask = ~torch.isfinite(tensor)
+    bad_count = int(bad_mask.sum().item())
+    sample_value = tensor[bad_mask].reshape(-1)[0].item()
+    raise ValueError(
+        f"Encountered non-finite values in {label}. "
+        f"bad_values={bad_count} sample={sample_value!r}"
+    )
+
+
 def _edge_prediction_loss(outputs, snapshots, destination_spec):
     from torch.nn import functional as F
 
@@ -235,11 +250,14 @@ def _edge_prediction_loss(outputs, snapshots, destination_spec):
     for logits, snapshot in zip(outputs, snapshots):
         if snapshot.src.numel() == 0:
             continue
+        _assert_finite_tensor(logits, "training logits")
         target = _global_to_local_destination(snapshot.dst.to(logits.device), destination_spec)
         losses.append(F.nll_loss(logits[snapshot.src.to(logits.device)], target))
     if not losses:
         return torch.tensor(0.0, device=outputs[0].device if outputs else "cpu")
-    return torch.stack(losses).mean()
+    mean_loss = torch.stack(losses).mean()
+    _assert_finite_tensor(mean_loss, "training loss")
+    return mean_loss
 
 
 def _detach_temporal_state(state):
@@ -290,6 +308,10 @@ def _evaluate_model_streaming(
         for snapshot in snapshots:
             outputs, state = model.forward_sequence([snapshot], initial_state=state)
             logits = outputs[0]
+            split_label = split_mode or "unknown"
+            snapshot_timestamp = getattr(snapshot, "timestamp", None)
+            timestamp_label = int(snapshot_timestamp.item()) if snapshot_timestamp is not None else "unknown"
+            _assert_finite_tensor(logits, f"{split_label} logits at timestamp {timestamp_label}")
 
             if snapshot.src.numel() == 0:
                 continue
@@ -324,6 +346,8 @@ def _evaluate_model_streaming(
 
             y_pred_pos = logits[pos_src, pos_dst_local]
             y_pred_neg = logits[pos_src.view(-1, 1).expand_as(neg_dst_local), neg_dst_local]
+            _assert_finite_tensor(y_pred_pos, f"{split_label} positive predictions at timestamp {timestamp_label}")
+            _assert_finite_tensor(y_pred_neg, f"{split_label} negative predictions at timestamp {timestamp_label}")
             score = evaluator.eval(
                 {
                     "y_pred_pos": y_pred_pos,

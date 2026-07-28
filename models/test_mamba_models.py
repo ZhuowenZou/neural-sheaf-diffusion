@@ -7,6 +7,8 @@ from models.mamba_models import (
     MambaSheafDiffusion,
     TemporalEdgeMambaSheafDiffusion,
     TemporalMambaState,
+    TemporalMambaSheafSheafOnlyDiffusion,
+    TemporalMambaSheafSSMOnlyDiffusion,
 )
 
 
@@ -50,6 +52,10 @@ def _make_edge_index():
         dtype=torch.long,
     )
     return edge_index
+
+
+def _make_snapshot_edge_index(src, dst):
+    return torch.tensor([[src, dst], [dst, src]], dtype=torch.long)
 
 
 def test_mamba_sheaf_diffusion_forward_and_temporal_step():
@@ -102,8 +108,66 @@ def test_mamba_sheaf_diffusion_forward_sequence():
     assert list(state.memory.shape) == [4, model.hidden_dim]
 
 
-def test_mamba_sheaf_diffusion_supports_disabling_left_and_right_weights():
+def test_mamba_sheaf_diffusion_forward_sequence_uses_snapshot_edge_index():
     torch.manual_seed(2)
+    edge_index = _make_edge_index()
+    x = torch.randn(4, 6)
+    args = _make_args(num_nodes=4, input_dim=6, output_dim=3)
+
+    model = MambaSheafDiffusion(edge_index, args)
+    model.eval()
+
+    snapshot = {
+        'x': x,
+        'edge_index': _make_snapshot_edge_index(0, 1),
+        'active_nodes': torch.tensor([0, 1], dtype=torch.long),
+    }
+    direct_logits, direct_state = model.step(
+        x,
+        edge_index=snapshot['edge_index'],
+        active_nodes=snapshot['active_nodes'],
+        return_state=True,
+    )
+
+    model.reset_temporal_state()
+    outputs, sequence_state = model.forward_sequence([snapshot])
+
+    assert torch.allclose(outputs[0], direct_logits)
+    assert torch.allclose(sequence_state.memory, direct_state.memory)
+    assert torch.allclose(sequence_state.spatial, direct_state.spatial)
+
+
+def test_mamba_sheaf_diffusion_normalizes_snapshot_edge_index():
+    torch.manual_seed(3)
+    edge_index = _make_edge_index()
+    x = torch.randn(4, 6)
+    args = _make_args(num_nodes=4, input_dim=6, output_dim=3)
+
+    model = MambaSheafDiffusion(edge_index, args)
+    model.eval()
+
+    noisy_snapshot_edge_index = torch.tensor(
+        [
+            [0, 0, 2, 1, 1, 2],
+            [1, 1, 2, 0, 0, 2],
+        ],
+        dtype=torch.long,
+    )
+
+    logits, state = model.step(
+        x,
+        edge_index=noisy_snapshot_edge_index,
+        active_nodes=torch.tensor([0, 1, 2], dtype=torch.long),
+        return_state=True,
+    )
+
+    assert list(logits.shape) == [4, 3]
+    assert torch.isfinite(logits).all()
+    assert isinstance(state, TemporalMambaState)
+
+
+def test_mamba_sheaf_diffusion_supports_disabling_left_and_right_weights():
+    torch.manual_seed(4)
     edge_index = _make_edge_index()
     x = torch.randn(4, 6)
     args = _make_args(num_nodes=4, input_dim=6, output_dim=3)
@@ -119,7 +183,7 @@ def test_mamba_sheaf_diffusion_supports_disabling_left_and_right_weights():
 
 
 def test_temporal_edge_mamba_sheaf_diffusion_tracks_destination_vocab():
-    torch.manual_seed(3)
+    torch.manual_seed(5)
     edge_index = _make_edge_index()
     x = torch.randn(4, 6)
     args = _make_args(num_nodes=4, input_dim=6, output_dim=7)
@@ -138,3 +202,53 @@ def test_temporal_edge_mamba_sheaf_diffusion_tracks_destination_vocab():
     dst_local = model.global_to_local_destination(dst_global)
     assert torch.equal(dst_local, torch.tensor([0, 2, 4], dtype=torch.long))
     assert torch.equal(model.local_to_global_destination(dst_local), dst_global)
+
+
+def test_temporal_mamba_sheaf_sheaf_only_ignores_temporal_state():
+    torch.manual_seed(6)
+    edge_index = _make_edge_index()
+    x = torch.randn(4, 6)
+    args = _make_args(num_nodes=4, input_dim=6, output_dim=3)
+
+    model = TemporalMambaSheafSheafOnlyDiffusion(edge_index, args)
+    model.eval()
+
+    logits_without_state, state_without_state = model.step(x, return_state=True)
+    previous_state = TemporalMambaState(
+        memory=torch.randn(4, model.hidden_dim),
+        spatial=torch.randn(4, model.hidden_dim),
+    )
+    logits_with_state, state_with_state = model.step(x, state=previous_state, return_state=True)
+
+    assert state_without_state.memory is None
+    assert state_with_state.memory is None
+    assert torch.allclose(logits_without_state, logits_with_state)
+    assert torch.allclose(state_without_state.spatial, state_with_state.spatial)
+
+
+def test_temporal_mamba_sheaf_ssm_only_uses_temporal_memory_with_local_readout():
+    torch.manual_seed(7)
+    edge_index = _make_edge_index()
+    x = torch.randn(4, 6)
+    args = _make_args(num_nodes=4, input_dim=6, output_dim=3)
+
+    model = TemporalMambaSheafSSMOnlyDiffusion(edge_index, args)
+    model.eval()
+
+    empty_edge_index = torch.empty((2, 0), dtype=torch.long)
+    previous_memory = torch.randn(4, model.hidden_dim)
+    previous_spatial = torch.randn(4, model.hidden_dim)
+    previous_state = TemporalMambaState(memory=previous_memory.clone(), spatial=previous_spatial.clone())
+
+    logits, next_state = model.step(
+        x,
+        edge_index=empty_edge_index,
+        active_nodes=torch.tensor([0], dtype=torch.long),
+        state=previous_state,
+        return_state=True,
+    )
+
+    assert list(logits.shape) == [4, 3]
+    assert torch.isfinite(logits).all()
+    assert torch.allclose(next_state.memory[1:], previous_memory[1:])
+    assert torch.allclose(next_state.spatial, next_state.memory)

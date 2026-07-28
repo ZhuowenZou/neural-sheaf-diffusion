@@ -1,0 +1,4 @@
+split,mrr,loss,state_memory_norm
+train,,,
+val,1.0,,
+test,1.0,,
