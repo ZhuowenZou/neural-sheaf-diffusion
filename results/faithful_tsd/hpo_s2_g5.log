@@ -1,0 +1,4 @@
+trial 2 seed 44: val=0.7504 test=0.7703 (11.2 min) 
+trial 2 seed 46: val=0.7561 test=0.7920 (7.0 min) 
+trial 8 seed 44: val=0.6177 test=0.6669 (12.3 min) 
+trial 8 seed 46: val=0.6449 test=0.6850 (18.8 min) 

@@ -1,0 +1,80 @@
+[
+ {
+  "trial_id": 12,
+  "lr": 0.0202329877378745,
+  "weight_decay": 6.775242058969922e-05,
+  "temporal_d_model": 64,
+  "hidden_channels": 64,
+  "d": 4,
+  "layers": 3,
+  "feedback_dim": 16,
+  "diffusion_update": "euler",
+  "dropout": 0.0,
+  "dt_init": 0.01
+ },
+ {
+  "trial_id": 15,
+  "lr": 0.005143604757523,
+  "weight_decay": 3.997334777885266e-07,
+  "temporal_d_model": 64,
+  "hidden_channels": 64,
+  "d": 4,
+  "layers": 5,
+  "feedback_dim": 16,
+  "diffusion_update": "euler",
+  "dropout": 0.1,
+  "dt_init": 0.03
+ },
+ {
+  "trial_id": 19,
+  "lr": 0.0253934087028283,
+  "weight_decay": 1.2972676259821684e-06,
+  "temporal_d_model": 64,
+  "hidden_channels": 64,
+  "d": 6,
+  "layers": 4,
+  "feedback_dim": 64,
+  "diffusion_update": "euler",
+  "dropout": 0.1,
+  "dt_init": 0.03
+ },
+ {
+  "trial_id": 2,
+  "lr": 0.0084487984265261,
+  "weight_decay": 6.177827389808546e-05,
+  "temporal_d_model": 256,
+  "hidden_channels": 128,
+  "d": 4,
+  "layers": 3,
+  "feedback_dim": 16,
+  "diffusion_update": "euler",
+  "dropout": 0.1,
+  "dt_init": 0.01
+ },
+ {
+  "trial_id": 8,
+  "lr": 0.0174074141451207,
+  "weight_decay": 6.007923311201243e-05,
+  "temporal_d_model": 128,
+  "hidden_channels": 64,
+  "d": 4,
+  "layers": 4,
+  "feedback_dim": 64,
+  "diffusion_update": "direct",
+  "dropout": 0.1,
+  "dt_init": 0.03
+ },
+ {
+  "trial_id": 13,
+  "lr": 0.0168898566839353,
+  "weight_decay": 5.3625517457848553e-08,
+  "temporal_d_model": 128,
+  "hidden_channels": 64,
+  "d": 4,
+  "layers": 5,
+  "feedback_dim": 64,
+  "diffusion_update": "direct",
+  "dropout": 0.1,
+  "dt_init": 0.003
+ }
+]

@@ -1,0 +1,8 @@
+seed 43: val=0.7530 test=0.7910 best_epoch=102 (11.4 min)
+seed 46: val=0.6192 test=0.6529 best_epoch=48 (6.6 min)
+
+== summary ==
+ seed  val_ndcg  test_ndcg  best_epoch   minutes
+   43  0.752999   0.790967         102 11.422968
+   46  0.619171   0.652905          48  6.573323
+test NDCG mean±std: 0.7219 ± 0.0976

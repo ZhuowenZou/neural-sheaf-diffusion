@@ -1,0 +1,12 @@
+snapshots: train=24 val=4 test=3 nodes=255 output_dim=255
+seed 43: val=0.8361 test=0.8308 best_epoch=92 (212.5 min)
+seed 46: val=0.8284 test=0.8302 best_epoch=48 (150.7 min)
+seed 47: val=0.8332 test=0.8225 best_epoch=50 (150.9 min)
+
+== summary ==
+ seed  val_ndcg  test_ndcg  best_epoch  n_params    minutes
+   43  0.836149   0.830803          92    736791 212.541081
+   46  0.828373   0.830248          48    736791 150.650985
+   47  0.833246   0.822454          50    736791 150.871730
+test NDCG mean±std: 0.8278 ± 0.0047
+saved to results/faithful_tsd/native_opt/f_lr005.csv

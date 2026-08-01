@@ -1,0 +1,8 @@
+trial 0 seed 43: val=0.4478 test=0.4417 (7.6 min) 
+trial 3 seed 43: val=0.3923 test=0.3751 (10.5 min) 
+trial 6 seed 43: val=0.4254 test=0.4365 (5.9 min) 
+trial 9 seed 43: val=0.3344 test=0.3196 (5.9 min) 
+trial 12 seed 43: val=0.8137 test=0.8553 (8.0 min) 
+trial 15 seed 43: val=0.7836 test=0.7880 (19.2 min) 
+trial 18 seed 43: val=0.4788 test=0.4899 (13.7 min) 
+trial 21 seed 43: val=0.6448 test=0.6662 (15.9 min) 

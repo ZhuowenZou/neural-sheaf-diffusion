@@ -1,0 +1,10 @@
+snapshots: train=1 val=2 test=1 nodes=255 output_dim=255
+seed 43: val=0.7332 test=0.7587 best_epoch=18 (7.8 min)
+seed 46: val=0.7536 test=0.7998 best_epoch=14 (7.7 min)
+
+== summary ==
+ seed  val_ndcg  test_ndcg  best_epoch  n_params  minutes
+   43  0.733172   0.758684          18   2712471 7.811779
+   46  0.753605   0.799809          14   2712471 7.708020
+test NDCG mean±std: 0.7792 ± 0.0291
+saved to results/faithful_tsd/scale/dh256.csv

@@ -50,6 +50,7 @@ def _seed_everything(seed):
 
 
 def _make_model(edge_index, node_features, num_nodes, device, args, num_relations):
+    from models.faithful_event_model import FaithfulEventTemporalSheafDiffusion
     from models.sparse_temporal_mamba import EventTemporalMambaSheafDiffusion
 
     model_args = {
@@ -85,12 +86,25 @@ def _make_model(edge_index, node_features, num_nodes, device, args, num_relation
         "max_score_elements": args.max_score_elements,
     }
     edge_index = bu._normalize_sheaf_edge_index(edge_index).to(device)
+    if args.model == "faithful":
+        model_args.update(
+            {
+                "feedback_dim": args.feedback_dim,
+                "memory_readout": not args.no_memory_readout,
+                "sheaf_conditioning": args.sheaf_conditioning,
+            }
+        )
+        return FaithfulEventTemporalSheafDiffusion(edge_index, model_args).to(device)
     return EventTemporalMambaSheafDiffusion(edge_index, model_args).to(device)
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=int, default=43)
+    parser.add_argument("--model", choices=["original", "faithful"], default="original")
+    parser.add_argument("--feedback-dim", type=int, default=16)
+    parser.add_argument("--no-memory-readout", action="store_true")
+    parser.add_argument("--sheaf-conditioning", choices=["history", "current_only"], default="history")
     parser.add_argument("--epochs", type=int, default=3)
     parser.add_argument("--train-edges-cap", type=int, default=None,
                         help="Use only the most recent N train edges (suffix cap). None = all 13.97M.")
@@ -212,7 +226,8 @@ def main():
 
     result = {
         "dataset": DATASET,
-        "model": "EventTemporalMambaSheaf (memory-conditioned)",
+        "model": ("FaithfulEventTemporalSheaf" if args.model == "faithful"
+                  else "EventTemporalMambaSheaf (memory-conditioned)"),
         "seed": args.seed,
         "epochs": args.epochs,
         "best_track_epoch": best["epoch"],
