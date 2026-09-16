@@ -1,0 +1,3 @@
+snapshots: train=1087 val=431599 test=399916 nodes=1505 output_dim=513
+reserved 4976 MiB of GPU memory on cuda:0 in the caching allocator (requested 4976; now reserved 4982 MiB)
+[epoch 1] {'epoch': 1, 'train_loss': nan} (best epoch -1, best val -inf)

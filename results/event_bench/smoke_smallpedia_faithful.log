@@ -1,0 +1,30 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tkgl-smallpedia', 'seed': 43, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 2, 'patience': None, 'min_epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 100000, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'out': 'results/event_bench/smoke_smallpedia_faithful'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=98 (edges=775514) track_val=10 final_val=10 final_test=17 | prep_sec=2.4
+negative-sample sets loaded in 1.7s
+parameter_count=454146 num_relations=566 num_nodes=47433
+[epoch 1/2] {'epoch': 1, 'train_loss': 0.42599007426475993, 'track_val_mrr': 0.04027000033529475, 'track_val_loss': 0.4359092116355896, 'train_sec': 187.2, 'track_eval_sec': 321.4, 'peak_gpu_mem_mb': 12540.5}
+[epoch 2/2] {'epoch': 2, 'train_loss': 0.23264555313757487, 'track_val_mrr': 0.030670000226953997, 'track_val_loss': 0.38152560591697693, 'train_sec': 182.8, 'track_eval_sec': 329.7, 'peak_gpu_mem_mb': 12557.7}
+final val_mrr=0.0253 (418.5s so far)
+FINAL val_mrr=0.0253 test_mrr=0.0148 eval_sec=654.2
+{
+  "dataset": "tkgl-smallpedia",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 43,
+  "epochs": 2,
+  "best_track_epoch": 1,
+  "best_track_val_mrr": 0.04027000033529475,
+  "parameter_count": 454146,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 775514,
+  "final_val_edges": 162066,
+  "final_test_edges": 163172,
+  "validation_mrr": 0.025273653790872378,
+  "test_mrr": 0.0148493614538004,
+  "final_val_loss": 0.49803847074508667,
+  "final_test_loss": 0.6147437691688538,
+  "final_eval_sec": 654.2,
+  "final_eval_peak_gpu_mem_mb": 18261.8
+}
+

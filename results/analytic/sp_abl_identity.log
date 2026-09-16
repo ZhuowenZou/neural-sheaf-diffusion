@@ -1,0 +1,34 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tkgl-smallpedia', 'seed': 43, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 15, 'patience': 6, 'min_epochs': 6, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 50000, 'train_loss': 'softplus', 'learn_node_emb': False, 'node_type_emb': False, 'sheaf_identity': True, 'no_delta_t': False, 'recurrency_symmetric': True, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.01, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'out': '/home/zhuowez1/project/neural-sheaf-diffusion/results/analytic/sp_abl_identity'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=98 (edges=775514) track_val=7 final_val=10 final_test=17 | prep_sec=2.0
+negative-sample sets loaded in 1.3s
+parameter_count=648803 num_relations=566 num_nodes=47433
+[epoch 1/15] {'epoch': 1, 'train_loss': 0.07226676588916049, 'track_val_mrr': 0.7561999923121929, 'track_val_loss': 0.07512767612934113, 'train_sec': 50.7, 'track_eval_sec': 67.8, 'peak_gpu_mem_mb': 9356.3}
+[epoch 2/15] {'epoch': 2, 'train_loss': 0.011830624886693395, 'track_val_mrr': 0.7616799923944473, 'track_val_loss': 0.051144205033779144, 'train_sec': 57.3, 'track_eval_sec': 65.3, 'peak_gpu_mem_mb': 9356.3}
+[epoch 3/15] {'epoch': 3, 'train_loss': 0.006563375019753466, 'track_val_mrr': 0.7515999963879585, 'track_val_loss': 0.06966710090637207, 'train_sec': 53.2, 'track_eval_sec': 62.2, 'peak_gpu_mem_mb': 9356.3}
+[epoch 4/15] {'epoch': 4, 'train_loss': 0.006706441795377403, 'track_val_mrr': 0.7652000071668625, 'track_val_loss': 0.024764474481344223, 'train_sec': 62.5, 'track_eval_sec': 75.8, 'peak_gpu_mem_mb': 9356.3}
+[epoch 5/15] {'epoch': 5, 'train_loss': 0.004931918972608995, 'track_val_mrr': 0.7687199963819981, 'track_val_loss': 0.016363831236958504, 'train_sec': 60.0, 'track_eval_sec': 71.2, 'peak_gpu_mem_mb': 9356.3}
+[epoch 6/15] {'epoch': 6, 'train_loss': 0.00412079627977266, 'track_val_mrr': 0.7659800059115887, 'track_val_loss': 0.02842988260090351, 'train_sec': 56.4, 'track_eval_sec': 69.6, 'peak_gpu_mem_mb': 9356.3}
+[epoch 7/15] {'epoch': 7, 'train_loss': 0.006204376384444839, 'track_val_mrr': 0.765640002554655, 'track_val_loss': 0.016088668256998062, 'train_sec': 54.3, 'track_eval_sec': 69.4, 'peak_gpu_mem_mb': 9356.3}
+[epoch 8/15] {'epoch': 8, 'train_loss': 0.0040285620097146955, 'track_val_mrr': 0.7682000076007843, 'track_val_loss': 0.01295806560665369, 'train_sec': 67.1, 'track_eval_sec': 70.9, 'peak_gpu_mem_mb': 9356.3}
+[epoch 9/15] {'epoch': 9, 'train_loss': 0.0038216246935843055, 'track_val_mrr': 0.7727400066018104, 'track_val_loss': 0.01336747407913208, 'train_sec': 60.2, 'track_eval_sec': 67.9, 'peak_gpu_mem_mb': 9356.3}
+[epoch 10/15] {'epoch': 10, 'train_loss': 0.004448273165712171, 'track_val_mrr': 0.7720399891221523, 'track_val_loss': 0.012624646537005901, 'train_sec': 51.1, 'track_eval_sec': 68.7, 'peak_gpu_mem_mb': 9356.3}
+[epoch 11/15] {'epoch': 11, 'train_loss': 0.003636845329310745, 'track_val_mrr': 0.7657599936890602, 'track_val_loss': 0.014624916948378086, 'train_sec': 56.7, 'track_eval_sec': 70.3, 'peak_gpu_mem_mb': 9356.3}
+[epoch 12/15] {'epoch': 12, 'train_loss': 0.003987450585035341, 'track_val_mrr': 0.7734400036513805, 'track_val_loss': 0.012455673888325691, 'train_sec': 66.0, 'track_eval_sec': 70.3, 'peak_gpu_mem_mb': 9356.3}
+[epoch 13/15] {'epoch': 13, 'train_loss': 0.0035365607841320486, 'track_val_mrr': 0.7666399920845032, 'track_val_loss': 0.011350737884640694, 'train_sec': 60.8, 'track_eval_sec': 70.8, 'peak_gpu_mem_mb': 9356.3}
+[epoch 14/15] {'epoch': 14, 'train_loss': 0.003406742806261291, 'track_val_mrr': 0.76886001152277, 'track_val_loss': 0.011068252846598625, 'train_sec': 57.6, 'track_eval_sec': 69.1, 'peak_gpu_mem_mb': 9356.3}
+[epoch 15/15] {'epoch': 15, 'train_loss': 0.004901876323856413, 'track_val_mrr': 0.7761600017404556, 'track_val_loss': 0.009800614789128304, 'train_sec': 62.6, 'track_eval_sec': 77.3, 'peak_gpu_mem_mb': 9356.3}
+checkpoint saved: /home/zhuowez1/project/neural-sheaf-diffusion/results/analytic/sp_abl_identity/best.pt
+Traceback (most recent call last):
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_event_benchmark.py", line 394, in <module>
+    main()
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_event_benchmark.py", line 368, in main
+    val_mrr, val_loss, val_state = bu.evaluate_model_streaming(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/temporal_benchmark_utils.py", line 827, in evaluate_model_streaming
+    negative_scores = negative_scores.masked_fill(~pad_mask, float("-inf"))
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.33 GiB. GPU 0 has a total capacity of 79.25 GiB of which 2.27 GiB is free. Process 4087231 has 6.25 GiB memory in use. Process 4102571 has 28.75 GiB memory in use. Process 250400 has 11.04 GiB memory in use. Including non-PyTorch memory, this process has 8.84 GiB memory in use. Process 250398 has 11.06 GiB memory in use. Process 250396 has 11.00 GiB memory in use. Of the allocated memory 8.25 GiB is allocated by PyTorch, and 88.87 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

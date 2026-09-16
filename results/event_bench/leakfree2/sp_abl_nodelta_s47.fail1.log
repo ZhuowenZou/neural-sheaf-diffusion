@@ -1,0 +1,37 @@
+reserved 10976 MiB of GPU memory on cuda:0 in the caching allocator (requested 10976; now reserved 10980 MiB)
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tkgl-smallpedia', 'seed': 47, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 15, 'patience': 6, 'min_epochs': 6, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 50000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': False, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': True, 'no_memory': False, 'recurrency_symmetric': True, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.01, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'out': 'results/event_bench/leakfree2/sp_abl_nodelta_s47'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=98 (edges=775514) track_val=7 final_val=10 final_test=17 | prep_sec=1.2
+negative-sample sets loaded in 1.6s
+delta_time_scale=1 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=648803 num_relations=566 num_nodes=47433
+[epoch 1/15] {'epoch': 1, 'train_loss': 0.10799599707741098, 'track_val_mrr': 0.5871747414147854, 'track_val_loss': 0.10197941213846207, 'train_sec': 165.1, 'track_eval_sec': 207.6, 'peak_gpu_mem_mb': 8333.3}
+[epoch 2/15] {'epoch': 2, 'train_loss': 0.05088310272039212, 'track_val_mrr': 0.6408611600279808, 'track_val_loss': 0.07395026832818985, 'train_sec': 164.1, 'track_eval_sec': 201.4, 'peak_gpu_mem_mb': 8347.7}
+[epoch 3/15] {'epoch': 3, 'train_loss': 0.048572128120156904, 'track_val_mrr': 0.6808591081929207, 'track_val_loss': 0.06358697265386581, 'train_sec': 164.6, 'track_eval_sec': 203.4, 'peak_gpu_mem_mb': 8347.7}
+[epoch 4/15] {'epoch': 4, 'train_loss': 0.04644077632230582, 'track_val_mrr': 0.7197814914619922, 'track_val_loss': 0.06165251135826111, 'train_sec': 165.2, 'track_eval_sec': 203.2, 'peak_gpu_mem_mb': 8347.7}
+[epoch 5/15] {'epoch': 5, 'train_loss': 0.04436816675492476, 'track_val_mrr': 0.7286018856549263, 'track_val_loss': 0.06163354590535164, 'train_sec': 163.4, 'track_eval_sec': 206.8, 'peak_gpu_mem_mb': 8347.7}
+[epoch 6/15] {'epoch': 6, 'train_loss': 0.04374814676792966, 'track_val_mrr': 0.7293709990394115, 'track_val_loss': 0.058590203523635864, 'train_sec': 163.3, 'track_eval_sec': 202.7, 'peak_gpu_mem_mb': 8347.7}
+[epoch 7/15] {'epoch': 7, 'train_loss': 0.04380682879847657, 'track_val_mrr': 0.7307387088239193, 'track_val_loss': 0.060563307255506516, 'train_sec': 165.0, 'track_eval_sec': 202.3, 'peak_gpu_mem_mb': 8347.7}
+[epoch 8/15] {'epoch': 8, 'train_loss': 0.04404309733780389, 'track_val_mrr': 0.7312519404184818, 'track_val_loss': 0.0597040168941021, 'train_sec': 162.9, 'track_eval_sec': 201.5, 'peak_gpu_mem_mb': 8347.7}
+[epoch 9/15] {'epoch': 9, 'train_loss': 0.043222506722608176, 'track_val_mrr': 0.7305942279469967, 'track_val_loss': 0.059206340461969376, 'train_sec': 162.5, 'track_eval_sec': 205.6, 'peak_gpu_mem_mb': 8347.7}
+[epoch 10/15] {'epoch': 10, 'train_loss': 0.043099493700434865, 'track_val_mrr': 0.7311706287348271, 'track_val_loss': 0.05830088630318642, 'train_sec': 165.1, 'track_eval_sec': 208.4, 'peak_gpu_mem_mb': 8347.7}
+[epoch 11/15] {'epoch': 11, 'train_loss': 0.0425654394820947, 'track_val_mrr': 0.7313987443506718, 'track_val_loss': 0.05645405501127243, 'train_sec': 164.6, 'track_eval_sec': 201.1, 'peak_gpu_mem_mb': 8347.7}
+[epoch 12/15] {'epoch': 12, 'train_loss': 0.04161072135470884, 'track_val_mrr': 0.7305501832294464, 'track_val_loss': 0.05476062372326851, 'train_sec': 161.4, 'track_eval_sec': 199.3, 'peak_gpu_mem_mb': 8347.7}
+[epoch 13/15] {'epoch': 13, 'train_loss': 0.04126386132244904, 'track_val_mrr': 0.730288924459219, 'track_val_loss': 0.05661345645785332, 'train_sec': 164.5, 'track_eval_sec': 206.3, 'peak_gpu_mem_mb': 8347.7}
+[epoch 14/15] {'epoch': 14, 'train_loss': 0.04107910268892025, 'track_val_mrr': 0.7306093755936622, 'track_val_loss': 0.05563240498304367, 'train_sec': 163.0, 'track_eval_sec': 199.8, 'peak_gpu_mem_mb': 8347.7}
+[epoch 15/15] {'epoch': 15, 'train_loss': 0.04106039515475637, 'track_val_mrr': 0.7302089937126637, 'track_val_loss': 0.05636528506875038, 'train_sec': 162.4, 'track_eval_sec': 199.8, 'peak_gpu_mem_mb': 8347.7}
+checkpoint saved: results/event_bench/leakfree2/sp_abl_nodelta_s47/best.pt
+Traceback (most recent call last):
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_event_benchmark.py", line 428, in <module>
+    main()
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_event_benchmark.py", line 398, in main
+    val_mrr, val_loss, val_state = bu.evaluate_model_streaming(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/temporal_benchmark_utils.py", line 995, in evaluate_model_streaming
+    negative_scores = negative_scores.masked_fill(~pad_mask, float("-inf"))
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.66 GiB. GPU 0 has a total capacity of 79.25 GiB of which 2.39 GiB is free. Process 1201337 has 15.16 GiB memory in use. Process 1202005 has 15.14 GiB memory in use. Process 1225995 has 9.30 GiB memory in use. Process 1229051 has 9.54 GiB memory in use. Process 1273871 has 15.15 GiB memory in use. Including non-PyTorch memory, this process has 12.53 GiB memory in use. Of the allocated memory 11.91 GiB is allocated by PyTorch, and 123.48 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

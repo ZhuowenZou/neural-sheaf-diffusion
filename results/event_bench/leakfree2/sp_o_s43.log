@@ -1,0 +1,60 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tkgl-smallpedia', 'seed': 43, 'model': 'original', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 40, 'patience': 10, 'min_epochs': 15, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 50000, 'train_loss': 'softplus', 'learn_node_emb': False, 'node_type_emb': False, 'predict_from_previous': True, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'recurrency_symmetric': False, 'recurrency_untyped': False, 'cache_warm_history': False, 'recurrency_decoder': False, 'relation_in_input': False, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.01, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'out': 'results/event_bench/leakfree2/sp_o_s43'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=98 (edges=775514) track_val=7 final_val=10 final_test=17 | prep_sec=1.4
+negative-sample sets loaded in 1.2s
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=58969 num_relations=566 num_nodes=47433
+[epoch 1/40] {'epoch': 1, 'train_loss': 0.22444352799469663, 'track_val_mrr': 0.05327338902756572, 'track_val_loss': 0.2485242635011673, 'train_sec': 177.7, 'track_eval_sec': 254.7, 'peak_gpu_mem_mb': 8097.5}
+[epoch 2/40] {'epoch': 2, 'train_loss': 0.1021080666903368, 'track_val_mrr': 0.009852573875170202, 'track_val_loss': 0.20227500796318054, 'train_sec': 178.5, 'track_eval_sec': 256.0, 'peak_gpu_mem_mb': 8103.3}
+[epoch 3/40] {'epoch': 3, 'train_loss': 0.08909143444112282, 'track_val_mrr': 0.03055535468146205, 'track_val_loss': 0.24881796538829803, 'train_sec': 177.5, 'track_eval_sec': 254.8, 'peak_gpu_mem_mb': 8103.3}
+[epoch 4/40] {'epoch': 4, 'train_loss': 0.09846074602653071, 'track_val_mrr': 0.03474023203669116, 'track_val_loss': 0.3047325611114502, 'train_sec': 176.0, 'track_eval_sec': 254.2, 'peak_gpu_mem_mb': 8103.3}
+[epoch 5/40] {'epoch': 5, 'train_loss': 0.14732732458673803, 'track_val_mrr': 0.007823722333265469, 'track_val_loss': 0.24532559514045715, 'train_sec': 176.1, 'track_eval_sec': 257.0, 'peak_gpu_mem_mb': 8103.3}
+[epoch 6/40] {'epoch': 6, 'train_loss': 0.0911651358930106, 'track_val_mrr': 0.029186585603877904, 'track_val_loss': 0.22036230564117432, 'train_sec': 177.9, 'track_eval_sec': 258.5, 'peak_gpu_mem_mb': 8103.3}
+[epoch 7/40] {'epoch': 7, 'train_loss': 0.0892261174536243, 'track_val_mrr': 0.00823526937527582, 'track_val_loss': 0.6088835597038269, 'train_sec': 177.3, 'track_eval_sec': 254.7, 'peak_gpu_mem_mb': 8103.3}
+[epoch 8/40] {'epoch': 8, 'train_loss': 0.09176370574487853, 'track_val_mrr': 0.03897381049968302, 'track_val_loss': 0.17364075779914856, 'train_sec': 175.4, 'track_eval_sec': 255.2, 'peak_gpu_mem_mb': 8103.3}
+[epoch 9/40] {'epoch': 9, 'train_loss': 0.08646216431690246, 'track_val_mrr': 0.05826114868409932, 'track_val_loss': 0.16219760477542877, 'train_sec': 176.9, 'track_eval_sec': 258.0, 'peak_gpu_mem_mb': 8103.3}
+[eval-audit] split=val non_finite_positive_scores=39636 skipped_queries=0 scored_queries=50000
+[epoch 10/40] {'epoch': 10, 'train_loss': nan, 'track_val_mrr': 0.006506119928611442, 'track_val_loss': nan, 'train_sec': 177.5, 'track_eval_sec': 254.7, 'peak_gpu_mem_mb': 8103.3}
+[eval-audit] split=val non_finite_positive_scores=39636 skipped_queries=0 scored_queries=50000
+[epoch 11/40] {'epoch': 11, 'train_loss': nan, 'track_val_mrr': 0.004693381739333272, 'track_val_loss': nan, 'train_sec': 175.7, 'track_eval_sec': 255.9, 'peak_gpu_mem_mb': 8103.3}
+[eval-audit] split=val non_finite_positive_scores=39636 skipped_queries=0 scored_queries=50000
+[epoch 12/40] {'epoch': 12, 'train_loss': nan, 'track_val_mrr': 0.004043125101947226, 'track_val_loss': nan, 'train_sec': 176.8, 'track_eval_sec': 257.4, 'peak_gpu_mem_mb': 8103.3}
+[eval-audit] split=val non_finite_positive_scores=39636 skipped_queries=0 scored_queries=50000
+[epoch 13/40] {'epoch': 13, 'train_loss': nan, 'track_val_mrr': 0.003750717330183834, 'track_val_loss': nan, 'train_sec': 177.6, 'track_eval_sec': 257.0, 'peak_gpu_mem_mb': 8103.3}
+[eval-audit] split=val non_finite_positive_scores=39636 skipped_queries=0 scored_queries=50000
+[epoch 14/40] {'epoch': 14, 'train_loss': nan, 'track_val_mrr': 0.0033820864186249674, 'track_val_loss': nan, 'train_sec': 176.0, 'track_eval_sec': 256.4, 'peak_gpu_mem_mb': 8103.3}
+[eval-audit] split=val non_finite_positive_scores=39636 skipped_queries=0 scored_queries=50000
+[epoch 15/40] {'epoch': 15, 'train_loss': nan, 'track_val_mrr': 0.003273580149998888, 'track_val_loss': nan, 'train_sec': 176.1, 'track_eval_sec': 260.1, 'peak_gpu_mem_mb': 8103.3}
+[eval-audit] split=val non_finite_positive_scores=39636 skipped_queries=0 scored_queries=50000
+[epoch 16/40] {'epoch': 16, 'train_loss': nan, 'track_val_mrr': 0.003338331460710615, 'track_val_loss': nan, 'train_sec': 177.7, 'track_eval_sec': 258.1, 'peak_gpu_mem_mb': 8103.3}
+[eval-audit] split=val non_finite_positive_scores=39636 skipped_queries=0 scored_queries=50000
+[epoch 17/40] {'epoch': 17, 'train_loss': nan, 'track_val_mrr': 0.003407835187329911, 'track_val_loss': nan, 'train_sec': 176.7, 'track_eval_sec': 255.4, 'peak_gpu_mem_mb': 8103.3}
+[eval-audit] split=val non_finite_positive_scores=39636 skipped_queries=0 scored_queries=50000
+[epoch 18/40] {'epoch': 18, 'train_loss': nan, 'track_val_mrr': 0.0040077344904420895, 'track_val_loss': nan, 'train_sec': 176.3, 'track_eval_sec': 255.6, 'peak_gpu_mem_mb': 8103.3}
+[eval-audit] split=val non_finite_positive_scores=39636 skipped_queries=0 scored_queries=50000
+[epoch 19/40] {'epoch': 19, 'train_loss': nan, 'track_val_mrr': 0.004756790422070772, 'track_val_loss': nan, 'train_sec': 181.8, 'track_eval_sec': 267.2, 'peak_gpu_mem_mb': 8103.3}
+early stop at epoch 19 (patience 10)
+checkpoint saved: results/event_bench/leakfree2/sp_o_s43/best.pt
+final val_mrr=0.0263 (423.0s so far)
+FINAL val_mrr=0.0263 test_mrr=0.0139 test_hits10=0.0207 eval_sec=652.5
+{
+  "dataset": "tkgl-smallpedia",
+  "model": "EventTemporalMambaSheaf (memory-conditioned)",
+  "seed": 43,
+  "epochs": 40,
+  "best_track_epoch": 9,
+  "best_track_val_mrr": 0.05826114868409932,
+  "parameter_count": 58969,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 775514,
+  "final_val_edges": 162066,
+  "final_test_edges": 163172,
+  "validation_mrr": 0.026323830741915584,
+  "test_mrr": 0.013932296538890838,
+  "final_val_loss": 0.25763610005378723,
+  "final_test_loss": 0.35217851400375366,
+  "final_eval_sec": 652.5,
+  "final_eval_peak_gpu_mem_mb": 20011.4,
+  "test_hits10": 0.02074498073170847
+}

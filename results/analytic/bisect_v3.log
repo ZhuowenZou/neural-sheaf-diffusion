@@ -1,0 +1,8 @@
+harness MRR on first 3 snapshots: 0.7064; captured calls: [('pos', (9895,)), ('neg', (9895, 47432), True), ('pos', (10056,)), ('neg', (10056, 47432), True), ('pos', (49,)), ('neg', (49, 47432), True)]
+snap 0: evaluator on CAPTURED harness tensors (my mask) = 0.6509; near-ties/query = 1.4
+snap 0: n=9895 mrr_A=0.6509 | pos max|diff|=6.41e-04 neg shape A(9895, 47432) B(9895, 47432) neg max|diff| (finite)=1.47e-03
+snap 1: evaluator on CAPTURED harness tensors (my mask) = 0.6308; near-ties/query = 1.6
+snap 1: n=10056 mrr_A=0.6308 | pos max|diff|=8.24e-04 neg shape A(10056, 47432) B(10056, 47432) neg max|diff| (finite)=1.54e-03
+snap 2: evaluator on CAPTURED harness tensors (my mask) = 0.0680; near-ties/query = 7.3
+snap 2: n=49 mrr_A=0.0680 | pos max|diff|=2.44e-04 neg shape A(49, 47432) B(49, 47432) neg max|diff| (finite)=1.06e-03
+DONE

@@ -1,0 +1,16 @@
+{
+  "variant": "full",
+  "recurrency": false,
+  "time_scale": 1.0,
+  "best_val": 2.0,
+  "test_mrr": 2.0,
+  "mrr_novel": 2.0,
+  "mrr_recurrent": 2.0,
+  "frac_novel": 0.45825,
+  "mrr_by_gap": {
+    "q1": 2.0,
+    "q2": 2.0,
+    "q3": 2.0,
+    "q4": 2.0
+  }
+}

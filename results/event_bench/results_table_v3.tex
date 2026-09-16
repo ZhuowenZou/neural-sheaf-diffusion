@@ -1,0 +1,33 @@
+% Benchmark table v3 (2026-09-08): corrected leak-free protocol (predict-then-update, official TGB
+% splits / negative sets / evaluators, metric selected by name), Delta_k in units of the median training gap,
+% corrected node-property label cursor and per-timestamp NDCG.  Mean +/- std over seeds 43/46/47 unless noted.
+% Leaderboard numbers fetched 2026-09-05 from tgb.complexdatalab.com; "rank" counts public entries plus ours.
+% Source of truth: results/event_bench/LEADERBOARD.md, results/event_bench/leakfree2/*/results.csv.
+\begin{table}[t]
+\centering\small
+\caption{Faithful Temporal Sheaf Diffusion with task-appropriate head components on TGB 2.0 under the
+leak-free protocol. Metric: NDCG@10 (tgbn-*), MRR otherwise. ``Best published'' is the top public
+leaderboard entry; ``rank'' is our position among the public entries plus ours.}
+\begin{tabular}{llccll}
+\toprule
+Task & Dataset & Ours (test) & Best published & Rank & Head components \\
+\midrule
+node & tgbn-trade      & $0.664 \pm 0.006^{\S}$      & NAVIS $0.863$            & 5 / 8  & -- \\
+node & tgbn-genre      & $0.448 \pm 0.003$          & NAVIS $0.528$            & 4 / 8  & -- \\
+link & tgbl-wiki       & $0.733 \pm 0.003$           & TPNet $0.827$            & 8 / 22 & REC-x \\
+TKG  & tkgl-smallpedia & $0.610 \pm 0.007$           & CEN $0.612$              & 2 / 8  & REL, REC-x, untyped, sym \\
+TKG  & tkgl-polecat    & $\mathbf{0.244 \pm 0.003}$ & TLogic $0.228$           & \textbf{1 / 8} & REL, REC-x, untyped \\
+TKG  & tkgl-icews      & $\mathbf{0.335 \pm 0.003}$ & RecB $0.211$             & \textbf{1 / 8} & REL, REC-x, untyped \\
+TKG  & tkgl-wikidata   & $\mathbf{0.540 \pm 0.009}$ & EdgeBank $0.535$         & \textbf{1 / 3} & REL, REC-x, untyped, sym \\
+THG  & thgl-software   & $0.438 \pm 0.002$           & STHN $0.731$             & 3 / 7  & TYPE, REL, REC-x, untyped \\
+THG  & thgl-forum      & $0.629 \pm 0.011$           & TGN(edge type) $0.729$   & 3 / 6  & TYPE, REL, REC-x, untyped \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize $^{\dagger}$seed 43. Icews: 2M-edge training suffix, seeds 43/46/47. Genre: daily windows (TGB-exact), seeds 43/46/47; weekly windows give 0.462. Wikidata: 2M-edge training suffix, seeds 43/46/47. $^{\S}$yearly windows, uncapped training, seeds 43-47; the paper's own protocol (3-year windows, 2048-edge cap) gives $0.351 \pm 0.012$. thgl-forum: 4M-edge training suffix, seeds 43/46/47.} \\
+\multicolumn{6}{l}{\footnotesize thgl-github / thgl-myket are omitted: their 20-random-negative protocol does not
+discriminate learned scorers (our smoke tests saturate at $>0.999$).}
+\end{tabular}
+\end{table}
+
+% Leak-free component attribution on tkgl-smallpedia (seed 43, test MRR):
+% full 0.616 | identity restriction maps 0.618 | no Delta_k 0.616 | current-only (sheaf maps decoded from the current input instead of the memory) 0.596 |
+% original efficient implementation 0.014.  Wiki / software ablations in progress (2026-09-08).

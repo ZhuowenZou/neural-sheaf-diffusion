@@ -1,0 +1,33 @@
+snapshots: train=24 val=4 test=3 nodes=255 output_dim=255
+reserved 6976 MiB of GPU memory on cuda:0 in the caching allocator (requested 6976; now reserved 6982 MiB)
+resumed from checkpoint results/leakfree_nodeprop/trade_faithful_w1.csv.ckpt/seed43.pt at epoch 3 (best epoch 2, best val 0.4009)
+Traceback (most recent call last):
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_faithful_trade.py", line 124, in <module>
+    main()
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_faithful_trade.py", line 84, in main
+    result = train_single_faithful(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/faithful_temporal_studies.py", line 248, in train_single_faithful
+    val_metric, val_loss, val_state = _evaluate_model_streaming(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/temporal_mamba_studies.py", line 297, in _evaluate_model_streaming
+    return evaluate_node_property_streaming(dataset_name, dataset, snapshots, model, initial_state=initial_state,
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/temporal_benchmark_utils.py", line 813, in evaluate_node_property_streaming
+    score = evaluator.eval({"y_pred": pred.detach().cpu(), "y_true": labels.detach().cpu(), "eval_metric": [metric_name]})
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/nodeproppred/evaluate.py", line 99, in eval
+    perf_dict = self._compute_metrics(y_true, y_pred)
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/nodeproppred/evaluate.py", line 91, in _compute_metrics
+    perf_dict = {"ndcg": ndcg_score(y_true, y_pred, k=k)}
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/sklearn/utils/_param_validation.py", line 216, in wrapper
+    return func(*args, **kwargs)
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/sklearn/metrics/_ranking.py", line 1876, in ndcg_score
+    y_score = check_array(y_score, ensure_2d=False)
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/sklearn/utils/validation.py", line 1107, in check_array
+    _assert_all_finite(
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/sklearn/utils/validation.py", line 120, in _assert_all_finite
+    _assert_all_finite_element_wise(
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/sklearn/utils/validation.py", line 169, in _assert_all_finite_element_wise
+    raise ValueError(msg_err)
+ValueError: Input contains NaN.

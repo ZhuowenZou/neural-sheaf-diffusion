@@ -1,0 +1,4 @@
+node features: observed x0 (4) + community one-hot (4)
+delta_time_scale=20.4062
+[nodelta] epoch 1 loss 0.4509 val_mrr 0.2689 (6755s)
+[nodelta] epoch 2 loss 0.4473 val_mrr 0.2699 (6136s)

@@ -1,0 +1,38 @@
+reserved 14976 MiB of GPU memory on cuda:0 in the caching allocator (requested 14976; now reserved 14980 MiB)
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tkgl-icews', 'seed': 43, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 6, 'patience': 3, 'min_epochs': 3, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': 2000000, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 30000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': False, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'no_memory': True, 'recurrency_symmetric': False, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.003, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'out': 'results/event_bench/leakfree2/icews_abl_nomem'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=1263 (edges=2000000) track_val=14 final_val=1341 final_test=1696 | prep_sec=77.7
+negative-sample sets loaded in 35.5s
+delta_time_scale=86400 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=660043 num_relations=782 num_nodes=87856
+[epoch 1/6] {'epoch': 1, 'train_loss': 0.08545244504622347, 'track_val_mrr': 0.17994088698302707, 'track_val_loss': 0.470161497592926, 'train_sec': 6388.9, 'track_eval_sec': 6434.6, 'peak_gpu_mem_mb': 5177.7}
+[epoch 2/6] {'epoch': 2, 'train_loss': 0.06299747380231716, 'track_val_mrr': 0.20516338190833727, 'track_val_loss': 0.3712598979473114, 'train_sec': 6366.1, 'track_eval_sec': 6449.7, 'peak_gpu_mem_mb': 5204.6}
+[epoch 3/6] {'epoch': 3, 'train_loss': 0.06766908787922984, 'track_val_mrr': 0.2573053034151594, 'track_val_loss': 0.3479998707771301, 'train_sec': 6371.6, 'track_eval_sec': 6338.1, 'peak_gpu_mem_mb': 5204.6}
+[epoch 4/6] {'epoch': 4, 'train_loss': 0.06307061516020075, 'track_val_mrr': 0.2633623802517851, 'track_val_loss': 0.38724279403686523, 'train_sec': 6175.2, 'track_eval_sec': 6513.0, 'peak_gpu_mem_mb': 5204.6}
+[epoch 5/6] {'epoch': 5, 'train_loss': 0.06509861603627208, 'track_val_mrr': 0.25793686347156763, 'track_val_loss': 0.3546012341976166, 'train_sec': 6464.8, 'track_eval_sec': 6592.7, 'peak_gpu_mem_mb': 5204.6}
+[epoch 6/6] {'epoch': 6, 'train_loss': 0.06503403088500023, 'track_val_mrr': 0.24556064096738894, 'track_val_loss': 0.4016115069389343, 'train_sec': 6279.4, 'track_eval_sec': 6188.5, 'peak_gpu_mem_mb': 5204.6}
+checkpoint saved: results/event_bench/leakfree2/icews_abl_nomem/best.pt
+final val_mrr=0.3173 (17494.4s so far)
+FINAL val_mrr=0.3173 test_mrr=0.3295 test_hits10=0.5243 eval_sec=30898.4
+{
+  "dataset": "tkgl-icews",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 43,
+  "epochs": 6,
+  "best_track_epoch": 4,
+  "best_track_val_mrr": 0.2633623802517851,
+  "parameter_count": 660043,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 2000000,
+  "final_val_edges": 4652314,
+  "final_test_edges": 4651378,
+  "validation_mrr": 0.3172839436143652,
+  "test_mrr": 0.3294988349413741,
+  "final_val_loss": 0.1583099365234375,
+  "final_test_loss": 0.15892355144023895,
+  "final_eval_sec": 30898.4,
+  "final_eval_peak_gpu_mem_mb": 10649.0,
+  "test_hits10": 0.5242756016834208
+}

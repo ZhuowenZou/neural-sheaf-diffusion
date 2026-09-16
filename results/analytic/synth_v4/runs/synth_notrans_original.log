@@ -1,0 +1,10 @@
+node features: observed x0 (4) + community one-hot (4)
+[original] epoch 1 loss 0.6646 val_mrr 0.0838 (6313s)
+[original] epoch 2 loss 0.5416 val_mrr 0.1173 (6326s)
+[original] epoch 3 loss 0.4624 val_mrr 0.1441 (6318s)
+[original] epoch 4 loss 0.4399 val_mrr 0.1686 (6336s)
+[original] epoch 5 loss 0.4239 val_mrr 0.1837 (6312s)
+[original] epoch 6 loss 0.4128 val_mrr 0.1867 (6274s)
+[original] epoch 7 loss 0.4033 val_mrr 0.1982 (6360s)
+[original] epoch 8 loss 0.3980 val_mrr 0.1907 (6351s)
+{"variant": "original", "recurrency": true, "time_scale": 1.0, "best_val": 0.19822394847869873, "test_mrr": 0.1996225267648697, "mrr_novel": 0.02618453310784495, "mrr_recurrent": 0.20052037090294322, "frac_novel": 0.00515, "mrr_by_gap": {"q1": 0.19853161693084986, "q2": 0.20155163709819318, "q3": 0.19622439598012714, "q4": 0.2021825153440237}}

@@ -1,0 +1,11 @@
+node features: observed x0 (4) + community one-hot (4)
+delta_time_scale=20.3594
+[identity] epoch 1 loss 0.0229 val_mrr 0.8444 (7451s)
+[identity] epoch 2 loss 0.0227 val_mrr 0.8455 (7461s)
+[identity] epoch 3 loss 0.0198 val_mrr 0.8496 (7486s)
+[identity] epoch 4 loss 0.0206 val_mrr 0.8375 (7458s)
+[identity] epoch 5 loss 0.0190 val_mrr 0.8481 (7463s)
+[identity] epoch 6 loss 0.0190 val_mrr 0.8235 (7219s)
+[identity] epoch 7 loss 0.0185 val_mrr 0.8389 (7232s)
+[identity] epoch 8 loss 0.0185 val_mrr 0.8507 (7249s)
+{"variant": "identity", "recurrency": true, "time_scale": 1.0, "best_val": 0.850717306137085, "test_mrr": 0.8463243246078491, "mrr_novel": 0.12669793090650014, "mrr_recurrent": 0.8473331934580124, "frac_novel": 0.0014, "mrr_by_gap": {"q1": 0.847653191003576, "q2": 0.847549971007742, "q3": 0.8494631721435115, "q4": 0.8406308822069317}}

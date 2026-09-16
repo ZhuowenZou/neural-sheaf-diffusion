@@ -40,6 +40,7 @@ import math
 from dataclasses import dataclass
 from typing import List, Optional, Sequence, Union
 
+import numpy as np
 import torch
 import torch.nn.functional as F
 import torch_sparse
@@ -115,7 +116,15 @@ class SelectiveZOHSSM(nn.Module):
         # only constrains Delta_{u,k} > 0, so a stability cap is admissible.
         self.dt_cap = float(dt_cap)
 
-        self.A = nn.Parameter(hippo_legs_matrix(d_state))
+        # The generator is kept Hurwitz by construction: HiPPO-LegS is lower
+        # triangular with diagonal -(i+1), so the strict lower triangle is
+        # learned freely while the diagonal is parameterized as -softplus(.).
+        # This preserves the exact HiPPO init and guarantees Re(eig A) < 0 for
+        # every parameter value; an unconstrained A drifts unstable during
+        # training and compounds to overflow across long event streams.
+        hippo = hippo_legs_matrix(d_state)
+        self.A_lower = nn.Parameter(torch.tril(hippo, diagonal=-1))
+        self.A_neg_diag = nn.Parameter(_inv_softplus(-torch.diagonal(hippo)))
 
         # Selector Gamma_eta: q -> (Delta_{u,k}, B_{u,k}).
         self.dt_proj = nn.Linear(d_input, 1)
@@ -130,6 +139,11 @@ class SelectiveZOHSSM(nn.Module):
         # ambiguity by feeding Delta_k into the selector input).
         self.dt_time_weight = nn.Parameter(torch.ones(1))
         self.dt_time_log_scale = nn.Parameter(torch.zeros(1))
+        # Units of Delta_k: physical gaps are divided by this (non-learned)
+        # dataset scale so that a typical gap is O(1) and the selector does not
+        # saturate at dt_cap (audit finding: second-resolution datasets otherwise
+        # get dt == dt_cap for every node and zero gradient to the selector).
+        self.register_buffer("delta_scale", torch.ones(1))
 
         self.B_selector = nn.Linear(d_input, d_state * d_input)
         nn.init.normal_(self.B_selector.weight, std=1e-3)
@@ -137,10 +151,21 @@ class SelectiveZOHSSM(nn.Module):
             base_b = hippo_legs_b(d_state).unsqueeze(1).expand(d_state, d_input)
             self.B_selector.bias.copy_((base_b / math.sqrt(d_input)).reshape(-1))
 
+    @property
+    def A(self) -> torch.Tensor:
+        return torch.tril(self.A_lower, diagonal=-1) - torch.diag(F.softplus(self.A_neg_diag))
+
+    def set_delta_scale(self, value: float) -> None:
+        value = float(value)
+        if not np.isfinite(value) or value <= 0:
+            raise ValueError(f"delta_scale must be positive and finite, got {value}")
+        self.delta_scale.fill_(value)
+
     def step_size(self, q: torch.Tensor, delta_t: torch.Tensor) -> torch.Tensor:
         """Delta_{u,k} > 0 per node, from input content and physical gap."""
         time_scale = F.softplus(self.dt_time_log_scale) + 1e-4
-        time_term = self.dt_time_weight * torch.log1p(delta_t.clamp_min(0.0) / time_scale)
+        scaled_gap = delta_t.clamp_min(0.0) / self.delta_scale.to(delta_t.dtype)
+        time_term = self.dt_time_weight * torch.log1p(scaled_gap / time_scale)
         dt = F.softplus(self.dt_proj(q).squeeze(-1) + time_term)
         return dt.clamp(max=self.dt_cap)
 
@@ -417,7 +442,12 @@ class FaithfulTemporalSheafDiffusion(nn.Module):
 
         # Delta_k = t_k - t_{k-1} (0 at k = 0 or without timestamps).
         if timestamp is not None and prev is not None and prev.prev_timestamp is not None:
-            delta_t = (timestamp.to(device).float() - prev.prev_timestamp.to(device).float()).clamp_min(0.0)
+            # Subtract in float64: raw epoch-second timestamps (~1e9) lose
+            # second-scale gaps to fp32 rounding.
+            delta_t = (
+                timestamp.to(device=device, dtype=torch.float64)
+                - prev.prev_timestamp.to(device=device, dtype=torch.float64)
+            ).clamp_min(0.0).float()
         else:
             delta_t = torch.zeros((), device=device)
 

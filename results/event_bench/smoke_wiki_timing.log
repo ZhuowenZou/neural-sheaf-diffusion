@@ -1,0 +1,20 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tgbl-wiki', 'seed': 43, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 1, 'patience': None, 'min_epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': 10000, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 2000, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': True, 'out': 'results/event_bench/smoke_wiki_timing'}
+split_source=official_tgb_masks
+destination_range=(8227, 9226)
+snapshots: train=9700 (edges=10000) track_val=1935 final_val=22859 final_test=22972 | prep_sec=6.6
+negative-sample sets loaded in 2.4s
+parameter_count=444541 num_relations=1 num_nodes=9227
+[epoch 1/1] {'epoch': 1, 'train_loss': nan, 'track_val_mrr': 1.0, 'track_val_loss': nan, 'train_sec': 301.9, 'track_eval_sec': 209.2, 'peak_gpu_mem_mb': 275.5}
+{
+  "dataset": "tgbl-wiki",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 43,
+  "epochs": 1,
+  "best_track_epoch": 1,
+  "best_track_val_mrr": 1.0,
+  "parameter_count": 444541,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 10000,
+  "final_val_edges": 23621,
+  "final_test_edges": 23621
+}

@@ -1,0 +1,47 @@
+reserved 10976 MiB of GPU memory on cuda:0 in the caching allocator (requested 10976; now reserved 10980 MiB)
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tkgl-smallpedia', 'seed': 46, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 15, 'patience': 6, 'min_epochs': 6, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 50000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': False, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': True, 'no_memory': False, 'recurrency_symmetric': True, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.01, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'out': 'results/event_bench/leakfree2/sp_abl_nodelta_s46'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=98 (edges=775514) track_val=7 final_val=10 final_test=17 | prep_sec=2.3
+negative-sample sets loaded in 1.4s
+delta_time_scale=1 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=648803 num_relations=566 num_nodes=47433
+[epoch 1/15] {'epoch': 1, 'train_loss': 0.10440211785361939, 'track_val_mrr': 0.6576312057888508, 'track_val_loss': 0.11142987012863159, 'train_sec': 159.2, 'track_eval_sec': 211.1, 'peak_gpu_mem_mb': 8684.4}
+[epoch 2/15] {'epoch': 2, 'train_loss': 0.05029219093242871, 'track_val_mrr': 0.6964217379033566, 'track_val_loss': 0.08164478838443756, 'train_sec': 158.2, 'track_eval_sec': 201.2, 'peak_gpu_mem_mb': 8764.6}
+[epoch 3/15] {'epoch': 3, 'train_loss': 0.04709094207849085, 'track_val_mrr': 0.7143444440472126, 'track_val_loss': 0.06690976768732071, 'train_sec': 159.2, 'track_eval_sec': 200.0, 'peak_gpu_mem_mb': 8764.6}
+[epoch 4/15] {'epoch': 4, 'train_loss': 0.044742075015896374, 'track_val_mrr': 0.7210616804599762, 'track_val_loss': 0.05630090460181236, 'train_sec': 158.7, 'track_eval_sec': 201.4, 'peak_gpu_mem_mb': 9903.7}
+[epoch 5/15] {'epoch': 5, 'train_loss': 0.04478663690964278, 'track_val_mrr': 0.7179250388741493, 'track_val_loss': 0.055640220642089844, 'train_sec': 159.5, 'track_eval_sec': 200.6, 'peak_gpu_mem_mb': 9903.7}
+[epoch 6/15] {'epoch': 6, 'train_loss': 0.04560770445800934, 'track_val_mrr': 0.7235794272685051, 'track_val_loss': 0.05817253142595291, 'train_sec': 158.5, 'track_eval_sec': 199.5, 'peak_gpu_mem_mb': 9903.7}
+[epoch 7/15] {'epoch': 7, 'train_loss': 0.05134800539265588, 'track_val_mrr': 0.7208894070112706, 'track_val_loss': 0.07803673297166824, 'train_sec': 159.4, 'track_eval_sec': 201.2, 'peak_gpu_mem_mb': 9903.7}
+[epoch 8/15] {'epoch': 8, 'train_loss': 0.04808996151172623, 'track_val_mrr': 0.7287594432497024, 'track_val_loss': 0.06754354387521744, 'train_sec': 157.4, 'track_eval_sec': 199.2, 'peak_gpu_mem_mb': 9903.7}
+[epoch 9/15] {'epoch': 9, 'train_loss': 0.04674988972580003, 'track_val_mrr': 0.7300821022760868, 'track_val_loss': 0.058550287038087845, 'train_sec': 157.7, 'track_eval_sec': 200.0, 'peak_gpu_mem_mb': 9903.7}
+[epoch 10/15] {'epoch': 10, 'train_loss': 0.04414500150176668, 'track_val_mrr': 0.7293365521860122, 'track_val_loss': 0.05553879216313362, 'train_sec': 157.4, 'track_eval_sec': 199.9, 'peak_gpu_mem_mb': 9903.7}
+[epoch 11/15] {'epoch': 11, 'train_loss': 0.04386480754606195, 'track_val_mrr': 0.7291413066577911, 'track_val_loss': 0.05663537606596947, 'train_sec': 157.8, 'track_eval_sec': 200.4, 'peak_gpu_mem_mb': 9903.7}
+[epoch 12/15] {'epoch': 12, 'train_loss': 0.04299367640705146, 'track_val_mrr': 0.73067269728899, 'track_val_loss': 0.05568058416247368, 'train_sec': 157.1, 'track_eval_sec': 199.3, 'peak_gpu_mem_mb': 9903.7}
+[epoch 13/15] {'epoch': 13, 'train_loss': 0.04274790716770383, 'track_val_mrr': 0.7303190895831585, 'track_val_loss': 0.05293634161353111, 'train_sec': 157.0, 'track_eval_sec': 200.7, 'peak_gpu_mem_mb': 9903.7}
+[epoch 14/15] {'epoch': 14, 'train_loss': 0.042031545441636106, 'track_val_mrr': 0.7275513263237476, 'track_val_loss': 0.05246546119451523, 'train_sec': 158.2, 'track_eval_sec': 202.0, 'peak_gpu_mem_mb': 9903.7}
+[epoch 15/15] {'epoch': 15, 'train_loss': 0.04106653689109173, 'track_val_mrr': 0.728070347135067, 'track_val_loss': 0.05351700261235237, 'train_sec': 158.7, 'track_eval_sec': 200.4, 'peak_gpu_mem_mb': 9903.7}
+checkpoint saved: results/event_bench/leakfree2/sp_abl_nodelta_s46/best.pt
+final val_mrr=0.6386 (316.5s so far)
+FINAL val_mrr=0.6386 test_mrr=0.6054 test_hits10=0.7125 eval_sec=460.9
+{
+  "dataset": "tkgl-smallpedia",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 46,
+  "epochs": 15,
+  "best_track_epoch": 12,
+  "best_track_val_mrr": 0.73067269728899,
+  "parameter_count": 648803,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 775514,
+  "final_val_edges": 162066,
+  "final_test_edges": 163172,
+  "validation_mrr": 0.6385620132160562,
+  "test_mrr": 0.6053613115896461,
+  "final_val_loss": 0.0807739645242691,
+  "final_test_loss": 0.0971151813864708,
+  "final_eval_sec": 460.9,
+  "final_eval_peak_gpu_mem_mb": 20065.6,
+  "test_hits10": 0.7125180794051094
+}

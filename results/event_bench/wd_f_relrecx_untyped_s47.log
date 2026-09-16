@@ -1,0 +1,31 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tkgl-wikidata', 'seed': 47, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 4, 'patience': None, 'min_epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': 2000000, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 300000, 'train_loss': 'softplus', 'learn_node_emb': False, 'node_type_emb': False, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 32, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.003, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'out': '/home/zhuowez1/project/neural-sheaf-diffusion/results/event_bench/wd_f_relrecx_untyped_s47'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=30 (edges=2000000) track_val=4 final_val=12 final_test=14 | prep_sec=34.3
+negative-sample sets loaded in 46.2s
+parameter_count=355205 num_relations=1192 num_nodes=1226440
+[epoch 1/4] {'epoch': 1, 'train_loss': 0.38897960633039474, 'track_val_mrr': 0.19750667199570685, 'track_val_loss': 0.9540054798126221, 'train_sec': 785.9, 'track_eval_sec': 851.1, 'peak_gpu_mem_mb': 9273.2}
+[epoch 2/4] {'epoch': 2, 'train_loss': 0.11172164405385653, 'track_val_mrr': 0.34581000553591795, 'track_val_loss': 1.1772708892822266, 'train_sec': 782.8, 'track_eval_sec': 846.8, 'peak_gpu_mem_mb': 9329.6}
+[epoch 3/4] {'epoch': 3, 'train_loss': 0.03292951174080372, 'track_val_mrr': 0.39261333915708896, 'track_val_loss': 1.1228408813476562, 'train_sec': 776.7, 'track_eval_sec': 850.7, 'peak_gpu_mem_mb': 9438.6}
+[epoch 4/4] {'epoch': 4, 'train_loss': 0.01809187304849426, 'track_val_mrr': 0.40354332516952107, 'track_val_loss': 1.2564189434051514, 'train_sec': 789.1, 'track_eval_sec': 855.7, 'peak_gpu_mem_mb': 9696.3}
+final val_mrr=0.6205 (1369.0s so far)
+FINAL val_mrr=0.6205 test_mrr=0.5701 eval_sec=2022.3
+{
+  "dataset": "tkgl-wikidata",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 47,
+  "epochs": 4,
+  "best_track_epoch": 4,
+  "best_track_val_mrr": 0.40354332516952107,
+  "parameter_count": 355205,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 2000000,
+  "final_val_edges": 2869900,
+  "final_test_edges": 2877500,
+  "validation_mrr": 0.6204986286362711,
+  "test_mrr": 0.5700705527272253,
+  "final_val_loss": 0.3399277627468109,
+  "final_test_loss": 0.5327692627906799,
+  "final_eval_sec": 2022.3,
+  "final_eval_peak_gpu_mem_mb": 8774.8
+}

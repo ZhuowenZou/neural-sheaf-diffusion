@@ -1,0 +1,41 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tkgl-polecat', 'seed': 43, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 10, 'patience': 5, 'min_epochs': 4, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 30000, 'train_loss': 'softplus', 'learn_node_emb': False, 'node_type_emb': False, 'predict_from_previous': True, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'recurrency_symmetric': False, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.003, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'out': 'results/event_bench/leakfree2/polecat_f_s43'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=1193 (edges=2493112) track_val=37 final_val=329 final_test=304 | prep_sec=2.3
+negative-sample sets loaded in 4.3s
+delta_time_scale=86400 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=631133 num_relations=32 num_nodes=150931
+[epoch 1/10] {'epoch': 1, 'train_loss': 0.1534375354847652, 'track_val_mrr': 0.16397718800529837, 'track_val_loss': 0.23100852966308594, 'train_sec': 4181.2, 'track_eval_sec': 4192.0, 'peak_gpu_mem_mb': 5828.9}
+[epoch 2/10] {'epoch': 2, 'train_loss': 0.1441818532821466, 'track_val_mrr': 0.2103607931594054, 'track_val_loss': 0.36415567994117737, 'train_sec': 4669.0, 'track_eval_sec': 4678.3, 'peak_gpu_mem_mb': 6820.0}
+[epoch 3/10] {'epoch': 3, 'train_loss': 0.14728582645735186, 'track_val_mrr': 0.2331215172941486, 'track_val_loss': 0.28224146366119385, 'train_sec': 4816.7, 'track_eval_sec': 4658.9, 'peak_gpu_mem_mb': 6893.7}
+[epoch 4/10] {'epoch': 4, 'train_loss': 0.1416172813499134, 'track_val_mrr': 0.23069738418906927, 'track_val_loss': 0.2620936334133148, 'train_sec': 4772.1, 'track_eval_sec': 4628.2, 'peak_gpu_mem_mb': 6984.5}
+[epoch 5/10] {'epoch': 5, 'train_loss': 0.14159591345354014, 'track_val_mrr': 0.23984240624954303, 'track_val_loss': 0.28531232476234436, 'train_sec': 4778.8, 'track_eval_sec': 4626.7, 'peak_gpu_mem_mb': 6984.5}
+[epoch 6/10] {'epoch': 6, 'train_loss': 0.14119239153665483, 'track_val_mrr': 0.24365377106169858, 'track_val_loss': 0.2778889536857605, 'train_sec': 4774.2, 'track_eval_sec': 4646.4, 'peak_gpu_mem_mb': 6984.5}
+[epoch 7/10] {'epoch': 7, 'train_loss': 0.13956854021764242, 'track_val_mrr': 0.2366449258039395, 'track_val_loss': 0.2512005865573883, 'train_sec': 5014.7, 'track_eval_sec': 5059.2, 'peak_gpu_mem_mb': 6984.5}
+[epoch 8/10] {'epoch': 8, 'train_loss': 0.13987908059818632, 'track_val_mrr': 0.23231795305460692, 'track_val_loss': 0.2507688105106354, 'train_sec': 5188.5, 'track_eval_sec': 4395.2, 'peak_gpu_mem_mb': 6984.5}
+[epoch 9/10] {'epoch': 9, 'train_loss': 0.13921444894958462, 'track_val_mrr': 0.23657388280878464, 'track_val_loss': 0.293319970369339, 'train_sec': 3875.1, 'track_eval_sec': 3813.0, 'peak_gpu_mem_mb': 6984.5}
+[epoch 10/10] {'epoch': 10, 'train_loss': 0.1402431563693005, 'track_val_mrr': 0.2487990550900499, 'track_val_loss': 0.24616079032421112, 'train_sec': 3667.6, 'track_eval_sec': 3254.5, 'peak_gpu_mem_mb': 6984.5}
+checkpoint saved: results/event_bench/leakfree2/polecat_f_s43/best.pt
+final val_mrr=0.2472 (4910.0s so far)
+FINAL val_mrr=0.2472 test_mrr=0.2403 test_hits10=0.3942 eval_sec=6834.8
+{
+  "dataset": "tkgl-polecat",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 43,
+  "epochs": 10,
+  "best_track_epoch": 10,
+  "best_track_val_mrr": 0.2487990550900499,
+  "parameter_count": 631133,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 2493112,
+  "final_val_edges": 533472,
+  "final_test_edges": 532636,
+  "validation_mrr": 0.24722865576819023,
+  "test_mrr": 0.24030000343043142,
+  "final_val_loss": 0.26032203435897827,
+  "final_test_loss": 0.28071802854537964,
+  "final_eval_sec": 6834.8,
+  "final_eval_peak_gpu_mem_mb": 9788.7,
+  "test_hits10": 0.3941528546385045
+}

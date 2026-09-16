@@ -1,0 +1,5 @@
+Mon Sep  7 05:22:15 PM PDT 2026 launching on gpu4
+Fri Sep 11 09:18:58 AM PDT 2026 launching on gpu0
+Fri Sep 11 09:41:33 AM PDT 2026 launching on gpu0 (request 6000 MiB, reserve 4976 MiB; large=0 our-large-gpus=0 others-large=1 free=10579)
+Fri Sep 11 09:47:54 AM PDT 2026 launching on gpu0 (request 6000 MiB, reserve 4976 MiB; large=0 our-large-gpus=0 others-large=1 free=10158)
+Fri Sep 11 01:43:51 PM PDT 2026 launching on gpu7 (request 6000 MiB, reserve 4976 MiB; card=own free=48387 eligible: 0=own 7=own )

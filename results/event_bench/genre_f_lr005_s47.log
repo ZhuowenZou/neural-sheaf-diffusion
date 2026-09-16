@@ -1,0 +1,8 @@
+snapshots: train=179 val=24 test=25 nodes=1505 output_dim=513
+seed 47: val=0.5167 test=0.5114 best_epoch=12 (225.9 min)
+
+== summary ==
+ seed  val_ndcg  test_ndcg  best_epoch  n_params    minutes
+   47  0.516736    0.51141          12    803289 225.914271
+test NDCG mean±std: 0.5114 ± nan
+saved to results/event_bench/genre_f_lr005_s47.csv

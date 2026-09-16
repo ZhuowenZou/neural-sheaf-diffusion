@@ -1,0 +1,14 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'thgl-forum', 'seed': 43, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 4, 'patience': 3, 'min_epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges_cap': 4000000, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 20000, 'train_loss': 'softplus', 'learn_node_emb': False, 'node_type_emb': True, 'predict_from_previous': True, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'recurrency_symmetric': False, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'out': 'results/event_bench/leakfree/forum_f_s43'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=740 (edges=4000000) track_val=3 final_val=687 final_test=625 | prep_sec=6.7
+negative-sample sets loaded in 40.5s
+node_types: present
+delta_time_scale=600 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=630271 num_relations=2 num_nodes=152816
+[epoch 1/4] {'epoch': 1, 'train_loss': 0.2903976901560216, 'track_val_mrr': 0.6382264524281025, 'track_val_loss': 0.23297445476055145, 'train_sec': 6562.9, 'track_eval_sec': 6456.0, 'peak_gpu_mem_mb': 3751.9}
+[epoch 2/4] {'epoch': 2, 'train_loss': 0.21931993053168863, 'track_val_mrr': 0.6424426583766937, 'track_val_loss': 0.22791671752929688, 'train_sec': 6405.2, 'track_eval_sec': 6000.0, 'peak_gpu_mem_mb': 3830.0}
+[epoch 3/4] {'epoch': 3, 'train_loss': 0.21520936112548855, 'track_val_mrr': 0.6439118927001953, 'track_val_loss': 0.225181445479393, 'train_sec': 5867.3, 'track_eval_sec': 5528.6, 'peak_gpu_mem_mb': 3830.0}
+[epoch 4/4] {'epoch': 4, 'train_loss': 0.21313154256424388, 'track_val_mrr': 0.6450151417434216, 'track_val_loss': 0.22418679296970367, 'train_sec': 5683.4, 'track_eval_sec': 5535.4, 'peak_gpu_mem_mb': 3830.0}
+checkpoint saved: results/event_bench/leakfree/forum_f_s43/best.pt

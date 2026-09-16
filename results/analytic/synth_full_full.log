@@ -1,0 +1,5 @@
+[full] epoch 1 loss 0.4683 val_mrr 0.0179 (2459s)
+[full] epoch 2 loss 8.2288 val_mrr 0.0201 (2398s)
+[full] epoch 3 loss 4.1262 val_mrr 0.0540 (2389s)
+[full] epoch 4 loss nan val_mrr 2.0000 (2344s)
+{"variant": "full", "recurrency": false, "time_scale": 1.0, "best_val": 2.0, "test_mrr": 2.0, "mrr_novel": 2.0, "mrr_recurrent": 2.0, "frac_novel": 0.45825, "mrr_by_gap": {"q1": 2.0, "q2": 2.0, "q3": 2.0, "q4": 2.0}}

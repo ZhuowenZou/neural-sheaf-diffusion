@@ -1,0 +1,6 @@
+delta_time_scale=10.5156
+[nodelta] epoch 1 loss 0.6946 val_mrr 0.0220 (1827s)
+[nodelta] epoch 2 loss 0.6911 val_mrr 0.0213 (1836s)
+[nodelta] epoch 3 loss 0.6923 val_mrr 0.0215 (1841s)
+[nodelta] epoch 4 loss 0.6902 val_mrr 0.0221 (1854s)
+{"variant": "nodelta", "recurrency": false, "time_scale": 1.0, "best_val": 0.02212892659008503, "test_mrr": 0.021978328004479408, "mrr_novel": 0.020257931471001293, "mrr_recurrent": 0.02253408684624234, "frac_novel": 0.24416666666666667, "mrr_by_gap": {"q1": 0.022502165211519848, "q2": 0.02055831074054974, "q3": 0.02120505983615294, "q4": 0.023647766513594737}}

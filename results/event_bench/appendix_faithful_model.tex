@@ -1,0 +1,246 @@
+% Revised 2026-09-08: numbers below are from the corrected leak-free protocol (see \ref{app:faithful:protocol}); pending entries are marked.
+% ===================================================================
+% Appendix X: A faithful event-time implementation of Section 3.2
+% ===================================================================
+\section{A Faithful Event-Time Implementation of the Temporal Core}
+\label{app:faithful}
+
+The released implementation realizes the temporal core of
+Section~3.2 as an \emph{efficient approximation}: at every snapshot it
+feeds a length-two pseudo-sequence (a context token and a current
+token) through an off-the-shelf selective-SSM (Mamba) block, and
+recurrence across events is carried by cached embeddings rather than
+by the SSM state itself. Consequently the physical inter-event gap
+$\Delta_k$ never enters the computation, and the selective-scan
+recurrence never spans more than two tokens. During the discussion
+period we additionally implemented the algorithm of Section~3.2
+\emph{as written} and benchmarked it under identical protocols. This
+appendix documents the differences, the modifications that proved
+necessary to train it stably, and its empirical standing.
+
+\subsection{Architectural differences}
+\label{app:faithful:arch}
+
+\paragraph{Persistent per-node state with exact ZOH.}
+Each node $u$ carries a memory $h_u \in \mathbb{R}^{d_h}$ that
+persists across the entire event stream. On event $k$ the state is
+advanced by the \emph{exact} zero-order-hold discretization of the
+continuous system $\dot h = A h + B_{u,k}\, q_{u,k}$,
+\begin{equation}
+h_{u,k} \;=\; e^{\Delta_{u,k} A}\, h_{u,k-1}
+\;+\; A^{-1}\!\left(e^{\Delta_{u,k} A} - I\right) B_{u,k}\, q_{u,k},
+\label{eq:app-zoh}
+\end{equation}
+computed with a batched matrix exponential and a batched linear
+solve --- no scan approximation and no diagonal restriction of $A$.
+
+\paragraph{Physical time in the step-size selector.}
+The paper introduces $\Delta_k$ in Eq.~(11) but omits it from the
+selector input in Eq.~(15). We resolve this in favor of Eq.~(11): the
+per-node step size is
+\begin{equation}
+\Delta_{u,k} \;=\;
+\min\!\Big(\operatorname{softplus}\big(w_\Delta^\top q_{u,k} + b_\Delta
++ \gamma \log\!\big(1 + \Delta_k / s\big)\big),\, \Delta_{\max}\Big),
+\end{equation}
+with learnable $\gamma, s$, so the effective integration step is
+conditioned on both content and the physical inter-event gap. The cap
+$\Delta_{\max}$ controls transient amplification of the non-normal
+generator. $B_{u,k}=\mathrm{reshape}(W_B q_{u,k}+b_B)$ is
+input-selective with its bias initialized from the HiPPO-LegS $B$.
+
+\paragraph{Provably stable generator (necessary modification).}
+$A$ is initialized from HiPPO-LegS. Left unconstrained, training
+drifts $A$ out of the Hurwitz region; because
+\eqref{eq:app-zoh} is applied thousands of times along an event
+stream, any unstable mode compounds geometrically (we measured state
+magnitudes growing from $10^{-2}$ to $10^{20}$ within $2{,}400$
+events before overflow). Exploiting that HiPPO-LegS is lower
+triangular with diagonal $-(i{+}1)$, we parameterize
+\begin{equation}
+A \;=\; \mathrm{tril}_{-1}(L) \;-\;
+\operatorname{diag}\big(\operatorname{softplus}(a)\big),
+\end{equation}
+which reproduces the HiPPO initialization exactly and guarantees
+$\operatorname{Re}\,\lambda_i(A) < 0$ for \emph{every} parameter
+value --- the same stability principle enforced by diagonal
+parameterizations in S4/Mamba, lifted to the full triangular
+structure. On streams with $\sim$$10^5$ events this modification is
+the difference between convergence and silent divergence.
+
+\paragraph{Causal input assembly.}
+The SSM input is $q_{u,k} = [\,x_u(t_k);\, \bar z_u(t_{k-1});\,
+\psi_u(G_k)\,]$, where $\bar z$ is the mean-aggregated spatial
+readout over the \emph{previous} event graph (the lagged feedback of
+Eq.~(13), preserving causality) and $\psi_u$ contains degree
+descriptors of the current event graph.
+
+\paragraph{Memory readout.}
+The readout map $C$ of Eq.~(5) (Table~3), which the efficient
+implementation never consumes, is realized as a normalization of the
+memory ($o_u = \mathrm{LN}(h_u)$) applied before all consumers. Its
+effect is protocol-dependent: neutral-to-harmful when the recurrence
+is short, and decisively beneficial (+0.03 NDCG on
+\textsc{tgbn-trade}) once training streams are long enough to train
+the recurrence.
+
+\paragraph{Event-locked sheaf decoding and spatial integration.}
+Restriction maps are decoded \emph{once per event} from the memory
+readout (orthogonal maps via Householder composition; normalized
+sheaf connection Laplacian $\tilde L$) and held fixed over the
+inter-event interval. The spatial latent is initialized as
+$z_u(t_k^+) = P_z[\,x_u; o_u\,]$ and evolved by forward-Euler steps
+of the diffusion field of Eq.~(23),
+\begin{equation}
+Z \leftarrow Z + \tau_\ell\,
+\sigma\big((I - \tilde L)(I \otimes W_1)\, Z\, W_2\big),
+\qquad \tau_\ell = \operatorname{softplus}(\theta_\ell),
+\end{equation}
+with a single tied $(W_1, W_2)$, interpreting Eq.~(23) as a vector
+field rather than a discrete layer map (empirically superior and
+consistent with the continuous-time narrative of Section~3.1).
+
+\paragraph{Scalability.}
+The batched matrix exponential materializes an
+$(n, d_h, d_h)$ tensor; on million-node graphs we compute
+\eqref{eq:app-zoh} in node chunks of $32{,}768$ under gradient
+checkpointing. This trains end-to-end on \textsc{tkgl-wikidata}
+(1.23M entities, 19.7M edges) within 7.6\,GB of GPU memory.
+
+\paragraph{Training protocol.}
+Two safeguards matter for correctness of reported numbers on long
+streams: (i) gradient clipping plus a non-finite-gradient step skip,
+and (ii) model selection that requires a \emph{finite validation
+loss} alongside the best validation metric --- a diverged model
+scores NaN on all candidates, which ranking evaluators score as a
+perfect MRR. Early stopping must be patient: faithful training
+exhibits transient degradation followed by slow recovery (best epochs
+up to 150 on \textsc{tgbn-trade}).
+
+\subsection{Evaluation protocol and its corrections}
+\label{app:faithful:protocol}
+
+All numbers in this appendix use the official TGB splits, negative sets and
+evaluators, with the metric read \emph{by name} from the evaluator output
+(TGB's link evaluator returns Hits@10 and MRR together). An audit of our
+harness against the TGB reference scripts found, and fixed, three defects
+that had inflated earlier drafts; we state them because they affect any
+snapshot-based harness.
+\begin{enumerate}
+\item \emph{Predict-then-update.} Scoring the events of snapshot $k$ from
+embeddings diffused over snapshot $k$ itself leaks the events being
+predicted. We now score snapshot $k$ from the state produced by snapshot
+$k{-}1$ (with the gradient attached during training) and ingest snapshot
+$k$ afterwards, mirroring the batch-wise predict-then-update loop of the
+TGB reference models. A random-destination probe (no learnable signal)
+scores at chance under this protocol and far above chance under the old one.
+\item \emph{Label cursor.} TGB's node-label iterator is monotone across
+train$\to$val$\to$test; resetting it per split paired validation/test
+snapshots with the earliest labels. The cursor is now seeked to the
+continuous position.
+\item \emph{Units of $\Delta_k$.} On second-resolution streams the raw gap
+saturated the step-size selector at its cap; $\Delta_k$ is now measured in
+units of the median training inter-snapshot gap.
+\end{enumerate}
+Two further guards: non-finite scores are ranked last (the TGB evaluator
+would rank a NaN first), and NDCG is averaged per label timestamp as in the
+TGB examples.
+
+\paragraph{Head components (documented separately from the core).}
+The temporal core is unchanged across datasets; task-appropriate head
+components are attached and attributed individually: a recurrency decoder
+(REC-x; event-exact causal counts/recency of $(s,r,o)$, untyped $(s,o)$ and
+symmetric channels feeding a zero-initialised bonus MLP), relation-aware
+input (REL), node-type embeddings (TYPE), and learnable node embeddings
+(EMB, optionally also visible to the scoring head).
+
+\subsection{Empirical standing}
+\label{app:faithful:results}
+
+\begin{table}[h]
+\centering\small
+\caption{Faithful implementation under the leak-free protocol (test metric;
+NDCG@10 for tgbn-*, MRR otherwise; mean $\pm$ std over seeds 43/46/47 unless
+noted) against the public TGB leaderboards (fetched Sep.\ 2026). ``Rank''
+counts the public entries plus ours.}
+\begin{tabular}{llccl}
+\toprule
+Dataset & Ours & Best published & Rank & Head \\
+\midrule
+tgbn-trade (yearly, uncapped; 5 seeds) & $0.664 \pm 0.006$ & NAVIS $0.863$; Persistent $0.855$; Moving Avg.\ $0.823$; TGNv2 $0.735$ & 5 / 8 & -- \\
+tgbl-wiki & $0.733 \pm 0.003$ & TPNet $0.827$; Heuristic $0.821$; HyperEvent $0.810$ & 8 / 22 & REC-x \\
+tkgl-smallpedia & $0.610 \pm 0.007$ & CEN $0.612$; RecB $0.605$; TLogic $0.595$ & 2 / 8 & REL, REC-x \\
+tkgl-polecat & $\mathbf{0.244 \pm 0.003}$ & TLogic $0.228$; RecB $0.198$; CEN $0.184$ & \textbf{1 / 8} & REL, REC-x \\
+thgl-software & $0.438 \pm 0.002$ & STHN $0.731$; EdgeBank $0.449$; TGN-et $0.424$ & 3 / 7 & TYPE, REL, REC-x \\
+thgl-forum & $0.629 \pm 0.011$ & TGN-et $0.729$; TGN $0.649$; EdgeBank $0.617$ & 3 / 6 & TYPE, REL, REC-x \\
+tkgl-icews & $\mathbf{0.335 \pm 0.003}$ & RecB $0.211$; CEN $0.187$; TLogic $0.186$ & \textbf{1 / 8} & REL, REC-x \\
+tkgl-wikidata & $\mathbf{0.540 \pm 0.009}$ & EdgeBank $0.535$ (only entry) & \textbf{1 / 3} & REL, REC-x \\
+tgbn-genre (daily; 3 seeds) & $0.448 \pm 0.003$ & NAVIS $0.528$; Moving Avg.\ $0.509$; TGNv2 $0.469$ & 4 / 8 & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Position relative to the state of the art.}
+Under the corrected protocol the faithful model leads the
+\textsc{tkgl-icews} leaderboard by a wide margin (0.335 vs.\ the
+recurrency baseline 0.211) and the \textsc{tkgl-polecat} leaderboard
+(0.244 vs.\ TLogic 0.228), and edges
+EdgeBank on \textsc{tkgl-wikidata} (0.540 vs.\ 0.535), where no other learned
+method has a leaderboard entry, is within
+noise of the leader on \textsc{tkgl-smallpedia} (0.610 vs.\ CEN 0.612),
+ranks in the
+upper third on \textsc{tgbl-wiki} (0.733; between DyGMamba 0.739 and
+TNCN 0.718, well above TGN 0.396 and EdgeBank 0.571). On the heterogeneous
+graphs it sits third: on \textsc{thgl-software} between EdgeBank (0.449)
+and TGN with edge types (0.424), far from STHN (0.731); on
+\textsc{thgl-forum} between TGN (0.649) and EdgeBank (0.617).
+
+\paragraph{What the components contribute (leak-free ablations).}
+We ablate the three mechanisms of the temporal core --- learned restriction
+maps (replaced by the identity under the same normalisation), the physical
+gap $\Delta_k$ (selector input frozen), and the persistent memory (SSM state
+advanced but never read) --- together with the conditioning of the maps
+(decoded from the current input, ``current-only''), and we cross every
+core variant with the recurrency head switched on or off, because a head
+that reads exact-triple recurrence can mask what the core learns.
+Table~\ref{tab:factorial} reports the factorial on \textsc{thgl-forum}, the
+dataset with the largest temporal-to-spatial ratio in TGB (2.6M
+timestamps for 153k nodes; 227 active timestamps per node).
+
+\begin{table}[h]
+\centering\small
+\caption{Head-vs-core factorial on \textsc{thgl-forum} (test MRR, seed 43,
+leak-free protocol; type and relation inputs fixed in every arm). The
+parameter-free Recurrency Baseline scores 0.561, TGN with edge types 0.729.}
+\label{tab:factorial}
+\begin{tabular}{lcc}
+\toprule
+Temporal core & REC head on & REC head off \\
+\midrule
+full & 0.628 & 0.394 \\
+identity restriction maps & 0.631 & 0.220 \\
+no $\Delta_k$ & 0.648 & 0.361 \\
+no memory & 0.649 & 0.409 \\
+current-only map conditioning & 0.648 & 0.384 \\
+core off (no diffusion, no memory) & 0.615 & 0.237 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Two regimes emerge. With the recurrency head on, every core variant lies
+within seed noise of the full model (two-seed means 0.629--0.641 against a
+seed standard deviation of 0.011), and the head over a pointwise projection
+of the inputs already reaches 0.615: the head masks the core. With the head
+off, the core is worth $+0.16$ MRR over the same projection
+(0.394 vs.\ 0.237), and almost all of it comes from the learned restriction
+maps --- replacing them by the identity drops the model to 0.220, below the
+core-off floor --- with a smaller contribution from the physical gap
+($-0.03$) and none from the persistent memory within the four-epoch budget.
+The same pattern holds on the coarse-grained streams with the head on
+(\textsc{tkgl-smallpedia}, \textsc{tkgl-polecat}, \textsc{thgl-software},
+\textsc{tkgl-icews}: all ablations within noise), and on \textsc{tgbl-wiki}
+only $\Delta_k$ shows a seed-consistent effect ($0.726 \pm 0.003$ vs.\
+$0.733 \pm 0.003$ over three seeds). The controlled synthetic study
+(App.~\ref{app:analytic}) is consistent: the faithful architecture beats the
+efficient implementation by $\sim$0.1 MRR in every regime, but its variants
+are indistinguishable once a recurrency head is present.

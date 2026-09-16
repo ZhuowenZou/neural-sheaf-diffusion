@@ -1,0 +1,29 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tkgl-smallpedia', 'seed': 43, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'current_only', 'epochs': 10, 'patience': None, 'min_epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 50000, 'train_loss': 'softplus', 'learn_node_emb': False, 'node_type_emb': False, 'predict_from_previous': False, 'sheaf_identity': False, 'no_delta_t': False, 'recurrency_symmetric': True, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.01, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': False, 'eval_only': 'results/analytic/sp_abl_curonly/best.pt', 'out': 'results/analytic/rescore_sp_abl_curonly'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=98 (edges=775514) track_val=7 final_val=10 final_test=17 | prep_sec=1.6
+negative-sample sets loaded in 1.3s
+parameter_count=652963 num_relations=566 num_nodes=47433
+eval-only: loaded results/analytic/sp_abl_curonly/best.pt
+final val_mrr=0.5862 (337.6s so far)
+FINAL val_mrr=0.5862 test_mrr=0.5379 test_hits10=0.6812 eval_sec=475.4
+{
+  "dataset": "tkgl-smallpedia",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 43,
+  "epochs": 10,
+  "best_track_epoch": -1,
+  "best_track_val_mrr": -Infinity,
+  "parameter_count": 652963,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 775514,
+  "final_val_edges": 162066,
+  "final_test_edges": 163172,
+  "validation_mrr": 0.5861899925072959,
+  "test_mrr": 0.5378765040709559,
+  "final_val_loss": 0.041071683168411255,
+  "final_test_loss": 0.09361379593610764,
+  "final_eval_sec": 475.4,
+  "final_eval_peak_gpu_mem_mb": 20052.9,
+  "test_hits10": 0.6811707861398419
+}

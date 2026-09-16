@@ -1,0 +1,5 @@
+harness MRR on first 3 snapshots: 0.7064; captured calls: [('pos', (9895,)), ('neg', (9895, 47432), True), ('pos', (10056,)), ('neg', (10056, 47432), True), ('pos', (49,)), ('neg', (49, 47432), True)]
+snap 0: n=9895 mrr_A=0.6509 | pos max|diff|=7.25e-04 neg shape A(9895, 47432) B(9895, 47432) neg max|diff| (finite)=1.30e-03
+snap 1: n=10056 mrr_A=0.6308 | pos max|diff|=5.95e-04 neg shape A(10056, 47432) B(10056, 47432) neg max|diff| (finite)=1.36e-03
+snap 2: n=49 mrr_A=0.0680 | pos max|diff|=2.52e-04 neg shape A(49, 47432) B(49, 47432) neg max|diff| (finite)=9.99e-04
+DONE

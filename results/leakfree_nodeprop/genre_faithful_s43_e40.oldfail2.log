@@ -1,0 +1,2 @@
+snapshots: train=1087 val=431599 test=399916 nodes=1505 output_dim=513
+[epoch 1] {'epoch': 1, 'train_loss': nan} (best epoch -1, best val -inf)

@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/analyze_event_model.py", line 165, in <module>
+    main()
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/analyze_event_model.py", line 77, in main
+    model.load_state_dict(torch.load(args.checkpoint, map_location=device)); model.eval()
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2624, in load_state_dict
+    raise RuntimeError(
+RuntimeError: Error(s) in loading state_dict for FaithfulEventTemporalSheafDiffusion:
+	Missing key(s) in state_dict: "ssm.delta_scale". 

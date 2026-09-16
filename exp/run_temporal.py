@@ -211,50 +211,24 @@ def _build_supervised_snapshots(
         selected_edge_ids = edge_ids[:next_count]
 
 
-def _node_label_batches(dataset, snapshots):
-    dataset.reset_label_time()
-    batches = []
-    for snapshot in snapshots:
-        cur_t = int(snapshot.timestamp.item()) if torch.is_tensor(snapshot.timestamp) else int(snapshot.timestamp)
-        label_tuple = dataset.get_node_label(cur_t)
-        if label_tuple is None:
-            continue
-        _, label_srcs, labels = label_tuple
-        batches.append((snapshot, label_srcs.long(), labels.float()))
-    return batches
+def _last_ts(snapshots):
+    from exp.temporal_benchmark_utils import last_snapshot_timestamp
+    return last_snapshot_timestamp(snapshots)
 
 
-def _node_property_loss(outputs, dataset, snapshots):
-    from torch.nn import functional as F
+def _node_label_batches(dataset, snapshots, seek=True):
+    from exp.temporal_benchmark_utils import node_label_batches
+    return node_label_batches(dataset, snapshots, seek=seek)
 
-    losses = []
-    batches = _node_label_batches(dataset, snapshots)
-    batch_index = 0
-    for snapshot_index, snapshot in enumerate(snapshots):
-        if batch_index >= len(batches):
-            break
-        batch_snapshot, label_srcs, labels = batches[batch_index]
-        if batch_snapshot is not snapshot:
-            continue
-        logits = outputs[snapshot_index]
-        pred = logits.index_select(0, label_srcs.to(logits.device))
-        target = labels.to(logits.device)
-        target = target / target.sum(dim=-1, keepdim=True).clamp_min(1e-12)
-        losses.append(-(target * F.log_softmax(pred, dim=-1)).sum(dim=-1).mean())
-        batch_index += 1
 
-    if not losses:
-        return torch.tensor(0.0, device=outputs[0].device if outputs else "cpu")
-    return torch.stack(losses).mean()
+def _node_property_loss(outputs, dataset, snapshots, seek=True):
+    from exp.temporal_benchmark_utils import node_property_loss
+    return node_property_loss(outputs, dataset, snapshots, seek=seek)
 
 
 def _next_snapshot_labels(dataset, snapshot):
-    cur_t = int(snapshot.timestamp.item()) if torch.is_tensor(snapshot.timestamp) else int(snapshot.timestamp)
-    label_tuple = dataset.get_node_label(cur_t)
-    if label_tuple is None:
-        return None
-    _, label_srcs, labels = label_tuple
-    return label_srcs.long(), labels.float()
+    from exp.temporal_benchmark_utils import _next_snapshot_labels as _shim
+    return _shim(dataset, snapshot)
 
 
 def _detach_temporal_state(state):
@@ -289,17 +263,18 @@ def _evaluate_snapshot_sequence(dataset_name, dataset, snapshots, logits_sequenc
     if not all_y_pred:
         return float("nan")
 
-    all_y_pred = torch.cat(all_y_pred, dim=0)
-    all_y_true = torch.cat(all_y_true, dim=0)
-
+    # TGB protocol: one evaluator call per label timestamp, unweighted mean
+    # over label timestamps (audit finding #4); metric selected by NAME.
     try:
-        score = evaluator.eval({
-            "y_pred": all_y_pred,
-            "y_true": all_y_true,
-            "eval_metric": [dataset.eval_metric],
-        })
-        metric_val = list(score.values())[0] if isinstance(score, dict) else score
-        return float(metric_val)
+        per_ts = []
+        for y_pred, y_true in zip(all_y_pred, all_y_true):
+            score = evaluator.eval({
+                "y_pred": y_pred,
+                "y_true": y_true,
+                "eval_metric": [dataset.eval_metric],
+            })
+            per_ts.append(float(score[dataset.eval_metric] if isinstance(score, dict) else score))
+        return float(np.mean(per_ts))
     except Exception:
         return float("nan")
 
@@ -313,64 +288,11 @@ def _advance_context(model, snapshots, initial_state=None):
     return state
 
 
-def _evaluate_model_streaming(
-    dataset_name,
-    dataset,
-    snapshots,
-    model,
-    initial_state=None,
-    compute_metric=True,
-    compute_loss=True,
-):
-    from torch.nn import functional as F
-
-    evaluator = None
-    if compute_metric:
-        from tgb.nodeproppred.evaluate import Evaluator
-        evaluator = Evaluator(name=dataset_name)
-    all_y_pred = []
-    all_y_true = []
-    losses = []
-    state = initial_state
-
-    dataset.reset_label_time()
-    model.eval()
-    with torch.no_grad():
-        for snapshot in snapshots:
-            outputs, state = model.forward_sequence([snapshot], initial_state=state)
-            logits = outputs[0]
-            label_batch = _next_snapshot_labels(dataset, snapshot)
-            if label_batch is None:
-                continue
-
-            label_srcs, labels = label_batch
-            pred = logits.index_select(0, label_srcs.to(logits.device))
-            target = labels.to(logits.device)
-            normalised_target = target / target.sum(dim=-1, keepdim=True).clamp_min(1e-12)
-
-            if compute_loss:
-                losses.append(-(normalised_target * F.log_softmax(pred, dim=-1)).sum(dim=-1).mean().detach().cpu())
-            if compute_metric:
-                all_y_pred.append(pred.detach().cpu())
-                all_y_true.append(labels.detach().cpu())
-
-    metric = float("nan")
-    if compute_metric and all_y_pred:
-        all_y_pred = torch.cat(all_y_pred, dim=0)
-        all_y_true = torch.cat(all_y_true, dim=0)
-        try:
-            score = evaluator.eval({
-                "y_pred": all_y_pred,
-                "y_true": all_y_true,
-                "eval_metric": [dataset.eval_metric],
-            })
-            metric_val = list(score.values())[0] if isinstance(score, dict) else score
-            metric = float(metric_val)
-        except Exception:
-            metric = float("nan")
-
-    mean_loss = float(torch.stack(losses).mean().item()) if losses else float("nan")
-    return metric, mean_loss, state
+def _evaluate_model_streaming(dataset_name, dataset, snapshots, model, initial_state=None, compute_metric=True, compute_loss=True, label_cursor_after_ts=None):
+    """Delegates to the single TGB-faithful implementation (label drain, per-label NDCG)."""
+    from exp.temporal_benchmark_utils import evaluate_node_property_streaming
+    return evaluate_node_property_streaming(dataset_name, dataset, snapshots, model, initial_state=initial_state,
+                                            compute_metric=compute_metric, compute_loss=compute_loss)
 
 
 def _run_epoch(
@@ -542,6 +464,7 @@ def main():
                 val_snapshots,
                 model,
                 initial_state=train_state,
+                label_cursor_after_ts=_last_ts(train_snapshots),
             )
             test_metric, test_eval_loss, _ = _evaluate_model_streaming(
                 dataset_name,
@@ -549,6 +472,7 @@ def main():
                 test_snapshots,
                 model,
                 initial_state=val_state,
+                label_cursor_after_ts=_last_ts(val_snapshots),
             )
 
             if np.isfinite(val_metric) and val_metric > best_val_metric:

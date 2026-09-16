@@ -1,0 +1,33 @@
+node features: observed x0 (4) + community one-hot (4)
+delta_time_scale=20.4062
+[nodelta] epoch 1 loss 0.4515 val_mrr 0.2690 (6544s)
+[nodelta] epoch 2 loss 0.4472 val_mrr 0.2693 (6810s)
+[nodelta] epoch 3 loss 0.4472 val_mrr 0.2701 (6848s)
+Traceback (most recent call last):
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_synthetic_sheaf.py", line 172, in <module>
+    main()
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_synthetic_sheaf.py", line 147, in main
+    outs, new_state = model.forward_sequence([tr[i] if leaky else tr[i - 1]], initial_state=state)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/faithful_event_model.py", line 810, in forward_sequence
+    event_output, state = self.step(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/faithful_event_model.py", line 706, in step
+    local_spatial = self._local_faithful_diffusion(Z0, sheaf_signal, local_edge_index, n_local)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/faithful_event_model.py", line 574, in _local_faithful_diffusion
+    builder = self._make_local_builder(local_edge_index, n_local)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/sparse_temporal_mamba.py", line 58, in _make_local_builder
+    return lb.NormConnectionLaplacianBuilder(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/laplacian_builders.py", line 175, in __init__
+    super(NormConnectionLaplacianBuilder, self).__init__(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/laplacian_builders.py", line 38, in __init__
+    self.left_right_idx, self.vertex_tril_idx = lap.compute_left_right_map_index(edge_index)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/lib/laplace.py", line 336, in compute_left_right_map_index
+    row = torch.tensor(row, dtype=torch.long, device=edge_index.device)
+torch.AcceleratorError: CUDA error: unspecified launch failure
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+

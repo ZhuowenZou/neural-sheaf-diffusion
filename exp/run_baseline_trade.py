@@ -17,6 +17,8 @@ from exp.temporal_mamba_studies import (
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seeds", type=int, nargs="+", default=[43])
+    parser.add_argument("--dataset", type=str, default="tgbn-trade",
+                        help="Any TGB nodeprop (tgbn-*) dataset")
     parser.add_argument("--epochs", type=int, default=None)
     parser.add_argument("--out", type=str, default=None)
     parser.add_argument("--override", type=str, default=None)
@@ -31,7 +33,7 @@ def main():
         config.update(json.loads(args.override))
 
     context = prepare_temporal_experiment_context(
-        "tgbn-trade",
+        args.dataset,
         split_caps={"train": (None if args.train_cap < 0 else args.train_cap), "val": None, "test": None},
         preload_time_windows=[config["time_window"]],
     )

@@ -1,0 +1,37 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tkgl-polecat', 'seed': 46, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 10, 'patience': 5, 'min_epochs': 4, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 30000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': False, 'predict_from_previous': True, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'recurrency_symmetric': False, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.003, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'out': 'results/event_bench/leakfree2/polecat_f_s46'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=1193 (edges=2493112) track_val=37 final_val=329 final_test=304 | prep_sec=2.2
+negative-sample sets loaded in 4.2s
+delta_time_scale=86400 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=631133 num_relations=32 num_nodes=150931
+[epoch 1/10] {'epoch': 1, 'train_loss': 0.15239807630220314, 'track_val_mrr': 0.1720851613337795, 'track_val_loss': 0.26750820875167847, 'train_sec': 2978.7, 'track_eval_sec': 2933.4, 'peak_gpu_mem_mb': 5967.2}
+[epoch 2/10] {'epoch': 2, 'train_loss': 0.14238287230341026, 'track_val_mrr': 0.23952734936674436, 'track_val_loss': 0.3110974431037903, 'train_sec': 2841.5, 'track_eval_sec': 3290.8, 'peak_gpu_mem_mb': 5967.2}
+[epoch 3/10] {'epoch': 3, 'train_loss': 0.1432205375483972, 'track_val_mrr': 0.11152469263672829, 'track_val_loss': 0.6997237205505371, 'train_sec': 4157.4, 'track_eval_sec': 4056.1, 'peak_gpu_mem_mb': 5967.2}
+[epoch 4/10] {'epoch': 4, 'train_loss': 0.1501931406545059, 'track_val_mrr': 0.25292000085363786, 'track_val_loss': 0.2798720896244049, 'train_sec': 4178.3, 'track_eval_sec': 4113.2, 'peak_gpu_mem_mb': 6945.7}
+[epoch 5/10] {'epoch': 5, 'train_loss': 0.15013665842492407, 'track_val_mrr': 0.24665883155167104, 'track_val_loss': 0.29665690660476685, 'train_sec': 4167.3, 'track_eval_sec': 4202.6, 'peak_gpu_mem_mb': 6945.7}
+[epoch 6/10] {'epoch': 6, 'train_loss': 0.1455181875959939, 'track_val_mrr': 0.24926804722001156, 'track_val_loss': 0.28599298000335693, 'train_sec': 4560.3, 'track_eval_sec': 4301.8, 'peak_gpu_mem_mb': 6945.7}
+[epoch 7/10] {'epoch': 7, 'train_loss': 0.141370317633045, 'track_val_mrr': 0.24386009311725695, 'track_val_loss': 0.29622241854667664, 'train_sec': 4508.5, 'track_eval_sec': 4287.1, 'peak_gpu_mem_mb': 6945.7}
+[epoch 8/10] {'epoch': 8, 'train_loss': 0.1418026942640993, 'track_val_mrr': 0.25100292848100264, 'track_val_loss': 0.30472370982170105, 'train_sec': 4499.9, 'track_eval_sec': 4274.9, 'peak_gpu_mem_mb': 6945.7}
+[epoch 9/10] {'epoch': 9, 'train_loss': 0.14197320236993216, 'track_val_mrr': 0.24612394625047843, 'track_val_loss': 0.2752052843570709, 'train_sec': 4644.8, 'track_eval_sec': 4743.9, 'peak_gpu_mem_mb': 6945.7}
+early stop at epoch 9 (patience 5)
+checkpoint saved: results/event_bench/leakfree2/polecat_f_s46/best.pt
+Traceback (most recent call last):
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_event_benchmark.py", line 421, in <module>
+    main()
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_event_benchmark.py", line 391, in main
+    val_mrr, val_loss, val_state = bu.evaluate_model_streaming(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/temporal_benchmark_utils.py", line 899, in evaluate_model_streaming
+    negative_scores = model.score_event_candidates(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/faithful_event_model.py", line 427, in score_event_candidates
+    return self._score_candidates_dense_vocab(output, src, candidates, edge_type, query_time)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/faithful_event_model.py", line 457, in _score_candidates_dense_vocab
+    full = full + self._recurrency_bonus_dense_rows(s, et, N, device, full.dtype, query_time=qt)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/faithful_event_model.py", line 501, in _recurrency_bonus_dense_rows
+    seen = torch.stack(counts, 0).sum(0) > 0
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 152.00 MiB. GPU 0 has a total capacity of 79.25 GiB of which 32.94 MiB is free. Including non-PyTorch memory, this process has 8.29 GiB memory in use. Process 4148070 has 27.76 GiB memory in use. Process 904078 has 10.15 GiB memory in use. Process 1535666 has 10.15 GiB memory in use. Process 1653335 has 12.68 GiB memory in use. Process 1675073 has 10.15 GiB memory in use. Of the allocated memory 7.66 GiB is allocated by PyTorch, and 131.90 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

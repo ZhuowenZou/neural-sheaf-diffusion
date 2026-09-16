@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /home/zhuowez1/project/neural-sheaf-diffusion
+exec results/event_bench/queues/wait_launch.sh 10000 results/event_bench/leakfree2/sw_abl_identity_s46.log /home/zhuowez1/miniconda3/envs/nsd/bin/python -m exp.run_event_benchmark --dataset thgl-software --time-window 3600 --track-val-edges 20000 --lr 1e-3 --train-negatives-per-pos 32 --model faithful --node-type-emb --relation-in-input --recurrency-decoder --recurrency-untyped --epochs 20 --patience 8 --min-epochs 8 --predict-from-previous --save-checkpoint --sheaf-identity --seed 46 --out results/event_bench/leakfree2/sw_abl_identity_s46

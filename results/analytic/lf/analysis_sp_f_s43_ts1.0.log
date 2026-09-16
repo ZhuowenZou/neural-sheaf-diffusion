@@ -1,0 +1,28 @@
+harness cross-check test MRR: 0.6130
+{
+  "n_events": 163172,
+  "mrr": 0.6129986923261924,
+  "mrr_official_evaluator": 0.6129986813993121,
+  "mrr_harness_crosscheck": 0.6129986870671086,
+  "mrr_recurrent_triple": 0.852926081628401,
+  "mrr_novel_triple": 0.008678864186410307,
+  "mrr_novel_pair": 0.001685592920197031,
+  "frac_novel_pair": 0.2799377344152183,
+  "residual_pos_mean": 3.2307924362854674,
+  "residual_neg_mean": 3.4098600363066853,
+  "residual_pos_lt_neg_frac": 0.643069889441816,
+  "time_scale": 1.0,
+  "sec": 2000.541325315833,
+  "mrr_by_gap_quartile": {
+    "q1": 0.6778016870815231,
+    "q2": 0.6559902555890714,
+    "q3": 0.6419110348959354,
+    "q4": 0.6004310422650719
+  },
+  "mrr_by_rel_freq_quartile": {
+    "rare": 0.6585433883133383,
+    "q2": 0.7074513139543188,
+    "q3": 0.5486502538632549,
+    "frequent": 0.537349813173857
+  }
+}

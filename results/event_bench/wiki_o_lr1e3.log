@@ -1,0 +1,42 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tgbl-wiki', 'seed': 43, 'model': 'original', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 15, 'patience': 6, 'min_epochs': 8, 'time_window': 600.0, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 8000, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'out': 'results/event_bench/wiki_o_lr1e3'}
+split_source=official_tgb_masks
+destination_range=(8227, 9226)
+snapshots: train=3105 (edges=110232) track_val=192 final_val=593 final_test=767 | prep_sec=1.2
+negative-sample sets loaded in 0.5s
+parameter_count=49364 num_relations=1 num_nodes=9227
+[epoch 1/15] {'epoch': 1, 'train_loss': 0.09078254297596138, 'track_val_mrr': 0.08975000085774809, 'track_val_loss': 1.7007378339767456, 'train_sec': 437.1, 'track_eval_sec': 418.5, 'peak_gpu_mem_mb': 52.2}
+[epoch 2/15] {'epoch': 2, 'train_loss': 0.15169402571790963, 'track_val_mrr': 0.08212500052247196, 'track_val_loss': 0.4558733403682709, 'train_sec': 437.7, 'track_eval_sec': 421.0, 'peak_gpu_mem_mb': 53.3}
+[epoch 3/15] {'epoch': 3, 'train_loss': 0.05991783814441755, 'track_val_mrr': 0.13512500092340635, 'track_val_loss': 0.5817491412162781, 'train_sec': 437.4, 'track_eval_sec': 419.8, 'peak_gpu_mem_mb': 53.3}
+[epoch 4/15] {'epoch': 4, 'train_loss': 0.0535112566008696, 'track_val_mrr': 0.10462500116496813, 'track_val_loss': 0.25941136479377747, 'train_sec': 435.4, 'track_eval_sec': 416.8, 'peak_gpu_mem_mb': 53.3}
+[epoch 5/15] {'epoch': 5, 'train_loss': nan, 'track_val_mrr': 0.9101250023543834, 'track_val_loss': nan, 'train_sec': 435.7, 'track_eval_sec': 419.9, 'peak_gpu_mem_mb': 53.3}
+[epoch 6/15] {'epoch': 6, 'train_loss': nan, 'track_val_mrr': 0.9105000022873282, 'track_val_loss': nan, 'train_sec': 433.1, 'track_eval_sec': 418.7, 'peak_gpu_mem_mb': 53.3}
+[epoch 7/15] {'epoch': 7, 'train_loss': nan, 'track_val_mrr': 0.911875001989305, 'track_val_loss': nan, 'train_sec': 434.7, 'track_eval_sec': 418.9, 'peak_gpu_mem_mb': 53.3}
+[epoch 8/15] {'epoch': 8, 'train_loss': nan, 'track_val_mrr': 0.9132500003576278, 'track_val_loss': nan, 'train_sec': 434.9, 'track_eval_sec': 427.7, 'peak_gpu_mem_mb': 53.3}
+[epoch 9/15] {'epoch': 9, 'train_loss': nan, 'track_val_mrr': 0.9106250015124678, 'track_val_loss': nan, 'train_sec': 442.7, 'track_eval_sec': 428.6, 'peak_gpu_mem_mb': 53.3}
+[epoch 10/15] {'epoch': 10, 'train_loss': nan, 'track_val_mrr': 0.9075000027045608, 'track_val_loss': nan, 'train_sec': 441.7, 'track_eval_sec': 426.2, 'peak_gpu_mem_mb': 53.3}
+[epoch 11/15] {'epoch': 11, 'train_loss': nan, 'track_val_mrr': 0.9063750027790666, 'track_val_loss': nan, 'train_sec': 443.3, 'track_eval_sec': 427.0, 'peak_gpu_mem_mb': 53.3}
+[epoch 12/15] {'epoch': 12, 'train_loss': nan, 'track_val_mrr': 0.9097500018179416, 'track_val_loss': nan, 'train_sec': 443.2, 'track_eval_sec': 426.1, 'peak_gpu_mem_mb': 53.3}
+[epoch 13/15] {'epoch': 13, 'train_loss': nan, 'track_val_mrr': 0.9091250021085143, 'track_val_loss': nan, 'train_sec': 441.8, 'track_eval_sec': 415.3, 'peak_gpu_mem_mb': 53.3}
+[epoch 14/15] {'epoch': 14, 'train_loss': nan, 'track_val_mrr': 0.9135000017732382, 'track_val_loss': nan, 'train_sec': 430.5, 'track_eval_sec': 414.3, 'peak_gpu_mem_mb': 53.3}
+[epoch 15/15] {'epoch': 15, 'train_loss': nan, 'track_val_mrr': 0.9026250019967555, 'track_val_loss': nan, 'train_sec': 431.1, 'track_eval_sec': 417.4, 'peak_gpu_mem_mb': 53.3}
+final val_mrr=0.9412 (460.3s so far)
+FINAL val_mrr=0.9412 test_mrr=0.9728 eval_sec=543.5
+{
+  "dataset": "tgbl-wiki",
+  "model": "EventTemporalMambaSheaf (memory-conditioned)",
+  "seed": 43,
+  "epochs": 15,
+  "best_track_epoch": 14,
+  "best_track_val_mrr": 0.9135000017732382,
+  "parameter_count": 49364,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 110232,
+  "final_val_edges": 23621,
+  "final_test_edges": 23621,
+  "validation_mrr": 0.9412387291788878,
+  "test_mrr": 0.9728207948458073,
+  "final_val_loss": NaN,
+  "final_test_loss": NaN,
+  "final_eval_sec": 543.5,
+  "final_eval_peak_gpu_mem_mb": 80.8
+}

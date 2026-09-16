@@ -1,0 +1,11 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tkgl-icews', 'seed': 43, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 6, 'patience': 3, 'min_epochs': 3, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': 2000000, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 30000, 'train_loss': 'softplus', 'learn_node_emb': False, 'node_type_emb': False, 'recurrency_symmetric': False, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.003, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': True, 'save_checkpoint': True, 'eval_only': None, 'out': '/home/zhuowez1/project/neural-sheaf-diffusion/results/event_bench/icews_train_s43'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=1263 (edges=2000000) track_val=14 final_val=1341 final_test=1696 | prep_sec=6.5
+negative-sample sets loaded in 35.8s
+parameter_count=655883 num_relations=782 num_nodes=87856
+[epoch 1/6] {'epoch': 1, 'train_loss': 0.022770577072098067, 'track_val_mrr': 0.12896666710451246, 'track_val_loss': 2.4126274585723877, 'train_sec': 6784.8, 'track_eval_sec': 7114.4, 'peak_gpu_mem_mb': 5363.1}
+[epoch 2/6] {'epoch': 2, 'train_loss': 0.005339676086029137, 'track_val_mrr': 0.139399999375393, 'track_val_loss': 4.132798671722412, 'train_sec': 7675.2, 'track_eval_sec': 6856.7, 'peak_gpu_mem_mb': 5416.8}
+[epoch 3/6] {'epoch': 3, 'train_loss': 0.012202908354276763, 'track_val_mrr': 0.2515000011906028, 'track_val_loss': 18.498266220092773, 'train_sec': 6993.8, 'track_eval_sec': 6839.3, 'peak_gpu_mem_mb': 5416.8}
+[epoch 4/6] {'epoch': 4, 'train_loss': 0.012333338386699947, 'track_val_mrr': 0.24756666693985463, 'track_val_loss': 31.850093841552734, 'train_sec': 6964.1, 'track_eval_sec': 6808.3, 'peak_gpu_mem_mb': 5416.8}
+[epoch 5/6] {'epoch': 5, 'train_loss': 0.012461761928510779, 'track_val_mrr': 0.2347999999081095, 'track_val_loss': 104.41493225097656, 'train_sec': 6951.5, 'track_eval_sec': 6817.6, 'peak_gpu_mem_mb': 5416.8}

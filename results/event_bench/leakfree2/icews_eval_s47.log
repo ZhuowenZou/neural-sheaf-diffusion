@@ -1,0 +1,32 @@
+reserved 14976 MiB of GPU memory on cuda:0 in the caching allocator (requested 14976; now reserved 14980 MiB)
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tkgl-icews', 'seed': 47, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 6, 'patience': 3, 'min_epochs': 3, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': 2000000, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 30000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': False, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'recurrency_symmetric': False, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.003, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': 'results/event_bench/leakfree2/icews_f_s47/best.pt', 'out': 'results/event_bench/leakfree2/icews_eval_s47'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=1263 (edges=2000000) track_val=14 final_val=1341 final_test=1696 | prep_sec=50.1
+negative-sample sets loaded in 36.0s
+delta_time_scale=86400 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=655883 num_relations=782 num_nodes=87856
+eval-only: loaded results/event_bench/leakfree2/icews_f_s47/best.pt
+final val_mrr=0.3088 (21357.2s so far)
+FINAL val_mrr=0.3088 test_mrr=0.3326 test_hits10=0.5270 eval_sec=35295.5
+{
+  "dataset": "tkgl-icews",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 47,
+  "epochs": 6,
+  "best_track_epoch": -1,
+  "best_track_val_mrr": -Infinity,
+  "parameter_count": 655883,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 2000000,
+  "final_val_edges": 4652314,
+  "final_test_edges": 4651378,
+  "validation_mrr": 0.30881330737992624,
+  "test_mrr": 0.3326458931631487,
+  "final_val_loss": 0.2426990121603012,
+  "final_test_loss": 0.15357159078121185,
+  "final_eval_sec": 35295.5,
+  "final_eval_peak_gpu_mem_mb": 10616.2,
+  "test_hits10": 0.5269528731613141
+}

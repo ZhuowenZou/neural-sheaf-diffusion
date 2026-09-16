@@ -1,0 +1,34 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tkgl-wikidata', 'seed': 43, 'model': 'original', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 4, 'patience': None, 'min_epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': 2000000, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 300000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': False, 'predict_from_previous': True, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'recurrency_symmetric': False, 'recurrency_untyped': False, 'cache_warm_history': False, 'recurrency_decoder': False, 'relation_in_input': False, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 32, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.003, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'out': 'results/event_bench/leakfree2/wd_o_s43'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=30 (edges=2000000) track_val=4 final_val=12 final_test=14 | prep_sec=71.4
+negative-sample sets loaded in 45.6s
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=37803 num_relations=1192 num_nodes=1226440
+[epoch 1/4] {'epoch': 1, 'train_loss': 0.5210470495552852, 'track_val_mrr': 0.021442748104656736, 'track_val_loss': 0.9501875638961792, 'train_sec': 859.6, 'track_eval_sec': 1005.8, 'peak_gpu_mem_mb': 5035.9}
+[epoch 2/4] {'epoch': 2, 'train_loss': 0.32784219548620025, 'track_val_mrr': 0.017804429126465692, 'track_val_loss': 0.9047648906707764, 'train_sec': 828.5, 'track_eval_sec': 997.4, 'peak_gpu_mem_mb': 5335.3}
+[epoch 3/4] {'epoch': 3, 'train_loss': 0.26228682696819305, 'track_val_mrr': 0.028991207153794045, 'track_val_loss': 0.8461114168167114, 'train_sec': 837.5, 'track_eval_sec': 1070.7, 'peak_gpu_mem_mb': 5335.3}
+[epoch 4/4] {'epoch': 4, 'train_loss': 0.22453009157345213, 'track_val_mrr': 0.012732019703009476, 'track_val_loss': 0.9193218350410461, 'train_sec': 906.0, 'track_eval_sec': 1107.3, 'peak_gpu_mem_mb': 5335.3}
+checkpoint saved: results/event_bench/leakfree2/wd_o_s43/best.pt
+final val_mrr=0.0259 (1741.1s so far)
+FINAL val_mrr=0.0259 test_mrr=0.0245 test_hits10=0.0453 eval_sec=2470.4
+{
+  "dataset": "tkgl-wikidata",
+  "model": "EventTemporalMambaSheaf (memory-conditioned)",
+  "seed": 43,
+  "epochs": 4,
+  "best_track_epoch": 3,
+  "best_track_val_mrr": 0.028991207153794045,
+  "parameter_count": 37803,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 2000000,
+  "final_val_edges": 2869900,
+  "final_test_edges": 2877500,
+  "validation_mrr": 0.025905988356581085,
+  "test_mrr": 0.024470485364217844,
+  "final_val_loss": 0.7204954624176025,
+  "final_test_loss": 0.8243383765220642,
+  "final_eval_sec": 2470.4,
+  "final_eval_peak_gpu_mem_mb": 7489.2,
+  "test_hits10": 0.04526811531503287
+}

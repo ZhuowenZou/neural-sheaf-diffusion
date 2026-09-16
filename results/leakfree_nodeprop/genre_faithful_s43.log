@@ -1,0 +1,31 @@
+Traceback (most recent call last):
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_faithful_trade.py", line 93, in <module>
+    main()
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_faithful_trade.py", line 59, in main
+    result = train_single_faithful(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/faithful_temporal_studies.py", line 154, in train_single_faithful
+    val_metric, val_loss, val_state = _evaluate_model_streaming(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/temporal_mamba_studies.py", line 343, in _evaluate_model_streaming
+    outputs, state = model.forward_sequence([snapshot], initial_state=state)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/temporal_sheaf_ssm.py", line 520, in forward_sequence
+    logits, state = self.step(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/temporal_sheaf_ssm.py", line 466, in step
+    h_updated = self.ssm(h_prev, q, delta_t)
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/temporal_sheaf_ssm.py", line 181, in forward
+    return self._forward_impl(h_prev, q, delta_t)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/temporal_sheaf_ssm.py", line 214, in _forward_impl
+    Bbar_q = torch.linalg.solve(A.unsqueeze(0).expand(n, -1, -1), rhs).squeeze(-1)
+torch.AcceleratorError: CUDA error: unspecified launch failure
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+snapshots: train=1087 val=431599 test=399916 nodes=1505 output_dim=513

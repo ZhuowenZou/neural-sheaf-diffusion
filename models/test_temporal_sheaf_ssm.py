@@ -109,7 +109,7 @@ def test_zoh_matches_continuous_solution_scalar():
     h' = a h + b q with constant input:  h(dt) = e^{a dt} h0 + (e^{a dt}-1)/a * b q."""
     ssm = SelectiveZOHSSM(d_state=1, d_input=1, dt_cap=10.0).double()
     with torch.no_grad():
-        ssm.A.fill_(-0.7)
+        ssm.A_neg_diag.copy_(torch.log(torch.expm1(torch.tensor(0.7, dtype=torch.float64))))  # A = -softplus(.) = -0.7
         ssm.B_selector.weight.zero_()
         ssm.B_selector.bias.fill_(2.0)
         ssm.dt_proj.weight.zero_()
@@ -364,7 +364,7 @@ def test_gradients_flow_to_all_components():
     )
     loss = torch.stack([o.sum() for o in outputs]).sum()
     loss.backward()
-    for name in ["ssm.A", "ssm.dt_proj.bias", "ssm.B_selector.weight", "sheaf_learner.linear1.weight",
+    for name in ["ssm.A_lower", "ssm.A_neg_diag", "ssm.dt_proj.bias", "ssm.B_selector.weight", "sheaf_learner.linear1.weight",
                  "P_z.weight", "W1.weight", "W2.weight", "log_tau", "lin2.weight", "feedback_proj.weight"]:
         param = dict(model.named_parameters())[name]
         assert param.grad is not None and param.grad.abs().sum() > 0, f"no gradient at {name}"
@@ -410,3 +410,16 @@ def test_current_only_memory_still_drives_features():
             out = model.step(x_final, ei, timestamp=torch.tensor(1.0), state=s)
         outs.append(out)
     assert not torch.allclose(outs[0], outs[1], atol=1e-5)
+
+
+def test_generator_stays_hurwitz_under_any_parameters():
+    ssm = SelectiveZOHSSM(8, 5)
+    # Exact HiPPO-LegS at init.
+    assert torch.allclose(ssm.A, hippo_legs_matrix(8), atol=1e-5)
+    # Adversarial parameter drift cannot push eigenvalues into the right
+    # half-plane: the diagonal is -softplus(.) by construction.
+    with torch.no_grad():
+        ssm.A_lower.add_(torch.randn_like(ssm.A_lower) * 10)
+        ssm.A_neg_diag.add_(torch.randn_like(ssm.A_neg_diag) * 10)
+    eig = torch.linalg.eigvals(ssm.A)
+    assert (eig.real < 0).all(), eig

@@ -1,0 +1,1 @@
+{"n": 300, "k": 6, "d": 4, "transport": "identity", "dynamics": "evolving", "gaps": "bursty", "rho": 0.3, "seed": 0}

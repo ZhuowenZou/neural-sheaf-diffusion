@@ -355,7 +355,7 @@ def _evaluate_model_streaming(
                     "eval_metric": [dataset.eval_metric],
                 }
             )
-            metric_val = list(score.values())[0] if isinstance(score, dict) else score
+            metric_val = ((score.get("mrr") if "mrr" in score else score.get("ndcg", list(score.values())[0])) if isinstance(score, dict) else score)
             metric_sum += float(metric_val) * int(pos_src.numel())
             metric_examples += int(pos_src.numel())
 

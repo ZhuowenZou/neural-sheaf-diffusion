@@ -1,0 +1,5 @@
+harness aggregate: 0.7064
+call 0: {'kind': 'Tensor', 'dev': 'cuda:0', 'n': 9895, 'K': 47432, 'n_neginf': 6778, 'tgb': {'hits@10': np.float32(0.7121779), 'mrr': np.float32(0.6509041)}, 'tgb_type': 'float32', 'tgb_val': 0.7121778726577759, 'my_mrr': 0.650904164541134}
+call 1: {'kind': 'Tensor', 'dev': 'cuda:0', 'n': 10056, 'K': 47432, 'n_neginf': 7088, 'tgb': {'hits@10': np.float32(0.70375896), 'mrr': np.float32(0.6308318)}, 'tgb_type': 'float32', 'tgb_val': 0.703758955001831, 'my_mrr': 0.6308318271853627}
+call 2: {'kind': 'Tensor', 'dev': 'cuda:0', 'n': 49, 'K': 47432, 'n_neginf': 352, 'tgb': {'hits@10': np.float32(0.08163265), 'mrr': np.float32(0.06799119)}, 'tgb_type': 'float32', 'tgb_val': 0.08163265138864517, 'my_mrr': 0.06799118701873842}
+DONE

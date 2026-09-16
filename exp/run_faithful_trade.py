@@ -7,6 +7,7 @@ Usage:
 
 import argparse
 import json
+import os
 import time
 
 import pandas as pd
@@ -17,11 +18,14 @@ from exp.faithful_temporal_studies import (
     prepare_temporal_experiment_context,
     train_single_faithful,
 )
+from exp.temporal_benchmark_utils import reserve_gpu_memory
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seeds", type=int, nargs="+", default=[43])
+    parser.add_argument("--dataset", type=str, default="tgbn-trade",
+                        help="Any TGB nodeprop (tgbn-*) dataset")
     parser.add_argument("--epochs", type=int, default=None)
     parser.add_argument("--out", type=str, default=None)
     parser.add_argument("--device", type=str, default=None)
@@ -29,6 +33,11 @@ def main():
                         help="JSON dict of config overrides")
     parser.add_argument("--train-cap", type=int, default=2048,
                         help="Max train edges (-1 for uncapped)")
+    parser.add_argument("--checkpoint-dir", type=str, default=None,
+                        help="Per-seed checkpoint/resume directory (default: <out>.ckpt when --out is given)")
+    parser.add_argument("--checkpoint-every", type=int, default=1, help="Checkpoint every N epochs")
+    parser.add_argument("--reserve-gpu-mb", type=int, default=None,
+                        help="Pre-reserve GPU memory at start-up (default: env TSD_RESERVE_GPU_MB from wait_launch.sh)")
     args = parser.parse_args()
 
     config = make_faithful_trade_config()
@@ -39,7 +48,7 @@ def main():
 
     device = torch.device(args.device) if args.device else None
     context = prepare_temporal_experiment_context(
-        "tgbn-trade",
+        args.dataset,
         split_caps={"train": (None if args.train_cap < 0 else args.train_cap), "val": None, "test": None},
         device=device,
         preload_time_windows=[config["time_window"]],
@@ -51,8 +60,26 @@ def main():
         f"nodes={context.num_nodes} output_dim={context.output_dim}"
     )
 
+    reserve_gpu_memory(context.device, mib=args.reserve_gpu_mb)
+
+    ckpt_dir = args.checkpoint_dir or (f"{args.out}.ckpt" if args.out else None)
+    if ckpt_dir:
+        os.makedirs(ckpt_dir, exist_ok=True)
+
     rows = []
     for seed in args.seeds:
+        done_file = os.path.join(ckpt_dir, f"seed{seed}.done.json") if ckpt_dir else None
+        if done_file and os.path.exists(done_file):
+            with open(done_file) as fh:
+                row = json.load(fh)
+            rows.append(row)
+            print(f"seed {seed}: already finished ({done_file}) val={row['val_ndcg']:.4f} "
+                  f"test={row['test_ndcg']:.4f}", flush=True)
+            continue
+        seed_config = dict(config)
+        if ckpt_dir:
+            seed_config["checkpoint_path"] = os.path.join(ckpt_dir, f"seed{seed}.pt")
+            seed_config["checkpoint_every"] = args.checkpoint_every
         start = time.perf_counter()
         result = train_single_faithful(
             dataset_name=context.dataset_name,
@@ -62,7 +89,7 @@ def main():
             num_nodes=context.num_nodes,
             output_dim=context.output_dim,
             device=context.device,
-            config=config,
+            config=seed_config,
             seed=seed,
         )
         elapsed = time.perf_counter() - start
@@ -76,7 +103,13 @@ def main():
         }
         rows.append(row)
         print(f"seed {seed}: val={row['val_ndcg']:.4f} test={row['test_ndcg']:.4f} "
-              f"best_epoch={row['best_epoch']} ({row['minutes']:.1f} min)")
+              f"best_epoch={row['best_epoch']} ({row['minutes']:.1f} min)", flush=True)
+        if done_file:
+            with open(done_file, "w") as fh:
+                json.dump(row, fh)
+            ckpt = seed_config.get("checkpoint_path")
+            if ckpt and os.path.exists(ckpt):
+                os.remove(ckpt)
 
     df = pd.DataFrame(rows)
     print("\n== summary ==")

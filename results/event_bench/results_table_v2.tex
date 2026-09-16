@@ -1,0 +1,32 @@
+% SUPERSEDED (2026-09-09): every number in this v2 table is pre-audit (Hits@10 reported as MRR, leaky protocol, mis-paired node labels). Use results_table_v3.tex; standings in LEADERBOARD.md.
+% AUDIT CORRECTION 2026-09-04: all link numbers pending leak-free re-measurement; node-property numbers invalid (label-cursor pairing). See results/analytic/audit/AUDIT.md rows 20-31.
+% METRIC CORRECTION 2026-09-04: all pre-audit 'MRR' entries are Hits@10 (positional-key harness bug).
+% Benchmark table (faithful backbone + task-appropriate decoder), official TGB
+% splits / negative sets / evaluators; mean +/- std over seeds 43/46/47 unless
+% noted. Leaderboard numbers from tgb.complexdatalab.com (Sep 2026).
+\begin{table}[t]
+\centering\small
+\caption{Faithful Temporal Sheaf Diffusion with task-appropriate decoders on
+TGB 2.0. Metric: NDCG@10 (tgbn-*), MRR otherwise. ``Best published'' is the
+top public leaderboard entry.}
+\begin{tabular}{llcccl}
+\toprule
+Task & Dataset & Ours & Best published & Efficient impl. & Decoder components \\
+\midrule
+node  & tgbn-trade      & $0.852 \pm 0.015$ & NAVIS $0.863$        & $0.866 \pm 0.007$ & -- \\
+node  & tgbn-genre      & $0.513 \pm 0.005$ & NAVIS $0.528$        & $0.486 \pm 0.020$ & -- \\
+link  & tgbl-wiki       & $\mathbf{0.894 \pm 0.004}$ & TPNet $0.827$ & $0.085 \pm 0.035$ & REC-x \\
+TKG   & tkgl-smallpedia & $\mathbf{0.712 \pm 0.000}$ & CEN $0.612$   & $0.026 \pm 0.005$ & REL, REC-x, untyped, sym \\
+TKG   & tkgl-polecat    & $\mathbf{0.392 \pm 0.013}$ & TLogic $0.228$ & -- & REL, REC-x, untyped \\
+TKG   & tkgl-wikidata   & $\mathbf{0.596 \pm 0.011}$ & EdgeBank $0.535$ & $0.048 \pm 0.006$ & REL, REC-x, untyped, sym \\
+TKG   & tkgl-icews      & pending           & RecB $0.211$         & -- & REL, REC-x, untyped \\
+THG   & thgl-software   & $0.558 \pm 0.003$ & STHN $0.731$         & $0.142$ & TYPE, REL, REC-x, untyped \\
+THG   & thgl-forum      & $\mathbf{0.747}^{\dagger}$ & TGN-et $0.729$ & -- & TYPE, REL, REC-x, untyped \\
+THG   & thgl-myket      & pending$^{\ddagger}$ & EdgeBank $0.456$  & -- & TYPE, REL, REC-x, untyped \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize $^{\dagger}$mean of seeds 43/46 on the full
+official split (0.759 / 0.736); seed 47 running. $^{\ddagger}$thgl-github and
+thgl-myket use 20 random negatives per query, which does not discriminate
+learned scorers (our github smoke: 0.9999); reported with that caveat.}
+\end{tabular}
+\end{table}

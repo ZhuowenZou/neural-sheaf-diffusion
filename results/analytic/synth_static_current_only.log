@@ -1,0 +1,6 @@
+delta_time_scale=10.5156
+[current_only] epoch 1 loss 0.6954 val_mrr 0.0210 (1852s)
+[current_only] epoch 2 loss 0.6930 val_mrr 0.0218 (1856s)
+[current_only] epoch 3 loss 0.6575 val_mrr 0.0330 (1860s)
+[current_only] epoch 4 loss 0.6078 val_mrr 0.0371 (1837s)
+{"variant": "current_only", "recurrency": false, "time_scale": 1.0, "best_val": 0.037095241248607635, "test_mrr": 0.03807755932211876, "mrr_novel": 0.0296056375009208, "mrr_recurrent": 0.040814355465115276, "frac_novel": 0.24416666666666667, "mrr_by_gap": {"q1": 0.04059753155009821, "q2": 0.038751450259936975, "q3": 0.03653396397200413, "q4": 0.036427294866725184}}

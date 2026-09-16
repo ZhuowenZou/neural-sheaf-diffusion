@@ -1,0 +1,21 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'thgl-forum', 'seed': 43, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 1, 'patience': None, 'min_epochs': 1, 'time_window': 3600.0, 'context_edges': 50000, 'train_edges_cap': 100000, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 2000, 'train_loss': 'softplus', 'learn_node_emb': False, 'node_type_emb': True, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 3, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 2, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': True, 'out': 'results/event_bench/diag_forum'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=3 (edges=100000) track_val=1 final_val=115 final_test=105 | prep_sec=3.9
+negative-sample sets loaded in 40.2s
+node_types: present
+parameter_count=630224 num_relations=2 num_nodes=152816
+[epoch 1/1] {'epoch': 1, 'train_loss': 0.8202867110570272, 'track_val_mrr': 0.2460000067949295, 'track_val_loss': 0.6820607781410217, 'train_sec': 30.2, 'track_eval_sec': 35.7, 'peak_gpu_mem_mb': 25796.3}
+{
+  "dataset": "thgl-forum",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 43,
+  "epochs": 1,
+  "best_track_epoch": 1,
+  "best_track_val_mrr": 0.2460000067949295,
+  "parameter_count": 630224,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 100000,
+  "final_val_edges": 3563658,
+  "final_test_edges": 3563653
+}

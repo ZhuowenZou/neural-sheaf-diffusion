@@ -1,0 +1,27 @@
+{
+  "n_events": 163172,
+  "mrr": 0.5992508096477998,
+  "mrr_official_evaluator": 0.5992508057204535,
+  "mrr_harness_crosscheck": null,
+  "mrr_recurrent_triple": 0.832905682631046,
+  "mrr_novel_triple": 0.010729953000617114,
+  "mrr_novel_pair": 0.003946841690953482,
+  "frac_novel_pair": 0.2799377344152183,
+  "residual_pos_mean": 3.2118764274802922,
+  "residual_neg_mean": 3.4368892991849367,
+  "residual_pos_lt_neg_frac": 0.6541134508371534,
+  "time_scale": 0.25,
+  "sec": 1932.1151686105877,
+  "mrr_by_gap_quartile": {
+    "q1": 0.6621569418825446,
+    "q2": 0.6366315829491171,
+    "q3": 0.6249510463589935,
+    "q4": 0.5925942497518486
+  },
+  "mrr_by_rel_freq_quartile": {
+    "rare": 0.657994389975786,
+    "q2": 0.7004058874164183,
+    "q3": 0.5268621225837524,
+    "frequent": 0.5117408386152427
+  }
+}

@@ -1,0 +1,29 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tkgl-smallpedia', 'seed': 43, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 10, 'patience': None, 'min_epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': 20000, 'track_val_edges': 50000, 'train_loss': 'softplus', 'learn_node_emb': False, 'node_type_emb': False, 'sheaf_identity': False, 'no_delta_t': False, 'recurrency_symmetric': True, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.01, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': False, 'eval_only': '/home/zhuowez1/project/neural-sheaf-diffusion/results/event_bench/sp_untyped_sym_s43/best.pt', 'out': '/home/zhuowez1/project/neural-sheaf-diffusion/results/analytic/audit/leak_sp'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=98 (edges=775514) track_val=7 final_val=10 final_test=3 | prep_sec=1.8
+negative-sample sets loaded in 1.2s
+parameter_count=648803 num_relations=566 num_nodes=47433
+eval-only: loaded /home/zhuowez1/project/neural-sheaf-diffusion/results/event_bench/sp_untyped_sym_s43/best.pt
+final val_mrr=0.6347 (513.4s so far)
+FINAL val_mrr=0.6347 test_mrr=0.6390 test_hits10=0.7039 eval_sec=546.9
+{
+  "dataset": "tkgl-smallpedia",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 43,
+  "epochs": 10,
+  "best_track_epoch": -1,
+  "best_track_val_mrr": -Infinity,
+  "parameter_count": 648803,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 775514,
+  "final_val_edges": 162066,
+  "final_test_edges": 20000,
+  "validation_mrr": 0.6346662793045855,
+  "test_mrr": 0.638994045310095,
+  "final_val_loss": 3.466238498687744,
+  "final_test_loss": 10.627923011779785,
+  "final_eval_sec": 546.9,
+  "final_eval_peak_gpu_mem_mb": 19342.3,
+  "test_hits10": 0.7038500189453364
+}

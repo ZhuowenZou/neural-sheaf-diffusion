@@ -1,0 +1,42 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tkgl-polecat', 'seed': 47, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 10, 'patience': 5, 'min_epochs': 4, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 30000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': False, 'predict_from_previous': True, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'recurrency_symmetric': False, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.003, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'out': 'results/event_bench/leakfree2/polecat_f_s47'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=1193 (edges=2493112) track_val=37 final_val=329 final_test=304 | prep_sec=2.3
+negative-sample sets loaded in 4.5s
+delta_time_scale=86400 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=631133 num_relations=32 num_nodes=150931
+[epoch 1/10] {'epoch': 1, 'train_loss': 0.15563911697108473, 'track_val_mrr': 0.09355433900281787, 'track_val_loss': 0.32010114192962646, 'train_sec': 5756.5, 'track_eval_sec': 5354.9, 'peak_gpu_mem_mb': 6247.1}
+[epoch 2/10] {'epoch': 2, 'train_loss': 0.13445610730852556, 'track_val_mrr': 0.17593286250631016, 'track_val_loss': 0.2509559392929077, 'train_sec': 4866.0, 'track_eval_sec': 4449.9, 'peak_gpu_mem_mb': 6247.1}
+[epoch 3/10] {'epoch': 3, 'train_loss': 0.1424084360142482, 'track_val_mrr': 0.20373112360040346, 'track_val_loss': 0.2840988039970398, 'train_sec': 4735.1, 'track_eval_sec': 4622.4, 'peak_gpu_mem_mb': 6247.1}
+[epoch 4/10] {'epoch': 4, 'train_loss': 0.1405889897375999, 'track_val_mrr': 0.21653515470276277, 'track_val_loss': 0.29835045337677, 'train_sec': 4945.5, 'track_eval_sec': 4760.3, 'peak_gpu_mem_mb': 6247.1}
+Traceback (most recent call last):
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_event_benchmark.py", line 421, in <module>
+    main()
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_event_benchmark.py", line 313, in main
+    train_loss = bu.run_epoch(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/temporal_benchmark_utils.py", line 1049, in run_epoch
+    outputs, new_state = model.forward_sequence([train_snapshots[k - 1]], initial_state=state)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/faithful_event_model.py", line 810, in forward_sequence
+    event_output, state = self.step(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/faithful_event_model.py", line 706, in step
+    local_spatial = self._local_faithful_diffusion(Z0, sheaf_signal, local_edge_index, n_local)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/faithful_event_model.py", line 574, in _local_faithful_diffusion
+    builder = self._make_local_builder(local_edge_index, n_local)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/sparse_temporal_mamba.py", line 58, in _make_local_builder
+    return lb.NormConnectionLaplacianBuilder(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/laplacian_builders.py", line 175, in __init__
+    super(NormConnectionLaplacianBuilder, self).__init__(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/laplacian_builders.py", line 38, in __init__
+    self.left_right_idx, self.vertex_tril_idx = lap.compute_left_right_map_index(edge_index)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/lib/laplace.py", line 316, in compute_left_right_map_index
+    source = edge_index[0, e].item()
+torch.AcceleratorError: CUDA error: unspecified launch failure
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+

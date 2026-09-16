@@ -1,0 +1,30 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'thgl-software', 'seed': 43, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 2, 'patience': None, 'min_epochs': 1, 'time_window': 3600.0, 'context_edges': 50000, 'train_edges_cap': 200000, 'val_edges_cap': 20000, 'test_edges_cap': 20000, 'track_val_edges': 5000, 'train_loss': 'softplus', 'learn_node_emb': False, 'node_type_emb': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'out': 'results/event_bench/smoke_thgl_faithful'}
+split_source=official_tgb_masks
+destination_range=(1, 681924)
+snapshots: train=106 (edges=200000) track_val=3 final_val=8 final_test=14 | prep_sec=1.1
+negative-sample sets loaded in 6.8s
+node_types: present
+parameter_count=630666 num_relations=14 num_nodes=681927
+[epoch 1/2] {'epoch': 1, 'train_loss': 0.23260559816405457, 'track_val_mrr': 0.12920000127255918, 'track_val_loss': 0.14177395403385162, 'train_sec': 106.8, 'track_eval_sec': 104.0, 'peak_gpu_mem_mb': 6617.6}
+[epoch 2/2] {'epoch': 2, 'train_loss': 0.017888150002174783, 'track_val_mrr': 0.13399999839514493, 'track_val_loss': 0.12699593603610992, 'train_sec': 106.8, 'track_eval_sec': 104.3, 'peak_gpu_mem_mb': 7033.8}
+final val_mrr=0.1262 (110.1s so far)
+FINAL val_mrr=0.1262 test_mrr=0.1106 eval_sec=120.6
+{
+  "dataset": "thgl-software",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 43,
+  "epochs": 2,
+  "best_track_epoch": 2,
+  "best_track_val_mrr": 0.13399999839514493,
+  "parameter_count": 630666,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 200000,
+  "final_val_edges": 20000,
+  "final_test_edges": 20000,
+  "validation_mrr": 0.12615000003129243,
+  "test_mrr": 0.11055000111348927,
+  "final_val_loss": 0.11734803020954132,
+  "final_test_loss": 0.1265004575252533,
+  "final_eval_sec": 120.6,
+  "final_eval_peak_gpu_mem_mb": 2348.5
+}

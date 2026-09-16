@@ -1,0 +1,40 @@
+reserved 1875 MiB of GPU memory on cuda:0 in the caching allocator (requested 1875; now reserved 1880 MiB)
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tgbl-wiki', 'seed': 47, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'current_only', 'epochs': 8, 'patience': 5, 'min_epochs': 4, 'time_window': 600.0, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 8000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': False, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'recurrency_symmetric': False, 'recurrency_untyped': False, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': False, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.0003, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'out': 'results/event_bench/leakfree2/wiki_abl_curonly_s47'}
+split_source=official_tgb_masks
+destination_range=(8227, 9226)
+snapshots: train=3105 (edges=110232) track_val=192 final_val=593 final_test=767 | prep_sec=1.0
+negative-sample sets loaded in 0.6s
+delta_time_scale=600 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=448846 num_relations=1 num_nodes=9227
+[epoch 1/8] {'epoch': 1, 'train_loss': 0.11177530640805006, 'track_val_mrr': 0.6956297192461789, 'track_val_loss': 0.09525421261787415, 'train_sec': 1151.7, 'track_eval_sec': 949.6, 'peak_gpu_mem_mb': 709.7}
+[epoch 2/8] {'epoch': 2, 'train_loss': 0.09120513303031841, 'track_val_mrr': 0.7068326370418072, 'track_val_loss': 0.09431779384613037, 'train_sec': 1172.9, 'track_eval_sec': 953.7, 'peak_gpu_mem_mb': 715.4}
+[epoch 3/8] {'epoch': 3, 'train_loss': 0.08905620439574533, 'track_val_mrr': 0.7140831579230725, 'track_val_loss': 0.09341123700141907, 'train_sec': 1165.7, 'track_eval_sec': 952.0, 'peak_gpu_mem_mb': 715.4}
+[epoch 4/8] {'epoch': 4, 'train_loss': 0.08815344735234461, 'track_val_mrr': 0.7155463197566568, 'track_val_loss': 0.09371431916952133, 'train_sec': 1168.4, 'track_eval_sec': 961.5, 'peak_gpu_mem_mb': 873.7}
+[epoch 5/8] {'epoch': 5, 'train_loss': 0.08590175952938633, 'track_val_mrr': 0.7170627484284341, 'track_val_loss': 0.09514901041984558, 'train_sec': 1161.5, 'track_eval_sec': 952.3, 'peak_gpu_mem_mb': 873.7}
+[epoch 6/8] {'epoch': 6, 'train_loss': 0.08975783320451335, 'track_val_mrr': 0.7225984172858297, 'track_val_loss': 0.09398037940263748, 'train_sec': 1160.7, 'track_eval_sec': 971.6, 'peak_gpu_mem_mb': 873.7}
+[epoch 7/8] {'epoch': 7, 'train_loss': 0.08808095130141681, 'track_val_mrr': 0.7299941883273423, 'track_val_loss': 0.09085384756326675, 'train_sec': 1198.9, 'track_eval_sec': 993.8, 'peak_gpu_mem_mb': 978.5}
+[epoch 8/8] {'epoch': 8, 'train_loss': 0.08904185772130392, 'track_val_mrr': 0.7321352998800575, 'track_val_loss': 0.09050354361534119, 'train_sec': 1195.1, 'track_eval_sec': 978.1, 'peak_gpu_mem_mb': 978.5}
+checkpoint saved: results/event_bench/leakfree2/wiki_abl_curonly_s47/best.pt
+final val_mrr=0.7463 (1110.0s so far)
+FINAL val_mrr=0.7463 test_mrr=0.7332 test_hits10=0.8515 eval_sec=1372.5
+{
+  "dataset": "tgbl-wiki",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 47,
+  "epochs": 8,
+  "best_track_epoch": 8,
+  "best_track_val_mrr": 0.7321352998800575,
+  "parameter_count": 448846,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 110232,
+  "final_val_edges": 23621,
+  "final_test_edges": 23621,
+  "validation_mrr": 0.746335978624525,
+  "test_mrr": 0.7331915602752253,
+  "final_val_loss": 0.097154900431633,
+  "final_test_loss": 0.10774574428796768,
+  "final_eval_sec": 1372.5,
+  "final_eval_peak_gpu_mem_mb": 225.4,
+  "test_hits10": 0.8515304179078239
+}

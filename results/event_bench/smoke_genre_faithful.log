@@ -1,0 +1,8 @@
+snapshots: train=179 val=24 test=25 nodes=1505 output_dim=513
+seed 43: val=0.4878 test=0.4769 best_epoch=1 (21.6 min)
+
+== summary ==
+ seed  val_ndcg  test_ndcg  best_epoch  n_params   minutes
+   43  0.487794   0.476947           1    803225 21.550998
+test NDCG mean±std: 0.4769 ± nan
+saved to results/event_bench/smoke_genre_faithful.csv

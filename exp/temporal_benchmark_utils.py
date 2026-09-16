@@ -439,18 +439,139 @@ def recommend_time_window(estimate_df, target_max_snapshots=None, target_max_mea
     return feasible.iloc[order.argsort(kind="stable")].iloc[0].to_dict()
 
 
-def node_label_batches(dataset, snapshots):
+_NONFINITE_POSITIVES = [0]
+_SKIPPED_QUERIES = [0]
+
+
+def _guard_nonfinite_scores(y_pred_pos, y_pred_neg):
+    """TGB's link evaluator ranks a non-finite positive FIRST (NaN comparisons
+    are False -> optimistic rank 1 -> MRR 1.0).  A non-finite model score is an
+    invalid prediction, so it is ranked LAST here (-inf) and counted; NaN/+inf
+    negatives are set to -inf (they cannot outrank anything).  Audit finding #3."""
+    pos_bad = ~torch.isfinite(y_pred_pos)
+    if bool(pos_bad.any()):
+        _NONFINITE_POSITIVES[0] += int(pos_bad.sum().item())
+        y_pred_pos = y_pred_pos.masked_fill(pos_bad, float("-inf"))
+    neg_bad = torch.isnan(y_pred_neg) | (y_pred_neg == float("inf"))
+    if bool(neg_bad.any()):
+        y_pred_neg = y_pred_neg.masked_fill(neg_bad, float("-inf"))
+    return y_pred_pos, y_pred_neg
+
+
+def reserve_gpu_memory(device, mib=None, min_fraction=0.25, retries_per_size=6, retry_sleep=30.0):
+    """Pre-reserve GPU memory in PyTorch's caching allocator.
+
+    On a shared node a job that starts on a card with enough free memory can
+    be squeezed minutes later by another user's arrival (a MAGMA workspace
+    allocation then aborts the process; audit ledger 2026-09-09).  Allocating
+    and freeing one large block at start-up keeps that memory reserved by the
+    caching allocator for the life of the process (nothing in the training
+    path calls ``torch.cuda.empty_cache``), so later allocations are served
+    from it.  Amount: ``mib`` or the ``TSD_RESERVE_GPU_MB`` environment
+    variable (set by ``wait_launch.sh`` from the job's memory request).  If
+    the card fills up between the launcher's check and this call, the same
+    amount is retried a few times, then halved down to ``min_fraction``.
+    Returns the MiB actually reserved (0 when disabled or on CPU)."""
+    import time as _time
+
+    mib = int(os.environ.get("TSD_RESERVE_GPU_MB", "0") or 0) if mib is None else int(mib)
+    if mib <= 0 or device is None or torch.device(device).type != "cuda":
+        return 0
+    target = mib
+    while target >= max(int(mib * min_fraction), 1):
+        for attempt in range(retries_per_size):
+            try:
+                block = torch.empty(int(target) * 2 ** 20, dtype=torch.uint8, device=device)
+                del block
+                print(f"reserved {target} MiB of GPU memory on {device} in the caching allocator "
+                      f"(requested {mib}; now reserved {torch.cuda.memory_reserved(device) / 2**20:.0f} MiB)", flush=True)
+                return target
+            except torch.cuda.OutOfMemoryError:
+                if attempt < retries_per_size - 1:
+                    _time.sleep(retry_sleep)
+        target //= 2
+    print(f"WARNING: could not reserve GPU memory on {device} (requested {mib} MiB); continuing unreserved", flush=True)
+    return 0
+
+
+def _label_ts_array(dataset):
+    inner = getattr(dataset, "dataset", dataset)
+    label_ts = getattr(inner, "label_ts", None)
+    return None if label_ts is None else np.asarray(label_ts), inner
+
+
+def seek_label_cursor(dataset, snapshots, after_ts=None):
+    """Position TGB's node-label cursor for a split.
+
+    TGB's label stream is a monotone cursor (labels fire when cur_t >= label_ts)
+    that is reset once per epoch and carried across train -> val -> test.  Our
+    splits may be evaluated separately and may leave gaps in the edge stream
+    (capped training), so the cursor is placed at the first label whose
+    timestamp is >= the split's first EDGE timestamp: labels that lie in a gap
+    between splits never "pass" in the stream and are skipped, labels inside
+    the split are all consumed by `drain_snapshot_labels`.  `after_ts` is kept
+    for callers without edge timestamps (first label > after_ts)."""
     dataset.reset_label_time()
-    batches = []
-    for snapshot in snapshots:
-        cur_t = int(snapshot.timestamp.item()) if torch.is_tensor(snapshot.timestamp) else int(snapshot.timestamp)
+    label_ts, inner = _label_ts_array(dataset)
+    if label_ts is None or not snapshots:
+        return
+    first = snapshots[0]
+    ets = getattr(first, "edge_timestamps", None)
+    if ets is not None and torch.is_tensor(ets) and ets.numel():
+        idx = int(np.searchsorted(label_ts, int(ets.min().item()), side="left"))
+    elif after_ts is not None:
+        idx = int(np.searchsorted(label_ts, int(after_ts), side="right"))
+    else:
+        first_ts = int(first.timestamp.item()) if torch.is_tensor(first.timestamp) else int(first.timestamp)
+        idx = int(np.searchsorted(label_ts, first_ts, side="left"))
+    inner.label_ts_idx = idx
+
+
+def _snapshot_time(snapshot):
+    ts = snapshot.timestamp
+    return int(ts.item()) if torch.is_tensor(ts) else int(ts)
+
+
+def drain_snapshot_labels(dataset, snapshot):
+    """All labels with label_ts <= snapshot time, in order, each as
+    (label_ts, label_srcs, labels) -- exactly the labels TGB's loop would have
+    fired while streaming the edges of this snapshot (TGB checks the cursor on
+    every batch; a coarse snapshot may cover several label timestamps, e.g.
+    seven daily labels per weekly snapshot, three yearly labels per 3-year
+    window).  The cursor advances past them."""
+    cur_t = _snapshot_time(snapshot)
+    out = []
+    while True:
         label_tuple = dataset.get_node_label(cur_t)
         if label_tuple is None:
-            continue
-        _, label_srcs, labels = label_tuple
-        batches.append((snapshot, label_srcs.long(), labels.float()))
-    return batches
+            break
+        ts, label_srcs, labels = label_tuple
+        ts0 = ts[0] if hasattr(ts, "__len__") else ts
+        ts0 = int(ts0.item()) if torch.is_tensor(ts0) else int(ts0)
+        label_srcs = torch.as_tensor(label_srcs).long()
+        labels = torch.as_tensor(labels).float()
+        out.append((ts0, label_srcs, labels))
+    return out
 
+
+def last_snapshot_timestamp(snapshots):
+    if not snapshots:
+        return None
+    ts = snapshots[-1].timestamp
+    return int(ts.item()) if torch.is_tensor(ts) else int(ts)
+
+
+def node_label_batches(dataset, snapshots, seek=True):
+    """(snapshot, label_srcs, labels) for EVERY label consumed while streaming
+    `snapshots` (see `drain_snapshot_labels`); `seek=False` continues from the
+    cursor's current position (sequential chunks of one epoch)."""
+    if seek:
+        seek_label_cursor(dataset, snapshots)
+    batches = []
+    for snapshot in snapshots:
+        for _, label_srcs, labels in drain_snapshot_labels(dataset, snapshot):
+            batches.append((snapshot, label_srcs, labels))
+    return batches
 
 def summarize_supervision(spec: DatasetSpec, dataset, snapshots):
     if spec.task_family == "nodeprop":
@@ -527,29 +648,21 @@ def build_supervised_snapshots(
         selected_edge_ids = edge_ids[:next_count]
 
 
-def node_property_loss(outputs: Sequence[torch.Tensor], dataset, snapshots: Sequence[TemporalSnapshot]):
+def node_property_loss(outputs: Sequence[torch.Tensor], dataset, snapshots: Sequence[TemporalSnapshot], seek=True):
     from torch.nn import functional as F
 
     losses = []
-    batches = node_label_batches(dataset, snapshots)
-    batch_index = 0
-    for snapshot_index, snapshot in enumerate(snapshots):
-        if batch_index >= len(batches):
-            break
-        batch_snapshot, label_srcs, labels = batches[batch_index]
-        if batch_snapshot is not snapshot:
-            continue
-        logits = outputs[snapshot_index]
+    index_of = {id(snapshot): k for k, snapshot in enumerate(snapshots)}
+    for batch_snapshot, label_srcs, labels in node_label_batches(dataset, snapshots, seek=seek):
+        logits = outputs[index_of[id(batch_snapshot)]]
         pred = logits.index_select(0, label_srcs.to(logits.device))
         target = labels.to(logits.device)
         target = target / target.sum(dim=-1, keepdim=True).clamp_min(1e-12)
         losses.append(-(target * F.log_softmax(pred, dim=-1)).sum(dim=-1).mean())
-        batch_index += 1
 
     if not losses:
         return torch.tensor(0.0, device=outputs[0].device if outputs else "cpu")
     return torch.stack(losses).mean()
-
 
 def _uses_event_scoring(model) -> bool:
     return bool(getattr(model, "supports_event_scoring", False))
@@ -560,19 +673,27 @@ def _sample_uniform_negative_destinations(
     *,
     num_nodes: int,
     negatives_per_positive: int,
+    destination_range: Optional[Tuple[int, int]] = None,
 ) -> Optional[torch.Tensor]:
-    if positive_dst.numel() == 0 or negatives_per_positive <= 0 or num_nodes <= 1:
+    if positive_dst.numel() == 0 or negatives_per_positive <= 0:
+        return None
+    # Bipartite datasets (e.g. tgbl-wiki) only ever link into a contiguous
+    # destination id block; sampling outside it trains against impossible
+    # candidates, so restrict negatives to [lo, hi] when the range is known.
+    lo, hi = (0, num_nodes - 1) if destination_range is None else destination_range
+    vocab = hi - lo + 1
+    if vocab <= 1:
         return None
 
     positive_dst = positive_dst.long()
     sampled = torch.randint(
         low=0,
-        high=max(num_nodes - 1, 1),
+        high=max(vocab - 1, 1),
         size=(positive_dst.numel(), negatives_per_positive),
         device=positive_dst.device,
     )
-    sampled = sampled + (sampled >= positive_dst.view(-1, 1)).long()
-    return sampled.long()
+    sampled = sampled + (sampled >= (positive_dst.view(-1, 1) - lo)).long()
+    return (sampled + lo).long()
 
 
 def _event_pairwise_ranking_loss(
@@ -586,6 +707,13 @@ def _event_pairwise_ranking_loss(
     return F.softplus(negative_scores - positive_scores.unsqueeze(-1)).mean()
 
 
+def _query_time_kwargs(model, snapshot, device):
+    """Per-event timestamps for event-exact scoring, when the model supports it."""
+    if getattr(model, "supports_query_time", False) and getattr(snapshot, "edge_timestamps", None) is not None:
+        return {"query_time": snapshot.edge_timestamps.to(device)}
+    return {}
+
+
 def event_link_prediction_loss(model, outputs, snapshots: Sequence[TemporalSnapshot]):
     losses = []
     for output, snapshot in zip(outputs, snapshots):
@@ -597,16 +725,27 @@ def event_link_prediction_loss(model, outputs, snapshots: Sequence[TemporalSnaps
         pos_dst = snapshot.dst.to(device)
         edge_type = snapshot.edge_types.to(device) if snapshot.edge_types is not None else None
 
-        positive_scores = model.score_event_pairs(output, pos_src, pos_dst, edge_type=edge_type)
+        qt = _query_time_kwargs(model, snapshot, device)
+        positive_scores = model.score_event_pairs(output, pos_src, pos_dst, edge_type=edge_type, **qt)
         negative_dst = _sample_uniform_negative_destinations(
             pos_dst,
             num_nodes=model.graph_size,
             negatives_per_positive=getattr(model, "train_negatives_per_pos", 32),
+            destination_range=getattr(model, "event_destination_range", None),
         )
         negative_scores = None
         if negative_dst is not None:
-            negative_scores = model.score_event_candidates(output, pos_src, negative_dst, edge_type=edge_type)
-        losses.append(_event_pairwise_ranking_loss(positive_scores, negative_scores))
+            negative_scores = model.score_event_candidates(output, pos_src, negative_dst, edge_type=edge_type, **qt)
+        loss_type = getattr(model, "event_loss_type", "softplus")
+        if loss_type == "ce" and negative_scores is not None and negative_scores.numel() > 0:
+            # Sampled softmax: the positive competes against its sampled
+            # negatives directly, aligning the training signal with ranking.
+            from torch.nn import functional as F
+            logits = torch.cat([positive_scores.unsqueeze(-1), negative_scores], dim=-1)
+            target = torch.zeros(logits.size(0), dtype=torch.long, device=logits.device)
+            losses.append(F.cross_entropy(logits, target))
+        else:
+            losses.append(_event_pairwise_ranking_loss(positive_scores, negative_scores))
 
     if not losses:
         output = outputs[0] if outputs else None
@@ -628,22 +767,67 @@ def link_prediction_loss(outputs: Sequence[torch.Tensor], snapshots: Sequence[Te
     return torch.stack(losses).mean()
 
 
-def sequence_loss_for_task(spec: DatasetSpec, outputs, dataset, snapshots, model=None):
+def sequence_loss_for_task(spec: DatasetSpec, outputs, dataset, snapshots, model=None, seek_labels=True):
     if spec.task_family == "nodeprop":
-        return node_property_loss(outputs, dataset, snapshots)
+        return node_property_loss(outputs, dataset, snapshots, seek=seek_labels)
     if _uses_event_scoring(model):
         return event_link_prediction_loss(model, outputs, snapshots)
     return link_prediction_loss(outputs, snapshots)
 
 
 def _next_snapshot_labels(dataset, snapshot):
-    cur_t = int(snapshot.timestamp.item()) if torch.is_tensor(snapshot.timestamp) else int(snapshot.timestamp)
-    label_tuple = dataset.get_node_label(cur_t)
-    if label_tuple is None:
-        return None
-    _, label_srcs, labels = label_tuple
-    return label_srcs.long(), labels.float()
+    """Compat shim: first label of the snapshot (prefer `drain_snapshot_labels`)."""
+    drained = drain_snapshot_labels(dataset, snapshot)
+    return None if not drained else (drained[0][1], drained[0][2])
 
+
+def evaluate_node_property_streaming(dataset_name, dataset, snapshots, model, initial_state=None,
+                                     compute_metric=True, compute_loss=True, evaluator=None):
+    """TGB node-property evaluation for a split: stream the snapshots, and for
+    each snapshot score EVERY label whose timestamp it has passed
+    (`drain_snapshot_labels`) with that snapshot's output; NDCG@10 per label
+    timestamp, unweighted mean over label timestamps (TGB's
+    `total_score / num_label_ts`).  Returns (metric, mean_loss, state)."""
+    from torch.nn import functional as F
+
+    if compute_metric and evaluator is None:
+        from tgb.nodeproppred.evaluate import Evaluator
+
+        evaluator = Evaluator(name=dataset_name)
+    metric_name = getattr(dataset, "eval_metric", "ndcg")
+    seek_label_cursor(dataset, snapshots)
+    per_ts, losses, label_times = [], [], []
+    nonfinite = 0
+    state = initial_state
+    model.eval()
+    with torch.no_grad():
+        for snapshot in snapshots:
+            outputs, state = model.forward_sequence([snapshot], initial_state=state)
+            logits = outputs[0]
+            for label_ts, label_srcs, labels in drain_snapshot_labels(dataset, snapshot):
+                pred = logits.index_select(0, label_srcs.to(logits.device))
+                target = labels.to(logits.device)
+                normalised_target = target / target.sum(dim=-1, keepdim=True).clamp_min(1e-12)
+                if compute_loss:
+                    losses.append((-(normalised_target * F.log_softmax(pred, dim=-1)).sum(dim=-1).mean()).detach().cpu())
+                if compute_metric:
+                    if not bool(torch.isfinite(pred).all()):
+                        # a non-finite prediction is an invalid answer: it scores 0 for this
+                        # label timestamp (sklearn would raise; the old code silently returned
+                        # NaN for the whole split) and is counted for the caller
+                        nonfinite += 1
+                        per_ts.append(0.0)
+                    else:
+                        score = evaluator.eval({"y_pred": pred.detach().cpu(), "y_true": labels.detach().cpu(), "eval_metric": [metric_name]})
+                        per_ts.append(float(score[metric_name] if isinstance(score, dict) else score))
+                    label_times.append(label_ts)
+    if nonfinite:
+        print(f"  [eval-audit] {nonfinite}/{len(per_ts)} label timestamps had non-finite predictions (scored 0)", flush=True)
+    evaluate_node_property_streaming.last_label_timestamps = label_times
+    evaluate_node_property_streaming.last_nonfinite_labels = nonfinite
+    metric = float(np.mean(per_ts)) if per_ts else float("nan")
+    mean_loss = float(torch.stack(losses).mean().item()) if losses else float("nan")
+    return metric, mean_loss, state
 
 def detach_temporal_state(state):
     if state is None:
@@ -661,6 +845,28 @@ def advance_context(model, snapshots, initial_state=None):
         for snapshot in snapshots:
             _, state = model.forward_sequence([snapshot], initial_state=state)
     return state
+
+
+def _pad_negative_samples(neg_samples):
+    """Exact per-query negatives: pad ragged official lists to the max
+    length and return a validity mask; padded slots must be scored -inf so
+    every query is ranked against ITS OWN full negative list (trimming to the
+    min length discards valid negatives and slightly inflates MRR)."""
+    if neg_samples is None:
+        return None, None
+    arrays = [np.asarray(sample, dtype=np.int64) for sample in neg_samples]
+    if not arrays:
+        return None, None
+    lengths = [len(arr) for arr in arrays]
+    if min(lengths) == 0:
+        return None, None
+    max_len = max(lengths)
+    padded = np.zeros((len(arrays), max_len), dtype=np.int64)
+    mask = np.zeros((len(arrays), max_len), dtype=bool)
+    for i, arr in enumerate(arrays):
+        padded[i, : len(arr)] = arr
+        mask[i, : len(arr)] = True
+    return padded, mask
 
 
 def _trim_negative_samples(neg_samples):
@@ -687,6 +893,7 @@ def evaluate_model_streaming(
     split_mode=None,
     compute_metric=True,
     compute_loss=True,
+    label_cursor_after_ts=None,
 ):
     from torch.nn import functional as F
 
@@ -700,10 +907,12 @@ def evaluate_model_streaming(
     losses = []
     metric_sum = 0.0
     metric_examples = 0
+    hits_sum = [0.0]
     state = initial_state
 
     if spec.task_family == "nodeprop":
-        dataset.reset_label_time()
+        return evaluate_node_property_streaming(spec.loader_name, dataset, snapshots, model, initial_state=initial_state,
+                                                compute_metric=compute_metric, compute_loss=compute_loss, evaluator=evaluator)
 
     if spec.task_family != "nodeprop":
         if split_mode == "val" and hasattr(dataset, "load_val_ns"):
@@ -713,28 +922,30 @@ def evaluate_model_streaming(
 
     use_event_scoring = spec.task_family != "nodeprop" and _uses_event_scoring(model)
     model.eval()
+    # Leak-free protocol (audit rows 21/32): score snapshot k with the output of
+    # the PREVIOUS forward (history < k; the recurrency stores hold only earlier
+    # events), and only then forward snapshot k to update the state.
+    score_from_previous = os.environ.get("TSD_SCORE_FROM_PREVIOUS_STATE") == "1"
+    prev_output = None
     with torch.no_grad():
         for snapshot in snapshots:
-            outputs, state = model.forward_sequence([snapshot], initial_state=state)
-            model_output = outputs[0]
-
-            if spec.task_family == "nodeprop":
-                logits = model_output
-                label_batch = _next_snapshot_labels(dataset, snapshot)
-                if label_batch is None:
-                    continue
-
-                label_srcs, labels = label_batch
-                pred = logits.index_select(0, label_srcs.to(logits.device))
-                target = labels.to(logits.device)
-                normalised_target = target / target.sum(dim=-1, keepdim=True).clamp_min(1e-12)
-
-                if compute_loss:
-                    losses.append((-(normalised_target * F.log_softmax(pred, dim=-1)).sum(dim=-1).mean()).detach().cpu())
-                if compute_metric:
-                    all_y_pred.append(pred.detach().cpu())
-                    all_y_true.append(labels.detach().cpu())
-                continue
+            deferred = score_from_previous and use_event_scoring
+            if deferred:
+                if prev_output is None:
+                    sp = getattr(initial_state, "spatial", None) if initial_state is not None else None
+                    if sp is None:
+                        # no history at all: this snapshot can only seed the state
+                        outputs, state = model.forward_sequence([snapshot], initial_state=state)
+                        prev_output = outputs[0]
+                        _SKIPPED_QUERIES[0] += int(snapshot.src.numel())
+                        continue
+                    x_dev = snapshot.x.to(sp.device) if getattr(snapshot, "x", None) is not None else None
+                    model_output = {"spatial": sp, "x": x_dev, "node_signal": None}
+                else:
+                    model_output = dict(prev_output, node_signal=None)
+            else:
+                outputs, state = model.forward_sequence([snapshot], initial_state=state)
+                model_output = outputs[0]
 
             if use_event_scoring:
                 device = model_output["spatial"].device
@@ -742,13 +953,18 @@ def evaluate_model_streaming(
                 pos_dst = snapshot.dst.to(device)
                 edge_type = snapshot.edge_types.to(device) if snapshot.edge_types is not None else None
                 if pos_src.numel() == 0:
+                    if deferred:
+                        outputs, state = model.forward_sequence([snapshot], initial_state=state)
+                        prev_output = outputs[0]
                     continue
 
+                qt = _query_time_kwargs(model, snapshot, device)
                 positive_scores = model.score_event_pairs(
                     model_output,
                     pos_src,
                     pos_dst,
                     edge_type=edge_type,
+                    **qt,
                 )
 
                 negative_scores = None
@@ -763,15 +979,20 @@ def evaluate_model_streaming(
                         edge_type=snapshot.edge_types.cpu() if snapshot.edge_types is not None else None,
                         split_mode=split_mode,
                     )
-                    neg_samples = _trim_negative_samples(neg_samples)
-                    if neg_samples is not None:
-                        neg_dst = torch.as_tensor(neg_samples, dtype=torch.long, device=device)
+                    padded, neg_mask = _pad_negative_samples(neg_samples)
+                    if padded is None:
+                        _SKIPPED_QUERIES[0] += int(snapshot.src.numel())
+                    if padded is not None:
+                        neg_dst = torch.as_tensor(padded, dtype=torch.long, device=device)
                         negative_scores = model.score_event_candidates(
                             model_output,
                             pos_src,
                             neg_dst,
                             edge_type=edge_type,
+                            **qt,
                         )
+                        pad_mask = torch.as_tensor(neg_mask, device=device)
+                        negative_scores = negative_scores.masked_fill(~pad_mask, float("-inf"))
 
                 if compute_loss:
                     loss_negatives = negative_scores
@@ -787,18 +1008,29 @@ def evaluate_model_streaming(
                                 pos_src,
                                 sampled_neg_dst,
                                 edge_type=edge_type,
+                                **qt,
                             )
                     losses.append(_event_pairwise_ranking_loss(positive_scores, loss_negatives).detach().cpu())
 
                 if compute_metric and split_mode in ("val", "test") and negative_scores is not None:
+                    positive_scores, negative_scores = _guard_nonfinite_scores(positive_scores, negative_scores)
                     score = evaluator.eval({
                         "y_pred_pos": positive_scores,
                         "y_pred_neg": negative_scores,
                         "eval_metric": [dataset.eval_metric],
                     })
-                    metric_val = list(score.values())[0] if isinstance(score, dict) else score
-                    metric_sum += float(metric_val) * int(pos_src.numel())
+                    # TGB's link evaluator returns {'hits@10', 'mrr'} (hits first);
+                    # select the dataset's metric by NAME - the previous
+                    # positional pick silently reported Hits@10 as MRR.
+                    metric_val = score[dataset.eval_metric] if isinstance(score, dict) else score
+                    metric_sum += float(np.mean(metric_val)) * int(pos_src.numel())
                     metric_examples += int(pos_src.numel())
+                    if isinstance(score, dict) and "hits@10" in score:
+                        hits_sum[0] += float(np.mean(score["hits@10"])) * int(pos_src.numel())
+                if deferred:
+                    # update: ingest snapshot k after its events were scored
+                    outputs, state = model.forward_sequence([snapshot], initial_state=state)
+                    prev_output = outputs[0]
                 continue
 
             logits = model_output
@@ -826,38 +1058,39 @@ def evaluate_model_streaming(
             )
             neg_samples = _trim_negative_samples(neg_samples)
             if neg_samples is None:
+                _SKIPPED_QUERIES[0] += int(snapshot.src.numel())
                 continue
 
             neg_dst = torch.as_tensor(neg_samples, dtype=torch.long, device=logits.device)
             y_pred_pos = logits[pos_src, pos_dst]
             y_pred_neg = logits[pos_src.view(-1, 1).expand_as(neg_dst), neg_dst]
+            y_pred_pos, y_pred_neg = _guard_nonfinite_scores(y_pred_pos, y_pred_neg)
             score = evaluator.eval({
                 "y_pred_pos": y_pred_pos,
                 "y_pred_neg": y_pred_neg,
                 "eval_metric": [dataset.eval_metric],
             })
-            metric_val = list(score.values())[0] if isinstance(score, dict) else score
+            metric_val = score[dataset.eval_metric] if isinstance(score, dict) else score
             metric_sum += float(metric_val) * int(pos_src.numel())
             metric_examples += int(pos_src.numel())
 
     metric = float("nan")
-    if spec.task_family == "nodeprop" and compute_metric and all_y_pred:
-        all_y_pred = torch.cat(all_y_pred, dim=0)
-        all_y_true = torch.cat(all_y_true, dim=0)
-        try:
-            score = evaluator.eval({
-                "y_pred": all_y_pred,
-                "y_true": all_y_true,
-                "eval_metric": [dataset.eval_metric],
-            })
-            metric_val = list(score.values())[0] if isinstance(score, dict) else score
-            metric = float(metric_val)
-        except Exception:
-            metric = float("nan")
+    if False:
+        pass
     elif spec.task_family != "nodeprop" and compute_metric and metric_examples > 0:
         metric = metric_sum / metric_examples
+        evaluate_model_streaming.last_hits10 = hits_sum[0] / metric_examples if metric_examples else float("nan")
 
     mean_loss = float(torch.stack(losses).mean().item()) if losses else float("nan")
+    # Audit accounting: TGB scores every query and never ranks a NaN first.
+    evaluate_model_streaming.last_nonfinite_positives = _NONFINITE_POSITIVES[0]
+    evaluate_model_streaming.last_skipped_queries = _SKIPPED_QUERIES[0]
+    evaluate_model_streaming.last_metric_examples = metric_examples
+    if _NONFINITE_POSITIVES[0] or _SKIPPED_QUERIES[0]:
+        print(f"[eval-audit] split={split_mode} non_finite_positive_scores={_NONFINITE_POSITIVES[0]} "
+              f"skipped_queries={_SKIPPED_QUERIES[0]} scored_queries={metric_examples}", flush=True)
+    _NONFINITE_POSITIVES[0] = 0
+    _SKIPPED_QUERIES[0] = 0
     return metric, mean_loss, state
 
 
@@ -874,6 +1107,30 @@ def run_epoch(
 ):
     model.train()
     use_event_scoring = _uses_event_scoring(model)
+    if use_event_scoring and os.environ.get("TSD_SCORE_FROM_PREVIOUS_STATE") == "1" and spec.task_family != "nodeprop":
+        # Leak-free predict-then-update training (audit rows 21/32): iteration k
+        # forwards snapshot k-1 (graph attached, so the backbone is trained) and
+        # scores snapshot k's events with that output; the recurrency stores then
+        # hold only events < k.  The state is detached only afterwards (bptt=1).
+        state = None
+        losses = []
+        iterator = range(1, len(train_snapshots))
+        if show_progress and tqdm_factory is not None:
+            iterator = tqdm_factory(iterator, total=max(len(train_snapshots) - 1, 0),
+                                    desc=epoch_label or "Epoch snapshots", leave=True)
+        for k in iterator:
+            optimizer.zero_grad()
+            outputs, new_state = model.forward_sequence([train_snapshots[k - 1]], initial_state=state)
+            out = outputs[0]
+            if isinstance(out, dict):
+                out = dict(out, node_signal=None)
+            loss = sequence_loss_for_task(spec, [out], dataset, [train_snapshots[k]], model=model)
+            if loss.requires_grad:
+                loss.backward()
+                optimizer.step()
+                losses.append(float(loss.detach().cpu()))
+            state = detach_temporal_state(new_state)
+        return float(sum(losses) / len(losses)) if losses else 0.0
     if bptt_steps is None or bptt_steps <= 0:
         if use_event_scoring:
             optimizer.zero_grad()
@@ -897,6 +1154,8 @@ def run_epoch(
 
     chunk_losses = []
     state = None
+    if spec.task_family == "nodeprop":
+        seek_label_cursor(dataset, train_snapshots)   # once per epoch; chunks continue the cursor
     chunk_starts = range(0, len(train_snapshots), bptt_steps)
     if show_progress and tqdm_factory is not None:
         chunk_starts = tqdm_factory(
@@ -921,7 +1180,7 @@ def run_epoch(
             loss = torch.stack(loss_terms).mean()
         else:
             outputs, state = model.forward_sequence(chunk, initial_state=state)
-            loss = sequence_loss_for_task(spec, outputs, dataset, chunk, model=model)
+            loss = sequence_loss_for_task(spec, outputs, dataset, chunk, model=model, seek_labels=False)
 
         if loss.requires_grad:
             loss.backward()

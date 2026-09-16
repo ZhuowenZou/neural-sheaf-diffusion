@@ -1,0 +1,38 @@
+reserved 20976 MiB of GPU memory on cuda:0 in the caching allocator (requested 20976; now reserved 20980 MiB)
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'thgl-forum', 'seed': 43, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 4, 'patience': 3, 'min_epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges_cap': 4000000, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 20000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': True, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': True, 'no_memory': False, 'recurrency_symmetric': False, 'recurrency_untyped': False, 'cache_warm_history': False, 'recurrency_decoder': False, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'out': 'results/event_bench/leakfree2/forum_norec_nodelta'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=740 (edges=4000000) track_val=3 final_val=687 final_test=625 | prep_sec=6.1
+negative-sample sets loaded in 39.4s
+node_types: present
+delta_time_scale=600 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=630142 num_relations=2 num_nodes=152816
+[epoch 1/4] {'epoch': 1, 'train_loss': 0.17069835360987423, 'track_val_mrr': 0.36449973048865797, 'track_val_loss': 0.4892386496067047, 'train_sec': 4549.1, 'track_eval_sec': 4526.3, 'peak_gpu_mem_mb': 21404.0}
+[epoch 2/4] {'epoch': 2, 'train_loss': 0.1453206130229088, 'track_val_mrr': 0.1826581913858652, 'track_val_loss': 0.5295884609222412, 'train_sec': 4558.8, 'track_eval_sec': 4533.2, 'peak_gpu_mem_mb': 21404.0}
+[epoch 3/4] {'epoch': 3, 'train_loss': 0.14181983283391986, 'track_val_mrr': 0.2477275401994586, 'track_val_loss': 0.4363110363483429, 'train_sec': 4406.2, 'track_eval_sec': 4395.9, 'peak_gpu_mem_mb': 21404.0}
+[epoch 4/4] {'epoch': 4, 'train_loss': 0.14670548411602902, 'track_val_mrr': 0.10210266245901585, 'track_val_loss': 0.6916816830635071, 'train_sec': 4356.6, 'track_eval_sec': 4595.9, 'peak_gpu_mem_mb': 21404.0}
+early stop at epoch 4 (patience 3)
+checkpoint saved: results/event_bench/leakfree2/forum_norec_nodelta/best.pt
+final val_mrr=0.3654 (9643.0s so far)
+FINAL val_mrr=0.3654 test_mrr=0.3608 test_hits10=0.5053 eval_sec=13979.9
+{
+  "dataset": "thgl-forum",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 43,
+  "epochs": 4,
+  "best_track_epoch": 1,
+  "best_track_val_mrr": 0.36449973048865797,
+  "parameter_count": 630142,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 4000000,
+  "final_val_edges": 3563658,
+  "final_test_edges": 3563653,
+  "validation_mrr": 0.36543658039259275,
+  "test_mrr": 0.36075843168610106,
+  "final_val_loss": 0.5206769704818726,
+  "final_test_loss": 0.4679812490940094,
+  "final_eval_sec": 13979.9,
+  "final_eval_peak_gpu_mem_mb": 5188.3,
+  "test_hits10": 0.50531547383284
+}

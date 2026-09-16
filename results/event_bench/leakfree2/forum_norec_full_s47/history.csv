@@ -1,0 +1,2 @@
+epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_mem_mb
+1,0.16774636403189944,0.3258439660280943,0.3706302344799042,5124.4,5081.8,20307.0

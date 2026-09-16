@@ -1,0 +1,30 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'thgl-myket', 'seed': 43, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 2, 'patience': None, 'min_epochs': 1, 'time_window': 600.0, 'context_edges': 50000, 'train_edges_cap': 2000000, 'val_edges_cap': 50000, 'test_edges_cap': 50000, 'track_val_edges': 20000, 'train_loss': 'softplus', 'learn_node_emb': False, 'node_type_emb': True, 'recurrency_symmetric': False, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': False, 'eval_only': None, 'out': '/home/zhuowez1/project/neural-sheaf-diffusion/results/event_bench/smoke_myket'}
+split_source=official_tgb_masks
+destination_range=(1, 1530834)
+snapshots: train=984 (edges=2000000) track_val=8 final_val=20 final_test=22 | prep_sec=51.8
+negative-sample sets loaded in 82.3s
+node_types: present
+parameter_count=630271 num_relations=2 num_nodes=1530835
+[epoch 1/2] {'epoch': 1, 'train_loss': 0.008537147856170522, 'track_val_mrr': 0.9992999985516071, 'track_val_loss': 0.07677344232797623, 'train_sec': 7249.7, 'track_eval_sec': 7340.1, 'peak_gpu_mem_mb': 20048.2}
+[epoch 2/2] {'epoch': 2, 'train_loss': 0.0011640512368059008, 'track_val_mrr': 0.9994999977648258, 'track_val_loss': 0.06980324536561966, 'train_sec': 8477.1, 'track_eval_sec': 7485.1, 'peak_gpu_mem_mb': 20982.5}
+final val_mrr=0.9993 (7371.4s so far)
+FINAL val_mrr=0.9993 test_mrr=0.9994 eval_sec=7538.8
+{
+  "dataset": "thgl-myket",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 43,
+  "epochs": 2,
+  "best_track_epoch": 2,
+  "best_track_val_mrr": 0.9994999977648258,
+  "parameter_count": 630271,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 2000000,
+  "final_val_edges": 50000,
+  "final_test_edges": 50000,
+  "validation_mrr": 0.9993399977970123,
+  "test_mrr": 0.9994000004613399,
+  "final_val_loss": 0.06952584534883499,
+  "final_test_loss": 0.07064689695835114,
+  "final_eval_sec": 7538.8,
+  "final_eval_peak_gpu_mem_mb": 6536.7
+}

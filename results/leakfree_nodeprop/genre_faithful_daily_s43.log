@@ -1,0 +1,25 @@
+snapshots: train=1251 val=163 test=174 nodes=1505 output_dim=513
+reserved 4976 MiB of GPU memory on cuda:0 in the caching allocator (requested 4976; now reserved 4982 MiB)
+[epoch 1] {'epoch': 1, 'train_loss': 4.202217029158477} (best epoch -1, best val -inf)
+[epoch 2] {'epoch': 2, 'train_loss': 3.9425798221758215, 'val_ndcg': 0.4546148075647889, 'val_loss': 4.140213966369629, 'test_ndcg': 0.437578232756012, 'test_loss': 4.234767913818359} (best epoch 2, best val 0.4546)
+[epoch 3] {'epoch': 3, 'train_loss': 3.8477615991215797} (best epoch 2, best val 0.4546)
+[epoch 4] {'epoch': 4, 'train_loss': 3.802045304304475, 'val_ndcg': 0.4652144631070832, 'val_loss': 4.096088886260986, 'test_ndcg': 0.44818562323295463, 'test_loss': 4.211808681488037} (best epoch 4, best val 0.4652)
+[epoch 5] {'epoch': 5, 'train_loss': 3.7764482315938186} (best epoch 4, best val 0.4652)
+[epoch 6] {'epoch': 6, 'train_loss': 3.762290102661036, 'val_ndcg': 0.46243709700641744, 'val_loss': 4.094461917877197, 'test_ndcg': 0.4407800024927176, 'test_loss': 4.220261573791504} (best epoch 4, best val 0.4652)
+[epoch 7] {'epoch': 7, 'train_loss': 3.7427552870124767} (best epoch 4, best val 0.4652)
+[epoch 8] {'epoch': 8, 'train_loss': 3.729614453710568, 'val_ndcg': 0.46456673343273697, 'val_loss': 4.086682319641113, 'test_ndcg': 0.4424781034659602, 'test_loss': 4.222527027130127} (best epoch 4, best val 0.4652)
+[epoch 9] {'epoch': 9, 'train_loss': 3.7181490621749003} (best epoch 4, best val 0.4652)
+[epoch 10] {'epoch': 10, 'train_loss': 3.706801458528847, 'val_ndcg': 0.4602304942017875, 'val_loss': 4.10377311706543, 'test_ndcg': 0.43745013198768073, 'test_loss': 4.248351573944092} (best epoch 4, best val 0.4652)
+[epoch 11] {'epoch': 11, 'train_loss': 3.696571717596358} (best epoch 4, best val 0.4652)
+[epoch 12] {'epoch': 12, 'train_loss': 3.6888020752341886, 'val_ndcg': 0.45989663340225206, 'val_loss': 4.110725402832031, 'test_ndcg': 0.4366651818482138, 'test_loss': 4.26249361038208} (best epoch 4, best val 0.4652)
+[epoch 13] {'epoch': 13, 'train_loss': 3.6803519087991896} (best epoch 4, best val 0.4652)
+[epoch 14] {'epoch': 14, 'train_loss': 3.674536821948495, 'val_ndcg': 0.4611829292261788, 'val_loss': 4.105355739593506, 'test_ndcg': 0.4361747017877799, 'test_loss': 4.258189678192139} (best epoch 4, best val 0.4652)
+[epoch 15] {'epoch': 15, 'train_loss': 3.6646933889692757} (best epoch 4, best val 0.4652)
+[epoch 16] {'epoch': 16, 'train_loss': 3.6562643825628194, 'val_ndcg': 0.45946893221685137, 'val_loss': 4.111665725708008, 'test_ndcg': 0.4337745333312125, 'test_loss': 4.270894527435303, 'early_stopped': True} (early stop; best epoch 4)
+seed 43: val=0.4652 test=0.4482 best_epoch=4 (521.9 min)
+
+== summary ==
+ seed  val_ndcg  test_ndcg  best_epoch  n_params    minutes
+   43  0.465213   0.448186           4    803289 521.923799
+test NDCG mean±std: 0.4482 ± nan
+saved to results/leakfree_nodeprop/genre_faithful_daily_s43.csv

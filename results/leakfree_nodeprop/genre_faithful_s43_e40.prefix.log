@@ -1,0 +1,2 @@
+snapshots: train=179 val=24 test=25 nodes=1505 output_dim=513
+reserved 4976 MiB of GPU memory on cuda:0 in the caching allocator (requested 4976; now reserved 4982 MiB)

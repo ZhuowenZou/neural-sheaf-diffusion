@@ -1,0 +1,5 @@
+snapshots: train=1087 val=431599 test=399916 nodes=1505 output_dim=513
+reserved 4976 MiB of GPU memory on cuda:0 in the caching allocator (requested 4976; now reserved 4982 MiB)
+  non-finite chunks skipped this epoch: 66/74
+[epoch 1] {'epoch': 1, 'train_loss': 7.388044059276581} (best epoch -1, best val -inf)
+  non-finite chunks skipped this epoch: 74/74

@@ -1,0 +1,42 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tgbl-wiki', 'seed': 43, 'model': 'original', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 8, 'patience': 5, 'min_epochs': 4, 'time_window': 600.0, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 8000, 'train_loss': 'softplus', 'learn_node_emb': False, 'node_type_emb': False, 'predict_from_previous': True, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'recurrency_symmetric': False, 'recurrency_untyped': False, 'cache_warm_history': False, 'recurrency_decoder': False, 'relation_in_input': False, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.003, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'out': 'results/event_bench/leakfree2/wiki_o_s43'}
+split_source=official_tgb_masks
+destination_range=(8227, 9226)
+snapshots: train=3105 (edges=110232) track_val=192 final_val=593 final_test=767 | prep_sec=1.4
+negative-sample sets loaded in 0.6s
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=49364 num_relations=1 num_nodes=9227
+[epoch 1/8] {'epoch': 1, 'train_loss': 0.31359491082143576, 'track_val_mrr': 0.016368299932277296, 'track_val_loss': 0.5936135053634644, 'train_sec': 729.3, 'track_eval_sec': 707.4, 'peak_gpu_mem_mb': 51.9}
+[eval-audit] split=val non_finite_positive_scores=7022 skipped_queries=0 scored_queries=8000
+[epoch 2/8] {'epoch': 2, 'train_loss': nan, 'track_val_mrr': 0.008345247830380686, 'track_val_loss': nan, 'train_sec': 744.9, 'track_eval_sec': 725.9, 'peak_gpu_mem_mb': 52.9}
+[eval-audit] split=val non_finite_positive_scores=7104 skipped_queries=0 scored_queries=8000
+[epoch 3/8] {'epoch': 3, 'train_loss': nan, 'track_val_mrr': 0.016879841520043556, 'track_val_loss': nan, 'train_sec': 739.1, 'track_eval_sec': 707.5, 'peak_gpu_mem_mb': 52.9}
+[eval-audit] split=val non_finite_positive_scores=7104 skipped_queries=0 scored_queries=8000
+[epoch 4/8] {'epoch': 4, 'train_loss': nan, 'track_val_mrr': 0.021064796132181072, 'track_val_loss': nan, 'train_sec': 718.9, 'track_eval_sec': 722.2, 'peak_gpu_mem_mb': 52.9}
+[eval-audit] split=val non_finite_positive_scores=7104 skipped_queries=0 scored_queries=8000
+[epoch 5/8] {'epoch': 5, 'train_loss': nan, 'track_val_mrr': 0.0222600854987686, 'track_val_loss': nan, 'train_sec': 740.7, 'track_eval_sec': 728.0, 'peak_gpu_mem_mb': 52.9}
+[eval-audit] split=val non_finite_positive_scores=7104 skipped_queries=0 scored_queries=8000
+[epoch 6/8] {'epoch': 6, 'train_loss': nan, 'track_val_mrr': 0.017639470216905467, 'track_val_loss': nan, 'train_sec': 741.9, 'track_eval_sec': 723.9, 'peak_gpu_mem_mb': 52.9}
+early stop at epoch 6 (patience 5)
+checkpoint saved: results/event_bench/leakfree2/wiki_o_s43/best.pt
+final val_mrr=0.0201 (809.5s so far)
+FINAL val_mrr=0.0201 test_mrr=0.0110 test_hits10=0.0163 eval_sec=971.4
+{
+  "dataset": "tgbl-wiki",
+  "model": "EventTemporalMambaSheaf (memory-conditioned)",
+  "seed": 43,
+  "epochs": 8,
+  "best_track_epoch": 1,
+  "best_track_val_mrr": 0.016368299932277296,
+  "parameter_count": 49364,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 110232,
+  "final_val_edges": 23621,
+  "final_test_edges": 23621,
+  "validation_mrr": 0.020095472063960396,
+  "test_mrr": 0.01103517010363325,
+  "final_val_loss": 0.6283022165298462,
+  "final_test_loss": 0.6439716815948486,
+  "final_eval_sec": 971.4,
+  "final_eval_peak_gpu_mem_mb": 80.5,
+  "test_hits10": 0.016341391358562253
+}

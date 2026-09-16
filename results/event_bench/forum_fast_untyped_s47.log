@@ -1,0 +1,32 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'thgl-forum', 'seed': 47, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 4, 'patience': 3, 'min_epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges_cap': 4000000, 'val_edges_cap': 100000, 'test_edges_cap': 100000, 'track_val_edges': 20000, 'train_loss': 'softplus', 'learn_node_emb': False, 'node_type_emb': True, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'out': '/home/zhuowez1/project/neural-sheaf-diffusion/results/event_bench/forum_fast_untyped_s47'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=740 (edges=4000000) track_val=3 final_val=13 final_test=15 | prep_sec=28.6
+negative-sample sets loaded in 50.8s
+node_types: present
+parameter_count=630271 num_relations=2 num_nodes=152816
+[epoch 1/4] {'epoch': 1, 'train_loss': 0.03843872508260648, 'track_val_mrr': 0.6217500009357929, 'track_val_loss': 0.4630831778049469, 'train_sec': 6421.8, 'track_eval_sec': 5946.2, 'peak_gpu_mem_mb': 22425.7}
+[epoch 2/4] {'epoch': 2, 'train_loss': 0.01995450336788152, 'track_val_mrr': 0.7380500041306018, 'track_val_loss': 0.2099599987268448, 'train_sec': 6347.5, 'track_eval_sec': 5864.6, 'peak_gpu_mem_mb': 22631.8}
+[epoch 3/4] {'epoch': 3, 'train_loss': 0.01708002913982381, 'track_val_mrr': 0.722550016283989, 'track_val_loss': 0.2186882346868515, 'train_sec': 6017.0, 'track_eval_sec': 5628.0, 'peak_gpu_mem_mb': 22631.8}
+[epoch 4/4] {'epoch': 4, 'train_loss': 0.017252487879296816, 'track_val_mrr': 0.7308500035524368, 'track_val_loss': 0.19154000282287598, 'train_sec': 6211.3, 'track_eval_sec': 5942.8, 'peak_gpu_mem_mb': 22631.8}
+final val_mrr=0.7388 (6052.6s so far)
+FINAL val_mrr=0.7388 test_mrr=0.6819 eval_sec=6187.4
+{
+  "dataset": "thgl-forum",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 47,
+  "epochs": 4,
+  "best_track_epoch": 2,
+  "best_track_val_mrr": 0.7380500041306018,
+  "parameter_count": 630271,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 4000000,
+  "final_val_edges": 100000,
+  "final_test_edges": 100000,
+  "validation_mrr": 0.7387800025379658,
+  "test_mrr": 0.6818700080513954,
+  "final_val_loss": 0.21724960207939148,
+  "final_test_loss": 0.2512511909008026,
+  "final_eval_sec": 6187.4,
+  "final_eval_peak_gpu_mem_mb": 5505.6
+}

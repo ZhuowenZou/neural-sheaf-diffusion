@@ -1,0 +1,35 @@
+device=cuda:0 sha=09c27e8f3879 config={'dataset': 'tkgl-smallpedia', 'seed': 43, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 15, 'patience': 6, 'min_epochs': 6, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 50000, 'train_loss': 'softplus', 'learn_node_emb': False, 'node_type_emb': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.01, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'out': 'results/event_bench/sp_rec_final_s43'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=98 (edges=775514) track_val=7 final_val=10 final_test=17 | prep_sec=1.2
+negative-sample sets loaded in 1.2s
+parameter_count=648707 num_relations=566 num_nodes=47433
+[epoch 1/15] {'epoch': 1, 'train_loss': 0.08911043622207884, 'track_val_mrr': 0.7495000040698051, 'track_val_loss': 0.09291721135377884, 'train_sec': 157.4, 'track_eval_sec': 191.4, 'peak_gpu_mem_mb': 17703.7}
+[epoch 2/15] {'epoch': 2, 'train_loss': 0.009842831194780919, 'track_val_mrr': 0.759159987925291, 'track_val_loss': 0.039548490196466446, 'train_sec': 153.9, 'track_eval_sec': 190.1, 'peak_gpu_mem_mb': 17720.0}
+[epoch 3/15] {'epoch': 3, 'train_loss': 0.0063146760649218855, 'track_val_mrr': 0.7600199902760982, 'track_val_loss': 0.035584770143032074, 'train_sec': 151.9, 'track_eval_sec': 186.0, 'peak_gpu_mem_mb': 17720.0}
+[epoch 4/15] {'epoch': 4, 'train_loss': 0.005188972658325671, 'track_val_mrr': 0.7662600019299984, 'track_val_loss': 0.0326855294406414, 'train_sec': 151.0, 'track_eval_sec': 185.8, 'peak_gpu_mem_mb': 17720.0}
+[epoch 5/15] {'epoch': 5, 'train_loss': 0.006171775157373323, 'track_val_mrr': 0.7636199960875512, 'track_val_loss': 0.028909187763929367, 'train_sec': 151.1, 'track_eval_sec': 188.8, 'peak_gpu_mem_mb': 17720.0}
+[epoch 6/15] {'epoch': 6, 'train_loss': 0.004679785984359226, 'track_val_mrr': 0.7621000009036064, 'track_val_loss': 0.026061033830046654, 'train_sec': 152.8, 'track_eval_sec': 190.3, 'peak_gpu_mem_mb': 17720.0}
+[epoch 7/15] {'epoch': 7, 'train_loss': 0.004141291949128238, 'track_val_mrr': 0.7647200120830536, 'track_val_loss': 0.0334487147629261, 'train_sec': 156.7, 'track_eval_sec': 193.1, 'peak_gpu_mem_mb': 17720.0}
+[epoch 8/15] {'epoch': 8, 'train_loss': 0.004777961306045859, 'track_val_mrr': 0.7640999971592426, 'track_val_loss': 0.031553469598293304, 'train_sec': 154.5, 'track_eval_sec': 192.5, 'peak_gpu_mem_mb': 17720.0}
+[epoch 9/15] {'epoch': 9, 'train_loss': 0.00456125851915389, 'track_val_mrr': 0.7638800000476837, 'track_val_loss': 0.03259631618857384, 'train_sec': 155.4, 'track_eval_sec': 190.6, 'peak_gpu_mem_mb': 17720.0}
+[epoch 10/15] {'epoch': 10, 'train_loss': 0.006151186178761477, 'track_val_mrr': 0.7657199953484535, 'track_val_loss': 0.03724663332104683, 'train_sec': 155.2, 'track_eval_sec': 190.5, 'peak_gpu_mem_mb': 17720.0}
+early stop at epoch 10 (patience 6)
+Traceback (most recent call last):
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_event_benchmark.py", line 358, in <module>
+    main()
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_event_benchmark.py", line 332, in main
+    val_mrr, val_loss, val_state = bu.evaluate_model_streaming(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/temporal_benchmark_utils.py", line 787, in evaluate_model_streaming
+    negative_scores = model.score_event_candidates(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/faithful_event_model.py", line 215, in score_event_candidates
+    scores = scores + self._recurrency_bonus(src, edge_type, candidates)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/faithful_event_model.py", line 193, in _recurrency_bonus
+    keys = self._rec_pack(src_b.reshape(-1), None if rel_b is None else rel_b.reshape(-1), dst.reshape(-1))
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/faithful_event_model.py", line 156, in _rec_pack
+    return (src.long() * self._rec_R + rel) * self.graph_size + dst.long()
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 6.61 GiB. GPU 0 has a total capacity of 79.25 GiB of which 5.06 GiB is free. Process 1428697 has 21.61 GiB memory in use. Process 1428695 has 3.44 GiB memory in use. Process 3455367 has 3.44 GiB memory in use. Process 3456355 has 3.44 GiB memory in use. Including non-PyTorch memory, this process has 42.25 GiB memory in use. Of the allocated memory 33.01 GiB is allocated by PyTorch, and 8.74 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
