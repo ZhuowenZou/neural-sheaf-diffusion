@@ -21,7 +21,7 @@ Writing priorities: (1) appendix tables are final (results_table_v3, factorial, 
 | **added 09-14 08:00 (user: fill GPU 7)** — 24 ablation runs to make the mechanism table >= 2 seeds on every dataset: smallpedia s46/47 (6 x 12 GB, ~1.5 h each), software s46/47 (6 x 10 GB, ~5 h), wikidata s43 (3 x 12 GB, ~11 h), icews s46 (3 x 16 GB, ~20 h), polecat s46 (3 x 14 GB, ~16 h), forum s47 (3 x 26 GB, ~11 h) | queued; the launcher fills GPUs 0/7 as memory frees (2-4 concurrent jobs per card) | ~330 GPU-hours; drains in ~2.5-3 days -> 2026-09-16/17 |
 | icews_abl_nodelta (on colleague GPU 2, over budget) | training ends ~09:30; a watcher then stops it and runs the identical final evaluation on 0/7 via --eval-only | ~09-14 evening |
 | everything else | COMPLETE (icews/polecat/wikidata/smallpedia/wiki/forum/software 3 seeds; trade 5 seeds; genre 3 seeds; wiki ablations 3 seeds; smallpedia/polecat/software ablations) | - |
-GPU budget remaining: ~420 GPU-hours on our two cards, draining by 2026-09-17; 1-2 days of buffer for re-runs; hard stop for new GPU work 2026-09-19 so every number is in the documents by 09-20.
+GPU: campaign closed for paper-critical work; wikidata ablations (3) and polecat s46 ablations (3) run on GPUs 0/7 as filler through 2026-09-18; nothing else queued.
 
 ## Writing (no GPU)
 | day | item |

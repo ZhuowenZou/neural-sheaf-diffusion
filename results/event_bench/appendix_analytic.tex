@@ -1,0 +1,104 @@
+% ===================================================================
+% Appendix: Analytic study of the temporal-sheaf core (synthetic + per-event)
+% Numbers: results/analytic/synth_v4/{synth_*/meta.json, runs/*/summary.json},
+%          results/analytic/forum_factorial/*/summary.json, results/analytic/DESIGN.md
+% ===================================================================
+\section{What the Temporal-Sheaf Core Captures: A Controlled Study}
+\label{app:analytic}
+
+The benchmark ablations (App.~\ref{app:faithful:results}) attribute
+performance to components under real data, where a recurrency head can
+absorb most of the temporal signal. This appendix asks the complementary
+question under controlled conditions: which aspects of a temporal graph
+\emph{can} the temporal-sheaf core capture, and does it capture them in
+practice? We use a synthetic generator with known ceilings, then return to
+real data with a per-event analysis.
+
+\paragraph{Generator.}
+$n{=}100$ nodes in $k{=}4$ communities carry unit-norm latent states
+$x_u(t)\in\mathbb{R}^4$; each community pair $(a,b)$ has a planted
+orthogonal transport $O_{ab}$ (the sheaf). States rotate at
+community-specific rates (0.01--0.05 rad per time unit; ``static'' regime:
+zero rates) and receive a small kick after each event. Events arrive with
+bursty (Pareto) gaps; with probability $\rho{=}0.1$ a source repeats a past
+partner, otherwise it picks a partner with probability
+$\propto\exp(-\|O_{ab}x_u-x_v\|^2/\tau)$, $\tau{=}0.03$. Node attributes
+expose $x_u(0)$ and the community, so a model must learn the rates and the
+transports from events (system identification) rather than infer hidden
+states. 100k events; 70/15/15 split in time; snapshots of 20 time units;
+full-vocabulary MRR over all $n{-}1$ candidates.
+
+\paragraph{Oracle ceilings.}
+Before training anything we score the generator's own kernels on the test
+period, which bounds what each mechanism can contribute:
+
+\begin{table}[h]
+\centering\small
+\caption{Oracle MRR on the synthetic test period (chance $=0.010$).
+``Static features'' knows $x(0)$ and the transports; ``last snapshot''
+knows the true state at the previous snapshot boundary but does not
+extrapolate the gap; ``event time'' knows the true state at the event.}
+\begin{tabular}{lcccc}
+\toprule
+Regime & no transport & static features & last snapshot & event time \\
+\midrule
+static (rates 0)          & 0.196 & 0.767 & 0.875 & 0.875 \\
+evolving, rotations       & 0.186 & 0.178 & 0.461 & 0.821 \\
+evolving, identity maps   & 0.823 & 0.179 & 0.632 & 0.823 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The ladder in the evolving regime (0.18 $<$ 0.46 $<$ 0.82) is exactly the
+one the core is built to climb: a persistent per-node state (memory)
+reaches the second rung, and extrapolating that state across the physical
+gap $\Delta_k$ reaches the third. In the static regime the task reduces to
+learning the transports. An i.i.d.-trained bilinear scorer over
+$x(0)\otimes\text{community}$ features reaches 0.807 of the 0.875 static
+ceiling but only 0.200 in the evolving regime, confirming that the evolving
+signal is temporal.
+
+\paragraph{Results.}
+All variants share the recurrency head, the observed attributes and a
+32-channel width, trained 8 epochs under the leak-free protocol (seed 43;
+test MRR over all candidates):
+
+\begin{table}[h]
+\centering\small
+\caption{Synthetic study, test MRR. ``Efficient'' is the released
+implementation (no persistent recurrence, no $\Delta_k$).}
+\begin{tabular}{lccccc}
+\toprule
+Regime & full & identity maps & no $\Delta_k$ & current-only maps & efficient \\
+\midrule
+static                  & 0.849 & 0.846 & 0.849 & 0.847 & 0.790 \\
+evolving, rotations     & 0.276 & 0.277 & 0.276 & 0.276 & 0.176 \\
+evolving, identity maps & 0.290 & 0.290 & 0.288 & 0.289 & 0.200 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Two conclusions. (i) The faithful architecture beats the efficient
+implementation by 0.06--0.10 MRR in every regime and reaches 0.85 of the
+0.875 static ceiling. (ii) Its variants are indistinguishable (within
+0.003): with a recurrency head present, none of the faithful model's own
+mechanisms is exercised, and in the evolving regime the model stops between
+the ``static features'' rung (0.18--0.20) and the ``last snapshot'' rung
+(0.46), i.e.\ it does not extrapolate the planted dynamics across gaps.
+Compressing or stretching the test-period gaps by $4\times$ moves the full
+model by only $-0.012$ / $+0.005$. The synthetic study is therefore a
+bounded negative for the mechanisms and a positive for the architecture:
+sheaf diffusion over the current event graph, with the observed features and
+the head, carries the gain, and the temporal core's memory and gap
+extrapolation do not add to it within this budget.
+
+\paragraph{Back to real data.}
+The per-event analysis of Table~\ref{tab:stratified} and the head-vs-core
+factorial of Table~\ref{tab:factorial} on \textsc{thgl-forum} give the
+positive side of the same question: when the head is removed the core is
+worth $+0.15$ MRR and the learned restriction maps are the mechanism, and
+with the head present the core's contribution is confined to novel partners
+and grows with the inter-event gap. Together, the two studies locate the
+temporal-sheaf core's value where recurrence heuristics have nothing to
+say: predicting \emph{new} interactions from the geometry of the current
+event graph.

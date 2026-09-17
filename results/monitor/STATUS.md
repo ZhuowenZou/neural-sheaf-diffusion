@@ -1,7 +1,7 @@
-# Monitor status (2026-09-17 13:56:33)
+# Monitor status (2026-09-17 13:59:53)
 
 ## GPU free (GiB) and utilisation
-0:27GB(100%) 1:26GB(99%) 2:22GB(100%) 3:24GB(80%) 4:24GB(100%) 5:27GB(100%) 6:11GB(100%) 7:24GB(100%) 
+0:27GB(100%) 1:26GB(100%) 2:22GB(100%) 3:24GB(100%) 4:24GB(100%) 5:27GB(100%) 6:11GB(100%) 7:24GB(100%) 
 our GPU processes (pid:MiB): 1546691:11516MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
@@ -136,6 +136,12 @@ our launcher claims (pid:gpu/MiB):
 - DONE     wiki_f_s46: FINAL val_mrr=0.7447 test_mrr=0.7305 test_hits10=0.8499 eval_sec=1281.3
 - DONE     wiki_f_s47: FINAL val_mrr=0.7438 test_mrr=0.7331 test_hits10=0.8509 eval_sec=1520.7
 - DONE     wiki_o_s43: FINAL val_mrr=0.0201 test_mrr=0.0110 test_hits10=0.0163 eval_sec=971.4
+- QUEUED   polecat_abl_curonly_s46 (.cmd present; daemon will launch)
+- QUEUED   polecat_abl_identity_s46 (.cmd present; daemon will launch)
+- QUEUED   polecat_abl_nodelta_s46 (.cmd present; daemon will launch)
+- QUEUED   wd_abl_curonly (.cmd present; daemon will launch)
+- QUEUED   wd_abl_identity (.cmd present; daemon will launch)
+- QUEUED   wd_abl_nodelta (.cmd present; daemon will launch)
 
 ## node-property reruns
 - genre_faithful_daily_s43: test NDCG mean±std: 0.4482 ± nan
@@ -185,8 +191,8 @@ our launcher claims (pid:gpu/MiB):
 - DONE synth_static_original: test 0.790 novel 0.151 rec 0.791
 
 ## recent actions
-2026-09-16 10:15:14 (re)launching forum_norec_identity_s47 via results/event_bench/leakfree2/forum_norec_identity_s47.cmd (attempt 1)
 2026-09-16 10:15:14 (re)launching forum_norec_nodelta_s47 via results/event_bench/leakfree2/forum_norec_nodelta_s47.cmd (attempt 1)
 2026-09-16 22:12:09 icews_coreoff_rec_s46 crashed (OOM) - no single-run queue line, not retried
 2026-09-16 22:12:09 (re)launching icews_coreoff_rec_s46 via results/event_bench/leakfree2/icews_coreoff_rec_s46.cmd (attempt 1)
 2026-09-16 22:15:54 icews_coreoff_rec_s46.fail1 crashed (OOM) - no single-run queue line, not retried
+2026-09-17 13:59:37 user signing off: policy unchanged (GPUs 0/7 ours, 1-6 only after 1 h idle or under the compensation budget); released wikidata ablations + polecat s46 ablations to keep our two cards busy; forum REC-on s47 / icews REC-on s46 seeds stay dropped
