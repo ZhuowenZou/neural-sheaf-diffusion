@@ -4,3 +4,6 @@ split_source=official_tgb_masks
 destination_range=None
 snapshots: train=1193 (edges=2493112) track_val=37 final_val=329 final_test=304 | prep_sec=3.0
 negative-sample sets loaded in 6.8s
+delta_time_scale=86400 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=631133 num_relations=32 num_nodes=150931
