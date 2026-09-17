@@ -9,3 +9,29 @@ delta_time_scale=600 (Delta_k is measured in units of the median training inter-
 protocol: predict-from-previous-state (leak-free) for training and evaluation
 parameter_count=634300 num_relations=2 num_nodes=152816
 [epoch 1/4] {'epoch': 1, 'train_loss': 0.21864032872394232, 'track_val_mrr': 0.2099000278159976, 'track_val_loss': 0.4733983278274536, 'train_sec': 5146.3, 'track_eval_sec': 6249.6, 'peak_gpu_mem_mb': 4963.2}
+[epoch 2/4] {'epoch': 2, 'train_loss': 0.16610826586192934, 'track_val_mrr': 0.23300044737309217, 'track_val_loss': 0.4568467438220978, 'train_sec': 6915.8, 'track_eval_sec': 7280.5, 'peak_gpu_mem_mb': 5056.5}
+[epoch 3/4] {'epoch': 3, 'train_loss': 0.16345502071193493, 'track_val_mrr': 0.23623924797475337, 'track_val_loss': 0.4560020864009857, 'train_sec': 7053.9, 'track_eval_sec': 7526.6, 'peak_gpu_mem_mb': 5056.5}
+[epoch 4/4] {'epoch': 4, 'train_loss': 0.1627594268955139, 'track_val_mrr': 0.2596610799789429, 'track_val_loss': 0.4473910629749298, 'train_sec': 6568.2, 'track_eval_sec': 6204.0, 'peak_gpu_mem_mb': 5056.5}
+checkpoint saved: results/event_bench/leakfree2/forum_coreoff_norec_s47/best.pt
+final val_mrr=0.2488 (10943.3s so far)
+FINAL val_mrr=0.2488 test_mrr=0.2320 test_hits10=0.3502 eval_sec=15661.9
+{
+  "dataset": "thgl-forum",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 47,
+  "epochs": 4,
+  "best_track_epoch": 4,
+  "best_track_val_mrr": 0.2596610799789429,
+  "parameter_count": 634300,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 4000000,
+  "final_val_edges": 3563658,
+  "final_test_edges": 3563653,
+  "validation_mrr": 0.24878402830040733,
+  "test_mrr": 0.23202609883857672,
+  "final_val_loss": 0.47370949387550354,
+  "final_test_loss": 0.5078074932098389,
+  "final_eval_sec": 15661.9,
+  "final_eval_peak_gpu_mem_mb": 3732.4,
+  "test_hits10": 0.35024902792240753
+}

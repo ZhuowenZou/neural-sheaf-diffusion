@@ -12,3 +12,27 @@ parameter_count=655754 num_relations=782 num_nodes=87856
 [epoch 3/6] {'epoch': 3, 'train_loss': 0.09319059629725343, 'track_val_mrr': 0.006696983812206114, 'track_val_loss': 1.890631079673767, 'train_sec': 6223.5, 'track_eval_sec': 6228.1, 'peak_gpu_mem_mb': 8514.0}
 [epoch 4/6] {'epoch': 4, 'train_loss': 0.10685297827459223, 'track_val_mrr': 0.022838790521025658, 'track_val_loss': 2.1997053623199463, 'train_sec': 6211.4, 'track_eval_sec': 6152.2, 'peak_gpu_mem_mb': 11084.6}
 [epoch 5/6] {'epoch': 5, 'train_loss': 0.12643050835740927, 'track_val_mrr': 0.0029859378865299126, 'track_val_loss': 1.5059758424758911, 'train_sec': 6697.1, 'track_eval_sec': 8212.6, 'peak_gpu_mem_mb': 11131.8}
+[epoch 6/6] {'epoch': 6, 'train_loss': 0.11440606981002255, 'track_val_mrr': 0.00017479533013975014, 'track_val_loss': 1.587886095046997, 'train_sec': 9782.3, 'track_eval_sec': 9303.0, 'peak_gpu_mem_mb': 11533.1}
+checkpoint saved: results/event_bench/leakfree2/icews_norec_identity_s46/best.pt
+final val_mrr=0.0308 (24635.6s so far)
+FINAL val_mrr=0.0308 test_mrr=0.0267 test_hits10=0.0608 eval_sec=39752.8
+{
+  "dataset": "tkgl-icews",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 46,
+  "epochs": 6,
+  "best_track_epoch": 4,
+  "best_track_val_mrr": 0.022838790521025658,
+  "parameter_count": 655754,
+  "commit_hash": "09c27e8f3879cb2cebf51a3f945374c3edfeb766",
+  "train_edges": 2000000,
+  "final_val_edges": 4652314,
+  "final_test_edges": 4651378,
+  "validation_mrr": 0.030756847531247133,
+  "test_mrr": 0.026684815705998764,
+  "final_val_loss": 1.1463016271591187,
+  "final_test_loss": 1.7522523403167725,
+  "final_eval_sec": 39752.8,
+  "final_eval_peak_gpu_mem_mb": 10596.8,
+  "test_hits10": 0.060760488657147255
+}

@@ -15,3 +15,5 @@ sp_abl_curonly_s46.fail1 2026-09-15 21:39:05 no-queue-line
 sp_abl_curonly_s46.fail2 2026-09-15 23:19:00 no-queue-line
 sp_abl_nodelta_s47 2026-09-15 23:34:27 no-queue-line
 sp_abl_nodelta_s47.fail1 2026-09-15 23:38:19 no-queue-line
+icews_coreoff_rec_s46 2026-09-16 22:12:09 no-queue-line
+icews_coreoff_rec_s46.fail1 2026-09-16 22:15:54 no-queue-line

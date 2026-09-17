@@ -227,3 +227,37 @@ Seed-consistent effects (both seeds same sign): REC off -> learned maps 0.398 vs
 | tkgl-smallpedia | 0.6103 +/- 0.0066 | 0.6133 +/- 0.0063 | 0.6109 +/- 0.0053 | 0.6054 +/- 0.0082 |
 | thgl-software | 0.4376 +/- 0.0021 | 0.4392 +/- 0.0030 | 0.4393 +/- 0.0003 | 0.4388 +/- 0.0043 |
 All within seed noise with the head on, as on forum and polecat.
+
+
+### thgl-forum factorial: final (REC on 2 seeds 43/46; REC off 3 seeds 43/46/47; test MRR, mean +/- std)
+| temporal core | REC on | REC off |
+|---|---|---|
+| full | 0.635 +/- 0.009 | 0.381 +/- 0.029 |
+| identity restriction maps | 0.641 +/- 0.013 | 0.293 +/- 0.063 |
+| no Delta_k | 0.635 +/- 0.018 | 0.367 +/- 0.020 |
+| no memory | 0.649 +/- 0.001 | 0.396 +/- 0.018 |
+| current-only map conditioning | 0.629 +/- 0.027 | 0.397 +/- 0.019 |
+| core OFF (no diffusion, no memory) | 0.615 +/- 0.000 | 0.230 +/- 0.009 |
+Per-seed deltas vs full without the head: identity maps -0.174 / -0.068 / -0.021 (all negative; mean -0.09), no Delta_k -0.033 / -0.050 / **+0.043** (mixed -> not robust; mean -0.01), core vs core-off +0.157 / +0.181 / +0.115 (all positive; mean +0.15). So the seed-robust statements are: (i) the head masks the core (+0.02 with the head); (ii) without the head the core carries +0.15 and the learned restriction maps are the mechanism that matters (identity maps lose on every seed); (iii) Delta_k and memory show no robust effect on forum. The 2-seed claim of 09-16 that Delta_k is seed-consistent is withdrawn at 3 seeds.
+
+### tkgl-icews factorial (test MRR; REC on: full/no-memory 2 seeds, others seed 43; REC off: 2 seeds)
+| temporal core | REC on | REC off |
+|---|---|---|
+| full | 0.336 +/- 0.003 | 0.024 +/- 0.005 |
+| identity restriction maps | 0.337 | 0.026 +/- 0.001 |
+| no Delta_k | 0.338 | 0.026 +/- 0.003 |
+| no memory | 0.328 +/- 0.002 | 0.023 +/- 0.005 |
+| current-only map conditioning | 0.329 | 0.025 +/- 0.004 |
+| core OFF (no diffusion, no memory) | 0.319 | 0.021 +/- 0.006 |
+Reading: icews is recurrence-dominated (leaderboard top = Recurrency Baseline 0.211): without the head every arm collapses to 0.02-0.03 (MRR against 87,855 candidates), so no mechanism can be read there. With the head, the core adds +0.02 over the head-only model (0.339 vs 0.319, ~6 seed-std of the champion's 0.003) and the persistent memory is the one mechanism with a seed-consistent effect: removing it costs -0.009 / -0.007 on the two seeds. Forum's third core-off+REC seed pending (in final eval).
+
+### Per-event stratified analysis, thgl-forum seed 43 (first 1M test events; 43% of events are novel (s,o) pairs; leak-free)
+| arm | MRR | recurrent-triple events | novel-pair events | MRR by inter-event-gap quartile (short -> long) |
+|---|---|---|---|---|
+| rec_full | 0.623 | 0.985 | 0.138 | 0.722 / 0.668 / 0.588 / 0.515 |
+| rec_coreoff | 0.607 | 0.994 | 0.090 | 0.722 / 0.658 / 0.568 / 0.483 |
+| norec_full | 0.392 | 0.550 | 0.182 | 0.410 / 0.395 / 0.383 / 0.382 |
+| norec_identity | 0.220 | 0.282 | 0.137 | 0.227 / 0.218 / 0.215 / 0.218 |
+| norec_nodelta | 0.360 | 0.503 | 0.168 | 0.379 / 0.368 / 0.352 / 0.341 |
+| norec_coreoff | 0.235 | 0.336 | 0.099 | 0.264 / 0.235 / 0.222 / 0.218 |
+Mechanistic reading: with the head on, the temporal core's +0.016 over the head-only model comes entirely from NOVEL events (0.138 vs 0.090, +0.05; recurrent events are saturated at 0.985-0.994 by the head) and grows with the inter-event gap (0.000 / +0.010 / +0.020 / +0.032 from the shortest to the longest quartile). Without the head the core lifts novel events 0.100 -> 0.182 and recurrent events 0.336 -> 0.550; identity maps hurt both (0.137 / 0.282); freezing Delta_k costs most on long gaps on this seed (+0.031 / +0.027 / +0.031 / +0.041 for full vs no-Delta across quartiles). The temporal-sheaf core is therefore the part of the model that predicts interactions the recurrency head cannot: new partners and returns after long silences.

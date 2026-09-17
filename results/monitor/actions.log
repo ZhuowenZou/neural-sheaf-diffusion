@@ -561,3 +561,6 @@ monitor started Sat Sep 12 06:28:23 PM PDT 2026 pid 2098961
 2026-09-16 10:15:14 (re)launching forum_norec_full_s47 via results/event_bench/leakfree2/forum_norec_full_s47.cmd (attempt 1)
 2026-09-16 10:15:14 (re)launching forum_norec_identity_s47 via results/event_bench/leakfree2/forum_norec_identity_s47.cmd (attempt 1)
 2026-09-16 10:15:14 (re)launching forum_norec_nodelta_s47 via results/event_bench/leakfree2/forum_norec_nodelta_s47.cmd (attempt 1)
+2026-09-16 22:12:09 icews_coreoff_rec_s46 crashed (OOM) - no single-run queue line, not retried
+2026-09-16 22:12:09 (re)launching icews_coreoff_rec_s46 via results/event_bench/leakfree2/icews_coreoff_rec_s46.cmd (attempt 1)
+2026-09-16 22:15:54 icews_coreoff_rec_s46.fail1 crashed (OOM) - no single-run queue line, not retried

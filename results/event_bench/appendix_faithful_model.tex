@@ -209,38 +209,73 @@ timestamps for 153k nodes; 227 active timestamps per node).
 
 \begin{table}[h]
 \centering\small
-\caption{Head-vs-core factorial on \textsc{thgl-forum} (test MRR, seed 43,
-leak-free protocol; type and relation inputs fixed in every arm). The
-parameter-free Recurrency Baseline scores 0.561, TGN with edge types 0.729.}
+\caption{Head-vs-core factorial on \textsc{thgl-forum} (test MRR, leak-free
+protocol; type and relation inputs fixed in every arm; mean $\pm$ std over
+seeds 43/46 with the head and 43/46/47 without it). The parameter-free
+Recurrency Baseline scores 0.561, TGN with edge types 0.729.}
 \label{tab:factorial}
 \begin{tabular}{lcc}
 \toprule
 Temporal core & REC head on & REC head off \\
 \midrule
-full & 0.628 & 0.394 \\
-identity restriction maps & 0.631 & 0.220 \\
-no $\Delta_k$ & 0.648 & 0.361 \\
-no memory & 0.649 & 0.409 \\
-current-only map conditioning & 0.648 & 0.384 \\
-core off (no diffusion, no memory) & 0.615 & 0.237 \\
+full & $0.635 \pm 0.009$ & $0.381 \pm 0.029$ \\
+identity restriction maps & $0.641 \pm 0.013$ & $0.293 \pm 0.063$ \\
+no $\Delta_k$ & $0.635 \pm 0.018$ & $0.367 \pm 0.020$ \\
+no memory & $0.649 \pm 0.001$ & $0.396 \pm 0.018$ \\
+current-only map conditioning & $0.629 \pm 0.027$ & $0.398 \pm 0.019$ \\
+core off (no diffusion, no memory) & $0.615 \pm 0.000$ & $0.230 \pm 0.009$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Two regimes emerge. With the recurrency head on, every core variant lies
-within seed noise of the full model (two-seed means 0.629--0.641 against a
-seed standard deviation of 0.011), and the head over a pointwise projection
-of the inputs already reaches 0.615: the head masks the core. With the head
-off, the core is worth $+0.16$ MRR over the same projection
-(0.394 vs.\ 0.237), and almost all of it comes from the learned restriction
-maps --- replacing them by the identity drops the model to 0.220, below the
-core-off floor --- with a smaller contribution from the physical gap
-($-0.03$) and none from the persistent memory within the four-epoch budget.
-The same pattern holds on the coarse-grained streams with the head on
-(\textsc{tkgl-smallpedia}, \textsc{tkgl-polecat}, \textsc{thgl-software},
-\textsc{tkgl-icews}: all ablations within noise), and on \textsc{tgbl-wiki}
-only $\Delta_k$ shows a seed-consistent effect ($0.726 \pm 0.003$ vs.\
-$0.733 \pm 0.003$ over three seeds). The controlled synthetic study
+\begin{table}[h]
+\centering\small
+\caption{Per-event analysis on \textsc{thgl-forum} (seed 43, first 1M test
+events, leak-free): MRR on events whose exact triple recurs vs.\ events with
+a novel $(s,o)$ pair (43\% of events), and by quartile of the source's
+inter-event gap (shortest to longest).}
+\label{tab:stratified}
+\begin{tabular}{llcccc}
+\toprule
+Head & Core & recurrent & novel pair & gap Q1 / Q2 / Q3 / Q4 \\
+\midrule
+on & full & 0.985 & 0.138 & 0.722 / 0.668 / 0.588 / 0.515 \\
+on & core off & 0.994 & 0.090 & 0.722 / 0.658 / 0.568 / 0.483 \\
+off & full & 0.550 & 0.182 & 0.410 / 0.395 / 0.383 / 0.382 \\
+off & identity maps & 0.282 & 0.137 & 0.227 / 0.218 / 0.215 / 0.218 \\
+off & no $\Delta_k$ & 0.503 & 0.168 & 0.379 / 0.368 / 0.352 / 0.341 \\
+off & core off & 0.336 & 0.100 & 0.264 / 0.235 / 0.222 / 0.218 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Three statements survive seeding. (1) With the recurrency head on, every
+core variant lies within seed noise of the full model and the head over a
+pointwise projection of the inputs already reaches 0.615: the head masks
+the core. (2) With the head off, the core is worth $+0.15$ MRR over that
+projection on every seed, and the mechanism that carries it is the learned
+restriction maps --- replacing them by the identity loses on every seed
+($-0.17$, $-0.07$, $-0.02$), i.e.\ plain diffusion on the current event
+graph is not what helps, sheaf diffusion is; the physical gap and the
+persistent memory show no seed-robust effect on this stream. (3) The
+per-event analysis (Table~\ref{tab:stratified}) locates the core's
+contribution: with the head on it comes entirely from novel pairs
+(0.138 vs.\ 0.090; recurrent events are saturated near 0.99 by the head) and
+grows with the inter-event gap (from $0.000$ in the shortest quartile to
+$+0.032$ in the longest); without the head the core lifts novel pairs from
+0.100 to 0.182 and recurrent events from 0.336 to 0.550. The temporal-sheaf
+core is thus the part of the model that predicts what a recurrency
+heuristic cannot --- new partners, and returns after long silences.
+On \textsc{tkgl-icews} the picture is head-dominated (its leaderboard is
+led by the parameter-free recurrency baseline): without the head every
+variant collapses to 0.02--0.03 MRR against 87,855 candidates, while with
+the head the core adds $+0.02$ over the head-only model (0.339 vs.\ 0.319)
+and the persistent memory is the one mechanism with a seed-consistent
+effect ($-0.009$ and $-0.007$ when removed). On the coarse-grained streams
+(\textsc{tkgl-smallpedia}, \textsc{tkgl-polecat}, \textsc{thgl-software})
+all head-on ablations lie within noise at three seeds, and on
+\textsc{tgbl-wiki} only $\Delta_k$ shows a seed-consistent effect
+($0.726 \pm 0.003$ vs.\ $0.733 \pm 0.003$). The controlled synthetic study
 (App.~\ref{app:analytic}) is consistent: the faithful architecture beats the
 efficient implementation by $\sim$0.1 MRR in every regime, but its variants
 are indistinguishable once a recurrency head is present.
