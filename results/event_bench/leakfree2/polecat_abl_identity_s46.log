@@ -7,3 +7,10 @@ negative-sample sets loaded in 5.6s
 delta_time_scale=86400 (Delta_k is measured in units of the median training inter-snapshot gap)
 protocol: predict-from-previous-state (leak-free) for training and evaluation
 parameter_count=631133 num_relations=32 num_nodes=150931
+[epoch 1/10] {'epoch': 1, 'train_loss': 0.15067931709673582, 'track_val_mrr': 0.17577408295770486, 'track_val_loss': 0.26341769099235535, 'train_sec': 4432.3, 'track_eval_sec': 4235.5, 'peak_gpu_mem_mb': 6099.1}
+[epoch 2/10] {'epoch': 2, 'train_loss': 0.1331776132144584, 'track_val_mrr': 0.23613590038269758, 'track_val_loss': 0.22497686743736267, 'train_sec': 4359.8, 'track_eval_sec': 4180.3, 'peak_gpu_mem_mb': 6275.3}
+[epoch 3/10] {'epoch': 3, 'train_loss': 0.14283204497769475, 'track_val_mrr': 0.17434685499742628, 'track_val_loss': 0.5572708249092102, 'train_sec': 4359.2, 'track_eval_sec': 4183.1, 'peak_gpu_mem_mb': 6869.4}
+[epoch 4/10] {'epoch': 4, 'train_loss': 0.1451331291053969, 'track_val_mrr': 0.2407405524233977, 'track_val_loss': 0.29405826330184937, 'train_sec': 4371.8, 'track_eval_sec': 4194.1, 'peak_gpu_mem_mb': 7157.6}
+[epoch 5/10] {'epoch': 5, 'train_loss': 0.14538838850309285, 'track_val_mrr': 0.24776507528672614, 'track_val_loss': 0.28435125946998596, 'train_sec': 4386.8, 'track_eval_sec': 4171.5, 'peak_gpu_mem_mb': 7157.6}
+[epoch 6/10] {'epoch': 6, 'train_loss': 0.1438813363389431, 'track_val_mrr': 0.2501549686342478, 'track_val_loss': 0.2992982864379883, 'train_sec': 4367.5, 'track_eval_sec': 4166.8, 'peak_gpu_mem_mb': 7157.6}
+[epoch 7/10] {'epoch': 7, 'train_loss': 0.14496895447435895, 'track_val_mrr': 0.24071724896430968, 'track_val_loss': 0.2710927128791809, 'train_sec': 4379.0, 'track_eval_sec': 4158.9, 'peak_gpu_mem_mb': 7157.6}

@@ -10,3 +10,8 @@ parameter_count=660041 num_relations=782 num_nodes=87856
 [epoch 1/6] {'epoch': 1, 'train_loss': 0.09032682224919225, 'track_val_mrr': 0.24613132984489203, 'track_val_loss': 0.3948477804660797, 'train_sec': 6828.7, 'track_eval_sec': 7146.8, 'peak_gpu_mem_mb': 5177.7}
 [epoch 2/6] {'epoch': 2, 'train_loss': 0.06700518267397457, 'track_val_mrr': 0.2509096978748838, 'track_val_loss': 0.38748040795326233, 'train_sec': 7935.6, 'track_eval_sec': 8261.5, 'peak_gpu_mem_mb': 5204.5}
 [epoch 3/6] {'epoch': 3, 'train_loss': 0.06681330397831374, 'track_val_mrr': 0.25194482844769955, 'track_val_loss': 0.3726406395435333, 'train_sec': 9117.1, 'track_eval_sec': 8959.3, 'peak_gpu_mem_mb': 5204.5}
+[epoch 4/6] {'epoch': 4, 'train_loss': 0.06622321123224809, 'track_val_mrr': 0.25151060929844776, 'track_val_loss': 0.35610511898994446, 'train_sec': 9186.7, 'track_eval_sec': 8986.0, 'peak_gpu_mem_mb': 5204.5}
+[epoch 5/6] {'epoch': 5, 'train_loss': 0.065910638984523, 'track_val_mrr': 0.25092371412366626, 'track_val_loss': 0.34061065316200256, 'train_sec': 9028.7, 'track_eval_sec': 8931.2, 'peak_gpu_mem_mb': 5204.5}
+[epoch 6/6] {'epoch': 6, 'train_loss': 0.06556745796728577, 'track_val_mrr': 0.24863086122820774, 'track_val_loss': 0.33425846695899963, 'train_sec': 9044.8, 'track_eval_sec': 8928.4, 'peak_gpu_mem_mb': 5204.5}
+early stop at epoch 6 (patience 3)
+checkpoint saved: results/event_bench/leakfree2/icews_coreoff_rec_s46/best.pt

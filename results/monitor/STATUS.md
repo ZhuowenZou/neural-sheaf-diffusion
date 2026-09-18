@@ -1,8 +1,8 @@
-# Monitor status (2026-09-17 13:59:53)
+# Monitor status (2026-09-18 08:34:48)
 
 ## GPU free (GiB) and utilisation
-0:27GB(100%) 1:26GB(100%) 2:22GB(100%) 3:24GB(100%) 4:24GB(100%) 5:27GB(100%) 6:11GB(100%) 7:24GB(100%) 
-our GPU processes (pid:MiB): 1546691:11516MiB 
+0:14GB(100%) 1:26GB(100%) 2:22GB(100%) 3:24GB(100%) 4:24GB(100%) 5:13GB(100%) 6:5GB(100%) 7:11GB(100%) 
+our GPU processes (pid:MiB): 675794:13532MiB 676024:13534MiB 1546691:18276MiB 676355:13530MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
@@ -13,7 +13,7 @@ our GPU processes (pid:MiB): 1546691:11516MiB
 - gpu5: colleague busy
 - gpu6: colleague busy
 - gpu7: OURS
-compensation: colleagues hold 111350 MiB on our GPUs; we hold 11516 MiB on theirs; budget left 99834 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+compensation: colleagues hold 111532 MiB on our GPUs; we hold 31810 MiB on theirs; budget left 79722 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
 our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
@@ -57,7 +57,7 @@ our launcher claims (pid:gpu/MiB):
 - DONE     icews_coreoff_norec_s46: FINAL val_mrr=0.0244 test_mrr=0.0256 test_hits10=0.0594 eval_sec=37343.9
 - DONE     icews_coreoff_rec: FINAL val_mrr=0.2980 test_mrr=0.3191 test_hits10=0.5215 eval_sec=31623.2
 - CRASHED  icews_coreoff_rec_s46.fail1: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.85 GiB. GPU 0 ha
-- RUNNING  icews_coreoff_rec_s46: epoch': 3, 'train_loss': 0.06681330397831374, 'track_val_mrr': 0.25194
+- RUNNING  icews_coreoff_rec_s46: epoch 6 (patience 3)
 - STOPPED? icews_eval_s43.fail1: A_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=$GPU PYTORCH_CUDA_ALLOC_CONF=expandable_seg
 - DONE     icews_eval_s43: FINAL val_mrr=0.3235 test_mrr=0.3386 test_hits10=0.5405 eval_sec=48431.1
 - DONE     icews_eval_s46: FINAL val_mrr=0.3227 test_mrr=0.3342 test_hits10=0.5288 eval_sec=39969.2
@@ -77,8 +77,11 @@ our launcher claims (pid:gpu/MiB):
 - DONE     icews_norec_nomem: FINAL val_mrr=0.0304 test_mrr=0.0264 test_hits10=0.0563 eval_sec=30394.2
 - DONE     icews_norec_nomem_s46: FINAL val_mrr=0.0230 test_mrr=0.0192 test_hits10=0.0478 eval_sec=38107.0
 - DONE     polecat_abl_curonly: FINAL val_mrr=0.2544 test_mrr=0.2476 test_hits10=0.4007 eval_sec=8902.2
+- RUNNING  polecat_abl_curonly_s46: epoch': 7, 'train_loss': 0.14372082104306394, 'track_val_mrr': 0.24102
 - DONE     polecat_abl_identity: FINAL val_mrr=0.2508 test_mrr=0.2449 test_hits10=0.3971 eval_sec=8913.2
+- RUNNING  polecat_abl_identity_s46: epoch': 7, 'train_loss': 0.14496895447435895, 'track_val_mrr': 0.24071
 - DONE     polecat_abl_nodelta: FINAL val_mrr=0.2501 test_mrr=0.2441 test_hits10=0.3977 eval_sec=8365.3
+- RUNNING  polecat_abl_nodelta_s46: epoch': 7, 'train_loss': 0.14094874445636502, 'track_val_mrr': 0.24564
 - DONE     polecat_f_s43: FINAL val_mrr=0.2472 test_mrr=0.2403 test_hits10=0.3942 eval_sec=6834.8
 - DONE     polecat_f_s46: FINAL val_mrr=0.2518 test_mrr=0.2461 test_hits10=0.3992 eval_sec=12421.2
 - CRASHED  polecat_f_s46.oom: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 152.00 MiB. GPU 0 
@@ -117,6 +120,9 @@ our launcher claims (pid:gpu/MiB):
 - DONE     sw_f_s46: FINAL val_mrr=0.3844 test_mrr=0.4400 test_hits10=0.4796 eval_sec=850.8
 - DONE     sw_f_s47: FINAL val_mrr=0.3798 test_mrr=0.4369 test_hits10=0.4744 eval_sec=720.8
 - DONE     sw_o_s43: FINAL val_mrr=0.0532 test_mrr=0.0623 test_hits10=0.1280 eval_sec=954.1
+- DONE     wd_abl_curonly: FINAL val_mrr=0.6378 test_mrr=0.5381 test_hits10=0.6091 eval_sec=2486.3
+- DONE     wd_abl_identity: FINAL val_mrr=0.6421 test_mrr=0.5336 test_hits10=0.5950 eval_sec=2739.5
+- DONE     wd_abl_nodelta: FINAL val_mrr=0.6434 test_mrr=0.5362 test_hits10=0.5982 eval_sec=2572.1
 - DONE     wd_f_s43: FINAL val_mrr=0.6440 test_mrr=0.5371 test_hits10=0.6018 eval_sec=2615.6
 - CRASHED  wd_f_s43.oom: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 18.00 MiB. GPU 0 h
 - DONE     wd_f_s46: FINAL val_mrr=0.6408 test_mrr=0.5500 test_hits10=0.6206 eval_sec=2745.6
@@ -136,12 +142,6 @@ our launcher claims (pid:gpu/MiB):
 - DONE     wiki_f_s46: FINAL val_mrr=0.7447 test_mrr=0.7305 test_hits10=0.8499 eval_sec=1281.3
 - DONE     wiki_f_s47: FINAL val_mrr=0.7438 test_mrr=0.7331 test_hits10=0.8509 eval_sec=1520.7
 - DONE     wiki_o_s43: FINAL val_mrr=0.0201 test_mrr=0.0110 test_hits10=0.0163 eval_sec=971.4
-- QUEUED   polecat_abl_curonly_s46 (.cmd present; daemon will launch)
-- QUEUED   polecat_abl_identity_s46 (.cmd present; daemon will launch)
-- QUEUED   polecat_abl_nodelta_s46 (.cmd present; daemon will launch)
-- QUEUED   wd_abl_curonly (.cmd present; daemon will launch)
-- QUEUED   wd_abl_identity (.cmd present; daemon will launch)
-- QUEUED   wd_abl_nodelta (.cmd present; daemon will launch)
 
 ## node-property reruns
 - genre_faithful_daily_s43: test NDCG mean±std: 0.4482 ± nan
@@ -191,8 +191,8 @@ our launcher claims (pid:gpu/MiB):
 - DONE synth_static_original: test 0.790 novel 0.151 rec 0.791
 
 ## recent actions
-2026-09-16 10:15:14 (re)launching forum_norec_nodelta_s47 via results/event_bench/leakfree2/forum_norec_nodelta_s47.cmd (attempt 1)
-2026-09-16 22:12:09 icews_coreoff_rec_s46 crashed (OOM) - no single-run queue line, not retried
-2026-09-16 22:12:09 (re)launching icews_coreoff_rec_s46 via results/event_bench/leakfree2/icews_coreoff_rec_s46.cmd (attempt 1)
-2026-09-16 22:15:54 icews_coreoff_rec_s46.fail1 crashed (OOM) - no single-run queue line, not retried
-2026-09-17 13:59:37 user signing off: policy unchanged (GPUs 0/7 ours, 1-6 only after 1 h idle or under the compensation budget); released wikidata ablations + polecat s46 ablations to keep our two cards busy; forum REC-on s47 / icews REC-on s46 seeds stay dropped
+2026-09-17 13:59:53 (re)launching polecat_abl_identity_s46 via results/event_bench/leakfree2/polecat_abl_identity_s46.cmd (attempt 1)
+2026-09-17 13:59:53 (re)launching polecat_abl_nodelta_s46 via results/event_bench/leakfree2/polecat_abl_nodelta_s46.cmd (attempt 1)
+2026-09-17 13:59:53 (re)launching wd_abl_curonly via results/event_bench/leakfree2/wd_abl_curonly.cmd (attempt 1)
+2026-09-17 13:59:53 (re)launching wd_abl_identity via results/event_bench/leakfree2/wd_abl_identity.cmd (attempt 1)
+2026-09-17 13:59:53 (re)launching wd_abl_nodelta via results/event_bench/leakfree2/wd_abl_nodelta.cmd (attempt 1)

@@ -261,3 +261,6 @@ Reading: icews is recurrence-dominated (leaderboard top = Recurrency Baseline 0.
 | norec_nodelta | 0.360 | 0.503 | 0.168 | 0.379 / 0.368 / 0.352 / 0.341 |
 | norec_coreoff | 0.235 | 0.336 | 0.099 | 0.264 / 0.235 / 0.222 / 0.218 |
 Mechanistic reading: with the head on, the temporal core's +0.016 over the head-only model comes entirely from NOVEL events (0.138 vs 0.090, +0.05; recurrent events are saturated at 0.985-0.994 by the head) and grows with the inter-event gap (0.000 / +0.010 / +0.020 / +0.032 from the shortest to the longest quartile). Without the head the core lifts novel events 0.100 -> 0.182 and recurrent events 0.336 -> 0.550; identity maps hurt both (0.137 / 0.282); freezing Delta_k costs most on long gaps on this seed (+0.031 / +0.027 / +0.031 / +0.041 for full vs no-Delta across quartiles). The temporal-sheaf core is therefore the part of the model that predicts interactions the recurrency head cannot: new partners and returns after long silences.
+
+### tkgl-wikidata ablations (REC head on; seed 43; test MRR)
+full 0.5371 (3-seed 0.540 +/- 0.009) | identity maps 0.5336 | no Delta_k 0.5362 | current-only maps 0.5381 -> all within seed noise, as on every other coarse-grained stream with the head on. With this row every tkgl/thgl dataset has a mechanism-ablation row.

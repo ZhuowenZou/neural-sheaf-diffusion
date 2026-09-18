@@ -7,3 +7,30 @@ negative-sample sets loaded in 50.8s
 delta_time_scale=1 (Delta_k is measured in units of the median training inter-snapshot gap)
 protocol: predict-from-previous-state (leak-free) for training and evaluation
 parameter_count=357333 num_relations=1192 num_nodes=1226440
+[epoch 1/4] {'epoch': 1, 'train_loss': 0.4238528223900959, 'track_val_mrr': 0.33053202672003457, 'track_val_loss': 0.5070129632949829, 'train_sec': 936.0, 'track_eval_sec': 956.2, 'peak_gpu_mem_mb': 7559.8}
+[epoch 2/4] {'epoch': 2, 'train_loss': 0.18120693903544854, 'track_val_mrr': 0.6188271594183892, 'track_val_loss': 0.4018518030643463, 'train_sec': 928.8, 'track_eval_sec': 957.0, 'peak_gpu_mem_mb': 8056.6}
+[epoch 3/4] {'epoch': 3, 'train_loss': 0.144913448085045, 'track_val_mrr': 0.6881362111605703, 'track_val_loss': 0.35567235946655273, 'train_sec': 928.7, 'track_eval_sec': 970.1, 'peak_gpu_mem_mb': 8165.6}
+[epoch 4/4] {'epoch': 4, 'train_loss': 0.12800578593180098, 'track_val_mrr': 0.7034751582921545, 'track_val_loss': 0.37139976024627686, 'train_sec': 928.4, 'track_eval_sec': 965.1, 'peak_gpu_mem_mb': 8263.6}
+checkpoint saved: results/event_bench/leakfree2/wd_abl_curonly/best.pt
+final val_mrr=0.6378 (1651.2s so far)
+FINAL val_mrr=0.6378 test_mrr=0.5381 test_hits10=0.6091 eval_sec=2486.3
+{
+  "dataset": "tkgl-wikidata",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 43,
+  "epochs": 4,
+  "best_track_epoch": 4,
+  "best_track_val_mrr": 0.7034751582921545,
+  "parameter_count": 357333,
+  "commit_hash": "cf5c31668885a1cbcc8bd416213835c6b81298df",
+  "train_edges": 2000000,
+  "final_val_edges": 2869900,
+  "final_test_edges": 2877500,
+  "validation_mrr": 0.6377580265692873,
+  "test_mrr": 0.5381421677215943,
+  "final_val_loss": 0.3006485402584076,
+  "final_test_loss": 0.43781253695487976,
+  "final_eval_sec": 2486.3,
+  "final_eval_peak_gpu_mem_mb": 8794.3,
+  "test_hits10": 0.6090814896680292
+}

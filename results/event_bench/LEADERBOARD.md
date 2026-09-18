@@ -23,6 +23,7 @@ Ranking rule used below: insert our leak-free test metric into the public table 
 
 **tkgl-wikidata** (3 with ours): EdgeBank(tw) 0.535 | EdgeBank(unl) 0.535
 - Ours (faithful REL + REC typed/untyped/sym, 2M-edge train suffix): s43 0.5371, s46 0.5500, s47 0.5323 -> 3-seed mean **0.5398 +/- 0.0092** (val 0.64; Hits@10 0.60-0.62) -> rank **1 of 3** (above EdgeBank 0.535 on every seed; the only learned entry).
+- Ablations (leak-free, s43; full 0.5371, 3-seed std 0.009): identity maps 0.5336, no-Delta 0.5362, current-only maps 0.5381 (all within noise).
 
 ## Temporal heterogeneous graphs (test MRR)
 
