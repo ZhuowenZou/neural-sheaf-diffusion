@@ -10,3 +10,9 @@ results/**/*.pt
 results/**/events.csv
 results/**/*.lock/
 results/monitor/claims/
+
+# campaign agent runtime files
+results/monitor/agent.pid
+results/monitor/.agent_fp
+results/monitor/.ag_gpus.*
+results/monitor/.gpus*
