@@ -1,4 +1,4 @@
-% Revised 2026-09-08: numbers below are from the corrected leak-free protocol (see \ref{app:faithful:protocol}); pending entries are marked.
+% Final 2026-09-21: every number is from the corrected leak-free protocol (see \ref{app:faithful:protocol}) and is traced to results/event_bench/leakfree2/*/results.csv or results/leakfree_nodeprop/*.csv.
 % ===================================================================
 % Appendix X: A faithful event-time implementation of Section 3.2
 % ===================================================================
@@ -135,9 +135,13 @@ $k$ afterwards, mirroring the batch-wise predict-then-update loop of the
 TGB reference models. A random-destination probe (no learnable signal)
 scores at chance under this protocol and far above chance under the old one.
 \item \emph{Label cursor.} TGB's node-label iterator is monotone across
-train$\to$val$\to$test; resetting it per split paired validation/test
-snapshots with the earliest labels. The cursor is now seeked to the
-continuous position.
+train$\to$val$\to$test and is polled on every batch; resetting it per split
+paired validation/test snapshots with the earliest labels, and consuming one
+label per snapshot drifts whenever a snapshot spans several label times
+(seven daily labels per weekly snapshot, three yearly labels per three-year
+window). The cursor is now seeked to the first label at or after the split's
+first edge, and every label a snapshot passes is scored with that
+snapshot's output.
 \item \emph{Units of $\Delta_k$.} On second-resolution streams the raw gap
 saturated the step-size selector at its cap; $\Delta_k$ is now measured in
 units of the median training inter-snapshot gap.
@@ -181,19 +185,41 @@ tgbn-genre (daily; 3 seeds) & $0.448 \pm 0.003$ & NAVIS $0.528$; Moving Avg.\ $0
 \end{table}
 
 \paragraph{Position relative to the state of the art.}
-Under the corrected protocol the faithful model leads the
-\textsc{tkgl-icews} leaderboard by a wide margin (0.335 vs.\ the
-recurrency baseline 0.211) and the \textsc{tkgl-polecat} leaderboard
-(0.244 vs.\ TLogic 0.228), and edges
-EdgeBank on \textsc{tkgl-wikidata} (0.540 vs.\ 0.535), where no other learned
-method has a leaderboard entry, is within
-noise of the leader on \textsc{tkgl-smallpedia} (0.610 vs.\ CEN 0.612),
-ranks in the
-upper third on \textsc{tgbl-wiki} (0.733; between DyGMamba 0.739 and
-TNCN 0.718, well above TGN 0.396 and EdgeBank 0.571). On the heterogeneous
-graphs it sits third: on \textsc{thgl-software} between EdgeBank (0.449)
-and TGN with edge types (0.424), far from STHN (0.731); on
-\textsc{thgl-forum} between TGN (0.649) and EdgeBank (0.617).
+Under the corrected protocol the faithful model leads three temporal
+knowledge-graph leaderboards: \textsc{tkgl-icews} by a wide margin
+($0.335 \pm 0.003$ vs.\ the recurrency baseline 0.211),
+\textsc{tkgl-polecat} ($0.244 \pm 0.003$ vs.\ TLogic 0.228), and
+\textsc{tkgl-wikidata} ($0.540 \pm 0.009$ vs.\ EdgeBank 0.535, above it on
+every seed and the only learned entry, since no other learned method has
+been reported at that scale). It is within noise of the leader on
+\textsc{tkgl-smallpedia} ($0.610 \pm 0.007$ vs.\ CEN 0.612) and ranks in the
+upper third on \textsc{tgbl-wiki} ($0.733 \pm 0.003$; between DyGMamba 0.739
+and TNCN 0.718, well above TGN 0.396 and EdgeBank 0.571). On the
+heterogeneous graphs it sits third: on \textsc{thgl-software} between
+EdgeBank (0.449) and TGN with edge types (0.424), far from STHN (0.731); on
+\textsc{thgl-forum} between TGN (0.649) and EdgeBank (0.617). On node
+property prediction it is the second-best learned model on both datasets
+(\textsc{tgbn-trade} $0.664 \pm 0.006$, behind TGNv2 0.735;
+\textsc{tgbn-genre} $0.448 \pm 0.003$, behind TGNv2 0.469) and below the
+persistence-type heuristics that lead those boards.
+
+\paragraph{A note on the node-property benchmarks.}
+On \textsc{tgbn-trade} the label at year $Y$ is exactly the row-normalised
+year-$Y$ edge list, and the reference evaluation loop ingests the edges of
+year $Y$ before predicting its label. A predictor that copies the current
+period's normalised edges therefore scores NDCG@10 $=1.000$ on validation and
+test (copying the previous year, i.e.\ persistence, scores 0.85), which is
+why heuristics lead this board: the task measures how faithfully a model's
+state can be \emph{read out} for the current period rather than forecasting.
+We follow the reference protocol, so our numbers are comparable to the
+leaderboard, and we deliberately do not add a current-period aggregation
+head, which would trivialise the task without saying anything about the
+model. The protocol also matters more than the architecture here: under the
+paper's original protocol (three-year windows, 2048-edge training cap) the
+same model reaches only $0.351 \pm 0.012$, because the capped training
+split contains a single snapshot; with yearly windows, uncapped training and
+the memory readout (required for stability on the longer stream) it reaches
+$0.664 \pm 0.006$.
 
 \paragraph{What the components contribute (leak-free ablations).}
 We ablate the three mechanisms of the temporal core --- learned restriction
@@ -269,7 +295,8 @@ heuristic cannot --- new partners, and returns after long silences.
 On \textsc{tkgl-icews} the picture is head-dominated (its leaderboard is
 led by the parameter-free recurrency baseline): without the head every
 variant collapses to 0.02--0.03 MRR against 87,855 candidates, while with
-the head the core adds $+0.02$ over the head-only model (0.339 vs.\ 0.319)
+the head the core adds $+0.02$ over the head-only model on both seeds
+(0.337 vs.\ 0.315)
 and the persistent memory is the one mechanism with a seed-consistent
 effect ($-0.009$ and $-0.007$ when removed). On the coarse-grained streams
 (\textsc{tkgl-smallpedia}, \textsc{tkgl-polecat}, \textsc{thgl-software},

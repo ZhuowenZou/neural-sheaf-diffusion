@@ -16,10 +16,10 @@ Ranking rule used below: insert our leak-free test metric into the public table 
 
 **tkgl-polecat** (7): TLogic 0.228 | Recurrency Baseline(train) 0.198 | CEN 0.184 | RE-GCN 0.175 | Recurrency Baseline(default) 0.167 | EdgeBank(tw) 0.056 | EdgeBank(unl) 0.045
 - Ours (faithful REL + REC typed/untyped): s43 0.2403, s46 0.2461, s47 0.2462 -> 3-seed mean **0.2442 +/- 0.0034** (val 0.247 / 0.252 / 0.253; Hits@10 0.39-0.40) -> rank **1 of 8** (ahead of TLogic 0.228 / val 0.236).
-- Ablations (leak-free, s43; full 0.2403): identity maps 0.2449, no-Delta 0.2441, current-only 0.2476 (all within seed noise; the head carries the result on daily polecat, as on smallpedia).
+- Ablations (leak-free, seeds 43/46; full 0.2403 / 0.2461, mean 0.2432): identity maps 0.2449 / 0.2440 (0.2445), no-Delta 0.2441 / 0.2408 (0.2425), current-only maps 0.2476 / 0.2468 (0.2472) -> all within seed noise (std 0.0034).
 
 **tkgl-icews** (8 with ours): Recurrency Baseline(train) 0.211 | Recurrency Baseline(default) 0.206 | CEN 0.187 | TLogic 0.186 | RE-GCN 0.182 | EdgeBank(tw) 0.020 | EdgeBank(unl) 0.009
-- Ours (faithful REL + REC typed/untyped, 2M-edge train suffix, full official evaluation): s43 0.3386, s46 0.3342, s47 0.3326 -> 3-seed mean **0.3351 +/- 0.0031** (val 0.309-0.324; Hits@10 0.53-0.54) -> rank **1 of 8** (leader Recurrency Baseline 0.211 / val 0.270). COMPLETE. Factorial: REC on full 0.337 (2 seeds), identity 0.337, no-Delta 0.338, no-memory 0.328 (2 seeds; -0.008 seed-consistent), current-only 0.329, core OFF 0.319; REC off: every arm 0.02-0.03 -> recurrence-dominated dataset; the core adds +0.02 on top of the head.
+- Ours (faithful REL + REC typed/untyped, 2M-edge train suffix, full official evaluation): s43 0.3386, s46 0.3342, s47 0.3326 -> 3-seed mean **0.3351 +/- 0.0031** (val 0.309-0.324; Hits@10 0.53-0.54) -> rank **1 of 8** (leader Recurrency Baseline 0.211 / val 0.270). COMPLETE. Factorial: REC on full 0.337 (2 seeds), identity 0.337, no-Delta 0.338, no-memory 0.328 (2 seeds; -0.008 seed-consistent), current-only 0.329, core OFF 0.319 / 0.311 (2 seeds; the core adds +0.020 / +0.023 over the head-only model); REC off: every arm 0.02-0.03 -> recurrence-dominated dataset; the core adds +0.02 on top of the head.
 
 **tkgl-wikidata** (3 with ours): EdgeBank(tw) 0.535 | EdgeBank(unl) 0.535
 - Ours (faithful REL + REC typed/untyped/sym, 2M-edge train suffix): s43 0.5371, s46 0.5500, s47 0.5323 -> 3-seed mean **0.5398 +/- 0.0092** (val 0.64; Hits@10 0.60-0.62) -> rank **1 of 3** (above EdgeBank 0.535 on every seed; the only learned entry).
@@ -41,7 +41,7 @@ Ranking rule used below: insert our leak-free test metric into the public table 
 ## Node property prediction (test NDCG@10)
 
 **tgbn-trade** (8 with ours): NAVIS 0.863 | Persistent Forecast 0.855 | Moving Average 0.823 | TGNv2 0.735 | DyGFormer 0.388 | TGN 0.374 | DyRep 0.374
-- Ours, PAPER protocol (3-year windows, 2048-edge training cap, 5 seeds, fixed label pairing 2026-09-11): **0.351 +/- 0.012** (val 0.39) -> rank **7 of 8** (below DyGFormer 0.388, above TGN/DyRep 0.374; heuristics 0.82-0.86). The 0.821 +/- 0.011 reported 09-05..09-11 is WITHDRAWN: its evaluation path still reset the label cursor per split, so it rewarded a static training average against 1987-1988 labels. TGB-exact protocol (yearly windows, uncapped training, 5 seeds) rerunning.
+- Ours, PAPER protocol (3-year windows, 2048-edge training cap, 5 seeds, fixed label pairing 2026-09-11): **0.351 +/- 0.012** (val 0.39) -> rank **7 of 8** (below DyGFormer 0.388, above TGN/DyRep 0.374; heuristics 0.82-0.86). The 0.821 +/- 0.011 reported 09-05..09-11 is WITHDRAWN: its evaluation path still reset the label cursor per split, so it rewarded a static training average against 1987-1988 labels.
 - Ours, TGB-exact protocol (yearly windows, uncapped training, memory readout; fixed label pairing): seeds 43-47 test 0.656 / 0.665 / 0.667 / 0.671 / 0.659 -> 5-seed mean **0.6636 +/- 0.0061** (val 0.74-0.76; best epochs 58-176) -> rank **5 of 8** (below TGNv2 0.735 and the three heuristics 0.82-0.86; far above DyGFormer 0.388 / TGN 0.374). COMPLETE.
 
 **tgbn-genre** (8 with ours): NAVIS 0.528 | Moving Average 0.509 | TGNv2 0.469 | TGN 0.367 | DyGFormer 0.365 | Persistent Forecast 0.357 | DyRep 0.351

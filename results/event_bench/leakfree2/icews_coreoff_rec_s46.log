@@ -15,3 +15,25 @@ parameter_count=660041 num_relations=782 num_nodes=87856
 [epoch 6/6] {'epoch': 6, 'train_loss': 0.06556745796728577, 'track_val_mrr': 0.24863086122820774, 'track_val_loss': 0.33425846695899963, 'train_sec': 9044.8, 'track_eval_sec': 8928.4, 'peak_gpu_mem_mb': 5204.5}
 early stop at epoch 6 (patience 3)
 checkpoint saved: results/event_bench/leakfree2/icews_coreoff_rec_s46/best.pt
+final val_mrr=0.2996 (27596.5s so far)
+FINAL val_mrr=0.2996 test_mrr=0.3114 test_hits10=0.5075 eval_sec=47950.5
+{
+  "dataset": "tkgl-icews",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 46,
+  "epochs": 6,
+  "best_track_epoch": 3,
+  "best_track_val_mrr": 0.25194482844769955,
+  "parameter_count": 660041,
+  "commit_hash": "feab00647eee43f2b484b8aa213a88b889d4b717",
+  "train_edges": 2000000,
+  "final_val_edges": 4652314,
+  "final_test_edges": 4651378,
+  "validation_mrr": 0.2996283026545567,
+  "test_mrr": 0.31138829636710585,
+  "final_val_loss": 0.15976805984973907,
+  "final_test_loss": 0.15070240199565887,
+  "final_eval_sec": 47950.5,
+  "final_eval_peak_gpu_mem_mb": 10648.9,
+  "test_hits10": 0.5074908986339922
+}

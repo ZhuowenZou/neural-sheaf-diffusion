@@ -264,3 +264,8 @@ Mechanistic reading: with the head on, the temporal core's +0.016 over the head-
 
 ### tkgl-wikidata ablations (REC head on; seed 43; test MRR)
 full 0.5371 (3-seed 0.540 +/- 0.009) | identity maps 0.5336 | no Delta_k 0.5362 | current-only maps 0.5381 -> all within seed noise, as on every other coarse-grained stream with the head on. With this row every tkgl/thgl dataset has a mechanism-ablation row.
+
+### Final additions (2026-09-21)
+* tkgl-polecat ablations, seed 46 (full 0.2461): identity 0.2440, no-Delta 0.2408, current-only maps 0.2468 -> two-seed means full 0.2432 / identity 0.2445 / no-Delta 0.2425 / current-only 0.2472: within noise.
+* tkgl-icews core OFF + REC, seed 46: 0.3114 (full 0.3342) -> the core adds +0.020 (s43) and +0.023 (s46) over the head-only model: seed-consistent, ~7 seed-std of the champion.
+* CAMPAIGN CLOSED: no runs pending; every table in the appendix is final.

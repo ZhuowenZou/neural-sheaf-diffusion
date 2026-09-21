@@ -4,6 +4,17 @@
 Chosen dataset: **thgl-forum** — the tkgl/thgl dataset with the largest temporal-to-spatial ratio (2.56M unique timestamps / 152,816 nodes = 16.7; 227 active timestamps and 311 events per node; icews is next at 0.12 / 117 / 706; polecat 0.012 / 6.7 / 47; smallpedia 0.003 / 14 / 46; software 1.0 / 3.4 / 4.4; wikidata 0.002 / 9.5 / 32).
 Design (seed 43 first, then seed 46 for the decisive contrasts): core in {full, identity maps, no Delta_k, NO MEMORY (new true ablation), current-only maps, core OFF (layers 0 + no memory)} x head in {REC on, REC off}; TYPE/REL inputs fixed. 8 new arms x ~10 h at 16-22 GB -> all running by tonight as the s43 icews arms and the s46 forum arms finish; results by 2026-09-15 midday; second seed by 2026-09-16 evening. The 24 lower-priority ablation runs (smallpedia/software/wikidata/polecat/icews seeds) are HELD in leakfree2/hold/ and resume after the forum factorial; icews REC-off arms are the next priority if time allows (~22 h each).
 
+## FINAL CHECKLIST 2026-09-21 — everything done, nothing running
+- [x] 3-seed leak-free standings on 9 datasets (trade 5 seeds) — LEADERBOARD.md, results_table_v3.tex
+- [x] mechanism ablations on every tkgl/thgl dataset + wiki; forum and icews head-vs-core factorials; forum per-event stratified analysis — COMPONENT_ATTRIBUTION.md, appendix Tables factorial / stratified
+- [x] analytic (synthetic) study written up — appendix_analytic.tex, DESIGN.md final summary
+- [x] protocol-correction subsection final (predict-then-update, label drain + edge-based seek, Delta_k units, guards)
+- [x] node-property framing paragraph (state read-out task; paper protocol vs TGB-exact protocol)
+- [x] consistency pass: every headline number recomputed from results files
+- [x] all runs finished (polecat s46 ablations, icews core-off s46 landed 09-18/19); GPU to-do list closed
+- [x] committed and pushed to origin/new
+Remaining for the user: copy tables/paragraphs into the paper; deadline 2026-09-23.
+
 ## Status 2026-09-17 14:00 — GPU campaign closed
 All results needed for the paper are in: 3-seed standings on 9 datasets; forum factorial (REC off 3 seeds, REC on 2 seeds) + per-event stratified analysis; icews factorial (2 seeds); 3-seed ablations on wiki/smallpedia/software. The 12 held low-priority runs are dropped. Remaining GPU: icews_coreoff_rec_s46 final eval (today). No new GPU work.
 Writing priorities: (1) appendix tables are final (results_table_v3, factorial, stratified) — copy into the paper; (2) DESIGN.md final summary of the synthetic study (2026-09-18); (3) consistency pass tracing every number to its results file (2026-09-18); (4) push after each edit.
