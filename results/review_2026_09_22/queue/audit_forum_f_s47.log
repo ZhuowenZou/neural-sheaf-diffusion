@@ -1,12 +1,106 @@
 reserved 5976 MiB of GPU memory on cuda:0 in the caching allocator (requested 5976; now reserved 5980 MiB)
-device=cuda:0 sha=b34d01cc5fd5 config={'dataset': 'thgl-forum', 'seed': 47, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 0, 'patience': None, 'min_epochs': 1, 'time_window': 600.0, 'context_edges': 50000, 'train_edges_cap': 4000000, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 20000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': True, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'no_memory': False, 'recurrency_symmetric': False, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': False, 'eval_only': 'results/event_bench/leakfree2/forum_f_s47/best.pt', 'backbone': 'tsd', 'spatial': None, 'clock': 'global', 'fast_core_off': False, 'rng_isolation': False, 'no_query_audit': False, 'clock_diagnostics': True, 'audit_eval_only': True, 'out': 'results/review_2026_09_22/audit/forum_f_s47'}
+device=cuda:0 sha=452369854f09 config={'dataset': 'thgl-forum', 'seed': 47, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 0, 'patience': None, 'min_epochs': 1, 'time_window': 600.0, 'context_edges': 50000, 'train_edges_cap': 4000000, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 20000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': True, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'no_memory': False, 'recurrency_symmetric': False, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': False, 'eval_only': 'results/event_bench/leakfree2/forum_f_s47/best.pt', 'backbone': 'tsd', 'spatial': None, 'clock': 'global', 'fast_core_off': False, 'rng_isolation': False, 'no_query_audit': False, 'dump_query_ranks': False, 'clock_diagnostics': True, 'audit_eval_only': True, 'out': 'results/review_2026_09_22/audit/forum_f_s47'}
 split_source=official_tgb_masks
 destination_range=None
-snapshots: train=740 (edges=4000000) track_val=3 final_val=687 final_test=625 | prep_sec=97.7
-negative-sample sets loaded in 67.1s
+snapshots: train=740 (edges=4000000) track_val=3 final_val=687 final_test=625 | prep_sec=9.6
+negative-sample sets loaded in 56.0s
 node_types: present
 delta_time_scale=600 (Delta_k is measured in units of the median training inter-snapshot gap)
 protocol: predict-from-previous-state (leak-free) for training and evaluation
 parameter_count=630271 num_relations=2 num_nodes=152816
 parameters_by_component={'embeddings': 160, 'ssm_input_selector_B': 620928, 'ssm_other': 4261, 'map_decoder': 128, 'spatial_block': 2534, 'scorer': 2131, 'rec': 129, 'other': 0, 'total': 630271, 'trainable': 630271, 'unused_by_construction': 0, 'active': 630271}
 eval-only: loaded results/event_bench/leakfree2/forum_f_s47/best.pt
+final val_mrr=0.6019 (419.3s so far)
+FINAL val_mrr=0.6019 test_mrr=0.6187 test_hits10=0.6526 eval_sec=672.3
+clock diagnostics written (6 aggregate rows)
+[query-audit] split=val queries=3563658 affected=0 pos_nonfinite=0 neg_nan=0 neg_posinf=0 neg_neginf=0 mrr_raw=0.601889 mrr_guarded=0.601889 mrr_conservative=0.601889 parity=True
+[query-audit] split=test queries=3563653 affected=0 pos_nonfinite=0 neg_nan=0 neg_posinf=0 neg_neginf=0 mrr_raw=0.618727 mrr_guarded=0.618727 mrr_conservative=0.618727 parity=True
+{
+  "dataset": "thgl-forum",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 47,
+  "epochs": 0,
+  "best_track_epoch": -1,
+  "best_track_val_mrr": -Infinity,
+  "parameter_count": 630271,
+  "commit_hash": "452369854f09488d21f68e5a00b39b45aa0df873",
+  "train_edges": 4000000,
+  "final_val_edges": 3563658,
+  "final_test_edges": 3563653,
+  "prep_sec": 9.6,
+  "negatives_load_sec": 56.0,
+  "train_epochs_run": 0,
+  "train_sec_total": 0,
+  "selection_eval_sec_total": 0,
+  "reserved_buffer_mib": 5976,
+  "backbone": "tsd",
+  "spatial": "sheaf",
+  "clock": "global",
+  "rng_isolation": false,
+  "params_embeddings": 160,
+  "params_ssm_input_selector_B": 620928,
+  "params_ssm_other": 4261,
+  "params_map_decoder": 128,
+  "params_spatial_block": 2534,
+  "params_scorer": 2131,
+  "params_rec": 129,
+  "params_other": 0,
+  "params_total": 630271,
+  "params_trainable": 630271,
+  "params_unused_by_construction": 0,
+  "params_active": 630271,
+  "train_steps": 0,
+  "train_nonfinite_loss": 0,
+  "train_nonfinite_grad": 0,
+  "train_clipped": 0,
+  "train_skipped_steps": 0,
+  "hw_hostname": "biaslab0.ics.uci.edu",
+  "hw_python": "3.9.9",
+  "hw_torch": "2.8.0+cu128",
+  "hw_cuda_runtime": "12.8",
+  "hw_cudnn": 91002,
+  "hw_torch_geometric": "2.6.1",
+  "hw_py_tgb": "2.2.0",
+  "hw_cpu_model": "AMD EPYC 7713 64-Core Processor",
+  "hw_cpu_cores": 256,
+  "hw_ram_gib": 2003.8,
+  "hw_gpu_model": "NVIDIA A100-SXM4-80GB",
+  "hw_gpu_vram_gib": 79.3,
+  "hw_gpu_visible": "7",
+  "hw_gpu_count_visible": 1,
+  "hw_precision": "float32",
+  "hw_sync": "torch.cuda.synchronize-free wall clock (perf_counter)",
+  "hw_gpu_driver": "560.35.05",
+  "hw_gpu_other_processes_at_start": 38,
+  "validation_mrr": 0.6018888054615528,
+  "test_mrr": 0.6187274742376441,
+  "final_val_loss": 0.28863707184791565,
+  "final_test_loss": 0.2885047495365143,
+  "final_eval_sec": 672.3,
+  "final_replay_sec": 146.9,
+  "final_val_sec": 272.4,
+  "final_test_sec": 252.9,
+  "final_eval_peak_gpu_mem_mb": 4244.8,
+  "final_eval_peak_gpu_reserved_mb": 6006.0,
+  "val_nonfinite_positives": 0,
+  "val_nonfinite_negatives": 0,
+  "val_skipped_queries": 0,
+  "val_metric_examples": 3563658,
+  "test_nonfinite_positives": 0,
+  "test_nonfinite_negatives": 0,
+  "test_skipped_queries": 0,
+  "test_metric_examples": 3563653,
+  "cpu_rss_mib": 21398.3,
+  "rec_keys_typed": 4941270,
+  "rec_keys_untyped": 4941270,
+  "rec_keys_total": 9882540,
+  "rec_cache_bytes": 237180960,
+  "rec_cache_device": "cuda:0",
+  "tracked_nodes": 152816,
+  "core_state_bytes": 48901120,
+  "checkpoint_bytes": 3743616,
+  "test_hits10": 0.6525826173562634,
+  "query_audit_affected_total": 0,
+  "query_audit_parity": true,
+  "end_to_end_sec": 747.3
+}

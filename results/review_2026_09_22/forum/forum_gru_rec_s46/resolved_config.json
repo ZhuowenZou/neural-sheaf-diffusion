@@ -12,6 +12,7 @@
   "d": 2,
   "dataset": "thgl-forum",
   "delta_time_scale": "auto",
+  "dump_query_ranks": false,
   "emb_in_head": false,
   "epochs": 4,
   "eval_only": null,
@@ -93,7 +94,7 @@
   "--out",
   "results/review_2026_09_22/forum/forum_gru_rec_s46"
  ],
- "commit": "b34d01cc5fd5baee6cb73c99485977ffb3d7d760",
+ "commit": "452369854f09488d21f68e5a00b39b45aa0df873",
  "cwd": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "env": {
   "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
