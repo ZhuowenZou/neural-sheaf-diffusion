@@ -16,5 +16,6 @@ wiki_coreoff_s43_lr3e-4,matched,tgbl-wiki,core-off,43,24832,0,0,2833,0,0,0,0,236
 attention,smoke,tgbl-wiki,attention-gates,43,560,0,0,185,0,0,0,0,4000,0,0,0,4000,0,True
 coreoff,smoke,tgbl-wiki,core-off,43,560,0,0,357,0,0,0,0,4000,0,0,0,4000,0,True
 gru,smoke,tgbl-wiki,gru-sheaf,43,560,0,0,188,0,0,0,0,4000,0,0,0,4000,0,True
+synth_r,smoke,synth-history:results/review_2026_09_22/synthetic/gen_s1r/data.npz,tsd,43,151,0,0,68,0,0,0,0,1500,0,0,0,1500,0,True
 tsd,smoke,tgbl-wiki,tsd,43,560,0,0,228,0,0,0,0,4000,0,0,0,4000,0,True
 tsd_clockdiag,smoke,tgbl-wiki,tsd,43,560,0,0,228,0,0,0,0,4000,0,0,0,4000,0,True
