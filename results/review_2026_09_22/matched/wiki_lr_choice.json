@@ -1,0 +1,22 @@
+{
+ "choice": {
+  "coreoff": "1e-3"
+ },
+ "rule": "highest tracking-validation MRR at seed 43; ties -> first",
+ "table": [
+  {
+   "arm": "coreoff",
+   "lr": "1e-3",
+   "best_track_val_mrr": 0.7675048613548279,
+   "best_epoch": 8,
+   "final_val": 0.7673990524701869
+  },
+  {
+   "arm": "coreoff",
+   "lr": "3e-4",
+   "best_track_val_mrr": 0.7353396911472082,
+   "best_epoch": 8,
+   "final_val": 0.7455295897119107
+  }
+ ]
+}

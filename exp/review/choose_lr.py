@@ -29,7 +29,11 @@ def main():
         rows.append(dict(arm=arm, lr=lr, best_track_val_mrr=val, best_epoch=int(r["best_track_epoch"]), final_val=r.get("validation_mrr")))
         if arm not in best or val > best[arm][1]:
             best[arm] = (lr, val)
-    choice = {arm: lr for arm, (lr, _) in best.items()}
+    counts = {}
+    for r in rows:
+        counts[r["arm"]] = counts.get(r["arm"], 0) + 1
+    # lock only arms whose full lr grid (2 values) finished; partial arms are reported but not locked
+    choice = {arm: lr for arm, (lr, _) in best.items() if counts.get(arm, 0) >= 2}
     table = pd.DataFrame(rows).sort_values(["arm", "lr"])
     print(table.to_string(index=False))
     print("choice:", choice)

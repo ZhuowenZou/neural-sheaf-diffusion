@@ -86,8 +86,12 @@ def main():
         lrs = json.load(open(args.lr_json))
         i = 0
         for arm, extra in ARMS.items():
+            if arm not in lrs:
+                continue   # lr not locked yet (wave-1 pair unfinished)
             lr = lrs[arm]
             for seed in (44, 45, 46, 47):
+                if os.path.exists(os.path.join(ROOT, RV, "queue", f"wiki_{arm}_s{seed}_lr{lr}.cmd")):
+                    continue   # already queued
                 name = f"wiki_{arm}_s{seed}_lr{lr}"
                 out = f"{RV}/matched/{name}"
                 cmd = f"{PY} -m exp.run_event_benchmark {WIKI_BASE} {extra} --lr {lr} --seed {seed} --out {out}"
