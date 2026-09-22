@@ -1,0 +1,5 @@
+split,ours_n,official_n,ours_only,official_only,ours_first,ours_last,official_first,official_last
+train,23,22,[2009],[],1987.0,2009.0,1987.0,2008.0
+val,4,4,[2013],[2009],2010.0,2013.0,2009.0,2012.0
+test,3,3,[2016],[2013],2014.0,2016.0,2013.0,2015.0
+never_scored,0,1,[],[np.int64(2016)],,,,

@@ -577,3 +577,4 @@ monitor started Mon Sep 21 08:38:21 AM PDT 2026 pid 4073641
 2026-09-21 08:38:21 (re)launching forum_abl_nodelta_s47 via results/event_bench/leakfree2/forum_abl_nodelta_s47.cmd (attempt 1)
 2026-09-21 08:38:21 (re)launching forum_abl_nomem_s47 via results/event_bench/leakfree2/forum_abl_nomem_s47.cmd (attempt 1)
 2026-09-21 08:38:21 (re)launching forum_coreoff_rec_s47 via results/event_bench/leakfree2/forum_coreoff_rec_s47.cmd (attempt 1)
+monitor started Tue Sep 22 09:40:05 AM PDT 2026 pid 1201964

@@ -1,0 +1,4 @@
+candidate,offset_periods,length_periods,unit_sec_or_years,label_days_checked,pairs,max_abs_err_mean,max_abs_err_max,frac_pairs_exact_1e6
+same_period,0,1,1,30,6543,4.9873807175035264e-09,1.9482652380276022e-08,1.0
+next_period,1,1,1,30,6543,0.19304330016522744,1.0,0.0012226807274950328
+prev_period,-1,1,1,30,6543,0.18718413110252505,1.0,0.00168118600030567

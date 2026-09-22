@@ -1,0 +1,17 @@
+runner,split,predictor,label_timestamps,ndcg_mean
+ours,val,last_label,4,0.8672856293433105
+ours,val,prev_1_period,4,0.8438342055406678
+ours,val,prev_3_periods,4,0.8175977548728186
+ours,val,copy_available_edges,4,0.9790910934469113
+ours,test,last_label,3,0.8448261660196327
+ours,test,prev_1_period,3,0.8062504324671185
+ours,test,prev_3_periods,3,0.783801468437639
+ours,test,copy_available_edges,3,0.9751422761560176
+official_tgn_example,val,last_label,4,0.8603903917493595
+official_tgn_example,val,prev_1_period,4,0.8329934711108689
+official_tgn_example,val,prev_3_periods,4,0.8074321351225633
+official_tgn_example,val,copy_available_edges,4,1.0
+official_tgn_example,test,last_label,3,0.8540602976422188
+official_tgn_example,test,prev_1_period,3,0.8100919524553566
+official_tgn_example,test,prev_3_periods,3,0.7907285612448643
+official_tgn_example,test,copy_available_edges,3,1.0

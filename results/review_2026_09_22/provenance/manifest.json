@@ -1,0 +1,1186 @@
+{
+ "prepared": "2026-09-22 09:41:22 PDT",
+ "repo": "/home/zhuowez1/project/neural-sheaf-diffusion",
+ "git": {
+  "sha": "9809f41194f70eb2261c0ef021ddd954816fe4fc",
+  "branch": "review-2026-09-22",
+  "status": "M exp/run_event_benchmark.py\n M exp/temporal_benchmark_utils.py\n M exp/temporal_utils.py\n M models/faithful_event_model.py\n M models/temporal_sheaf_ssm.py\n M results/event_bench/queues/gpu_monitor.sh\n M results/event_bench/queues/wait_launch.sh\n M results/monitor/STATUS.md\n M results/monitor/actions.log\n M results/monitor/gpu_log.csv\n?? exp/review/\n?? models/diagnostics.py\n?? models/test_review_controls.py\n?? results/review_2026_09_22/",
+  "dirty_diff_sha256": "8b3d5757bab66fa49b2cf61b6ff298cc411832cf1d05d824efa46e8388901fe1",
+  "dirty_diff_lines": 1167
+ },
+ "environment": {
+  "python": "3.9.9 | packaged by conda-forge | (main, Dec 20 2021, 02:40:17) \n[GCC 9.4.0]",
+  "platform": "Linux-6.8.0-106-generic-x86_64-with-glibc2.39",
+  "torch": "2.8.0+cu128",
+  "cuda": "12.8",
+  "cudnn": 91002,
+  "torch_geometric": "2.6.1",
+  "torch_scatter": "2.1.2+pt28cu128",
+  "torch_sparse": "0.6.18+pt28cu128",
+  "numpy": "2.0.1",
+  "pandas": "2.3.3",
+  "scipy": "1.13.1",
+  "sklearn": "1.6.1",
+  "torch_householder": "1.0.1",
+  "py-tgb": "2.2.0",
+  "pip_freeze": [
+   "aiohappyeyeballs==2.6.1",
+   "aiohttp==3.13.5",
+   "aiosignal==1.4.0",
+   "alembic==1.16.5",
+   "annotated-types==0.7.0",
+   "args==0.1.0",
+   "asttokens @ file:///home/conda/feedstock_root/build_artifacts/asttokens_1733250440834/work",
+   "async-timeout==5.0.1",
+   "attrs==25.4.0",
+   "Brotli @ file:///home/conda/feedstock_root/build_artifacts/brotli-split_1749229842835/work",
+   "certifi @ file:///home/task_175978575413734/conda-bld/certifi_1759786089495/work/certifi",
+   "cffi @ file:///home/conda/feedstock_root/build_artifacts/cffi_1725571112467/work",
+   "charset-normalizer @ file:///home/conda/feedstock_root/build_artifacts/charset-normalizer_1754767332901/work",
+   "click==8.1.8",
+   "clint==0.5.1",
+   "colorama @ file:///home/conda/feedstock_root/build_artifacts/colorama_1733218098505/work",
+   "colorlog==6.10.1",
+   "comm @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_comm_1753453984/work",
+   "contourpy @ file:///croot/contourpy_1738160616259/work",
+   "cycler @ file:///tmp/build/80754af9/cycler_1637851556182/work",
+   "dataclasses==0.6",
+   "debugpy @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_debugpy_1754523415/work",
+   "decorator @ file:///home/conda/feedstock_root/build_artifacts/decorator_1740384970518/work",
+   "docker-pycreds==0.4.0",
+   "einops==0.7.0",
+   "eval_type_backport==0.3.1",
+   "exceptiongroup @ file:///home/conda/feedstock_root/build_artifacts/exceptiongroup_1746947292760/work",
+   "executing @ file:///home/conda/feedstock_root/build_artifacts/executing_1745502089858/work",
+   "filelock==3.19.1",
+   "fonttools @ file:///home/task_175975447478154/conda-bld/fonttools_1759754869428/work",
+   "frozenlist==1.8.0",
+   "fsspec==2025.10.0",
+   "gitdb==4.0.12",
+   "GitPython==3.1.46",
+   "greenlet==3.2.5",
+   "h2 @ file:///home/conda/feedstock_root/build_artifacts/h2_1738578511449/work",
+   "hf-xet==1.4.3",
+   "hpack @ file:///home/conda/feedstock_root/build_artifacts/hpack_1737618293087/work",
+   "huggingface_hub==0.36.2",
+   "hyperframe @ file:///home/conda/feedstock_root/build_artifacts/hyperframe_1737618333194/work",
+   "idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1733211830134/work",
+   "importlib_metadata==8.7.1",
+   "importlib_resources @ file:///home/task_175940067996674/conda-bld/importlib_resources-suite_1759400795292/work",
+   "iniconfig==2.1.0",
+   "intel-cmplr-lib-ur==2024.2.1",
+   "intel-openmp==2024.2.1",
+   "ipykernel @ file:///home/conda/feedstock_root/build_artifacts/ipykernel_1754352855579/work",
+   "ipython @ file:///home/conda/feedstock_root/build_artifacts/ipython_1701831663892/work",
+   "jedi @ file:///home/conda/feedstock_root/build_artifacts/jedi_1733300866624/work",
+   "Jinja2 @ file:///home/conda/feedstock_root/build_artifacts/jinja2_1741263328855/work",
+   "joblib @ file:///home/conda/feedstock_root/build_artifacts/joblib_1748019130050/work",
+   "jupyter_client @ file:///home/conda/feedstock_root/build_artifacts/jupyter_client_1733440914442/work",
+   "jupyter_core @ file:///home/conda/feedstock_root/build_artifacts/jupyter_core_1748333051527/work",
+   "kiwisolver @ file:///croot/kiwisolver_1672387140495/work",
+   "Mako==1.3.12",
+   "mamba_ssm==2.3.1",
+   "MarkupSafe @ file:///home/conda/feedstock_root/build_artifacts/markupsafe_1733219680183/work",
+   "matplotlib==3.9.2",
+   "matplotlib-inline @ file:///home/conda/feedstock_root/build_artifacts/matplotlib-inline_1733416936468/work",
+   "mkl==2024.0.0",
+   "mkl-service==2.4.0",
+   "mkl_fft @ file:///io/mkl313/mkl_fft_1730824109137/work",
+   "mkl_random @ file:///io/mkl313/mkl_random_1730823916628/work",
+   "mpmath==1.3.0",
+   "multidict==6.7.1",
+   "nest_asyncio @ file:///home/conda/feedstock_root/build_artifacts/nest-asyncio_1733325553580/work",
+   "networkx==2.6.3",
+   "ninja==1.13.0",
+   "numpy @ file:///croot/numpy_and_numpy_base_1725470312869/work/dist/numpy-2.0.1-cp39-cp39-linux_x86_64.whl#sha256=d86a49760b169e0c4fb8c00d248077a0474f640071b7ef584afd5ad4f03b9428",
+   "nvidia-cublas-cu12==12.8.4.1",
+   "nvidia-cuda-cupti-cu12==12.8.90",
+   "nvidia-cuda-nvrtc-cu12==12.8.93",
+   "nvidia-cuda-runtime-cu12==12.8.90",
+   "nvidia-cudnn-cu12==9.10.2.21",
+   "nvidia-cufft-cu12==11.3.3.83",
+   "nvidia-cufile-cu12==1.13.1.3",
+   "nvidia-curand-cu12==10.3.9.90",
+   "nvidia-cusolver-cu12==11.7.3.90",
+   "nvidia-cusparse-cu12==12.5.8.93",
+   "nvidia-cusparselt-cu12==0.7.1",
+   "nvidia-nccl-cu12==2.27.3",
+   "nvidia-nvjitlink-cu12==12.8.93",
+   "nvidia-nvtx-cu12==12.8.90",
+   "optuna==4.8.0",
+   "packaging @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_packaging_1777103621/work",
+   "pandas==2.3.3",
+   "parso @ file:///home/conda/feedstock_root/build_artifacts/parso_1733271261340/work",
+   "pathtools==0.1.2",
+   "pexpect @ file:///home/conda/feedstock_root/build_artifacts/pexpect_1733301927746/work",
+   "pickleshare @ file:///home/conda/feedstock_root/build_artifacts/pickleshare_1733327343728/work",
+   "pillow==11.3.0",
+   "platformdirs==4.4.0",
+   "pluggy==1.6.0",
+   "ply==3.11",
+   "promise==2.3",
+   "prompt_toolkit @ file:///home/conda/feedstock_root/build_artifacts/prompt-toolkit_1744724089886/work",
+   "propcache==0.4.1",
+   "protobuf==6.33.5",
+   "psutil==7.2.2",
+   "ptyprocess @ file:///home/conda/feedstock_root/build_artifacts/ptyprocess_1733302279685/work/dist/ptyprocess-0.7.0-py2.py3-none-any.whl#sha256=92c32ff62b5fd8cf325bec5ab90d7be3d2a8ca8c8a3813ff487a8d2002630d1f",
+   "pure_eval @ file:///home/conda/feedstock_root/build_artifacts/pure_eval_1733569405015/work",
+   "py==1.11.0",
+   "py-tgb==2.2.0",
+   "pycparser @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_pycparser_1733195786/work",
+   "pydantic==2.12.5",
+   "pydantic_core==2.41.5",
+   "pyg-lib==0.4.0+pt28cu128",
+   "Pygments @ file:///home/conda/feedstock_root/build_artifacts/pygments_1750615794071/work",
+   "pyparsing @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_pyparsing_1753873557/work",
+   "PyQt5==5.15.10",
+   "PyQt5_sip @ file:///croot/pyqt-split_1736540531116/work/pyqt_sip",
+   "PySocks @ file:///home/conda/feedstock_root/build_artifacts/pysocks_1733217236728/work",
+   "pytest==6.2.5",
+   "python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_python-dateutil_1751104122/work",
+   "python-louvain @ file:///home/conda/feedstock_root/build_artifacts/python-louvain_1734532048983/work",
+   "pytz @ file:///home/conda/feedstock_root/build_artifacts/pytz_1742920838005/work",
+   "PyYAML @ file:///home/conda/feedstock_root/build_artifacts/pyyaml_1737454647378/work",
+   "pyzmq @ file:///home/conda/feedstock_root/build_artifacts/pyzmq_1755799528447/work",
+   "regex==2026.1.15",
+   "requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1755614211359/work",
+   "safetensors==0.7.0",
+   "scikit-learn @ file:///home/conda/feedstock_root/build_artifacts/scikit-learn_1736496755362/work/dist/scikit_learn-1.6.1-cp39-cp39-linux_x86_64.whl#sha256=e8f978e37bb47e04e1337a63f75697b723d6d25f58e477734555faed033884ba",
+   "scipy @ file:///croot/scipy_1733756309941/work/dist/scipy-1.13.1-cp39-cp39-linux_x86_64.whl#sha256=a4372e07d982a377bda57ec71fd74ac403442571e1d717de47325a14dea5c278",
+   "sentry-sdk==2.55.0",
+   "setproctitle==1.3.7",
+   "shortuuid==1.0.13",
+   "sip @ file:///croot/sip_1736541134699/work",
+   "six @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_six_1753199211/work",
+   "smmap==5.0.3",
+   "SQLAlchemy==2.0.49",
+   "stack_data @ file:///home/conda/feedstock_root/build_artifacts/stack_data_1733569443808/work",
+   "sympy==1.14.0",
+   "tbb==2021.13.1",
+   "threadpoolctl @ file:///home/conda/feedstock_root/build_artifacts/threadpoolctl_1741878222898/work",
+   "tokenizers==0.22.2",
+   "toml==0.10.2",
+   "tomli @ file:///croot/tomli_1753774587605/work",
+   "torch==2.8.0",
+   "torch-geometric==2.6.1",
+   "torch_cluster==1.6.3+pt28cu128",
+   "torch_householder==1.0.1",
+   "torch_scatter==2.1.2+pt28cu128",
+   "torch_sparse==0.6.18+pt28cu128",
+   "torch_spline_conv==1.2.2+pt28cu128",
+   "torchdiffeq==0.2.2",
+   "torchvision==0.23.0",
+   "tornado @ file:///home/conda/feedstock_root/build_artifacts/tornado_1754731992698/work",
+   "tqdm==4.67.3",
+   "traitlets @ file:///home/conda/feedstock_root/build_artifacts/traitlets_1733367359838/work",
+   "transformers==4.57.6",
+   "triton==3.4.0",
+   "typing==3.7.4.3",
+   "typing-inspection==0.4.2",
+   "typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_typing_extensions_1751643513/work",
+   "tzdata @ file:///home/conda/feedstock_root/build_artifacts/python-tzdata_1742745135198/work",
+   "urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1750271362675/work",
+   "wandb==0.25.1",
+   "wcwidth @ file:///home/conda/feedstock_root/build_artifacts/wcwidth_1733231326287/work",
+   "yacs @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_yacs_1737043264/work",
+   "yarl==1.22.0",
+   "zipp==3.23.1",
+   "zstandard==0.23.0"
+  ]
+ },
+ "installed_tgb": {
+  "root": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb",
+  "source_sha256": {
+   "linkproppred/dataset.py": "2a9cc954f8889c970a4d7e668ff4d55e46a00d4766f0b546c4bcfb654dabaa92",
+   "linkproppred/dataset_pyg.py": "b99aafcd765529af31838b6efef89c3bb7fd207ecf06ea308a77a3af58f9038e",
+   "linkproppred/evaluate.py": "284d440a3ef210ddb52cb2a9b741fabd374d119a927d94313f5a4e434809902c",
+   "linkproppred/negative_sampler.py": "a9ea9e2ba733f0b02ca2cfc2eeb3bfe7000e3e13cf63d746e21cf1896d9c0b15",
+   "nodeproppred/dataset.py": "f696dbe2e8e6ce68ca4f573f0151ebc762c400835c8f443409a1ba8c3962e5fd",
+   "nodeproppred/dataset_pyg.py": "3d65c1828280bc27484906fb6f2e19c1634ecd004c2b563e689410564fe38f58",
+   "nodeproppred/evaluate.py": "25302a33b8ada5088a4b05dc8b39735867d58d46158af8f20f71f8888cc78a89",
+   "utils/pre_process.py": "69402457ecb63e0863410d225c81d7cbf21a9860c276e79f0e36f030cacf6fc8",
+   "utils/utils.py": "94a540eb19664c26dfe2469f29ccc681af76e25ab3459bbcdf196d81bbb40f5b",
+   "utils/info.py": "9c87b2e69f55319f039fb57a27a271d33da17b86a7dccb8c9215cc229823ff9d",
+   "datasets/dataset_scripts/tgbn-trade.py": "49a83c98252b336de8a99af20afba89ee01cfaf32912229fac58d57477924a22",
+   "datasets/dataset_scripts/tgbn-genre.py": "9d7110a7148754a3089ca39e6f814b4e97696a7ce1b2e70f1712098fefafb0b8"
+  }
+ },
+ "repo_sources_sha256": {
+  "exp/temporal_benchmark_utils.py": "f0ba5ab47de6a534039552f13931bfd570913f750af2b47f1289f5108a646d14",
+  "exp/temporal_utils.py": "d0e73093c7eedb1e5ebc2aa221054b57e05e944a61109cefdb91f2e67d91748c",
+  "exp/run_event_benchmark.py": "9e6486bf1a45af15653827a7d6d9cbcdfcd7e7307cc44db27a7b8ec17ad600d7",
+  "exp/run_faithful_trade.py": "e732ac810ffaa45023f1c2a710516ed264beaf5ea8acfa13fde1fe806c63e781",
+  "exp/faithful_temporal_studies.py": "88791cae2dc01c5ff38c8123d13d9f596b82e9ca500713e65f6a5023bd32cf76",
+  "exp/temporal_mamba_studies.py": "157fce1596a82e8f53af6fd8201628c7619a2275bce45ebee4e7a86ed980461e",
+  "models/faithful_event_model.py": "bda912530679cb75e5cf0b01529b0ebf5ff59907a4661e15216157a09d4d03b6",
+  "models/temporal_sheaf_ssm.py": "7b82c6b66a28e6b7913084d201689625f286c5aedbb19230e0090d7c45f3ba97",
+  "models/sparse_temporal_mamba.py": "8308eaff6c9a8dc24c1bba195ce6a23399b44398dc4890febf8fa1c862034b35",
+  "models/laplacian_builders.py": "fd1bcc6f70e5d03c5234708eff1065d373d5dfe935f710b1e1f268232f263624",
+  "models/orthogonal.py": "cfd939a3b5ea388e204259288332ad71c3cb2962a483d76245355a85d2e4b279",
+  "models/sheaf_models.py": "f9270d2cac5819ac9151a44b65358edaa34fd32d8fa02ac8eef6193b454bb88e"
+ },
+ "hardware": {
+  "hostname": "biaslab0.ics.uci.edu",
+  "cpu_count": 256,
+  "cpu_model": "AMD EPYC 7713 64-Core Processor",
+  "ram_gib": 2003.8,
+  "gpus": [
+   "0, NVIDIA A100-SXM4-80GB, 81920 MiB, 560.35.05",
+   "1, NVIDIA A100-SXM4-80GB, 81920 MiB, 560.35.05",
+   "2, NVIDIA A100-SXM4-80GB, 81920 MiB, 560.35.05",
+   "3, NVIDIA A100-SXM4-80GB, 81920 MiB, 560.35.05",
+   "4, NVIDIA A100-SXM4-80GB, 81920 MiB, 560.35.05",
+   "5, NVIDIA A100-SXM4-80GB, 81920 MiB, 560.35.05",
+   "6, NVIDIA A100-SXM4-80GB, 81920 MiB, 560.35.05",
+   "7, NVIDIA A100-SXM4-80GB, 81920 MiB, 560.35.05"
+  ]
+ },
+ "datasets": {
+  "tgbn-trade": {
+   "loader_name": "tgbn-trade",
+   "task_family": "nodeprop",
+   "metric": "ndcg",
+   "folder": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/tgbn_trade",
+   "files": {
+    "ml_tgbn-trade.pkl": {
+     "bytes": 18730522,
+     "mtime": "2026-04-27 11:39:50",
+     "sha256": "930c5a84127847f0c4fec2b5c4c052eb355144c8c916725a5eb00f870f840729"
+    },
+    "ml_tgbn-trade_edge.pkl": {
+     "bytes": 3746101,
+     "mtime": "2026-04-27 11:39:50",
+     "sha256": "3675c3942a758b5a5a23eaf807d360a53ef584b23936de67ca04d4e7b00a98fc"
+    },
+    "ml_tgbn-trade_node.pkl": {
+     "bytes": 13526533,
+     "mtime": "2026-04-27 11:39:52",
+     "sha256": "e5f8eec46aff3392c039b5eb124715f9b02bf6ee3c9d24bb9f88ce90fe13cf1d"
+    },
+    "tgbn-trade.zip": {
+     "bytes": 12780237,
+     "mtime": "2026-04-27 11:39:48",
+     "sha256": "697e9ca432c03aa6d4a998a75a1e49310bc78682dbe8cec2d8452b5a6604c9fe"
+    },
+    "tgbn-trade_edgelist.csv": {
+     "bytes": 23096841,
+     "mtime": "2026-04-27 11:39:48",
+     "sha256": "f7eb7f98f153d0802fbaf1073f8f0bff8efe72325b4a1db6ee90998847c80553"
+    },
+    "tgbn-trade_node_labels.csv": {
+     "bytes": 22628242,
+     "mtime": "2026-04-27 11:39:48",
+     "sha256": "bb11ff00f4832162210ec6cf7f4aa5d9c6f9f3c1caeb21a3e5f2e128ea06f818"
+    }
+   },
+   "num_events": 468245,
+   "num_nodes": 255,
+   "t_min": 1986,
+   "t_max": 2016,
+   "num_rels": 0,
+   "src_sha256": "a18774d6bcae8375da665caa872e6503af3c11f1ecb35c63f37c630b10900e2b",
+   "dst_sha256": "d7d71e4cf5fb824a9951de74c24d9dbf06e0d662b65e175557230c6ccad3627c",
+   "t_sha256": "049605f359eea3dddc6d187235ad53efa17102299c0014e56b41817a1e4c8c54",
+   "train_mask_sha256": "e6131b9b1a7c5d6affcfd4a396b12cbfde3ad9f4b2b08d972b61e645778e90e3",
+   "train_edges": 337224,
+   "train_t_range": [
+    1986,
+    2009
+   ],
+   "val_mask_sha256": "774f8c2bad2e7a328c23fc30d5203d2c47ab991fcdc8ee82a8587f2723cafbbc",
+   "val_edges": 73170,
+   "val_t_range": [
+    2010,
+    2013
+   ],
+   "test_mask_sha256": "eee14648c6f1bc4258223ab5f78d77518f37ac5b883ff9ead5ea67cb4f4cb97b",
+   "test_edges": 57851,
+   "test_t_range": [
+    2014,
+    2016
+   ],
+   "label_timestamps": {
+    "count": 30,
+    "first": 1987,
+    "last": 2016,
+    "sha256": "7aa92a414fc8e4d4749fa6d0c18fbec80326f4400d43939a7f204a6ad412e751",
+    "values": [
+     1987,
+     1988,
+     1989,
+     1990,
+     1991,
+     1992,
+     1993,
+     1994,
+     1995,
+     1996,
+     1997,
+     1998,
+     1999,
+     2000,
+     2001,
+     2002,
+     2003,
+     2004,
+     2005,
+     2006,
+     2007,
+     2008,
+     2009,
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016
+    ]
+   },
+   "label_dict_sizes": {
+    "1987": 201,
+    "1988": 205,
+    "1989": 204,
+    "1990": 205,
+    "1991": 209,
+    "1992": 230,
+    "1993": 233,
+    "1994": 233,
+    "1995": 232,
+    "1996": 232,
+    "1997": 230,
+    "1998": 233,
+    "1999": 229,
+    "2000": 215,
+    "2001": 213,
+    "2002": 216,
+    "2003": 215,
+    "2004": 214,
+    "2005": 213,
+    "2006": 214,
+    "2007": 214,
+    "2008": 214,
+    "2009": 212,
+    "2010": 213,
+    "2011": 212,
+    "2012": 213,
+    "2013": 214,
+    "2014": 225,
+    "2015": 226,
+    "2016": 224
+   }
+  },
+  "tgbn-genre": {
+   "loader_name": "tgbn-genre",
+   "task_family": "nodeprop",
+   "metric": "ndcg",
+   "folder": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/tgbn_genre",
+   "files": {
+    "ml_tgbn-genre.pkl": {
+     "bytes": 714336522,
+     "mtime": "2026-04-28 11:16:57",
+     "sha256": "56562ec2757f8c38edd14eb071ac238dc593c664ac8f71000a3e440728a22867"
+    },
+    "ml_tgbn-genre_edge.pkl": {
+     "bytes": 142867301,
+     "mtime": "2026-04-28 11:16:58",
+     "sha256": "26abfccae8ed052df9b45f2bfcb02144b5d5140691cdb56f2acd79e2f6353272"
+    },
+    "ml_tgbn-genre_node.pkl": {
+     "bytes": 1060244158,
+     "mtime": "2026-04-28 11:17:10",
+     "sha256": "5719e3c97021b3a50e05626f3be570ff45439d61186025b5c8393bd9402af745"
+    },
+    "tgbn-genre.zip": {
+     "bytes": 154066446,
+     "mtime": "2026-04-28 11:15:50",
+     "sha256": "8c3f9a6548b167d7bc8172209f400fa54c5055bd23b14f6768c9a6de4d87e438"
+    },
+    "tgbn-genre_edgelist.csv": {
+     "bytes": 886780680,
+     "mtime": "2026-04-28 11:15:55",
+     "sha256": "db33dd13370f6d4108cb70d1c9160adcda660827d3c9eb90ee86e8d5a715c6dd"
+    },
+    "tgbn-genre_node_labels.csv": {
+     "bytes": 146682959,
+     "mtime": "2026-04-28 11:15:56",
+     "sha256": "eb5cfdc50ff41fce3d3e5d3df1ef64053bd08b26d9722c20d6aab591c617fea2"
+    }
+   },
+   "num_events": 17858395,
+   "num_nodes": 1505,
+   "t_min": 1108357203,
+   "t_max": 1245461220,
+   "num_rels": 0,
+   "src_sha256": "ae03c0c2d819c58995118bce0db4e3647719fa6fa62bfa702dfac828e735b60e",
+   "dst_sha256": "7e82e127224fb51fb99a72ff93ab9feb2fa1f1f2a6981683ca82a7890266b827",
+   "t_sha256": "8da718ad10a8858136fb56125e60307ad2763836890d7ddfe472dcbd357b1fcc",
+   "train_mask_sha256": "a0bba704e2d3f8d52656a7b3b8e518a3673c9765d37cf3cf23b01c49cfc34066",
+   "train_edges": 12500878,
+   "train_t_range": [
+    1108357203,
+    1216427761
+   ],
+   "val_mask_sha256": "cd93ade0b2d9bc43aa3b89d4f5efa5bf823da16df0b431616154844de089881a",
+   "val_edges": 2678760,
+   "val_t_range": [
+    1216427762,
+    1230448624
+   ],
+   "test_mask_sha256": "f7104be19cd2b636ec4261104ed68d02fde57b4010960b4b2cc902c903c3b4f8",
+   "test_edges": 2678757,
+   "test_t_range": [
+    1230448684,
+    1245461220
+   ],
+   "label_timestamps": {
+    "count": 1579,
+    "first": 1108443600,
+    "last": 1244779200,
+    "sha256": "7821e7fab4b56e04817649384e459c5dcea9a40aece6a3bcac25be31f1c45765",
+    "values": null
+   },
+   "label_dict_sizes": {
+    "1108443600": 26,
+    "1108530000": 26,
+    "1108616400": 27,
+    "1108702800": 22,
+    "1108789200": 27,
+    "1108875600": 25,
+    "1108962000": 25,
+    "1109048400": 26,
+    "1109134800": 32,
+    "1109221200": 23,
+    "1109307600": 28,
+    "1109394000": 32,
+    "1109480400": 26,
+    "1109566800": 27,
+    "1109653200": 31,
+    "1109739600": 31,
+    "1109826000": 34,
+    "1109912400": 35,
+    "1109998800": 30,
+    "1110085200": 10,
+    "1110171600": 24,
+    "1110258000": 29,
+    "1110344400": 28,
+    "1110430800": 32,
+    "1110517200": 27,
+    "1110603600": 20,
+    "1110690000": 19,
+    "1110776400": 22,
+    "1110862800": 25,
+    "1110949200": 30,
+    "1111035600": 27,
+    "1111122000": 25,
+    "1111208400": 22,
+    "1111294800": 25,
+    "1111381200": 24,
+    "1111467600": 25,
+    "1111554000": 28,
+    "1111640400": 32,
+    "1111726800": 29,
+    "1111813200": 27,
+    "1111899600": 25,
+    "1111986000": 25,
+    "1112072400": 26,
+    "1112158800": 37,
+    "1112245200": 36,
+    "1112331600": 34,
+    "1112418000": 35,
+    "1112504400": 29,
+    "1112587200": 27,
+    "1112673600": 38,
+    "1112760000": 36,
+    "1112846400": 34,
+    "1112932800": 38,
+    "1113019200": 32,
+    "1113105600": 29,
+    "1113192000": 25,
+    "1113278400": 34,
+    "1113364800": 36,
+    "1113451200": 36,
+    "1113537600": 38,
+    "1113624000": 40,
+    "1113710400": 31,
+    "1113796800": 32,
+    "1113883200": 43
+   }
+  },
+  "tgbl-wiki": {
+   "loader_name": "tgbl-wiki",
+   "task_family": "linkprop",
+   "metric": "mrr",
+   "folder": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/tgbl_wiki",
+   "files": {
+    "ml_tgbl-wiki.pkl": {
+     "bytes": 6299812,
+     "mtime": "2026-04-30 11:31:34",
+     "sha256": "dceab5cb4e9bc07d2f3c0bd5148c3e76744760c00c400cb8f74c84aef99fddb9"
+    },
+    "ml_tgbl-wiki_edge.pkl": {
+     "bytes": 216684365,
+     "mtime": "2026-04-30 11:31:34",
+     "sha256": "ac2809463ff1d7423a8e0b103e81def3593bcf3cb1e959f35faebdae0a2a9460"
+    },
+    "tgbl-wiki.zip": {
+     "bytes": 40895954,
+     "mtime": "2026-04-30 11:31:10",
+     "sha256": "1b6c756b4dc0bac9d1f97218467949472daf5b1eebe497f38721493682fdd130"
+    },
+    "tgbl-wiki_edgelist_v2.csv": {
+     "bytes": 559937473,
+     "mtime": "2026-04-30 11:31:13",
+     "sha256": "a6b73e09c0d1e5b9db11e7e7aa416f2e87838a745273e0446a79952cf4cfae09"
+    },
+    "tgbl-wiki_test_ns_v2.pkl": {
+     "bytes": 190810635,
+     "mtime": "2026-04-30 11:31:14",
+     "sha256": "f792762ab4756c044257685b1a1fb3f5f617487723482a7e3310535b4565b8c6"
+    },
+    "tgbl-wiki_val_ns_v2.pkl": {
+     "bytes": 190820769,
+     "mtime": "2026-04-30 11:31:15",
+     "sha256": "abad4e8946f383bdac12e43c9e9a8e1e206b50543848e925819433efef0a1461"
+    }
+   },
+   "num_events": 157474,
+   "num_nodes": 9227,
+   "t_min": 0,
+   "t_max": 2678373,
+   "num_rels": 1,
+   "src_sha256": "911b9c306f775143a09f597e4b5fec17132bf161e71024df9cba0e8e20593162",
+   "dst_sha256": "e83cdfef3bdc34a28220042e80dc036caa17ec0a1b625946fc510ddfde3d10cb",
+   "t_sha256": "8d0717ebbe17f1d27b304dc2aad01e76145ab770968590d925728f0b235749e1",
+   "train_mask_sha256": "d822b531cdfd5989044e966d561ee0e4fcbeb4d79cf291c15879a9da6d839090",
+   "train_edges": 110232,
+   "train_t_range": [
+    0,
+    1862652
+   ],
+   "val_mask_sha256": "86c8e870b27f5e0c5aa7cf16fcf0499fd30313fed6e35071152de646b5f5c06d",
+   "val_edges": 23621,
+   "val_t_range": [
+    1862653,
+    2218288
+   ],
+   "test_mask_sha256": "8d8234982cc1dc7c7fd625f587a75066ff9491d0ce8d0892c6680d60b413eb26",
+   "test_edges": 23621,
+   "test_t_range": [
+    2218300,
+    2678373
+   ],
+   "negative_sets": {
+    "val": {
+     "file": null,
+     "sha256": "missing"
+    },
+    "test": {
+     "file": null,
+     "sha256": "missing"
+    }
+   }
+  },
+  "thgl-forum": {
+   "loader_name": "thgl-forum",
+   "task_family": "thg",
+   "metric": "mrr",
+   "folder": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/thgl_forum",
+   "files": {
+    "merge_files.py": {
+     "bytes": 8065,
+     "mtime": "2026-04-21 10:57:02",
+     "sha256": "8fc760ac992e2d6fef3705d9c81fba4134e619192eda040758258a3547f7969c"
+    },
+    "ml_thgl-forum.pkl": {
+     "bytes": 1330432334,
+     "mtime": "2026-09-02 08:07:46",
+     "sha256": "531772ddf2ff8e96484db22f57d6186fb4d41c6f044012b34427a63e866be7e1"
+    },
+    "ml_thgl-forum_edge.pkl": {
+     "bytes": 380123453,
+     "mtime": "2026-09-02 08:07:41",
+     "sha256": "547d766c7299c69ceb534814be168f3059ed30ad2055a5853d924054c98d70e2"
+    },
+    "ml_thgl-forum_nodeType.pkl": {
+     "bytes": 1222667,
+     "mtime": "2026-09-02 08:07:46",
+     "sha256": "518de43d22c12c4f86294d302856310f08754a0a6af20ffb6f58d44973c6e333"
+    },
+    "num_edges_discretized_thgl-forum.png": {
+     "bytes": 30609,
+     "mtime": "2026-04-21 10:57:02",
+     "sha256": "9670adb667fb0414f9cf5aa3813616736e4cc831ac8a02d5a3f71611c741320f"
+    },
+    "thgl-forum.py": {
+     "bytes": 11991,
+     "mtime": "2026-04-21 10:57:02",
+     "sha256": "c4b207c796422c7c361fdc0d55c859c5b7d141a7153cfa73ee3b6897d349ee62"
+    },
+    "thgl-forum.zip": {
+     "bytes": 2373351958,
+     "mtime": "2026-09-02 08:05:29",
+     "sha256": "d025f70be7529ee1f2bbab47d9b255ab33caa18d41d024e6c8575069a76f7c58"
+    },
+    "thgl-forum_edgelist.csv": {
+     "bytes": 712660202,
+     "mtime": "2026-09-02 08:05:35",
+     "sha256": "e9fc418b171fe2bb0a65e77d10e8f66834cdb525982da2d65149521389203780"
+    },
+    "thgl-forum_nodetype.csv": {
+     "bytes": 1417064,
+     "mtime": "2026-09-02 08:05:35",
+     "sha256": "195de9828b386a30040c4f909465bd3a099dab4722c58fb5866f92a01a666209"
+    },
+    "thgl-forum_test_ns.pkl": {
+     "bytes": 3150651986,
+     "mtime": "2026-09-02 08:05:56",
+     "sha256": "4307c5e644d3fb6f1f4831f6c8c10fdf5e209abbacc8467ade08e9654c5a0058"
+    },
+    "thgl-forum_val_ns.pkl": {
+     "bytes": 3150673202,
+     "mtime": "2026-09-02 08:06:18",
+     "sha256": "721b06c0e45386a97794e545cd8c7167c18c18698357a636890a718c2a5e69d1"
+    },
+    "thgl_forum_ns_gen.py": {
+     "bytes": 2355,
+     "mtime": "2026-04-21 10:57:02",
+     "sha256": "c3d62add28e61284ee3b6e68924e9a08cb3a4a47b26721cbd826daff8f80c8d9"
+    }
+   },
+   "num_events": 23757707,
+   "num_nodes": 152816,
+   "t_min": 1388534400,
+   "t_max": 1391212799,
+   "num_rels": 2,
+   "src_sha256": "1e9c4a56f3d6031dd5d678d82bada954647463811d8d0217a923a88a960feccd",
+   "dst_sha256": "b724fe100dc4779a0cdf470806f19485a6a0e0d194433986926a2dfe9c394181",
+   "t_sha256": "35cce10e55d2a32172907ecdd12fa1c24e0d7a5f88848cf4e7a422388f2b1361",
+   "edge_type_sha256": "7909dd1db833a3976ffbbe707e7c7a9d14f61a60ff611cecd3621b1a62281a82",
+   "train_mask_sha256": "f68567784ac71e3a617b5df7eb76669fe7d650a3498b810010e76962160d188a",
+   "train_edges": 16630396,
+   "train_t_range": [
+    1388534400,
+    1390426562
+   ],
+   "val_mask_sha256": "16f53806559b892e5517561296f461a5020ded905bf144ba3934599d7e671cc9",
+   "val_edges": 3563658,
+   "val_t_range": [
+    1390426563,
+    1390838357
+   ],
+   "test_mask_sha256": "c1eb7b8dd05e90b83d0a51042047f7f263e6846bda61b8705713f5db9d4656a4",
+   "test_edges": 3563653,
+   "test_t_range": [
+    1390838358,
+    1391212799
+   ],
+   "negative_sets": {
+    "val": {
+     "file": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/thgl_forum/thgl-forum_val_ns.pkl",
+     "sha256": "721b06c0e45386a97794e545cd8c7167c18c18698357a636890a718c2a5e69d1"
+    },
+    "test": {
+     "file": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/thgl_forum/thgl-forum_test_ns.pkl",
+     "sha256": "4307c5e644d3fb6f1f4831f6c8c10fdf5e209abbacc8467ade08e9654c5a0058"
+    }
+   }
+  },
+  "tkgl-icews": {
+   "loader_name": "tkgl-icews",
+   "task_family": "tkg",
+   "metric": "mrr",
+   "folder": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/tkgl_icews",
+   "files": {
+    "ml_tkgl-icews.pkl": {
+     "bytes": 868753718,
+     "mtime": "2026-09-04 07:42:52",
+     "sha256": "41c122d38a64aea947c5ef66c6fa4eaec9eebc6702849e0a954bd6cc65f44aec"
+    },
+    "ml_tkgl-icews_edge.pkl": {
+     "bytes": 124107709,
+     "mtime": "2026-09-04 07:42:49",
+     "sha256": "6b52714dc8c528d784da39dc921da9aada686608c41f971620c8787a781dbe20"
+    },
+    "tkgl-icews.zip": {
+     "bytes": 152267487,
+     "mtime": "2026-09-04 07:41:53",
+     "sha256": "90feed0147ee53d32963a7824df217fb6c461214bf2572eff3ff6e9273803a31"
+    },
+    "tkgl-icews_edgelist.csv": {
+     "bytes": 374803052,
+     "mtime": "2026-09-04 07:41:56",
+     "sha256": "c20875610cea4fc1e20c630523365d09e02527c6d5d0ef6ae1c7c098b4045a6a"
+    },
+    "tkgl-icews_edgemapping.csv": {
+     "bytes": 3489,
+     "mtime": "2026-09-04 07:41:56",
+     "sha256": "cf8f8fd75ecf1d20ea574fcd37d07e6e1c6a6cbaecd8243cb2d89f0b6fd86a10"
+    },
+    "tkgl-icews_test_ns.pkl": {
+     "bytes": 339582576,
+     "mtime": "2026-09-04 07:41:58",
+     "sha256": "19090cc8fe76e51beda184e68e0122ec73e991467cf1d327983b63a94b59c376"
+    },
+    "tkgl-icews_val_ns.pkl": {
+     "bytes": 338636169,
+     "mtime": "2026-09-04 07:42:00",
+     "sha256": "e299a1b73a382ce1e00128436c27b2a6947705467ae08da23b3a03245d8d6e35"
+    },
+    "tkgl_icews.py": {
+     "bytes": 4220,
+     "mtime": "2026-04-21 10:57:02",
+     "sha256": "ea8366c51f9fd0f62c3a1bd805ae06fd3375cfe7330911139649cde437f96041"
+    },
+    "tkgl_icews_ns_gen.py": {
+     "bytes": 2309,
+     "mtime": "2026-04-21 10:57:02",
+     "sha256": "1854bada46fbf2142a9c72a966fc2683a53fce4059ce8131de87f47f7f06c6c5"
+    }
+   },
+   "num_events": 31026892,
+   "num_nodes": 87856,
+   "t_min": 788936400,
+   "t_max": 1672462800,
+   "num_rels": 782,
+   "src_sha256": "92b67f9b6e46c66e1af34a43dfda67c9492fffecd14c58c0cc9f788987cde796",
+   "dst_sha256": "890dd82331676cd4da92599a1cc6c426e49eaa11d6d71e46d5e1ecb574589ea4",
+   "t_sha256": "35c488d1f04bcf93a1c358a34a43adb694f904db5eea8e23e9c5b72475dbff31",
+   "edge_type_sha256": "e3743c491d11197a303df2c65aa6174729c247b8de9ad91629e85994d86a853f",
+   "train_mask_sha256": "5391ef2eba97c155d731bd1b82e857e654520020aa7f453abca57e2943a633d9",
+   "train_edges": 21723200,
+   "train_t_range": [
+    788936400,
+    1409803200
+   ],
+   "val_mask_sha256": "cfdfa125526bc3b0c96d2da28619d15188e9608b3d1b67f64d830249b6dccfae",
+   "val_edges": 4652314,
+   "val_t_range": [
+    1409889600,
+    1525665600
+   ],
+   "test_mask_sha256": "a89311d263a32036760330bd66b6c3ae599ae1f49e6da5679189f2cece9c57a5",
+   "test_edges": 4651378,
+   "test_t_range": [
+    1525752000,
+    1672462800
+   ],
+   "negative_sets": {
+    "val": {
+     "file": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/tkgl_icews/tkgl-icews_val_ns.pkl",
+     "sha256": "e299a1b73a382ce1e00128436c27b2a6947705467ae08da23b3a03245d8d6e35"
+    },
+    "test": {
+     "file": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/tkgl_icews/tkgl-icews_test_ns.pkl",
+     "sha256": "19090cc8fe76e51beda184e68e0122ec73e991467cf1d327983b63a94b59c376"
+    }
+   }
+  },
+  "tkgl-smallpedia": {
+   "loader_name": "tkgl-smallpedia",
+   "task_family": "tkg",
+   "metric": "mrr",
+   "folder": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/tkgl_smallpedia",
+   "files": {
+    "ml_tkgl-smallpedia.pkl": {
+     "bytes": 30821798,
+     "mtime": "2026-04-30 11:43:25",
+     "sha256": "ad8e08ef37c144dad7a19c628221ab0e33600ba2a6b4584d740a4b59a21a5c60"
+    },
+    "ml_tkgl-smallpedia_edge.pkl": {
+     "bytes": 4403149,
+     "mtime": "2026-04-30 11:43:24",
+     "sha256": "d60d0c0addce82cc1d81fdbd711d973f4617a91d4c39a96a424fa08b1eec815f"
+    },
+    "ml_tkgl-smallpedia_nodeid.pkl": {
+     "bytes": 606975,
+     "mtime": "2026-04-30 11:43:24",
+     "sha256": "25a7f5a8656b0476bbe1262255daa481fd15ec763233bd8b3378de99954aa96b"
+    },
+    "ml_tkgl-smallpedia_static.pkl": {
+     "bytes": 23472771,
+     "mtime": "2026-04-30 11:53:40",
+     "sha256": "9be639ac83871ef7ee0b0142a783cb28288a358d661ebd61d3b39e415b04909b"
+    },
+    "smallpedia_remove_conflict.py": {
+     "bytes": 3495,
+     "mtime": "2026-04-21 10:57:02",
+     "sha256": "72a59e1f456ae946d0aed63379b10027dac953e7bad21d7a6fbf027d1423dfc3"
+    },
+    "tkgl-smallpedia.zip": {
+     "bytes": 10565876,
+     "mtime": "2026-04-30 11:43:22",
+     "sha256": "13df6e59fe9ba305dce8e981ee4afca3712b033070d469be57a2ed3bd5d71248"
+    },
+    "tkgl-smallpedia_edgelist.csv": {
+     "bytes": 13960505,
+     "mtime": "2026-04-30 11:43:23",
+     "sha256": "4072d146cb1076d0e0a0a9ae5a1f888aaf5ac999e116e525b35cde000cefd8f3"
+    },
+    "tkgl-smallpedia_static_edgelist.csv": {
+     "bytes": 19416813,
+     "mtime": "2026-04-30 11:43:23",
+     "sha256": "2aa1018296886a93ae986a32a0f6b8cf0e0a3b354eee385b94a62d6f2ae5accf"
+    },
+    "tkgl-smallpedia_test_ns.pkl": {
+     "bytes": 9995208,
+     "mtime": "2026-04-30 11:43:23",
+     "sha256": "66e1fe17f4474aa916bcca715a72b275dbd29857bfc7c6ec0f23f43d77a2b2b0"
+    },
+    "tkgl-smallpedia_val_ns.pkl": {
+     "bytes": 9802630,
+     "mtime": "2026-04-30 11:43:23",
+     "sha256": "d9f0fc40c41aaf67a52eb4501b7c664ea5ca2ebc4a5a343ea7a1aeb49b181414"
+    },
+    "tkgl_smallpedia_ns_gen.py": {
+     "bytes": 2368,
+     "mtime": "2026-04-21 10:57:02",
+     "sha256": "4583cc95563d63830f7ddf79d9d6612b53e122655bbcc8a4194ff9672768b1a5"
+    }
+   },
+   "num_events": 1100752,
+   "num_nodes": 47433,
+   "t_min": 1900,
+   "t_max": 2024,
+   "num_rels": 566,
+   "src_sha256": "4a679997b5bfd4fb03c65eaf4b52b99bd3f298b209f92f58e5adab957ed71d79",
+   "dst_sha256": "21143be544adeb71bb33a6c131c5e410b214c513f771740fff2f92509faaf398",
+   "t_sha256": "d48a9e40c83d3ca1ab2feee1ca3c6690fdad71ade338620be334a847fa9f61ad",
+   "edge_type_sha256": "1383c6bc4e1ef0da9a3518e81fe5ba82d63d1c388bae86ded480e933e6e334b3",
+   "train_mask_sha256": "d1ce1742fa8bf1946d15e4fb2d0369f354df6f109b216aa09587f143584658b6",
+   "train_edges": 775514,
+   "train_t_range": [
+    1900,
+    1997
+   ],
+   "val_mask_sha256": "9c8cde79d4beda84412786f808d07368a3aebfbcdc36a68c55e6d6b367b8b600",
+   "val_edges": 162066,
+   "val_t_range": [
+    1998,
+    2007
+   ],
+   "test_mask_sha256": "0a129b9fce0880d101d1573a59093aedab49e6deea0711ddeba5640f694dc37e",
+   "test_edges": 163172,
+   "test_t_range": [
+    2008,
+    2024
+   ],
+   "negative_sets": {
+    "val": {
+     "file": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/tkgl_smallpedia/tkgl-smallpedia_val_ns.pkl",
+     "sha256": "d9f0fc40c41aaf67a52eb4501b7c664ea5ca2ebc4a5a343ea7a1aeb49b181414"
+    },
+    "test": {
+     "file": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/tkgl_smallpedia/tkgl-smallpedia_test_ns.pkl",
+     "sha256": "66e1fe17f4474aa916bcca715a72b275dbd29857bfc7c6ec0f23f43d77a2b2b0"
+    }
+   }
+  },
+  "tkgl-polecat": {
+   "loader_name": "tkgl-polecat",
+   "task_family": "tkg",
+   "metric": "mrr",
+   "folder": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/tkgl_polecat",
+   "files": {
+    "ml_tkgl-polecat.pkl": {
+     "bytes": 99658902,
+     "mtime": "2026-09-02 08:04:40",
+     "sha256": "694f891128e6802852ce26865222844d30431fe67acaf23bf7d32b131a8393e9"
+    },
+    "ml_tkgl-polecat_edge.pkl": {
+     "bytes": 14237021,
+     "mtime": "2026-09-02 08:04:39",
+     "sha256": "55d028b51e58ff12b94f57424df0a6a42f8a851dc2104c88dccfd1811a4fc2fd"
+    },
+    "tkgl-polecat.zip": {
+     "bytes": 15451151,
+     "mtime": "2026-09-02 08:04:34",
+     "sha256": "f36f16484e9effca2608a7e15532bf87a91c0c8f8c80c24420a1abd73fc4b1f8"
+    },
+    "tkgl-polecat_edgelist.csv": {
+     "bytes": 43225287,
+     "mtime": "2026-09-02 08:04:34",
+     "sha256": "f01dac488933ea109753a931cbc25ab97b50d85de18bf97a371ea615c33d80ba"
+    },
+    "tkgl-polecat_edgemapping.csv": {
+     "bytes": 192,
+     "mtime": "2026-09-02 08:04:34",
+     "sha256": "3f361f23a4981aa9a2be170daa425183ec0468543552e92dccb52ce7e540dc6e"
+    },
+    "tkgl-polecat_test_ns.pkl": {
+     "bytes": 41816357,
+     "mtime": "2026-09-02 08:04:34",
+     "sha256": "ceea9f0127d6c3a3211bba97d2a5bc3d2239eb2b71086c97a3642895ec62e645"
+    },
+    "tkgl-polecat_val_ns.pkl": {
+     "bytes": 42453989,
+     "mtime": "2026-09-02 08:04:34",
+     "sha256": "6cd350613e3414ae718bc391385ecf781c0c7e6dd6c3dc4d89215c9528819901"
+    },
+    "tkgl_polecat.py": {
+     "bytes": 8328,
+     "mtime": "2026-04-21 10:57:02",
+     "sha256": "894a13d91cca4dcb3b76679b69f25d616b6d75f2967c923f47b252828d26c4bb"
+    },
+    "tkgl_polecat_ns_gen.py": {
+     "bytes": 2311,
+     "mtime": "2026-04-21 10:57:02",
+     "sha256": "dec5174879c2c7389340f099db7f0949843decfb2ad0cf762826d73dd72a234a"
+    }
+   },
+   "num_events": 3559220,
+   "num_nodes": 150931,
+   "t_min": 1514782800,
+   "t_max": 1672462800,
+   "num_rels": 32,
+   "src_sha256": "393a2e82919575cf397d0289bb0bab0768ecff3190b5de9c09989bc2229c5375",
+   "dst_sha256": "977398ef0340282e802e3e2014a1c80c85df8daf2009ac1b3eab0638dbd5f079",
+   "t_sha256": "9a72852d84a14e257d623d6d8ba8d41748970da396498cf9eb97f41a15b0b86d",
+   "edge_type_sha256": "13102fdb89ac8bc5ef11be0c4ccb9c307b5c5b666f97d63adb273b1f66e26423",
+   "train_mask_sha256": "46fc3c8f810a4b3d28d73f1f8d7e1cf04e13d957ef799b81e21920661ac164cb",
+   "train_edges": 2493112,
+   "train_t_range": [
+    1514782800,
+    1617768000
+   ],
+   "val_mask_sha256": "148011aa9398aedada814c158b0753faeda4350d5c97953d3fbc2c051edcbeac",
+   "val_edges": 533472,
+   "val_t_range": [
+    1617854400,
+    1646197200
+   ],
+   "test_mask_sha256": "a383d81eaa6f8147260402d0b0c11c222193588a823db5844407ebbae6d63f26",
+   "test_edges": 532636,
+   "test_t_range": [
+    1646283600,
+    1672462800
+   ],
+   "negative_sets": {
+    "val": {
+     "file": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/tkgl_polecat/tkgl-polecat_val_ns.pkl",
+     "sha256": "6cd350613e3414ae718bc391385ecf781c0c7e6dd6c3dc4d89215c9528819901"
+    },
+    "test": {
+     "file": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/tkgl_polecat/tkgl-polecat_test_ns.pkl",
+     "sha256": "ceea9f0127d6c3a3211bba97d2a5bc3d2239eb2b71086c97a3642895ec62e645"
+    }
+   }
+  },
+  "tkgl-wikidata": {
+   "loader_name": "tkgl-wikidata",
+   "task_family": "tkg",
+   "metric": "mrr",
+   "folder": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/tkgl_wikidata",
+   "files": {
+    "extract.sh": {
+     "bytes": 210,
+     "mtime": "2026-04-21 10:57:02",
+     "sha256": "28732b98eafcde19d777580489c9dd31d92255ada770d995cc48ad182197a67f"
+    },
+    "ml_tkgl-wikidata.pkl": {
+     "bytes": 551948110,
+     "mtime": "2026-09-09 22:16:54",
+     "sha256": "9dacf95d1cf33a6a0102ee46400c348494b0cf196057a3d2a94e0193e5ff531b"
+    },
+    "ml_tkgl-wikidata_edge.pkl": {
+     "bytes": 78849765,
+     "mtime": "2026-09-09 22:16:51",
+     "sha256": "17ec564b3b9404b4266db45d069a339eb51299c41740bb30ef59ee42c280042a"
+    },
+    "ml_tkgl-wikidata_nodeid.pkl": {
+     "bytes": 20529715,
+     "mtime": "2026-09-09 22:16:51",
+     "sha256": "7b974df0804d2066625bcda22d0bb0910a156d2a9088669d6b8fe1ad13cc58fe"
+    },
+    "tkgl-wikidata.py": {
+     "bytes": 11833,
+     "mtime": "2026-04-21 10:57:02",
+     "sha256": "bf4637aeddb9660f759edecdc29f315067e5ca9c37f67101dfe7e8f0a469b79f"
+    },
+    "tkgl-wikidata.zip": {
+     "bytes": 11442234389,
+     "mtime": "2026-09-09 22:12:15",
+     "sha256": "e1eb6ce24076c349857374626d8cea36775903d87c881c094e766b242132c68e"
+    },
+    "tkgl-wikidata_edgelist.csv": {
+     "bytes": 279977768,
+     "mtime": "2026-09-09 22:12:19",
+     "sha256": "e813870588d7e5357b57da7dfeee795df6d89dae4f34796d87bbeece639a26d3"
+    },
+    "tkgl-wikidata_static_edgelist.csv": {
+     "bytes": 1738224277,
+     "mtime": "2026-09-09 22:12:32",
+     "sha256": "6af209f516e11621c52c2d9153dbb461ade17ca92a97d73c7677011a8a9f2b20"
+    },
+    "tkgl-wikidata_test_ns.pkl": {
+     "bytes": 14249840168,
+     "mtime": "2026-09-09 22:14:25",
+     "sha256": "0f7ab1e94daee81e01f75756790f35f50fe376782d71f8787d4d6748766e4bdc"
+    },
+    "tkgl-wikidata_val_ns.pkl": {
+     "bytes": 14156948180,
+     "mtime": "2026-09-09 22:16:26",
+     "sha256": "48233ad877c6bd655fb7214e2437e34640ef1338a4ea91eec36a69a3dc6ff2dc"
+    },
+    "tkgl_wikidata_mining.py": {
+     "bytes": 7073,
+     "mtime": "2026-04-21 10:57:02",
+     "sha256": "126bca0c73895e4607f41173a121348e48d84bfa0577df94c5cd4493d97dd0b0"
+    },
+    "tkgl_wikidata_ns_gen.py": {
+     "bytes": 2558,
+     "mtime": "2026-04-21 10:57:02",
+     "sha256": "cd71d2d056af1a8eecf6b47666d35559b2b655ac327134e61d1c8159b72054db"
+    },
+    "wikidata_remove_conflict.py": {
+     "bytes": 3489,
+     "mtime": "2026-04-21 10:57:02",
+     "sha256": "9ed11c286e970dff21dcc8b4dfd7d580b3485334c89c10c1b513fbd15e9bd109"
+    }
+   },
+   "num_events": 19712406,
+   "num_nodes": 1226440,
+   "t_min": 0,
+   "t_max": 2024,
+   "num_rels": 1192,
+   "src_sha256": "89c96292805c7829e6cdabb62073105113f54269beccd5a14f210d2f07017124",
+   "dst_sha256": "af6aeec8960575962ff77fa9ea5c46f4dbb579973c67608c3559d81fe55f224f",
+   "t_sha256": "44350e1f700c524e60acf6dda3cd106a17d90de8d0b9d6c7118cf00e2c88b533",
+   "edge_type_sha256": "ee10a2be4afa26d8122c46c89b502909929940d0fb5482e401e0ac052f9ac41b",
+   "train_mask_sha256": "db1c533803898a1232020efe2df0de6a4e298b508f6eb3a14a9b810588b01da0",
+   "train_edges": 13965006,
+   "train_t_range": [
+    0,
+    1998
+   ],
+   "val_mask_sha256": "9c8a50b913b1645ea584b1fcb0739e1e6f0327b07414bc793407e4330465a5a2",
+   "val_edges": 2869900,
+   "val_t_range": [
+    1999,
+    2010
+   ],
+   "test_mask_sha256": "725ced1c7025c220d14e0ed6039dd949b1ff98916444e7342c235d5bacc25237",
+   "test_edges": 2877500,
+   "test_t_range": [
+    2011,
+    2024
+   ],
+   "negative_sets": {
+    "val": {
+     "file": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/tkgl_wikidata/tkgl-wikidata_val_ns.pkl",
+     "sha256": "48233ad877c6bd655fb7214e2437e34640ef1338a4ea91eec36a69a3dc6ff2dc"
+    },
+    "test": {
+     "file": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/tkgl_wikidata/tkgl-wikidata_test_ns.pkl",
+     "sha256": "0f7ab1e94daee81e01f75756790f35f50fe376782d71f8787d4d6748766e4bdc"
+    }
+   }
+  },
+  "thgl-software": {
+   "loader_name": "thgl-software",
+   "task_family": "thg",
+   "metric": "mrr",
+   "folder": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/thgl_software",
+   "files": {
+    "ml_thgl-software.pkl": {
+     "bytes": 83429878,
+     "mtime": "2026-04-30 11:45:43",
+     "sha256": "fba88dff9d7249225a414073770402d741bf37e4c28b5ecd5224edf486bab7c8"
+    },
+    "ml_thgl-software_edge.pkl": {
+     "bytes": 11918589,
+     "mtime": "2026-04-30 11:45:43",
+     "sha256": "2ae79412afd519be02f980532dd9cf14608dea99168465e10fb15d22b0d67fff"
+    },
+    "ml_thgl-software_nodeType.pkl": {
+     "bytes": 5455555,
+     "mtime": "2026-04-30 11:45:44",
+     "sha256": "c6aecf79d0cf81ff6fb19278f3360195d5cec71b3872d74a7ba28a5def6e776c"
+    },
+    "thgl-software.zip": {
+     "bytes": 1492169637,
+     "mtime": "2026-04-30 11:45:03",
+     "sha256": "98f85ee4098832edfce570a32d466a39a9ea42852d14db1cea07404cc97718cd"
+    },
+    "thgl-software_edgelist.csv": {
+     "bytes": 40647320,
+     "mtime": "2026-04-30 11:45:04",
+     "sha256": "6c445f302f6feb6ec97b2a840bab72b8d618ddf25422fdf1987595d3e028080d"
+    },
+    "thgl-software_edgemapping.csv": {
+     "bytes": 186,
+     "mtime": "2026-04-30 11:45:04",
+     "sha256": "d7e7956ca81d8a4b5c3a9440ea2a4789b8fd676ad25a0cdbc9e1301982d7cae7"
+    },
+    "thgl-software_nodemapping.csv": {
+     "bytes": 50,
+     "mtime": "2026-04-30 11:45:04",
+     "sha256": "ebd320a1637fa46742cca2f33dff43114a5d9687b50a88f11fd1924e7cf4c089"
+    },
+    "thgl-software_nodetype.csv": {
+     "bytes": 6708174,
+     "mtime": "2026-04-30 11:45:04",
+     "sha256": "f979e18a5be8dc542ba260178ebbf1c0d703385c5084ffa9d4f4742692312fb3"
+    },
+    "thgl-software_test_ns.pkl": {
+     "bytes": 1801496688,
+     "mtime": "2026-04-30 11:45:21",
+     "sha256": "d1f6739fcf759fcb3df3d9d0f164d44dc4b823c19a54edbac5bcfbfe56f6b600"
+    },
+    "thgl-software_val_ns.pkl": {
+     "bytes": 1804181243,
+     "mtime": "2026-04-30 11:45:38",
+     "sha256": "8f3ad461aa2aa87970fd9189cf14fe6139e8fe07b1790fa12517324ba0a57d9e"
+    },
+    "thgl_software.py": {
+     "bytes": 5550,
+     "mtime": "2026-04-21 10:57:02",
+     "sha256": "21d70667f334e774023da160adea9cc953c1727c586f45c49ffbe3d189431100"
+    },
+    "thgl_software_ns_gen.py": {
+     "bytes": 2365,
+     "mtime": "2026-04-21 10:57:02",
+     "sha256": "d045db4549208dc774fe2e054baa112056299000d31aca0de5394f860c037202"
+    }
+   },
+   "num_events": 1489806,
+   "num_nodes": 681927,
+   "t_min": 1704085280,
+   "t_max": 1706763599,
+   "num_rels": 14,
+   "src_sha256": "4bb487b8b06177f22faa35031000bee581612354dcdf0e4a735fa60f0fbc2892",
+   "dst_sha256": "8acd072fba2da61f15af6185f0396ffb628b479cf79917bbc3198f309c5d5dec",
+   "t_sha256": "213b0c3f9c3b29a6213120d69389722954bca9ac3990f4d592b0a6836d49a117",
+   "edge_type_sha256": "b9a696e07ee9b9e0eb0b57d1e64fead0aa84b3bc0578fcb7560d05a0c719ba9b",
+   "train_mask_sha256": "91724edbf0b46f27212b37f84e07b8b66ca97b0237ed19bce6866ae270b3f3ba",
+   "train_edges": 1042866,
+   "train_t_range": [
+    1704085280,
+    1706003879
+   ],
+   "val_mask_sha256": "c43c81fbe7f9da2d79bdee9d99e25afb1e15a4aade36130d6a64e8a26de19fa1",
+   "val_edges": 223469,
+   "val_t_range": [
+    1706003880,
+    1706315668
+   ],
+   "test_mask_sha256": "d99228aaf8c778cbf9dc0876d46c3ebc0e196391fbaa8480f199955aa7321ce9",
+   "test_edges": 223471,
+   "test_t_range": [
+    1706315669,
+    1706763599
+   ],
+   "negative_sets": {
+    "val": {
+     "file": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/thgl_software/thgl-software_val_ns.pkl",
+     "sha256": "8f3ad461aa2aa87970fd9189cf14fe6139e8fe07b1790fa12517324ba0a57d9e"
+    },
+    "test": {
+     "file": "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/tgb/datasets/thgl_software/thgl-software_test_ns.pkl",
+     "sha256": "d1f6739fcf759fcb3df3d9d0f164d44dc4b823c19a54edbac5bcfbfe56f6b600"
+    }
+   }
+  }
+ },
+ "elapsed_sec": 154.7
+}

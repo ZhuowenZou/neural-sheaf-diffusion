@@ -82,11 +82,10 @@ class ClockDiagnostics:
                 return np.full(n, default)
             return t[sl].detach().cpu().numpy()
 
-        dt_np = dt.cpu().numpy().astype(np.float64)
-        dtu_np = dt_uncapped.cpu().numpy().astype(np.float64)
-        gap_np = gap_used.cpu().numpy().astype(np.float64)
-        pre_np = content.cpu().numpy().astype(np.float64)
-        tt_np = time_term.cpu().numpy().astype(np.float64)
+        def vec(t):
+            a = t.reshape(-1).cpu().numpy().astype(np.float64)
+            return np.full(n, float(a[0])) if a.size == 1 and n != 1 else a
+        dt_np, dtu_np, gap_np, pre_np, tt_np = vec(dt), vec(dt_uncapped), vec(gap_used), vec(content), vec(time_term)
         endpoint = take(m["is_endpoint"], True).astype(bool)
         lu = take(m["last_update"], float("nan")).astype(np.float64)
         li = take(m["last_interaction"], float("nan")).astype(np.float64)

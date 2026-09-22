@@ -1,0 +1,4 @@
+dataset,group,rec,tsd_lr,arm,arm_lr,seeds,n,tsd_mean,arm_mean,delta_arm_minus_tsd_mean,delta_sd,t95_halfwidth,deltas,signs,method
+tgbl-wiki,smoke,on,0.0003,attention-gates,0.0003,[43],1,0.526320749759674,0.5374252315461635,0.011104481786489484,,,+0.0111,1+ 0-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
+tgbl-wiki,smoke,on,0.0003,core-off,0.0003,[43],1,0.526320749759674,0.540589959077537,0.014269209317863019,,,+0.0143,1+ 0-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
+tgbl-wiki,smoke,on,0.0003,gru-sheaf,0.0003,[43],1,0.526320749759674,0.5254991688802838,-0.0008215808793902157,,,-0.0008,0+ 1-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"

@@ -1,0 +1,11 @@
+reserved 9976 MiB of GPU memory on cuda:0 in the caching allocator (requested 9976; now reserved 9980 MiB)
+device=cuda:0 sha=f84766ab29f0 config={'dataset': 'tkgl-wikidata', 'seed': 46, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 0, 'patience': None, 'min_epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': 2000000, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 300000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': False, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'no_memory': False, 'recurrency_symmetric': True, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 32, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.003, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': False, 'eval_only': 'results/event_bench/leakfree2/wd_f_s46/best.pt', 'backbone': 'tsd', 'spatial': None, 'clock': 'global', 'fast_core_off': False, 'rng_isolation': False, 'no_query_audit': False, 'clock_diagnostics': True, 'audit_eval_only': True, 'out': 'results/review_2026_09_22/audit/wd_f_s46'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=30 (edges=2000000) track_val=4 final_val=12 final_test=14 | prep_sec=19.1
+negative-sample sets loaded in 49.8s
+delta_time_scale=1 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=355253 num_relations=1192 num_nodes=1226440
+parameters_by_component={'embeddings': 19072, 'ssm_input_selector_B': 310464, 'ssm_other': 1157, 'map_decoder': 64, 'spatial_block': 1958, 'scorer': 22361, 'rec': 177, 'other': 0, 'total': 355253, 'trainable': 355253, 'unused_by_construction': 0, 'active': 355253}
+eval-only: loaded results/event_bench/leakfree2/wd_f_s46/best.pt

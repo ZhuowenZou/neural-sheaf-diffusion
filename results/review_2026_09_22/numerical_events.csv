@@ -1,0 +1,5 @@
+run,group,dataset,arm,seed,train_steps,train_nonfinite_loss,train_nonfinite_grad,train_clipped,train_skipped_steps,val_nonfinite_positives,val_nonfinite_negatives,val_skipped_queries,val_metric_examples,test_nonfinite_positives,test_nonfinite_negatives,test_skipped_queries,test_metric_examples,query_audit_affected_total,query_audit_parity
+attention,smoke,tgbl-wiki,attention-gates,43,560,0,0,185,0,0,0,0,4000,0,0,0,4000,0,True
+coreoff,smoke,tgbl-wiki,core-off,43,560,0,0,357,0,0,0,0,4000,0,0,0,4000,0,True
+gru,smoke,tgbl-wiki,gru-sheaf,43,560,0,0,188,0,0,0,0,4000,0,0,0,4000,0,True
+tsd,smoke,tgbl-wiki,tsd,43,560,0,0,228,0,0,0,0,4000,0,0,0,4000,0,True

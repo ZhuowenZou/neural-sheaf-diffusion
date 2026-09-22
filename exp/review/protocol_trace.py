@@ -245,7 +245,7 @@ def main():
                           label_days_checked=len(chosen), pairs=n_pairs, max_abs_err_mean=float(np.mean(errs)) if errs else np.nan,
                           max_abs_err_max=float(np.max(errs)) if errs else np.nan,
                           frac_pairs_exact_1e6=float(np.mean(np.asarray(errs) < 1e-6)) if errs else np.nan))
-        print(f"reconstruction {name}: mean max-abs-err {recon[-1]['max_abs_err_mean']:.4g}, exact frac {recon[-1]['frac_pairs_exact_1e-6']:.3f}", flush=True)
+        print(f"reconstruction {name}: mean max-abs-err {recon[-1]['max_abs_err_mean']:.4g}, exact frac {recon[-1]['frac_pairs_exact_1e6']:.3f}", flush=True)
     recon_df = pd.DataFrame(recon); recon_df.to_csv(os.path.join(args.out, "label_reconstruction.csv"), index=False)
     best = recon_df.sort_values("max_abs_err_mean").iloc[0]
 
