@@ -1,11 +1,12 @@
-# Review campaign summary (auto-generated 2026-09-22 10:35)
+# Review campaign summary (auto-generated 2026-09-22 10:46)
 
-9 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+12 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
 | dataset   | group   | rec   | arm             |     lr |   n |     mean |           std | values          |
 |:----------|:--------|:------|:----------------|-------:|----:|---------:|--------------:|:----------------|
+| tgbl-wiki | matched | on    | core-off        | 0.0003 |   1 | 0.725545 | nan           | 0.7255          |
 | tgbl-wiki | matched | on    | core-off        | 0.001  |   1 | 0.744018 | nan           | 0.7440          |
 | tgbl-wiki | smoke   | on    | attention-gates | 0.0003 |   1 | 0.537425 | nan           | 0.5374          |
 | tgbl-wiki | smoke   | on    | core-off        | 0.0003 |   1 | 0.54059  | nan           | 0.5406          |
@@ -14,11 +15,13 @@
 
 ## Checkpoint-replay audits (P0)
 
-| run      | dataset         |   seed |   validation_mrr |   test_mrr |   retained_test_mrr |   replay_minus_retained_test |   query_audit_affected_total | query_audit_parity   |
-|:---------|:----------------|-------:|-----------------:|-----------:|--------------------:|-----------------------------:|-----------------------------:|:---------------------|
-| sp_f_s47 | tkgl-smallpedia |     47 |         0.644656 |   0.610411 |            0.61118  |                 -0.000769224 |                            0 | True                 |
-| sw_f_s43 | thgl-software   |     43 |         0.379599 |   0.436019 |            0.436019 |                  1.37467e-07 |                            0 | True                 |
-| sw_f_s46 | thgl-software   |     46 |         0.38443  |   0.43997  |            0.439968 |                  2.34667e-06 |                            0 | True                 |
+| run        | dataset         |   seed |   validation_mrr |   test_mrr |   retained_test_mrr |   replay_minus_retained_test |   query_audit_affected_total | query_audit_parity   |
+|:-----------|:----------------|-------:|-----------------:|-----------:|--------------------:|-----------------------------:|-----------------------------:|:---------------------|
+| sp_f_s47   | tkgl-smallpedia |     47 |         0.644656 |   0.610411 |            0.61118  |                 -0.000769224 |                            0 | True                 |
+| sw_f_s43   | thgl-software   |     43 |         0.379599 |   0.436019 |            0.436019 |                  1.37467e-07 |                            0 | True                 |
+| sw_f_s46   | thgl-software   |     46 |         0.38443  |   0.43997  |            0.439968 |                  2.34667e-06 |                            0 | True                 |
+| wiki_f_s46 | tgbl-wiki       |     46 |         0.744714 |   0.730548 |            0.730525 |                  2.31301e-05 |                            0 | True                 |
+| wiki_f_s47 | tgbl-wiki       |     47 |         0.743804 |   0.733075 |            0.733075 |                  6.81311e-10 |                            0 | True                 |
 
 ## Score-validity audit (per split)
 
@@ -30,8 +33,14 @@
 | audit   | sw_f_s43                | test    |    223471 |                  0 |               0 |         0 |            0 |            0 |      0.436019 |      0.436019 |           0.436019 |                           0 |                         0 |
 | audit   | sw_f_s46                | val     |    223469 |                  0 |               0 |         0 |            0 |            0 |      0.38443  |      0.38443  |           0.38443  |                           0 |                         0 |
 | audit   | sw_f_s46                | test    |    223471 |                  0 |               0 |         0 |            0 |            0 |      0.43997  |      0.43997  |           0.43997  |                           0 |                         0 |
+| audit   | wiki_f_s46              | val     |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.744714 |      0.744714 |           0.744714 |                           0 |                         0 |
+| audit   | wiki_f_s46              | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.730548 |      0.730548 |           0.730548 |                           0 |                         0 |
+| audit   | wiki_f_s47              | val     |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.743804 |      0.743804 |           0.743804 |                           0 |                         0 |
+| audit   | wiki_f_s47              | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.733075 |      0.733075 |           0.733075 |                           0 |                         0 |
 | matched | wiki_coreoff_s43_lr1e-3 | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.754794 |      0.754794 |           0.754794 |                           0 |                         0 |
 | matched | wiki_coreoff_s43_lr1e-3 | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.744018 |      0.744018 |           0.744018 |                           0 |                         0 |
+| matched | wiki_coreoff_s43_lr3e-4 | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.726325 |      0.726325 |           0.726325 |                           0 |                         0 |
+| matched | wiki_coreoff_s43_lr3e-4 | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.725545 |      0.725545 |           0.725545 |                           0 |                         0 |
 | smoke   | attention               | val     |      6000 |                  0 |               0 |         0 |            0 |            0 |      0.642936 |      0.642936 |           0.642936 |                           0 |                         0 |
 | smoke   | attention               | test    |      4000 |                  0 |               0 |         0 |            0 |            0 |      0.537425 |      0.537425 |           0.537425 |                           0 |                         0 |
 | smoke   | coreoff                 | val     |      6000 |                  0 |               0 |         0 |            0 |            0 |      0.641534 |      0.641534 |           0.641534 |                           0 |                         0 |
@@ -65,6 +74,18 @@
 | audit   | sw_f_s46      | global  | val          | closure    |  185742 |   0.00171205  |          0           |                0 |                     0 | 0.0037614  |         0.00411092 |                   3.55419 |          3600 |
 | audit   | sw_f_s46      | global  | test         | endpoint   |  270528 |   0.240918    |          0           |            66451 |                 66451 | 0.0801793  |         0.168496   |                   3.55559 |          3600 |
 | audit   | sw_f_s46      | global  | test         | closure    |  219058 |   0.00131016  |          0           |                0 |                     0 | 0.00362975 |         0.00389548 |                   3.55507 |          3600 |
+| audit   | wiki_f_s46    | global  | train_replay | endpoint   |  127665 |   0.0118357   |          0.000148827 |             3503 |                  7475 | 0.0454231  |         0.0488664  |                   2.77805 |           600 |
+| audit   | wiki_f_s46    | global  | train_replay | closure    |  894276 |   0.000193453 |          6.59752e-05 |             3972 |                132309 | 0.033705   |         0.0337288  |                   2.77826 |           600 |
+| audit   | wiki_f_s46    | global  | val          | endpoint   |   26656 |   0.00712785  |          0           |              836 |                   836 | 0.0448337  |         0.0470762  |                   2.778   |           600 |
+| audit   | wiki_f_s46    | global  | val          | closure    |  136421 |   0.000344522 |          0           |                0 |                     0 | 0.0340043  |         0.034021   |                   2.77826 |           600 |
+| audit   | wiki_f_s46    | global  | test         | endpoint   |   28587 |   0.0126631   |          0           |              916 |                   916 | 0.0474092  |         0.0508305  |                   2.77796 |           600 |
+| audit   | wiki_f_s46    | global  | test         | closure    |  175893 |   0.000187614 |          0           |                0 |                     0 | 0.0337025  |         0.0337105  |                   2.77824 |           600 |
+| audit   | wiki_f_s47    | global  | train_replay | endpoint   |  127665 |   0.0564838   |          0.000148827 |             3503 |                  7475 | 0.0405183  |         0.180628   |                   2.77805 |           600 |
+| audit   | wiki_f_s47    | global  | train_replay | closure    |  894276 |   0.00622403  |          6.59752e-05 |             3972 |                132309 | 0.0175493  |         0.0220584  |                   2.77826 |           600 |
+| audit   | wiki_f_s47    | global  | val          | endpoint   |   26656 |   0.0365396   |          0           |              836 |                   836 | 0.0338193  |         0.118953   |                   2.778   |           600 |
+| audit   | wiki_f_s47    | global  | val          | closure    |  136421 |   0.00613542  |          0           |                0 |                     0 | 0.0175875  |         0.0221466  |                   2.77826 |           600 |
+| audit   | wiki_f_s47    | global  | test         | endpoint   |   28587 |   0.051352    |          0           |              916 |                   916 | 0.0378475  |         0.175124   |                   2.77796 |           600 |
+| audit   | wiki_f_s47    | global  | test         | closure    |  175893 |   0.00645279  |          0           |                0 |                     0 | 0.0180415  |         0.0228511  |                   2.77824 |           600 |
 | smoke   | tsd_clockdiag | global  | train_replay | endpoint   |   23975 |   0           |          0.00200209  |              873 |                  3072 | 0.0371964  |         0.0371964  |                   2.77756 |           600 |
 | smoke   | tsd_clockdiag | global  | train_replay | closure    |  123689 |   0           |          0.00126123  |             2199 |                 37138 | 0.0345548  |         0.0345548  |                   2.77762 |           600 |
 | smoke   | tsd_clockdiag | global  | val          | endpoint   |    4606 |   0           |          0           |              265 |                   265 | 0.0368777  |         0.0368777  |                   2.77797 |           600 |
@@ -76,7 +97,7 @@
 
 | run                       | state           |   last_epoch |   attempts |
 |:--------------------------|:----------------|-------------:|-----------:|
-| audit2_sp_f_s47           | crashed         |            0 |          1 |
+| audit2_sp_f_s47           | running/pending |            0 |          2 |
 | audit_forum_f_s43         | running/pending |            0 |          1 |
 | audit_forum_f_s46         | running/pending |            0 |          1 |
 | audit_forum_f_s47         | running/pending |            0 |          2 |
@@ -93,8 +114,6 @@
 | audit_wd_f_s46            | running/pending |            0 |          1 |
 | audit_wd_f_s47            | running/pending |            0 |          1 |
 | audit_wiki_f_s43          | running/pending |            0 |          1 |
-| audit_wiki_f_s46          | running/pending |            0 |          1 |
-| audit_wiki_f_s47          | running/pending |            0 |          1 |
 | forum_attention_rec_s43   | running/pending |            0 |          1 |
 | forum_gru_norec_s43       | running/pending |            0 |          1 |
 | forum_gru_norec_s46       | running/pending |            0 |          1 |
@@ -105,11 +124,10 @@
 | forum_nodeframe_rec_s43   | running/pending |            0 |          1 |
 | wiki_attention_s43_lr1e-3 | running/pending |            0 |          1 |
 | wiki_attention_s43_lr3e-4 | running/pending |            1 |          1 |
-| wiki_coreoff_s43_lr3e-4   | running/pending |            5 |          1 |
 | wiki_curonly_s43_lr1e-3   | running/pending |            2 |          1 |
-| wiki_curonly_s43_lr3e-4   | running/pending |            0 |          1 |
-| wiki_diag_s43_lr1e-3      | running/pending |            1 |          1 |
-| wiki_diag_s43_lr3e-4      | running/pending |            1 |          1 |
+| wiki_curonly_s43_lr3e-4   | running/pending |            1 |          1 |
+| wiki_diag_s43_lr1e-3      | running/pending |            2 |          1 |
+| wiki_diag_s43_lr3e-4      | running/pending |            2 |          1 |
 | wiki_gru_s43_lr1e-3       | running/pending |            2 |          1 |
 | wiki_gru_s43_lr3e-4       | running/pending |            2 |          1 |
 | wiki_identity_s43_lr1e-3  | running/pending |            0 |          1 |

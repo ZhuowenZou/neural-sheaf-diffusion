@@ -2,7 +2,10 @@ run,group,dataset,arm,seed,train_steps,train_nonfinite_loss,train_nonfinite_grad
 sp_f_s47,audit,tkgl-smallpedia,tsd,47,0,0,0,0,0,0,0,0,162066,0,0,0,163172,0,True
 sw_f_s43,audit,thgl-software,tsd,43,0,0,0,0,0,0,0,0,223469,0,0,0,223471,0,True
 sw_f_s46,audit,thgl-software,tsd,46,0,0,0,0,0,0,0,0,223469,0,0,0,223471,0,True
+wiki_f_s46,audit,tgbl-wiki,tsd,46,0,0,0,0,0,0,0,0,23621,0,0,0,23621,0,True
+wiki_f_s47,audit,tgbl-wiki,tsd,47,0,0,0,0,0,0,0,0,23621,0,0,0,23621,0,True
 wiki_coreoff_s43_lr1e-3,matched,tgbl-wiki,core-off,43,24832,0,0,487,0,0,0,0,23621,0,0,0,23621,0,True
+wiki_coreoff_s43_lr3e-4,matched,tgbl-wiki,core-off,43,24832,0,0,2833,0,0,0,0,23621,0,0,0,23621,0,True
 attention,smoke,tgbl-wiki,attention-gates,43,560,0,0,185,0,0,0,0,4000,0,0,0,4000,0,True
 coreoff,smoke,tgbl-wiki,core-off,43,560,0,0,357,0,0,0,0,4000,0,0,0,4000,0,True
 gru,smoke,tgbl-wiki,gru-sheaf,43,560,0,0,188,0,0,0,0,4000,0,0,0,4000,0,True
