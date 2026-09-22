@@ -17,6 +17,9 @@ class TemporalSnapshot:
     timestamp: torch.Tensor
     edge_timestamps: Optional[torch.Tensor] = None
     edge_types: Optional[torch.Tensor] = None
+    # Global edge ids (row indices of the TemporalData) of the events in this
+    # snapshot: the stable per-query identifier used by the score-validity audit.
+    edge_ids: Optional[torch.Tensor] = None
 
 
 def _make_bidirectional_edge_index(src: torch.Tensor, dst: torch.Tensor) -> torch.Tensor:
@@ -77,6 +80,7 @@ def build_temporal_snapshots(
                 timestamp=snapshot_ts,
                 edge_timestamps=ordered_ts[start:stop],
                 edge_types=snapshot_edge_types,
+                edge_ids=snapshot_edge_ids.long(),
             )
         )
         start = stop

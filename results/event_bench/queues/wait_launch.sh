@@ -16,7 +16,7 @@
 #     memory wins; the decision is serialised with flock;
 #   * the job runs with TSD_RESERVE_GPU_MB so it pre-reserves its memory in the caching
 #     allocator and cannot be squeezed by a later arrival on the same card.
-# Polling interval: TSD_POLL_SEC (default 180 s).
+# Polling interval: TSD_POLL_SEC (default 180 s).  TSD_ONLY_GPUS="3 4" restricts placement to those cards.
 MIN=$1; LOG=$2; shift 2
 ROOT=/home/zhuowez1/project/neural-sheaf-diffusion; cd $ROOT
 C=$ROOT/results/monitor/claims; mkdir -p $C
@@ -55,6 +55,8 @@ while true; do
     while IFS=, read -r idx uuid used total; do
       idx=${idx// /}; used=${used// /}; total=${total// /}
       [ -n "${eligible[$idx]}" ] || continue
+      # optional restriction to a subset of cards (still subject to the eligibility rules above)
+      if [ -n "$TSD_ONLY_GPUS" ]; then ok=0; for g in $TSD_ONLY_GPUS; do [ "$g" = "$idx" ] && ok=1; done; [ $ok = 1 ] || continue; fi
       free=$((total - used - ${claimed[$idx]:-0}))
       [ $free -ge $MIN ] || continue
       [ $free -gt $bestfree ] && { bestfree=$free; best=$idx; }

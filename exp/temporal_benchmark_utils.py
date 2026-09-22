@@ -250,6 +250,7 @@ def _augment_snapshot_with_static_edges(snapshot: TemporalSnapshot, static_edge_
         timestamp=snapshot.timestamp,
         edge_timestamps=snapshot.edge_timestamps,
         edge_types=snapshot.edge_types,
+        edge_ids=getattr(snapshot, "edge_ids", None),
     )
 
 
@@ -440,20 +441,184 @@ def recommend_time_window(estimate_df, target_max_snapshots=None, target_max_mea
 
 
 _NONFINITE_POSITIVES = [0]
+_NONFINITE_NEGATIVES = [0]
 _SKIPPED_QUERIES = [0]
+
+# Training-side numerical counters (serialised into results.csv by the runners;
+# review handoff 2026-09-22, section 6).  Reset by `reset_train_counters`.
+TRAIN_COUNTERS = {"steps": 0, "nonfinite_loss": 0, "nonfinite_grad": 0, "clipped": 0, "skipped_steps": 0}
+
+
+def reset_train_counters():
+    for k in TRAIN_COUNTERS:
+        TRAIN_COUNTERS[k] = 0
+
+
+# Isolated RNG stream for training negatives (review handoff, section 3): when a
+# generator is installed here, negative destinations are drawn from it instead
+# of the global torch RNG, so architecture-dependent draws (initialisation,
+# dropout) cannot change the sampled training task between paired arms.
+NEGATIVE_RNG = {"generator": None}
+
+
+def install_negative_rng(seed, epoch, device):
+    gen = torch.Generator(device=device)
+    gen.manual_seed(int(seed) * 1_000_003 + int(epoch) * 7919 + 17)
+    NEGATIVE_RNG["generator"] = gen
+    return gen
+
+
+class QueryValidityAudit:
+    """Per-query score-validity audit (review handoff, section 0).
+
+    Records, BEFORE numerical substitution and before the pad mask is applied,
+    the validity of every positive score and the number of NaN / +inf / -inf
+    negative logits per query, together with the candidate count, the intended
+    (pad) mask count and the action taken.  Aggregates are exact per split; a
+    bounded list of failing queries keeps replay information (global edge id,
+    split, snapshot index, timestamp, relation).  Three reciprocal ranks are
+    accumulated per query: TGB's own semantics on the RAW scores (a NaN positive
+    ranks first), the guarded scores the harness reports, and a conservative
+    diagnostic that assigns reciprocal rank 0 to any query with an invalid
+    positive or an invalid negative (full denominator kept).  Parity of the
+    three establishes that no substitution changed the reported metric."""
+
+    def __init__(self, max_failures=20000, k=10):
+        self.max_failures = int(max_failures)
+        self.k = int(k)
+        self.splits = {}
+        self.failures = []
+        self.state_checks = []
+
+    def _agg(self, split):
+        if split not in self.splits:
+            self.splits[split] = dict(
+                queries=0, snapshots=0, candidates=0, pad_masked=0,
+                pos_nonfinite=0, pos_nan=0, pos_posinf=0, pos_neginf=0,
+                neg_nan=0, neg_posinf=0, neg_neginf=0, queries_with_invalid_neg=0,
+                queries_affected=0, transformed_scores=0,
+                rr_tgb_raw=0.0, rr_guarded=0.0, rr_conservative=0.0, hits_guarded=0.0,
+                state_nonfinite_snapshots=0, rec_nonfinite_snapshots=0,
+            )
+        return self.splits[split]
+
+    @staticmethod
+    def _ranks(pos, neg):
+        # TGB semantics (numpy comparisons; NaN compares False)
+        pos = pos.reshape(-1, 1)
+        opt = (neg > pos).sum(axis=1)
+        pes = (neg >= pos).sum(axis=1)
+        return 0.5 * (opt + pes) + 1.0
+
+    def record_batch(self, split, snapshot_index, snapshot, pos_raw, neg_raw, pad_mask,
+                     pos_guarded, neg_guarded):
+        a = self._agg(split)
+        pos_np = pos_raw.detach().cpu().numpy().astype(np.float64)
+        neg_np = neg_raw.detach().cpu().numpy().astype(np.float64)
+        mask = np.asarray(pad_mask, dtype=bool) if pad_mask is not None else np.ones_like(neg_np, dtype=bool)
+        n, kc = neg_np.shape
+        a["queries"] += n
+        a["snapshots"] += 1
+        a["candidates"] += int(mask.sum())
+        a["pad_masked"] += int((~mask).sum())
+        pos_nan = np.isnan(pos_np); pos_pinf = pos_np == np.inf; pos_ninf = pos_np == -np.inf
+        neg_nan = np.isnan(neg_np) & mask; neg_pinf = (neg_np == np.inf) & mask; neg_ninf = (neg_np == -np.inf) & mask
+        a["pos_nan"] += int(pos_nan.sum()); a["pos_posinf"] += int(pos_pinf.sum()); a["pos_neginf"] += int(pos_ninf.sum())
+        a["pos_nonfinite"] += int((pos_nan | pos_pinf | pos_ninf).sum())
+        a["neg_nan"] += int(neg_nan.sum()); a["neg_posinf"] += int(neg_pinf.sum()); a["neg_neginf"] += int(neg_ninf.sum())
+        bad_neg_q = (neg_nan | neg_pinf | neg_ninf).any(axis=1)
+        bad_pos_q = pos_nan | pos_pinf | pos_ninf
+        affected = bad_neg_q | bad_pos_q
+        a["queries_with_invalid_neg"] += int(bad_neg_q.sum())
+        a["queries_affected"] += int(affected.sum())
+        a["transformed_scores"] += int((pos_nan | pos_pinf).sum() + (neg_nan | neg_pinf).sum())
+        # raw TGB semantics on the intended candidate set (pads excluded by -inf, as the harness does)
+        neg_raw_masked = np.where(mask, neg_np, -np.inf)
+        rr_raw = 1.0 / self._ranks(pos_np, neg_raw_masked)
+        rr_g = 1.0 / self._ranks(pos_guarded.detach().cpu().numpy().astype(np.float64),
+                                 neg_guarded.detach().cpu().numpy().astype(np.float64))
+        rr_c = np.where(affected, 0.0, rr_g)
+        a["rr_tgb_raw"] += float(rr_raw.sum()); a["rr_guarded"] += float(rr_g.sum()); a["rr_conservative"] += float(rr_c.sum())
+        a["hits_guarded"] += float((self._ranks(pos_guarded.detach().cpu().numpy().astype(np.float64),
+                                                neg_guarded.detach().cpu().numpy().astype(np.float64)) <= self.k).sum())
+        if affected.any() and len(self.failures) < self.max_failures:
+            ids = getattr(snapshot, "edge_ids", None)
+            ts = getattr(snapshot, "edge_timestamps", None)
+            et = getattr(snapshot, "edge_types", None)
+            for i in np.nonzero(affected)[0][: self.max_failures - len(self.failures)]:
+                self.failures.append(dict(
+                    split=split, snapshot_index=int(snapshot_index), row=int(i),
+                    edge_id=int(ids[i]) if ids is not None else -1,
+                    src=int(snapshot.src[i]), dst=int(snapshot.dst[i]),
+                    timestamp=float(ts[i]) if ts is not None else float(snapshot.timestamp),
+                    relation=int(et[i]) if et is not None else -1,
+                    positive_raw=float(pos_np[i]), positive_valid=bool(~bad_pos_q[i]),
+                    neg_nan=int(neg_nan[i].sum()), neg_posinf=int(neg_pinf[i].sum()), neg_neginf=int(neg_ninf[i].sum()),
+                    candidates=int(mask[i].sum()), pad_masked=int((~mask[i]).sum()),
+                    rr_tgb_raw=float(rr_raw[i]), rr_guarded=float(rr_g[i]), rr_conservative=float(rr_c[i]),
+                    action="positive->-inf" if bad_pos_q[i] else "negatives(nan,+inf)->-inf",
+                ))
+
+    def record_state(self, split, snapshot_index, model, state):
+        """Finite checks of the persistent state and the recurrency caches after
+        the snapshot was ingested (locates the first failure; nothing is repaired)."""
+        a = self._agg(split)
+        bad_state = False
+        for name in ("memory", "spatial"):
+            t = getattr(state, name, None) if state is not None else None
+            if t is not None and not bool(torch.isfinite(t).all()):
+                bad_state = True
+        bad_rec = False
+        for _, store in getattr(model, "_rec_stores", []):
+            if store.size:
+                seen = store.count > 0
+                if not bool(torch.isfinite(store.count).all()) or not bool(torch.isfinite(store.last_t[seen]).all()):
+                    bad_rec = True
+        if bad_state:
+            a["state_nonfinite_snapshots"] += 1
+        if bad_rec:
+            a["rec_nonfinite_snapshots"] += 1
+        if (bad_state or bad_rec) and len(self.state_checks) < self.max_failures:
+            self.state_checks.append(dict(split=split, snapshot_index=int(snapshot_index),
+                                          state_nonfinite=bad_state, rec_nonfinite=bad_rec))
+
+    def summary_rows(self, tag=None):
+        rows = []
+        for split, a in self.splits.items():
+            q = max(a["queries"], 1)
+            rows.append(dict(tag=tag, split=split, **a,
+                             mrr_tgb_raw=a["rr_tgb_raw"] / q, mrr_guarded=a["rr_guarded"] / q,
+                             mrr_conservative=a["rr_conservative"] / q, hits10_guarded=a["hits_guarded"] / q,
+                             parity_raw_vs_guarded=abs(a["rr_tgb_raw"] - a["rr_guarded"]) < 1e-9,
+                             parity_guarded_vs_conservative=abs(a["rr_guarded"] - a["rr_conservative"]) < 1e-9))
+        return rows
+
+    def write(self, out_dir, tag=None):
+        os.makedirs(out_dir, exist_ok=True)
+        pd.DataFrame(self.summary_rows(tag)).to_csv(os.path.join(out_dir, "query_validity.csv"), index=False)
+        pd.DataFrame(self.failures).to_csv(os.path.join(out_dir, "query_validity_failures.csv"), index=False)
+        pd.DataFrame(self.state_checks).to_csv(os.path.join(out_dir, "state_validity_failures.csv"), index=False)
+
+
+# The active audit collector (None = disabled).  Runners install one with
+# `QUERY_AUDIT["audit"] = QueryValidityAudit()` and write it out afterwards.
+QUERY_AUDIT = {"audit": None}
 
 
 def _guard_nonfinite_scores(y_pred_pos, y_pred_neg):
     """TGB's link evaluator ranks a non-finite positive FIRST (NaN comparisons
     are False -> optimistic rank 1 -> MRR 1.0).  A non-finite model score is an
     invalid prediction, so it is ranked LAST here (-inf) and counted; NaN/+inf
-    negatives are set to -inf (they cannot outrank anything).  Audit finding #3."""
+    negatives are set to -inf (they cannot outrank anything) and are counted too
+    (review handoff, section 0: a removed invalid negative can improve the
+    positive's rank, so negative failures must be visible).  Audit finding #3."""
     pos_bad = ~torch.isfinite(y_pred_pos)
     if bool(pos_bad.any()):
         _NONFINITE_POSITIVES[0] += int(pos_bad.sum().item())
         y_pred_pos = y_pred_pos.masked_fill(pos_bad, float("-inf"))
     neg_bad = torch.isnan(y_pred_neg) | (y_pred_neg == float("inf"))
     if bool(neg_bad.any()):
+        _NONFINITE_NEGATIVES[0] += int(neg_bad.sum().item())
         y_pred_neg = y_pred_neg.masked_fill(neg_bad, float("-inf"))
     return y_pred_pos, y_pred_neg
 
@@ -686,11 +851,15 @@ def _sample_uniform_negative_destinations(
         return None
 
     positive_dst = positive_dst.long()
+    gen = NEGATIVE_RNG.get("generator")
+    if gen is not None and str(gen.device) != str(positive_dst.device):
+        gen = None   # generator devices must match; fall back to the global RNG
     sampled = torch.randint(
         low=0,
         high=max(vocab - 1, 1),
         size=(positive_dst.numel(), negatives_per_positive),
         device=positive_dst.device,
+        generator=gen,
     )
     sampled = sampled + (sampled >= (positive_dst.view(-1, 1) - lo)).long()
     return (sampled + lo).long()
@@ -928,7 +1097,7 @@ def evaluate_model_streaming(
     score_from_previous = os.environ.get("TSD_SCORE_FROM_PREVIOUS_STATE") == "1"
     prev_output = None
     with torch.no_grad():
-        for snapshot in snapshots:
+        for snapshot_index, snapshot in enumerate(snapshots):
             deferred = score_from_previous and use_event_scoring
             if deferred:
                 if prev_output is None:
@@ -1013,7 +1182,12 @@ def evaluate_model_streaming(
                     losses.append(_event_pairwise_ranking_loss(positive_scores, loss_negatives).detach().cpu())
 
                 if compute_metric and split_mode in ("val", "test") and negative_scores is not None:
+                    raw_pos, raw_neg = positive_scores, negative_scores
                     positive_scores, negative_scores = _guard_nonfinite_scores(positive_scores, negative_scores)
+                    audit = QUERY_AUDIT.get("audit")
+                    if audit is not None:
+                        audit.record_batch(split_mode, snapshot_index, snapshot, raw_pos, raw_neg, neg_mask,
+                                           positive_scores, negative_scores)
                     score = evaluator.eval({
                         "y_pred_pos": positive_scores,
                         "y_pred_neg": negative_scores,
@@ -1031,6 +1205,9 @@ def evaluate_model_streaming(
                     # update: ingest snapshot k after its events were scored
                     outputs, state = model.forward_sequence([snapshot], initial_state=state)
                     prev_output = outputs[0]
+                audit = QUERY_AUDIT.get("audit")
+                if audit is not None and split_mode in ("val", "test"):
+                    audit.record_state(split_mode, snapshot_index, model, state)
                 continue
 
             logits = model_output
@@ -1084,12 +1261,15 @@ def evaluate_model_streaming(
     mean_loss = float(torch.stack(losses).mean().item()) if losses else float("nan")
     # Audit accounting: TGB scores every query and never ranks a NaN first.
     evaluate_model_streaming.last_nonfinite_positives = _NONFINITE_POSITIVES[0]
+    evaluate_model_streaming.last_nonfinite_negatives = _NONFINITE_NEGATIVES[0]
     evaluate_model_streaming.last_skipped_queries = _SKIPPED_QUERIES[0]
     evaluate_model_streaming.last_metric_examples = metric_examples
-    if _NONFINITE_POSITIVES[0] or _SKIPPED_QUERIES[0]:
+    if _NONFINITE_POSITIVES[0] or _NONFINITE_NEGATIVES[0] or _SKIPPED_QUERIES[0]:
         print(f"[eval-audit] split={split_mode} non_finite_positive_scores={_NONFINITE_POSITIVES[0]} "
+              f"non_finite_negative_scores={_NONFINITE_NEGATIVES[0]} "
               f"skipped_queries={_SKIPPED_QUERIES[0]} scored_queries={metric_examples}", flush=True)
     _NONFINITE_POSITIVES[0] = 0
+    _NONFINITE_NEGATIVES[0] = 0
     _SKIPPED_QUERIES[0] = 0
     return metric, mean_loss, state
 
@@ -1126,9 +1306,19 @@ def run_epoch(
                 out = dict(out, node_signal=None)
             loss = sequence_loss_for_task(spec, [out], dataset, [train_snapshots[k]], model=model)
             if loss.requires_grad:
-                loss.backward()
-                optimizer.step()
-                losses.append(float(loss.detach().cpu()))
+                if not bool(torch.isfinite(loss)):
+                    # a non-finite loss is skipped explicitly and COUNTED (it used to
+                    # reach backward and be dropped silently by the gradient guard)
+                    TRAIN_COUNTERS["nonfinite_loss"] += 1
+                    TRAIN_COUNTERS["skipped_steps"] += 1
+                    optimizer.zero_grad()
+                else:
+                    loss.backward()
+                    stepped = optimizer.step()
+                    TRAIN_COUNTERS["steps"] += 1
+                    if stepped is False:
+                        TRAIN_COUNTERS["skipped_steps"] += 1
+                    losses.append(float(loss.detach().cpu()))
             state = detach_temporal_state(new_state)
         return float(sum(losses) / len(losses)) if losses else 0.0
     if bptt_steps is None or bptt_steps <= 0:

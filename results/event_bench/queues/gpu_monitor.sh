@@ -7,7 +7,7 @@
 #             command from leakfree2_all.sh; everything is appended to results/monitor/actions.log
 cd /home/zhuowez1/project/neural-sheaf-diffusion || exit 1
 M=results/monitor; mkdir -p $M
-L=results/event_bench/leakfree2; Q=results/event_bench/queues
+L=results/event_bench/leakfree2; Q=results/event_bench/queues; RV=results/review_2026_09_22
 PY=/home/zhuowez1/miniconda3/envs/nsd/bin/python; WL=$Q/wait_launch.sh
 INTERVAL=${INTERVAL:-180}   # 3-minute polling (user request 2026-09-11)
 OWN=${TSD_OWN_GPUS:-"0 7"}; TAKEOVER=${TSD_IDLE_TAKEOVER_SEC:-3600}; C=$M/claims; mkdir -p $C
@@ -74,6 +74,14 @@ while true; do
     for cmdf in $L/*.cmd; do [ -f "$cmdf" ] || continue; n=$(basename $cmdf .cmd); [ -f $L/$n.log ] && continue
       if pgrep -f -- "wait_launch.sh [0-9]* $L/$n.log" >/dev/null 2>&1; then echo "- WAITING  $n (launcher pending GPU memory; attempts so far: $(ls $L/$n.fail*.log 2>/dev/null | wc -l))"
       else echo "- QUEUED   $n (.cmd present; daemon will launch)"; fi; done
+    echo; echo "## review 2026-09-22 runs ($RV/queue)"
+    for cmdf in $RV/queue/*.cmd; do [ -f "$cmdf" ] || continue; n=$(basename $cmdf .cmd); out=$(grep -o -- "--out [^ ]*" $cmdf | head -1 | cut -d' ' -f2); log=$RV/queue/$n.log
+      if [ -n "$out" ] && [ -f $out/results.csv ]; then echo "- DONE     $n: $(grep -m1 -h 'FINAL val_mrr' $log 2>/dev/null | cut -c1-80)"
+      elif grep -q "OutOfMemoryError\|Traceback" $log 2>/dev/null; then echo "- CRASHED  $n: $(grep -m1 -h 'OutOfMemoryError\|Error' $log | cut -c1-80) (attempts $(ls $RV/queue/$n.fail*.log 2>/dev/null | wc -l))"
+      elif pgrep -f -- "--out $out\b" >/dev/null 2>&1; then echo "- RUNNING  $n: $(grep -E 'epoch|final val' $log 2>/dev/null | tail -1 | sed 's/.*epoch/epoch/' | cut -c1-70)"
+      elif pgrep -f -- "wait_launch.sh [0-9]* $log" >/dev/null 2>&1; then echo "- WAITING  $n (launcher pending GPU)"
+      else echo "- QUEUED   $n"; fi
+    done
     echo; echo "## node-property reruns"
     for f in results/leakfree_nodeprop/*.log; do n=$(basename $f .log); [ "$n" = lane ] && continue; echo "- $n: $(grep -E 'mean|seed 4' $f 2>/dev/null | tail -1 | cut -c1-90)"; done
     echo; echo "## synthetic v4"
@@ -108,10 +116,12 @@ mv -f $L/$n.log $L/$n.oom.log 2>/dev/null; $line" > $L/$n.retry.log 2>&1 &
   # (an executable script that execs wait_launch.sh with the full command). A run is
   # (re)launched when it is neither finished nor alive (no python process, no pending
   # launcher); the crashed log is kept as <name>.failN.log; at most 4 attempts.
-  for cmdf in $L/*.cmd results/leakfree_nodeprop/*.cmd; do
+  for cmdf in $L/*.cmd results/leakfree_nodeprop/*.cmd $RV/queue/*.cmd; do
     [ -f "$cmdf" ] || continue
     dir=$(dirname $cmdf); n=$(basename $cmdf .cmd); log=$dir/$n.log
-    if [ -f $dir/$n/results.csv ] || grep -q "FINAL val_mrr\|test NDCG mean" $log 2>/dev/null; then continue; fi
+    outd=$(grep -o -- "--out [^ ]*" $cmdf | head -1 | cut -d' ' -f2)
+    if [ -f $dir/$n/results.csv ] || { [ -n "$outd" ] && [ -f $outd/results.csv ]; } || grep -q "FINAL val_mrr\|test NDCG mean\|REVIEW-DONE" $log 2>/dev/null; then continue; fi
+    if [ -n "$outd" ] && pgrep -f -- "--out $outd\b" >/dev/null 2>&1; then continue; fi
     if pgrep -f -- "--out $dir/$n\b" >/dev/null 2>&1 || pgrep -f -- "wait_launch.sh [0-9]* $log" >/dev/null 2>&1 || pgrep -f -- "bash $cmdf" >/dev/null 2>&1; then continue; fi
     tries=$(ls $dir/$n.fail*.log 2>/dev/null | wc -l)
     [ $tries -ge 4 ] && continue

@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /home/zhuowez1/project/neural-sheaf-diffusion
+export TSD_ONLY_GPUS="0"
+exec results/event_bench/queues/wait_launch.sh 2000 results/review_2026_09_22/queue/audit_wiki_f_s46.log /home/zhuowez1/miniconda3/envs/nsd/bin/python -m exp.run_event_benchmark --bptt-steps 1 --candidate-chunk-size 1024 --closure-hops 1 --context-edges 50000 --d 2 --dataset tgbl-wiki --feedback-dim 16 --grad-clip 1.0 --hidden-channels 8 --layers 2 --lr 0.0003 --max-score-elements 4000000 --model faithful --predict-from-previous --recurrency-decoder --seed 46 --sheaf-conditioning history --temporal-d-model 64 --time-window 600.0 --track-val-edges 8000 --train-loss softplus --train-negatives-per-pos 32 --weight-decay 0.0 --epochs 0 --eval-only results/event_bench/leakfree2/wiki_f_s46/best.pt --audit-eval-only --clock-diagnostics --predict-from-previous --out results/review_2026_09_22/audit/wiki_f_s46 > results/review_2026_09_22/queue/audit_wiki_f_s46.log 2>&1

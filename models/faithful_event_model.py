@@ -32,7 +32,7 @@ from torch_geometric.utils import degree
 from .mamba_models import TemporalMambaState
 from .sheaf_models import LocalConcatSheafLearner
 from .sparse_temporal_mamba import EventTemporalMambaSheafDiffusion
-from .temporal_sheaf_ssm import SelectiveZOHSSM
+from .temporal_sheaf_ssm import DiagonalZOHSSM, GRUMemory, SelectiveZOHSSM
 
 
 class _RecurrencyStore:
@@ -185,13 +185,38 @@ class FaithfulEventTemporalSheafDiffusion(EventTemporalMambaSheafDiffusion):
         self._extra_q_dim = (int(args.get("relation_input_dim", 16))
                              if (bool(args.get("relation_in_input", False)) and int(args.get("num_relations", 0) or 0) > 0)
                              else 0)
-        self.ssm = SelectiveZOHSSM(
+        # Temporal backbone (review handoff 2026-09-22, section 3): the paper's
+        # selective ZOH SSM ("tsd"), a stable diagonal SSM with fixed B and the
+        # same step selector ("diag_ssm"), or a GRU with the same inputs plus
+        # the gap feature ("gru").  Everything downstream (readout, maps, spatial
+        # block, head, REC) is shared.
+        self.backbone = str(args.get("backbone", "tsd"))
+        backbone_cls = {"tsd": SelectiveZOHSSM, "diag_ssm": DiagonalZOHSSM, "gru": GRUMemory}
+        if self.backbone not in backbone_cls:
+            raise ValueError(f"backbone must be one of {sorted(backbone_cls)}, got {self.backbone!r}")
+        self.ssm = backbone_cls[self.backbone](
             self.d_h,
             d_q + self._extra_q_dim,
             dt_min=float(args.get("dt_min", 1e-3)),
             dt_max=float(args.get("dt_max", 0.1)),
             dt_cap=float(args.get("dt_cap", 0.25)),
         )
+        # Node clock (section 2): "global" = gap between consecutive processed
+        # snapshots (the evaluated convention); "node_update" = time since this
+        # node's last memory update (closure updates included); "node_interaction"
+        # = time since this node's last observed interaction (closure-only updates
+        # excluded).  First observation: seen mask False -> gap 0 (explicit; no
+        # sentinel).  Metadata is float64 and reset with the temporal state.
+        self.clock = str(args.get("clock", "global"))
+        if self.clock not in ("global", "node_update", "node_interaction"):
+            raise ValueError("clock must be global | node_update | node_interaction")
+        self._clock_last_update = None
+        self._clock_last_interaction = None
+        # Verified fast bypass for the core-off anchor (no_memory + layers == 0):
+        # skips the unused SSM transition and map decoding; outputs are identical
+        # (test_review_controls.test_fast_core_off_matches_reference_outputs).
+        self.fast_core_off = bool(args.get("fast_core_off", False))
+        self.diag = None   # models.diagnostics.ClockDiagnostics, when attached
         # Memory readout C (Eq. 5): on by default here — on this protocol the
         # recurrence is trained, where the readout was decisively better on
         # tgbn-trade at native resolution.
@@ -262,6 +287,25 @@ class FaithfulEventTemporalSheafDiffusion(EventTemporalMambaSheafDiffusion):
         self.sheaf_learner = LocalConcatSheafLearner(
             self.d_h, out_shape=(self.get_param_size(),), sheaf_act=self.sheaf_act
         )
+        # Spatial-operator variant (section 3):
+        #   sheaf      : incidence-specific orthogonal maps decoded from [h_u; h_v] (the model)
+        #   identity   : all maps +/-I, same builder/normalisation (== sheaf_identity)
+        #   node_frame : ONE orthogonal frame per node decoded from h_u; R_{e<-u} = U_u
+        #                for every incident e (node-factorised transport, cycle products = I)
+        #   attention  : identity transport with a history-conditioned symmetric edge
+        #                gate w_uv = sigmoid(g([h_u;h_v]) + g([h_v;h_u])) in (0,1), applied
+        #                through the builder's edge_weights path (same support/normalisation)
+        self.spatial_variant = str(args.get("spatial", "identity" if self.sheaf_identity else "sheaf"))
+        if self.spatial_variant not in ("sheaf", "identity", "node_frame", "attention"):
+            raise ValueError("spatial must be sheaf | identity | node_frame | attention")
+        if self.spatial_variant == "identity":
+            self.sheaf_identity = True
+        if self.spatial_variant == "node_frame":
+            self.frame_decoder = nn.Linear(self.d_h, self.get_param_size(), bias=False)
+        if self.spatial_variant == "attention":
+            self.gate_decoder = nn.Linear(2 * self.d_h, 1, bias=True)
+            nn.init.zeros_(self.gate_decoder.weight)
+            nn.init.constant_(self.gate_decoder.bias, 2.0)   # w = sigmoid(4) ~ 0.98 at init (near identity control)
         self.feedback_proj = nn.Linear(self.hidden_dim, self.d_z)
         self.P_z = nn.Linear(self.input_dim + self.d_h, self.hidden_dim)
         self.W1 = nn.Linear(self.final_d, self.final_d, bias=False)
@@ -329,9 +373,87 @@ class FaithfulEventTemporalSheafDiffusion(EventTemporalMambaSheafDiffusion):
         super().reset_temporal_state()
         self._prev_event_edge_index = None
         self._prev_timestamp = None
+        self._clock_last_update = None
+        self._clock_last_interaction = None
         for _, store in self._rec_stores:
             store.reset()
         self._warm_recurrency_cache()
+
+    # ----- clocks (section 2) ------------------------------------------
+    def _clock_tables(self, device):
+        if self._clock_last_update is None:
+            nan = float("nan")
+            self._clock_last_update = torch.full((self.graph_size,), nan, dtype=torch.float64, device=device)
+            self._clock_last_interaction = torch.full((self.graph_size,), nan, dtype=torch.float64, device=device)
+        return self._clock_last_update, self._clock_last_interaction
+
+    def _node_gaps(self, timestamp, local_nodes, device):
+        """(gap vector or None, last_update, last_interaction, seen_update, seen_interaction)
+        for the local node set; the gap is None under the global clock."""
+        lu, li = self._clock_tables(device)
+        lu_l, li_l = lu[local_nodes], li[local_nodes]
+        seen_u, seen_i = torch.isfinite(lu_l), torch.isfinite(li_l)
+        if timestamp is None or self.clock == "global":
+            return None, lu_l, li_l, seen_u, seen_i
+        t = timestamp.to(device=device, dtype=torch.float64)
+        ref = lu_l if self.clock == "node_update" else li_l
+        seen = seen_u if self.clock == "node_update" else seen_i
+        gap = torch.where(seen, (t - ref).clamp_min(0.0), torch.zeros_like(ref)).float()
+        return gap, lu_l, li_l, seen_u, seen_i
+
+    def _advance_clocks(self, timestamp, local_nodes, typed_edge_index, edge_timestamps, device):
+        if timestamp is None:
+            return
+        lu, li = self._clock_tables(device)
+        t = timestamp.to(device=device, dtype=torch.float64)
+        lu[local_nodes] = t
+        ev = typed_edge_index
+        if ev is None or ev.numel() == 0:
+            return
+        ev = ev.to(device)
+        if edge_timestamps is not None and edge_timestamps.numel() == ev.size(1):
+            te = edge_timestamps.to(device=device, dtype=torch.float64)
+        else:
+            te = t.expand(ev.size(1))
+        endpoints = torch.cat([ev[0], ev[1]])
+        times = torch.cat([te, te])
+        cur = li[endpoints]
+        # unseen -> -inf (identical value per duplicate index, so the write is
+        # deterministic); then a deterministic amax over duplicate endpoints
+        li[endpoints] = torch.where(torch.isfinite(cur), cur, torch.full_like(cur, float("-inf")))
+        li.index_reduce_(0, endpoints, times, "amax", include_self=True)
+
+    def component_parameter_counts(self):
+        """Parameter counts by component, including parameters that a variant
+        leaves unused by construction (section 6)."""
+        groups = {"embeddings": ("node_feature_embedding", "node_type_embedding", "relation_input_embedding"),
+                  "ssm_input_selector_B": ("ssm.B_selector",), "ssm_other": ("ssm",),
+                  "map_decoder": ("sheaf_learner", "sheaf_input_proj", "frame_decoder", "gate_decoder"),
+                  "spatial_block": ("P_z", "W1", "W2", "log_tau", "feedback_proj", "memory_readout"),
+                  "scorer": ("lin1", "lin12", "event_"), "rec": ("recurrency_mlp",)}
+        out = {k: 0 for k in groups}
+        out["other"] = 0
+        for name, prm in self.named_parameters():
+            placed = False
+            for g in ("ssm_input_selector_B", "ssm_other", "embeddings", "map_decoder", "spatial_block", "scorer", "rec"):
+                if any(name.startswith(pfx) for pfx in groups[g]):
+                    out[g] += prm.numel(); placed = True; break
+            if not placed:
+                out["other"] += prm.numel()
+        out["total"] = sum(p.numel() for p in self.parameters())
+        out["trainable"] = sum(p.numel() for p in self.parameters() if p.requires_grad)
+        unused = 0
+        if self.no_memory:
+            unused += sum(p.numel() for n, p in self.named_parameters() if n.startswith(("ssm", "feedback_proj", "memory_readout")))
+        if self.layers == 0:
+            unused += sum(p.numel() for n, p in self.named_parameters() if n.startswith(("sheaf_learner", "W1", "W2", "log_tau", "frame_decoder", "gate_decoder")))
+        elif self.sheaf_identity and self.spatial_variant == "identity":
+            unused += sum(p.numel() for n, p in self.named_parameters() if n.startswith("sheaf_learner"))
+        if self.no_delta_t:
+            unused += sum(p.numel() for n, p in self.named_parameters() if n.startswith(("ssm.dt_time_weight", "ssm.dt_time_log_scale")))
+        out["unused_by_construction"] = unused
+        out["active"] = out["total"] - unused
+        return out
 
     # Compatibility views onto the typed channel (tests / diagnostics).
     @property
@@ -583,17 +705,29 @@ class FaithfulEventTemporalSheafDiffusion(EventTemporalMambaSheafDiffusion):
         if local_edge_index.numel() == 0:
             return Z0
         builder = self._make_local_builder(local_edge_index, n_local)
-        maps = self.sheaf_learner(sheaf_signal, local_edge_index)
-        if self.sheaf_identity:
-            # Ablation: SAME builder and (augmented) normalization as the learned
-            # sheaf, with every restriction map fixed to +/-I (zero Householder
-            # parameters give -I; L_uv = -R_u^T R_v is unchanged).  The former
-            # closed-form I - D^-1/2 A D^-1/2 differed in normalization
-            # (audit finding: it also removed the self-loop term).
-            L, trans_maps = builder(torch.zeros_like(maps).detach())
-        else:
+        if self.spatial_variant == "node_frame":
+            frames = torch.tanh(self.frame_decoder(sheaf_signal))          # (n_local, P): one frame per node
+            maps = frames.index_select(0, local_edge_index[0])              # R_{e<-u} = U_u for every incident e
             L, trans_maps = builder(maps)
-            self.sheaf_learner.set_L(trans_maps)
+        elif self.spatial_variant == "attention":
+            row, col = local_edge_index
+            hu, hv = sheaf_signal.index_select(0, row), sheaf_signal.index_select(0, col)
+            logit = self.gate_decoder(torch.cat([hu, hv], dim=-1)) + self.gate_decoder(torch.cat([hv, hu], dim=-1))
+            gate = torch.sigmoid(logit)                                     # (E, 1), symmetric in (u, v)
+            zero_maps = torch.zeros(local_edge_index.size(1), self.get_param_size(), device=Z0.device, dtype=Z0.dtype)
+            L, trans_maps = builder(zero_maps, gate)                        # identity transport, gated support
+        else:
+            maps = self.sheaf_learner(sheaf_signal, local_edge_index)
+            if self.sheaf_identity:
+                # Ablation: SAME builder and (augmented) normalization as the learned
+                # sheaf, with every restriction map fixed to +/-I (zero Householder
+                # parameters give -I; L_uv = -R_u^T R_v is unchanged).  The former
+                # closed-form I - D^-1/2 A D^-1/2 differed in normalization
+                # (audit finding: it also removed the self-loop term).
+                L, trans_maps = builder(torch.zeros_like(maps).detach())
+            else:
+                L, trans_maps = builder(maps)
+                self.sheaf_learner.set_L(trans_maps)
 
         Z = Z0.view(n_local * self.final_d, -1)
         for layer in range(self.layers):
@@ -705,10 +839,32 @@ class FaithfulEventTemporalSheafDiffusion(EventTemporalMambaSheafDiffusion):
                 local_dyn_typed, local_types, n_local, device, local_x.dtype
             ))
         q = torch.cat(q_parts, dim=-1)
-        local_memory = self.ssm(local_prev_memory, q, delta_t)
-        h_out = self.memory_readout(local_memory)
-        if self.no_memory:
-            h_out = torch.zeros_like(h_out)   # memory advanced but never read
+        node_gap, lu_l, li_l, seen_u, seen_i = self._node_gaps(timestamp, local_nodes, device)
+        gap_supplied = node_gap if node_gap is not None else delta_t
+        if self.diag is not None:
+            raw_mask = torch.zeros(self.graph_size, dtype=torch.bool, device=device)
+            if active_nodes is not None:
+                if active_nodes.dtype == torch.bool:
+                    raw_mask = active_nodes.to(device)
+                else:
+                    raw_mask[active_nodes.to(device)] = True
+            else:
+                raw_mask.fill_(True)
+            self.diag.begin_step(float(timestamp) if timestamp is not None else float("nan"),
+                                 float(self._prev_timestamp) if self._prev_timestamp is not None else None,
+                                 lu_l, li_l, seen_u, seen_i, raw_mask[local_nodes])
+        core_off_fast = self.fast_core_off and self.no_memory and self.layers == 0
+        if core_off_fast:
+            # verified bypass: the SSM transition and the map decoder are never read
+            local_memory = local_prev_memory
+            h_out = torch.zeros(n_local, self.d_h, device=device, dtype=local_x.dtype)
+        else:
+            local_memory = self.ssm(local_prev_memory, q, gap_supplied)
+            h_out = self.memory_readout(local_memory)
+            if self.no_memory:
+                h_out = torch.zeros_like(h_out)   # memory advanced but never read
+        if self.diag is not None:
+            self.diag.end_step()
 
         # Eqs. 19-23 + Eq. 25, decoded once and held fixed for the interval.
         if self.sheaf_conditioning == "current_only":
@@ -716,7 +872,12 @@ class FaithfulEventTemporalSheafDiffusion(EventTemporalMambaSheafDiffusion):
         else:
             sheaf_signal = h_out
         Z0 = self.P_z(torch.cat([local_x, h_out], dim=-1))
-        local_spatial = self._local_faithful_diffusion(Z0, sheaf_signal, local_edge_index, n_local)
+        if core_off_fast:
+            local_spatial = Z0
+        else:
+            local_spatial = self._local_faithful_diffusion(Z0, sheaf_signal, local_edge_index, n_local)
+        self._advance_clocks(timestamp, local_nodes, typed_edge_index if typed_edge_index is not None else dynamic_edge_index,
+                             edge_timestamps, device)
 
         next_memory = self._scatter_global_state(prev_memory, local_nodes, local_memory, device)
         next_spatial = self._scatter_global_state(prev_spatial, local_nodes, local_spatial, device)
@@ -763,7 +924,7 @@ class FaithfulEventTemporalSheafDiffusion(EventTemporalMambaSheafDiffusion):
         d = self.final_d
         zu = spatial[src].view(-1, d, self.hidden_channels)
         zv = spatial[dst].view(-1, d, self.hidden_channels)
-        if self.sheaf_identity:
+        if self.sheaf_identity or self.spatial_variant == "attention":
             return (zu - zv).flatten(1).norm(dim=-1)
         nodes = torch.unique(torch.cat([src, dst]))
         n_loc = nodes.numel()
@@ -775,7 +936,10 @@ class FaithfulEventTemporalSheafDiffusion(EventTemporalMambaSheafDiffusion):
         keep = lu != lv
         und = torch.cat([torch.stack([lu[keep], lv[keep]]), torch.stack([lv[keep], lu[keep]])], dim=1)
         und = torch.unique(und, dim=1)  # sorted lexicographically by (row, col)
-        maps = self.sheaf_learner(sheaf_signal, und)
+        if self.spatial_variant == "node_frame":
+            maps = torch.tanh(self.frame_decoder(sheaf_signal)).index_select(0, und[0])
+        else:
+            maps = self.sheaf_learner(sheaf_signal, und)
         builder = self._make_local_builder(und, n_loc)
         # one orthogonal map per DIRECTED input edge (the builder itself keeps
         # only the lower-triangular half plus its paired reverse)

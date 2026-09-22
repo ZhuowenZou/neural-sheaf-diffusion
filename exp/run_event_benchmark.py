@@ -45,6 +45,67 @@ def _repo_sha():
         return "unknown"
 
 
+def _hardware_record(device):
+    import platform
+    import subprocess as _sp
+    rec = {"hostname": platform.node(), "python": platform.python_version(), "torch": torch.__version__,
+           "cuda_runtime": torch.version.cuda, "cudnn": torch.backends.cudnn.version()}
+    try:
+        import torch_geometric; rec["torch_geometric"] = torch_geometric.__version__
+    except Exception:
+        pass
+    try:
+        from importlib.metadata import version as _v
+        rec["py_tgb"] = _v("py-tgb")
+    except Exception:
+        pass
+    try:
+        cpu = [l for l in open("/proc/cpuinfo").read().splitlines() if l.startswith("model name")]
+        rec["cpu_model"] = cpu[0].split(":", 1)[1].strip() if cpu else "unknown"
+        rec["cpu_cores"] = os.cpu_count()
+        mem = [l for l in open("/proc/meminfo").read().splitlines() if l.startswith("MemTotal")]
+        rec["ram_gib"] = round(int(mem[0].split()[1]) / 2**20, 1) if mem else float("nan")
+    except Exception:
+        pass
+    if torch.cuda.is_available():
+        props = torch.cuda.get_device_properties(device)
+        rec.update({"gpu_model": props.name, "gpu_vram_gib": round(props.total_memory / 2**30, 1),
+                    "gpu_visible": os.environ.get("CUDA_VISIBLE_DEVICES", ""), "gpu_count_visible": torch.cuda.device_count(),
+                    "precision": "float32", "sync": "torch.cuda.synchronize-free wall clock (perf_counter)"})
+        try:
+            rec["gpu_driver"] = _sp.check_output(["nvidia-smi", "--query-gpu=driver_version", "--format=csv,noheader"],
+                                                 text=True, timeout=10).split()[0]
+            rec["gpu_other_processes_at_start"] = int(_sp.check_output(
+                ["nvidia-smi", "--query-compute-apps=pid", "--format=csv,noheader"], text=True, timeout=10).count("\n"))
+        except Exception:
+            pass
+    return {f"hw_{k}": v for k, v in rec.items()}
+
+
+def _storage_record(model):
+    """Persistent-state / cache / process storage after the final evaluation (section 6)."""
+    rec = {}
+    try:
+        import resource
+        rec["cpu_rss_mib"] = round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0, 1)
+    except Exception:
+        pass
+    keys, bytes_ = 0, 0
+    for name, store in getattr(model, "_rec_stores", []):
+        n = store.size
+        keys += n
+        bytes_ += n * (8 + 8 + 8)
+        rec[f"rec_keys_{name}"] = n
+    rec["rec_keys_total"] = keys
+    rec["rec_cache_bytes"] = bytes_
+    rec["rec_cache_device"] = str(model._rec_stores[0][1].keys.device) if getattr(model, "_rec_stores", None) and model._rec_stores[0][1].keys is not None else "n/a"
+    st = getattr(model, "_temporal_state", None)
+    rec["tracked_nodes"] = int(getattr(model, "graph_size", 0))
+    rec["core_state_bytes"] = int(model.graph_size * (getattr(model, "d_h", 0) + getattr(model, "hidden_dim", 0)) * 4)
+    rec["checkpoint_bytes"] = int(sum(p.numel() * p.element_size() for p in model.state_dict().values()))
+    return rec
+
+
 def _seed_everything(seed):
     import random
     torch.manual_seed(seed)
@@ -114,6 +175,10 @@ def _make_model(edge_index, node_features, num_nodes, device, args, num_relation
                 "no_memory": args.no_memory,
                 "embeddings_in_head": args.emb_in_head,
                 "node_types": node_types,
+                "backbone": getattr(args, "backbone", "tsd"),
+                "spatial": getattr(args, "spatial", None) or ("identity" if args.sheaf_identity else "sheaf"),
+                "clock": getattr(args, "clock", "global"),
+                "fast_core_off": bool(getattr(args, "fast_core_off", False)),
             }
         )
         return FaithfulEventTemporalSheafDiffusion(edge_index, model_args).to(device)
@@ -196,14 +261,42 @@ def main():
                         help="Save the best (tracking-val) state_dict to <out>/best.pt.")
     parser.add_argument("--eval-only", type=str, default=None,
                         help="Skip training; load this state_dict and run the final evaluation only.")
+    # ---- review controls (handoff 2026-09-22) ----
+    parser.add_argument("--backbone", choices=["tsd", "gru", "diag_ssm"], default="tsd",
+                        help="Temporal backbone: the selective ZOH SSM (tsd), a GRU with the same inputs + gap feature, "
+                             "or a stable diagonal SSM with fixed B and the same step selector.")
+    parser.add_argument("--spatial", choices=["sheaf", "identity", "node_frame", "attention"], default=None,
+                        help="Spatial operator: learned incidence maps (sheaf), identity maps, one orthogonal frame per "
+                             "node (node_frame), or identity transport with history-conditioned edge gates (attention).")
+    parser.add_argument("--clock", choices=["global", "node_update", "node_interaction"], default="global",
+                        help="Gap fed to the step selector: global batch gap, time since the node's last memory update, "
+                             "or time since the node's last observed interaction (first observation -> gap 0).")
+    parser.add_argument("--fast-core-off", action="store_true",
+                        help="With --no-memory --layers 0: skip the unused SSM transition / map decoder (verified identical outputs).")
+    parser.add_argument("--rng-isolation", action="store_true",
+                        help="Draw training negatives from a dedicated generator seeded by (seed, epoch) so paired arms "
+                             "see identical negative samples regardless of architecture-dependent RNG consumption.")
+    parser.add_argument("--no-query-audit", action="store_true",
+                        help="Disable the per-query score-validity audit (query_validity*.csv in --out).")
+    parser.add_argument("--clock-diagnostics", action="store_true",
+                        help="Record bounded clock/saturation diagnostics during the final evaluation (clock_*.csv in --out).")
+    parser.add_argument("--audit-eval-only", action="store_true",
+                        help="With --eval-only: label the outputs as a checkpoint replay audit (no training).")
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
 
     os.makedirs(args.out, exist_ok=True)
+    t_start_all = time.perf_counter()
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    bu.reserve_gpu_memory(device, mib=args.reserve_gpu_mb)
+    reserved_mib = bu.reserve_gpu_memory(device, mib=args.reserve_gpu_mb)
     sha = _repo_sha()
     print(f"device={device} sha={sha[:12]} config={vars(args)}", flush=True)
+    with open(os.path.join(args.out, "resolved_config.json"), "w") as fh:
+        json.dump({"argv": sys.argv, "args": vars(args), "commit": sha, "cwd": os.getcwd(),
+                   "env": {k: v for k, v in os.environ.items() if k.startswith(("TSD_", "TGB_", "CUDA_", "PYTORCH_"))}},
+                  fh, indent=1, sort_keys=True)
+    hardware = _hardware_record(device)
+    bu.reset_train_counters()
 
     t0 = time.perf_counter()
     spec, dataset, temporal_data = bu.load_temporal_data(args.dataset)
@@ -248,12 +341,14 @@ def main():
 
     # Load negative-sample pickles once; evaluate_model_streaming would
     # otherwise re-read them from disk on every evaluation call.
+    prep_sec = time.perf_counter() - t0
     t_ns = time.perf_counter()
     dataset.load_val_ns()
     dataset.load_val_ns = lambda: None
     dataset.load_test_ns()
     dataset.load_test_ns = lambda: None
-    print(f"negative-sample sets loaded in {time.perf_counter() - t_ns:.1f}s", flush=True)
+    negatives_sec = time.perf_counter() - t_ns
+    print(f"negative-sample sets loaded in {negatives_sec:.1f}s", flush=True)
 
     _seed_everything(args.seed)
     node_types = None
@@ -291,6 +386,15 @@ def main():
     param_count = sum(p.numel() for p in model.parameters())
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     print(f"parameter_count={param_count} num_relations={num_relations} num_nodes={num_nodes}", flush=True)
+    component_counts = model.component_parameter_counts() if hasattr(model, "component_parameter_counts") else {}
+    print(f"parameters_by_component={component_counts}", flush=True)
+    if not args.no_query_audit:
+        bu.QUERY_AUDIT["audit"] = bu.QueryValidityAudit()
+    if args.clock_diagnostics:
+        from models.diagnostics import ClockDiagnostics
+        clock_diag = ClockDiagnostics()
+    else:
+        clock_diag = None
 
     if args.grad_clip and args.grad_clip > 0:
         original_step = optimizer.step
@@ -298,9 +402,14 @@ def main():
         def clipped_step(*step_args, **step_kwargs):
             gnorm = torch.nn.utils.clip_grad_norm_(model.parameters(), args.grad_clip)
             if not torch.isfinite(gnorm):
+                # counted (review handoff, section 6); the loop records the skipped step
+                bu.TRAIN_COUNTERS["nonfinite_grad"] += 1
                 optimizer.zero_grad()
-                return None
-            return original_step(*step_args, **step_kwargs)
+                return False
+            if float(gnorm) > args.grad_clip:
+                bu.TRAIN_COUNTERS["clipped"] += 1
+            original_step(*step_args, **step_kwargs)
+            return True
 
         optimizer.step = clipped_step
 
@@ -314,8 +423,12 @@ def main():
         state = torch.load(args.eval_only, map_location=device)
         model.load_state_dict(state)
         print(f"eval-only: loaded {args.eval_only}", flush=True)
+    epoch_counters = []
     for epoch in range(0 if args.eval_only else args.epochs):
         model.reset_temporal_state()
+        if args.rng_isolation:
+            bu.install_negative_rng(args.seed, epoch, device)
+        before = dict(bu.TRAIN_COUNTERS)
         t_epoch = time.perf_counter()
         train_loss = bu.run_epoch(
             spec, model, optimizer, train_snapshots, dataset,
@@ -342,7 +455,12 @@ def main():
             "train_sec": round(train_sec, 1),
             "track_eval_sec": round(eval_sec, 1),
             "peak_gpu_mem_mb": round(peak_mb, 1),
+            "peak_gpu_reserved_mb": round(torch.cuda.max_memory_reserved(device) / 2**20, 1) if device.type == "cuda" else float("nan"),
         }
+        row.update({f"epoch_{k}": bu.TRAIN_COUNTERS[k] - before[k] for k in bu.TRAIN_COUNTERS})
+        row["track_nonfinite_positives"] = getattr(bu.evaluate_model_streaming, "last_nonfinite_positives", 0)
+        row["track_nonfinite_negatives"] = getattr(bu.evaluate_model_streaming, "last_nonfinite_negatives", 0)
+        row["track_skipped_queries"] = getattr(bu.evaluate_model_streaming, "last_skipped_queries", 0)
         history.append(row)
         pd.DataFrame(history).to_csv(os.path.join(args.out, "history.csv"), index=False)
         print(f"[epoch {epoch + 1}/{args.epochs}] {row}", flush=True)
@@ -387,25 +505,55 @@ def main():
         "final_val_edges": int(final_val_ids.numel()),
         "final_test_edges": int(final_test_ids.numel()),
         "config_json": json.dumps(vars(args), sort_keys=True),
+        "prep_sec": round(prep_sec, 1),
+        "negatives_load_sec": round(negatives_sec, 1),
+        "train_epochs_run": len(history),
+        "train_sec_total": round(sum(r["train_sec"] for r in history), 1),
+        "selection_eval_sec_total": round(sum(r["track_eval_sec"] for r in history), 1),
+        "reserved_buffer_mib": int(reserved_mib),
+        "backbone": getattr(args, "backbone", "tsd"),
+        "spatial": getattr(args, "spatial", None) or ("identity" if args.sheaf_identity else "sheaf"),
+        "clock": getattr(args, "clock", "global"),
+        "rng_isolation": bool(args.rng_isolation),
+        **{f"params_{k}": v for k, v in component_counts.items()},
+        **{f"train_{k}": v for k, v in bu.TRAIN_COUNTERS.items()},
+        **hardware,
     }
 
     if not args.skip_final_eval:
         model.reset_temporal_state()
+        if clock_diag is not None:
+            model.diag = clock_diag
+            model.ssm.diag = clock_diag
+            clock_diag.split = "train_replay"
         t_final = time.perf_counter()
         if device.type == "cuda":
             torch.cuda.reset_peak_memory_stats(device)
         train_state = bu.advance_context(model, train_snapshots)
+        replay_sec = time.perf_counter() - t_final
+        if clock_diag is not None:
+            clock_diag.split = "val"
+        t_val = time.perf_counter()
         val_mrr, val_loss, val_state = bu.evaluate_model_streaming(
             spec, dataset, final_val_snapshots, model,
             initial_state=train_state, split_mode="val",
             label_cursor_after_ts=bu.last_snapshot_timestamp(train_snapshots),
         )
+        val_sec = time.perf_counter() - t_val
+        val_audit = {k: getattr(bu.evaluate_model_streaming, f"last_{k}", 0)
+                     for k in ("nonfinite_positives", "nonfinite_negatives", "skipped_queries", "metric_examples")}
         print(f"final val_mrr={val_mrr:.4f} ({time.perf_counter() - t_final:.1f}s so far)", flush=True)
+        if clock_diag is not None:
+            clock_diag.split = "test"
+        t_test = time.perf_counter()
         test_mrr, test_loss, _ = bu.evaluate_model_streaming(
             spec, dataset, final_test_snapshots, model,
             initial_state=val_state, split_mode="test",
             label_cursor_after_ts=bu.last_snapshot_timestamp(final_val_snapshots),
         )
+        test_sec = time.perf_counter() - t_test
+        test_audit = {k: getattr(bu.evaluate_model_streaming, f"last_{k}", 0)
+                      for k in ("nonfinite_positives", "nonfinite_negatives", "skipped_queries", "metric_examples")}
         final_sec = time.perf_counter() - t_final
         peak_mb = torch.cuda.max_memory_allocated(device) / 2**20 if device.type == "cuda" else float("nan")
         result.update({
@@ -414,11 +562,39 @@ def main():
             "final_val_loss": float(val_loss),
             "final_test_loss": float(test_loss),
             "final_eval_sec": round(final_sec, 1),
+            "final_replay_sec": round(replay_sec, 1),
+            "final_val_sec": round(val_sec, 1),
+            "final_test_sec": round(test_sec, 1),
             "final_eval_peak_gpu_mem_mb": round(peak_mb, 1),
+            "final_eval_peak_gpu_reserved_mb": round(torch.cuda.max_memory_reserved(device) / 2**20, 1) if device.type == "cuda" else float("nan"),
+            **{f"val_{k}": v for k, v in val_audit.items()},
+            **{f"test_{k}": v for k, v in test_audit.items()},
+            **_storage_record(model),
         })
         test_hits = getattr(bu.evaluate_model_streaming, "last_hits10", float("nan"))
         result["test_hits10"] = float(test_hits)
         print(f"FINAL val_mrr={val_mrr:.4f} test_mrr={test_mrr:.4f} test_hits10={test_hits:.4f} eval_sec={final_sec:.1f}", flush=True)
+        if clock_diag is not None:
+            model.diag = None
+            model.ssm.diag = None
+            agg = clock_diag.write(args.out)
+            timing = {n: float(p.detach().cpu()) for n, p in model.ssm.named_parameters() if n.startswith("dt_time")}
+            with open(os.path.join(args.out, "clock_learned_timing.json"), "w") as fh:
+                json.dump({"dt_time_params": timing, "delta_scale": float(model.ssm.delta_scale), "clock": model.clock}, fh, indent=1)
+            print(f"clock diagnostics written ({len(agg)} aggregate rows)", flush=True)
+    audit = bu.QUERY_AUDIT.get("audit")
+    if audit is not None:
+        audit.write(args.out, tag=os.path.basename(args.out.rstrip("/")))
+        rows = audit.summary_rows()
+        for r in rows:
+            print(f"[query-audit] split={r['split']} queries={r['queries']} affected={r['queries_affected']} "
+                  f"pos_nonfinite={r['pos_nonfinite']} neg_nan={r['neg_nan']} neg_posinf={r['neg_posinf']} "
+                  f"neg_neginf={r['neg_neginf']} mrr_raw={r['mrr_tgb_raw']:.6f} mrr_guarded={r['mrr_guarded']:.6f} "
+                  f"mrr_conservative={r['mrr_conservative']:.6f} parity={r['parity_raw_vs_guarded'] and r['parity_guarded_vs_conservative']}", flush=True)
+        result["query_audit_affected_total"] = int(sum(r["queries_affected"] for r in rows))
+        result["query_audit_parity"] = bool(all(r["parity_raw_vs_guarded"] and r["parity_guarded_vs_conservative"] for r in rows))
+        bu.QUERY_AUDIT["audit"] = None
+    result["end_to_end_sec"] = round(time.perf_counter() - t_start_all, 1)
 
     pd.DataFrame([result]).to_csv(os.path.join(args.out, "results.csv"), index=False)
     print(json.dumps({k: v for k, v in result.items() if k != "config_json"}, indent=2))

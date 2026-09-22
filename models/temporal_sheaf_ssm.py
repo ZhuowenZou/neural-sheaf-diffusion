@@ -161,13 +161,29 @@ class SelectiveZOHSSM(nn.Module):
             raise ValueError(f"delta_scale must be positive and finite, got {value}")
         self.delta_scale.fill_(value)
 
-    def step_size(self, q: torch.Tensor, delta_t: torch.Tensor) -> torch.Tensor:
-        """Delta_{u,k} > 0 per node, from input content and physical gap."""
+    # Optional clock/saturation diagnostics sink (models.diagnostics.ClockDiagnostics);
+    # None in ordinary runs.  Set by the owning event model, which supplies the
+    # per-node metadata (last update / interaction times, endpoint flags).
+    diag = None
+
+    def step_size_parts(self, q: torch.Tensor, delta_t: torch.Tensor):
+        """(content pre-activation, time term, uncapped step, capped step).
+        `delta_t` is a scalar (global batch gap) or an (N,) vector (per-node clock)."""
         time_scale = F.softplus(self.dt_time_log_scale) + 1e-4
         scaled_gap = delta_t.clamp_min(0.0) / self.delta_scale.to(delta_t.dtype)
         time_term = self.dt_time_weight * torch.log1p(scaled_gap / time_scale)
-        dt = F.softplus(self.dt_proj(q).squeeze(-1) + time_term)
-        return dt.clamp(max=self.dt_cap)
+        content = self.dt_proj(q).squeeze(-1)
+        dt_uncapped = F.softplus(content + time_term)
+        return content, time_term, dt_uncapped, dt_uncapped.clamp(max=self.dt_cap)
+
+    def step_size(self, q: torch.Tensor, delta_t: torch.Tensor) -> torch.Tensor:
+        """Delta_{u,k} > 0 per node, from input content and physical gap."""
+        content, time_term, dt_uncapped, dt = self.step_size_parts(q, delta_t)
+        if self.diag is not None:
+            self.diag.record_steps(content.detach(), time_term.detach(), dt_uncapped.detach(), dt.detach(),
+                                   delta_t.detach() if delta_t.dim() else delta_t.detach().expand(q.size(0)),
+                                   float(self.delta_scale), self.dt_cap)
+        return dt
 
     # Largest node batch processed at once: exp(dt A) materializes an
     # (n, d_h, d_h) tensor plus autograd intermediates, which is prohibitive
@@ -183,19 +199,21 @@ class SelectiveZOHSSM(nn.Module):
         for start in range(0, n, self.chunk_size):
             stop = min(start + self.chunk_size, n)
             h_c, q_c = h_prev[start:stop], q[start:stop]
+            # a per-node gap vector must be sliced with the chunk (review handoff, sec. 2)
+            d_c = delta_t[start:stop] if delta_t.dim() == 1 and delta_t.numel() == n else delta_t
             if self.training and torch.is_grad_enabled():
                 out = torch.utils.checkpoint.checkpoint(
-                    self._forward_impl, h_c, q_c, delta_t, use_reentrant=False
+                    self._forward_impl, h_c, q_c, d_c, use_reentrant=False
                 )
             else:
-                out = self._forward_impl(h_c, q_c, delta_t)
+                out = self._forward_impl(h_c, q_c, d_c)
             outputs.append(out)
         return torch.cat(outputs, dim=0)
 
     def _forward_impl(self, h_prev: torch.Tensor, q: torch.Tensor, delta_t: torch.Tensor) -> torch.Tensor:
         """One exact ZOH update h_k = exp(dA) h_{k-1} + A^{-1}(exp(dA)-I) B q.
 
-        h_prev: (N, d_h), q: (N, d_q), delta_t: scalar tensor (physical gap).
+        h_prev: (N, d_h), q: (N, d_q), delta_t: scalar tensor (physical gap) or (N,) per-node gaps.
         """
         n = q.size(0)
         dt = self.step_size(q, delta_t)  # (N,)
@@ -214,6 +232,84 @@ class SelectiveZOHSSM(nn.Module):
         Bbar_q = torch.linalg.solve(A.unsqueeze(0).expand(n, -1, -1), rhs).squeeze(-1)
 
         return torch.bmm(A_bar, h_prev.unsqueeze(-1)).squeeze(-1) + Bbar_q
+
+
+class DiagonalZOHSSM(nn.Module):
+    """Simpler control backbone (review handoff, section 3): a STABLE DIAGONAL
+    linear SSM with exact ZOH discretisation, a fixed (non-selective) input
+    matrix B and the same content+gap step selector as `SelectiveZOHSSM`.
+
+        h_k = exp(dt a) * h_{k-1} + (exp(dt a) - 1) / a * (B q_k),   a < 0 elementwise.
+
+    Fixed components: generator (diagonal, learned, Hurwitz by construction) and
+    B.  Selective component: the scalar step dt per node (content + physical gap,
+    capped at dt_cap exactly as in the full model).  State width d_h, input width
+    d_q and the readout are those of the full model; no per-node matrix
+    exponential is evaluated."""
+
+    def __init__(self, d_state: int, d_input: int, dt_min: float = 1e-3, dt_max: float = 0.1,
+                 dt_cap: float = 0.25):
+        super().__init__()
+        self.d_state, self.d_input, self.dt_cap = d_state, d_input, float(dt_cap)
+        # diagonal generator initialised to the LegS diagonal -(i+1) (matched spectrum on the diagonal)
+        self.A_neg_diag = nn.Parameter(_inv_softplus(torch.arange(1, d_state + 1, dtype=torch.float32)))
+        self.dt_proj = nn.Linear(d_input, 1)
+        nn.init.zeros_(self.dt_proj.weight)
+        dt_init = math.exp(torch.empty(1).uniform_(math.log(dt_min), math.log(dt_max)).item())
+        with torch.no_grad():
+            self.dt_proj.bias.fill_(_inv_softplus(torch.tensor(dt_init)).item())
+        self.dt_time_weight = nn.Parameter(torch.ones(1))
+        self.dt_time_log_scale = nn.Parameter(torch.zeros(1))
+        self.register_buffer("delta_scale", torch.ones(1))
+        self.B = nn.Linear(d_input, d_state, bias=False)
+        with torch.no_grad():
+            self.B.weight.copy_(hippo_legs_b(d_state).unsqueeze(1).expand(d_state, d_input) / math.sqrt(d_input))
+        self.diag = None
+
+    @property
+    def A(self) -> torch.Tensor:
+        return -F.softplus(self.A_neg_diag)
+
+    set_delta_scale = SelectiveZOHSSM.set_delta_scale
+    step_size_parts = SelectiveZOHSSM.step_size_parts
+    step_size = SelectiveZOHSSM.step_size
+
+    def forward(self, h_prev: torch.Tensor, q: torch.Tensor, delta_t: torch.Tensor) -> torch.Tensor:
+        dt = self.step_size(q, delta_t).unsqueeze(-1)          # (N, 1)
+        a = self.A.unsqueeze(0)                                  # (1, d_h)
+        decay = torch.exp(dt * a)                                # (N, d_h)
+        gain = (decay - 1.0) / a                                 # exact ZOH input gain
+        return decay * h_prev + gain * self.B(q)
+
+
+class GRUMemory(nn.Module):
+    """Simpler control backbone (review handoff, section 3): a GRU cell that
+    receives the SAME allowed inputs as the SSM (q = [x; z_bar; psi; relation
+    aggregate]) plus the same physical-gap feature, log1p(gap / delta_scale),
+    as one extra input channel.  Selective step sizes, matrix exponentials and
+    the HiPPO generator are absent by design; `dt_time_weight` scales the gap
+    feature so `--no-delta-t` removes it exactly as for the SSM."""
+
+    def __init__(self, d_state: int, d_input: int, **_unused):
+        super().__init__()
+        self.d_state, self.d_input = d_state, d_input
+        self.cell = nn.GRUCell(d_input + 1, d_state)
+        self.dt_time_weight = nn.Parameter(torch.ones(1))
+        self.register_buffer("delta_scale", torch.ones(1))
+        self.diag = None
+
+    set_delta_scale = SelectiveZOHSSM.set_delta_scale
+
+    def forward(self, h_prev: torch.Tensor, q: torch.Tensor, delta_t: torch.Tensor) -> torch.Tensor:
+        n = q.size(0)
+        gap = delta_t.clamp_min(0.0) / self.delta_scale.to(delta_t.dtype)
+        feat = (self.dt_time_weight * torch.log1p(gap)).reshape(-1)
+        feat = feat.expand(n) if feat.numel() == 1 else feat
+        if self.diag is not None:
+            z = torch.zeros(n, device=q.device)
+            self.diag.record_steps(z, feat.detach(), z, z, delta_t.detach() if delta_t.dim() else delta_t.detach().expand(n),
+                                   float(self.delta_scale), float("nan"))
+        return self.cell(torch.cat([q, feat.unsqueeze(-1).to(q.dtype)], dim=-1), h_prev)
 
 
 class FaithfulTemporalSheafDiffusion(nn.Module):
