@@ -13,3 +13,25 @@ parameter_count=634431 num_relations=2 num_nodes=152816
 [epoch 3/4] {'epoch': 3, 'train_loss': 0.13312107821641658, 'track_val_mrr': 0.6458100937366485, 'track_val_loss': 0.24332021176815033, 'train_sec': 6954.8, 'track_eval_sec': 6781.7, 'peak_gpu_mem_mb': 5146.6}
 [epoch 4/4] {'epoch': 4, 'train_loss': 0.1324752598133881, 'track_val_mrr': 0.6448987903952599, 'track_val_loss': 0.24945159256458282, 'train_sec': 7045.3, 'track_eval_sec': 6735.5, 'peak_gpu_mem_mb': 5146.6}
 checkpoint saved: results/event_bench/leakfree2/forum_abl_nomem_s47/best.pt
+final val_mrr=0.6468 (12984.7s so far)
+FINAL val_mrr=0.6468 test_mrr=0.6534 test_hits10=0.7064 eval_sec=18384.4
+{
+  "dataset": "thgl-forum",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 47,
+  "epochs": 4,
+  "best_track_epoch": 3,
+  "best_track_val_mrr": 0.6458100937366485,
+  "parameter_count": 634431,
+  "commit_hash": "fbb1aa8169da3f65bd4223d934642ed09a21c580",
+  "train_edges": 4000000,
+  "final_val_edges": 3563658,
+  "final_test_edges": 3563653,
+  "validation_mrr": 0.6467715601701884,
+  "test_mrr": 0.6534146876563307,
+  "final_val_loss": 0.25112998485565186,
+  "final_test_loss": 0.2511816620826721,
+  "final_eval_sec": 18384.4,
+  "final_eval_peak_gpu_mem_mb": 3928.2,
+  "test_hits10": 0.706354686946111
+}
