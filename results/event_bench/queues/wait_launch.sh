@@ -41,9 +41,9 @@ while true; do
       done < $IDLE
     fi
     # (b) compensation budget
-    budget=0; spent=0
+    budget=0; spent=0; declare -A ours=()
     while IFS=, read -r p m u; do p=${p// /}; m=${m// /}; u=${u// /}; g=${gidx[$u]}; [ -n "$g" ] || continue
-      if [ "$(ps -o user= -p $p 2>/dev/null)" = "$ME" ]; then [ -z "${isown[$g]}" ] && spent=$((spent + m))
+      if [ "$(ps -o user= -p $p 2>/dev/null)" = "$ME" ]; then [ -z "${isown[$g]}" ] && spent=$((spent + m)); ours[$g]=$(( ${ours[$g]:-0} + 1 ))
       else [ -n "${isown[$g]}" ] && budget=$((budget + m)); fi
     done < <(nvidia-smi --query-compute-apps=pid,used_memory,gpu_uuid --format=csv,noheader,nounits 2>/dev/null)
     declare -A claimed=(); for f in $C/[0-9]*; do [ -f "$f" ] || continue; read -r g m < $f; claimed[$g]=$(( ${claimed[$g]:-0} + m )); [ -z "${isown[$g]}" ] && spent=$((spent + m)); done
@@ -55,6 +55,9 @@ while true; do
     while IFS=, read -r idx uuid used total; do
       idx=${idx// /}; used=${used// /}; total=${total// /}
       [ -n "${eligible[$idx]}" ] || continue
+      # concurrency cap (2026-09-22): MAGMA/cuBLAS workspaces are allocated outside the caching allocator, so a
+      # card packed to the last GiB by many of our jobs OOMs them regardless of reservations
+      [ ${ours[$idx]:-0} -lt ${TSD_MAX_JOBS_PER_GPU:-12} ] || continue
       # optional restriction to a subset of cards (still subject to the eligibility rules above)
       if [ -n "$TSD_ONLY_GPUS" ]; then ok=0; for g in $TSD_ONLY_GPUS; do [ "$g" = "$idx" ] && ok=1; done; [ $ok = 1 ] || continue; fi
       free=$((total - used - ${claimed[$idx]:-0}))
