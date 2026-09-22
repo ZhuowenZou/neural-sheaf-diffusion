@@ -12,6 +12,7 @@
   "d": 2,
   "dataset": "tkgl-icews",
   "delta_time_scale": "auto",
+  "dump_query_ranks": false,
   "emb_in_head": false,
   "epochs": 0,
   "eval_only": "results/event_bench/leakfree2/icews_f_s46/best.pt",
@@ -114,7 +115,7 @@
   "--out",
   "results/review_2026_09_22/audit/icews_eval_s46"
  ],
- "commit": "b34d01cc5fd5baee6cb73c99485977ffb3d7d760",
+ "commit": "f6a74a0e26f369f143977cae89687be1c8a74889",
  "cwd": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "env": {
   "CUDA_DEVICE_ORDER": "PCI_BUS_ID",

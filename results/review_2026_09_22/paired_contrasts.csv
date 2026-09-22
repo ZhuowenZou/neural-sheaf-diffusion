@@ -1,1 +1,3 @@
-
+dataset,group,rec,tsd_lr,arm,arm_lr,seeds,n,tsd_mean,arm_mean,delta_arm_minus_tsd_mean,delta_sd,t95_halfwidth,deltas,signs,method
+thgl-forum,forum,off,0.001,core-off,0.001,[44],1,0.2322758943876626,0.2220696006777333,-0.010206293709929315,,,-0.0102,0+ 1-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
+thgl-forum,forum,off,0.001,gru-ordinary,0.001,[44],1,0.2322758943876626,0.3936080158381661,0.16133212145050352,,,+0.1613,1+ 0-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"

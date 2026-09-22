@@ -770,3 +770,6 @@ monitor started Tue Sep 22 02:31:48 PM PDT 2026 pid 1201964
 2026-09-22 15:13:11 (re)launching forum_tsd_recoff_s45 via results/review_2026_09_22/queue/forum_tsd_recoff_s45.cmd (attempt 1)
 2026-09-22 15:23:06 (re)launching forum_curonly_recoff_s45 via results/review_2026_09_22/queue/forum_curonly_recoff_s45.cmd (attempt 1)
 2026-09-22 15:23:06 (re)launching forum_identity_recon_s45 via results/review_2026_09_22/queue/forum_identity_recon_s45.cmd (attempt 1)
+2026-09-22 15:28:00 (re)launching forum_tsd_recon_s44 via results/review_2026_09_22/queue/forum_tsd_recon_s44.cmd (attempt 1)
+2026-09-22 15:32:59 (re)launching forum_identity_recoff_s45 via results/review_2026_09_22/queue/forum_identity_recoff_s45.cmd (attempt 1)
+2026-09-22 15:32:59 (re)launching forum_tsd_recon_s45 via results/review_2026_09_22/queue/forum_tsd_recon_s45.cmd (attempt 1)
