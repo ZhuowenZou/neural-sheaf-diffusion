@@ -167,7 +167,16 @@ observable only through the cue node's random feature vector. This variant there
 nor memory-in-maps; it is kept in the record and was not tuned further.
 
 **Variant 2 (`gen_s1r`, cue carried as an observable relation id 1+k, all arms with `--relation-in-input`
-so the cue enters the memory input directly):** running; results appended in `synthetic_analysis_r/`.
+so the cue enters the memory input directly; `synthetic/synthetic_analysis_r/`):** same null. Test MRR on
+interactions: TSD 0.2108 ± 0.0016 (3 seeds so far), current-only 0.2132 ± 0.0046, identity 0.2136 ± 0.0023,
+GRU 0.2114 ± 0.0046, diagonal SSM 0.2127 ± 0.0013, attention 0.2120 ± 0.0035, node-frame 0.2129 ± 0.0019,
+core-off 0.2155 ± 0.0010 (core-off − TSD = +0.005 on 3 of 3 paired seeds); permitted-history oracle 0.585.
+Making the cue an explicit input does not let any evaluated core use it under one-step gradient truncation.
+
+**Variant 3 (`gen_s2`, 100 nodes / 5 communities / typed cues, so a node's next interaction follows its cue
+after a few batches instead of ~20):** running on the five essential arms; results in
+`synthetic/synthetic_analysis_s2/` (core-off 0.267 ± 0.004 on 4 seeds; permitted oracle 0.531; the novel-pair
+fraction is only 11% here because 100 nodes recur heavily, so this variant tests memory, not novelty transfer).
 
 ## 5. Not evaluated (explicit)
 - ICEWS matrix beyond the retained seeds: not retrained (cost 20+ h per run); checkpoint-replay audits of the
