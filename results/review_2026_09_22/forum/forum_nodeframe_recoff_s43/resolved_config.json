@@ -91,14 +91,14 @@
   "--out",
   "results/review_2026_09_22/forum/forum_nodeframe_recoff_s43"
  ],
- "commit": "a5506ef248858dc54a75e41852bcd19576216781",
+ "commit": "665e3ed18f8c3a2e65de99a3afc0d71d6e07072c",
  "cwd": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "env": {
   "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
   "CUDA_MODULE_LOADING": "LAZY",
-  "CUDA_VISIBLE_DEVICES": "4",
+  "CUDA_VISIBLE_DEVICES": "6",
   "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True",
-  "TSD_ONLY_GPUS": "4",
+  "TSD_ONLY_GPUS": "4 6",
   "TSD_RESERVE_GPU_MB": "16976"
  }
 }

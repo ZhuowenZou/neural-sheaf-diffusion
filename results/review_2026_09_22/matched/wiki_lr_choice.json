@@ -19,6 +19,13 @@
    "final_val": 0.7455295897119107
   },
   {
+   "arm": "curonly",
+   "lr": "1e-3",
+   "best_track_val_mrr": 0.7757712396010756,
+   "best_epoch": 8,
+   "final_val": 0.7818168982182746
+  },
+  {
    "arm": "diag",
    "lr": "1e-3",
    "best_track_val_mrr": 0.7813829847499728,
@@ -31,6 +38,13 @@
    "best_track_val_mrr": 0.7316763899847865,
    "best_epoch": 8,
    "final_val": 0.7475877337671548
+  },
+  {
+   "arm": "nodeframe",
+   "lr": "3e-4",
+   "best_track_val_mrr": 0.7336924613714219,
+   "best_epoch": 8,
+   "final_val": 0.7466917640293519
   }
  ]
 }
