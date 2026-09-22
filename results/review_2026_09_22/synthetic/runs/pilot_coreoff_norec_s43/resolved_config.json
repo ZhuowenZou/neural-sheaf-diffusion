@@ -8,10 +8,11 @@
   "clock": "global",
   "clock_diagnostics": false,
   "closure_hops": 1,
-  "context_edges": 50000,
+  "context_edges": 2000,
   "d": 2,
   "dataset": "synth-history:results/review_2026_09_22/synthetic/gen_s1/data.npz",
   "delta_time_scale": "auto",
+  "dump_query_ranks": true,
   "emb_in_head": false,
   "epochs": 6,
   "eval_only": null,
@@ -64,6 +65,8 @@
   "faithful",
   "--time-window",
   "20000",
+  "--context-edges",
+  "2000",
   "--track-val-edges",
   "3000",
   "--train-negatives-per-pos",
@@ -79,6 +82,7 @@
   "--predict-from-previous",
   "--save-checkpoint",
   "--rng-isolation",
+  "--dump-query-ranks",
   "--seed",
   "43",
   "--no-memory",
@@ -88,9 +92,9 @@
   "--out",
   "results/review_2026_09_22/synthetic/runs/pilot_coreoff_norec_s43"
  ],
- "commit": "2a98579913ed0216225125be6fbdc3858e47f9a7",
+ "commit": "59c5bdad46d14957eb3035a1a4420fc6fb525e82",
  "cwd": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "env": {
-  "CUDA_VISIBLE_DEVICES": "7"
+  "CUDA_VISIBLE_DEVICES": "3"
  }
 }

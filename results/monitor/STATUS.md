@@ -1,20 +1,20 @@
-# Monitor status (2026-09-22 10:10:51)
+# Monitor status (2026-09-22 10:31:42)
 
 ## GPU free (GiB) and utilisation
-0:15GB(99%) 1:51GB(98%) 2:22GB(100%) 3:44GB(92%) 4:31GB(94%) 5:26GB(99%) 6:22GB(100%) 7:7GB(93%) 
-our GPU processes (pid:MiB): 1233208:11502MiB 1245919:13502MiB 1262633:11496MiB 1263172:3516MiB 1214155:2024MiB 1214798:2026MiB 1216463:2026MiB 1224983:2024MiB 1234260:6538MiB 1243522:6522MiB 1251060:16066MiB 1214047:2026MiB 1216729:2024MiB 1225196:2026MiB 1233637:13504MiB 1233854:6522MiB 1243022:6538MiB 1251179:15924MiB 1253032:2024MiB 1213717:2024MiB 1225289:6506MiB 1225418:10510MiB 1225883:10510MiB 1228043:6506MiB 1232747:6506MiB 1242614:6522MiB 1242857:6538MiB 1252395:11498MiB 1252765:2022MiB 1253333:934MiB 1253334:604MiB 1253337:934MiB 1253336:934MiB 1260782:1190MiB 1262001:816MiB 
+0:1GB(100%) 1:51GB(99%) 2:22GB(100%) 3:14GB(95%) 4:29GB(93%) 5:26GB(100%) 6:22GB(100%) 7:6GB(98%) 
+our GPU processes (pid:MiB): 1233208:11502MiB 1245919:13504MiB 1262633:11502MiB 1276022:10510MiB 1277011:2016MiB 1288609:2014MiB 1303311:3516MiB 1214155:2026MiB 1214798:2026MiB 1216463:2026MiB 1224983:2024MiB 1234260:6538MiB 1243522:6522MiB 1251060:16066MiB 1281012:1554MiB 1281015:1554MiB 1281013:536MiB 1281016:1554MiB 1289587:2024MiB 1300141:1308MiB 1302602:21496MiB 1214047:2028MiB 1216729:2026MiB 1225196:2026MiB 1233637:13504MiB 1233854:6522MiB 1243022:6538MiB 1251179:15926MiB 1253032:2026MiB 1297498:2022MiB 1213717:2024MiB 1225289:6506MiB 1225418:10510MiB 1225883:10510MiB 1228043:6506MiB 1232747:6506MiB 1242614:6522MiB 1242857:6538MiB 1252395:11502MiB 1252765:2024MiB 1270098:2024MiB 1271730:2024MiB 1297989:2024MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
 - gpu2: colleague busy
-- gpu3: ELIGIBLE (idle 721 min)
-- gpu4: ELIGIBLE (idle 237 min)
+- gpu3: ELIGIBLE (idle 742 min)
+- gpu4: ELIGIBLE (idle 258 min)
 - gpu5: colleague busy
 - gpu6: colleague busy
 - gpu7: OURS
-compensation: colleagues hold 26280 MiB on our GPUs; we hold 87814 MiB on theirs; budget left -61534 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
-our launcher claims (pid:gpu/MiB): 1213960:0/12000 1214085:0/4000 
+compensation: colleagues hold 26280 MiB on our GPUs; we hold 119872 MiB on theirs; budget left -93592 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+our launcher claims (pid:gpu/MiB): 1213583:7/2000 1213691:4/2000 1285211:0/4000 1293217:3/22000 
 
 ## leakfree2 benchmark runs
 - DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
@@ -149,6 +149,7 @@ our launcher claims (pid:gpu/MiB): 1213960:0/12000 1214085:0/4000
 - DONE     wiki_o_s43: FINAL val_mrr=0.0201 test_mrr=0.0110 test_hits10=0.0163 eval_sec=971.4
 
 ## review 2026-09-22 runs (results/review_2026_09_22/queue)
+- RUNNING  audit2_sp_f_s47: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
 - RUNNING  audit_forum_f_s43: epochs': 1, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - RUNNING  audit_forum_f_s46: epochs': 1, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - RUNNING  audit_forum_f_s47: epochs': 1, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
@@ -159,17 +160,17 @@ our launcher claims (pid:gpu/MiB): 1213960:0/12000 1214085:0/4000
 - RUNNING  audit_polecat_f_s46: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
 - RUNNING  audit_polecat_f_s47: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
 - RUNNING  audit_sp_f_s43: 
-- RUNNING  audit_sp_f_s46: 
+- RUNNING  audit_sp_f_s46: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
 - DONE     audit_sp_f_s47: FINAL val_mrr=0.6447 test_mrr=0.6104 test_hits10=0.7110 eval_sec=1007.7
 - DONE     audit_sw_f_s43: FINAL val_mrr=0.3796 test_mrr=0.4360 test_hits10=0.4736 eval_sec=1010.2
-- RUNNING  audit_sw_f_s46: epochs': 1, 'time_window': 3600.0, 'context_edges': 50000, 'train_edge
+- DONE     audit_sw_f_s46: FINAL val_mrr=0.3844 test_mrr=0.4400 test_hits10=0.4796 eval_sec=1049.5
 - RUNNING  audit_sw_f_s47: 
 - RUNNING  audit_wd_f_s43: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
 - RUNNING  audit_wd_f_s46: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
-- RUNNING  audit_wd_f_s47: 
+- RUNNING  audit_wd_f_s47: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
 - RUNNING  audit_wiki_f_s43: 
-- RUNNING  audit_wiki_f_s46: 
-- RUNNING  audit_wiki_f_s47: 
+- RUNNING  audit_wiki_f_s46: epochs': 1, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
+- RUNNING  audit_wiki_f_s47: epochs': 1, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - RUNNING  forum_attention_rec_s43: epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - RUNNING  forum_gru_norec_s43: epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - RUNNING  forum_gru_norec_s46: epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
@@ -178,22 +179,22 @@ our launcher claims (pid:gpu/MiB): 1213960:0/12000 1214085:0/4000
 - RUNNING  forum_gru_rec_s46: epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - RUNNING  forum_gru_rec_s47: epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - RUNNING  forum_nodeframe_rec_s43: epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
-- RUNNING  wiki_attention_s43_lr1e-3: 
-- RUNNING  wiki_attention_s43_lr3e-4: epochs': 4, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
+- RUNNING  wiki_attention_s43_lr1e-3: epochs': 4, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
+- RUNNING  wiki_attention_s43_lr3e-4: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     wiki_coreoff_s43_lr1e-3: FINAL val_mrr=0.7674 test_mrr=0.7440 test_hits10=0.8456 eval_sec=56.5
-- RUNNING  wiki_coreoff_s43_lr3e-4: 
+- RUNNING  wiki_coreoff_s43_lr3e-4: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  wiki_curonly_s43_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  wiki_curonly_s43_lr3e-4: epochs': 4, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - RUNNING  wiki_diag_s43_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  wiki_diag_s43_lr3e-4: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  wiki_gru_s43_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  wiki_gru_s43_lr3e-4: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  wiki_identity_s43_lr1e-3: 
+- RUNNING  wiki_identity_s43_lr1e-3: epochs': 4, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - RUNNING  wiki_identity_s43_lr3e-4: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  wiki_nodeframe_s43_lr1e-3: 
+- RUNNING  wiki_nodeframe_s43_lr1e-3: epochs': 4, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - RUNNING  wiki_nodeframe_s43_lr3e-4: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  wiki_tsd_s43_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  wiki_tsd_s43_lr3e-4: 
+- RUNNING  wiki_tsd_s43_lr3e-4: epochs': 4, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 
 ## node-property reruns
 - genre_faithful_daily_s43: test NDCG mean±std: 0.4482 ± nan
@@ -243,8 +244,8 @@ our launcher claims (pid:gpu/MiB): 1213960:0/12000 1214085:0/4000
 - DONE synth_static_original: test 0.790 novel 0.151 rec 0.791
 
 ## recent actions
-2026-09-22 09:54:18 (re)launching forum_gru_rec_s47 via results/review_2026_09_22/queue/forum_gru_rec_s47.cmd (attempt 1)
-2026-09-22 09:54:18 (re)launching forum_nodeframe_rec_s43 via results/review_2026_09_22/queue/forum_nodeframe_rec_s43.cmd (attempt 1)
-2026-09-22 09:58:28 (re)launching audit_icews_eval_s43 via results/review_2026_09_22/queue/audit_icews_eval_s43.cmd (attempt 1)
 2026-09-22 09:58:28 (re)launching audit_icews_eval_s47 via results/review_2026_09_22/queue/audit_icews_eval_s47.cmd (attempt 1)
 2026-09-22 10:02:37 (re)launching audit_sp_f_s43 via results/review_2026_09_22/queue/audit_sp_f_s43.cmd (attempt 2)
+2026-09-22 10:19:09 (re)launching audit2_sp_f_s47 via results/review_2026_09_22/queue/audit2_sp_f_s47.cmd (attempt 1)
+2026-09-22 10:23:18 (re)launching audit_sp_f_s43 via results/review_2026_09_22/queue/audit_sp_f_s43.cmd (attempt 3)
+2026-09-22 10:23:18 (re)launching audit_sp_f_s46 via results/review_2026_09_22/queue/audit_sp_f_s46.cmd (attempt 2)

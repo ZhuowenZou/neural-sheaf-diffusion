@@ -12,6 +12,7 @@
   "d": 2,
   "dataset": "tkgl-smallpedia",
   "delta_time_scale": "auto",
+  "dump_query_ranks": false,
   "emb_in_head": false,
   "epochs": 0,
   "eval_only": "results/event_bench/leakfree2/sp_f_s46/best.pt",
@@ -113,14 +114,14 @@
   "--out",
   "results/review_2026_09_22/audit/sp_f_s46"
  ],
- "commit": "f84766ab29f05892d87800dc1c6e057f35ff6c65",
+ "commit": "40abe4227dbd71aec9f0cd4f287d3d44b941c516",
  "cwd": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "env": {
   "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
   "CUDA_MODULE_LOADING": "LAZY",
-  "CUDA_VISIBLE_DEVICES": "0",
+  "CUDA_VISIBLE_DEVICES": "3",
   "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True",
-  "TSD_ONLY_GPUS": "0",
-  "TSD_RESERVE_GPU_MB": "3000"
+  "TSD_ONLY_GPUS": "3",
+  "TSD_RESERVE_GPU_MB": "20976"
  }
 }
