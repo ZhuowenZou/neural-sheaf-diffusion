@@ -118,7 +118,29 @@ updates 7:1), so the cap is not the binding constraint on wiki.
 collected in `clock_diagnostics.csv`.)
 
 ## 3. Matched comparisons (tgbl-wiki five seeds; thgl-forum subset)
-(filled from per_seed_results.csv / paired_contrasts.csv)
+(wiki: filled from per_seed_results.csv / paired_contrasts.csv when wave 2 completes)
+
+**thgl-forum, principal simple temporal baseline (GRU + ordinary propagation, same head/REC/data/protocol as
+the retained TSD seeds; old-protocol negative RNG regime to match those seeds; `forum/`):**
+
+| REC | seed | TSD (retained) | GRU + ordinary | Δ (GRU − TSD) |
+|---|---|---|---|---|
+| on | 43 | 0.6280 | 0.6511 | +0.023 |
+| on | 46 | 0.6412 | 0.6418 | +0.001 |
+| on | 47 | 0.6187 | 0.6414 | +0.023 |
+| on | mean ± SD | 0.629 ± 0.011 | 0.645 ± 0.006 | +0.016 ± 0.013 (3+ 0−) |
+| off | 43 | 0.3940 | 0.3827 | −0.011 |
+| off | 46 | 0.4007 | 0.3932 | −0.008 |
+| off | 47 | 0.3470 | 0.3807 | +0.034 |
+| off | mean ± SD | 0.381 ± 0.029 | 0.386 ± 0.007 | +0.005 ± 0.025 (1+ 2−) |
+
+**Finding (forum):** a GRU memory with identity transport equals TSD without the REC head and exceeds it on
+every seed with the REC head. The retained SSM-with-identity-maps ablation (REC off: 0.220 / 0.332 / 0.326)
+is therefore not evidence that learned restriction maps are necessary on forum: the low identity-map scores
+are specific to the SSM core (unstable across seeds), and a simpler core with the same identity transport
+recovers TSD's accuracy. The earlier claim "learned restriction maps are the robust mechanism on forum" must be
+withdrawn or narrowed to "within the SSM core". Diagonal-SSM, attention-gate and node-frame cells and seeds
+44/45 are being added (`forum/`); the fast builder makes a forum run ~80 min.
 
 **Core-off anchor, executed cost (`matched/coreoff_cost_wiki/coreoff_cost.csv`):** on the same 20k-edge
 tgbl-wiki slice (561 snapshots, same GPU, three repeats) the reference core-off path (`--no-memory --layers 0`,
