@@ -204,3 +204,23 @@ def test_query_audit_counts_invalid_negatives_and_parity():
     audit2.record_batch("test", 0, Snap(), pos, neg2, mask, pos, neg2)
     r2 = audit2.summary_rows()[0]
     assert r2["parity_raw_vs_guarded"] and r2["parity_guarded_vs_conservative"] and r2["queries_affected"] == 0
+
+
+def test_vectorised_left_right_map_index_matches_reference():
+    from lib import laplace as lap
+    g = torch.Generator().manual_seed(0)
+    for n, m, full in ((6, 10, False), (50, 300, False), (50, 300, True), (400, 3000, False), (3, 3, True)):
+        src = torch.randint(0, n, (m,), generator=g); dst = torch.randint(0, n, (m,), generator=g)
+        keep = src != dst
+        und = torch.cat([torch.stack([src[keep], dst[keep]]), torch.stack([dst[keep], src[keep]])], dim=1)
+        und = torch.unique(und, dim=1)
+        perm = torch.randperm(und.size(1), generator=g)
+        und = und[:, perm]   # arbitrary edge order, both directions present
+        a, b = lap.compute_left_right_map_index(und, full_matrix=full)
+        a_ref, b_ref = lap._compute_left_right_map_index_reference(und, full_matrix=full)
+        assert torch.equal(a, a_ref) and torch.equal(b, b_ref)
+    # a missing reverse edge raises like the reference (KeyError)
+    bad = torch.tensor([[0, 1, 2], [1, 0, 0]])
+    import pytest
+    with pytest.raises(KeyError):
+        lap.compute_left_right_map_index(bad)

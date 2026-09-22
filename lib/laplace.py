@@ -310,7 +310,46 @@ def append_diag_maps_to_existent_laplacian(size, learnable_d, L, edge_index, val
 
 
 def compute_left_right_map_index(edge_index, full_matrix=False):
-    """Computes indices for lower triangular matrix or full matrix"""
+    """Computes indices for lower triangular matrix or full matrix.
+
+    Vectorised implementation (2026-09-22): exactly equivalent to the original
+    per-edge Python loop (kept below as `_compute_left_right_map_index_reference`
+    and pinned by models/test_review_controls.py), which called `.item()` twice
+    per edge and dominated the step time on dense local graphs."""
+    E = edge_index.size(1)
+    device = edge_index.device
+    if E == 0:
+        empty = torch.empty((2, 0), dtype=torch.long, device=device)
+        return empty, empty.clone()
+    src = edge_index[0].long()
+    dst = edge_index[1].long()
+    n = int(max(int(src.max()), int(dst.max()))) + 1
+    keys = src * n + dst
+    order = torch.argsort(keys, stable=True)
+    sorted_keys = keys[order]
+    rev = dst * n + src
+    # last occurrence of each key (the reference dict keeps the last edge index for duplicate pairs)
+    pos = torch.searchsorted(sorted_keys, rev, right=True) - 1
+    pos = pos.clamp_min(0)
+    found = sorted_keys[pos] == rev
+    if not bool(found.all()):
+        missing = edge_index[:, ~found][:, 0].tolist()
+        raise KeyError((missing[1], missing[0]))
+    right_all = order[pos]
+    mask = torch.ones(E, dtype=torch.bool, device=device) if full_matrix else (src < dst)
+    left_index = torch.nonzero(mask, as_tuple=False).view(-1)
+    right_index = right_all[mask]
+    left_right_index = torch.vstack([left_index, right_index])
+    new_edge_index = torch.vstack([src[mask], dst[mask]])
+    if full_matrix:
+        assert left_index.numel() == E
+    else:
+        assert left_index.numel() == E // 2
+    return left_right_index, new_edge_index
+
+
+def _compute_left_right_map_index_reference(edge_index, full_matrix=False):
+    """Original per-edge implementation (reference for the equivalence test)."""
     edge_to_idx = dict()
     for e in range(edge_index.size(1)):
         source = edge_index[0, e].item()
