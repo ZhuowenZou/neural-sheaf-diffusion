@@ -201,9 +201,20 @@ core-off 0.2155 ± 0.0010 (core-off − TSD = +0.005 on 3 of 3 paired seeds); pe
 Making the cue an explicit input does not let any evaluated core use it under one-step gradient truncation.
 
 **Variant 3 (`gen_s2`, 100 nodes / 5 communities / typed cues, so a node's next interaction follows its cue
-after a few batches instead of ~20):** running on the five essential arms; results in
-`synthetic/synthetic_analysis_s2/` (core-off 0.267 ± 0.004 on 4 seeds; permitted oracle 0.531; the novel-pair
-fraction is only 11% here because 100 nodes recur heavily, so this variant tests memory, not novelty transfer).
+after a few batches instead of ~20; five essential arms, five paired seeds; `synthetic/synthetic_analysis_s2/`;
+novel-pair fraction only 11% here, so this variant tests memory rather than novelty transfer):** TSD 0.265 ±
+0.007, current-only 0.270 ± 0.010 (+0.005, 3+ 2−), identity 0.276 ± 0.023 (+0.011, 3+ 2−), GRU + ordinary
+0.281 ± 0.009 (**+0.016 on 5 of 5 seeds**), core-off 0.268 ± 0.005 (+0.003, 2+ 3−); permitted-history oracle
+0.531, latent oracle 0.590, chance 0.059. Shortening the delay lets the GRU core extract a small, seed-consistent
+amount of history that the SSM core does not, but no arm comes close to the oracle.
+
+**Synthetic conclusion:** across three generator variants, none of the evaluated cores learns the delayed-cue
+rule under the paper's training protocol (persistent state, one-step gradient truncation, fixed epoch budget);
+the only seed-consistent difference is a small GRU advantage on the short-delay variant, and TSD is never above
+its current-only-map or identity-map controls. The task therefore provides no support for putting history into
+the restriction maps, and — because the history-in-values comparators also fail — it does not establish that
+memory as implemented captures delayed cues either. The sanity conditions (a) and (b) hold; (c) holds only
+weakly (GRU on variant 3). We report this as a negative result and did not tune the generator further.
 
 ## 5. Not evaluated (explicit)
 - ICEWS matrix beyond the retained seeds: not retrained (cost 20+ h per run); checkpoint-replay audits of the
