@@ -1,4 +1,5 @@
 run,group,dataset,arm,seed,train_steps,train_nonfinite_loss,train_nonfinite_grad,train_clipped,train_skipped_steps,val_nonfinite_positives,val_nonfinite_negatives,val_skipped_queries,val_metric_examples,test_nonfinite_positives,test_nonfinite_negatives,test_skipped_queries,test_metric_examples,query_audit_affected_total,query_audit_parity
+forum_f_s43,audit,thgl-forum,tsd,43,0,0,0,0,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_f_s46,audit,thgl-forum,tsd,46,0,0,0,0,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_f_s47,audit,thgl-forum,tsd,47,0,0,0,0,0,0,0,0,3563658,0,0,0,3563653,0,True
 polecat_f_s43,audit,tkgl-polecat,tsd,43,0,0,0,0,0,0,0,0,533472,0,0,0,532636,0,True
@@ -16,12 +17,16 @@ wiki_f_s43,audit,tgbl-wiki,tsd,43,0,0,0,0,0,0,0,0,23621,0,0,0,23621,0,True
 wiki_f_s46,audit,tgbl-wiki,tsd,46,0,0,0,0,0,0,0,0,23621,0,0,0,23621,0,True
 wiki_f_s47,audit,tgbl-wiki,tsd,47,0,0,0,0,0,0,0,0,23621,0,0,0,23621,0,True
 forum_attention_rec_s43,forum,thgl-forum,attention-gates,43,2956,0,0,12,0,0,0,0,3563658,0,0,0,3563653,0,True
+forum_attention_recoff_s43,forum,thgl-forum,attention-gates,43,2956,0,0,9,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_attention_recoff_s46,forum,thgl-forum,attention-gates,46,2956,0,0,9,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_attention_recon_s46,forum,thgl-forum,attention-gates,46,2956,0,0,7,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_coreoff_recoff_s44,forum,thgl-forum,core-off,44,2956,0,0,8,0,0,0,0,3563658,0,0,0,3563653,0,True
+forum_coreoff_recoff_s45,forum,thgl-forum,core-off,45,2956,0,0,3,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_coreoff_recon_s44,forum,thgl-forum,core-off,44,2956,0,0,33,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_curonly_recon_s44,forum,thgl-forum,current-only-maps,44,2956,0,0,11,0,0,0,0,3563658,0,0,0,3563653,0,True
+forum_curonly_recon_s45,forum,thgl-forum,current-only-maps,45,2956,0,0,9,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_diag_recoff_s43,forum,thgl-forum,diagssm-ordinary,43,2956,0,0,42,0,0,0,0,3563658,0,0,0,3563653,0,True
+forum_diag_recoff_s46,forum,thgl-forum,diagssm-ordinary,46,2956,0,0,299,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_diag_recoff_s47,forum,thgl-forum,diagssm-ordinary,47,2956,0,0,206,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_diag_recon_s46,forum,thgl-forum,diagssm-ordinary,46,2956,0,0,50,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_diag_recon_s47,forum,thgl-forum,diagssm-ordinary,47,2956,0,0,114,0,0,0,0,3563658,0,0,0,3563653,0,True
@@ -34,6 +39,7 @@ forum_gru_rec_s47,forum,thgl-forum,gru-ordinary,47,2956,0,0,13,0,0,0,0,3563658,0
 forum_gru_recoff_s44,forum,thgl-forum,gru-ordinary,44,2956,0,0,72,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_gru_recoff_s45,forum,thgl-forum,gru-ordinary,45,2956,0,0,95,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_gru_recon_s45,forum,thgl-forum,gru-ordinary,45,2956,0,0,19,0,0,0,0,3563658,0,0,0,3563653,0,True
+forum_identity_recoff_s45,forum,thgl-forum,identity-maps,45,2956,0,0,14,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_nodeframe_rec_s43,forum,thgl-forum,node-frame,43,2956,0,0,17,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_nodeframe_recoff_s43,forum,thgl-forum,node-frame,43,2956,0,0,21,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_nodeframe_recoff_s46,forum,thgl-forum,node-frame,46,2956,0,0,38,0,0,0,0,3563658,0,0,0,3563653,0,True
@@ -48,6 +54,7 @@ wiki_diag_s43_lr1e-3,matched,tgbl-wiki,diagssm-ordinary,43,24832,0,0,531,0,0,0,0
 wiki_diag_s43_lr3e-4,matched,tgbl-wiki,diagssm-ordinary,43,24832,0,0,1363,0,0,0,0,23621,0,0,0,23621,0,True
 wiki_gru_s43_lr1e-3,matched,tgbl-wiki,gru-ordinary,43,24832,0,0,476,0,0,0,0,23621,0,0,0,23621,0,True
 wiki_gru_s43_lr3e-4,matched,tgbl-wiki,gru-ordinary,43,24832,0,0,1138,0,0,0,0,23621,0,0,0,23621,0,True
+wiki_identity_s43_lr3e-4,matched,tgbl-wiki,identity-maps,43,24832,0,0,1245,0,0,0,0,23621,0,0,0,23621,0,True
 wiki_nodeframe_s43_lr3e-4,matched,tgbl-wiki,node-frame,43,24832,0,0,1091,0,0,0,0,23621,0,0,0,23621,0,True
 wiki_tsd_s43_lr1e-3,matched,tgbl-wiki,tsd,43,24832,0,0,522,0,0,0,0,23621,0,0,0,23621,0,True
 attention,smoke,tgbl-wiki,attention-gates,43,560,0,0,185,0,0,0,0,4000,0,0,0,4000,0,True

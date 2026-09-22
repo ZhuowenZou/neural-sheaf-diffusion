@@ -56,11 +56,25 @@
    "final_val": 0.7475877337671548
   },
   {
+   "arm": "identity",
+   "lr": "3e-4",
+   "best_track_val_mrr": 0.7358966022990644,
+   "best_epoch": 8,
+   "final_val": 0.7490415002017233
+  },
+  {
    "arm": "nodeframe",
    "lr": "3e-4",
    "best_track_val_mrr": 0.7336924613714219,
    "best_epoch": 8,
    "final_val": 0.7466917640293519
+  },
+  {
+   "arm": "tsd",
+   "lr": "1e-3",
+   "best_track_val_mrr": 0.7655376536995172,
+   "best_epoch": 8,
+   "final_val": 0.773008566238874
   }
  ]
 }
