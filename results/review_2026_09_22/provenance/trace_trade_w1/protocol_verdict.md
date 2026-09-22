@@ -1,6 +1,6 @@
 # Protocol trace: tgbn-trade (time_window=1, train_cap=-1; installed py-tgb)
 
-Generated 2026-09-22 09:49 in 5s. Facts only.
+Generated 2026-09-22 09:57 in 19s. Facts only.
 
 ## Label semantics (reconstruction from raw edges)
 

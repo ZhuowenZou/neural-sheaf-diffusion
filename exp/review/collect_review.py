@@ -58,6 +58,14 @@ def collect():
                  clock=cfg.get("clock", "global"), is_audit=bool(cfg.get("audit_eval_only")),
                  finished=time.strftime("%Y-%m-%d %H:%M", time.localtime(os.path.getmtime(res))))
         d.pop("config_json", None)
+        if cfg.get("audit_eval_only"):
+            # parity with the retained metric of the replayed run (P0 gate)
+            old = f"results/event_bench/leakfree2/{run}/results.csv"
+            if os.path.exists(old):
+                o = pd.read_csv(old).iloc[0]
+                d["retained_test_mrr"] = float(o.get("test_mrr", np.nan))
+                d["retained_val_mrr"] = float(o.get("validation_mrr", np.nan))
+                d["replay_minus_retained_test"] = float(d.get("test_mrr", np.nan)) - d["retained_test_mrr"]
         rows.append(d)
     for log in sorted(glob.glob(f"{RV}/queue/*.log")):
         n = os.path.basename(log)[:-4]
@@ -79,7 +87,8 @@ def collect():
 
 def paired(df):
     out = []
-    d = df[(~df.is_audit) & df.test_mrr.notna()]
+    d = df[(~df.is_audit) & df.test_mrr.notna() & (df.group != "smoke")]
+    d = d.drop_duplicates(subset=["dataset", "rec", "group", "arm", "lr", "seed"], keep="last")
     for (ds, rec, grp), g in d.groupby(["dataset", "rec", "group"]):
         # lock: the lr used by the majority of each arm's seeds (wave 2); wave-1 alternatives stay separate rows
         base = g[g.arm == "tsd"]
@@ -112,7 +121,7 @@ def main():
     if len(runs):
         keep = ["run", "group", "dataset", "arm", "lr", "rec", "clock", "seed", "is_audit", "validation_mrr", "test_mrr", "test_hits10",
                 "best_track_epoch", "train_epochs_run", "params_total", "params_active", "query_audit_affected_total",
-                "query_audit_parity", "finished"]
+                "query_audit_parity", "retained_test_mrr", "replay_minus_retained_test", "finished"]
         runs[[c for c in keep if c in runs.columns]].to_csv(f"{RV}/per_seed_results.csv", index=False)
         cost_cols = [c for c in runs.columns if c.startswith(("hw_", "params_", "final_", "prep_", "negatives_", "train_sec",
                                                               "selection_", "end_to_end", "rec_", "core_state", "checkpoint_bytes",
@@ -143,8 +152,9 @@ def main():
                       pc[["dataset", "rec", "arm", "arm_lr", "tsd_lr", "n", "tsd_mean", "arm_mean", "delta_arm_minus_tsd_mean", "delta_sd", "t95_halfwidth", "deltas", "signs"]].to_markdown(index=False), ""]
         aud = runs[runs.is_audit]
         if len(aud):
-            lines += ["## Checkpoint-replay audits (P0)", "",
-                      aud[["run", "dataset", "seed", "validation_mrr", "test_mrr", "query_audit_affected_total", "query_audit_parity"]].to_markdown(index=False), ""]
+            cols = [c for c in ["run", "dataset", "seed", "validation_mrr", "test_mrr", "retained_test_mrr", "replay_minus_retained_test",
+                                "query_audit_affected_total", "query_audit_parity"] if c in aud.columns]
+            lines += ["## Checkpoint-replay audits (P0)", "", aud[cols].to_markdown(index=False), ""]
     if len(qv):
         lines += ["## Score-validity audit (per split)", "",
                   qv[["group", "run", "split", "queries", "queries_affected", "pos_nonfinite", "neg_nan", "neg_posinf", "neg_neginf",

@@ -1,0 +1,7 @@
+runner,split,cursor_index_at_seek,split_first_edge_ts,split_last_edge_ts,snapshots,labels_scored,note,batches,pending_label_at_split_end,cursor_exhausted_break
+ours,train,0.0,1108357203,1216427761,1251.0,1250,"time_window=86400, train_cap=-1 (prefix of the training split)",,,
+ours,val,1250.0,1216427762,1230448624,163.0,163,"time_window=86400, train_cap=-1 (prefix of the training split)",,,
+ours,test,1413.0,1230448684,1245461220,174.0,166,"time_window=86400, train_cap=-1 (prefix of the training split)",,,
+official_tgn_example,train,,1108357203,1216427761,,1250,batch_size=200; label fires when batch last t > pending label ts; one label per batch,62505.0,1216440000.0,False
+official_tgn_example,val,,1216427762,1230448624,,163,batch_size=200; label fires when batch last t > pending label ts; one label per batch,13394.0,1230526800.0,False
+official_tgn_example,test,,1230448684,1245461220,,166,batch_size=200; label fires when batch last t > pending label ts; one label per batch,13394.0,1244779200.0,True

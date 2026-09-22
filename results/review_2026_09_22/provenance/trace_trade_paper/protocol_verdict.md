@@ -1,6 +1,6 @@
 # Protocol trace: tgbn-trade (time_window=3, train_cap=2048; installed py-tgb)
 
-Generated 2026-09-22 09:49 in 5s. Facts only.
+Generated 2026-09-22 09:57 in 15s. Facts only.
 
 ## Label semantics (reconstruction from raw edges)
 
@@ -36,17 +36,17 @@ Best-matching generating window: **same_period** (offset 0 period(s), length 1),
 
 | runner               | split   |   label_ts |   snapshot_ts |   frontier_t_max |   ingested_t_lt_label |   ingested_t_eq_label |   ingested_t_gt_label |   label_nodes | label_hash       | first_in_split   | last_in_split   |
 |:---------------------|:--------|-----------:|--------------:|-----------------:|----------------------:|----------------------:|----------------------:|--------------:|:-----------------|:-----------------|:----------------|
-| ours                 | train   |       1987 |          1987 |             1987 |                  9471 |                  6913 |                     0 |           201 | 64a8806b1be54c1f | True             | True            |
-| ours                 | val     |       2010 |          2012 |             2012 |                 16384 |                 17898 |                 36539 |           213 | 2f1e91a6d10d2a8c | True             | False           |
+| ours                 | train   |       1987 |          1987 |             1987 |                     0 |                 16384 |                     0 |           201 | 64a8806b1be54c1f | True             | True            |
+| ours                 | val     |       2010 |          2012 |             2012 |                 16384 |                 54437 |                     0 |           213 | 2f1e91a6d10d2a8c | True             | False           |
 | ours                 | val     |       2013 |          2013 |             2013 |                 70821 |                 18733 |                     0 |           214 | cda3e5d665433d0c | False            | True            |
-| ours                 | test    |       2014 |          2016 |             2016 |                 89554 |                 19273 |                 38578 |           225 | bbfe440052a49927 | True             | False           |
+| ours                 | test    |       2014 |          2016 |             2016 |                 70821 |                 57377 |                 19207 |           225 | bbfe440052a49927 | True             | False           |
 | ours                 | test    |       2016 |          2016 |             2016 |                128198 |                 19207 |                     0 |           224 | 7f3d4c6273452735 | False            | True            |
-| official_tgn_example | train   |       1987 |          1988 |             1987 |                  9471 |                  9330 |                     0 |           201 | 64a8806b1be54c1f | True             | False           |
-| official_tgn_example | train   |       2008 |          2009 |             2008 |                301732 |                 17704 |                     0 |           214 | 8d915e7bcff854a2 | False            | True            |
-| official_tgn_example | val     |       2009 |          2010 |             2009 |                319436 |                 17788 |                     0 |           212 | 71f02d65e13f9027 | True             | False           |
-| official_tgn_example | val     |       2012 |          2013 |             2012 |                373167 |                 18494 |                     0 |           213 | d205cab81896fdb8 | False            | True            |
+| official_tgn_example | train   |       1987 |          1988 |             1987 |                     0 |                 18801 |                     0 |           201 | 64a8806b1be54c1f | True             | False           |
+| official_tgn_example | train   |       2008 |          2009 |             2008 |                283986 |                 35450 |                     0 |           214 | 8d915e7bcff854a2 | False            | True            |
+| official_tgn_example | val     |       2009 |          2010 |             2009 |                283986 |                 53238 |                     0 |           212 | 71f02d65e13f9027 | True             | False           |
+| official_tgn_example | val     |       2012 |          2013 |             2012 |                337224 |                 54437 |                     0 |           213 | d205cab81896fdb8 | False            | True            |
 | official_tgn_example | test    |       2013 |          2014 |             2013 |                391661 |                 18733 |                     0 |           214 | cda3e5d665433d0c | True             | False           |
-| official_tgn_example | test    |       2015 |          2016 |             2015 |                429667 |                 19371 |                     0 |           226 | 0452d512a98429c2 | False            | True            |
+| official_tgn_example | test    |       2015 |          2016 |             2015 |                391661 |                 57377 |                     0 |           226 | 0452d512a98429c2 | False            | True            |
 
 ## Diagnostic predictors (NDCG@10, mean over scored label timestamps)
 

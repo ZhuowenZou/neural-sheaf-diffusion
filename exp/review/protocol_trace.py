@@ -40,14 +40,18 @@ def _hash_labels(srcs, labels):
 
 
 class Frontier:
-    """Dummy state: only records which raw edges were ingested."""
+    """Dummy state: only records which raw edges were ingested (in order) and a
+    running histogram over period buckets (t // unit) for O(1) label-relative counts."""
 
-    def __init__(self, t_all):
+    def __init__(self, t_all, unit=1):
         self.t_all = t_all
+        self.unit = int(unit)
         self.n = 0
         self.t_min = None
         self.t_max = None
         self.ingested_ids = []
+        self.hist = np.zeros(int(t_all.max() // self.unit) + 2, dtype=np.int64)
+        self._all = None
 
     def ingest(self, ids):
         ids = np.asarray(ids)
@@ -58,20 +62,25 @@ class Frontier:
         self.t_min = int(t.min()) if self.t_min is None else min(self.t_min, int(t.min()))
         self.t_max = int(t.max()) if self.t_max is None else max(self.t_max, int(t.max()))
         self.ingested_ids.append(ids)
+        np.add.at(self.hist, (t // self.unit).astype(np.int64), 1)
+        self._all = None
 
     def counts_relative_to(self, label_ts):
-        if not self.ingested_ids:
-            return 0, 0, 0
-        ids = np.concatenate(self.ingested_ids)
-        t = self.t_all[ids]
-        return int((t < label_ts).sum()), int((t == label_ts).sum()), int((t > label_ts).sum())
+        """(ingested edges before the label's period, inside it, after it)."""
+        b = int(label_ts // self.unit)
+        return int(self.hist[:b].sum()), int(self.hist[b]), int(self.hist[b + 1:].sum())
+
+    def prefix(self, n):
+        if self._all is None:
+            self._all = np.concatenate(self.ingested_ids) if self.ingested_ids else np.zeros(0, dtype=np.int64)
+        return self._all[:n]
 
 
-def trace_ours(ds, td, context, time_window, train_cap, t_all):
+def trace_ours(ds, td, context, time_window, train_cap, t_all, unit=1):
     inner = getattr(ds, "dataset", ds)
     bundle = context.get_snapshot_bundle(time_window)
     rows, examples = [], []
-    fr = Frontier(t_all)
+    fr = Frontier(t_all, unit)
     ingested_before = {}   # label_ts -> frontier snapshot (for the diagnostic predictors)
     for split in ("train", "val", "test"):
         snaps = bundle[f"{split}_snapshots"]
@@ -94,7 +103,7 @@ def trace_ours(ds, td, context, time_window, train_cap, t_all):
                                  pending_label_before=pending_before, pending_label_after=pending_after,
                                  labels_drained_in_snapshot=len(drained), drain_position=j,
                                  first_in_split=(n_lab == 0), last_in_split=False))
-                ingested_before[(split, int(lts))] = np.concatenate(fr.ingested_ids) if fr.ingested_ids else np.zeros(0, dtype=np.int64)
+                ingested_before[(split, int(lts))] = fr.n
                 n_lab += 1
         if rows:
             for r in reversed(rows):
@@ -106,15 +115,15 @@ def trace_ours(ds, td, context, time_window, train_cap, t_all):
                              split_last_edge_ts=int(snaps[-1].edge_timestamps.max()) if snaps else None,
                              snapshots=len(snaps), labels_scored=n_lab,
                              note=f"time_window={time_window}, train_cap={train_cap} (prefix of the training split)"))
-    return pd.DataFrame(rows), examples, ingested_before
+    return pd.DataFrame(rows), examples, (fr, ingested_before)
 
 
-def trace_official(ds, td, t_all, batch_size=200):
+def trace_official(ds, td, t_all, batch_size=200, unit=1):
     """Symbolic replay of examples/nodeproppred/tgbn-*/tgn.py with a dummy state."""
     inner = getattr(ds, "dataset", ds)
     masks = {s: np.asarray(getattr(ds, f"{s}_mask")) for s in ("train", "val", "test")}
     ds.reset_label_time()
-    fr = Frontier(t_all)
+    fr = Frontier(t_all, unit)
     rows, examples = [], []
     ingested_before = {}
     for split in ("train", "val", "test"):
@@ -148,7 +157,7 @@ def trace_official(ds, td, t_all, batch_size=200):
                                  label_nodes=int(len(srcs)), label_hash=_hash_labels(srcs, labels),
                                  pending_label_before=lts, pending_label_after=label_t,
                                  labels_drained_in_snapshot=1, drain_position=0, first_in_split=(n_lab == 0), last_in_split=False))
-                ingested_before[(split, lts)] = np.concatenate(fr.ingested_ids)
+                ingested_before[(split, lts)] = fr.n
                 n_lab += 1
             fr.ingest(rest)
         for r in reversed(rows):
@@ -159,7 +168,7 @@ def trace_official(ds, td, t_all, batch_size=200):
                              split_first_edge_ts=int(t_all[ids].min()), split_last_edge_ts=int(t_all[ids].max()),
                              pending_label_at_split_end=int(inner.return_label_ts()), cursor_exhausted_break=unscored_break,
                              note=f"batch_size={batch_size}; label fires when batch last t > pending label ts; one label per batch"))
-    return pd.DataFrame(rows), examples, ingested_before
+    return pd.DataFrame(rows), examples, (fr, ingested_before)
 
 
 def period_aggregates(src, dst, t, w, n_nodes, n_classes, period_of):
@@ -204,8 +213,10 @@ def main():
     print(f"{args.dataset}: {len(t_all)} edges, {len(label_ts)} label timestamps, {n_classes} classes; "
           f"splits train<= {int(t_all[np.asarray(ds.train_mask)].max())} val<= {int(t_all[np.asarray(ds.val_mask)].max())}", flush=True)
 
-    ours, ex_ours, ing_ours = trace_ours(ds, td, context, tw, args.train_cap, t_all)
-    official, ex_off, ing_off = trace_official(ds, td, t_all, args.batch_size)
+    unit = tw if args.dataset == "tgbn-trade" else 86400
+    ours, ex_ours, ing_ours = trace_ours(ds, td, context, tw, args.train_cap, t_all, unit)
+    official, ex_off, ing_off = trace_official(ds, td, t_all, args.batch_size, unit)
+    print(f"traces done ({time.time() - t0:.0f}s): ours {len(ours)} labels, official {len(official)} labels", flush=True)
     trace = pd.concat([ours, official], ignore_index=True)
     trace.to_csv(os.path.join(args.out, "protocol_trace.csv"), index=False)
     pd.DataFrame(ex_ours + ex_off).to_csv(os.path.join(args.out, "protocol_examples.csv"), index=False)
@@ -224,7 +235,6 @@ def main():
     print("label sets:", json.dumps(sets, default=str)[:1500], flush=True)
 
     # ---- label reconstruction: which edge window generates label(ts, u)? ----
-    unit = tw if args.dataset == "tgbn-trade" else 86400
     cands = [("same_period", 0, 1), ("next_period", 1, 1), ("prev_period", -1, 1)]
     if args.dataset != "tgbn-trade":
         cands += [("next_7", 0, 7), ("next_8_incl", 0, 8), ("prev_7", -7, 7), ("next_7_from_+1", 1, 7), ("window_-1_+7", -1, 8)]
@@ -257,7 +267,7 @@ def main():
     per_period = period_aggregates(src, dst, t_all, w, context.num_nodes, n_classes, period_of)   # completed-period aggregates
     label_sorted = np.sort(label_ts)
     scores, summary = [], []
-    for runner, trace_df, ing in (("ours", ours, ing_ours), ("official_tgn_example", official, ing_off)):
+    for runner, trace_df, (fr_, ing) in (("ours", ours, ing_ours), ("official_tgn_example", official, ing_off)):
         for split in ("val", "test"):
             sub = trace_df[trace_df.split == split]
             per_ts = {k: [] for k in ("last_label", "prev_1_period", "prev_3_periods", "copy_available_edges")}
@@ -280,7 +290,7 @@ def main():
                     acc = [per_period.get(gen_p - k, {}).get(int(u)) for k in (1, 2, 3)]
                     acc = [a for a in acc if a is not None]; P3[i] = np.mean(acc, axis=0) if acc else 0
                 # (c) copy from the edges actually ingested before scoring, restricted to the generating window
-                ids = ing.get((split, lts), np.zeros(0, dtype=np.int64))
+                ids = fr_.prefix(ing.get((split, lts), 0))
                 lo = lts + gen_off * unit; hi = lo + gen_len * unit
                 m = (t_all[ids] >= lo) & (t_all[ids] < hi)
                 agg = period_aggregates(src[ids][m], dst[ids][m], t_all[ids][m], w[ids][m], context.num_nodes, n_classes, lambda t: np.zeros_like(t)).get(0, {})
