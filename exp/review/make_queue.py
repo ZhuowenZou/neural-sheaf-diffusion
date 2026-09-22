@@ -65,6 +65,8 @@ def main():
     ap.add_argument("--gen", default="gen_s1", help="synthetic generator directory under results/review_2026_09_22/synthetic")
     ap.add_argument("--seeds", default="43 44 45 46 47")
     ap.add_argument("--rec", default="off", choices=["off", "on"])
+    ap.add_argument("--extra-flags", default="", help="extra runner flags for every synth run (e.g. --relation-in-input)")
+    ap.add_argument("--tag", default="", help="name suffix for synth runs")
     ap.add_argument("runs", nargs="*")
     ap.add_argument("--lr-json", default=None)
     ap.add_argument("--gpus", default="3 4 7")
@@ -110,9 +112,9 @@ def main():
         i = 0
         for arm, extra in ARMS.items():
             for seed in args.seeds.split():
-                name = f"synth_{args.gen}_{arm}_rec{args.rec}_s{seed}"
+                name = f"synth_{args.gen}_{arm}_rec{args.rec}{args.tag}_s{seed}"
                 out = f"{RV}/synthetic/runs/{name}"
-                cmd = f"{PY} -m exp.run_event_benchmark {SY}{rec} {extra} --seed {seed} --out {out}"
+                cmd = f"{PY} -m exp.run_event_benchmark {SY}{rec} {args.extra_flags} {extra} --seed {seed} --out {out}"
                 written.append(write_cmd(name, 1500, cmd, only_gpus=gpus[i % len(gpus)])); i += 1
     else:
         import pandas as pd

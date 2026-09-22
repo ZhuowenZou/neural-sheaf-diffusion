@@ -41,7 +41,9 @@ import torch
 
 
 def generate(n_nodes=400, n_comm=8, n_events=60000, p_cue=0.03, beta=1.0, gap_mean=1.0, p_novel=0.5,
-             val_frac=0.15, test_frac=0.15, n_neg=32, feat_dim=32, seed=1):
+             val_frac=0.15, test_frac=0.15, n_neg=32, feat_dim=32, seed=1, typed_cues=False):
+    """typed_cues: cue events carry an observable relation id 1+k (interactions: 0), so the cue is an
+    explicit event attribute rather than only the identity of the cue node (variant "r")."""
     rng = np.random.default_rng(seed)
     comm = np.repeat(np.arange(n_comm), n_nodes // n_comm)
     comm = np.concatenate([comm, rng.integers(0, n_comm, n_nodes - comm.size)])
@@ -87,10 +89,12 @@ def generate(n_nodes=400, n_comm=8, n_events=60000, p_cue=0.03, beta=1.0, gap_me
         c = rng.integers(0, n_nodes - 1, n_neg)
         c = c + (c >= dst[i])
         neg[i] = c
+    edge_type = np.where(kind == 1, 1 + target_at, 0).astype(np.int64) if typed_cues else np.zeros(n_events, dtype=np.int64)
     data = dict(src=src, dst=dst, t=t, kind=kind, novel=novel, split=split, neg=neg, x=x, comm=comm, cue_nodes=cue_nodes,
-                pop=pop, target_at=target_at,
+                pop=pop, target_at=target_at, edge_type=edge_type, typed_cues=np.array(bool(typed_cues)),
                 config=json.dumps(dict(n_nodes=n_nodes, n_comm=n_comm, n_events=n_events, p_cue=p_cue, beta=beta, gap_mean=gap_mean,
-                                       p_novel=p_novel, val_frac=val_frac, test_frac=test_frac, n_neg=n_neg, feat_dim=feat_dim, seed=seed)))
+                                       p_novel=p_novel, val_frac=val_frac, test_frac=test_frac, n_neg=n_neg, feat_dim=feat_dim, seed=seed,
+                                       typed_cues=bool(typed_cues))))
     return data
 
 
@@ -132,14 +136,20 @@ class SyntheticHistoryDataset:
         # integer timestamps (the runner and REC caches use ints in places): milliseconds
         self.t_int = np.round(self.t * 1000).astype(np.int64)
         self.train_mask = torch.as_tensor(self.split == 0); self.val_mask = torch.as_tensor(self.split == 1); self.test_mask = torch.as_tensor(self.split == 2)
-        self.eval_metric = "mrr"; self.num_rels = 0; self.node_feat = torch.as_tensor(self.x)
+        self.edge_type = z["edge_type"] if "edge_type" in z.files else np.zeros(n, dtype=np.int64)
+        self.typed = bool(z["typed_cues"]) if "typed_cues" in z.files else False
+        self.eval_metric = "mrr"; self.num_rels = (int(self.edge_type.max()) + 1) if self.typed else 0
+        self.node_feat = torch.as_tensor(self.x)
         self.negative_sampler = _NegSampler(self.neg, self.t_int); self.negative_sampler.src = self.src; self.negative_sampler.dst = self.dst
         self.name = "synth-history"
 
     def get_TemporalData(self):
         from torch_geometric.data import TemporalData
-        return TemporalData(src=torch.as_tensor(self.src), dst=torch.as_tensor(self.dst), t=torch.as_tensor(self.t_int),
-                            msg=torch.ones(self.src.size, 1))
+        td = TemporalData(src=torch.as_tensor(self.src), dst=torch.as_tensor(self.dst), t=torch.as_tensor(self.t_int),
+                          msg=torch.ones(self.src.size, 1))
+        if self.typed:
+            td.edge_type = torch.as_tensor(self.edge_type)
+        return td
 
     def load_val_ns(self):
         return None
@@ -213,10 +223,11 @@ def main():
     ap.add_argument("--n-events", type=int, default=60000); ap.add_argument("--p-cue", type=float, default=0.03)
     ap.add_argument("--beta", type=float, default=1.0); ap.add_argument("--p-novel", type=float, default=0.5)
     ap.add_argument("--time-window", type=int, default=20000, help="runner bucket width in ms (gap mean = 1000 ms)")
+    ap.add_argument("--typed-cues", action="store_true", help="cue events carry relation id 1+k (variant r)")
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
     data = generate(n_nodes=args.n_nodes, n_comm=args.n_comm, n_events=args.n_events, p_cue=args.p_cue, beta=args.beta,
-                    p_novel=args.p_novel, seed=args.seed)
+                    p_novel=args.p_novel, seed=args.seed, typed_cues=args.typed_cues)
     path = os.path.join(args.out, "data.npz")
     np.savez(path, **data)
     sha = data_sha(data)
