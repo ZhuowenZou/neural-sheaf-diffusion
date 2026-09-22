@@ -19,9 +19,15 @@ reports, and a conservative diagnostic that assigns reciprocal rank 0 to any aff
 The audit runs in EVERY new evaluation and in the checkpoint replays of the retained headline runs
 (`audit/<run>/`); parity of the three metrics is recorded per split (`query_audit_parity`).
 
-Status: (filled by collect_review — see REVIEW_SUMMARY.md "Score-validity audit" and "Checkpoint-replay audits";
-the replays also report `replay_minus_retained_test`, the difference between the replayed test MRR and the
-metric stored in the retained run.)
+Status: see REVIEW_SUMMARY.md "Score-validity audit" and "Checkpoint-replay audits" (`replay_minus_retained_test`
+is the replayed test MRR minus the metric stored in the retained run). Completed replays so far: every one has
+**zero** affected queries (no non-finite positive or negative logit before substitution; no non-finite state or
+REC entry at any snapshot) and the three metrics agree exactly (parity). Replay reproducibility: tgbl-wiki
+seeds 43/46/47 and thgl-software 43/46 reproduce the retained test MRR to 1e-6 or better; tkgl-smallpedia
+seed 47 reproduces it to 8e-4 (retained 0.61118; replay 1 0.61041; an independent replay 2 0.61031), i.e.
+the smallpedia evaluation is non-deterministic at the 1e-4 to 1e-3 level (its relation-aggregate input uses
+float `index_add_` on CUDA, whose summation order is not deterministic), and the retained value lies at the
+edge of that band. This is a numerical-reproducibility caveat, not an invalid-score finding.
 
 Historical training skip frequency for the retained event runs remains **unknown** (no counter existed);
 new runs serialise `train_steps`, `train_nonfinite_loss`, `train_nonfinite_grad`, `train_clipped`,
