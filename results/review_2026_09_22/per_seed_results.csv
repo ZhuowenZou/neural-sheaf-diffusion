@@ -29,6 +29,7 @@ forum_curonly_recon_s45,forum,thgl-forum,current-only-maps,0.001,on,global,45,Fa
 forum_diag_recoff_s43,forum,thgl-forum,diagssm-ordinary,0.001,off,global,43,False,0.2870038804767809,0.2727930385046671,0.5263744823217228,4,4.0,11390.0,11262.0,0.0,True,,,False,2026-09-22 15:31
 forum_diag_recoff_s46,forum,thgl-forum,diagssm-ordinary,0.001,off,global,46,False,0.4201303377100226,0.4174767553190865,0.5614668434235619,2,4.0,11390.0,11262.0,0.0,True,,,False,2026-09-22 16:15
 forum_diag_recoff_s47,forum,thgl-forum,diagssm-ordinary,0.001,off,global,47,False,0.4103686895534771,0.4023891365318135,0.5728820971437033,2,4.0,11390.0,11262.0,0.0,True,,,False,2026-09-22 15:20
+forum_diag_recon_s43,forum,thgl-forum,diagssm-ordinary,0.001,on,global,43,False,0.6330845286216829,0.6444358640534109,0.6974315404055381,4,4.0,11519.0,11391.0,0.0,True,,,False,2026-09-22 16:25
 forum_diag_recon_s46,forum,thgl-forum,diagssm-ordinary,0.001,on,global,46,False,0.6312237196505405,0.6429305860421158,0.704806556170426,3,4.0,11519.0,11391.0,0.0,True,,,False,2026-09-22 15:50
 forum_diag_recon_s47,forum,thgl-forum,diagssm-ordinary,0.001,on,global,47,False,0.6414284596786567,0.6504778210844007,0.7099540827793089,4,4.0,11519.0,11391.0,0.0,True,,,False,2026-09-22 15:29
 forum_gru_norec_s43,forum,thgl-forum,gru-ordinary,0.001,off,global,43,False,0.3859092983720559,0.3826520963172611,0.5052439178398926,2,4.0,36634.0,36506.0,0.0,True,,,False,2026-09-22 14:14
@@ -46,6 +47,7 @@ forum_identity_recon_s44,forum,thgl-forum,identity-maps,0.001,on,global,44,False
 forum_nodeframe_rec_s43,forum,thgl-forum,node-frame,0.001,on,global,43,False,0.6248672352679295,0.6336383677091704,0.677759592486493,3,4.0,630335.0,630335.0,0.0,True,,,False,2026-09-22 14:08
 forum_nodeframe_recoff_s43,forum,thgl-forum,node-frame,0.001,off,global,43,False,0.4043872228701511,0.3979765736422356,0.5653252446199326,4,4.0,630206.0,630206.0,0.0,True,,,False,2026-09-22 15:36
 forum_nodeframe_recoff_s46,forum,thgl-forum,node-frame,0.001,off,global,46,False,0.4043478914684701,0.4011103362298743,0.5618285504501646,4,4.0,630206.0,630206.0,0.0,True,,,False,2026-09-22 15:57
+forum_nodeframe_recoff_s47,forum,thgl-forum,node-frame,0.001,off,global,47,False,0.3526994919364464,0.3345182710952508,0.5338782990960653,3,4.0,630206.0,630206.0,0.0,True,,,False,2026-09-22 16:26
 forum_tsd_recoff_s44,forum,thgl-forum,tsd,0.001,off,global,44,False,0.2301540411082932,0.2322758943876626,0.3730194829632712,4,4.0,630142.0,630142.0,0.0,True,,,False,2026-09-22 15:27
 forum_tsd_recoff_s45,forum,thgl-forum,tsd,0.001,off,global,45,False,0.3964514296808693,0.3905994444989896,0.5332660060305372,3,4.0,630142.0,630142.0,0.0,True,,,False,2026-09-22 15:51
 wiki_coreoff_s43_lr1e-3,matched,tgbl-wiki,core-off,0.001,on,global,43,False,0.7673990524701869,0.7440184061553293,0.8455611535858469,8,8.0,448844.0,8419.0,0.0,True,,,False,2026-09-22 10:02
@@ -60,6 +62,7 @@ wiki_gru_s43_lr3e-4,matched,tgbl-wiki,gru-ordinary,0.0003,on,global,43,False,0.7
 wiki_identity_s43_lr3e-4,matched,tgbl-wiki,identity-maps,0.0003,on,global,43,False,0.7490415002017233,0.7359533961459375,0.8494136576618007,8,8.0,444686.0,444558.0,0.0,True,,,False,2026-09-22 16:09
 wiki_nodeframe_s43_lr3e-4,matched,tgbl-wiki,node-frame,0.0003,on,global,43,False,0.7466917640293519,0.7317244227292561,0.8505567081149903,8,8.0,444750.0,444750.0,0.0,True,,,False,2026-09-22 15:11
 wiki_tsd_s43_lr1e-3,matched,tgbl-wiki,tsd,0.001,on,global,43,False,0.773008566238874,0.7575254706119957,0.851615088249988,8,8.0,444686.0,444686.0,0.0,True,,,False,2026-09-22 16:02
+wiki_tsd_s43_lr3e-4,matched,tgbl-wiki,tsd,0.0003,on,global,43,False,0.7489698413685504,0.7337068624762626,0.851318742496528,7,8.0,444686.0,444686.0,0.0,True,,,False,2026-09-22 16:26
 attention,smoke,tgbl-wiki,attention-gates,0.0003,on,global,43,False,0.6416648473888635,0.5374252315461635,0.765250002078712,1,1.0,444815.0,444815.0,0.0,True,,,False,2026-09-22 09:44
 coreoff,smoke,tgbl-wiki,core-off,0.0003,on,node_update,43,False,0.6419879194051027,0.540589959077537,0.768500003002584,1,1.0,448844.0,8419.0,0.0,True,,,False,2026-09-22 09:41
 gru,smoke,tgbl-wiki,gru-sheaf,0.0003,on,global,43,False,0.6066575837954878,0.5254991688802838,0.7642500006482005,1,1.0,33466.0,33466.0,0.0,True,,,False,2026-09-22 09:44
