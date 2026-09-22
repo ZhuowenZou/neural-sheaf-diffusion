@@ -1,15 +1,15 @@
-# Monitor status (2026-09-22 05:06:01)
+# Monitor status (2026-09-22 08:37:02)
 
 ## GPU free (GiB) and utilisation
-0:54GB(99%) 1:51GB(33%) 2:22GB(100%) 3:80GB(0%) 4:51GB(99%) 5:26GB(100%) 6:22GB(100%) 7:80GB(0%) 
+0:54GB(99%) 1:51GB(99%) 2:22GB(100%) 3:80GB(0%) 4:80GB(0%) 5:26GB(99%) 6:22GB(100%) 7:80GB(0%) 
 our GPU processes (pid:MiB): none
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
 - gpu2: colleague busy
-- gpu3: ELIGIBLE (idle 416 min)
-- gpu4: colleague busy
+- gpu3: ELIGIBLE (idle 627 min)
+- gpu4: ELIGIBLE (idle 143 min)
 - gpu5: colleague busy
 - gpu6: colleague busy
 - gpu7: OURS
