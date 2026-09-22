@@ -139,7 +139,12 @@ every seed with the REC head. The retained SSM-with-identity-maps ablation (REC 
 is therefore not evidence that learned restriction maps are necessary on forum: the low identity-map scores
 are specific to the SSM core (unstable across seeds), and a simpler core with the same identity transport
 recovers TSD's accuracy. The earlier claim "learned restriction maps are the robust mechanism on forum" must be
-withdrawn or narrowed to "within the SSM core". Diagonal-SSM, attention-gate and node-frame cells and seeds
+withdrawn or narrowed to "within the SSM core". Seed 44 (new, same protocol) makes the mechanism visible: TSD
+REC-off scores 0.232 (GRU 0.394) with zero non-finite events and modest clipping; its tracking validation rises
+0.134 → 0.135 → 0.154 → 0.246 over the fixed 4-epoch budget and is still climbing at the cut-off, whereas the GRU
+core is at 0.39 after epoch 1. The SSM core without the REC head is a slow starter on some seeds under this
+budget (the identity-map lows 0.220/0.332/0.326 are the same phenomenon), i.e. a trainability difference, not
+a difference in what the cores can represent. Diagonal-SSM, attention-gate and node-frame cells and seeds
 44/45 are being added (`forum/`); the fast builder makes a forum run ~80 min.
 
 **Core-off anchor, executed cost (`matched/coreoff_cost_wiki/coreoff_cost.csv`):** on the same 20k-edge
