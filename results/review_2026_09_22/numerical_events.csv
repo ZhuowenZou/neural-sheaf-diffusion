@@ -17,9 +17,13 @@ wiki_f_s47,audit,tgbl-wiki,tsd,47,0,0,0,0,0,0,0,0,23621,0,0,0,23621,0,True
 forum_gru_norec_s43,forum,thgl-forum,gru-ordinary,43,2956,0,0,15,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_gru_norec_s46,forum,thgl-forum,gru-ordinary,46,2956,0,0,71,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_gru_norec_s47,forum,thgl-forum,gru-ordinary,47,2956,0,0,44,0,0,0,0,3563658,0,0,0,3563653,0,True
+forum_gru_rec_s43,forum,thgl-forum,gru-ordinary,43,2956,0,0,12,0,0,0,0,3563658,0,0,0,3563653,0,True
+forum_gru_rec_s46,forum,thgl-forum,gru-ordinary,46,2956,0,0,8,0,0,0,0,3563658,0,0,0,3563653,0,True
+forum_gru_recoff_s44,forum,thgl-forum,gru-ordinary,44,2956,0,0,72,0,0,0,0,3563658,0,0,0,3563653,0,True
 forum_nodeframe_rec_s43,forum,thgl-forum,node-frame,43,2956,0,0,17,0,0,0,0,3563658,0,0,0,3563653,0,True
 wiki_coreoff_s43_lr1e-3,matched,tgbl-wiki,core-off,43,24832,0,0,487,0,0,0,0,23621,0,0,0,23621,0,True
 wiki_coreoff_s43_lr3e-4,matched,tgbl-wiki,core-off,43,24832,0,0,2833,0,0,0,0,23621,0,0,0,23621,0,True
+wiki_gru_s43_lr3e-4,matched,tgbl-wiki,gru-ordinary,43,24832,0,0,1138,0,0,0,0,23621,0,0,0,23621,0,True
 attention,smoke,tgbl-wiki,attention-gates,43,560,0,0,185,0,0,0,0,4000,0,0,0,4000,0,True
 coreoff,smoke,tgbl-wiki,core-off,43,560,0,0,357,0,0,0,0,4000,0,0,0,4000,0,True
 gru,smoke,tgbl-wiki,gru-sheaf,43,560,0,0,188,0,0,0,0,4000,0,0,0,4000,0,True

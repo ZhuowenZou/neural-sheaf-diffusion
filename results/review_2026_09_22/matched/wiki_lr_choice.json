@@ -17,6 +17,13 @@
    "best_track_val_mrr": 0.7353396911472082,
    "best_epoch": 8,
    "final_val": 0.7455295897119107
+  },
+  {
+   "arm": "gru",
+   "lr": "3e-4",
+   "best_track_val_mrr": 0.7316763899847865,
+   "best_epoch": 8,
+   "final_val": 0.7475877337671548
   }
  ]
 }
