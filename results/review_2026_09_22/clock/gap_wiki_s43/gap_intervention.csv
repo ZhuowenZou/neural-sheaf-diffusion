@@ -1,0 +1,6 @@
+run,gap_factor,delta_scale,val_mrr,val_hits10,val_loss,val_edges,note
+wiki_f_s43,0.25,2400.0,0.7516295614760249,0.8718089849383849,0.10473735630512238,23621,"batches, events, REC recency and query times unchanged; only the selector's gap input is scaled"
+wiki_f_s43,0.5,1200.0,0.7517787599022587,0.871724314365332,0.10298158973455429,23621,"batches, events, REC recency and query times unchanged; only the selector's gap input is scaled"
+wiki_f_s43,1.0,600.0,0.7521191350057463,0.8725710184872087,0.10075005143880844,23621,"batches, events, REC recency and query times unchanged; only the selector's gap input is scaled"
+wiki_f_s43,2.0,300.0,0.7548047139313959,0.8717666497294523,0.0978546068072319,23621,"batches, events, REC recency and query times unchanged; only the selector's gap input is scaled"
+wiki_f_s43,4.0,150.0,0.7552574501983964,0.8721053312596043,0.09579336643218994,23621,"batches, events, REC recency and query times unchanged; only the selector's gap input is scaled"

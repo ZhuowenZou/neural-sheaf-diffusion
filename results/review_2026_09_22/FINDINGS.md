@@ -97,8 +97,25 @@ first 20 validation batches (700 queries) were scored at their original query ti
 REC recency feature responds (83% of these positives have a seen key). A query-time projection of the backbone
 does not exist in the evaluated model (consistent with the implementation audit); it was not implemented.
 
-(Clock/saturation aggregates from the checkpoint replays and the node-clock / batching-width runs are
-collected in `clock_diagnostics.csv`; the fixed-membership gap intervention is in `clock/gap_wiki_s43/`.)
+**Fixed-membership gap intervention (`clock/gap_wiki_s43/gap_intervention.csv`, same checkpoint):** the
+physical gap supplied to the step selector was scaled by 0.25, 0.5, 1, 2, 4 (through the non-learned
+`delta_scale`), with batches, events, REC recency and query times unchanged, and the first 30k validation
+edges re-scored after a full training replay.
+
+| gap factor | 0.25 | 0.5 | 1 | 2 | 4 |
+|---|---|---|---|---|---|
+| val MRR | 0.7516 | 0.7518 | 0.7521 | 0.7548 | 0.7553 |
+| val Hits@10 | 0.8718 | 0.8717 | 0.8726 | 0.8718 | 0.8721 |
+
+**Null:** the trained tgbl-wiki model is insensitive to the magnitude of the gap it is given (range 0.004 MRR
+over a 16x span, monotone in the direction of longer apparent gaps), i.e. the timing channel contributes
+little on this benchmark at inference; this is consistent with the earlier no-gap ablation (-0.007) being a
+training-time effect. The saturation diagnostics of the replayed wiki checkpoints show the step cap active
+for about 5-6% of endpoint updates and under 1% of closure updates (closure updates outnumber endpoint
+updates 7:1), so the cap is not the binding constraint on wiki.
+
+(Clock/saturation aggregates from all checkpoint replays and the node-clock / batching-width runs are
+collected in `clock_diagnostics.csv`.)
 
 ## 3. Matched comparisons (tgbl-wiki five seeds; thgl-forum subset)
 (filled from per_seed_results.csv / paired_contrasts.csv)
