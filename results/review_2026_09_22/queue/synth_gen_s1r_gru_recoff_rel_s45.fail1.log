@@ -1,0 +1,36 @@
+reserved 1125 MiB of GPU memory on cuda:0 in the caching allocator (requested 1125; now reserved 1140 MiB)
+device=cuda:0 sha=a5f2ed8b2184 config={'dataset': 'synth-history:results/review_2026_09_22/synthetic/gen_s1r/data.npz', 'seed': 45, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 6, 'patience': 3, 'min_epochs': 3, 'time_window': 20000.0, 'context_edges': 2000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 3000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': False, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'no_memory': False, 'recurrency_symmetric': False, 'recurrency_untyped': False, 'cache_warm_history': False, 'recurrency_decoder': False, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'backbone': 'gru', 'spatial': 'identity', 'clock': 'global', 'fast_core_off': False, 'rng_isolation': True, 'no_query_audit': False, 'dump_query_ranks': True, 'clock_diagnostics': False, 'audit_eval_only': False, 'out': 'results/review_2026_09_22/synthetic/runs/synth_gen_s1r_gru_recoff_rel_s45'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=2099 (edges=42000) track_val=151 final_val=447 final_test=443 | prep_sec=0.9
+negative-sample sets loaded in 0.0s
+Traceback (most recent call last):
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_event_benchmark.py", line 606, in <module>
+    main()
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_event_benchmark.py", line 362, in main
+    model = _make_model(context_edge_index, node_features, num_nodes, device, args, num_relations, node_types=node_types)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_event_benchmark.py", line 184, in _make_model
+    return FaithfulEventTemporalSheafDiffusion(edge_index, model_args).to(device)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/faithful_event_model.py", line 166, in __init__
+    super().__init__(edge_index, args)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/sparse_temporal_mamba.py", line 263, in __init__
+    super().__init__(edge_index, args)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/mamba_models.py", line 117, in __init__
+    super(MambaSheafDiffusion, self).__init__(edge_index, args)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/disc_models.py", line 132, in __init__
+    self.laplacian_builder = lb.NormConnectionLaplacianBuilder(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/laplacian_builders.py", line 175, in __init__
+    super(NormConnectionLaplacianBuilder, self).__init__(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/laplacian_builders.py", line 37, in __init__
+    self.full_left_right_idx, _ = lap.compute_left_right_map_index(edge_index, full_matrix=True)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/lib/laplace.py", line 326, in compute_left_right_map_index
+    n = int(max(int(src.max()), int(dst.max()))) + 1
+torch.AcceleratorError: CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+

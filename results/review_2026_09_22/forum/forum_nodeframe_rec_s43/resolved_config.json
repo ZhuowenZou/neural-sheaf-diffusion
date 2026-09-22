@@ -12,6 +12,7 @@
   "d": 2,
   "dataset": "thgl-forum",
   "delta_time_scale": "auto",
+  "dump_query_ranks": false,
   "emb_in_head": false,
   "epochs": 4,
   "eval_only": null,
@@ -91,7 +92,7 @@
   "--out",
   "results/review_2026_09_22/forum/forum_nodeframe_rec_s43"
  ],
- "commit": "a5733ed440391fc58cfb241079766bd5272d4061",
+ "commit": "a5f2ed8b21847a16a8ae0ba1a99509331cbd886c",
  "cwd": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "env": {
   "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
@@ -99,6 +100,6 @@
   "CUDA_VISIBLE_DEVICES": "4",
   "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True",
   "TSD_ONLY_GPUS": "4",
-  "TSD_RESERVE_GPU_MB": "5976"
+  "TSD_RESERVE_GPU_MB": "16976"
  }
 }

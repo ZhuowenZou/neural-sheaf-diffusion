@@ -1,6 +1,6 @@
-# Review campaign summary (auto-generated 2026-09-22 11:47)
+# Review campaign summary (auto-generated 2026-09-22 13:31)
 
-20 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+21 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
@@ -18,6 +18,7 @@
 
 | run              | dataset         |   seed |   validation_mrr |   test_mrr |   retained_test_mrr |   replay_minus_retained_test |   query_audit_affected_total | query_audit_parity   |
 |:-----------------|:----------------|-------:|-----------------:|-----------:|--------------------:|-----------------------------:|-----------------------------:|:---------------------|
+| polecat_f_s43    | tkgl-polecat    |     43 |         0.247229 |   0.2403   |            0.2403   |                 -1.77451e-08 |                            0 | True                 |
 | sp_f_s46         | tkgl-smallpedia |     46 |         0.638303 |   0.603251 |            0.603251 |                  0           |                            0 | True                 |
 | sp_f_s47         | tkgl-smallpedia |     47 |         0.644656 |   0.610411 |            0.61118  |                 -0.000769224 |                            0 | True                 |
 | sp_f_s47_replay2 | tkgl-smallpedia |     47 |         0.644553 |   0.610309 |          nan        |                nan           |                            0 | True                 |
@@ -35,6 +36,8 @@
 
 | group   | run                     | split   |   queries |   queries_affected |   pos_nonfinite |   neg_nan |   neg_posinf |   neg_neginf |   mrr_tgb_raw |   mrr_guarded |   mrr_conservative |   state_nonfinite_snapshots |   rec_nonfinite_snapshots |
 |:--------|:------------------------|:--------|----------:|-------------------:|----------------:|----------:|-------------:|-------------:|--------------:|--------------:|-------------------:|----------------------------:|--------------------------:|
+| audit   | polecat_f_s43           | val     |    533472 |                  0 |               0 |         0 |            0 |            0 |      0.247229 |      0.247229 |           0.247229 |                           0 |                         0 |
+| audit   | polecat_f_s43           | test    |    532636 |                  0 |               0 |         0 |            0 |            0 |      0.2403   |      0.2403   |           0.2403   |                           0 |                         0 |
 | audit   | sp_f_s46                | val     |    162066 |                  0 |               0 |         0 |            0 |            0 |      0.638303 |      0.638303 |           0.638303 |                           0 |                         0 |
 | audit   | sp_f_s46                | test    |    163172 |                  0 |               0 |         0 |            0 |            0 |      0.603251 |      0.603251 |           0.603251 |                           0 |                         0 |
 | audit   | sp_f_s47                | val     |    162066 |                  0 |               0 |         0 |            0 |            0 |      0.644656 |      0.644656 |           0.644656 |                           0 |                         0 |
@@ -80,6 +83,12 @@
 
 | group   | run           | clock   | split        | activity   |       n |   frac_capped |   frac_zero_gap_used |   n_first_update |   n_first_interaction |     mean_dt |   mean_dt_uncapped |   mean_log10_gap_used_pos |   delta_scale |
 |:--------|:--------------|:--------|:-------------|:-----------|--------:|--------------:|---------------------:|-----------------:|----------------------:|------------:|-------------------:|--------------------------:|--------------:|
+| audit   | polecat_f_s43 | global  | train_replay | endpoint   |  696804 |   1           |          0.000420491 |           109700 |                117435 | 0.25        |     6398.99        |                   4.93649 |         86400 |
+| audit   | polecat_f_s43 | global  | train_replay | closure    | 4320507 |   0.999053    |          0.000662654 |             7735 |                 79201 | 0.249827    |     4057.16        |                   4.93649 |         86400 |
+| audit   | polecat_f_s43 | global  | val          | endpoint   |  157299 |   1           |          0           |            17253 |                 17253 | 0.25        |     6496.6         |                   4.93658 |         86400 |
+| audit   | polecat_f_s43 | global  | val          | closure    |  988285 |   1           |          0           |                0 |                     0 | 0.25        |     4040.86        |                   4.93657 |         86400 |
+| audit   | polecat_f_s43 | global  | test         | endpoint   |  151286 |   1           |          0           |            16243 |                 16243 | 0.25        |     6412.58        |                   4.9365  |         86400 |
+| audit   | polecat_f_s43 | global  | test         | closure    |  868432 |   1           |          0           |                0 |                     0 | 0.25        |     4070.92        |                   4.93651 |         86400 |
 | audit   | sp_f_s46      | global  | train_replay | endpoint   |  471683 |   0.00958483  |          0.00505212  |            29692 |                 31556 | 0.00398158  |        0.0311231   |                   0       |             1 |
 | audit   | sp_f_s46      | global  | train_replay | closure    |  119048 |   0.00281399  |          0.00984477  |             1864 |                 15125 | 0.00120816  |        0.00346906  |                   0       |             1 |
 | audit   | sp_f_s46      | global  | val          | endpoint   |   93744 |   0.0072538   |          0           |             9339 |                  9339 | 0.00357353  |        0.0128492   |                   0       |             1 |
@@ -155,76 +164,74 @@
 
 ## Not finished
 
-| run                               | state           |   last_epoch |   attempts |
-|:----------------------------------|:----------------|-------------:|-----------:|
-| audit_forum_f_s43                 | running/pending |            0 |          1 |
-| audit_forum_f_s46                 | running/pending |            0 |          1 |
-| audit_forum_f_s47                 | running/pending |            0 |          2 |
-| audit_icews_eval_s43              | running/pending |            0 |          1 |
-| audit_icews_eval_s46              | running/pending |            0 |          2 |
-| audit_icews_eval_s47              | running/pending |            0 |          1 |
-| audit_polecat_f_s43               | running/pending |            0 |          1 |
-| audit_polecat_f_s46               | running/pending |            0 |          2 |
-| audit_polecat_f_s47               | running/pending |            0 |          1 |
-| audit_sp_f_s43                    | running/pending |            0 |          3 |
-| forum_attention_rec_s43           | running/pending |            0 |          1 |
-| forum_gru_norec_s43               | running/pending |            0 |          1 |
-| forum_gru_norec_s46               | running/pending |            0 |          1 |
-| forum_gru_norec_s47               | running/pending |            0 |          1 |
-| forum_gru_rec_s43                 | running/pending |            0 |          1 |
-| forum_gru_rec_s46                 | running/pending |            0 |          1 |
-| forum_gru_rec_s47                 | running/pending |            0 |          1 |
-| forum_nodeframe_rec_s43           | running/pending |            0 |          1 |
-| synth_gen_s1_attention_recoff_s43 | running/pending |            4 |          1 |
-| synth_gen_s1_attention_recoff_s45 | running/pending |            5 |          1 |
-| synth_gen_s1_attention_recoff_s46 | running/pending |            3 |          1 |
-| synth_gen_s1_attention_recoff_s47 | running/pending |            1 |          1 |
-| synth_gen_s1_coreoff_recoff_s43   | running/pending |            2 |          1 |
-| synth_gen_s1_coreoff_recoff_s44   | running/pending |            2 |          1 |
-| synth_gen_s1_coreoff_recoff_s45   | running/pending |            4 |          1 |
-| synth_gen_s1_coreoff_recoff_s46   | running/pending |            6 |          1 |
-| synth_gen_s1_coreoff_recoff_s47   | running/pending |            4 |          1 |
-| synth_gen_s1_curonly_recoff_s43   | running/pending |            3 |          1 |
-| synth_gen_s1_curonly_recoff_s44   | running/pending |            5 |          1 |
-| synth_gen_s1_curonly_recoff_s45   | running/pending |            2 |          1 |
-| synth_gen_s1_curonly_recoff_s47   | running/pending |            2 |          1 |
-| synth_gen_s1_diag_recoff_s43      | running/pending |            5 |          1 |
-| synth_gen_s1_diag_recoff_s44      | running/pending |            1 |          1 |
-| synth_gen_s1_diag_recoff_s45      | running/pending |            2 |          1 |
-| synth_gen_s1_diag_recoff_s46      | running/pending |            4 |          1 |
-| synth_gen_s1_diag_recoff_s47      | running/pending |            2 |          1 |
-| synth_gen_s1_gru_recoff_s43       | running/pending |            2 |          1 |
-| synth_gen_s1_gru_recoff_s44       | running/pending |            3 |          1 |
-| synth_gen_s1_gru_recoff_s45       | running/pending |            1 |          1 |
-| synth_gen_s1_gru_recoff_s46       | running/pending |            5 |          1 |
-| synth_gen_s1_gru_recoff_s47       | running/pending |            2 |          1 |
-| synth_gen_s1_identity_recoff_s43  | running/pending |            3 |          1 |
-| synth_gen_s1_identity_recoff_s44  | running/pending |            3 |          1 |
-| synth_gen_s1_identity_recoff_s45  | running/pending |            1 |          1 |
-| synth_gen_s1_identity_recoff_s46  | running/pending |            3 |          1 |
-| synth_gen_s1_identity_recoff_s47  | running/pending |            1 |          1 |
-| synth_gen_s1_nodeframe_recoff_s43 | running/pending |            1 |          1 |
-| synth_gen_s1_nodeframe_recoff_s44 | running/pending |            1 |          1 |
-| synth_gen_s1_nodeframe_recoff_s45 | running/pending |            1 |          1 |
-| synth_gen_s1_nodeframe_recoff_s46 | running/pending |            1 |          1 |
-| synth_gen_s1_nodeframe_recoff_s47 | running/pending |            3 |          1 |
-| synth_gen_s1_tsd_recoff_s43       | running/pending |            2 |          1 |
-| synth_gen_s1_tsd_recoff_s44       | running/pending |            3 |          1 |
-| synth_gen_s1_tsd_recoff_s45       | running/pending |            2 |          1 |
-| synth_gen_s1_tsd_recoff_s46       | running/pending |            2 |          1 |
-| synth_gen_s1_tsd_recoff_s47       | running/pending |            3 |          1 |
-| wiki_attention_s43_lr1e-3         | running/pending |            2 |          1 |
-| wiki_attention_s43_lr3e-4         | running/pending |            3 |          1 |
-| wiki_curonly_s43_lr1e-3           | running/pending |            3 |          1 |
-| wiki_curonly_s43_lr3e-4           | running/pending |            2 |          1 |
-| wiki_diag_s43_lr1e-3              | running/pending |            3 |          1 |
-| wiki_diag_s43_lr3e-4              | running/pending |            3 |          1 |
-| wiki_gru_s43_lr1e-3               | running/pending |            4 |          1 |
-| wiki_gru_s43_lr3e-4               | running/pending |            4 |          1 |
-| wiki_identity_s43_lr1e-3          | running/pending |            2 |          1 |
-| wiki_identity_s43_lr3e-4          | running/pending |            3 |          1 |
-| wiki_nodeframe_s43_lr1e-3         | running/pending |            2 |          1 |
-| wiki_nodeframe_s43_lr3e-4         | running/pending |            3 |          1 |
-| wiki_tsd_s43_lr1e-3               | running/pending |            4 |          1 |
-| wiki_tsd_s43_lr3e-4               | running/pending |            2 |          1 |
+| run                                    | state           |   last_epoch |   attempts |
+|:---------------------------------------|:----------------|-------------:|-----------:|
+| audit_forum_f_s43                      | running/pending |            0 |          1 |
+| audit_forum_f_s46                      | running/pending |            0 |          1 |
+| audit_forum_f_s47                      | running/pending |            0 |          2 |
+| audit_icews_eval_s43                   | running/pending |            0 |          1 |
+| audit_icews_eval_s46                   | running/pending |            0 |          2 |
+| audit_icews_eval_s47                   | running/pending |            0 |          1 |
+| audit_polecat_f_s46                    | running/pending |            0 |          2 |
+| audit_polecat_f_s47                    | running/pending |            0 |          1 |
+| audit_sp_f_s43                         | running/pending |            0 |          3 |
+| forum_attention_rec_s43                | running/pending |            0 |          1 |
+| forum_gru_norec_s43                    | running/pending |            0 |          1 |
+| forum_gru_norec_s46                    | running/pending |            0 |          1 |
+| forum_gru_norec_s47                    | running/pending |            0 |          1 |
+| forum_gru_rec_s43                      | running/pending |            0 |          1 |
+| forum_gru_rec_s46                      | running/pending |            0 |          1 |
+| forum_gru_rec_s47                      | running/pending |            0 |          1 |
+| forum_nodeframe_rec_s43                | running/pending |            2 |          2 |
+| synth_gen_s1r_attention_recoff_rel_s43 | running/pending |            5 |          1 |
+| synth_gen_s1r_attention_recoff_rel_s44 | running/pending |            5 |          1 |
+| synth_gen_s1r_attention_recoff_rel_s45 | running/pending |            6 |          1 |
+| synth_gen_s1r_attention_recoff_rel_s46 | running/pending |            4 |          1 |
+| synth_gen_s1r_attention_recoff_rel_s47 | running/pending |            5 |          1 |
+| synth_gen_s1r_coreoff_recoff_rel_s45   | running/pending |            3 |          1 |
+| synth_gen_s1r_curonly_recoff_rel_s43   | running/pending |            5 |          1 |
+| synth_gen_s1r_curonly_recoff_rel_s44   | running/pending |            5 |          1 |
+| synth_gen_s1r_curonly_recoff_rel_s45   | running/pending |            4 |          1 |
+| synth_gen_s1r_curonly_recoff_rel_s47   | running/pending |            6 |          1 |
+| synth_gen_s1r_diag_recoff_rel_s43      | running/pending |            3 |          1 |
+| synth_gen_s1r_diag_recoff_rel_s44      | running/pending |            0 |          1 |
+| synth_gen_s1r_diag_recoff_rel_s45      | running/pending |            2 |          1 |
+| synth_gen_s1r_diag_recoff_rel_s47      | running/pending |            5 |          1 |
+| synth_gen_s1r_gru_recoff_rel_s43       | running/pending |            6 |          1 |
+| synth_gen_s1r_gru_recoff_rel_s44       | running/pending |            5 |          1 |
+| synth_gen_s1r_gru_recoff_rel_s45       | running/pending |            1 |          2 |
+| synth_gen_s1r_gru_recoff_rel_s47       | running/pending |            2 |          1 |
+| synth_gen_s1r_identity_recoff_rel_s43  | running/pending |            2 |          1 |
+| synth_gen_s1r_identity_recoff_rel_s44  | running/pending |            4 |          1 |
+| synth_gen_s1r_identity_recoff_rel_s45  | running/pending |            0 |          1 |
+| synth_gen_s1r_identity_recoff_rel_s46  | running/pending |            5 |          1 |
+| synth_gen_s1r_identity_recoff_rel_s47  | running/pending |            2 |          1 |
+| synth_gen_s1r_nodeframe_recoff_rel_s43 | running/pending |            0 |          1 |
+| synth_gen_s1r_nodeframe_recoff_rel_s44 | running/pending |            0 |          1 |
+| synth_gen_s1r_nodeframe_recoff_rel_s45 | running/pending |            5 |          1 |
+| synth_gen_s1r_nodeframe_recoff_rel_s46 | running/pending |            5 |          1 |
+| synth_gen_s1r_nodeframe_recoff_rel_s47 | running/pending |            2 |          1 |
+| synth_gen_s1r_tsd_recoff_rel_s43       | running/pending |            0 |          1 |
+| synth_gen_s1r_tsd_recoff_rel_s44       | running/pending |            4 |          1 |
+| synth_gen_s1r_tsd_recoff_rel_s45       | running/pending |            5 |          1 |
+| synth_gen_s1r_tsd_recoff_rel_s46       | running/pending |            0 |          1 |
+| synth_gen_s1r_tsd_recoff_rel_s47       | running/pending |            2 |          1 |
+| wiki_attention_s43_lr1e-3              | running/pending |            4 |          1 |
+| wiki_attention_s43_lr3e-4              | running/pending |            4 |          1 |
+| wiki_coreoff_s44_lr1e-3                | running/pending |            0 |          1 |
+| wiki_coreoff_s45_lr1e-3                | running/pending |            0 |          1 |
+| wiki_coreoff_s46_lr1e-3                | running/pending |            0 |          1 |
+| wiki_coreoff_s47_lr1e-3                | running/pending |            0 |          1 |
+| wiki_curonly_s43_lr1e-3                | running/pending |            6 |          1 |
+| wiki_curonly_s43_lr3e-4                | running/pending |            4 |          1 |
+| wiki_diag_s43_lr1e-3                   | running/pending |            6 |          1 |
+| wiki_diag_s43_lr3e-4                   | running/pending |            5 |          1 |
+| wiki_gru_s43_lr1e-3                    | running/pending |            6 |          1 |
+| wiki_gru_s43_lr3e-4                    | running/pending |            6 |          1 |
+| wiki_identity_s43_lr1e-3               | running/pending |            4 |          1 |
+| wiki_identity_s43_lr3e-4               | running/pending |            5 |          1 |
+| wiki_nodeframe_s43_lr1e-3              | running/pending |            3 |          1 |
+| wiki_nodeframe_s43_lr3e-4              | running/pending |            6 |          1 |
+| wiki_tsd_s43_lr1e-3                    | running/pending |            5 |          1 |
+| wiki_tsd_s43_lr3e-4                    | running/pending |            4 |          1 |
 

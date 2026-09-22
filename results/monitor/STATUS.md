@@ -1,20 +1,20 @@
-# Monitor status (2026-09-22 11:41:57)
+# Monitor status (2026-09-22 13:27:32)
 
 ## GPU free (GiB) and utilisation
-0:2GB(100%) 1:51GB(99%) 2:22GB(100%) 3:10GB(100%) 4:7GB(99%) 5:26GB(99%) 6:22GB(100%) 7:11GB(100%) 
-our GPU processes (pid:MiB): 1233208:12102MiB 1245919:13504MiB 1262633:11864MiB 1620258:15886MiB 1214155:2026MiB 1214798:2028MiB 1216463:2026MiB 1224983:2026MiB 1234260:6538MiB 1243522:6522MiB 1251060:22022MiB 1289587:2028MiB 1300141:1690MiB 1408307:1660MiB 1412822:1660MiB 1542282:1656MiB 1953675:1660MiB 1956093:1654MiB 1971101:1656MiB 1988760:1660MiB 1996399:1660MiB 2001417:1656MiB 2096524:1654MiB 2101595:1656MiB 2106789:1660MiB 2145975:1658MiB 2218331:1658MiB 2274666:1008MiB 1214047:2028MiB 1216729:2026MiB 1225196:2028MiB 1233637:13504MiB 1233854:6522MiB 1243022:6540MiB 1251179:16588MiB 1253032:2028MiB 1297498:2026MiB 1407466:1660MiB 1415824:1660MiB 1418289:1660MiB 1425735:1660MiB 1429512:1660MiB 1506999:1660MiB 1576895:1662MiB 1895478:1654MiB 1925815:1656MiB 1957622:1660MiB 1959114:1656MiB 1963384:1656MiB 2112984:1660MiB 1213717:2026MiB 1225289:6506MiB 1228043:6506MiB 1232747:6506MiB 1242614:6522MiB 1242857:6540MiB 1252395:11502MiB 1252765:2028MiB 1270098:2028MiB 1271730:2026MiB 1694420:1656MiB 1952011:1656MiB 1952697:1660MiB 1954200:1660MiB 1956835:1654MiB 2118572:1660MiB 2205284:1656MiB 2211995:1662MiB 2226721:1660MiB 2232802:1654MiB 2239430:1660MiB 
+0:13GB(99%) 1:51GB(99%) 2:51GB(99%) 3:25GB(100%) 4:1GB(99%) 5:26GB(100%) 6:22GB(100%) 7:6GB(100%) 
+our GPU processes (pid:MiB): 1233208:12982MiB 1245919:11554MiB 1620258:17646MiB 1214155:2026MiB 1214798:2028MiB 1216463:2026MiB 1224983:2026MiB 1234260:6538MiB 1243522:6522MiB 1251060:23382MiB 1289587:2028MiB 2350827:1660MiB 2364302:1658MiB 2573028:1658MiB 2575699:1658MiB 2783345:1656MiB 2880721:1656MiB 1214047:2028MiB 1216729:2026MiB 1225196:2028MiB 1233637:15906MiB 1233854:6522MiB 1243022:6540MiB 1253032:2028MiB 1297498:2026MiB 2345010:1658MiB 2376842:1658MiB 2553866:1656MiB 2573718:1658MiB 2625477:1660MiB 2806379:1098MiB 3366638:21848MiB 3522197:1656MiB 3534833:1656MiB 3579644:1658MiB 3586139:1656MiB 3593698:1656MiB 3644274:1654MiB 1213717:2026MiB 1225289:6506MiB 1228043:6506MiB 1232747:6506MiB 1242614:6522MiB 1242857:6540MiB 1252395:14684MiB 1252765:2028MiB 1270098:2028MiB 1271730:2028MiB 2357206:1658MiB 2370718:1656MiB 2380489:1658MiB 2518841:1658MiB 2534005:1658MiB 2561391:1658MiB 2611673:1658MiB 2868520:1658MiB 3356026:1656MiB 3827925:1656MiB 3918673:1656MiB 3956991:2016MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
 - gpu2: colleague busy
-- gpu3: ELIGIBLE (idle 812 min)
-- gpu4: ELIGIBLE (idle 328 min)
+- gpu3: idle 58 min (eligible in 1 min)
+- gpu4: ELIGIBLE (idle 434 min)
 - gpu5: colleague busy
 - gpu6: colleague busy
 - gpu7: OURS
-compensation: colleagues hold 26280 MiB on our GPUs; we hold 146180 MiB on theirs; budget left -119900 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
-our launcher claims (pid:gpu/MiB): 
+compensation: colleagues hold 26540 MiB on our GPUs; we hold 136798 MiB on theirs; budget left -110258 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+our launcher claims (pid:gpu/MiB): 3716385:7/2000 
 
 ## leakfree2 benchmark runs
 - DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
@@ -156,9 +156,9 @@ our launcher claims (pid:gpu/MiB):
 - RUNNING  audit_icews_eval_s43: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
 - RUNNING  audit_icews_eval_s46: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
 - RUNNING  audit_icews_eval_s47: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
-- RUNNING  audit_polecat_f_s43: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
+- DONE     audit_polecat_f_s43: FINAL val_mrr=0.2472 test_mrr=0.2403 test_hits10=0.3942 eval_sec=11837.7
 - RUNNING  audit_polecat_f_s46: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
-- RUNNING  audit_polecat_f_s47: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
+- RUNNING  audit_polecat_f_s47: final val_mrr=0.2528 (11585.2s so far)
 - RUNNING  audit_sp_f_s43: 
 - DONE     audit_sp_f_s46: FINAL val_mrr=0.6383 test_mrr=0.6033 test_hits10=0.7132 eval_sec=2447.9
 - DONE     audit_sp_f_s47: FINAL val_mrr=0.6447 test_mrr=0.6104 test_hits10=0.7110 eval_sec=1007.7
@@ -178,51 +178,95 @@ our launcher claims (pid:gpu/MiB):
 - RUNNING  forum_gru_rec_s43: epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - RUNNING  forum_gru_rec_s46: epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - RUNNING  forum_gru_rec_s47: epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
-- RUNNING  forum_nodeframe_rec_s43: epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
-- RUNNING  synth_gen_s1_attention_recoff_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  forum_nodeframe_rec_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     synth_gen_s1_attention_recoff_s43: FINAL val_mrr=0.2017 test_mrr=0.2034 test_hits10=0.4579 eval_sec=667.7
 - DONE     synth_gen_s1_attention_recoff_s44: FINAL val_mrr=0.2007 test_mrr=0.2031 test_hits10=0.4684 eval_sec=300.9
-- RUNNING  synth_gen_s1_attention_recoff_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_attention_recoff_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_attention_recoff_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_coreoff_recoff_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_coreoff_recoff_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_coreoff_recoff_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_coreoff_recoff_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_coreoff_recoff_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_curonly_recoff_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_curonly_recoff_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_curonly_recoff_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     synth_gen_s1_attention_recoff_s45: FINAL val_mrr=0.2031 test_mrr=0.2086 test_hits10=0.4640 eval_sec=739.0
+- DONE     synth_gen_s1_attention_recoff_s46: FINAL val_mrr=0.2008 test_mrr=0.2061 test_hits10=0.4608 eval_sec=582.7
+- DONE     synth_gen_s1_attention_recoff_s47: FINAL val_mrr=0.2041 test_mrr=0.2038 test_hits10=0.4620 eval_sec=613.6
+- DONE     synth_gen_s1_coreoff_recoff_s43: FINAL val_mrr=0.2085 test_mrr=0.2142 test_hits10=0.4748 eval_sec=426.6
+- DONE     synth_gen_s1_coreoff_recoff_s44: FINAL val_mrr=0.2084 test_mrr=0.2083 test_hits10=0.4684 eval_sec=444.0
+- DONE     synth_gen_s1_coreoff_recoff_s45: FINAL val_mrr=0.2067 test_mrr=0.2096 test_hits10=0.4707 eval_sec=400.5
+- DONE     synth_gen_s1_coreoff_recoff_s46: FINAL val_mrr=0.2071 test_mrr=0.2113 test_hits10=0.4742 eval_sec=261.1
+- DONE     synth_gen_s1_coreoff_recoff_s47: FINAL val_mrr=0.2076 test_mrr=0.2102 test_hits10=0.4693 eval_sec=441.6
+- DONE     synth_gen_s1_curonly_recoff_s43: FINAL val_mrr=0.2046 test_mrr=0.2099 test_hits10=0.4717 eval_sec=709.2
+- DONE     synth_gen_s1_curonly_recoff_s44: FINAL val_mrr=0.2094 test_mrr=0.2050 test_hits10=0.4622 eval_sec=736.5
+- DONE     synth_gen_s1_curonly_recoff_s45: FINAL val_mrr=0.2031 test_mrr=0.2059 test_hits10=0.4653 eval_sec=759.3
 - DONE     synth_gen_s1_curonly_recoff_s46: FINAL val_mrr=0.2047 test_mrr=0.2106 test_hits10=0.4661 eval_sec=514.3
-- RUNNING  synth_gen_s1_curonly_recoff_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_diag_recoff_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_diag_recoff_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_diag_recoff_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_diag_recoff_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_diag_recoff_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_gru_recoff_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_gru_recoff_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_gru_recoff_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_gru_recoff_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_gru_recoff_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_identity_recoff_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_identity_recoff_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_identity_recoff_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_identity_recoff_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_identity_recoff_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_nodeframe_recoff_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_nodeframe_recoff_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_nodeframe_recoff_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_nodeframe_recoff_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_nodeframe_recoff_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_tsd_recoff_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_tsd_recoff_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_tsd_recoff_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_tsd_recoff_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s1_tsd_recoff_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     synth_gen_s1_curonly_recoff_s47: FINAL val_mrr=0.2070 test_mrr=0.2095 test_hits10=0.4713 eval_sec=578.4
+- DONE     synth_gen_s1_diag_recoff_s43: FINAL val_mrr=0.2082 test_mrr=0.2068 test_hits10=0.4686 eval_sec=454.9
+- DONE     synth_gen_s1_diag_recoff_s44: FINAL val_mrr=0.2053 test_mrr=0.2079 test_hits10=0.4670 eval_sec=565.5
+- DONE     synth_gen_s1_diag_recoff_s45: FINAL val_mrr=0.2086 test_mrr=0.2108 test_hits10=0.4753 eval_sec=521.4
+- DONE     synth_gen_s1_diag_recoff_s46: FINAL val_mrr=0.2049 test_mrr=0.2084 test_hits10=0.4742 eval_sec=638.1
+- DONE     synth_gen_s1_diag_recoff_s47: FINAL val_mrr=0.2059 test_mrr=0.2082 test_hits10=0.4652 eval_sec=636.0
+- DONE     synth_gen_s1_gru_recoff_s43: FINAL val_mrr=0.2022 test_mrr=0.2088 test_hits10=0.4562 eval_sec=714.7
+- DONE     synth_gen_s1_gru_recoff_s44: FINAL val_mrr=0.1976 test_mrr=0.2036 test_hits10=0.4567 eval_sec=618.2
+- DONE     synth_gen_s1_gru_recoff_s45: FINAL val_mrr=0.2044 test_mrr=0.2087 test_hits10=0.4704 eval_sec=610.7
+- DONE     synth_gen_s1_gru_recoff_s46: FINAL val_mrr=0.2061 test_mrr=0.2062 test_hits10=0.4696 eval_sec=679.6
+- DONE     synth_gen_s1_gru_recoff_s47: FINAL val_mrr=0.2156 test_mrr=0.2105 test_hits10=0.4761 eval_sec=517.2
+- DONE     synth_gen_s1_identity_recoff_s43: FINAL val_mrr=0.2017 test_mrr=0.2050 test_hits10=0.4603 eval_sec=624.3
+- DONE     synth_gen_s1_identity_recoff_s44: FINAL val_mrr=0.2016 test_mrr=0.1994 test_hits10=0.4584 eval_sec=547.0
+- DONE     synth_gen_s1_identity_recoff_s45: FINAL val_mrr=0.2047 test_mrr=0.2104 test_hits10=0.4666 eval_sec=499.4
+- DONE     synth_gen_s1_identity_recoff_s46: FINAL val_mrr=0.2048 test_mrr=0.2057 test_hits10=0.4688 eval_sec=688.0
+- DONE     synth_gen_s1_identity_recoff_s47: FINAL val_mrr=0.2197 test_mrr=0.2094 test_hits10=0.4768 eval_sec=626.1
+- DONE     synth_gen_s1_nodeframe_recoff_s43: FINAL val_mrr=0.2075 test_mrr=0.2066 test_hits10=0.4652 eval_sec=519.5
+- DONE     synth_gen_s1_nodeframe_recoff_s44: FINAL val_mrr=0.2048 test_mrr=0.2113 test_hits10=0.4736 eval_sec=742.0
+- DONE     synth_gen_s1_nodeframe_recoff_s45: FINAL val_mrr=0.2060 test_mrr=0.2076 test_hits10=0.4673 eval_sec=633.3
+- DONE     synth_gen_s1_nodeframe_recoff_s46: FINAL val_mrr=0.2054 test_mrr=0.2079 test_hits10=0.4723 eval_sec=430.0
+- DONE     synth_gen_s1_nodeframe_recoff_s47: FINAL val_mrr=0.2093 test_mrr=0.2110 test_hits10=0.4742 eval_sec=711.9
+- RUNNING  synth_gen_s1r_attention_recoff_rel_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_attention_recoff_rel_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_attention_recoff_rel_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_attention_recoff_rel_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_attention_recoff_rel_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     synth_gen_s1r_coreoff_recoff_rel_s43: FINAL val_mrr=0.2327 test_mrr=0.2387 test_hits10=0.5018 eval_sec=421.7
+- DONE     synth_gen_s1r_coreoff_recoff_rel_s44: FINAL val_mrr=0.2329 test_mrr=0.2387 test_hits10=0.5007 eval_sec=336.4
+- RUNNING  synth_gen_s1r_coreoff_recoff_rel_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     synth_gen_s1r_coreoff_recoff_rel_s46: FINAL val_mrr=0.2322 test_mrr=0.2390 test_hits10=0.4982 eval_sec=420.4
+- DONE     synth_gen_s1r_coreoff_recoff_rel_s47: FINAL val_mrr=0.2333 test_mrr=0.2407 test_hits10=0.5041 eval_sec=225.9
+- RUNNING  synth_gen_s1r_curonly_recoff_rel_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_curonly_recoff_rel_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_curonly_recoff_rel_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_curonly_recoff_rel_s46: final val_mrr=0.2259 (445.2s so far)
+- RUNNING  synth_gen_s1r_curonly_recoff_rel_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_diag_recoff_rel_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_diag_recoff_rel_s44: 
+- RUNNING  synth_gen_s1r_diag_recoff_rel_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_diag_recoff_rel_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_diag_recoff_rel_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_gru_recoff_rel_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_gru_recoff_rel_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_gru_recoff_rel_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     synth_gen_s1r_gru_recoff_rel_s46: FINAL val_mrr=0.2316 test_mrr=0.2378 test_hits10=0.5000 eval_sec=294.1
+- RUNNING  synth_gen_s1r_gru_recoff_rel_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_identity_recoff_rel_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_identity_recoff_rel_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_identity_recoff_rel_s45: 
+- RUNNING  synth_gen_s1r_identity_recoff_rel_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_identity_recoff_rel_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_nodeframe_recoff_rel_s43: 
+- RUNNING  synth_gen_s1r_nodeframe_recoff_rel_s44: 
+- RUNNING  synth_gen_s1r_nodeframe_recoff_rel_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_nodeframe_recoff_rel_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_nodeframe_recoff_rel_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_tsd_recoff_rel_s43: 
+- RUNNING  synth_gen_s1r_tsd_recoff_rel_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_tsd_recoff_rel_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1r_tsd_recoff_rel_s46: 
+- RUNNING  synth_gen_s1r_tsd_recoff_rel_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     synth_gen_s1_tsd_recoff_s43: FINAL val_mrr=0.2032 test_mrr=0.2069 test_hits10=0.4594 eval_sec=583.1
+- DONE     synth_gen_s1_tsd_recoff_s44: FINAL val_mrr=0.2065 test_mrr=0.2090 test_hits10=0.4698 eval_sec=585.3
+- DONE     synth_gen_s1_tsd_recoff_s45: FINAL val_mrr=0.2001 test_mrr=0.2065 test_hits10=0.4603 eval_sec=662.3
+- DONE     synth_gen_s1_tsd_recoff_s46: FINAL val_mrr=0.2042 test_mrr=0.2088 test_hits10=0.4721 eval_sec=675.3
+- DONE     synth_gen_s1_tsd_recoff_s47: FINAL val_mrr=0.2109 test_mrr=0.2086 test_hits10=0.4673 eval_sec=607.4
 - RUNNING  wiki_attention_s43_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  wiki_attention_s43_lr3e-4: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     wiki_coreoff_s43_lr1e-3: FINAL val_mrr=0.7674 test_mrr=0.7440 test_hits10=0.8456 eval_sec=56.5
 - DONE     wiki_coreoff_s43_lr3e-4: FINAL val_mrr=0.7455 test_mrr=0.7255 test_hits10=0.8460 eval_sec=52.3
+- RUNNING  wiki_coreoff_s44_lr1e-3: 
+- RUNNING  wiki_coreoff_s45_lr1e-3: 
+- RUNNING  wiki_coreoff_s46_lr1e-3: epochs': 4, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
+- RUNNING  wiki_coreoff_s47_lr1e-3: 
 - RUNNING  wiki_curonly_s43_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  wiki_curonly_s43_lr3e-4: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  wiki_diag_s43_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
@@ -284,8 +328,8 @@ our launcher claims (pid:gpu/MiB):
 - DONE synth_static_original: test 0.790 novel 0.151 rec 0.791
 
 ## recent actions
-2026-09-22 10:56:46 (re)launching synth_gen_s1_tsd_recoff_s43 via results/review_2026_09_22/queue/synth_gen_s1_tsd_recoff_s43.cmd (attempt 1)
-2026-09-22 10:56:46 (re)launching synth_gen_s1_tsd_recoff_s44 via results/review_2026_09_22/queue/synth_gen_s1_tsd_recoff_s44.cmd (attempt 1)
-2026-09-22 10:56:46 (re)launching synth_gen_s1_tsd_recoff_s45 via results/review_2026_09_22/queue/synth_gen_s1_tsd_recoff_s45.cmd (attempt 1)
-2026-09-22 10:56:46 (re)launching synth_gen_s1_tsd_recoff_s46 via results/review_2026_09_22/queue/synth_gen_s1_tsd_recoff_s46.cmd (attempt 1)
-2026-09-22 10:56:46 (re)launching synth_gen_s1_tsd_recoff_s47 via results/review_2026_09_22/queue/synth_gen_s1_tsd_recoff_s47.cmd (attempt 1)
+2026-09-22 12:50:42 (re)launching wiki_coreoff_s44_lr1e-3 via results/review_2026_09_22/queue/wiki_coreoff_s44_lr1e-3.cmd (attempt 1)
+2026-09-22 12:50:42 (re)launching wiki_coreoff_s45_lr1e-3 via results/review_2026_09_22/queue/wiki_coreoff_s45_lr1e-3.cmd (attempt 1)
+2026-09-22 12:50:42 (re)launching wiki_coreoff_s46_lr1e-3 via results/review_2026_09_22/queue/wiki_coreoff_s46_lr1e-3.cmd (attempt 1)
+2026-09-22 12:50:42 (re)launching wiki_coreoff_s47_lr1e-3 via results/review_2026_09_22/queue/wiki_coreoff_s47_lr1e-3.cmd (attempt 1)
+2026-09-22 12:56:18 (re)launching synth_gen_s1r_gru_recoff_rel_s45 via results/review_2026_09_22/queue/synth_gen_s1r_gru_recoff_rel_s45.cmd (attempt 1)
