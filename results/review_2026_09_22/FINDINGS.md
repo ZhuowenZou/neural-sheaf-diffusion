@@ -115,3 +115,11 @@ Z0 = P_z[x; 0], the scorer and REC; it is not a REC-only predictor. All new core
 - Heat-style transport, relation-conditioned maps, BPTT-length and initialisation controls (section 5 of the
   handoff): not run.
 - TSNN official reproduction: not run; cite with published numbers marked as such.
+
+## Code identity note
+Runs launched before commit `2ca9fe5` used the original per-edge Python index builder in `lib/laplace.py`;
+later runs use a vectorised implementation that is exactly equivalent (the original is retained as
+`_compute_left_right_map_index_reference` and equality is pinned by
+`models/test_review_controls.py::test_vectorised_left_right_map_index_matches_reference`). The change affects
+wall-clock only (profiled synthetic step: 0.514 s -> 0.034 s), so timings across the two code states are
+not comparable; scores are.
