@@ -1,35 +1,40 @@
-# Monitor status (2026-09-21 08:35:48)
+# Monitor status (2026-09-21 23:43:39)
 
 ## GPU free (GiB) and utilisation
-0:27GB(100%) 1:23GB(99%) 2:22GB(100%) 3:24GB(100%) 4:24GB(100%) 5:26GB(100%) 6:22GB(100%) 7:52GB(99%) 
-our GPU processes (pid:MiB): none
+0:54GB(99%) 1:51GB(99%) 2:22GB(100%) 3:65GB(15%) 4:24GB(100%) 5:4GB(100%) 6:22GB(100%) 7:30GB(36%) 
+our GPU processes (pid:MiB): 4075755:15532MiB 4075677:21548MiB 4075259:25548MiB 4075593:25542MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
 - gpu2: colleague busy
-- gpu3: colleague busy
+- gpu3: ELIGIBLE (idle 94 min)
 - gpu4: colleague busy
 - gpu5: colleague busy
 - gpu6: colleague busy
 - gpu7: OURS
-compensation: colleagues hold 83120 MiB on our GPUs; we hold 0 MiB on theirs; budget left 83120 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+compensation: colleagues hold 26180 MiB on our GPUs; we hold 37080 MiB on theirs; budget left -10900 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
 our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
 - DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
 - DONE     forum_abl_curonly_s46: FINAL val_mrr=0.5971 test_mrr=0.6099 test_hits10=0.6602 eval_sec=15402.1
+- RUNNING  forum_abl_curonly_s47: epoch': 4, 'train_loss': 0.12504257641843594, 'track_val_mrr': 0.61026
 - DONE     forum_abl_identity: FINAL val_mrr=0.6208 test_mrr=0.6313 test_hits10=0.6900 eval_sec=15757.5
 - DONE     forum_abl_identity_s46: FINAL val_mrr=0.6438 test_mrr=0.6501 test_hits10=0.7030 eval_sec=13233.2
+- RUNNING  forum_abl_identity_s47: epoch': 4, 'train_loss': 0.12086986209970366, 'track_val_mrr': 0.57970
 - DONE     forum_abl_nodelta: FINAL val_mrr=0.6411 test_mrr=0.6475 test_hits10=0.7021 eval_sec=14480.7
 - DONE     forum_abl_nodelta_s46: FINAL val_mrr=0.6119 test_mrr=0.6233 test_hits10=0.6927 eval_sec=15436.5
+- DONE     forum_abl_nodelta_s47: FINAL val_mrr=0.6164 test_mrr=0.6302 test_hits10=0.6829 eval_sec=13155.2
 - DONE     forum_abl_nomem: FINAL val_mrr=0.6425 test_mrr=0.6491 test_hits10=0.7006 eval_sec=12369.0
 - DONE     forum_abl_nomem_s46: FINAL val_mrr=0.6405 test_mrr=0.6478 test_hits10=0.7022 eval_sec=13280.2
+- RUNNING  forum_abl_nomem_s47: epoch': 3, 'train_loss': 0.13312107821641658, 'track_val_mrr': 0.64581
 - DONE     forum_coreoff_norec: FINAL val_mrr=0.2536 test_mrr=0.2373 test_hits10=0.3462 eval_sec=13282.1
 - DONE     forum_coreoff_norec_s46: FINAL val_mrr=0.2360 test_mrr=0.2202 test_hits10=0.3394 eval_sec=13394.2
 - DONE     forum_coreoff_norec_s47: FINAL val_mrr=0.2488 test_mrr=0.2320 test_hits10=0.3502 eval_sec=15661.9
 - DONE     forum_coreoff_rec: FINAL val_mrr=0.6020 test_mrr=0.6151 test_hits10=0.6475 eval_sec=12356.5
 - DONE     forum_coreoff_rec_s46: FINAL val_mrr=0.6024 test_mrr=0.6151 test_hits10=0.6476 eval_sec=13589.2
+- RUNNING  forum_coreoff_rec_s47: epoch': 4, 'train_loss': 0.13608903797779417, 'track_val_mrr': 0.61080
 - DONE     forum_f_s43: FINAL val_mrr=0.6230 test_mrr=0.6280 test_hits10=0.6826 eval_sec=14452.3
 - DONE     forum_f_s46: FINAL val_mrr=0.6345 test_mrr=0.6412 test_hits10=0.6944 eval_sec=19345.1
 - DONE     forum_f_s47: FINAL val_mrr=0.6019 test_mrr=0.6187 test_hits10=0.6526 eval_sec=14716.3
@@ -191,8 +196,8 @@ our launcher claims (pid:gpu/MiB):
 - DONE synth_static_original: test 0.790 novel 0.151 rec 0.791
 
 ## recent actions
-2026-09-17 13:59:53 (re)launching polecat_abl_identity_s46 via results/event_bench/leakfree2/polecat_abl_identity_s46.cmd (attempt 1)
-2026-09-17 13:59:53 (re)launching polecat_abl_nodelta_s46 via results/event_bench/leakfree2/polecat_abl_nodelta_s46.cmd (attempt 1)
-2026-09-17 13:59:53 (re)launching wd_abl_curonly via results/event_bench/leakfree2/wd_abl_curonly.cmd (attempt 1)
-2026-09-17 13:59:53 (re)launching wd_abl_identity via results/event_bench/leakfree2/wd_abl_identity.cmd (attempt 1)
-2026-09-17 13:59:53 (re)launching wd_abl_nodelta via results/event_bench/leakfree2/wd_abl_nodelta.cmd (attempt 1)
+2026-09-21 08:38:21 (re)launching forum_abl_curonly_s47 via results/event_bench/leakfree2/forum_abl_curonly_s47.cmd (attempt 1)
+2026-09-21 08:38:21 (re)launching forum_abl_identity_s47 via results/event_bench/leakfree2/forum_abl_identity_s47.cmd (attempt 1)
+2026-09-21 08:38:21 (re)launching forum_abl_nodelta_s47 via results/event_bench/leakfree2/forum_abl_nodelta_s47.cmd (attempt 1)
+2026-09-21 08:38:21 (re)launching forum_abl_nomem_s47 via results/event_bench/leakfree2/forum_abl_nomem_s47.cmd (attempt 1)
+2026-09-21 08:38:21 (re)launching forum_coreoff_rec_s47 via results/event_bench/leakfree2/forum_coreoff_rec_s47.cmd (attempt 1)

@@ -571,3 +571,9 @@ monitor started Sat Sep 12 06:28:23 PM PDT 2026 pid 2098961
 2026-09-17 13:59:53 (re)launching wd_abl_curonly via results/event_bench/leakfree2/wd_abl_curonly.cmd (attempt 1)
 2026-09-17 13:59:53 (re)launching wd_abl_identity via results/event_bench/leakfree2/wd_abl_identity.cmd (attempt 1)
 2026-09-17 13:59:53 (re)launching wd_abl_nodelta via results/event_bench/leakfree2/wd_abl_nodelta.cmd (attempt 1)
+monitor started Mon Sep 21 08:38:21 AM PDT 2026 pid 4073641
+2026-09-21 08:38:21 (re)launching forum_abl_curonly_s47 via results/event_bench/leakfree2/forum_abl_curonly_s47.cmd (attempt 1)
+2026-09-21 08:38:21 (re)launching forum_abl_identity_s47 via results/event_bench/leakfree2/forum_abl_identity_s47.cmd (attempt 1)
+2026-09-21 08:38:21 (re)launching forum_abl_nodelta_s47 via results/event_bench/leakfree2/forum_abl_nodelta_s47.cmd (attempt 1)
+2026-09-21 08:38:21 (re)launching forum_abl_nomem_s47 via results/event_bench/leakfree2/forum_abl_nomem_s47.cmd (attempt 1)
+2026-09-21 08:38:21 (re)launching forum_coreoff_rec_s47 via results/event_bench/leakfree2/forum_coreoff_rec_s47.cmd (attempt 1)

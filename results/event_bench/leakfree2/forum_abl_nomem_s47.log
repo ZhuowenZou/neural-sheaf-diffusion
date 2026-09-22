@@ -1,0 +1,13 @@
+reserved 20976 MiB of GPU memory on cuda:0 in the caching allocator (requested 20976; now reserved 20980 MiB)
+device=cuda:0 sha=fbb1aa8169da config={'dataset': 'thgl-forum', 'seed': 47, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 4, 'patience': 3, 'min_epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges_cap': 4000000, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 20000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': True, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'no_memory': True, 'recurrency_symmetric': False, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'out': 'results/event_bench/leakfree2/forum_abl_nomem_s47'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=740 (edges=4000000) track_val=3 final_val=687 final_test=625 | prep_sec=42.9
+negative-sample sets loaded in 40.2s
+node_types: present
+delta_time_scale=600 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=634431 num_relations=2 num_nodes=152816
+[epoch 1/4] {'epoch': 1, 'train_loss': 0.17815785452783994, 'track_val_mrr': 0.6232272401154041, 'track_val_loss': 0.2609052062034607, 'train_sec': 6985.3, 'track_eval_sec': 6757.7, 'peak_gpu_mem_mb': 5053.4}
+[epoch 2/4] {'epoch': 2, 'train_loss': 0.1348699784367591, 'track_val_mrr': 0.6376896771252155, 'track_val_loss': 0.2588374614715576, 'train_sec': 6996.5, 'track_eval_sec': 6621.7, 'peak_gpu_mem_mb': 5146.6}
+[epoch 3/4] {'epoch': 3, 'train_loss': 0.13312107821641658, 'track_val_mrr': 0.6458100937366485, 'track_val_loss': 0.24332021176815033, 'train_sec': 6954.8, 'track_eval_sec': 6781.7, 'peak_gpu_mem_mb': 5146.6}
