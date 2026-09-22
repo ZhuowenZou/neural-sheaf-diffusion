@@ -1,0 +1,76 @@
+{
+ "config": "{\"n_nodes\": 100, \"n_comm\": 5, \"n_events\": 40000, \"p_cue\": 0.03, \"beta\": 1.0, \"gap_mean\": 1.0, \"p_novel\": 0.5, \"val_frac\": 0.15, \"test_frac\": 0.15, \"n_neg\": 32, \"feat_dim\": 32, \"seed\": 2, \"typed_cues\": true}",
+ "data_sha256": "177389999ac4a8a516887a24b29a59460aea6a5e31d0a3bce75e41e463453836",
+ "time_window_ms": 20000,
+ "events_per_split": {
+  "train": 28000,
+  "val": 6000,
+  "test": 6000
+ },
+ "cue_events": 1209,
+ "novel_fraction": {
+  "train": 0.20410714285714285,
+  "val": 0.18033333333333335,
+  "test": 0.10866666666666666
+ },
+ "oracle_summary": [
+  {
+   "split": "test",
+   "n": 5810,
+   "mrr_permitted": 0.5312532027517639,
+   "mrr_latent": 0.5903251714087494,
+   "mrr_chance": 0.058823529411764705,
+   "novel_fraction": 0.11222030981067126,
+   "cue_known": 1.0
+  },
+  {
+   "split": "val",
+   "n": 5824,
+   "mrr_permitted": 0.531251647703045,
+   "mrr_latent": 0.570468120764309,
+   "mrr_chance": 0.058823529411764705,
+   "novel_fraction": 0.18578296703296704,
+   "cue_known": 1.0
+  }
+ ],
+ "oracle_by_novelty": [
+  {
+   "split": "test",
+   "novel": false,
+   "n": 5158,
+   "mrr_permitted": 0.5627089230235502,
+   "mrr_latent": 0.6213014736367951,
+   "mrr_chance": 0.05882352941176471,
+   "cue_known": 1.0
+  },
+  {
+   "split": "test",
+   "novel": true,
+   "n": 652,
+   "mrr_permitted": 0.28240564882250857,
+   "mrr_latent": 0.345270314212032,
+   "mrr_chance": 0.058823529411764705,
+   "cue_known": 1.0
+  },
+  {
+   "split": "val",
+   "novel": false,
+   "n": 4742,
+   "mrr_permitted": 0.5905242054527539,
+   "mrr_latent": 0.6307561311409898,
+   "mrr_chance": 0.058823529411764705,
+   "cue_known": 1.0
+  },
+  {
+   "split": "val",
+   "novel": true,
+   "n": 1082,
+   "mrr_permitted": 0.2714822679903653,
+   "mrr_latent": 0.30624839321696995,
+   "mrr_chance": 0.058823529411764705,
+   "cue_known": 1.0
+  }
+ ],
+ "permitted_information": "events with timestamp < the query batch's window start (previous batches only)",
+ "hidden_sidecar": "comm, pop, target_at, cue_nodes, novel (npz keys; used only by oracles/analysis)"
+}

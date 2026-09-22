@@ -67,6 +67,7 @@ def main():
     ap.add_argument("--rec", default="off", choices=["off", "on"])
     ap.add_argument("--extra-flags", default="", help="extra runner flags for every synth run (e.g. --relation-in-input)")
     ap.add_argument("--tag", default="", help="name suffix for synth runs")
+    ap.add_argument("--arms", default="", help="comma-separated subset of arms for synth runs (default all)")
     ap.add_argument("runs", nargs="*")
     ap.add_argument("--lr-json", default=None)
     ap.add_argument("--gpus", default="3 4 7")
@@ -114,7 +115,9 @@ def main():
               "--predict-from-previous --save-checkpoint --rng-isolation --dump-query-ranks")
         rec = " --recurrency-decoder" if args.rec == "on" else ""
         i = 0
-        for arm, extra in ARMS.items():
+        arms = [a for a in ARMS if not args.arms or a in args.arms.split(",")]
+        for arm in arms:
+            extra = ARMS[arm]
             for seed in args.seeds.split():
                 name = f"synth_{args.gen}_{arm}_rec{args.rec}{args.tag}_s{seed}"
                 out = f"{RV}/synthetic/runs/{name}"
