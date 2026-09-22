@@ -11,3 +11,5 @@ parameter_count=634431 num_relations=2 num_nodes=152816
 [epoch 1/4] {'epoch': 1, 'train_loss': 0.17815785452783994, 'track_val_mrr': 0.6232272401154041, 'track_val_loss': 0.2609052062034607, 'train_sec': 6985.3, 'track_eval_sec': 6757.7, 'peak_gpu_mem_mb': 5053.4}
 [epoch 2/4] {'epoch': 2, 'train_loss': 0.1348699784367591, 'track_val_mrr': 0.6376896771252155, 'track_val_loss': 0.2588374614715576, 'train_sec': 6996.5, 'track_eval_sec': 6621.7, 'peak_gpu_mem_mb': 5146.6}
 [epoch 3/4] {'epoch': 3, 'train_loss': 0.13312107821641658, 'track_val_mrr': 0.6458100937366485, 'track_val_loss': 0.24332021176815033, 'train_sec': 6954.8, 'track_eval_sec': 6781.7, 'peak_gpu_mem_mb': 5146.6}
+[epoch 4/4] {'epoch': 4, 'train_loss': 0.1324752598133881, 'track_val_mrr': 0.6448987903952599, 'track_val_loss': 0.24945159256458282, 'train_sec': 7045.3, 'track_eval_sec': 6735.5, 'peak_gpu_mem_mb': 5146.6}
+checkpoint saved: results/event_bench/leakfree2/forum_abl_nomem_s47/best.pt

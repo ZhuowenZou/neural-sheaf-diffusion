@@ -13,3 +13,4 @@ parameter_count=634431 num_relations=2 num_nodes=152816
 [epoch 3/4] {'epoch': 3, 'train_loss': 0.1243080766480895, 'track_val_mrr': 0.557556678211689, 'track_val_loss': 0.2907181978225708, 'train_sec': 6289.7, 'track_eval_sec': 6073.1, 'peak_gpu_mem_mb': 20516.0}
 [epoch 4/4] {'epoch': 4, 'train_loss': 0.12504257641843594, 'track_val_mrr': 0.6102647055387497, 'track_val_loss': 0.2549714744091034, 'train_sec': 6415.3, 'track_eval_sec': 6091.3, 'peak_gpu_mem_mb': 20516.0}
 checkpoint saved: results/event_bench/leakfree2/forum_abl_curonly_s47/best.pt
+final val_mrr=0.6196 (10786.6s so far)
