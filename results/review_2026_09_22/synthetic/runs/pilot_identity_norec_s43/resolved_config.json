@@ -90,9 +90,9 @@
   "--out",
   "results/review_2026_09_22/synthetic/runs/pilot_identity_norec_s43"
  ],
- "commit": "59c5bdad46d14957eb3035a1a4420fc6fb525e82",
+ "commit": "8b6c6bdcb54592e203f15c6fcc5adac55137b970",
  "cwd": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "env": {
-  "CUDA_VISIBLE_DEVICES": "3"
+  "CUDA_VISIBLE_DEVICES": "4"
  }
 }

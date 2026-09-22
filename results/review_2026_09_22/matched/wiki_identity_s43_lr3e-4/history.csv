@@ -1,3 +1,4 @@
 epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_mem_mb,peak_gpu_reserved_mb,epoch_steps,epoch_nonfinite_loss,epoch_nonfinite_grad,epoch_clipped,epoch_skipped_steps,track_nonfinite_positives,track_nonfinite_negatives,track_skipped_queries
 1,0.11834717714740804,0.6040869294814766,0.09727326780557632,568.8,608.4,709.8,1514.0,3104,0,0,358,0,0,0,0
 2,0.09354787719714351,0.6815708572231233,0.0920756533741951,696.4,710.0,715.4,1514.0,3104,0,0,138,0,0,0,0
+3,0.09297583481493442,0.709316537477076,0.09034981578588486,788.6,793.8,715.4,1516.0,3104,0,0,109,0,0,0,0
