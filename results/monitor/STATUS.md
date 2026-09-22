@@ -1,25 +1,25 @@
-# Monitor status (2026-09-22 02:46:46)
+# Monitor status (2026-09-22 02:56:35)
 
 ## GPU free (GiB) and utilisation
-0:54GB(99%) 1:51GB(99%) 2:22GB(100%) 3:65GB(17%) 4:24GB(100%) 5:4GB(100%) 6:22GB(100%) 7:55GB(16%) 
-our GPU processes (pid:MiB): 4075755:15532MiB 4075677:21548MiB 4075259:25548MiB 
+0:54GB(98%) 1:51GB(99%) 2:22GB(100%) 3:80GB(0%) 4:24GB(100%) 5:4GB(100%) 6:22GB(100%) 7:80GB(0%) 
+our GPU processes (pid:MiB): 4075677:21548MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
 - gpu2: colleague busy
-- gpu3: ELIGIBLE (idle 277 min)
+- gpu3: ELIGIBLE (idle 287 min)
 - gpu4: colleague busy
 - gpu5: colleague busy
 - gpu6: colleague busy
 - gpu7: OURS
-compensation: colleagues hold 26280 MiB on our GPUs; we hold 37080 MiB on theirs; budget left -10800 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+compensation: colleagues hold 26280 MiB on our GPUs; we hold 21548 MiB on theirs; budget left 4732 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
 our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
 - DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
 - DONE     forum_abl_curonly_s46: FINAL val_mrr=0.5971 test_mrr=0.6099 test_hits10=0.6602 eval_sec=15402.1
-- RUNNING  forum_abl_curonly_s47: epoch': 4, 'train_loss': 0.12504257641843594, 'track_val_mrr': 0.61026
+- DONE     forum_abl_curonly_s47: FINAL val_mrr=0.6196 test_mrr=0.6336 test_hits10=0.7069 eval_sec=15598.7
 - DONE     forum_abl_identity: FINAL val_mrr=0.6208 test_mrr=0.6313 test_hits10=0.6900 eval_sec=15757.5
 - DONE     forum_abl_identity_s46: FINAL val_mrr=0.6438 test_mrr=0.6501 test_hits10=0.7030 eval_sec=13233.2
 - DONE     forum_abl_identity_s47: FINAL val_mrr=0.6223 test_mrr=0.6324 test_hits10=0.6646 eval_sec=15315.4
@@ -34,7 +34,7 @@ our launcher claims (pid:gpu/MiB):
 - DONE     forum_coreoff_norec_s47: FINAL val_mrr=0.2488 test_mrr=0.2320 test_hits10=0.3502 eval_sec=15661.9
 - DONE     forum_coreoff_rec: FINAL val_mrr=0.6020 test_mrr=0.6151 test_hits10=0.6475 eval_sec=12356.5
 - DONE     forum_coreoff_rec_s46: FINAL val_mrr=0.6024 test_mrr=0.6151 test_hits10=0.6476 eval_sec=13589.2
-- RUNNING  forum_coreoff_rec_s47: epoch': 4, 'train_loss': 0.13608903797779417, 'track_val_mrr': 0.61080
+- DONE     forum_coreoff_rec_s47: FINAL val_mrr=0.6042 test_mrr=0.6166 test_hits10=0.6489 eval_sec=14520.1
 - DONE     forum_f_s43: FINAL val_mrr=0.6230 test_mrr=0.6280 test_hits10=0.6826 eval_sec=14452.3
 - DONE     forum_f_s46: FINAL val_mrr=0.6345 test_mrr=0.6412 test_hits10=0.6944 eval_sec=19345.1
 - DONE     forum_f_s47: FINAL val_mrr=0.6019 test_mrr=0.6187 test_hits10=0.6526 eval_sec=14716.3

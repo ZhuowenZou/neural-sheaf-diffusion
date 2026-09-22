@@ -14,3 +14,24 @@ parameter_count=634431 num_relations=2 num_nodes=152816
 [epoch 4/4] {'epoch': 4, 'train_loss': 0.12504257641843594, 'track_val_mrr': 0.6102647055387497, 'track_val_loss': 0.2549714744091034, 'train_sec': 6415.3, 'track_eval_sec': 6091.3, 'peak_gpu_mem_mb': 20516.0}
 checkpoint saved: results/event_bench/leakfree2/forum_abl_curonly_s47/best.pt
 final val_mrr=0.6196 (10786.6s so far)
+FINAL val_mrr=0.6196 test_mrr=0.6336 test_hits10=0.7069 eval_sec=15598.7
+{
+  "dataset": "thgl-forum",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 47,
+  "epochs": 4,
+  "best_track_epoch": 4,
+  "best_track_val_mrr": 0.6102647055387497,
+  "parameter_count": 634431,
+  "commit_hash": "fbb1aa8169da3f65bd4223d934642ed09a21c580",
+  "train_edges": 4000000,
+  "final_val_edges": 3563658,
+  "final_test_edges": 3563653,
+  "validation_mrr": 0.6195787181075588,
+  "test_mrr": 0.633646931714349,
+  "final_val_loss": 0.2616868019104004,
+  "final_test_loss": 0.2621869146823883,
+  "final_eval_sec": 15598.7,
+  "final_eval_peak_gpu_mem_mb": 4258.3,
+  "test_hits10": 0.7068611902300066
+}
