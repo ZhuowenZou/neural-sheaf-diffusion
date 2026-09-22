@@ -1,1 +1,1 @@
-{"coreoff": "1e-3"}
+{"coreoff": "1e-3", "diag": "1e-3", "gru": "1e-3"}

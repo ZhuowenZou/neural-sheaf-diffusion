@@ -91,14 +91,14 @@
   "--out",
   "results/review_2026_09_22/forum/forum_identity_recoff_s45"
  ],
- "commit": "a2aa5d997c776a9d4644695789b5c37de9083146",
+ "commit": "c8c5965cb6f5fe4ca2fc33b1f1ff76d7ceaafcb3",
  "cwd": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "env": {
   "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
   "CUDA_MODULE_LOADING": "LAZY",
-  "CUDA_VISIBLE_DEVICES": "3",
+  "CUDA_VISIBLE_DEVICES": "6",
   "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True",
-  "TSD_ONLY_GPUS": "3",
-  "TSD_RESERVE_GPU_MB": "5976"
+  "TSD_ONLY_GPUS": "3 6",
+  "TSD_RESERVE_GPU_MB": "12976"
  }
 }

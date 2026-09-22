@@ -1,6 +1,6 @@
-# Review campaign summary (auto-generated 2026-09-22 15:35)
+# Review campaign summary (auto-generated 2026-09-22 15:46)
 
-42 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+49 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
@@ -8,10 +8,12 @@
 |:-------------------------------------------------------------------|:--------|:------|:------------------|-------:|----:|---------:|--------------:|:----------------------------------|
 | synth-history:results/review_2026_09_22/synthetic/gen_s1r/data.npz | smoke   | off   | tsd               | 0.001  |   1 | 0.215083 | nan           | 0.2151                            |
 | tgbl-wiki                                                          | matched | on    | core-off          | 0.0003 |   1 | 0.725545 | nan           | 0.7255                            |
-| tgbl-wiki                                                          | matched | on    | core-off          | 0.001  |   1 | 0.744018 | nan           | 0.7440                            |
+| tgbl-wiki                                                          | matched | on    | core-off          | 0.001  |   2 | 0.738698 |   0.00752434  | 0.7440 / 0.7334                   |
 | tgbl-wiki                                                          | matched | on    | current-only-maps | 0.001  |   1 | 0.765613 | nan           | 0.7656                            |
+| tgbl-wiki                                                          | matched | on    | diagssm-ordinary  | 0.0003 |   1 | 0.717137 | nan           | 0.7171                            |
 | tgbl-wiki                                                          | matched | on    | diagssm-ordinary  | 0.001  |   1 | 0.765891 | nan           | 0.7659                            |
 | tgbl-wiki                                                          | matched | on    | gru-ordinary      | 0.0003 |   1 | 0.733609 | nan           | 0.7336                            |
+| tgbl-wiki                                                          | matched | on    | gru-ordinary      | 0.001  |   1 | 0.771264 | nan           | 0.7713                            |
 | tgbl-wiki                                                          | matched | on    | node-frame        | 0.0003 |   1 | 0.731724 | nan           | 0.7317                            |
 | tgbl-wiki                                                          | smoke   | on    | attention-gates   | 0.0003 |   1 | 0.537425 | nan           | 0.5374                            |
 | tgbl-wiki                                                          | smoke   | on    | core-off          | 0.0003 |   1 | 0.54059  | nan           | 0.5406                            |
@@ -21,8 +23,10 @@
 | thgl-forum                                                         | forum   | off   | core-off          | 0.001  |   1 | 0.22207  | nan           | 0.2221                            |
 | thgl-forum                                                         | forum   | off   | diagssm-ordinary  | 0.001  |   2 | 0.337591 |   0.0916383   | 0.2728 / 0.4024                   |
 | thgl-forum                                                         | forum   | off   | gru-ordinary      | 0.001  |   4 | 0.387535 |   0.00680891  | 0.3827 / 0.3932 / 0.3807 / 0.3936 |
+| thgl-forum                                                         | forum   | off   | node-frame        | 0.001  |   1 | 0.397977 | nan           | 0.3980                            |
 | thgl-forum                                                         | forum   | off   | tsd               | 0.001  |   1 | 0.232276 | nan           | 0.2323                            |
-| thgl-forum                                                         | forum   | on    | attention-gates   | 0.001  |   1 | 0.616149 | nan           | 0.6161                            |
+| thgl-forum                                                         | forum   | on    | attention-gates   | 0.001  |   2 | 0.626459 |   0.0145809   | 0.6161 / 0.6368                   |
+| thgl-forum                                                         | forum   | on    | current-only-maps | 0.001  |   1 | 0.644952 | nan           | 0.6450                            |
 | thgl-forum                                                         | forum   | on    | diagssm-ordinary  | 0.001  |   1 | 0.650478 | nan           | 0.6505                            |
 | thgl-forum                                                         | forum   | on    | gru-ordinary      | 0.001  |   3 | 0.644765 |   0.00545284  | 0.6511 / 0.6418 / 0.6414          |
 | thgl-forum                                                         | forum   | on    | node-frame        | 0.001  |   1 | 0.633638 | nan           | 0.6336                            |
@@ -38,6 +42,7 @@
 
 | run              | dataset         |   seed |   validation_mrr |   test_mrr |   retained_test_mrr |   replay_minus_retained_test |   query_audit_affected_total | query_audit_parity   |
 |:-----------------|:----------------|-------:|-----------------:|-----------:|--------------------:|-----------------------------:|-----------------------------:|:---------------------|
+| forum_f_s46      | thgl-forum      |     46 |         0.634515 |   0.64123  |            0.641231 |                 -7.87055e-07 |                            0 | True                 |
 | forum_f_s47      | thgl-forum      |     47 |         0.601889 |   0.618727 |            0.618727 |                 -2.02006e-08 |                            0 | True                 |
 | polecat_f_s43    | tkgl-polecat    |     43 |         0.247229 |   0.2403   |            0.2403   |                 -1.77451e-08 |                            0 | True                 |
 | sp_f_s43         | tkgl-smallpedia |     43 |         0.646006 |   0.61644  |            0.616444 |                 -3.48359e-06 |                            0 | True                 |
@@ -58,6 +63,8 @@
 
 | group   | run                        | split   |   queries |   queries_affected |   pos_nonfinite |   neg_nan |   neg_posinf |   neg_neginf |   mrr_tgb_raw |   mrr_guarded |   mrr_conservative |   state_nonfinite_snapshots |   rec_nonfinite_snapshots |
 |:--------|:---------------------------|:--------|----------:|-------------------:|----------------:|----------:|-------------:|-------------:|--------------:|--------------:|-------------------:|----------------------------:|--------------------------:|
+| audit   | forum_f_s46                | val     |   3563658 |                  0 |               0 |         0 |            0 |            0 |      0.634515 |      0.634515 |           0.634515 |                           0 |                         0 |
+| audit   | forum_f_s46                | test    |   3563653 |                  0 |               0 |         0 |            0 |            0 |      0.64123  |      0.64123  |           0.64123  |                           0 |                         0 |
 | audit   | forum_f_s47                | val     |   3563658 |                  0 |               0 |         0 |            0 |            0 |      0.601889 |      0.601889 |           0.601889 |                           0 |                         0 |
 | audit   | forum_f_s47                | test    |   3563653 |                  0 |               0 |         0 |            0 |            0 |      0.618727 |      0.618727 |           0.618727 |                           0 |                         0 |
 | audit   | polecat_f_s43              | val     |    533472 |                  0 |               0 |         0 |            0 |            0 |      0.247229 |      0.247229 |           0.247229 |                           0 |                         0 |
@@ -96,6 +103,8 @@
 | forum   | forum_attention_recon_s46  | test    |   3563653 |                  0 |               0 |         0 |            0 |            0 |      0.63677  |      0.63677  |           0.63677  |                           0 |                         0 |
 | forum   | forum_coreoff_recoff_s44   | val     |   3643658 |                  0 |               0 |         0 |            0 |            0 |      0.239776 |      0.239776 |           0.239776 |                           0 |                         0 |
 | forum   | forum_coreoff_recoff_s44   | test    |   3563653 |                  0 |               0 |         0 |            0 |            0 |      0.22207  |      0.22207  |           0.22207  |                           0 |                         0 |
+| forum   | forum_curonly_recon_s44    | val     |   3643658 |                  0 |               0 |         0 |            0 |            0 |      0.634978 |      0.634978 |           0.634978 |                           0 |                         0 |
+| forum   | forum_curonly_recon_s44    | test    |   3563653 |                  0 |               0 |         0 |            0 |            0 |      0.644952 |      0.644952 |           0.644952 |                           0 |                         0 |
 | forum   | forum_diag_recoff_s43      | val     |   3643658 |                  0 |               0 |         0 |            0 |            0 |      0.284913 |      0.284913 |           0.284913 |                           0 |                         0 |
 | forum   | forum_diag_recoff_s43      | test    |   3563653 |                  0 |               0 |         0 |            0 |            0 |      0.272793 |      0.272793 |           0.272793 |                           0 |                         0 |
 | forum   | forum_diag_recoff_s47      | val     |   3643658 |                  0 |               0 |         0 |            0 |            0 |      0.409269 |      0.409269 |           0.409269 |                           0 |                         0 |
@@ -126,10 +135,16 @@
 | matched | wiki_coreoff_s43_lr1e-3    | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.744018 |      0.744018 |           0.744018 |                           0 |                         0 |
 | matched | wiki_coreoff_s43_lr3e-4    | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.726325 |      0.726325 |           0.726325 |                           0 |                         0 |
 | matched | wiki_coreoff_s43_lr3e-4    | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.725545 |      0.725545 |           0.725545 |                           0 |                         0 |
+| matched | wiki_coreoff_s44_lr1e-3    | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.744747 |      0.744747 |           0.744747 |                           0 |                         0 |
+| matched | wiki_coreoff_s44_lr1e-3    | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.733377 |      0.733377 |           0.733377 |                           0 |                         0 |
 | matched | wiki_curonly_s43_lr1e-3    | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.754033 |      0.754033 |           0.754033 |                           0 |                         0 |
 | matched | wiki_curonly_s43_lr1e-3    | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.765613 |      0.765613 |           0.765613 |                           0 |                         0 |
 | matched | wiki_diag_s43_lr1e-3       | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.754338 |      0.754338 |           0.754338 |                           0 |                         0 |
 | matched | wiki_diag_s43_lr1e-3       | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.765891 |      0.765891 |           0.765891 |                           0 |                         0 |
+| matched | wiki_diag_s43_lr3e-4       | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.706725 |      0.706725 |           0.706725 |                           0 |                         0 |
+| matched | wiki_diag_s43_lr3e-4       | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.717137 |      0.717137 |           0.717137 |                           0 |                         0 |
+| matched | wiki_gru_s43_lr1e-3        | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.755229 |      0.755229 |           0.755229 |                           0 |                         0 |
+| matched | wiki_gru_s43_lr1e-3        | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.771264 |      0.771264 |           0.771264 |                           0 |                         0 |
 | matched | wiki_gru_s43_lr3e-4        | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.722226 |      0.722226 |           0.722226 |                           0 |                         0 |
 | matched | wiki_gru_s43_lr3e-4        | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.733609 |      0.733609 |           0.733609 |                           0 |                         0 |
 | matched | wiki_nodeframe_s43_lr3e-4  | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.72159  |      0.72159  |           0.72159  |                           0 |                         0 |
@@ -151,6 +166,12 @@
 
 | group   | run           | clock   | split        | activity   |       n |   frac_capped |   frac_zero_gap_used |   n_first_update |   n_first_interaction |     mean_dt |   mean_dt_uncapped |   mean_log10_gap_used_pos |   delta_scale |
 |:--------|:--------------|:--------|:-------------|:-----------|--------:|--------------:|---------------------:|-----------------:|----------------------:|------------:|-------------------:|--------------------------:|--------------:|
+| audit   | forum_f_s46   | global  | train_replay | endpoint   | 3180356 |   0.978229    |          0.00192934  |           125128 |                136616 | 0.248534    |        2.93634     |                   2.77779 |           600 |
+| audit   | forum_f_s46   | global  | train_replay | closure    | 8097681 |   0.0189684   |          0.00120047  |            11488 |                 29106 | 0.00603243  |        0.0575437   |                   2.77723 |           600 |
+| audit   | forum_f_s46   | global  | val          | endpoint   | 2856301 |   0.974357    |          0           |             7026 |                  7026 | 0.248251    |        2.83289     |                   2.77777 |           600 |
+| audit   | forum_f_s46   | global  | val          | closure    | 7467686 |   0.016635    |          0           |                0 |                     0 | 0.00535987  |        0.0462371   |                   2.77748 |           600 |
+| audit   | forum_f_s46   | global  | test         | endpoint   | 2871270 |   0.973408    |          0           |             3097 |                  3097 | 0.248197    |        2.79304     |                   2.77796 |           600 |
+| audit   | forum_f_s46   | global  | test         | closure    | 6903909 |   0.0180912   |          0           |                0 |                     0 | 0.00579419  |        0.0501042   |                   2.77694 |           600 |
 | audit   | forum_f_s47   | global  | train_replay | endpoint   | 3180356 |   0.999975    |          0.00192934  |           125128 |                136616 | 0.249997    |        4.5682      |                   2.77779 |           600 |
 | audit   | forum_f_s47   | global  | train_replay | closure    | 8097681 |   0.000930019 |          0.00120047  |            11488 |                 29106 | 0.00192604  |        0.0025063   |                   2.77723 |           600 |
 | audit   | forum_f_s47   | global  | val          | endpoint   | 2856301 |   1           |          0           |             7026 |                  7026 | 0.25        |        4.63004     |                   2.77777 |           600 |
@@ -247,71 +268,61 @@
 | run                                    | state           |   last_epoch |   attempts |
 |:---------------------------------------|:----------------|-------------:|-----------:|
 | audit_forum_f_s43                      | running/pending |            0 |          2 |
-| audit_forum_f_s46                      | running/pending |            0 |          2 |
 | audit_icews_eval_s43                   | running/pending |            0 |          2 |
 | audit_icews_eval_s46                   | running/pending |            0 |          3 |
 | audit_icews_eval_s47                   | running/pending |            0 |          2 |
 | audit_polecat_f_s46                    | running/pending |            0 |          3 |
 | audit_polecat_f_s47                    | running/pending |            0 |          2 |
-| forum_attention_recoff_s43             | running/pending |            0 |          1 |
-| forum_attention_recoff_s47             | running/pending |            0 |          1 |
-| forum_attention_recon_s46              | running/pending |            4 |          1 |
+| forum_attention_recoff_s43             | running/pending |            1 |          1 |
+| forum_attention_recoff_s47             | running/pending |            1 |          1 |
 | forum_attention_recon_s47              | running/pending |            0 |          1 |
 | forum_coreoff_recoff_s45               | running/pending |            0 |          1 |
 | forum_coreoff_recon_s44                | running/pending |            4 |          1 |
 | forum_coreoff_recon_s45                | running/pending |            0 |          1 |
 | forum_curonly_recoff_s44               | running/pending |            0 |          1 |
 | forum_curonly_recoff_s45               | running/pending |            0 |          2 |
-| forum_curonly_recon_s44                | running/pending |            4 |          1 |
-| forum_curonly_recon_s45                | running/pending |            1 |          2 |
+| forum_curonly_recon_s45                | running/pending |            2 |          2 |
 | forum_diag_recoff_s46                  | running/pending |            0 |          1 |
-| forum_diag_recon_s43                   | running/pending |            0 |          1 |
+| forum_diag_recon_s43                   | running/pending |            1 |          1 |
 | forum_diag_recon_s46                   | running/pending |            4 |          1 |
-| forum_gru_recoff_s45                   | running/pending |            0 |          1 |
+| forum_gru_recoff_s45                   | running/pending |            2 |          1 |
 | forum_gru_recon_s44                    | running/pending |            0 |          1 |
-| forum_gru_recon_s45                    | running/pending |            3 |          1 |
+| forum_gru_recon_s45                    | running/pending |            4 |          1 |
 | forum_identity_recoff_s44              | running/pending |            0 |          1 |
 | forum_identity_recoff_s45              | running/pending |            0 |          2 |
-| forum_identity_recon_s44               | running/pending |            0 |          3 |
+| forum_identity_recon_s44               | crashed         |            0 |          3 |
 | forum_identity_recon_s45               | running/pending |            0 |          2 |
-| forum_nodeframe_recoff_s43             | running/pending |            4 |          2 |
-| forum_nodeframe_recoff_s46             | running/pending |            2 |          1 |
+| forum_nodeframe_recoff_s46             | running/pending |            3 |          1 |
 | forum_nodeframe_recoff_s47             | running/pending |            0 |          1 |
 | forum_nodeframe_recon_s46              | running/pending |            0 |          1 |
 | forum_nodeframe_recon_s47              | running/pending |            0 |          1 |
-| forum_tsd_recoff_s45                   | running/pending |            2 |          2 |
+| forum_tsd_recoff_s45                   | running/pending |            4 |          2 |
 | forum_tsd_recon_s44                    | running/pending |            0 |          2 |
 | forum_tsd_recon_s45                    | running/pending |            0 |          2 |
 | synth_gen_s1r_identity_recoff_rel_s45  | running/pending |            3 |          1 |
-| synth_gen_s1r_nodeframe_recoff_rel_s44 | running/pending |            4 |          1 |
-| synth_gen_s1r_tsd_recoff_rel_s43       | running/pending |            5 |          1 |
-| synth_gen_s1r_tsd_recoff_rel_s46       | running/pending |            6 |          1 |
-| synth_gen_s2_curonly_recoff_rel_s45    | running/pending |            4 |          1 |
-| synth_gen_s2_curonly_recoff_rel_s47    | running/pending |            5 |          1 |
-| synth_gen_s2_gru_recoff_rel_s43        | running/pending |            0 |          1 |
-| synth_gen_s2_gru_recoff_rel_s44        | running/pending |            5 |          1 |
-| synth_gen_s2_gru_recoff_rel_s46        | running/pending |            3 |          1 |
-| synth_gen_s2_gru_recoff_rel_s47        | running/pending |            4 |          1 |
-| synth_gen_s2_identity_recoff_rel_s43   | running/pending |            6 |          1 |
-| synth_gen_s2_identity_recoff_rel_s44   | running/pending |            4 |          1 |
-| synth_gen_s2_identity_recoff_rel_s45   | running/pending |            3 |          1 |
-| synth_gen_s2_identity_recoff_rel_s46   | running/pending |            4 |          1 |
-| synth_gen_s2_tsd_recoff_rel_s43        | running/pending |            2 |          1 |
-| synth_gen_s2_tsd_recoff_rel_s44        | running/pending |            4 |          1 |
-| synth_gen_s2_tsd_recoff_rel_s45        | running/pending |            5 |          1 |
-| synth_gen_s2_tsd_recoff_rel_s46        | running/pending |            2 |          1 |
-| synth_gen_s2_tsd_recoff_rel_s47        | running/pending |            4 |          1 |
-| wiki_attention_s43_lr1e-3              | running/pending |            6 |          1 |
+| synth_gen_s1r_nodeframe_recoff_rel_s44 | running/pending |            5 |          1 |
+| synth_gen_s1r_tsd_recoff_rel_s43       | running/pending |            6 |          1 |
+| synth_gen_s2_curonly_recoff_rel_s45    | running/pending |            5 |          1 |
+| synth_gen_s2_curonly_recoff_rel_s47    | running/pending |            6 |          1 |
+| synth_gen_s2_gru_recoff_rel_s43        | running/pending |            2 |          1 |
+| synth_gen_s2_gru_recoff_rel_s44        | running/pending |            6 |          1 |
+| synth_gen_s2_gru_recoff_rel_s46        | running/pending |            5 |          1 |
+| synth_gen_s2_gru_recoff_rel_s47        | running/pending |            5 |          1 |
+| synth_gen_s2_identity_recoff_rel_s44   | running/pending |            5 |          1 |
+| synth_gen_s2_identity_recoff_rel_s45   | running/pending |            4 |          1 |
+| synth_gen_s2_identity_recoff_rel_s46   | running/pending |            5 |          1 |
+| synth_gen_s2_tsd_recoff_rel_s43        | running/pending |            3 |          1 |
+| synth_gen_s2_tsd_recoff_rel_s44        | running/pending |            5 |          1 |
+| synth_gen_s2_tsd_recoff_rel_s46        | running/pending |            3 |          1 |
+| synth_gen_s2_tsd_recoff_rel_s47        | running/pending |            5 |          1 |
+| wiki_attention_s43_lr1e-3              | running/pending |            7 |          1 |
 | wiki_attention_s43_lr3e-4              | running/pending |            7 |          1 |
-| wiki_coreoff_s44_lr1e-3                | running/pending |            8 |          1 |
 | wiki_coreoff_s45_lr1e-3                | running/pending |            3 |          1 |
-| wiki_coreoff_s46_lr1e-3                | running/pending |            7 |          1 |
-| wiki_coreoff_s47_lr1e-3                | running/pending |            3 |          1 |
+| wiki_coreoff_s46_lr1e-3                | running/pending |            8 |          1 |
+| wiki_coreoff_s47_lr1e-3                | running/pending |            4 |          1 |
 | wiki_curonly_s43_lr3e-4                | running/pending |            7 |          1 |
-| wiki_diag_s43_lr3e-4                   | running/pending |            8 |          1 |
-| wiki_gru_s43_lr1e-3                    | running/pending |            8 |          1 |
-| wiki_identity_s43_lr1e-3               | running/pending |            6 |          1 |
-| wiki_identity_s43_lr3e-4               | running/pending |            7 |          1 |
+| wiki_identity_s43_lr1e-3               | running/pending |            7 |          1 |
+| wiki_identity_s43_lr3e-4               | running/pending |            8 |          1 |
 | wiki_nodeframe_s43_lr1e-3              | running/pending |            6 |          1 |
 | wiki_tsd_s43_lr1e-3                    | running/pending |            8 |          1 |
 | wiki_tsd_s43_lr3e-4                    | running/pending |            7 |          1 |
