@@ -18,3 +18,4 @@ results/monitor/.ag_gpus.*
 results/monitor/.gpus*
 results/review_2026_09_22/**/clock_reservoir.csv.gz
 results/review_2026_09_22/**/*.tmp
+results/review_2026_09_22/smoke/
