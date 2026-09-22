@@ -19,6 +19,13 @@
    "final_val": 0.7455295897119107
   },
   {
+   "arm": "diag",
+   "lr": "1e-3",
+   "best_track_val_mrr": 0.7813829847499728,
+   "best_epoch": 8,
+   "final_val": 0.7842297486440126
+  },
+  {
    "arm": "gru",
    "lr": "3e-4",
    "best_track_val_mrr": 0.7316763899847865,
