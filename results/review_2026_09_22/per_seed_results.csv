@@ -1,7 +1,9 @@
-run,group,dataset,arm,lr,rec,clock,seed,is_audit,validation_mrr,test_mrr,test_hits10,best_track_epoch,train_epochs_run,params_total,params_active,query_audit_affected_total,query_audit_parity,finished
-wiki_coreoff_s43_lr1e-3,matched,tgbl-wiki,core-off,0.001,on,global,43,False,0.7673990524701869,0.7440184061553293,0.8455611535858469,8,8,448844,8419,0,True,2026-09-22 10:02
-attention,smoke,tgbl-wiki,attention-gates,0.0003,on,global,43,False,0.6416648473888635,0.5374252315461635,0.765250002078712,1,1,444815,444815,0,True,2026-09-22 09:44
-coreoff,smoke,tgbl-wiki,core-off,0.0003,on,node_update,43,False,0.6419879194051027,0.540589959077537,0.768500003002584,1,1,448844,8419,0,True,2026-09-22 09:41
-gru,smoke,tgbl-wiki,gru-sheaf,0.0003,on,global,43,False,0.6066575837954878,0.5254991688802838,0.7642500006482005,1,1,33466,33466,0,True,2026-09-22 09:44
-tsd,smoke,tgbl-wiki,tsd,0.0003,on,global,43,False,0.6251902469769121,0.526320749759674,0.7492500002682209,1,1,444686,444686,0,True,2026-09-22 09:44
-tsd_clockdiag,smoke,tgbl-wiki,tsd,0.0003,on,global,43,False,0.6249151859357953,0.5268619748428464,0.7490000002682209,1,1,444686,444686,0,True,2026-09-22 10:01
+run,group,dataset,arm,lr,rec,clock,seed,is_audit,validation_mrr,test_mrr,test_hits10,best_track_epoch,train_epochs_run,params_total,params_active,query_audit_affected_total,query_audit_parity,retained_test_mrr,replay_minus_retained_test,finished
+sp_f_s47,audit,tkgl-smallpedia,tsd,0.01,on,global,47,True,0.644656435510462,0.6104105329835294,0.711028850015315,-1,0,648803,648803,0,True,0.6111797571271381,-0.0007692241436086933,2026-09-22 10:08
+sw_f_s43,audit,thgl-software,tsd,0.001,on,global,43,True,0.3795993558255006,0.4360194315508485,0.4736498254665529,-1,0,630795,630795,0,True,0.4360192940843008,1.3746654770052658e-07,2026-09-22 10:09
+wiki_coreoff_s43_lr1e-3,matched,tgbl-wiki,core-off,0.001,on,global,43,False,0.7673990524701869,0.7440184061553293,0.8455611535858469,8,8,448844,8419,0,True,,,2026-09-22 10:02
+attention,smoke,tgbl-wiki,attention-gates,0.0003,on,global,43,False,0.6416648473888635,0.5374252315461635,0.765250002078712,1,1,444815,444815,0,True,,,2026-09-22 09:44
+coreoff,smoke,tgbl-wiki,core-off,0.0003,on,node_update,43,False,0.6419879194051027,0.540589959077537,0.768500003002584,1,1,448844,8419,0,True,,,2026-09-22 09:41
+gru,smoke,tgbl-wiki,gru-sheaf,0.0003,on,global,43,False,0.6066575837954878,0.5254991688802838,0.7642500006482005,1,1,33466,33466,0,True,,,2026-09-22 09:44
+tsd,smoke,tgbl-wiki,tsd,0.0003,on,global,43,False,0.6251902469769121,0.526320749759674,0.7492500002682209,1,1,444686,444686,0,True,,,2026-09-22 09:44
+tsd_clockdiag,smoke,tgbl-wiki,tsd,0.0003,on,global,43,False,0.6249151859357953,0.5268619748428464,0.7490000002682209,1,1,444686,444686,0,True,,,2026-09-22 10:01

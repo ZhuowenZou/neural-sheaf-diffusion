@@ -1,0 +1,107 @@
+device=cuda:0 sha=2a98579913ed config={'dataset': 'synth-history:results/review_2026_09_22/synthetic/gen_s1/data.npz', 'seed': 43, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 6, 'patience': 3, 'min_epochs': 3, 'time_window': 20000.0, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 3000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': False, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'no_memory': True, 'recurrency_symmetric': False, 'recurrency_untyped': False, 'cache_warm_history': False, 'recurrency_decoder': False, 'relation_in_input': False, 'no_dst_range': False, 'd': 2, 'layers': 0, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'backbone': 'tsd', 'spatial': None, 'clock': 'global', 'fast_core_off': True, 'rng_isolation': True, 'no_query_audit': False, 'clock_diagnostics': False, 'audit_eval_only': False, 'out': 'results/review_2026_09_22/synthetic/runs/pilot_coreoff_norec_s43'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=2099 (edges=42000) track_val=151 final_val=447 final_test=443 | prep_sec=2.8
+negative-sample sets loaded in 0.0s
+delta_time_scale=19992 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=173258 num_relations=0 num_nodes=400
+parameters_by_component={'embeddings': 0, 'ssm_input_selector_B': 163200, 'ssm_other': 4213, 'map_decoder': 2240, 'spatial_block': 2020, 'scorer': 1585, 'rec': 0, 'other': 0, 'total': 173258, 'trainable': 173258, 'unused_by_construction': 168009, 'active': 5249}
+[epoch 1/6] {'epoch': 1, 'train_loss': 0.6510961151498061, 'track_val_mrr': 0.1939484272201856, 'track_val_loss': 0.6856346726417542, 'train_sec': 23.7, 'track_eval_sec': 11.2, 'peak_gpu_mem_mb': 23.9, 'peak_gpu_reserved_mb': 30.0, 'epoch_steps': 2098, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 1716, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 2/6] {'epoch': 2, 'train_loss': 0.5716845310080949, 'track_val_mrr': 0.2091838195050756, 'track_val_loss': 0.6747516989707947, 'train_sec': 21.4, 'track_eval_sec': 10.6, 'peak_gpu_mem_mb': 24.0, 'peak_gpu_reserved_mb': 30.0, 'epoch_steps': 2098, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 2065, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 3/6] {'epoch': 3, 'train_loss': 0.5447878210145707, 'track_val_mrr': 0.21033420145014922, 'track_val_loss': 0.668039858341217, 'train_sec': 23.1, 'track_eval_sec': 10.8, 'peak_gpu_mem_mb': 24.0, 'peak_gpu_reserved_mb': 30.0, 'epoch_steps': 2098, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 2070, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 4/6] {'epoch': 4, 'train_loss': 0.5327059164771134, 'track_val_mrr': 0.2108711584781607, 'track_val_loss': 0.6664835810661316, 'train_sec': 21.8, 'track_eval_sec': 10.6, 'peak_gpu_mem_mb': 24.0, 'peak_gpu_reserved_mb': 30.0, 'epoch_steps': 2098, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 2050, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 5/6] {'epoch': 5, 'train_loss': 0.5272286679485619, 'track_val_mrr': 0.21140524897227686, 'track_val_loss': 0.6637333035469055, 'train_sec': 21.2, 'track_eval_sec': 10.9, 'peak_gpu_mem_mb': 24.0, 'peak_gpu_reserved_mb': 30.0, 'epoch_steps': 2098, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 2008, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 6/6] {'epoch': 6, 'train_loss': 0.5222342833379431, 'track_val_mrr': 0.2125949788937966, 'track_val_loss': 0.6619231104850769, 'train_sec': 22.6, 'track_eval_sec': 11.0, 'peak_gpu_mem_mb': 24.0, 'peak_gpu_reserved_mb': 30.0, 'epoch_steps': 2098, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 1975, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+checkpoint saved: results/review_2026_09_22/synthetic/runs/pilot_coreoff_norec_s43/best.pt
+final val_mrr=0.2079 (13.8s so far)
+FINAL val_mrr=0.2079 test_mrr=0.2119 test_hits10=0.4741 eval_sec=17.4
+[query-audit] split=val queries=27000 affected=0 pos_nonfinite=0 neg_nan=0 neg_posinf=0 neg_neginf=0 mrr_raw=0.208005 mrr_guarded=0.208005 mrr_conservative=0.208005 parity=True
+[query-audit] split=test queries=9000 affected=0 pos_nonfinite=0 neg_nan=0 neg_posinf=0 neg_neginf=0 mrr_raw=0.211943 mrr_guarded=0.211943 mrr_conservative=0.211943 parity=True
+{
+  "dataset": "synth-history:results/review_2026_09_22/synthetic/gen_s1/data.npz",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 43,
+  "epochs": 6,
+  "best_track_epoch": 6,
+  "best_track_val_mrr": 0.2125949788937966,
+  "parameter_count": 173258,
+  "commit_hash": "2a98579913ed0216225125be6fbdc3858e47f9a7",
+  "train_edges": 42000,
+  "final_val_edges": 9000,
+  "final_test_edges": 9000,
+  "prep_sec": 2.8,
+  "negatives_load_sec": 0.0,
+  "train_epochs_run": 6,
+  "train_sec_total": 133.8,
+  "selection_eval_sec_total": 65.1,
+  "reserved_buffer_mib": 0,
+  "backbone": "tsd",
+  "spatial": "sheaf",
+  "clock": "global",
+  "rng_isolation": true,
+  "params_embeddings": 0,
+  "params_ssm_input_selector_B": 163200,
+  "params_ssm_other": 4213,
+  "params_map_decoder": 2240,
+  "params_spatial_block": 2020,
+  "params_scorer": 1585,
+  "params_rec": 0,
+  "params_other": 0,
+  "params_total": 173258,
+  "params_trainable": 173258,
+  "params_unused_by_construction": 168009,
+  "params_active": 5249,
+  "train_steps": 12588,
+  "train_nonfinite_loss": 0,
+  "train_nonfinite_grad": 0,
+  "train_clipped": 11884,
+  "train_skipped_steps": 0,
+  "hw_hostname": "biaslab0.ics.uci.edu",
+  "hw_python": "3.9.9",
+  "hw_torch": "2.8.0+cu128",
+  "hw_cuda_runtime": "12.8",
+  "hw_cudnn": 91002,
+  "hw_torch_geometric": "2.6.1",
+  "hw_py_tgb": "2.2.0",
+  "hw_cpu_model": "AMD EPYC 7713 64-Core Processor",
+  "hw_cpu_cores": 256,
+  "hw_ram_gib": 2003.8,
+  "hw_gpu_model": "NVIDIA A100-SXM4-80GB",
+  "hw_gpu_vram_gib": 79.3,
+  "hw_gpu_visible": "7",
+  "hw_gpu_count_visible": 1,
+  "hw_precision": "float32",
+  "hw_sync": "torch.cuda.synchronize-free wall clock (perf_counter)",
+  "hw_gpu_driver": "560.35.05",
+  "hw_gpu_other_processes_at_start": 38,
+  "validation_mrr": 0.20790161943352883,
+  "test_mrr": 0.211943484324548,
+  "final_val_loss": 0.681889533996582,
+  "final_test_loss": 0.6923133134841919,
+  "final_eval_sec": 17.4,
+  "final_replay_sec": 10.2,
+  "final_val_sec": 3.6,
+  "final_test_sec": 3.5,
+  "final_eval_peak_gpu_mem_mb": 24.2,
+  "final_eval_peak_gpu_reserved_mb": 30.0,
+  "val_nonfinite_positives": 0,
+  "val_nonfinite_negatives": 0,
+  "val_skipped_queries": 0,
+  "val_metric_examples": 9000,
+  "test_nonfinite_positives": 0,
+  "test_nonfinite_negatives": 0,
+  "test_skipped_queries": 0,
+  "test_metric_examples": 9000,
+  "cpu_rss_mib": 1520.0,
+  "rec_keys_total": 0,
+  "rec_cache_bytes": 0,
+  "rec_cache_device": "n/a",
+  "tracked_nodes": 400,
+  "core_state_bytes": 128000,
+  "checkpoint_bytes": 693036,
+  "test_hits10": 0.4741111157321268,
+  "query_audit_affected_total": 0,
+  "query_audit_parity": true,
+  "end_to_end_sec": 235.4
+}

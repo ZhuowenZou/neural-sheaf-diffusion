@@ -8,3 +8,4 @@ delta_time_scale=600 (Delta_k is measured in units of the median training inter-
 protocol: predict-from-previous-state (leak-free) for training and evaluation
 parameter_count=444686 num_relations=1 num_nodes=9227
 parameters_by_component={'embeddings': 0, 'ssm_input_selector_B': 435584, 'ssm_other': 4245, 'map_decoder': 128, 'spatial_block': 2534, 'scorer': 2114, 'rec': 81, 'other': 0, 'total': 444686, 'trainable': 444686, 'unused_by_construction': 128, 'active': 444558}
+[epoch 1/8] {'epoch': 1, 'train_loss': 0.11834717714740804, 'track_val_mrr': 0.6040869294814766, 'track_val_loss': 0.09727326780557632, 'train_sec': 568.8, 'track_eval_sec': 608.4, 'peak_gpu_mem_mb': 709.8, 'peak_gpu_reserved_mb': 1514.0, 'epoch_steps': 3104, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 358, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}

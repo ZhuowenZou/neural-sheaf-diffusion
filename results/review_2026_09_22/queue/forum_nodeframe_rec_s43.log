@@ -3,3 +3,9 @@ device=cuda:0 sha=a5733ed44039 config={'dataset': 'thgl-forum', 'seed': 43, 'mod
 split_source=official_tgb_masks
 destination_range=None
 snapshots: train=740 (edges=4000000) track_val=3 final_val=687 final_test=625 | prep_sec=9.7
+negative-sample sets loaded in 44.0s
+node_types: present
+delta_time_scale=600 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=630335 num_relations=2 num_nodes=152816
+parameters_by_component={'embeddings': 160, 'ssm_input_selector_B': 620928, 'ssm_other': 4261, 'map_decoder': 192, 'spatial_block': 2534, 'scorer': 2131, 'rec': 129, 'other': 0, 'total': 630335, 'trainable': 630335, 'unused_by_construction': 0, 'active': 630335}

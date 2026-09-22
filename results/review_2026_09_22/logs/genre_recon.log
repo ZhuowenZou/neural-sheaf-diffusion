@@ -1,0 +1,15 @@
+label vec sum example: 1.0 nonzeros 13 msg w stats 0.10344828 1.0 0.44048253
+next_7_from_0    weight  NDCG@10 of window-copy vs label: mean 0.6622 min 0.6358
+next_7_from_0    count   NDCG@10 of window-copy vs label: mean 0.6503 min 0.6107
+next_7_from_+1   weight  NDCG@10 of window-copy vs label: mean 0.6607 min 0.6063
+next_7_from_+1   count   NDCG@10 of window-copy vs label: mean 0.6475 min 0.6107
+next_8_from_0    weight  NDCG@10 of window-copy vs label: mean 0.6541 min 0.6257
+next_8_from_0    count   NDCG@10 of window-copy vs label: mean 0.6407 min 0.6016
+prev_7           weight  NDCG@10 of window-copy vs label: mean 0.4800 min 0.4386
+prev_7           count   NDCG@10 of window-copy vs label: mean 0.4761 min 0.4288
+next_14          weight  NDCG@10 of window-copy vs label: mean 0.6265 min 0.5867
+next_14          count   NDCG@10 of window-copy vs label: mean 0.6138 min 0.5710
+next_1           weight  NDCG@10 of window-copy vs label: mean 0.3124 min 0.2393
+next_1           count   NDCG@10 of window-copy vs label: mean 0.3097 min 0.2393
+next_1_from_+1   weight  NDCG@10 of window-copy vs label: mean 0.3212 min 0.2813
+next_1_from_+1   count   NDCG@10 of window-copy vs label: mean 0.3214 min 0.2781
