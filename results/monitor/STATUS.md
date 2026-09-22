@@ -1,20 +1,20 @@
-# Monitor status (2026-09-22 16:25:07)
+# Monitor status (2026-09-22 16:37:10)
 
 ## GPU free (GiB) and utilisation
-0:4GB(98%) 1:51GB(2%) 2:80GB(0%) 3:26GB(100%) 4:10GB(100%) 5:26GB(100%) 6:80GB(0%) 7:46GB(100%) 
-our GPU processes (pid:MiB): 136253:17646MiB 210437:18006MiB 257100:15204MiB 1289587:2028MiB 227547:2024MiB 544044:918MiB 924316:2394MiB 936784:6540MiB 1019461:21070MiB 1090028:20570MiB 1542591:6530MiB 1253032:2028MiB 1297498:2026MiB 205465:2024MiB 989557:17306MiB 1095022:2024MiB 1570529:2022MiB 1598966:23450MiB 1603837:20690MiB 1252765:2028MiB 1270098:2030MiB 1271730:2028MiB 1053692:2024MiB 1055906:24302MiB 1561682:2024MiB 
+0:4GB(100%) 1:51GB(99%) 2:80GB(0%) 3:43GB(100%) 4:5GB(100%) 5:26GB(100%) 6:80GB(0%) 7:29GB(100%) 
+our GPU processes (pid:MiB): 136253:17646MiB 210437:18006MiB 257100:15204MiB 227547:2024MiB 1090028:20570MiB 1542591:6530MiB 1792379:6538MiB 1799849:2022MiB 1253032:2028MiB 1297498:2026MiB 205465:2026MiB 989557:17306MiB 1095022:2024MiB 1570529:2024MiB 1598966:23450MiB 1603837:22010MiB 1796203:2018MiB 1799730:2022MiB 1252765:2028MiB 1270098:2030MiB 1271730:2028MiB 1053692:2024MiB 1055906:24302MiB 1561682:2024MiB 1791652:17548MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
-- gpu2: idle 7 min (eligible in 52 min)
-- gpu3: ELIGIBLE (idle 236 min)
-- gpu4: ELIGIBLE (idle 611 min)
+- gpu2: idle 19 min (eligible in 40 min)
+- gpu3: ELIGIBLE (idle 248 min)
+- gpu4: ELIGIBLE (idle 623 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 146 min)
+- gpu6: ELIGIBLE (idle 158 min)
 - gpu7: OURS
-compensation: colleagues hold 26542 MiB on our GPUs; we hold 124716 MiB on theirs; budget left -98174 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
-our launcher claims (pid:gpu/MiB): 
+compensation: colleagues hold 26542 MiB on our GPUs; we hold 114618 MiB on theirs; budget left -88076 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+our launcher claims (pid:gpu/MiB): 1041422:4/2000 1789117:4/2000 1789146:3/2000 239029:3/7000 239893:7/18000 
 
 ## leakfree2 benchmark runs
 - DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
@@ -180,7 +180,7 @@ our launcher claims (pid:gpu/MiB):
 - DONE     forum_coreoff_recoff_s44: FINAL val_mrr=0.2401 test_mrr=0.2221 test_hits10=0.3488 eval_sec=318.8
 - DONE     forum_coreoff_recoff_s45: FINAL val_mrr=0.2373 test_mrr=0.2195 test_hits10=0.3329 eval_sec=118.6
 - DONE     forum_coreoff_recon_s44: FINAL val_mrr=0.6029 test_mrr=0.6161 test_hits10=0.6472 eval_sec=952.3
-- RUNNING  forum_coreoff_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  forum_coreoff_recon_s45: final val_mrr=0.6008 (212.1s so far)
 - RUNNING  forum_curonly_recoff_s44: 
 - RUNNING  forum_curonly_recoff_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     forum_curonly_recon_s44: FINAL val_mrr=0.6356 test_mrr=0.6450 test_hits10=0.7029 eval_sec=1288.4
@@ -196,7 +196,7 @@ our launcher claims (pid:gpu/MiB):
 - DONE     forum_gru_norec_s47: FINAL val_mrr=0.3836 test_mrr=0.3807 test_hits10=0.5357 eval_sec=498.7
 - DONE     forum_gru_recoff_s44: FINAL val_mrr=0.4007 test_mrr=0.3936 test_hits10=0.5236 eval_sec=666.3
 - DONE     forum_gru_recoff_s45: FINAL val_mrr=0.3270 test_mrr=0.3308 test_hits10=0.5179 eval_sec=431.7
-- RUNNING  forum_gru_recon_s44: 
+- RUNNING  forum_gru_recon_s44: epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - DONE     forum_gru_recon_s45: FINAL val_mrr=0.6456 test_mrr=0.6528 test_hits10=0.7038 eval_sec=979.2
 - DONE     forum_gru_rec_s43: FINAL val_mrr=0.6414 test_mrr=0.6511 test_hits10=0.7034 eval_sec=1283.5
 - DONE     forum_gru_rec_s46: FINAL val_mrr=0.6354 test_mrr=0.6418 test_hits10=0.6839 eval_sec=1156.1
@@ -207,8 +207,8 @@ our launcher claims (pid:gpu/MiB):
 - RUNNING  forum_identity_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     forum_nodeframe_recoff_s43: FINAL val_mrr=0.4044 test_mrr=0.3980 test_hits10=0.5653 eval_sec=470.7
 - DONE     forum_nodeframe_recoff_s46: FINAL val_mrr=0.4043 test_mrr=0.4011 test_hits10=0.5618 eval_sec=560.1
-- RUNNING  forum_nodeframe_recoff_s47: final val_mrr=0.3527 (290.6s so far)
-- RUNNING  forum_nodeframe_recon_s46: 
+- DONE     forum_nodeframe_recoff_s47: FINAL val_mrr=0.3527 test_mrr=0.3345 test_hits10=0.5339 eval_sec=424.2
+- RUNNING  forum_nodeframe_recon_s46: epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - RUNNING  forum_nodeframe_recon_s47: 
 - DONE     forum_nodeframe_rec_s43: FINAL val_mrr=0.6249 test_mrr=0.6336 test_hits10=0.6778 eval_sec=1135.3
 - DONE     forum_tsd_recoff_s44: FINAL val_mrr=0.2302 test_mrr=0.2323 test_hits10=0.3730 eval_sec=649.7
@@ -277,7 +277,7 @@ our launcher claims (pid:gpu/MiB):
 - DONE     synth_gen_s1r_gru_recoff_rel_s47: FINAL val_mrr=0.2436 test_mrr=0.2305 test_hits10=0.4907 eval_sec=670.1
 - DONE     synth_gen_s1r_identity_recoff_rel_s43: FINAL val_mrr=0.2422 test_mrr=0.2345 test_hits10=0.4888 eval_sec=945.8
 - DONE     synth_gen_s1r_identity_recoff_rel_s44: FINAL val_mrr=0.2508 test_mrr=0.2370 test_hits10=0.4903 eval_sec=219.2
-- RUNNING  synth_gen_s1r_identity_recoff_rel_s45: final val_mrr=0.2587 (370.3s so far)
+- DONE     synth_gen_s1r_identity_recoff_rel_s45: FINAL val_mrr=0.2587 test_mrr=0.2365 test_hits10=0.5012 eval_sec=413.1
 - DONE     synth_gen_s1r_identity_recoff_rel_s46: FINAL val_mrr=0.2295 test_mrr=0.2400 test_hits10=0.4959 eval_sec=692.6
 - DONE     synth_gen_s1r_identity_recoff_rel_s47: FINAL val_mrr=0.2328 test_mrr=0.2390 test_hits10=0.5012 eval_sec=313.8
 - DONE     synth_gen_s1r_nodeframe_recoff_rel_s43: FINAL val_mrr=0.2302 test_mrr=0.2338 test_hits10=0.4973 eval_sec=538.8
@@ -329,25 +329,34 @@ our launcher claims (pid:gpu/MiB):
 - DONE     wiki_coreoff_s46_lr1e-3: FINAL val_mrr=0.7642 test_mrr=0.7386 test_hits10=0.8467 eval_sec=810.1
 - RUNNING  wiki_coreoff_s47_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     wiki_curonly_s43_lr1e-3: FINAL val_mrr=0.7818 test_mrr=0.7656 test_hits10=0.8542 eval_sec=2054.5
-- RUNNING  wiki_curonly_s43_lr3e-4: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  wiki_curonly_s43_lr3e-4: final val_mrr=0.7396 (971.7s so far)
 - DONE     wiki_diag_s43_lr1e-3: FINAL val_mrr=0.7842 test_mrr=0.7659 test_hits10=0.8512 eval_sec=1924.0
 - DONE     wiki_diag_s43_lr3e-4: FINAL val_mrr=0.7330 test_mrr=0.7171 test_hits10=0.8501 eval_sec=2037.7
 - RUNNING  wiki_diag_s44_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  wiki_diag_s45_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  wiki_diag_s46_lr1e-3: 
-- RUNNING  wiki_diag_s47_lr1e-3: 
+- RUNNING  wiki_diag_s47_lr1e-3: epochs': 4, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - DONE     wiki_gru_s43_lr1e-3: FINAL val_mrr=0.7841 test_mrr=0.7713 test_hits10=0.8552 eval_sec=2084.5
 - DONE     wiki_gru_s43_lr3e-4: FINAL val_mrr=0.7476 test_mrr=0.7336 test_hits10=0.8504 eval_sec=1943.3
 - RUNNING  wiki_gru_s44_lr1e-3: 
-- RUNNING  wiki_gru_s45_lr1e-3: epochs': 4, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
+- RUNNING  wiki_gru_s45_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  wiki_gru_s46_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  wiki_gru_s47_lr1e-3: 
 - RUNNING  wiki_identity_s43_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     wiki_identity_s43_lr3e-4: FINAL val_mrr=0.7490 test_mrr=0.7360 test_hits10=0.8494 eval_sec=1605.2
 - RUNNING  wiki_nodeframe_s43_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     wiki_nodeframe_s43_lr3e-4: FINAL val_mrr=0.7467 test_mrr=0.7317 test_hits10=0.8506 eval_sec=2071.8
+- RUNNING  wiki_tsd_clock-global_s43: 
+- RUNNING  wiki_tsd_clock-node_interaction_s43: epochs': 4, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
+- RUNNING  wiki_tsd_clock-node_update_s43: epochs': 4, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - DONE     wiki_tsd_s43_lr1e-3: FINAL val_mrr=0.7730 test_mrr=0.7575 test_hits10=0.8516 eval_sec=2049.2
-- RUNNING  wiki_tsd_s43_lr3e-4: final val_mrr=0.7490 (1400.4s so far)
+- DONE     wiki_tsd_s43_lr3e-4: FINAL val_mrr=0.7490 test_mrr=0.7337 test_hits10=0.8513 eval_sec=1640.8
+- RUNNING  wiki_tsd_s44_lr1e-3: 
+- RUNNING  wiki_tsd_s45_lr1e-3: 
+- RUNNING  wiki_tsd_s46_lr1e-3: 
+- RUNNING  wiki_tsd_s47_lr1e-3: 
+- RUNNING  wiki_tsd_tw1200_s43: 
+- RUNNING  wiki_tsd_tw300_s43: 
 
 ## node-property reruns
 - genre_faithful_daily_s43: test NDCG mean±std: 0.4482 ± nan
@@ -397,8 +406,8 @@ our launcher claims (pid:gpu/MiB):
 - DONE synth_static_original: test 0.790 novel 0.151 rec 0.791
 
 ## recent actions
-2026-09-22 15:51:24 (re)launching wiki_gru_s44_lr1e-3 via results/review_2026_09_22/queue/wiki_gru_s44_lr1e-3.cmd (attempt 1)
-2026-09-22 15:51:24 (re)launching wiki_gru_s45_lr1e-3 via results/review_2026_09_22/queue/wiki_gru_s45_lr1e-3.cmd (attempt 1)
-2026-09-22 15:51:24 (re)launching wiki_gru_s46_lr1e-3 via results/review_2026_09_22/queue/wiki_gru_s46_lr1e-3.cmd (attempt 1)
-2026-09-22 15:51:24 (re)launching wiki_gru_s47_lr1e-3 via results/review_2026_09_22/queue/wiki_gru_s47_lr1e-3.cmd (attempt 1)
-2026-09-22 16:04:49 (re)launching forum_curonly_recoff_s45 via results/review_2026_09_22/queue/forum_curonly_recoff_s45.cmd (attempt 2)
+2026-09-22 16:29:01 (re)launching wiki_tsd_s45_lr1e-3 via results/review_2026_09_22/queue/wiki_tsd_s45_lr1e-3.cmd (attempt 1)
+2026-09-22 16:29:01 (re)launching wiki_tsd_s46_lr1e-3 via results/review_2026_09_22/queue/wiki_tsd_s46_lr1e-3.cmd (attempt 1)
+2026-09-22 16:29:01 (re)launching wiki_tsd_s47_lr1e-3 via results/review_2026_09_22/queue/wiki_tsd_s47_lr1e-3.cmd (attempt 1)
+2026-09-22 16:29:01 (re)launching wiki_tsd_tw1200_s43 via results/review_2026_09_22/queue/wiki_tsd_tw1200_s43.cmd (attempt 1)
+2026-09-22 16:29:01 (re)launching wiki_tsd_tw300_s43 via results/review_2026_09_22/queue/wiki_tsd_tw300_s43.cmd (attempt 1)

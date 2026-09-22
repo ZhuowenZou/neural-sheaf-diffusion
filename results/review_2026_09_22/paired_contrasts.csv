@@ -1,6 +1,7 @@
 dataset,group,rec,tsd_lr,arm,arm_lr,seeds,n,tsd_mean,arm_mean,delta_arm_minus_tsd_mean,delta_sd,t95_halfwidth,deltas,signs,method
 tgbl-wiki,matched,on,0.0003,core-off,0.0003,[43],1,0.7337068624762626,0.7255446388027437,-0.008162223673518931,,,-0.0082,0+ 1-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
 tgbl-wiki,matched,on,0.0003,core-off,0.001,[43],1,0.7337068624762626,0.7440184061553293,0.010311543679066726,,,+0.0103,1+ 0-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
+tgbl-wiki,matched,on,0.0003,current-only-maps,0.0003,[43],1,0.7337068624762626,0.726722291958917,-0.0069845705173455785,,,-0.0070,0+ 1-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
 tgbl-wiki,matched,on,0.0003,current-only-maps,0.001,[43],1,0.7337068624762626,0.7656129958324683,0.031906133356205735,,,+0.0319,1+ 0-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
 tgbl-wiki,matched,on,0.0003,diagssm-ordinary,0.0003,[43],1,0.7337068624762626,0.7171373845691034,-0.016569477907159236,,,-0.0166,0+ 1-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
 tgbl-wiki,matched,on,0.0003,diagssm-ordinary,0.001,[43],1,0.7337068624762626,0.7658907968602492,0.03218393438398659,,,+0.0322,1+ 0-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
@@ -10,6 +11,7 @@ tgbl-wiki,matched,on,0.0003,identity-maps,0.0003,[43],1,0.7337068624762626,0.735
 tgbl-wiki,matched,on,0.0003,node-frame,0.0003,[43],1,0.7337068624762626,0.7317244227292561,-0.0019824397470065147,,,-0.0020,0+ 1-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
 tgbl-wiki,matched,on,0.001,core-off,0.0003,[43],1,0.7575254706119957,0.7255446388027437,-0.03198083180925204,,,-0.0320,0+ 1-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
 tgbl-wiki,matched,on,0.001,core-off,0.001,[43],1,0.7575254706119957,0.7440184061553293,-0.013507064456666384,,,-0.0135,0+ 1-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
+tgbl-wiki,matched,on,0.001,current-only-maps,0.0003,[43],1,0.7575254706119957,0.726722291958917,-0.03080317865307869,,,-0.0308,0+ 1-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
 tgbl-wiki,matched,on,0.001,current-only-maps,0.001,[43],1,0.7575254706119957,0.7656129958324683,0.008087525220472624,,,+0.0081,1+ 0-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
 tgbl-wiki,matched,on,0.001,diagssm-ordinary,0.0003,[43],1,0.7575254706119957,0.7171373845691034,-0.040388086042892346,,,-0.0404,0+ 1-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
 tgbl-wiki,matched,on,0.001,diagssm-ordinary,0.001,[43],1,0.7575254706119957,0.7658907968602492,0.00836532624825348,,,+0.0084,1+ 0-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
