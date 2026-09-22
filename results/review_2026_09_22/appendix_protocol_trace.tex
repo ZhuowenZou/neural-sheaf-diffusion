@@ -1,0 +1,19 @@
+% Auto-drafted 2026-09-22 from results/review_2026_09_22/provenance/trace_*/ (installed py-tgb 2.2.0, server data).
+\paragraph{Node-property observation schedule (installed-package trace).}
+We traced every scored label of \textsc{tgbn-trade} and \textsc{tgbn-genre} under our runner and under the
+official TGN example (batch size 200, deferred label cursor), recording for each label the edges ingested
+before scoring. On \textsc{tgbn-trade} the label of year $Y$ equals the row-normalised vector of year-$Y$
+edge weights (reconstructed from the raw edge list with maximum absolute error $5\times10^{-9}$ for all
+6{,}543 node--years); both runners ingest all year-$Y$ edges and no later edge before scoring label $Y$.
+The two schedules differ in which labels each split scores: ours scores validation $\{2010,\dots,2013\}$ and
+test $\{2014,\dots,2016\}$, the official example scores $\{2009,\dots,2012\}$ and $\{2013,\dots,2015\}$
+(each split's last pending label is released by the next split's first batch, and the final label 2016 is
+never scored). A predictor that copies the normalised edges already ingested attains NDCG@10 $=1.000$ under
+both schedules; the last released label attains $0.87$/$0.85$ (validation/test). We therefore report
+\textsc{tgbn-trade} as a state read-out task under this shared same-period schedule and withhold a
+matched-protocol rank until label sets are aligned. On \textsc{tgbn-genre} the scored label sets of the two
+runners are identical in every split (1{,}250/163/166 label days); before scoring the label of day $D$ both
+have ingested edges up to shortly after $D$ (median 1.0\,h ours, 0.2\,h official); the label is a forecast of
+the following seven days (a copy of that window ranks the label with NDCG@10 $0.66$, the previous seven days
+$0.48$), and copying the edges available at scoring time scores $0.014$, so no same-period exposure exists;
+the last released label scores $0.29$/$0.30$ and the mean of the previous three days $0.40$/$0.41$.

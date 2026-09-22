@@ -74,10 +74,35 @@ by the node tasks).
   0.357, Moving Average 0.509; ours 0.448 +/- 0.003).
 
 ## 2. Clocks, saturation, batching, query-time response
-(filled from clock_diagnostics.csv, clock/probe_wiki_s43/, clock/gap_wiki_s43/ as they finish)
+
+**Fixed-state future-query probe (`clock/probe_wiki_s43/`, retained tgbl-wiki seed-43 checkpoint):** the
+state after the training replay was cloned and the identical (source, relation, candidate) tuples of the
+first 20 validation batches (700 queries) were scored at their original query time and at +1 h, +1 day,
++30 days without ingestion.
+
+| shift | neural score changed | mean |delta| neural | mean REC bonus change (positives) | MRR | MRR change |
+|---|---|---|---|---|---|---|
+| 0 | 0 of 700 | 0 | 0 | 0.6729 | 0 |
+| +1 h | 0 of 700 | 0 | -0.065 | 0.6686 | -0.0043 |
+| +1 day | 0 of 700 | 0 | -0.381 | 0.6666 | -0.0063 |
+| +30 days | 0 of 700 | 0 | -1.128 | 0.6632 | -0.0097 |
+
+**Supported:** the non-REC score is exactly invariant to the query time given fixed state and inputs; only the
+REC recency feature responds (83% of these positives have a seen key). A query-time projection of the backbone
+does not exist in the evaluated model (consistent with the implementation audit); it was not implemented.
+
+(Clock/saturation aggregates from the checkpoint replays and the node-clock / batching-width runs are
+collected in `clock_diagnostics.csv`; the fixed-membership gap intervention is in `clock/gap_wiki_s43/`.)
 
 ## 3. Matched comparisons (tgbl-wiki five seeds; thgl-forum subset)
 (filled from per_seed_results.csv / paired_contrasts.csv)
+
+**Core-off anchor, executed cost (`matched/coreoff_cost_wiki/coreoff_cost.csv`):** on the same 20k-edge
+tgbl-wiki slice (561 snapshots, same GPU, three repeats) the reference core-off path (`--no-memory --layers 0`,
+which still evaluates the unused SSM transition and map decoder) takes 156 s per pass; the verified bypass
+(`--fast-core-off`) takes 3.9 s with bit-identical outputs (max |diff| = 0). The shortcut is labelled
+"core off + REC (head only)": it retains the pointwise input encoder, the current-input spatial projection
+Z0 = P_z[x; 0], the scorer and REC; it is not a REC-only predictor. All new core-off runs use the bypass.
 
 ## 4. Synthetic history-dependent task (synthetic/)
 (filled from synthetic/gen_s1/generator_meta.json and synthetic/runs/)
