@@ -117,7 +117,7 @@ def main():
             cmd = (f"{PY} -m exp.run_event_benchmark {flags} --epochs 0 --eval-only {ckpt} --audit-eval-only --clock-diagnostics "
                    f"--predict-from-previous --out {out}")
             mem = {"tkgl-icews": 14000, "tkgl-polecat": 12000, "tkgl-wikidata": 11000, "thgl-forum": 7000,
-                   "tkgl-smallpedia": 4000, "thgl-software": 4000, "tgbl-wiki": 2000}.get(cfg["dataset"], 8000)
+                   "tkgl-smallpedia": 22000, "thgl-software": 5000, "tgbl-wiki": 2000}.get(cfg["dataset"], 8000)
             written.append(write_cmd(name, mem, cmd, only_gpus=args.audit_gpus, subdir="queue"))
     for p in written:
         print(p)
