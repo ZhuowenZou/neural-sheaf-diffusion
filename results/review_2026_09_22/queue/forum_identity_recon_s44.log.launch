@@ -1,3 +1,4 @@
 Tue Sep 22 02:15:25 PM PDT 2026 launching on gpu4 (request 7000 MiB, reserve 5976 MiB; card=idle481m free=34881 budget=26540 spent=145566 0=own 3=idle106m 4=idle481m 7=own )
 Tue Sep 22 02:20:58 PM PDT 2026 launching on gpu4 (request 10000 MiB, reserve 8976 MiB; card=idle487m free=16232 budget=26542 spent=146256 0=own 3=idle112m 4=idle487m 7=own )
 Tue Sep 22 03:45:05 PM PDT 2026 launching on gpu6 (request 10000 MiB, reserve 8976 MiB; card=idle106m free=11457 budget=26542 spent=233280 0=own 3=idle196m 4=idle571m 6=idle106m 7=own )
+Tue Sep 22 03:53:04 PM PDT 2026 launching on gpu6 (request 14000 MiB, reserve 12976 MiB; card=idle114m free=35853 budget=26542 spent=182728 0=own 3=idle204m 4=idle579m 6=idle114m 7=own )

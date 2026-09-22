@@ -1,1 +1,3 @@
-
+rec,arm,n,delta_mean,delta_sd,signs
+off,core-off,1,0.009027037200282528,,1+ 0-
+off,gru-ordinary,1,0.008945927933879105,,1+ 0-
