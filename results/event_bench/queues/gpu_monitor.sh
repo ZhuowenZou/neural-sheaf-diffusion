@@ -124,7 +124,7 @@ mv -f $L/$n.log $L/$n.oom.log 2>/dev/null; $line" > $L/$n.retry.log 2>&1 &
     if [ -n "$outd" ] && pgrep -f -- "--out $outd\b" >/dev/null 2>&1; then continue; fi
     if pgrep -f -- "--out $dir/$n\b" >/dev/null 2>&1 || pgrep -f -- "wait_launch.sh [0-9]* $log" >/dev/null 2>&1 || pgrep -f -- "bash $cmdf" >/dev/null 2>&1; then continue; fi
     tries=$(ls $dir/$n.fail*.log 2>/dev/null | wc -l)
-    [ $tries -ge 4 ] && continue
+    [ $tries -ge 6 ] && continue
     [ -s $log ] && mv -f $log $dir/$n.fail$((tries+1)).log
     echo "$ts (re)launching $n via $cmdf (attempt $((tries+1)))" >> $M/actions.log
     nohup bash $cmdf > /dev/null 2>&1 &
