@@ -132,7 +132,7 @@ def main():
                        os.path.exists(os.path.join(ROOT, RV, "queue", f"forum_{arm}_{'rec' if rec == 'on' else 'norec'}_s{seed}.cmd")):
                         continue
                     out = f"{RV}/forum/{name}"
-                    mem = 18000 if arm in ("attention", "nodeframe") else 7000
+                    mem = 18000 if arm in ("attention", "nodeframe") else 10000
                     cmd = f"{PY} -m exp.run_event_benchmark {FO}{REC[rec]} {ARMS[arm]} --seed {seed} --out {out}"
                     written.append(write_cmd(name, mem, cmd, only_gpus=gpus[i % len(gpus)])); i += 1
     elif args.what == "synth":
