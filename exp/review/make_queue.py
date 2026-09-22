@@ -61,10 +61,10 @@ def config_to_flags(cfg):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("what", choices=["wiki-wave1", "wiki-wave2", "wiki-extras", "audits", "synth"])
+    ap.add_argument("what", choices=["wiki-wave1", "wiki-wave2", "wiki-extras", "audits", "synth", "forum"])
     ap.add_argument("--gen", default="gen_s1", help="synthetic generator directory under results/review_2026_09_22/synthetic")
     ap.add_argument("--seeds", default="43 44 45 46 47")
-    ap.add_argument("--rec", default="off", choices=["off", "on"])
+    ap.add_argument("--rec", default="off", choices=["off", "on", "both"])
     ap.add_argument("--extra-flags", default="", help="extra runner flags for every synth run (e.g. --relation-in-input)")
     ap.add_argument("--tag", default="", help="name suffix for synth runs")
     ap.add_argument("--arms", default="", help="comma-separated subset of arms for synth runs (default all)")
@@ -109,6 +109,32 @@ def main():
             out = f"{RV}/clock/{name}"
             cmd = f"{PY} -m exp.run_event_benchmark {base} {extra} --lr {lr} --seed 43 --out {out}"
             written.append(write_cmd(name, 2000, cmd, only_gpus=gpus[i % len(gpus)])); i += 1
+    elif args.what == "forum":
+        # thgl-forum matched arms (old-protocol RNG regime, matching the retained forum seeds 43/46/47);
+        # existing retained runs (tsd / current-only / identity / core-off at 43/46/47, both REC settings) are reused
+        FO = ("--dataset thgl-forum --model faithful --time-window 600 --train-edges-cap 4000000 --lr 1e-3 --node-type-emb "
+              "--relation-in-input --train-negatives-per-pos 32 --epochs 4 --patience 3 --min-epochs 2 --track-val-edges 20000 "
+              "--predict-from-previous --save-checkpoint --dump-query-ranks")
+        REC = {"on": " --recurrency-decoder --recurrency-untyped", "off": ""}
+        retained = {("tsd", 43), ("tsd", 46), ("tsd", 47), ("curonly", 43), ("curonly", 46), ("curonly", 47),
+                    ("identity", 43), ("identity", 46), ("identity", 47), ("coreoff", 43), ("coreoff", 46), ("coreoff", 47)}
+        arms = [a for a in ARMS if not args.arms or a in args.arms.split(",")]
+        i = 0
+        for rec in (["on", "off"] if args.rec == "both" else [args.rec]):
+            for arm in arms:
+                for seed in [int(x) for x in args.seeds.split()]:
+                    if (arm, seed) in retained and arm != "coreoff":
+                        continue
+                    if arm == "coreoff" and (arm, seed) in retained:
+                        continue
+                    name = f"forum_{arm}_rec{rec}_s{seed}"
+                    if os.path.exists(os.path.join(ROOT, RV, "queue", f"{name}.cmd")) or \
+                       os.path.exists(os.path.join(ROOT, RV, "queue", f"forum_{arm}_{'rec' if rec == 'on' else 'norec'}_s{seed}.cmd")):
+                        continue
+                    out = f"{RV}/forum/{name}"
+                    mem = 18000 if arm in ("attention", "nodeframe") else 7000
+                    cmd = f"{PY} -m exp.run_event_benchmark {FO}{REC[rec]} {ARMS[arm]} --seed {seed} --out {out}"
+                    written.append(write_cmd(name, mem, cmd, only_gpus=gpus[i % len(gpus)])); i += 1
     elif args.what == "synth":
         SY = (f"--dataset synth-history:{RV}/synthetic/{args.gen}/data.npz --model faithful --time-window 20000 --context-edges 2000 "
               "--track-val-edges 3000 --train-negatives-per-pos 32 --epochs 6 --patience 3 --min-epochs 3 --lr 1e-3 "
