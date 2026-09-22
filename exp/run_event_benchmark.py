@@ -278,6 +278,8 @@ def main():
                              "see identical negative samples regardless of architecture-dependent RNG consumption.")
     parser.add_argument("--no-query-audit", action="store_true",
                         help="Disable the per-query score-validity audit (query_validity*.csv in --out).")
+    parser.add_argument("--dump-query-ranks", action="store_true",
+                        help="Also store every val/test query's reciprocal rank with its global edge id (query_ranks.csv.gz).")
     parser.add_argument("--clock-diagnostics", action="store_true",
                         help="Record bounded clock/saturation diagnostics during the final evaluation (clock_*.csv in --out).")
     parser.add_argument("--audit-eval-only", action="store_true",
@@ -389,7 +391,7 @@ def main():
     component_counts = model.component_parameter_counts() if hasattr(model, "component_parameter_counts") else {}
     print(f"parameters_by_component={component_counts}", flush=True)
     if not args.no_query_audit:
-        bu.QUERY_AUDIT["audit"] = bu.QueryValidityAudit()
+        bu.QUERY_AUDIT["audit"] = bu.QueryValidityAudit(dump_ranks=args.dump_query_ranks)
     if args.clock_diagnostics:
         from models.diagnostics import ClockDiagnostics
         clock_diag = ClockDiagnostics()

@@ -493,12 +493,14 @@ class QueryValidityAudit:
     positive or an invalid negative (full denominator kept).  Parity of the
     three establishes that no substitution changed the reported metric."""
 
-    def __init__(self, max_failures=20000, k=10):
+    def __init__(self, max_failures=20000, k=10, dump_ranks=False):
         self.max_failures = int(max_failures)
         self.k = int(k)
         self.splits = {}
         self.failures = []
         self.state_checks = []
+        self.dump_ranks = bool(dump_ranks)
+        self.ranks = []   # (split, edge_id, timestamp, rr_guarded) per query when dump_ranks
 
     def _agg(self, split):
         if split not in self.splits:
@@ -548,6 +550,13 @@ class QueryValidityAudit:
         rr_g = 1.0 / self._ranks(pos_guarded.detach().cpu().numpy().astype(np.float64),
                                  neg_guarded.detach().cpu().numpy().astype(np.float64))
         rr_c = np.where(affected, 0.0, rr_g)
+        if self.dump_ranks:
+            ids = getattr(snapshot, "edge_ids", None); ts = getattr(snapshot, "edge_timestamps", None)
+            self.ranks.append(np.column_stack([
+                np.full(n, {"val": 1, "test": 2}.get(split, 0)),
+                ids.cpu().numpy() if ids is not None else np.full(n, -1),
+                ts.cpu().numpy().astype(np.float64) if ts is not None else np.full(n, float(snapshot.timestamp)),
+                rr_g]))
         a["rr_tgb_raw"] += float(rr_raw.sum()); a["rr_guarded"] += float(rr_g.sum()); a["rr_conservative"] += float(rr_c.sum())
         a["hits_guarded"] += float((self._ranks(pos_guarded.detach().cpu().numpy().astype(np.float64),
                                                 neg_guarded.detach().cpu().numpy().astype(np.float64)) <= self.k).sum())
@@ -608,6 +617,10 @@ class QueryValidityAudit:
         pd.DataFrame(self.summary_rows(tag)).to_csv(os.path.join(out_dir, "query_validity.csv"), index=False)
         pd.DataFrame(self.failures).to_csv(os.path.join(out_dir, "query_validity_failures.csv"), index=False)
         pd.DataFrame(self.state_checks).to_csv(os.path.join(out_dir, "state_validity_failures.csv"), index=False)
+        if self.dump_ranks and self.ranks:
+            arr = np.concatenate(self.ranks, axis=0)
+            pd.DataFrame({"split": arr[:, 0].astype(int), "edge_id": arr[:, 1].astype(np.int64), "timestamp": arr[:, 2],
+                          "rr": arr[:, 3]}).to_csv(os.path.join(out_dir, "query_ranks.csv.gz"), index=False, compression="gzip")
 
 
 # The active audit collector (None = disabled).  Runners install one with

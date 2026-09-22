@@ -18,7 +18,7 @@ PY = "/home/zhuowez1/miniconda3/envs/nsd/bin/python"
 WL = "results/event_bench/queues/wait_launch.sh"
 
 WIKI_BASE = ("--dataset tgbl-wiki --model faithful --time-window 600 --track-val-edges 8000 --train-negatives-per-pos 32 "
-             "--epochs 8 --patience 5 --min-epochs 4 --recurrency-decoder --predict-from-previous --save-checkpoint --rng-isolation")
+             "--epochs 8 --patience 5 --min-epochs 4 --recurrency-decoder --predict-from-previous --save-checkpoint --rng-isolation --dump-query-ranks")
 ARMS = {
     "tsd": "",
     "curonly": "--sheaf-conditioning current_only",
@@ -61,7 +61,7 @@ def config_to_flags(cfg):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("what", choices=["wiki-wave1", "wiki-wave2", "audits"])
+    ap.add_argument("what", choices=["wiki-wave1", "wiki-wave2", "wiki-extras", "audits"])
     ap.add_argument("runs", nargs="*")
     ap.add_argument("--lr-json", default=None)
     ap.add_argument("--gpus", default="3 4 7")
@@ -87,6 +87,18 @@ def main():
                 out = f"{RV}/matched/{name}"
                 cmd = f"{PY} -m exp.run_event_benchmark {WIKI_BASE} {extra} --lr {lr} --seed {seed} --out {out}"
                 written.append(write_cmd(name, 2000, cmd, only_gpus=gpus[i % len(gpus)])); i += 1
+    elif args.what == "wiki-extras":
+        # clock comparison (node clocks, same core/head/batching) and batching diagnostic (0.5x / 2x width),
+        # TSD at seed 43 with the locked lr; fixed-membership gap intervention is a separate script
+        lrs = json.load(open(args.lr_json)); lr = lrs["tsd"]; i = 0
+        for name, extra in (("wiki_tsd_clock-node_update_s43", "--clock node_update --clock-diagnostics"),
+                            ("wiki_tsd_clock-node_interaction_s43", "--clock node_interaction --clock-diagnostics"),
+                            ("wiki_tsd_clock-global_s43", "--clock-diagnostics"),
+                            ("wiki_tsd_tw300_s43", "--clock-diagnostics"), ("wiki_tsd_tw1200_s43", "--clock-diagnostics")):
+            base = WIKI_BASE.replace("--time-window 600", "--time-window 300" if "tw300" in name else ("--time-window 1200" if "tw1200" in name else "--time-window 600"))
+            out = f"{RV}/clock/{name}"
+            cmd = f"{PY} -m exp.run_event_benchmark {base} {extra} --lr {lr} --seed 43 --out {out}"
+            written.append(write_cmd(name, 2000, cmd, only_gpus=gpus[i % len(gpus)])); i += 1
     else:
         import pandas as pd
         for run in args.runs:
