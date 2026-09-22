@@ -1,0 +1,155 @@
+usage: run_event_benchmark.py [-h] --dataset DATASET [--seed SEED]
+                              [--model {original,faithful}]
+                              [--feedback-dim FEEDBACK_DIM]
+                              [--no-memory-readout]
+                              [--sheaf-conditioning {history,current_only}]
+                              [--epochs EPOCHS] [--patience PATIENCE]
+                              [--min-epochs MIN_EPOCHS]
+                              [--time-window TIME_WINDOW]
+                              [--context-edges CONTEXT_EDGES]
+                              [--train-edges-cap TRAIN_EDGES_CAP]
+                              [--val-edges-cap VAL_EDGES_CAP]
+                              [--test-edges-cap TEST_EDGES_CAP]
+                              [--track-val-edges TRACK_VAL_EDGES]
+                              [--train-loss {softplus,ce}] [--learn-node-emb]
+                              [--emb-in-head] [--node-type-emb]
+                              [--predict-from-previous]
+                              [--reserve-gpu-mb RESERVE_GPU_MB]
+                              [--delta-time-scale DELTA_TIME_SCALE]
+                              [--sheaf-identity] [--no-delta-t] [--no-memory]
+                              [--recurrency-symmetric] [--recurrency-untyped]
+                              [--cache-warm-history] [--recurrency-decoder]
+                              [--relation-in-input] [--no-dst-range] [--d D]
+                              [--layers LAYERS]
+                              [--hidden-channels HIDDEN_CHANNELS]
+                              [--temporal-d-model TEMPORAL_D_MODEL]
+                              [--closure-hops CLOSURE_HOPS]
+                              [--train-negatives-per-pos TRAIN_NEGATIVES_PER_POS]
+                              [--candidate-chunk-size CANDIDATE_CHUNK_SIZE]
+                              [--max-score-elements MAX_SCORE_ELEMENTS]
+                              [--bptt-steps BPTT_STEPS] [--lr LR]
+                              [--weight-decay WEIGHT_DECAY]
+                              [--grad-clip GRAD_CLIP] [--skip-final-eval]
+                              [--save-checkpoint] [--eval-only EVAL_ONLY]
+                              [--backbone {tsd,gru,diag_ssm}]
+                              [--spatial {sheaf,identity,node_frame,attention}]
+                              [--clock {global,node_update,node_interaction}]
+                              [--fast-core-off] [--rng-isolation]
+                              [--no-query-audit] [--clock-diagnostics]
+                              [--audit-eval-only] --out OUT
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --dataset DATASET     Any mrr-metric TGB dataset (tgbl-*, tkgl-*, thgl-*)
+  --seed SEED
+  --model {original,faithful}
+  --feedback-dim FEEDBACK_DIM
+  --no-memory-readout
+  --sheaf-conditioning {history,current_only}
+  --epochs EPOCHS
+  --patience PATIENCE   Stop after this many epochs without tracking-val
+                        improvement.
+  --min-epochs MIN_EPOCHS
+  --time-window TIME_WINDOW
+                        Snapshot bucket width in native time units (None =
+                        exact timestamps).
+  --context-edges CONTEXT_EDGES
+                        Model context graph = union of the first N train edges
+                        (-1 = all).
+  --train-edges-cap TRAIN_EDGES_CAP
+                        Use only the most recent N train edges (suffix cap).
+                        None = all.
+  --val-edges-cap VAL_EDGES_CAP
+  --test-edges-cap TEST_EDGES_CAP
+  --track-val-edges TRACK_VAL_EDGES
+                        Prefix cap on validation edges for per-epoch
+                        tracking/selection.
+  --train-loss {softplus,ce}
+                        Training objective: pairwise softplus or sampled-
+                        softmax CE.
+  --learn-node-emb      Faithful model only: add a learnable per-node input
+                        embedding.
+  --emb-in-head         EMB-head/TYPE-head: the scoring head encodes x +
+                        learnable node/node-type embeddings for every node (by
+                        default embeddings reach the head only via the state
+                        of nodes that were active).
+  --node-type-emb       Faithful model: add learned node-type embeddings
+                        (thgl-*).
+  --predict-from-previous
+                        Leak-free protocol (train + eval): score snapshot k
+                        from the state after snapshot k-1, then update.
+  --reserve-gpu-mb RESERVE_GPU_MB
+                        Pre-reserve this much GPU memory at start-up (default:
+                        env TSD_RESERVE_GPU_MB, set by wait_launch.sh).
+  --delta-time-scale DELTA_TIME_SCALE
+                        Units of the physical gap Delta_k: 'auto' = median
+                        inter-snapshot gap of the training stream; a positive
+                        float otherwise (1.0 = raw timestamps, the pre-audit
+                        behaviour).
+  --sheaf-identity      Ablation: restriction maps fixed to identity (plain
+                        diffusion).
+  --no-delta-t          Ablation: step-size selector ignores the physical gap
+                        Delta_k.
+  --no-memory           Ablation: the persistent per-node SSM memory is never
+                        read (Z0 = P_z[x; 0], sheaf conditioned on the current
+                        input). Combine with --layers 0 for a core-off model.
+  --recurrency-symmetric
+                        Add an order-agnostic (min,max) pair recurrency
+                        channel.
+  --recurrency-untyped  Add an untyped (s,o) recurrency channel (repeat memory
+                        across event types).
+  --cache-warm-history  With --train-edges-cap: pre-commit the pre-suffix
+                        train facts to the recurrency cache.
+  --recurrency-decoder  Faithful model: add a causal (s,r,o) recurrency cache
+                        bonus to event scores.
+  --relation-in-input   Faithful model: append incident-relation aggregate to
+                        the SSM input q.
+  --no-dst-range        Do not restrict training negatives to the observed
+                        destination range.
+  --d D
+  --layers LAYERS
+  --hidden-channels HIDDEN_CHANNELS
+  --temporal-d-model TEMPORAL_D_MODEL
+  --closure-hops CLOSURE_HOPS
+  --train-negatives-per-pos TRAIN_NEGATIVES_PER_POS
+  --candidate-chunk-size CANDIDATE_CHUNK_SIZE
+  --max-score-elements MAX_SCORE_ELEMENTS
+  --bptt-steps BPTT_STEPS
+  --lr LR
+  --weight-decay WEIGHT_DECAY
+  --grad-clip GRAD_CLIP
+                        Max grad norm (<=0 disables). The original dense tgbl
+                        runs diverged without it.
+  --skip-final-eval
+  --save-checkpoint     Save the best (tracking-val) state_dict to
+                        <out>/best.pt.
+  --eval-only EVAL_ONLY
+                        Skip training; load this state_dict and run the final
+                        evaluation only.
+  --backbone {tsd,gru,diag_ssm}
+                        Temporal backbone: the selective ZOH SSM (tsd), a GRU
+                        with the same inputs + gap feature, or a stable
+                        diagonal SSM with fixed B and the same step selector.
+  --spatial {sheaf,identity,node_frame,attention}
+                        Spatial operator: learned incidence maps (sheaf),
+                        identity maps, one orthogonal frame per node
+                        (node_frame), or identity transport with history-
+                        conditioned edge gates (attention).
+  --clock {global,node_update,node_interaction}
+                        Gap fed to the step selector: global batch gap, time
+                        since the node's last memory update, or time since the
+                        node's last observed interaction (first observation ->
+                        gap 0).
+  --fast-core-off       With --no-memory --layers 0: skip the unused SSM
+                        transition / map decoder (verified identical outputs).
+  --rng-isolation       Draw training negatives from a dedicated generator
+                        seeded by (seed, epoch) so paired arms see identical
+                        negative samples regardless of architecture-dependent
+                        RNG consumption.
+  --no-query-audit      Disable the per-query score-validity audit
+                        (query_validity*.csv in --out).
+  --clock-diagnostics   Record bounded clock/saturation diagnostics during the
+                        final evaluation (clock_*.csv in --out).
+  --audit-eval-only     With --eval-only: label the outputs as a checkpoint
+                        replay audit (no training).
+  --out OUT

@@ -1,0 +1,26 @@
+usage: run_faithful_trade.py [-h] [--seeds SEEDS [SEEDS ...]]
+                             [--dataset DATASET] [--epochs EPOCHS] [--out OUT]
+                             [--device DEVICE] [--override OVERRIDE]
+                             [--train-cap TRAIN_CAP]
+                             [--checkpoint-dir CHECKPOINT_DIR]
+                             [--checkpoint-every CHECKPOINT_EVERY]
+                             [--reserve-gpu-mb RESERVE_GPU_MB]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --seeds SEEDS [SEEDS ...]
+  --dataset DATASET     Any TGB nodeprop (tgbn-*) dataset
+  --epochs EPOCHS
+  --out OUT
+  --device DEVICE
+  --override OVERRIDE   JSON dict of config overrides
+  --train-cap TRAIN_CAP
+                        Max train edges (-1 for uncapped)
+  --checkpoint-dir CHECKPOINT_DIR
+                        Per-seed checkpoint/resume directory (default:
+                        <out>.ckpt when --out is given)
+  --checkpoint-every CHECKPOINT_EVERY
+                        Checkpoint every N epochs
+  --reserve-gpu-mb RESERVE_GPU_MB
+                        Pre-reserve GPU memory at start-up (default: env
+                        TSD_RESERVE_GPU_MB from wait_launch.sh)

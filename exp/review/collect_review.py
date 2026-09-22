@@ -141,6 +141,32 @@ def main():
     qv = pd.concat(qv, ignore_index=True) if qv else pd.DataFrame()
     if len(qv):
         qv.to_csv(f"{RV}/query_validity.csv", index=False)
+    # clock diagnostics (checkpoint replays + clock runs) and protocol traces, concatenated at the root
+    cd = []
+    for f in sorted(glob.glob(f"{RV}/*/*/clock_diagnostics.csv")):
+        try:
+            c = pd.read_csv(f)
+        except pd.errors.EmptyDataError:
+            continue
+        if not len(c):
+            continue
+        c["run"] = f.split("/")[-2]; c["group"] = f.split("/")[-3]
+        tj = os.path.join(os.path.dirname(f), "clock_learned_timing.json")
+        if os.path.exists(tj):
+            t = json.load(open(tj)); c["clock"] = t.get("clock"); c["delta_scale"] = t.get("delta_scale")
+            for k, v in t.get("dt_time_params", {}).items():
+                c[k] = v
+        cd.append(c)
+    if cd:
+        pd.concat(cd, ignore_index=True).to_csv(f"{RV}/clock_diagnostics.csv", index=False)
+    tr = []
+    for f in sorted(glob.glob(f"{RV}/provenance/trace_*/protocol_trace.csv")):
+        t = pd.read_csv(f); t["trace"] = f.split("/")[-2]; tr.append(t)
+    if tr:
+        pd.concat(tr, ignore_index=True).to_csv(f"{RV}/protocol_trace.csv", index=False)
+        with open(f"{RV}/protocol_verdict.md", "w") as fh:
+            for f in sorted(glob.glob(f"{RV}/provenance/trace_*/protocol_verdict.md")):
+                fh.write(open(f).read() + "\n\n---\n\n")
     lines = [f"# Review campaign summary (auto-generated {time.strftime('%Y-%m-%d %H:%M')})", "",
              f"{len(runs)} finished runs under `{RV}`; arms derived from resolved configs.", ""]
     if len(runs):
@@ -159,6 +185,11 @@ def main():
         lines += ["## Score-validity audit (per split)", "",
                   qv[["group", "run", "split", "queries", "queries_affected", "pos_nonfinite", "neg_nan", "neg_posinf", "neg_neginf",
                       "mrr_tgb_raw", "mrr_guarded", "mrr_conservative", "state_nonfinite_snapshots", "rec_nonfinite_snapshots"]].to_markdown(index=False), ""]
+    if cd:
+        cdf = pd.concat(cd, ignore_index=True)
+        cols = [c for c in ["group", "run", "clock", "split", "activity", "n", "frac_capped", "frac_zero_gap_used", "n_first_update",
+                            "n_first_interaction", "mean_dt", "mean_dt_uncapped", "mean_log10_gap_used_pos", "delta_scale"] if c in cdf.columns]
+        lines += ["## Clock / saturation diagnostics (per run x split x activity class)", "", cdf[cols].to_markdown(index=False), ""]
     if len(unfinished):
         lines += ["## Not finished", "", unfinished.to_markdown(index=False), ""]
     open(f"{RV}/REVIEW_SUMMARY.md", "w").write("\n".join(lines) + "\n")

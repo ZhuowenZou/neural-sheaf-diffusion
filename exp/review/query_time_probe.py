@@ -34,7 +34,10 @@ def main():
     r = pd.read_csv(os.path.join(a.run, "results.csv")).iloc[0]
     cfg = json.loads(r["config_json"])
     args = argparse.Namespace(**cfg)
-    for k, v in dict(backbone="tsd", spatial=None, clock="global", fast_core_off=False).items():
+    for k, v in dict(backbone="tsd", spatial=None, clock="global", fast_core_off=False, no_memory=False, emb_in_head=False,
+                     node_type_emb=False, learn_node_emb=False, sheaf_identity=False, no_delta_t=False, relation_in_input=False,
+                     recurrency_decoder=False, recurrency_untyped=False, recurrency_symmetric=False, no_memory_readout=False,
+                     no_dst_range=False, train_edges_cap=None, time_window=None, context_edges=50000).items():
         if not hasattr(args, k):
             setattr(args, k, v)
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
