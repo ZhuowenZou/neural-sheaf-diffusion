@@ -55,7 +55,7 @@ def collect():
             cfg = {}
         run = res.split("/")[-2]; group = res.split("/")[-3]
         d.update(run=run, group=group, arm=arm_of(cfg), lr=cfg.get("lr"), rec="on" if cfg.get("recurrency_decoder") else "off",
-                 clock=cfg.get("clock", "global"), is_audit=bool(cfg.get("audit_eval_only")),
+                 clock=cfg.get("clock", "global"), is_audit=bool(cfg.get("audit_eval_only")), reused_retained=False,
                  finished=time.strftime("%Y-%m-%d %H:%M", time.localtime(os.path.getmtime(res))))
         d.pop("config_json", None)
         if cfg.get("audit_eval_only"):
@@ -66,6 +66,23 @@ def collect():
                 d["retained_test_mrr"] = float(o.get("test_mrr", np.nan))
                 d["retained_val_mrr"] = float(o.get("validation_mrr", np.nan))
                 d["replay_minus_retained_test"] = float(d.get("test_mrr", np.nan)) - d["retained_test_mrr"]
+        rows.append(d)
+    # retained thgl-forum runs (results/event_bench/leakfree2/forum_*) reused under the provenance rule: their
+    # checkpoint replays reproduce the stored test MRR exactly (audit/forum_f_s4x), the protocol is identical
+    # (same flags; old-protocol negative RNG regime shared with the new forum runs), code equivalence pinned by tests
+    for res in sorted(glob.glob("results/event_bench/leakfree2/forum_*/results.csv")):
+        d = pd.read_csv(res).iloc[0].to_dict()
+        try:
+            cfg = json.loads(d.get("config_json", "{}"))
+        except Exception:
+            cfg = {}
+        if cfg.get("model", "faithful") != "faithful" or pd.isna(d.get("test_mrr", np.nan)):
+            continue
+        run = res.split("/")[-2]
+        d.update(run=run, group="forum", arm=arm_of(cfg), lr=cfg.get("lr"), rec="on" if cfg.get("recurrency_decoder") else "off",
+                 clock="global", is_audit=False, reused_retained=True,
+                 finished=time.strftime("%Y-%m-%d %H:%M", time.localtime(os.path.getmtime(res))))
+        d.pop("config_json", None)
         rows.append(d)
     for log in sorted(glob.glob(f"{RV}/queue/*.log")):
         n = os.path.basename(log)[:-4]
@@ -121,7 +138,7 @@ def main():
     if len(runs):
         keep = ["run", "group", "dataset", "arm", "lr", "rec", "clock", "seed", "is_audit", "validation_mrr", "test_mrr", "test_hits10",
                 "best_track_epoch", "train_epochs_run", "params_total", "params_active", "query_audit_affected_total",
-                "query_audit_parity", "retained_test_mrr", "replay_minus_retained_test", "finished"]
+                "query_audit_parity", "retained_test_mrr", "replay_minus_retained_test", "reused_retained", "finished"]
         runs[[c for c in keep if c in runs.columns]].to_csv(f"{RV}/per_seed_results.csv", index=False)
         cost_cols = [c for c in runs.columns if c.startswith(("hw_", "params_", "final_", "prep_", "negatives_", "train_sec",
                                                               "selection_", "end_to_end", "rec_", "core_state", "checkpoint_bytes",
