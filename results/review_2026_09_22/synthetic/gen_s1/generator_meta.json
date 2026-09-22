@@ -1,0 +1,76 @@
+{
+ "config": "{\"n_nodes\": 400, \"n_comm\": 8, \"n_events\": 60000, \"p_cue\": 0.03, \"beta\": 1.0, \"gap_mean\": 1.0, \"p_novel\": 0.5, \"val_frac\": 0.15, \"test_frac\": 0.15, \"n_neg\": 32, \"feat_dim\": 32, \"seed\": 1}",
+ "data_sha256": "68639730a76fee82b9db12e02d0f4c48b747dc502fe8424377ce989855d543a9",
+ "time_window_ms": 20000,
+ "events_per_split": {
+  "train": 42000,
+  "val": 9000,
+  "test": 9000
+ },
+ "cue_events": 1741,
+ "novel_fraction": {
+  "train": 0.49783333333333335,
+  "val": 0.6492222222222223,
+  "test": 0.6
+ },
+ "oracle_summary": [
+  {
+   "split": "test",
+   "n": 8723,
+   "mrr_permitted": 0.5846819234410393,
+   "mrr_latent": 0.600202351878954,
+   "mrr_chance": 0.058823529411764705,
+   "novel_fraction": 0.6190530780694715,
+   "cue_known": 0.9748939585005159
+  },
+  {
+   "split": "val",
+   "n": 8769,
+   "mrr_permitted": 0.5808125736333377,
+   "mrr_latent": 0.5974449297234107,
+   "mrr_chance": 0.05882352941176471,
+   "novel_fraction": 0.6663245524005018,
+   "cue_known": 0.9550689930436765
+  }
+ ],
+ "oracle_by_novelty": [
+  {
+   "split": "test",
+   "novel": false,
+   "n": 3323,
+   "mrr_permitted": 0.7149979263445585,
+   "mrr_latent": 0.7416406335831554,
+   "mrr_chance": 0.058823529411764705,
+   "cue_known": 0.9482395425820042
+  },
+  {
+   "split": "test",
+   "novel": true,
+   "n": 5400,
+   "mrr_permitted": 0.5044893164691142,
+   "mrr_latent": 0.5131654240820908,
+   "mrr_chance": 0.058823529411764705,
+   "cue_known": 0.9912962962962963
+  },
+  {
+   "split": "val",
+   "novel": false,
+   "n": 2926,
+   "mrr_permitted": 0.7339758342129791,
+   "mrr_latent": 0.7603280510406278,
+   "mrr_chance": 0.058823529411764705,
+   "cue_known": 0.9323308270676691
+  },
+  {
+   "split": "val",
+   "novel": true,
+   "n": 5843,
+   "mrr_permitted": 0.5041129843031938,
+   "mrr_latent": 0.5158779242511914,
+   "mrr_chance": 0.058823529411764705,
+   "cue_known": 0.9664555878829368
+  }
+ ],
+ "permitted_information": "events with timestamp < the query batch's window start (previous batches only)",
+ "hidden_sidecar": "comm, pop, target_at, cue_nodes, novel (npz keys; used only by oracles/analysis)"
+}

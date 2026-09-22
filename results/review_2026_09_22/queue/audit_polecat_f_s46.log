@@ -1,43 +1,11 @@
 reserved 10976 MiB of GPU memory on cuda:0 in the caching allocator (requested 10976; now reserved 10980 MiB)
-device=cuda:0 sha=f84766ab29f0 config={'dataset': 'tkgl-polecat', 'seed': 46, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 0, 'patience': None, 'min_epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 30000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': False, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'no_memory': False, 'recurrency_symmetric': False, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.003, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': False, 'eval_only': 'results/event_bench/leakfree2/polecat_f_s46/best.pt', 'backbone': 'tsd', 'spatial': None, 'clock': 'global', 'fast_core_off': False, 'rng_isolation': False, 'no_query_audit': False, 'clock_diagnostics': True, 'audit_eval_only': True, 'out': 'results/review_2026_09_22/audit/polecat_f_s46'}
+device=cuda:0 sha=b34d01cc5fd5 config={'dataset': 'tkgl-polecat', 'seed': 46, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 0, 'patience': None, 'min_epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 30000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': False, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'no_memory': False, 'recurrency_symmetric': False, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.003, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': False, 'eval_only': 'results/event_bench/leakfree2/polecat_f_s46/best.pt', 'backbone': 'tsd', 'spatial': None, 'clock': 'global', 'fast_core_off': False, 'rng_isolation': False, 'no_query_audit': False, 'clock_diagnostics': True, 'audit_eval_only': True, 'out': 'results/review_2026_09_22/audit/polecat_f_s46'}
 split_source=official_tgb_masks
 destination_range=None
-snapshots: train=1193 (edges=2493112) track_val=37 final_val=329 final_test=304 | prep_sec=1.7
-negative-sample sets loaded in 4.6s
+snapshots: train=1193 (edges=2493112) track_val=37 final_val=329 final_test=304 | prep_sec=27.1
+negative-sample sets loaded in 4.7s
 delta_time_scale=86400 (Delta_k is measured in units of the median training inter-snapshot gap)
 protocol: predict-from-previous-state (leak-free) for training and evaluation
 parameter_count=631133 num_relations=32 num_nodes=150931
 parameters_by_component={'embeddings': 512, 'ssm_input_selector_B': 620928, 'ssm_other': 4261, 'map_decoder': 128, 'spatial_block': 2534, 'scorer': 2641, 'rec': 129, 'other': 0, 'total': 631133, 'trainable': 631133, 'unused_by_construction': 0, 'active': 631133}
 eval-only: loaded results/event_bench/leakfree2/polecat_f_s46/best.pt
-Traceback (most recent call last):
-  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 197, in _run_module_as_main
-    return _run_code(code, main_globals, None,
-  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 87, in _run_code
-    exec(code, run_globals)
-  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_event_benchmark.py", line 604, in <module>
-    main()
-  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_event_benchmark.py", line 532, in main
-    train_state = bu.advance_context(model, train_snapshots)
-  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/temporal_benchmark_utils.py", line 1015, in advance_context
-    _, state = model.forward_sequence([snapshot], initial_state=state)
-  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/faithful_event_model.py", line 987, in forward_sequence
-    event_output, state = self.step(
-  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/faithful_event_model.py", line 862, in step
-    local_memory = self.ssm(local_prev_memory, q, gap_supplied)
-  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/temporal_sheaf_ssm.py", line 197, in forward
-    return self._forward_impl(h_prev, q, delta_t)
-  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/temporal_sheaf_ssm.py", line 219, in _forward_impl
-    dt = self.step_size(q, delta_t)  # (N,)
-  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/temporal_sheaf_ssm.py", line 183, in step_size
-    self.diag.record_steps(content.detach(), time_term.detach(), dt_uncapped.detach(), dt.detach(),
-  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
-    return func(*args, **kwargs)
-  File "/home/zhuowez1/project/neural-sheaf-diffusion/models/diagnostics.py", line 119, in record_steps
-    rows = np.stack([np.full(n, m["t_batch"]), np.full(n, m["t_prev_batch"]), lu, li, su, si, gap_np,
-  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/numpy/_core/shape_base.py", line 448, in stack
-    raise ValueError('all input arrays must have the same shape')
-ValueError: all input arrays must have the same shape

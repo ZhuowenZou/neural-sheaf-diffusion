@@ -114,7 +114,7 @@
   "--out",
   "results/review_2026_09_22/audit/icews_eval_s46"
  ],
- "commit": "f84766ab29f05892d87800dc1c6e057f35ff6c65",
+ "commit": "b34d01cc5fd5baee6cb73c99485977ffb3d7d760",
  "cwd": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "env": {
   "CUDA_DEVICE_ORDER": "PCI_BUS_ID",

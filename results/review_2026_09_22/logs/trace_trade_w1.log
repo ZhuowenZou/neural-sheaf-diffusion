@@ -1,4 +1,5 @@
 tgbn-trade: 468245 edges, 30 label timestamps, 255 classes; splits train<= 2009 val<= 2013
+traces done (9s): ours 30 labels, official 29 labels
 label sets: [{"split": "train", "ours_n": 23, "official_n": 22, "ours_only": [2009], "official_only": [], "ours_first": 1987, "ours_last": 2009, "official_first": 1987, "official_last": 2008}, {"split": "val", "ours_n": 4, "official_n": 4, "ours_only": [2013], "official_only": [2009], "ours_first": 2010, "ours_last": 2013, "official_first": 2009, "official_last": 2012}, {"split": "test", "ours_n": 3, "official_n": 3, "ours_only": [2016], "official_only": [2013], "ours_first": 2014, "ours_last": 2016, "official_first": 2013, "official_last": 2015}, {"split": "never_scored", "ours_n": 0, "official_n": 1, "ours_only": [], "official_only": ["2016"]}]
 reconstruction same_period: mean max-abs-err 4.987e-09, exact frac 1.000
 reconstruction next_period: mean max-abs-err 0.193, exact frac 0.001
@@ -7,4 +8,4 @@ reconstruction prev_period: mean max-abs-err 0.1872, exact frac 0.002
 [ours test] last_label=0.8448, prev_1_period=0.8448, prev_3_periods=0.8417, copy_available_edges=1.0000
 [official_tgn_example val] last_label=0.8604, prev_1_period=0.8604, prev_3_periods=0.8628, copy_available_edges=1.0000
 [official_tgn_example test] last_label=0.8541, prev_1_period=0.8541, prev_3_periods=0.8455, copy_available_edges=1.0000
-done in 5s -> results/review_2026_09_22/provenance/trace_trade_w1
+done in 19s -> results/review_2026_09_22/provenance/trace_trade_w1

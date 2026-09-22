@@ -1,5 +1,7 @@
 run,group,dataset,arm,lr,rec,clock,seed,is_audit,validation_mrr,test_mrr,test_hits10,best_track_epoch,train_epochs_run,params_total,params_active,query_audit_affected_total,query_audit_parity,finished
+wiki_coreoff_s43_lr1e-3,matched,tgbl-wiki,core-off,0.001,on,global,43,False,0.7673990524701869,0.7440184061553293,0.8455611535858469,8,8,448844,8419,0,True,2026-09-22 10:02
 attention,smoke,tgbl-wiki,attention-gates,0.0003,on,global,43,False,0.6416648473888635,0.5374252315461635,0.765250002078712,1,1,444815,444815,0,True,2026-09-22 09:44
 coreoff,smoke,tgbl-wiki,core-off,0.0003,on,node_update,43,False,0.6419879194051027,0.540589959077537,0.768500003002584,1,1,448844,8419,0,True,2026-09-22 09:41
 gru,smoke,tgbl-wiki,gru-sheaf,0.0003,on,global,43,False,0.6066575837954878,0.5254991688802838,0.7642500006482005,1,1,33466,33466,0,True,2026-09-22 09:44
 tsd,smoke,tgbl-wiki,tsd,0.0003,on,global,43,False,0.6251902469769121,0.526320749759674,0.7492500002682209,1,1,444686,444686,0,True,2026-09-22 09:44
+tsd_clockdiag,smoke,tgbl-wiki,tsd,0.0003,on,global,43,False,0.6249151859357953,0.5268619748428464,0.7490000002682209,1,1,444686,444686,0,True,2026-09-22 10:01

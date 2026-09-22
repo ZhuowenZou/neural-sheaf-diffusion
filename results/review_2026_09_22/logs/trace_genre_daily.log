@@ -1,1 +1,16 @@
 tgbn-genre: 17858395 edges, 1579 label timestamps, 513 classes; splits train<= 1216427761 val<= 1230448624
+traces done (40s): ours 1579 labels, official 1579 labels
+label sets: [{"split": "train", "ours_n": 1250, "official_n": 1250, "ours_only": [], "official_only": [], "ours_first": 1108443600, "ours_last": 1216353600, "official_first": 1108443600, "official_last": 1216353600}, {"split": "val", "ours_n": 163, "official_n": 163, "ours_only": [], "official_only": [], "ours_first": 1216440000, "ours_last": 1230440400, "official_first": 1216440000, "official_last": 1230440400}, {"split": "test", "ours_n": 166, "official_n": 166, "ours_only": [], "official_only": [], "ours_first": 1230526800, "ours_last": 1244779200, "official_first": 1230526800, "official_last": 1244779200}, {"split": "never_scored", "ours_n": 0, "official_n": 0, "ours_only": [], "official_only": []}]
+reconstruction same_period: mean max-abs-err 0.4163, exact frac 0.000
+reconstruction next_period: mean max-abs-err 0.416, exact frac 0.001
+reconstruction prev_period: mean max-abs-err 0.4185, exact frac 0.000
+reconstruction next_7: mean max-abs-err 0.3077, exact frac 0.000
+reconstruction next_8_incl: mean max-abs-err 0.3097, exact frac 0.000
+reconstruction prev_7: mean max-abs-err 0.3607, exact frac 0.000
+reconstruction next_7_from_+1: mean max-abs-err 0.3074, exact frac 0.000
+reconstruction window_-1_+7: mean max-abs-err 0.3097, exact frac 0.000
+[ours val] last_label=0.2935, prev_1_period=0.2936, prev_3_periods=0.4017, copy_available_edges=0.0139
+[ours test] last_label=0.2998, prev_1_period=0.3014, prev_3_periods=0.4105, copy_available_edges=0.0137
+[official_tgn_example val] last_label=0.2935, prev_1_period=0.2936, prev_3_periods=0.4017, copy_available_edges=0.0139
+[official_tgn_example test] last_label=0.2998, prev_1_period=0.3014, prev_3_periods=0.4105, copy_available_edges=0.0137
+done in 239s -> results/review_2026_09_22/provenance/trace_genre_daily

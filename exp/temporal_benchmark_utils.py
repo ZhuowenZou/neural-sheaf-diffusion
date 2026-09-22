@@ -138,6 +138,16 @@ def load_tgb_dataset(dataset_name: str):
 
 
 def load_temporal_data(dataset_name: str):
+    if dataset_name.startswith("synth-history:"):
+        # review handoff, section 4: the history-dependent synthetic task, served through the
+        # same interface as a TGB link dataset (MRR with fixed per-query negatives)
+        from exp.review.synthetic_history import SyntheticHistoryDataset
+        dataset = SyntheticHistoryDataset(dataset_name.split(":", 1)[1])
+        spec = DatasetSpec(requested_name=dataset_name, loader_name="tgbl-wiki", task_family="linkprop",
+                           dataset_module="tgb.linkproppred.dataset_pyg", evaluator_module="tgb.linkproppred.evaluate",
+                           metric_name="mrr", train_metric_supported=False,
+                           notes="synthetic history task; evaluator name tgbl-wiki only selects the MRR/hits@10 metric code")
+        return spec, dataset, dataset.get_TemporalData()
     spec, dataset = load_tgb_dataset(dataset_name)
     temporal_data = dataset.get_TemporalData()
     return spec, dataset, temporal_data

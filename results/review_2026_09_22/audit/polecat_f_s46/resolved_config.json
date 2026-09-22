@@ -112,12 +112,12 @@
   "--out",
   "results/review_2026_09_22/audit/polecat_f_s46"
  ],
- "commit": "f84766ab29f05892d87800dc1c6e057f35ff6c65",
+ "commit": "b34d01cc5fd5baee6cb73c99485977ffb3d7d760",
  "cwd": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "env": {
   "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
   "CUDA_MODULE_LOADING": "LAZY",
-  "CUDA_VISIBLE_DEVICES": "7",
+  "CUDA_VISIBLE_DEVICES": "0",
   "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True",
   "TSD_ONLY_GPUS": "0 7",
   "TSD_RESERVE_GPU_MB": "10976"
