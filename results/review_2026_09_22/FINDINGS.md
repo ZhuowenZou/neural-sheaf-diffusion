@@ -128,7 +128,46 @@ which still evaluates the unused SSM transition and map decoder) takes 156 s per
 Z0 = P_z[x; 0], the scorer and REC; it is not a REC-only predictor. All new core-off runs use the bypass.
 
 ## 4. Synthetic history-dependent task (synthetic/)
-(filled from synthetic/gen_s1/generator_meta.json and synthetic/runs/)
+
+**Generator (`exp/review/synthetic_history.py`, "cued target drift"):** 400 nodes in 8 hidden communities, 60k
+events with i.i.d. exponential gaps (irregular time), fixed random node features that encode nothing; each
+node's hidden target community is set by its most recent CUE event (an observable interaction with one of 8
+cue nodes; p = 0.03 per event; initial targets unannounced); other events pick a destination in the target
+community with a hidden popularity weight observable only through in-degree history. Val/test destinations
+are novel (never paired with the source) for a preregistered ~50% of events (realised: 65% val, 62% test,
+`generator_meta.json`); 32 fixed uniform negatives per val/test query; batches are 20 s windows (~20 events).
+Permitted information for the oracle = events with t < the query batch's window start. Data SHA-256 and the
+hidden sidecar (communities, popularity, targets, novelty) are stored with the data.
+
+**Sanity instance (`synthetic/gen_s1/oracle_summary.csv`):** permitted-history oracle MRR 0.585 (test;
+novel 0.504, recurring 0.715; cue known for 97.5% of test queries), latent oracle 0.600, chance 0.059 —
+the rule is inferable from permitted history. A predictor without history sees identical inputs across
+histories and cannot infer the target by construction.
+
+**Variant 1 (`gen_s1`, cue visible only through the cue node's identity), REC off, five paired training
+seeds, lr 1e-3, 6 epochs, identical data / negatives / batching / selection
+(`synthetic/synthetic_analysis/per_arm_stratified.csv`; test MRR on interactions, cue events excluded):**
+
+| arm | n | MRR | SD | novel | recurring | Δ vs TSD (paired) | signs |
+|---|---|---|---|---|---|---|---|
+| TSD | 5 | 0.2098 | 0.0008 | 0.135 | 0.332 | – | – |
+| current-only maps | 5 | 0.2098 | 0.0025 | 0.135 | 0.331 | +0.0000 ± 0.0026 | 2+ 3- |
+| identity maps | 4 | 0.2059 | 0.0046 | 0.134 | 0.323 | −0.0040 ± 0.0045 | 0+ 4- |
+| GRU + ordinary | 5 | 0.2091 | 0.0022 | 0.135 | 0.330 | −0.0007 ± 0.0026 | 3+ 2- |
+| diagonal SSM + ordinary | 5 | 0.2098 | 0.0017 | 0.135 | 0.331 | +0.0001 ± 0.0015 | 1+ 4- |
+| attention gates | 5 | 0.2069 | 0.0026 | 0.135 | 0.323 | −0.0029 ± 0.0028 | 1+ 4- |
+| node-frame | 3 | 0.2117 | 0.0019 | 0.136 | 0.335 | +0.0018 ± 0.0015 | 3+ 0- |
+| core-off (no memory) | 5 | 0.2125 | 0.0020 | 0.136 | 0.337 | +0.0027 ± 0.0025 | 5+ 0- |
+
+**Null result:** no arm exceeds the memory-free core-off model; the "recurring" advantage (0.33 vs 0.13) is a
+popularity prior that the memory-free model shows equally, and MRR on queries whose cue is in permitted
+history equals the overall MRR for every arm. Under this budget (one-step gradient truncation, 6 epochs) none
+of the evaluated recurrent cores — including the history-in-values comparators — extracts the cue when it is
+observable only through the cue node's random feature vector. This variant therefore supports neither memory
+nor memory-in-maps; it is kept in the record and was not tuned further.
+
+**Variant 2 (`gen_s1r`, cue carried as an observable relation id 1+k, all arms with `--relation-in-input`
+so the cue enters the memory input directly):** running; results appended in `synthetic_analysis_r/`.
 
 ## 5. Not evaluated (explicit)
 - ICEWS matrix beyond the retained seeds: not retrained (cost 20+ h per run); checkpoint-replay audits of the
