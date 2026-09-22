@@ -91,14 +91,14 @@
   "--out",
   "results/review_2026_09_22/forum/forum_tsd_recon_s44"
  ],
- "commit": "720f3a4361112d0fda989542f620232c2d56a207",
+ "commit": "fcbc1803d3e76b67022d66949b9224bdd9e5b0e9",
  "cwd": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "env": {
   "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
   "CUDA_MODULE_LOADING": "LAZY",
   "CUDA_VISIBLE_DEVICES": "3",
   "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True",
-  "TSD_ONLY_GPUS": "3",
-  "TSD_RESERVE_GPU_MB": "5976"
+  "TSD_ONLY_GPUS": "3 6",
+  "TSD_RESERVE_GPU_MB": "12976"
  }
 }
