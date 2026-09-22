@@ -119,7 +119,7 @@ def main():
                 name = f"synth_{args.gen}_{arm}_rec{args.rec}{args.tag}_s{seed}"
                 out = f"{RV}/synthetic/runs/{name}"
                 cmd = f"{PY} -m exp.run_event_benchmark {SY}{rec} {args.extra_flags} {extra} --seed {seed} --out {out}"
-                written.append(write_cmd(name, 1500, cmd, only_gpus=gpus[i % len(gpus)])); i += 1
+                written.append(write_cmd(name, 2500, cmd, only_gpus=gpus[i % len(gpus)])); i += 1
     else:
         import pandas as pd
         for run in args.runs:
