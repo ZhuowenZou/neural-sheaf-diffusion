@@ -1,6 +1,6 @@
-# Review campaign summary (auto-generated 2026-09-22 14:12)
+# Review campaign summary (auto-generated 2026-09-22 14:23)
 
-24 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+26 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
@@ -13,6 +13,7 @@
 | tgbl-wiki                                                          | smoke   | on    | core-off        | 0.0003 |   1 | 0.54059  | nan           | 0.5406          |
 | tgbl-wiki                                                          | smoke   | on    | gru-sheaf       | 0.0003 |   1 | 0.525499 | nan           | 0.5255          |
 | tgbl-wiki                                                          | smoke   | on    | tsd             | 0.0003 |   2 | 0.526591 |   0.000382704 | 0.5263 / 0.5269 |
+| thgl-forum                                                         | forum   | off   | gru-ordinary    | 0.001  |   2 | 0.387912 |   0.00743856  | 0.3827 / 0.3932 |
 | thgl-forum                                                         | forum   | on    | node-frame      | 0.001  |   1 | 0.633638 | nan           | 0.6336          |
 
 ## Checkpoint-replay audits (P0)
@@ -69,6 +70,10 @@
 | audit   | wiki_f_s46              | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.730548 |      0.730548 |           0.730548 |                           0 |                         0 |
 | audit   | wiki_f_s47              | val     |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.743804 |      0.743804 |           0.743804 |                           0 |                         0 |
 | audit   | wiki_f_s47              | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.733075 |      0.733075 |           0.733075 |                           0 |                         0 |
+| forum   | forum_gru_norec_s43     | val     |   3643658 |                  0 |               0 |         0 |            0 |            0 |      0.384615 |      0.384615 |           0.384615 |                           0 |                         0 |
+| forum   | forum_gru_norec_s43     | test    |   3563653 |                  0 |               0 |         0 |            0 |            0 |      0.382652 |      0.382652 |           0.382652 |                           0 |                         0 |
+| forum   | forum_gru_norec_s46     | val     |   3643658 |                  0 |               0 |         0 |            0 |            0 |      0.397212 |      0.397212 |           0.397212 |                           0 |                         0 |
+| forum   | forum_gru_norec_s46     | test    |   3563653 |                  0 |               0 |         0 |            0 |            0 |      0.393172 |      0.393172 |           0.393172 |                           0 |                         0 |
 | forum   | forum_nodeframe_rec_s43 | val     |   3643658 |                  0 |               0 |         0 |            0 |            0 |      0.624445 |      0.624445 |           0.624445 |                           0 |                         0 |
 | forum   | forum_nodeframe_rec_s43 | test    |   3563653 |                  0 |               0 |         0 |            0 |            0 |      0.633638 |      0.633638 |           0.633638 |                           0 |                         0 |
 | matched | wiki_coreoff_s43_lr1e-3 | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.754794 |      0.754794 |           0.754794 |                           0 |                         0 |
@@ -195,44 +200,75 @@
 | audit_polecat_f_s46                    | running/pending |            0 |          3 |
 | audit_polecat_f_s47                    | running/pending |            0 |          2 |
 | forum_attention_rec_s43                | running/pending |            0 |          2 |
-| forum_gru_norec_s43                    | running/pending |            4 |          2 |
-| forum_gru_norec_s46                    | running/pending |            4 |          2 |
-| forum_gru_norec_s47                    | running/pending |            2 |          2 |
-| forum_gru_rec_s43                      | running/pending |            2 |          2 |
-| forum_gru_rec_s46                      | running/pending |            2 |          2 |
-| forum_gru_rec_s47                      | running/pending |            0 |          2 |
-| synth_gen_s1r_diag_recoff_rel_s44      | running/pending |            1 |          1 |
-| synth_gen_s1r_diag_recoff_rel_s45      | running/pending |            5 |          1 |
-| synth_gen_s1r_gru_recoff_rel_s47       | running/pending |            5 |          1 |
-| synth_gen_s1r_identity_recoff_rel_s43  | running/pending |            4 |          1 |
+| forum_attention_recoff_s43             | running/pending |            0 |          1 |
+| forum_attention_recoff_s46             | running/pending |            0 |          1 |
+| forum_attention_recoff_s47             | running/pending |            0 |          1 |
+| forum_attention_recon_s46              | running/pending |            0 |          1 |
+| forum_attention_recon_s47              | running/pending |            0 |          1 |
+| forum_coreoff_recoff_s44               | crashed         |            0 |          1 |
+| forum_coreoff_recoff_s45               | running/pending |            0 |          1 |
+| forum_coreoff_recon_s44                | running/pending |            0 |          1 |
+| forum_coreoff_recon_s45                | running/pending |            0 |          1 |
+| forum_curonly_recoff_s44               | running/pending |            0 |          1 |
+| forum_curonly_recoff_s45               | running/pending |            0 |          1 |
+| forum_curonly_recon_s44                | running/pending |            0 |          1 |
+| forum_curonly_recon_s45                | crashed         |            0 |          1 |
+| forum_diag_recoff_s43                  | running/pending |            0 |          1 |
+| forum_diag_recoff_s46                  | running/pending |            0 |          1 |
+| forum_diag_recoff_s47                  | running/pending |            0 |          1 |
+| forum_diag_recon_s43                   | running/pending |            0 |          1 |
+| forum_diag_recon_s46                   | running/pending |            0 |          1 |
+| forum_diag_recon_s47                   | running/pending |            0 |          1 |
+| forum_gru_norec_s47                    | running/pending |            4 |          2 |
+| forum_gru_rec_s43                      | running/pending |            3 |          2 |
+| forum_gru_rec_s46                      | running/pending |            3 |          2 |
+| forum_gru_rec_s47                      | running/pending |            1 |          2 |
+| forum_gru_recoff_s44                   | running/pending |            1 |          1 |
+| forum_gru_recoff_s45                   | running/pending |            0 |          1 |
+| forum_gru_recon_s44                    | running/pending |            0 |          1 |
+| forum_gru_recon_s45                    | running/pending |            0 |          1 |
+| forum_identity_recoff_s44              | running/pending |            0 |          1 |
+| forum_identity_recoff_s45              | running/pending |            0 |          1 |
+| forum_identity_recon_s44               | crashed         |            0 |          2 |
+| forum_identity_recon_s45               | running/pending |            0 |          1 |
+| forum_nodeframe_recoff_s43             | crashed         |            0 |          1 |
+| forum_nodeframe_recoff_s46             | running/pending |            0 |          1 |
+| forum_nodeframe_recoff_s47             | running/pending |            0 |          1 |
+| forum_nodeframe_recon_s46              | running/pending |            0 |          1 |
+| forum_nodeframe_recon_s47              | running/pending |            0 |          1 |
+| forum_tsd_recoff_s44                   | running/pending |            0 |          1 |
+| forum_tsd_recoff_s45                   | running/pending |            0 |          1 |
+| forum_tsd_recon_s44                    | running/pending |            0 |          1 |
+| forum_tsd_recon_s45                    | running/pending |            0 |          1 |
+| synth_gen_s1r_diag_recoff_rel_s44      | running/pending |            2 |          1 |
+| synth_gen_s1r_diag_recoff_rel_s45      | running/pending |            6 |          1 |
+| synth_gen_s1r_gru_recoff_rel_s47       | running/pending |            6 |          1 |
+| synth_gen_s1r_identity_recoff_rel_s43  | running/pending |            5 |          1 |
 | synth_gen_s1r_identity_recoff_rel_s45  | running/pending |            0 |          1 |
-| synth_gen_s1r_nodeframe_recoff_rel_s43 | running/pending |            6 |          1 |
 | synth_gen_s1r_nodeframe_recoff_rel_s44 | running/pending |            0 |          1 |
-| synth_gen_s1r_nodeframe_recoff_rel_s47 | running/pending |            4 |          1 |
-| synth_gen_s1r_tsd_recoff_rel_s43       | running/pending |            0 |          1 |
-| synth_gen_s1r_tsd_recoff_rel_s44       | running/pending |            6 |          1 |
-| synth_gen_s1r_tsd_recoff_rel_s46       | running/pending |            1 |          1 |
-| synth_gen_s1r_tsd_recoff_rel_s47       | running/pending |            4 |          1 |
-| synth_gen_s2_coreoff_recoff_rel_s43    | running/pending |            1 |          1 |
-| synth_gen_s2_coreoff_recoff_rel_s44    | running/pending |            0 |          1 |
-| synth_gen_s2_coreoff_recoff_rel_s45    | running/pending |            0 |          1 |
-| synth_gen_s2_coreoff_recoff_rel_s46    | running/pending |            5 |          1 |
-| synth_gen_s2_coreoff_recoff_rel_s47    | running/pending |            1 |          1 |
-| synth_gen_s2_curonly_recoff_rel_s43    | running/pending |            0 |          1 |
-| synth_gen_s2_curonly_recoff_rel_s44    | running/pending |            0 |          1 |
+| synth_gen_s1r_nodeframe_recoff_rel_s47 | running/pending |            5 |          1 |
+| synth_gen_s1r_tsd_recoff_rel_s43       | running/pending |            1 |          1 |
+| synth_gen_s1r_tsd_recoff_rel_s46       | running/pending |            2 |          1 |
+| synth_gen_s1r_tsd_recoff_rel_s47       | running/pending |            5 |          1 |
+| synth_gen_s2_coreoff_recoff_rel_s43    | running/pending |            2 |          1 |
+| synth_gen_s2_coreoff_recoff_rel_s44    | running/pending |            1 |          1 |
+| synth_gen_s2_coreoff_recoff_rel_s45    | running/pending |            2 |          1 |
+| synth_gen_s2_coreoff_recoff_rel_s47    | running/pending |            3 |          1 |
+| synth_gen_s2_curonly_recoff_rel_s43    | running/pending |            2 |          1 |
+| synth_gen_s2_curonly_recoff_rel_s44    | running/pending |            1 |          1 |
 | synth_gen_s2_curonly_recoff_rel_s45    | running/pending |            0 |          1 |
-| synth_gen_s2_curonly_recoff_rel_s46    | running/pending |            0 |          1 |
+| synth_gen_s2_curonly_recoff_rel_s46    | running/pending |            1 |          1 |
 | synth_gen_s2_curonly_recoff_rel_s47    | running/pending |            0 |          1 |
 | synth_gen_s2_gru_recoff_rel_s43        | running/pending |            0 |          1 |
 | synth_gen_s2_gru_recoff_rel_s44        | running/pending |            0 |          1 |
-| synth_gen_s2_gru_recoff_rel_s45        | running/pending |            1 |          1 |
+| synth_gen_s2_gru_recoff_rel_s45        | running/pending |            2 |          1 |
 | synth_gen_s2_gru_recoff_rel_s46        | running/pending |            0 |          1 |
 | synth_gen_s2_gru_recoff_rel_s47        | running/pending |            0 |          1 |
-| synth_gen_s2_identity_recoff_rel_s43   | running/pending |            0 |          1 |
+| synth_gen_s2_identity_recoff_rel_s43   | running/pending |            1 |          1 |
 | synth_gen_s2_identity_recoff_rel_s44   | running/pending |            0 |          1 |
 | synth_gen_s2_identity_recoff_rel_s45   | running/pending |            0 |          1 |
 | synth_gen_s2_identity_recoff_rel_s46   | running/pending |            0 |          1 |
-| synth_gen_s2_identity_recoff_rel_s47   | running/pending |            0 |          1 |
+| synth_gen_s2_identity_recoff_rel_s47   | running/pending |            1 |          1 |
 | synth_gen_s2_tsd_recoff_rel_s43        | running/pending |            0 |          1 |
 | synth_gen_s2_tsd_recoff_rel_s44        | running/pending |            0 |          1 |
 | synth_gen_s2_tsd_recoff_rel_s45        | running/pending |            0 |          1 |
@@ -240,20 +276,20 @@
 | synth_gen_s2_tsd_recoff_rel_s47        | running/pending |            0 |          1 |
 | wiki_attention_s43_lr1e-3              | running/pending |            5 |          1 |
 | wiki_attention_s43_lr3e-4              | running/pending |            5 |          1 |
-| wiki_coreoff_s44_lr1e-3                | running/pending |            4 |          1 |
+| wiki_coreoff_s44_lr1e-3                | running/pending |            5 |          1 |
 | wiki_coreoff_s45_lr1e-3                | running/pending |            0 |          1 |
 | wiki_coreoff_s46_lr1e-3                | running/pending |            4 |          1 |
 | wiki_coreoff_s47_lr1e-3                | running/pending |            0 |          1 |
 | wiki_curonly_s43_lr1e-3                | running/pending |            7 |          1 |
 | wiki_curonly_s43_lr3e-4                | running/pending |            5 |          1 |
 | wiki_diag_s43_lr1e-3                   | running/pending |            7 |          1 |
-| wiki_diag_s43_lr3e-4                   | running/pending |            6 |          1 |
+| wiki_diag_s43_lr3e-4                   | running/pending |            7 |          1 |
 | wiki_gru_s43_lr1e-3                    | running/pending |            7 |          1 |
-| wiki_gru_s43_lr3e-4                    | running/pending |            7 |          1 |
+| wiki_gru_s43_lr3e-4                    | running/pending |            8 |          1 |
 | wiki_identity_s43_lr1e-3               | running/pending |            5 |          1 |
 | wiki_identity_s43_lr3e-4               | running/pending |            6 |          1 |
 | wiki_nodeframe_s43_lr1e-3              | running/pending |            4 |          1 |
 | wiki_nodeframe_s43_lr3e-4              | running/pending |            7 |          1 |
 | wiki_tsd_s43_lr1e-3                    | running/pending |            6 |          1 |
-| wiki_tsd_s43_lr3e-4                    | running/pending |            5 |          1 |
+| wiki_tsd_s43_lr3e-4                    | running/pending |            6 |          1 |
 

@@ -1,0 +1,2 @@
+run,arm,rec,seed,test_mrr_all,n_all,mrr_interactions,n_interactions,mrr_cue_events,mrr_novel,n_novel,mrr_recurring,n_recurring,mrr_cue_known,mrr_cue_unknown,oracle_permitted,oracle_latent,chance,oracle_permitted_novel,oracle_permitted_recurring
+synth_gen_s2_coreoff_recoff_rel_s46,core-off,off,46,0.292381012301605,6000,0.26949846365053876,5810,0.9921052631578947,0.07714341463739398,652,0.29381321587166526,5158,0.26949846365053876,,0.5312532027517639,0.5903251714087494,0.05882352941176471,0.28240564882250857,0.5627089230235504
