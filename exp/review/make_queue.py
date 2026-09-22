@@ -61,7 +61,10 @@ def config_to_flags(cfg):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("what", choices=["wiki-wave1", "wiki-wave2", "wiki-extras", "audits"])
+    ap.add_argument("what", choices=["wiki-wave1", "wiki-wave2", "wiki-extras", "audits", "synth"])
+    ap.add_argument("--gen", default="gen_s1", help="synthetic generator directory under results/review_2026_09_22/synthetic")
+    ap.add_argument("--seeds", default="43 44 45 46 47")
+    ap.add_argument("--rec", default="off", choices=["off", "on"])
     ap.add_argument("runs", nargs="*")
     ap.add_argument("--lr-json", default=None)
     ap.add_argument("--gpus", default="3 4 7")
@@ -99,6 +102,18 @@ def main():
             out = f"{RV}/clock/{name}"
             cmd = f"{PY} -m exp.run_event_benchmark {base} {extra} --lr {lr} --seed 43 --out {out}"
             written.append(write_cmd(name, 2000, cmd, only_gpus=gpus[i % len(gpus)])); i += 1
+    elif args.what == "synth":
+        SY = (f"--dataset synth-history:{RV}/synthetic/{args.gen}/data.npz --model faithful --time-window 20000 --context-edges 2000 "
+              "--track-val-edges 3000 --train-negatives-per-pos 32 --epochs 6 --patience 3 --min-epochs 3 --lr 1e-3 "
+              "--predict-from-previous --save-checkpoint --rng-isolation --dump-query-ranks")
+        rec = " --recurrency-decoder" if args.rec == "on" else ""
+        i = 0
+        for arm, extra in ARMS.items():
+            for seed in args.seeds.split():
+                name = f"synth_{args.gen}_{arm}_rec{args.rec}_s{seed}"
+                out = f"{RV}/synthetic/runs/{name}"
+                cmd = f"{PY} -m exp.run_event_benchmark {SY}{rec} {extra} --seed {seed} --out {out}"
+                written.append(write_cmd(name, 1500, cmd, only_gpus=gpus[i % len(gpus)])); i += 1
     else:
         import pandas as pd
         for run in args.runs:
