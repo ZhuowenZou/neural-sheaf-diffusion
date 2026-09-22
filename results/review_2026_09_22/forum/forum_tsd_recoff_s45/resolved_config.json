@@ -89,14 +89,14 @@
   "--out",
   "results/review_2026_09_22/forum/forum_tsd_recoff_s45"
  ],
- "commit": "665e3ed18f8c3a2e65de99a3afc0d71d6e07072c",
+ "commit": "6cabe7e9c01189a03bac464c26002a66a6b8dfb4",
  "cwd": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "env": {
   "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
   "CUDA_MODULE_LOADING": "LAZY",
-  "CUDA_VISIBLE_DEVICES": "7",
+  "CUDA_VISIBLE_DEVICES": "6",
   "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True",
-  "TSD_ONLY_GPUS": "7",
-  "TSD_RESERVE_GPU_MB": "5976"
+  "TSD_ONLY_GPUS": "7 6",
+  "TSD_RESERVE_GPU_MB": "12976"
  }
 }

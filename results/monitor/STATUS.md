@@ -1,20 +1,20 @@
-# Monitor status (2026-09-22 15:13:11)
+# Monitor status (2026-09-22 15:23:06)
 
 ## GPU free (GiB) and utilisation
-0:4GB(98%) 1:51GB(100%) 2:51GB(98%) 3:4GB(100%) 4:4GB(99%) 5:26GB(100%) 6:59GB(91%) 7:10GB(100%) 
-our GPU processes (pid:MiB): 136253:17646MiB 210437:18006MiB 257100:15204MiB 1289587:2028MiB 3989742:2026MiB 141869:1658MiB 142950:1656MiB 216108:1658MiB 220414:24208MiB 227547:2024MiB 228590:2400MiB 237974:20648MiB 429040:2400MiB 544044:898MiB 659537:6522MiB 687617:2394MiB 690862:2398MiB 831355:2394MiB 1214047:2028MiB 1216729:2026MiB 1225196:2028MiB 1253032:2028MiB 1297498:2026MiB 205465:2024MiB 211345:6540MiB 217524:1656MiB 218238:2400MiB 263979:2400MiB 266703:21410MiB 272548:2400MiB 389272:2394MiB 439663:6540MiB 459038:2398MiB 461256:2398MiB 553977:2394MiB 667285:6540MiB 680116:6522MiB 841571:21910MiB 1213717:2026MiB 1252765:2028MiB 1270098:2030MiB 1271730:2028MiB 3956991:2026MiB 229042:2400MiB 229673:2400MiB 239219:21108MiB 250242:6540MiB 265379:2400MiB 549025:2400MiB 669291:6530MiB 851012:17530MiB 
+0:4GB(98%) 1:51GB(99%) 2:51GB(98%) 3:5GB(100%) 4:10GB(100%) 5:26GB(100%) 6:14GB(100%) 7:4GB(99%) 
+our GPU processes (pid:MiB): 136253:17646MiB 210437:18006MiB 257100:15204MiB 1289587:2028MiB 3989742:2026MiB 141869:1658MiB 142950:1656MiB 216108:1658MiB 220414:24208MiB 227547:2024MiB 237974:20648MiB 429040:2400MiB 544044:918MiB 687617:2394MiB 690862:2398MiB 831355:2398MiB 883104:2394MiB 905852:6394MiB 1214047:2028MiB 1216729:2026MiB 1225196:2028MiB 1253032:2028MiB 1297498:2026MiB 205465:2024MiB 217524:1656MiB 218238:2400MiB 263979:2400MiB 266703:21410MiB 272548:2400MiB 389272:2394MiB 439663:6540MiB 459038:2400MiB 461256:2398MiB 553977:2394MiB 667285:6540MiB 680116:6522MiB 841571:24490MiB 885491:9510MiB 892165:24390MiB 906913:9394MiB 1213717:2026MiB 1252765:2028MiB 1270098:2030MiB 1271730:2028MiB 3956991:2026MiB 229673:2402MiB 239219:21108MiB 250242:6540MiB 265379:2400MiB 549025:2400MiB 669291:6530MiB 851012:19570MiB 905429:6508MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
 - gpu2: colleague busy
-- gpu3: ELIGIBLE (idle 164 min)
-- gpu4: ELIGIBLE (idle 539 min)
+- gpu3: ELIGIBLE (idle 174 min)
+- gpu4: ELIGIBLE (idle 549 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 75 min)
+- gpu6: ELIGIBLE (idle 84 min)
 - gpu7: OURS
-compensation: colleagues hold 26542 MiB on our GPUs; we hold 177768 MiB on theirs; budget left -151226 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
-our launcher claims (pid:gpu/MiB): 239610:7/18000 269062:6/18000 3986783:3/2500 
+compensation: colleagues hold 26542 MiB on our GPUs; we hold 208212 MiB on theirs; budget left -181670 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+our launcher claims (pid:gpu/MiB): 123793:7/7000 268720:6/10000 
 
 ## leakfree2 benchmark runs
 - DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
@@ -151,7 +151,7 @@ our launcher claims (pid:gpu/MiB): 239610:7/18000 269062:6/18000 3986783:3/2500
 ## review 2026-09-22 runs (results/review_2026_09_22/queue)
 - DONE     audit2_sp_f_s47: FINAL val_mrr=0.6446 test_mrr=0.6103 test_hits10=0.7109 eval_sec=1237.2
 - RUNNING  audit_forum_f_s43: 
-- RUNNING  audit_forum_f_s46: 
+- RUNNING  audit_forum_f_s46: epochs': 1, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - DONE     audit_forum_f_s47: FINAL val_mrr=0.6019 test_mrr=0.6187 test_hits10=0.6526 eval_sec=672.3
 - RUNNING  audit_icews_eval_s43: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
 - RUNNING  audit_icews_eval_s46: 
@@ -177,20 +177,20 @@ our launcher claims (pid:gpu/MiB): 239610:7/18000 269062:6/18000 3986783:3/2500
 - RUNNING  forum_attention_recon_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  forum_attention_recon_s47: 
 - RUNNING  forum_attention_rec_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  forum_coreoff_recoff_s44: 
+- RUNNING  forum_coreoff_recoff_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  forum_coreoff_recoff_s45: 
 - RUNNING  forum_coreoff_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  forum_coreoff_recon_s45: 
 - RUNNING  forum_curonly_recoff_s44: 
-- RUNNING  forum_curonly_recoff_s45: 
+- CRASHED  forum_curonly_recoff_s45: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.84 GiB. GPU 0 ha (attempts 0)
 - RUNNING  forum_curonly_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  forum_curonly_recon_s45: 
+- RUNNING  forum_curonly_recon_s45: epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - RUNNING  forum_diag_recoff_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  forum_diag_recoff_s46: 
-- RUNNING  forum_diag_recoff_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     forum_diag_recoff_s47: FINAL val_mrr=0.4104 test_mrr=0.4024 test_hits10=0.5729 eval_sec=482.2
 - RUNNING  forum_diag_recon_s43: 
 - RUNNING  forum_diag_recon_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  forum_diag_recon_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  forum_diag_recon_s47: final val_mrr=0.6414 (670.4s so far)
 - DONE     forum_gru_norec_s43: FINAL val_mrr=0.3859 test_mrr=0.3827 test_hits10=0.5052 eval_sec=277.3
 - DONE     forum_gru_norec_s46: FINAL val_mrr=0.3984 test_mrr=0.3932 test_hits10=0.5123 eval_sec=378.8
 - DONE     forum_gru_norec_s47: FINAL val_mrr=0.3836 test_mrr=0.3807 test_hits10=0.5357 eval_sec=498.7
@@ -200,20 +200,20 @@ our launcher claims (pid:gpu/MiB): 239610:7/18000 269062:6/18000 3986783:3/2500
 - RUNNING  forum_gru_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     forum_gru_rec_s43: FINAL val_mrr=0.6414 test_mrr=0.6511 test_hits10=0.7034 eval_sec=1283.5
 - DONE     forum_gru_rec_s46: FINAL val_mrr=0.6354 test_mrr=0.6418 test_hits10=0.6839 eval_sec=1156.1
-- RUNNING  forum_gru_rec_s47: final val_mrr=0.6313 (860.4s so far)
+- DONE     forum_gru_rec_s47: FINAL val_mrr=0.6313 test_mrr=0.6414 test_hits10=0.6882 eval_sec=1338.9
 - RUNNING  forum_identity_recoff_s44: 
 - RUNNING  forum_identity_recoff_s45: 
 - RUNNING  forum_identity_recon_s44: 
-- RUNNING  forum_identity_recon_s45: 
+- CRASHED  forum_identity_recon_s45: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.84 GiB. GPU 0 ha (attempts 0)
 - RUNNING  forum_nodeframe_recoff_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  forum_nodeframe_recoff_s46: epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
+- RUNNING  forum_nodeframe_recoff_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  forum_nodeframe_recoff_s47: 
 - RUNNING  forum_nodeframe_recon_s46: 
 - RUNNING  forum_nodeframe_recon_s47: 
 - DONE     forum_nodeframe_rec_s43: FINAL val_mrr=0.6249 test_mrr=0.6336 test_hits10=0.6778 eval_sec=1135.3
-- RUNNING  forum_tsd_recoff_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- CRASHED  forum_tsd_recoff_s45: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.84 GiB. GPU 0 ha (attempts 0)
-- RUNNING  forum_tsd_recon_s44: 
+- RUNNING  forum_tsd_recoff_s44: final val_mrr=0.2302 (440.2s so far)
+- RUNNING  forum_tsd_recoff_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- CRASHED  forum_tsd_recon_s44: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.84 GiB. GPU 0 ha (attempts 0)
 - RUNNING  forum_tsd_recon_s45: 
 - DONE     synth_gen_s1_attention_recoff_s43: FINAL val_mrr=0.2017 test_mrr=0.2034 test_hits10=0.4579 eval_sec=667.7
 - DONE     synth_gen_s1_attention_recoff_s44: FINAL val_mrr=0.2007 test_mrr=0.2031 test_hits10=0.4684 eval_sec=300.9
@@ -301,9 +301,9 @@ our launcher claims (pid:gpu/MiB): 239610:7/18000 269062:6/18000 3986783:3/2500
 - DONE     synth_gen_s2_coreoff_recoff_rel_s46: FINAL val_mrr=0.3262 test_mrr=0.2924 test_hits10=0.5868 eval_sec=159.0
 - DONE     synth_gen_s2_coreoff_recoff_rel_s47: FINAL val_mrr=0.3070 test_mrr=0.2894 test_hits10=0.5818 eval_sec=303.8
 - DONE     synth_gen_s2_curonly_recoff_rel_s43: FINAL val_mrr=0.3257 test_mrr=0.2857 test_hits10=0.5448 eval_sec=518.4
-- RUNNING  synth_gen_s2_curonly_recoff_rel_s44: epoch 5 (patience 3)
+- DONE     synth_gen_s2_curonly_recoff_rel_s44: FINAL val_mrr=0.3132 test_mrr=0.2811 test_hits10=0.5347 eval_sec=456.0
 - RUNNING  synth_gen_s2_curonly_recoff_rel_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s2_curonly_recoff_rel_s46: epoch 5 (patience 3)
+- DONE     synth_gen_s2_curonly_recoff_rel_s46: FINAL val_mrr=0.3157 test_mrr=0.2939 test_hits10=0.5892 eval_sec=487.6
 - RUNNING  synth_gen_s2_curonly_recoff_rel_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  synth_gen_s2_gru_recoff_rel_s43: 
 - RUNNING  synth_gen_s2_gru_recoff_rel_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
@@ -315,7 +315,7 @@ our launcher claims (pid:gpu/MiB): 239610:7/18000 269062:6/18000 3986783:3/2500
 - RUNNING  synth_gen_s2_identity_recoff_rel_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  synth_gen_s2_identity_recoff_rel_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  synth_gen_s2_identity_recoff_rel_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  synth_gen_s2_tsd_recoff_rel_s43: epochs': 3, 'time_window': 20000.0, 'context_edges': 500, 'train_edges
+- RUNNING  synth_gen_s2_tsd_recoff_rel_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  synth_gen_s2_tsd_recoff_rel_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  synth_gen_s2_tsd_recoff_rel_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  synth_gen_s2_tsd_recoff_rel_s46: epochs': 3, 'time_window': 20000.0, 'context_edges': 500, 'train_edges
@@ -389,8 +389,8 @@ our launcher claims (pid:gpu/MiB): 239610:7/18000 269062:6/18000 3986783:3/2500
 - DONE synth_static_original: test 0.790 novel 0.151 rec 0.791
 
 ## recent actions
-2026-09-22 14:24:13 (re)launching forum_identity_recon_s44 via results/review_2026_09_22/queue/forum_identity_recon_s44.cmd (attempt 2)
 2026-09-22 14:24:13 (re)launching forum_nodeframe_recoff_s43 via results/review_2026_09_22/queue/forum_nodeframe_recoff_s43.cmd (attempt 1)
 2026-09-22 14:29:34 (re)launching forum_coreoff_recoff_s44 via results/review_2026_09_22/queue/forum_coreoff_recoff_s44.cmd (attempt 1)
 2026-09-22 14:31:48 script changed, reloading
 monitor started Tue Sep 22 02:31:48 PM PDT 2026 pid 1201964
+2026-09-22 15:13:11 (re)launching forum_tsd_recoff_s45 via results/review_2026_09_22/queue/forum_tsd_recoff_s45.cmd (attempt 1)

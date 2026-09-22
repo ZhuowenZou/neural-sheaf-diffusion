@@ -3,3 +3,14 @@ device=cuda:0 sha=a441d412986d config={'dataset': 'thgl-forum', 'seed': 44, 'mod
 split_source=official_tgb_masks
 destination_range=None
 snapshots: train=740 (edges=4000000) track_val=3 final_val=687 final_test=625 | prep_sec=8.8
+negative-sample sets loaded in 44.0s
+node_types: present
+delta_time_scale=600 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=634300 num_relations=2 num_nodes=152816
+parameters_by_component={'embeddings': 160, 'ssm_input_selector_B': 620928, 'ssm_other': 4261, 'map_decoder': 4288, 'spatial_block': 2532, 'scorer': 2131, 'rec': 0, 'other': 0, 'total': 634300, 'trainable': 634300, 'unused_by_construction': 625785, 'active': 8515}
+[epoch 1/4] {'epoch': 1, 'train_loss': 0.22910958906592793, 'track_val_mrr': 0.2059804566755891, 'track_val_loss': 0.4721028804779053, 'train_sec': 50.4, 'track_eval_sec': 49.0, 'peak_gpu_mem_mb': 498.6, 'peak_gpu_reserved_mb': 9000.0, 'epoch_steps': 739, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 1, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 2/4] {'epoch': 2, 'train_loss': 0.16527625770183313, 'track_val_mrr': 0.21709247965663672, 'track_val_loss': 0.4670412242412567, 'train_sec': 89.1, 'track_eval_sec': 58.3, 'peak_gpu_mem_mb': 545.3, 'peak_gpu_reserved_mb': 9000.0, 'epoch_steps': 739, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 1, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 3/4] {'epoch': 3, 'train_loss': 0.16391782633990493, 'track_val_mrr': 0.23614544346183539, 'track_val_loss': 0.4558945894241333, 'train_sec': 83.7, 'track_eval_sec': 65.1, 'peak_gpu_mem_mb': 545.3, 'peak_gpu_reserved_mb': 9000.0, 'epoch_steps': 739, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 3, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 4/4] {'epoch': 4, 'train_loss': 0.16309036327594026, 'track_val_mrr': 0.24628624027222396, 'track_val_loss': 0.4507465362548828, 'train_sec': 75.3, 'track_eval_sec': 73.1, 'peak_gpu_mem_mb': 545.3, 'peak_gpu_reserved_mb': 9000.0, 'epoch_steps': 739, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 3, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+checkpoint saved: results/review_2026_09_22/forum/forum_coreoff_recoff_s44/best.pt

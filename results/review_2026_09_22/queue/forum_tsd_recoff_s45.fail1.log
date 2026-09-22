@@ -1,0 +1,29 @@
+reserved 5976 MiB of GPU memory on cuda:0 in the caching allocator (requested 5976; now reserved 5980 MiB)
+device=cuda:0 sha=665e3ed18f8c config={'dataset': 'thgl-forum', 'seed': 45, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 4, 'patience': 3, 'min_epochs': 2, 'time_window': 600.0, 'context_edges': 50000, 'train_edges_cap': 4000000, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 20000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': True, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'no_memory': False, 'recurrency_symmetric': False, 'recurrency_untyped': False, 'cache_warm_history': False, 'recurrency_decoder': False, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'backbone': 'tsd', 'spatial': None, 'clock': 'global', 'fast_core_off': False, 'rng_isolation': False, 'no_query_audit': False, 'dump_query_ranks': True, 'clock_diagnostics': False, 'audit_eval_only': False, 'out': 'results/review_2026_09_22/forum/forum_tsd_recoff_s45'}
+split_source=official_tgb_masks
+destination_range=None
+snapshots: train=740 (edges=4000000) track_val=3 final_val=687 final_test=625 | prep_sec=8.5
+negative-sample sets loaded in 44.3s
+node_types: present
+delta_time_scale=600 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=630142 num_relations=2 num_nodes=152816
+parameters_by_component={'embeddings': 160, 'ssm_input_selector_B': 620928, 'ssm_other': 4261, 'map_decoder': 128, 'spatial_block': 2534, 'scorer': 2131, 'rec': 0, 'other': 0, 'total': 630142, 'trainable': 630142, 'unused_by_construction': 0, 'active': 630142}
+Traceback (most recent call last):
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_event_benchmark.py", line 606, in <module>
+    main()
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/run_event_benchmark.py", line 435, in main
+    train_loss = bu.run_epoch(
+  File "/home/zhuowez1/project/neural-sheaf-diffusion/exp/temporal_benchmark_utils.py", line 1339, in run_epoch
+    loss.backward()
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/torch/_tensor.py", line 647, in backward
+    torch.autograd.backward(
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/torch/autograd/__init__.py", line 354, in backward
+    _engine_run_backward(
+  File "/home/zhuowez1/miniconda3/envs/nsd/lib/python3.9/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.84 GiB. GPU 0 has a total capacity of 79.25 GiB of which 3.87 GiB is free. Process 1213717 has 1.98 GiB memory in use. Process 1252765 has 1.98 GiB memory in use. Process 1270098 has 1.98 GiB memory in use. Process 1271730 has 1.98 GiB memory in use. Process 3956991 has 1.98 GiB memory in use. Process 217885 has 2.34 GiB memory in use. Process 229042 has 2.34 GiB memory in use. Process 229673 has 2.34 GiB memory in use. Process 239219 has 20.61 GiB memory in use. Process 250242 has 6.39 GiB memory in use. Process 265379 has 2.34 GiB memory in use. Process 549025 has 2.34 GiB memory in use. Process 669291 has 6.38 GiB memory in use. Process 851012 has 17.12 GiB memory in use. Including non-PyTorch memory, this process has 3.18 GiB memory in use. Of the allocated memory 2.56 GiB is allocated by PyTorch, and 131.71 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

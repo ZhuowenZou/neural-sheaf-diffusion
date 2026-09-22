@@ -12,6 +12,7 @@
   "d": 2,
   "dataset": "thgl-forum",
   "delta_time_scale": "auto",
+  "dump_query_ranks": false,
   "emb_in_head": false,
   "epochs": 0,
   "eval_only": "results/event_bench/leakfree2/forum_f_s46/best.pt",
@@ -117,7 +118,7 @@
   "--out",
   "results/review_2026_09_22/audit/forum_f_s46"
  ],
- "commit": "f84766ab29f05892d87800dc1c6e057f35ff6c65",
+ "commit": "720f3a4361112d0fda989542f620232c2d56a207",
  "cwd": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "env": {
   "CUDA_DEVICE_ORDER": "PCI_BUS_ID",

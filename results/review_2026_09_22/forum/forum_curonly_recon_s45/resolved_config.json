@@ -93,14 +93,14 @@
   "--out",
   "results/review_2026_09_22/forum/forum_curonly_recon_s45"
  ],
- "commit": "4366ad20086a7c9a92328d3b23b061aa7cf52138",
+ "commit": "720f3a4361112d0fda989542f620232c2d56a207",
  "cwd": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "env": {
   "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
   "CUDA_MODULE_LOADING": "LAZY",
-  "CUDA_VISIBLE_DEVICES": "3",
+  "CUDA_VISIBLE_DEVICES": "6",
   "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True",
-  "TSD_ONLY_GPUS": "3",
-  "TSD_RESERVE_GPU_MB": "5976"
+  "TSD_ONLY_GPUS": "3 6",
+  "TSD_RESERVE_GPU_MB": "8976"
  }
 }

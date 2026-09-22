@@ -767,3 +767,6 @@ monitor started Tue Sep 22 09:40:05 AM PDT 2026 pid 1201964
 2026-09-22 14:29:34 (re)launching forum_coreoff_recoff_s44 via results/review_2026_09_22/queue/forum_coreoff_recoff_s44.cmd (attempt 1)
 2026-09-22 14:31:48 script changed, reloading
 monitor started Tue Sep 22 02:31:48 PM PDT 2026 pid 1201964
+2026-09-22 15:13:11 (re)launching forum_tsd_recoff_s45 via results/review_2026_09_22/queue/forum_tsd_recoff_s45.cmd (attempt 1)
+2026-09-22 15:23:06 (re)launching forum_curonly_recoff_s45 via results/review_2026_09_22/queue/forum_curonly_recoff_s45.cmd (attempt 1)
+2026-09-22 15:23:06 (re)launching forum_identity_recon_s45 via results/review_2026_09_22/queue/forum_identity_recon_s45.cmd (attempt 1)
