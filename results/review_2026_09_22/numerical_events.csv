@@ -1,9 +1,12 @@
 run,group,dataset,arm,seed,train_steps,train_nonfinite_loss,train_nonfinite_grad,train_clipped,train_skipped_steps,val_nonfinite_positives,val_nonfinite_negatives,val_skipped_queries,val_metric_examples,test_nonfinite_positives,test_nonfinite_negatives,test_skipped_queries,test_metric_examples,query_audit_affected_total,query_audit_parity
+sp_f_s46,audit,tkgl-smallpedia,tsd,46,0,0,0,0,0,0,0,0,162066,0,0,0,163172,0,True
 sp_f_s47,audit,tkgl-smallpedia,tsd,47,0,0,0,0,0,0,0,0,162066,0,0,0,163172,0,True
 sp_f_s47_replay2,audit,tkgl-smallpedia,tsd,47,0,0,0,0,0,0,0,0,162066,0,0,0,163172,0,True
 sw_f_s43,audit,thgl-software,tsd,43,0,0,0,0,0,0,0,0,223469,0,0,0,223471,0,True
 sw_f_s46,audit,thgl-software,tsd,46,0,0,0,0,0,0,0,0,223469,0,0,0,223471,0,True
 sw_f_s47,audit,thgl-software,tsd,47,0,0,0,0,0,0,0,0,223469,0,0,0,223471,0,True
+wd_f_s43,audit,tkgl-wikidata,tsd,43,0,0,0,0,0,0,0,0,2869900,0,0,0,2877500,0,True
+wd_f_s46,audit,tkgl-wikidata,tsd,46,0,0,0,0,0,0,0,0,2869900,0,0,0,2877500,0,True
 wd_f_s47,audit,tkgl-wikidata,tsd,47,0,0,0,0,0,0,0,0,2869900,0,0,0,2877500,0,True
 wiki_f_s43,audit,tgbl-wiki,tsd,43,0,0,0,0,0,0,0,0,23621,0,0,0,23621,0,True
 wiki_f_s46,audit,tgbl-wiki,tsd,46,0,0,0,0,0,0,0,0,23621,0,0,0,23621,0,True
