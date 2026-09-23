@@ -1,19 +1,19 @@
-# Monitor status (2026-09-23 06:36:53)
+# Monitor status (2026-09-23 07:15:02)
 
 ## GPU free (GiB) and utilisation
-0:54GB(95%) 1:51GB(87%) 2:1GB(0%) 3:16GB(10%) 4:21GB(11%) 5:54GB(98%) 6:10GB(17%) 7:1GB(0%) 
-our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 4095829:14158MiB 4096930:11762MiB 4118762:18198MiB 2654122:18014MiB 4096797:18198MiB 4097655:12184MiB 243990:16680MiB 4095645:17954MiB 4098149:12182MiB 4131532:11528MiB 4177163:18280MiB 2872725:18280MiB 2905507:18198MiB 4096471:16754MiB 4097379:18364MiB 2703991:18280MiB 2704074:18198MiB 4095975:15524MiB 4138403:16998MiB 166942:11868MiB 
+0:80GB(0%) 1:51GB(47%) 2:1GB(8%) 3:15GB(0%) 4:20GB(0%) 5:54GB(54%) 6:10GB(0%) 7:3GB(0%) 
+our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 4095829:14138MiB 4096930:11762MiB 4118762:18198MiB 2654122:18014MiB 4096797:18198MiB 4097655:13604MiB 243990:16680MiB 4095645:17954MiB 4098149:13602MiB 4131532:11748MiB 4177163:18280MiB 2872725:18280MiB 2905507:18198MiB 4096471:16754MiB 4097379:18364MiB 2703991:18280MiB 2704074:18198MiB 4095975:13216MiB 4138403:16998MiB 166942:12110MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
-- gpu2: ELIGIBLE (idle 859 min)
-- gpu3: ELIGIBLE (idle 1088 min)
-- gpu4: ELIGIBLE (idle 1463 min)
+- gpu2: ELIGIBLE (idle 897 min)
+- gpu3: ELIGIBLE (idle 1126 min)
+- gpu4: ELIGIBLE (idle 1501 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 619 min)
+- gpu6: ELIGIBLE (idle 657 min)
 - gpu7: OURS
-compensation: colleagues hold 26542 MiB on our GPUs; we hold 277316 MiB on theirs; budget left -250774 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+compensation: colleagues hold 0 MiB on our GPUs; we hold 280356 MiB on theirs; budget left -280356 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
 our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
