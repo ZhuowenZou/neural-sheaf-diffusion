@@ -19,6 +19,7 @@ wiki_f_s43,audit,tgbl-wiki,tsd,43,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.
 wiki_f_s46,audit,tgbl-wiki,tsd,46,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_f_s47,audit,tgbl-wiki,tsd,47,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_tsd_clock-global_s43,clock,tgbl-wiki,tsd,43,24832.0,0.0,0.0,512.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
+wiki_tsd_clock-node_interaction_s43,clock,tgbl-wiki,tsd,43,24832.0,0.0,0.0,507.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_tsd_tw1200_s43,clock,tgbl-wiki,tsd,43,12416.0,0.0,0.0,350.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 forum_attention_rec_s43,forum,thgl-forum,attention-gates,43,2956.0,0.0,0.0,12.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_attention_recoff_s43,forum,thgl-forum,attention-gates,43,2956.0,0.0,0.0,9.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
@@ -66,6 +67,7 @@ forum_tsd_recon_s44,forum,thgl-forum,tsd,44,2956.0,0.0,0.0,11.0,0.0,0.0,0.0,0.0,
 forum_tsd_recon_s45,forum,thgl-forum,tsd,45,2956.0,0.0,0.0,12.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 wiki_attention_s43_lr1e-3,matched,tgbl-wiki,attention-gates,43,24832.0,0.0,0.0,546.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_attention_s43_lr3e-4,matched,tgbl-wiki,attention-gates,43,24832.0,0.0,0.0,1372.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
+wiki_attention_s47_lr1e-3,matched,tgbl-wiki,attention-gates,47,24832.0,0.0,0.0,529.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_coreoff_s43_lr1e-3,matched,tgbl-wiki,core-off,43,24832.0,0.0,0.0,487.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_coreoff_s43_lr3e-4,matched,tgbl-wiki,core-off,43,24832.0,0.0,0.0,2833.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_coreoff_s44_lr1e-3,matched,tgbl-wiki,core-off,44,24832.0,0.0,0.0,550.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
