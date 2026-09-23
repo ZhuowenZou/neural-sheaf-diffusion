@@ -17,3 +17,4 @@ parameters_by_component={'embeddings': 512, 'ssm_input_selector_B': 620928, 'ssm
 [epoch 7/10] {'epoch': 7, 'train_loss': 0.15014789520681604, 'track_val_mrr': 0.22925030183692774, 'track_val_loss': 0.27827417850494385, 'train_sec': 29.5, 'track_eval_sec': 854.2, 'peak_gpu_mem_mb': 5156.8, 'peak_gpu_reserved_mb': 11012.0, 'epoch_steps': 1192, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
 early stop at epoch 7 (patience 5)
 checkpoint saved: results/review_2026_09_22/polecat/polecat_coreoff_s43/best.pt
+final val_mrr=0.2370 (14588.9s so far)
