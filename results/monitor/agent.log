@@ -516,3 +516,6 @@
 2026-09-23 13:48:29 committed 30 paths (collected 280 finished runs, 18 unfinished; fingerprint 3226154226)
 2026-09-23 13:48:33 pushed to origin/review-2026-09-22 (ddf2cc9 agent: results snapshot 2026-09-23 13:48 (collected )
 2026-09-23 13:48:33 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_gru_s46 sp_diag_s46 sp_diag_s47 sp_gru_s43 sp_nodeframe_s43 sp_nodeframe_s47 ] pending-launchers 18 free-GiB 55 23 11 44 14 54 8 47 
+2026-09-23 13:58:43 committed 31 paths (collected 283 finished runs, 15 unfinished; fingerprint 3049017992)
+2026-09-23 13:58:48 pushed to origin/review-2026-09-22 (e913d59 agent: results snapshot 2026-09-23 13:58 (collected )
+2026-09-23 13:58:49 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_gru_s46 sp_diag_s46 sp_gru_s43 ] pending-launchers 15 free-GiB 55 80 5 44 45 54 8 47 
