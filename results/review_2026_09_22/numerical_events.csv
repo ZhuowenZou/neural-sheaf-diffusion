@@ -173,6 +173,7 @@ sp_curonly_s47,sp,tkgl-smallpedia,current-only-maps,47,1455.0,0.0,0.0,5.0,0.0,0.
 sp_diag_s43,sp,tkgl-smallpedia,diagssm-ordinary,43,1455.0,0.0,0.0,6.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sp_diag_s46,sp,tkgl-smallpedia,diagssm-ordinary,46,1455.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sp_diag_s47,sp,tkgl-smallpedia,diagssm-ordinary,47,1455.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
+sp_gru_s43,sp,tkgl-smallpedia,gru-ordinary,43,1455.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sp_gru_s46,sp,tkgl-smallpedia,gru-ordinary,46,1455.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sp_gru_s47,sp,tkgl-smallpedia,gru-ordinary,47,1455.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sp_identity_s43,sp,tkgl-smallpedia,identity-maps,43,1455.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True

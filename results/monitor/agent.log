@@ -522,3 +522,6 @@
 2026-09-23 14:08:58 committed 18 paths (collected 284 finished runs, 14 unfinished; fingerprint 1315950059)
 2026-09-23 14:09:02 pushed to origin/review-2026-09-22 (3a90eba agent: results snapshot 2026-09-23 14:08 (collected )
 2026-09-23 14:09:02 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_gru_s46 sp_gru_s43 ] pending-launchers 14 free-GiB 55 80 36 44 45 54 8 47 
+2026-09-23 14:19:10 committed 17 paths (collected 285 finished runs, 13 unfinished; fingerprint 3298728414)
+2026-09-23 14:19:13 pushed to origin/review-2026-09-22 (a59f544 agent: results snapshot 2026-09-23 14:19 (collected )
+2026-09-23 14:19:14 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_gru_s46 sp_gru_s43 ] pending-launchers 14 free-GiB 55 80 36 44 45 54 8 47 

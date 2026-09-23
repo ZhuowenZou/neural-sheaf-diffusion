@@ -1,6 +1,6 @@
-# Review campaign summary (auto-generated 2026-09-23 14:19)
+# Review campaign summary (auto-generated 2026-09-23 14:29)
 
-285 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+286 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
@@ -73,7 +73,7 @@
 | tkgl-smallpedia                                                    | sp      | on    | core-off          | 0.01   |   3 | 0.574831 |   0.053856    | 0.5128 / 0.6015 / 0.6102                                                                                                                               |
 | tkgl-smallpedia                                                    | sp      | on    | current-only-maps | 0.01   |   7 | 0.603305 |   0.00883666  | 0.5897 / 0.6144 / 0.6000 / 0.6028 / 0.5959 / 0.6110 / 0.6092                                                                                           |
 | tkgl-smallpedia                                                    | sp      | on    | diagssm-ordinary  | 0.01   |   3 | 0.607112 |   0.00587357  | 0.6078 / 0.6009 / 0.6126                                                                                                                               |
-| tkgl-smallpedia                                                    | sp      | on    | gru-ordinary      | 0.01   |   2 | 0.597185 |   0.00237903  | 0.5989 / 0.5955                                                                                                                                        |
+| tkgl-smallpedia                                                    | sp      | on    | gru-ordinary      | 0.01   |   3 | 0.599244 |   0.00394288  | 0.6034 / 0.5989 / 0.5955                                                                                                                               |
 | tkgl-smallpedia                                                    | sp      | on    | identity-maps     | 0.01   |   6 | 0.611828 |   0.00620054  | 0.6115 / 0.6028 / 0.6168 / 0.6182 / 0.6062 / 0.6154                                                                                                    |
 | tkgl-smallpedia                                                    | sp      | on    | node-frame        | 0.01   |   3 | 0.60332  |   0.00965608  | 0.5924 / 0.6069 / 0.6107                                                                                                                               |
 | tkgl-smallpedia                                                    | sp      | on    | tsd               | 0.01   |   3 | 0.610608 |   0.0039649   | 0.6147 / 0.6103 / 0.6068                                                                                                                               |
@@ -157,7 +157,7 @@
 | tkgl-smallpedia | on    | core-off          |   0.01   |   0.01   |   3 |   0.610608 |   0.574831 |               -0.0357767   |   0.0575757   |     0.143026    | -0.1019 / -0.0088 / +0.0034                     | 1+ 2-   |
 | tkgl-smallpedia | on    | current-only-maps |   0.01   |   0.01   |   3 |   0.610608 |   0.605387 |               -0.00522091  |   0.0117967   |     0.0293046   | -0.0188 / +0.0008 / +0.0024                     | 2+ 1-   |
 | tkgl-smallpedia | on    | diagssm-ordinary  |   0.01   |   0.01   |   3 |   0.610608 |   0.607112 |               -0.00349562  |   0.00812097  |     0.0201736   | -0.0069 / -0.0093 / +0.0058                     | 1+ 2-   |
-| tkgl-smallpedia | on    | gru-ordinary      |   0.01   |   0.01   |   2 |   0.608543 |   0.597185 |               -0.0113587   |   4.48773e-05 |     0.000403206 | -0.0114 / -0.0113                               | 0+ 2-   |
+| tkgl-smallpedia | on    | gru-ordinary      |   0.01   |   0.01   |   3 |   0.610608 |   0.599244 |               -0.011364    |   3.30657e-05 |     8.21397e-05 | -0.0114 / -0.0114 / -0.0113                     | 0+ 3-   |
 | tkgl-smallpedia | on    | identity-maps     |   0.01   |   0.01   |   3 |   0.610608 |   0.613285 |                0.00267711  |   0.00635811  |     0.0157944   | +0.0034 / -0.0040 / +0.0086                     | 2+ 1-   |
 | tkgl-smallpedia | on    | node-frame        |   0.01   |   0.01   |   3 |   0.610608 |   0.60332  |               -0.00728731  |   0.0135339   |     0.0336201   | -0.0223 / -0.0034 / +0.0039                     | 1+ 2-   |
 | tkgl-smallpedia | on    | tsd-no-gap        |   0.01   |   0.01   |   3 |   0.610608 |   0.610846 |                0.000238768 |   0.0046992   |     0.0116735   | +0.0013 / -0.0049 / +0.0043                     | 2+ 1-   |
@@ -546,6 +546,8 @@
 | sp      | sp_diag_s46                         | test    |    163172 |                  0 |               0 |         0 |            0 |            0 |      0.600922 |      0.600922 |           0.600922 |                           0 |                         0 |
 | sp      | sp_diag_s47                         | val     |    912066 |                  0 |               0 |         0 |            0 |            0 |      0.661994 |      0.661994 |           0.661994 |                           0 |                         0 |
 | sp      | sp_diag_s47                         | test    |    163172 |                  0 |               0 |         0 |            0 |            0 |      0.612608 |      0.612608 |           0.612608 |                           0 |                         0 |
+| sp      | sp_gru_s43                          | val     |    912066 |                  0 |               0 |         0 |            0 |            0 |      0.698375 |      0.698375 |           0.698375 |                           0 |                         0 |
+| sp      | sp_gru_s43                          | test    |    163172 |                  0 |               0 |         0 |            0 |            0 |      0.603361 |      0.603361 |           0.603361 |                           0 |                         0 |
 | sp      | sp_gru_s46                          | val     |    912066 |                  0 |               0 |         0 |            0 |            0 |      0.69128  |      0.69128  |           0.69128  |                           0 |                         0 |
 | sp      | sp_gru_s46                          | test    |    163172 |                  0 |               0 |         0 |            0 |            0 |      0.598867 |      0.598867 |           0.598867 |                           0 |                         0 |
 | sp      | sp_gru_s47                          | val     |    912066 |                  0 |               0 |         0 |            0 |            0 |      0.660566 |      0.660566 |           0.660566 |                           0 |                         0 |
@@ -866,5 +868,4 @@
 | icews_tsd_recon_s44      | running/pending |            6 |          1 |
 | icews_tsd_recon_s45      | running/pending |            4 |          1 |
 | polecat_gru_s46          | running/pending |           10 |          2 |
-| sp_gru_s43               | running/pending |           15 |          2 |
 
