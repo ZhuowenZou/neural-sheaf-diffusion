@@ -1,19 +1,19 @@
-# Monitor status (2026-09-23 02:03:14)
+# Monitor status (2026-09-23 02:51:25)
 
 ## GPU free (GiB) and utilisation
-0:54GB(100%) 1:51GB(38%) 2:44GB(26%) 3:62GB(0%) 4:45GB(26%) 5:54GB(98%) 6:44GB(12%) 7:44GB(37%) 
-our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 2654122:18014MiB 989557:17768MiB 2668669:18384MiB 2872725:18280MiB 2905507:18198MiB 2703991:18280MiB 2704074:18198MiB 
+0:54GB(98%) 1:51GB(99%) 2:44GB(6%) 3:62GB(0%) 4:62GB(0%) 5:54GB(42%) 6:44GB(0%) 7:44GB(0%) 
+our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 2654122:18014MiB 2668669:18384MiB 2872725:18280MiB 2905507:18198MiB 2703991:18280MiB 2704074:18198MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
-- gpu2: ELIGIBLE (idle 586 min)
-- gpu3: ELIGIBLE (idle 814 min)
-- gpu4: ELIGIBLE (idle 1189 min)
+- gpu2: ELIGIBLE (idle 634 min)
+- gpu3: ELIGIBLE (idle 862 min)
+- gpu4: ELIGIBLE (idle 1238 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 346 min)
+- gpu6: ELIGIBLE (idle 394 min)
 - gpu7: OURS
-compensation: colleagues hold 26542 MiB on our GPUs; we hold 127226 MiB on theirs; budget left -100684 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+compensation: colleagues hold 26542 MiB on our GPUs; we hold 109458 MiB on theirs; budget left -82916 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
 our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
@@ -154,7 +154,7 @@ our launcher claims (pid:gpu/MiB):
 - DONE     audit_forum_f_s46: FINAL val_mrr=0.6345 test_mrr=0.6412 test_hits10=0.6944 eval_sec=1370.3
 - DONE     audit_forum_f_s47: FINAL val_mrr=0.6019 test_mrr=0.6187 test_hits10=0.6526 eval_sec=672.3
 - DONE     audit_icews_eval_s43: FINAL val_mrr=0.3235 test_mrr=0.3386 test_hits10=0.5405 eval_sec=40340.6
-- RUNNING  audit_icews_eval_s46: final val_mrr=0.3227 (18283.7s so far)
+- DONE     audit_icews_eval_s46: FINAL val_mrr=0.3227 test_mrr=0.3341 test_hits10=0.5288 eval_sec=40368.0
 - DONE     audit_icews_eval_s47: FINAL val_mrr=0.3088 test_mrr=0.3326 test_hits10=0.5270 eval_sec=43434.6
 - DONE     audit_polecat_f_s43: FINAL val_mrr=0.2472 test_mrr=0.2403 test_hits10=0.3942 eval_sec=11837.7
 - DONE     audit_polecat_f_s46: FINAL val_mrr=0.2518 test_mrr=0.2461 test_hits10=0.3992 eval_sec=6365.5
@@ -227,14 +227,14 @@ our launcher claims (pid:gpu/MiB):
 - DONE     forum_tsd_recoff_s45: FINAL val_mrr=0.3965 test_mrr=0.3906 test_hits10=0.5333 eval_sec=479.6
 - DONE     forum_tsd_recon_s44: FINAL val_mrr=0.6054 test_mrr=0.6220 test_hits10=0.6706 eval_sec=680.6
 - DONE     forum_tsd_recon_s45: FINAL val_mrr=0.6072 test_mrr=0.6170 test_hits10=0.6622 eval_sec=734.2
-- RUNNING  icews_coreoff_recon_s47: epoch 5 (patience 3)
-- RUNNING  icews_curonly_recon_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  icews_coreoff_recon_s47: final val_mrr=0.2922 (17200.9s so far)
+- RUNNING  icews_curonly_recon_s46: final val_mrr=0.3172 (15254.5s so far)
 - RUNNING  icews_curonly_recon_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  icews_gru_recon_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  icews_gru_recon_s43: final val_mrr=0.3211 (17228.7s so far)
 - RUNNING  icews_gru_recon_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  icews_gru_recon_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  icews_gru_recon_s47: final val_mrr=0.3213 (17509.9s so far)
 - RUNNING  icews_identity_recon_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  icews_identity_recon_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  icews_identity_recon_s47: final val_mrr=0.3279 (17163.3s so far)
 - DONE     synth_gen_s1_attention_recoff_s43: FINAL val_mrr=0.2017 test_mrr=0.2034 test_hits10=0.4579 eval_sec=667.7
 - DONE     synth_gen_s1_attention_recoff_s44: FINAL val_mrr=0.2007 test_mrr=0.2031 test_hits10=0.4684 eval_sec=300.9
 - DONE     synth_gen_s1_attention_recoff_s45: FINAL val_mrr=0.2031 test_mrr=0.2086 test_hits10=0.4640 eval_sec=739.0
