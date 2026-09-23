@@ -1,20 +1,20 @@
-# Monitor status (2026-09-23 05:36:12)
+# Monitor status (2026-09-23 05:45:11)
 
 ## GPU free (GiB) and utilisation
-0:54GB(98%) 1:51GB(98%) 2:1GB(74%) 3:11GB(69%) 4:6GB(72%) 5:54GB(97%) 6:1GB(7%) 7:2GB(42%) 
-our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 4095829:16658MiB 4096930:11522MiB 4118762:15698MiB 2654122:18014MiB 4096797:15698MiB 4097655:11524MiB 65023:25550MiB 2668669:18384MiB 4095645:17954MiB 4098149:11522MiB 4131532:11528MiB 4177163:16320MiB 2872725:18280MiB 2905507:18198MiB 4096471:15554MiB 4097379:16724MiB 94303:11262MiB 2703991:18280MiB 2704074:18198MiB 4095975:15524MiB 4138403:16724MiB 166942:11526MiB 
+0:54GB(98%) 1:51GB(98%) 2:1GB(19%) 3:8GB(57%) 4:6GB(13%) 5:54GB(98%) 6:13GB(98%) 7:2GB(98%) 
+our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 4095829:16660MiB 4096930:11522MiB 4118762:15698MiB 2654122:18014MiB 4096797:15758MiB 4097655:11524MiB 65023:28010MiB 2668669:18384MiB 4095645:17954MiB 4098149:11522MiB 4131532:11528MiB 4177163:16320MiB 2872725:18280MiB 2905507:18198MiB 4096471:15554MiB 4097379:16724MiB 2703991:18280MiB 2704074:18198MiB 4095975:15524MiB 4138403:16724MiB 166942:11528MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
-- gpu2: ELIGIBLE (idle 799 min)
-- gpu3: ELIGIBLE (idle 1027 min)
-- gpu4: ELIGIBLE (idle 1402 min)
+- gpu2: ELIGIBLE (idle 807 min)
+- gpu3: ELIGIBLE (idle 1036 min)
+- gpu4: ELIGIBLE (idle 1411 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 559 min)
+- gpu6: ELIGIBLE (idle 568 min)
 - gpu7: OURS
-compensation: colleagues hold 26542 MiB on our GPUs; we hold 307952 MiB on theirs; budget left -281410 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
-our launcher claims (pid:gpu/MiB): 4097277:7/12000 
+compensation: colleagues hold 26542 MiB on our GPUs; we hold 298232 MiB on theirs; budget left -271690 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
 - DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
@@ -245,50 +245,35 @@ our launcher claims (pid:gpu/MiB): 4097277:7/12000
 - RUNNING  icews_identity_recon_s47: final val_mrr=0.3279 (17163.3s so far)
 - RUNNING  icews_tsd_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  icews_tsd_recon_s45: epoch 4 (patience 3)
-- RUNNING  polecat_coreoff_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  polecat_coreoff_s43: epoch 7 (patience 5)
 - RUNNING  polecat_coreoff_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  polecat_coreoff_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  polecat_gru_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  polecat_gru_s46: 
-- RUNNING  polecat_gru_s47: epochs': 4, 'time_window': None, 'context_edges': 50000, 'train_edges_
+- RUNNING  polecat_gru_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  sp_attention_s43: 
-- RUNNING  sp_attention_s44: 
-- RUNNING  sp_attention_s45: 
 - RUNNING  sp_attention_s46: 
 - RUNNING  sp_attention_s47: 
 - RUNNING  sp_coreoff_s43: 
-- RUNNING  sp_coreoff_s44: 
-- RUNNING  sp_coreoff_s45: 
 - RUNNING  sp_coreoff_s46: 
 - RUNNING  sp_coreoff_s47: 
 - RUNNING  sp_curonly_s43: 
-- RUNNING  sp_curonly_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  sp_curonly_s45: 
+- RUNNING  sp_curonly_s44: final val_mrr=0.6481 (544.4s so far)
 - RUNNING  sp_curonly_s46: 
 - RUNNING  sp_curonly_s47: 
 - RUNNING  sp_diag_s43: 
-- RUNNING  sp_diag_s44: 
-- RUNNING  sp_diag_s45: 
 - RUNNING  sp_diag_s46: 
 - RUNNING  sp_diag_s47: 
 - RUNNING  sp_gru_s43: 
-- RUNNING  sp_gru_s44: 
-- RUNNING  sp_gru_s45: 
 - RUNNING  sp_gru_s46: 
 - RUNNING  sp_gru_s47: 
 - RUNNING  sp_identity_s43: 
-- RUNNING  sp_identity_s44: 
-- RUNNING  sp_identity_s45: 
 - RUNNING  sp_identity_s46: 
 - RUNNING  sp_identity_s47: 
 - RUNNING  sp_nodeframe_s43: 
-- RUNNING  sp_nodeframe_s44: 
-- RUNNING  sp_nodeframe_s45: 
 - RUNNING  sp_nodeframe_s46: 
 - RUNNING  sp_nodeframe_s47: 
 - RUNNING  sp_tsd_s43: 
-- RUNNING  sp_tsd_s44: 
-- RUNNING  sp_tsd_s45: 
 - RUNNING  sp_tsd_s46: 
 - RUNNING  sp_tsd_s47: 
 - RUNNING  sw_attention_s43: 
@@ -454,7 +439,7 @@ our launcher claims (pid:gpu/MiB): 4097277:7/12000
 - DONE     wd_coreoff_s43: FINAL val_mrr=0.6441 test_mrr=0.5339 test_hits10=0.5957 eval_sec=495.2
 - DONE     wd_coreoff_s46: FINAL val_mrr=0.6416 test_mrr=0.5342 test_hits10=0.5960 eval_sec=456.9
 - RUNNING  wd_coreoff_s47: 
-- RUNNING  wd_gru_s43: final val_mrr=0.6441 (739.8s so far)
+- DONE     wd_gru_s43: FINAL val_mrr=0.6441 test_mrr=0.5358 test_hits10=0.6006 eval_sec=1518.9
 - DONE     wd_gru_s46: FINAL val_mrr=0.6468 test_mrr=0.5373 test_hits10=0.6016 eval_sec=428.2
 - RUNNING  wd_gru_s47: 
 - DONE     wiki_attention_s43_lr1e-3: FINAL val_mrr=0.7640 test_mrr=0.7521 test_hits10=0.8529 eval_sec=1291.5
