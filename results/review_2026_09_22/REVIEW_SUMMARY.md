@@ -1,6 +1,6 @@
-# Review campaign summary (auto-generated 2026-09-23 11:24)
+# Review campaign summary (auto-generated 2026-09-23 11:45)
 
-259 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+260 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
@@ -70,7 +70,7 @@
 | tkgl-polecat                                                       | polecat | on    | tsd               | 0.003  |   3 | 0.244187 |   0.00336667  | 0.2403 / 0.2461 / 0.2462                                                                                                                               |
 | tkgl-polecat                                                       | polecat | on    | tsd-no-gap        | 0.003  |   2 | 0.242455 |   0.00237966  | 0.2441 / 0.2408                                                                                                                                        |
 | tkgl-smallpedia                                                    | sp      | on    | core-off          | 0.01   |   1 | 0.512847 | nan           | 0.5128                                                                                                                                                 |
-| tkgl-smallpedia                                                    | sp      | on    | current-only-maps | 0.01   |   4 | 0.607648 |   0.00811018  | 0.6144 / 0.5959 / 0.6110 / 0.6092                                                                                                                      |
+| tkgl-smallpedia                                                    | sp      | on    | current-only-maps | 0.01   |   5 | 0.604061 |   0.0106608   | 0.5897 / 0.6144 / 0.5959 / 0.6110 / 0.6092                                                                                                             |
 | tkgl-smallpedia                                                    | sp      | on    | identity-maps     | 0.01   |   3 | 0.613285 |   0.00626411  | 0.6182 / 0.6062 / 0.6154                                                                                                                               |
 | tkgl-smallpedia                                                    | sp      | on    | tsd-no-gap        | 0.01   |   3 | 0.610846 |   0.0053374   | 0.6160 / 0.6054 / 0.6112                                                                                                                               |
 | tkgl-wikidata                                                      | wd      | on    | core-off          | 0.003  |   2 | 0.534037 |   0.000165534 | 0.5339 / 0.5342                                                                                                                                        |
@@ -503,6 +503,8 @@
 | smoke   | tsd_clockdiag                       | test    |      4000 |                  0 |               0 |         0 |            0 |            0 |      0.526862 |      0.526862 |           0.526862 |                           0 |                         0 |
 | sp      | sp_coreoff_s43                      | val     |    912066 |                  0 |               0 |         0 |            0 |            0 |      0.600402 |      0.600402 |           0.600402 |                           0 |                         0 |
 | sp      | sp_coreoff_s43                      | test    |    163172 |                  0 |               0 |         0 |            0 |            0 |      0.512847 |      0.512847 |           0.512847 |                           0 |                         0 |
+| sp      | sp_curonly_s43                      | val     |    912066 |                  0 |               0 |         0 |            0 |            0 |      0.643094 |      0.643094 |           0.643094 |                           0 |                         0 |
+| sp      | sp_curonly_s43                      | test    |    163172 |                  0 |               0 |         0 |            0 |            0 |      0.589715 |      0.589715 |           0.589715 |                           0 |                         0 |
 | sp      | sp_curonly_s44                      | val     |    912066 |                  0 |               0 |         0 |            0 |            0 |      0.699571 |      0.699571 |           0.699571 |                           0 |                         0 |
 | sp      | sp_curonly_s44                      | test    |    163172 |                  0 |               0 |         0 |            0 |            0 |      0.614432 |      0.614432 |           0.614432 |                           0 |                         0 |
 | sw      | sw_attention_s43                    | val     |    463469 |                  0 |               0 |         0 |            0 |            0 |      0.378576 |      0.378576 |           0.378576 |                           0 |                         0 |
@@ -803,29 +805,28 @@
 | icews_tsd_recon_s44      | running/pending |            6 |          1 |
 | icews_tsd_recon_s45      | running/pending |            4 |          1 |
 | polecat_coreoff_s46      | running/pending |           10 |          1 |
-| polecat_gru_s46          | running/pending |            0 |          1 |
-| sp_attention_s43         | running/pending |            0 |          1 |
-| sp_attention_s46         | running/pending |            0 |          1 |
-| sp_attention_s47         | running/pending |            0 |          1 |
-| sp_coreoff_s46           | running/pending |            0 |          1 |
-| sp_coreoff_s47           | running/pending |            0 |          1 |
-| sp_curonly_s43           | running/pending |           15 |          1 |
-| sp_curonly_s46           | running/pending |            0 |          1 |
-| sp_curonly_s47           | running/pending |            0 |          1 |
-| sp_diag_s43              | running/pending |            0 |          1 |
-| sp_diag_s46              | running/pending |            0 |          1 |
-| sp_diag_s47              | running/pending |            0 |          1 |
-| sp_gru_s43               | running/pending |            0 |          1 |
-| sp_gru_s46               | running/pending |            0 |          1 |
-| sp_gru_s47               | running/pending |            0 |          1 |
-| sp_identity_s43          | running/pending |            0 |          1 |
-| sp_identity_s46          | running/pending |            0 |          1 |
-| sp_identity_s47          | running/pending |            0 |          1 |
-| sp_nodeframe_s43         | running/pending |            0 |          1 |
-| sp_nodeframe_s46         | running/pending |            0 |          1 |
-| sp_nodeframe_s47         | running/pending |            0 |          1 |
-| sp_tsd_s43               | running/pending |            0 |          1 |
-| sp_tsd_s46               | running/pending |            0 |          1 |
-| sp_tsd_s47               | running/pending |            0 |          1 |
-| wd_coreoff_s47           | running/pending |            0 |          1 |
+| polecat_gru_s46          | running/pending |            0 |          2 |
+| sp_attention_s43         | running/pending |            0 |          2 |
+| sp_attention_s46         | running/pending |            0 |          2 |
+| sp_attention_s47         | running/pending |            6 |          2 |
+| sp_coreoff_s46           | running/pending |            4 |          2 |
+| sp_coreoff_s47           | running/pending |            6 |          2 |
+| sp_curonly_s46           | running/pending |            2 |          2 |
+| sp_curonly_s47           | running/pending |            0 |          2 |
+| sp_diag_s43              | running/pending |            6 |          2 |
+| sp_diag_s46              | running/pending |            0 |          2 |
+| sp_diag_s47              | running/pending |            0 |          2 |
+| sp_gru_s43               | running/pending |            0 |          2 |
+| sp_gru_s46               | running/pending |            0 |          2 |
+| sp_gru_s47               | running/pending |            4 |          1 |
+| sp_identity_s43          | running/pending |            0 |          2 |
+| sp_identity_s46          | running/pending |            0 |          2 |
+| sp_identity_s47          | running/pending |            0 |          2 |
+| sp_nodeframe_s43         | running/pending |            0 |          2 |
+| sp_nodeframe_s46         | running/pending |            0 |          2 |
+| sp_nodeframe_s47         | running/pending |            0 |          2 |
+| sp_tsd_s43               | running/pending |            0 |          2 |
+| sp_tsd_s46               | running/pending |            0 |          2 |
+| sp_tsd_s47               | running/pending |            0 |          2 |
+| wd_coreoff_s47           | running/pending |            0 |          2 |
 

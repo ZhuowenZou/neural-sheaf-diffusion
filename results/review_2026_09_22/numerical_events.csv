@@ -158,6 +158,7 @@ synth_r,smoke,synth-history:results/review_2026_09_22/synthetic/gen_s1r/data.npz
 tsd,smoke,tgbl-wiki,tsd,43,560.0,0.0,0.0,228.0,0.0,0.0,0.0,0.0,4000.0,0.0,0.0,0.0,4000.0,0.0,True
 tsd_clockdiag,smoke,tgbl-wiki,tsd,43,560.0,0.0,0.0,228.0,0.0,0.0,0.0,0.0,4000.0,0.0,0.0,0.0,4000.0,0.0,True
 sp_coreoff_s43,sp,tkgl-smallpedia,core-off,43,1455.0,0.0,0.0,5.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
+sp_curonly_s43,sp,tkgl-smallpedia,current-only-maps,43,1455.0,0.0,0.0,3.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sp_curonly_s44,sp,tkgl-smallpedia,current-only-maps,44,1455.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sw_attention_s43,sw,thgl-software,attention-gates,43,6384.0,0.0,0.0,33.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
 sw_attention_s46,sw,thgl-software,attention-gates,46,6916.0,0.0,0.0,54.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True

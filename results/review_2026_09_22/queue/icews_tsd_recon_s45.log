@@ -14,3 +14,4 @@ parameters_by_component={'embeddings': 12512, 'ssm_input_selector_B': 620928, 's
 [epoch 4/6] {'epoch': 4, 'train_loss': 0.06148078284638147, 'track_val_mrr': 0.23919590532928706, 'track_val_loss': 0.5223779082298279, 'train_sec': 312.8, 'track_eval_sec': 287.9, 'peak_gpu_mem_mb': 8367.6, 'peak_gpu_reserved_mb': 15012.0, 'epoch_steps': 1262, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 27, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
 early stop at epoch 4 (patience 3)
 checkpoint saved: results/review_2026_09_22/icews/icews_tsd_recon_s45/best.pt
+final val_mrr=0.3051 (22859.7s so far)
