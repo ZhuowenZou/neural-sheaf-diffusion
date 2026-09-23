@@ -1,6 +1,6 @@
-# Review campaign summary (auto-generated 2026-09-23 10:21)
+# Review campaign summary (auto-generated 2026-09-23 11:04)
 
-255 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+258 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
@@ -63,12 +63,13 @@
 | tkgl-icews                                                         | icews   | on    | identity-maps     | 0.003  |   1 | 0.336861 | nan           | 0.3369                                                                                                                                                 |
 | tkgl-icews                                                         | icews   | on    | tsd               | 0.003  |   3 | 0.335154 |   0.00310136  | 0.3386 / 0.3342 / 0.3326                                                                                                                               |
 | tkgl-icews                                                         | icews   | on    | tsd-no-memory     | 0.003  |   2 | 0.328202 |   0.001834    | 0.3295 / 0.3269                                                                                                                                        |
-| tkgl-polecat                                                       | polecat | on    | core-off          | 0.003  |   1 | 0.224755 | nan           | 0.2248                                                                                                                                                 |
+| tkgl-polecat                                                       | polecat | on    | core-off          | 0.003  |   2 | 0.22655  |   0.0025388   | 0.2283 / 0.2248                                                                                                                                        |
 | tkgl-polecat                                                       | polecat | on    | current-only-maps | 0.003  |   2 | 0.247201 |   0.000581658 | 0.2476 / 0.2468                                                                                                                                        |
-| tkgl-polecat                                                       | polecat | on    | gru-ordinary      | 0.003  |   1 | 0.244459 | nan           | 0.2445                                                                                                                                                 |
+| tkgl-polecat                                                       | polecat | on    | gru-ordinary      | 0.003  |   2 | 0.245384 |   0.00130905  | 0.2463 / 0.2445                                                                                                                                        |
 | tkgl-polecat                                                       | polecat | on    | identity-maps     | 0.003  |   2 | 0.244472 |   0.000641277 | 0.2449 / 0.2440                                                                                                                                        |
 | tkgl-polecat                                                       | polecat | on    | tsd               | 0.003  |   3 | 0.244187 |   0.00336667  | 0.2403 / 0.2461 / 0.2462                                                                                                                               |
 | tkgl-polecat                                                       | polecat | on    | tsd-no-gap        | 0.003  |   2 | 0.242455 |   0.00237966  | 0.2441 / 0.2408                                                                                                                                        |
+| tkgl-smallpedia                                                    | sp      | on    | core-off          | 0.01   |   1 | 0.512847 | nan           | 0.5128                                                                                                                                                 |
 | tkgl-smallpedia                                                    | sp      | on    | current-only-maps | 0.01   |   4 | 0.607648 |   0.00811018  | 0.6144 / 0.5959 / 0.6110 / 0.6092                                                                                                                      |
 | tkgl-smallpedia                                                    | sp      | on    | identity-maps     | 0.01   |   3 | 0.613285 |   0.00626411  | 0.6182 / 0.6062 / 0.6154                                                                                                                               |
 | tkgl-smallpedia                                                    | sp      | on    | tsd-no-gap        | 0.01   |   3 | 0.610846 |   0.0053374   | 0.6160 / 0.6054 / 0.6112                                                                                                                               |
@@ -142,9 +143,9 @@
 | tkgl-icews    | on    | gru-ordinary      |   0.003  |   0.003  |   1 |   0.338622 |   0.336746 |               -0.00187591  | nan          |    nan          | -0.0019                                         | 0+ 1-   |
 | tkgl-icews    | on    | identity-maps     |   0.003  |   0.003  |   1 |   0.338622 |   0.336861 |               -0.00176078  | nan          |    nan          | -0.0018                                         | 0+ 1-   |
 | tkgl-icews    | on    | tsd-no-memory     |   0.003  |   0.003  |   2 |   0.336408 |   0.328202 |               -0.00820633  |   0.00129643 |      0.011648   | -0.0091 / -0.0073                               | 0+ 2-   |
-| tkgl-polecat  | on    | core-off          |   0.003  |   0.003  |   1 |   0.246163 |   0.224755 |               -0.0214083   | nan          |    nan          | -0.0214                                         | 0+ 1-   |
+| tkgl-polecat  | on    | core-off          |   0.003  |   0.003  |   2 |   0.243232 |   0.22655  |               -0.0166814   |   0.00668488 |      0.0600613  | -0.0120 / -0.0214                               | 0+ 2-   |
 | tkgl-polecat  | on    | current-only-maps |   0.003  |   0.003  |   2 |   0.243199 |   0.247201 |                0.00400199  |   0.00468183 |      0.0420646  | +0.0073 / +0.0007                               | 2+ 0-   |
-| tkgl-polecat  | on    | gru-ordinary      |   0.003  |   0.003  |   1 |   0.246163 |   0.244459 |               -0.00170467  | nan          |    nan          | -0.0017                                         | 0+ 1-   |
+| tkgl-polecat  | on    | gru-ordinary      |   0.003  |   0.003  |   2 |   0.243232 |   0.245384 |                0.00215269  |   0.00545513 |      0.0490124  | +0.0060 / -0.0017                               | 1+ 1-   |
 | tkgl-polecat  | on    | identity-maps     |   0.003  |   0.003  |   2 |   0.243199 |   0.244472 |                0.00127276  |   0.00474145 |      0.0426002  | +0.0046 / -0.0021                               | 1+ 1-   |
 | tkgl-polecat  | on    | tsd-no-gap        |   0.003  |   0.003  |   2 |   0.243199 |   0.242455 |               -0.000744294 |   0.00647983 |      0.058219   | +0.0038 / -0.0053                               | 1+ 1-   |
 | tkgl-wikidata | on    | core-off          |   0.003  |   0.003  |   2 |   0.543558 |   0.534037 |               -0.00952116  |   0.00899734 |      0.0808379  | -0.0032 / -0.0159                               | 0+ 2-   |
@@ -478,8 +479,12 @@
 | matched | wiki_tsd_s46_lr1e-3                 | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.764651 |      0.764651 |           0.764651 |                           0 |                         0 |
 | matched | wiki_tsd_s47_lr1e-3                 | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.751706 |      0.751706 |           0.751706 |                           0 |                         0 |
 | matched | wiki_tsd_s47_lr1e-3                 | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.761607 |      0.761607 |           0.761607 |                           0 |                         0 |
+| polecat | polecat_coreoff_s43                 | val     |    743472 |                  0 |               0 |         0 |            0 |            0 |      0.235268 |      0.235268 |           0.235268 |                           0 |                         0 |
+| polecat | polecat_coreoff_s43                 | test    |    532636 |                  0 |               0 |         0 |            0 |            0 |      0.228346 |      0.228346 |           0.228346 |                           0 |                         0 |
 | polecat | polecat_coreoff_s47                 | val     |    833472 |                  0 |               0 |         0 |            0 |            0 |      0.232254 |      0.232254 |           0.232254 |                           0 |                         0 |
 | polecat | polecat_coreoff_s47                 | test    |    532636 |                  0 |               0 |         0 |            0 |            0 |      0.224755 |      0.224755 |           0.224755 |                           0 |                         0 |
+| polecat | polecat_gru_s43                     | val     |    833472 |                  0 |               0 |         0 |            0 |            0 |      0.247835 |      0.247835 |           0.247835 |                           0 |                         0 |
+| polecat | polecat_gru_s43                     | test    |    532636 |                  0 |               0 |         0 |            0 |            0 |      0.24631  |      0.24631  |           0.24631  |                           0 |                         0 |
 | polecat | polecat_gru_s47                     | val     |    833472 |                  0 |               0 |         0 |            0 |            0 |      0.243391 |      0.243391 |           0.243391 |                           0 |                         0 |
 | polecat | polecat_gru_s47                     | test    |    532636 |                  0 |               0 |         0 |            0 |            0 |      0.244459 |      0.244459 |           0.244459 |                           0 |                         0 |
 | smoke   | attention                           | val     |      6000 |                  0 |               0 |         0 |            0 |            0 |      0.642936 |      0.642936 |           0.642936 |                           0 |                         0 |
@@ -494,6 +499,8 @@
 | smoke   | tsd                                 | test    |      4000 |                  0 |               0 |         0 |            0 |            0 |      0.526321 |      0.526321 |           0.526321 |                           0 |                         0 |
 | smoke   | tsd_clockdiag                       | val     |      6000 |                  0 |               0 |         0 |            0 |            0 |      0.626814 |      0.626814 |           0.626814 |                           0 |                         0 |
 | smoke   | tsd_clockdiag                       | test    |      4000 |                  0 |               0 |         0 |            0 |            0 |      0.526862 |      0.526862 |           0.526862 |                           0 |                         0 |
+| sp      | sp_coreoff_s43                      | val     |    912066 |                  0 |               0 |         0 |            0 |            0 |      0.600402 |      0.600402 |           0.600402 |                           0 |                         0 |
+| sp      | sp_coreoff_s43                      | test    |    163172 |                  0 |               0 |         0 |            0 |            0 |      0.512847 |      0.512847 |           0.512847 |                           0 |                         0 |
 | sp      | sp_curonly_s44                      | val     |    912066 |                  0 |               0 |         0 |            0 |            0 |      0.699571 |      0.699571 |           0.699571 |                           0 |                         0 |
 | sp      | sp_curonly_s44                      | test    |    163172 |                  0 |               0 |         0 |            0 |            0 |      0.614432 |      0.614432 |           0.614432 |                           0 |                         0 |
 | sw      | sw_attention_s43                    | val     |    463469 |                  0 |               0 |         0 |            0 |            0 |      0.378576 |      0.378576 |           0.378576 |                           0 |                         0 |
@@ -794,17 +801,14 @@
 | icews_identity_recon_s47 | running/pending |            6 |          1 |
 | icews_tsd_recon_s44      | running/pending |            6 |          1 |
 | icews_tsd_recon_s45      | running/pending |            4 |          1 |
-| polecat_coreoff_s43      | running/pending |            7 |          1 |
 | polecat_coreoff_s46      | running/pending |           10 |          1 |
-| polecat_gru_s43          | running/pending |           10 |          1 |
 | polecat_gru_s46          | running/pending |            0 |          1 |
 | sp_attention_s43         | running/pending |            0 |          1 |
 | sp_attention_s46         | running/pending |            0 |          1 |
 | sp_attention_s47         | running/pending |            0 |          1 |
-| sp_coreoff_s43           | running/pending |            5 |          1 |
 | sp_coreoff_s46           | running/pending |            0 |          1 |
 | sp_coreoff_s47           | running/pending |            0 |          1 |
-| sp_curonly_s43           | running/pending |            0 |          1 |
+| sp_curonly_s43           | running/pending |            3 |          1 |
 | sp_curonly_s46           | running/pending |            0 |          1 |
 | sp_curonly_s47           | running/pending |            0 |          1 |
 | sp_diag_s43              | running/pending |            0 |          1 |

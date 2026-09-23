@@ -146,7 +146,9 @@ wiki_tsd_s44_lr1e-3,matched,tgbl-wiki,tsd,44,24832.0,0.0,0.0,464.0,0.0,0.0,0.0,0
 wiki_tsd_s45_lr1e-3,matched,tgbl-wiki,tsd,45,24832.0,0.0,0.0,478.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_tsd_s46_lr1e-3,matched,tgbl-wiki,tsd,46,24832.0,0.0,0.0,481.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_tsd_s47_lr1e-3,matched,tgbl-wiki,tsd,47,24832.0,0.0,0.0,534.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
+polecat_coreoff_s43,polecat,tkgl-polecat,core-off,43,8344.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,533472.0,0.0,0.0,0.0,532636.0,0.0,True
 polecat_coreoff_s47,polecat,tkgl-polecat,core-off,47,11920.0,0.0,0.0,11.0,0.0,0.0,0.0,0.0,533472.0,0.0,0.0,0.0,532636.0,0.0,True
+polecat_gru_s43,polecat,tkgl-polecat,gru-ordinary,43,11920.0,0.0,0.0,217.0,0.0,0.0,0.0,0.0,533472.0,0.0,0.0,0.0,532636.0,0.0,True
 polecat_gru_s47,polecat,tkgl-polecat,gru-ordinary,47,11920.0,0.0,0.0,57.0,0.0,0.0,0.0,0.0,533472.0,0.0,0.0,0.0,532636.0,0.0,True
 attention,smoke,tgbl-wiki,attention-gates,43,560.0,0.0,0.0,185.0,0.0,0.0,0.0,0.0,4000.0,0.0,0.0,0.0,4000.0,0.0,True
 coreoff,smoke,tgbl-wiki,core-off,43,560.0,0.0,0.0,357.0,0.0,0.0,0.0,0.0,4000.0,0.0,0.0,0.0,4000.0,0.0,True
@@ -154,6 +156,7 @@ gru,smoke,tgbl-wiki,gru-sheaf,43,560.0,0.0,0.0,188.0,0.0,0.0,0.0,0.0,4000.0,0.0,
 synth_r,smoke,synth-history:results/review_2026_09_22/synthetic/gen_s1r/data.npz,tsd,43,151.0,0.0,0.0,68.0,0.0,0.0,0.0,0.0,1500.0,0.0,0.0,0.0,1500.0,0.0,True
 tsd,smoke,tgbl-wiki,tsd,43,560.0,0.0,0.0,228.0,0.0,0.0,0.0,0.0,4000.0,0.0,0.0,0.0,4000.0,0.0,True
 tsd_clockdiag,smoke,tgbl-wiki,tsd,43,560.0,0.0,0.0,228.0,0.0,0.0,0.0,0.0,4000.0,0.0,0.0,0.0,4000.0,0.0,True
+sp_coreoff_s43,sp,tkgl-smallpedia,core-off,43,1455.0,0.0,0.0,5.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sp_curonly_s44,sp,tkgl-smallpedia,current-only-maps,44,1455.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sw_attention_s43,sw,thgl-software,attention-gates,43,6384.0,0.0,0.0,33.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
 sw_attention_s46,sw,thgl-software,attention-gates,46,6916.0,0.0,0.0,54.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
