@@ -169,8 +169,36 @@ comparisons must therefore state the batch width; our benchmark numbers use 600 
 (All aggregates, histograms of steps and gaps by activity class and split, and the learned timing parameters
 are in `clock_diagnostics.csv` and each run's `clock_*.csv` / `clock_learned_timing.json`.)
 
-## 3. Matched comparisons (tgbl-wiki five seeds; thgl-forum subset)
-(wiki: filled from per_seed_results.csv / paired_contrasts.csv when wave 2 completes)
+## 3. Matched comparisons (tgbl-wiki five seeds; thgl-forum five seeds)
+
+**tgbl-wiki, primary seven-arm comparison plus core-off (`matched/`; seeds 43-47 paired; identical splits,
+features, 50k-edge context, 600 s batches, state warm-up, REC typed channel, scorer, softplus loss, K = 32
+negatives drawn from a seed-locked generator independent of the architecture, tracking-validation selection
+on the first 8,000 validation edges, 8 epochs; learning rate locked per arm on the seed-43 tracking validation
+from {3e-4, 1e-3}: every arm chose 1e-3; official negatives and evaluator for the reported test MRR):**
+
+| arm | active params | test MRR mean ± SD | Hits@10 | Δ arm − TSD (mean ± SD; 95% t) | per-seed Δ (43..47) | signs |
+|---|---|---|---|---|---|---|
+| TSD (memory-conditioned incidence maps) | 444,686 | **0.7623 ± 0.0030** | 0.852 | – | 0.7575 / 0.7646 / 0.7631 / 0.7647 / 0.7616 | – |
+| current-only maps | 448,846 | 0.7601 ± 0.0075 | 0.852 | −0.0022 ± 0.0085; ±0.011 | +0.008 / +0.003 / −0.001 / −0.011 / −0.011 | 2+ 3− |
+| identity maps | 444,558 | 0.7630 ± 0.0019 | 0.852 | +0.0007 ± 0.0032; ±0.004 | +0.005 / +0.000 / +0.002 / −0.003 / −0.001 | 3+ 2− |
+| GRU + ordinary propagation | 33,338 | 0.7640 ± 0.0060 | 0.852 | +0.0017 ± 0.0077; ±0.010 | +0.014 / +0.005 / −0.002 / −0.005 / −0.004 | 2+ 3− |
+| diagonal SSM + ordinary propagation | 10,126 | 0.7616 ± 0.0060 | 0.853 | −0.0007 ± 0.0068; ±0.008 | +0.008 / +0.004 / −0.005 / −0.003 / −0.008 | 2+ 3− |
+| history-conditioned edge gates | 444,815 | 0.7548 ± 0.0049 | 0.852 | −0.0075 ± 0.0054; ±0.007 | −0.005 / −0.004 / −0.008 / −0.017 / −0.003 | 0+ 5− |
+| node-frame geometry | 444,750 | 0.7543 ± 0.0060 | 0.852 | −0.0080 ± 0.0084; ±0.010 | +0.007 / −0.010 / −0.015 / −0.012 / −0.010 | 1+ 4− |
+| core-off + REC (head only) | 8,419 | 0.7349 ± 0.0066 | 0.845 | −0.0274 ± 0.0084; ±0.010 | −0.014 / −0.031 / −0.032 / −0.026 / −0.035 | 0+ 5− |
+
+"Active params" excludes parameters unused by construction (the SSM input selector B holds 435,584 of TSD's
+parameters). The retained lr 3e-4 TSD (0.7331 ± 0.0026 over seeds 43/46/47) is superseded by this locked
+configuration; the tracking-validation gap between the two learning rates was 0.766 vs 0.734 at seed 43.
+
+**Supported (wiki):** the recurrent core contributes (+0.027 over the head-only model, every seed). **Null:**
+memory-conditioned maps do not beat current-only maps, identity maps, a GRU or a diagonal SSM with ordinary
+propagation; the last two reach the same accuracy with 13x and 44x fewer active parameters. **Negative:**
+node-frame geometry and history-conditioned edge gates are slightly but consistently worse than identity
+transport (−0.008; 4-5 of 5 seeds). Stratification by recurring vs novel pairs is available per run in
+`query_ranks.csv.gz` (not tabulated here for lack of time).
+
 
 **thgl-forum matched matrix (complete; `forum/` plus the replay-verified retained seeds; same head, REC
 channels, data, batching, negatives regime, budget and selection rule; paired per seed; `paired_contrasts.csv`):**

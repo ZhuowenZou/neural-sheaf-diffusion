@@ -1,4 +1,4 @@
-# Review campaign summary (auto-generated 2026-09-22 21:39)
+# Review campaign summary (auto-generated 2026-09-22 21:50)
 
 166 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
@@ -552,23 +552,23 @@
 | forum_attention_recoff_s44          | running/pending |            0 |          1 |
 | forum_attention_recon_s45           | running/pending |            0 |          1 |
 | icews_coreoff_recon_s47             | running/pending |            5 |          1 |
-| icews_curonly_recon_s46             | running/pending |            4 |          1 |
+| icews_curonly_recon_s46             | running/pending |            6 |          1 |
 | icews_curonly_recon_s47             | running/pending |            0 |          1 |
-| icews_gru_recon_s43                 | running/pending |            4 |          1 |
+| icews_gru_recon_s43                 | running/pending |            6 |          1 |
 | icews_gru_recon_s46                 | running/pending |            0 |          1 |
-| icews_gru_recon_s47                 | running/pending |            5 |          1 |
+| icews_gru_recon_s47                 | running/pending |            6 |          1 |
 | icews_identity_recon_s46            | running/pending |            0 |          1 |
-| icews_identity_recon_s47            | running/pending |            4 |          1 |
-| wiki_tsd_clock-node_interaction_s44 | running/pending |            2 |          1 |
+| icews_identity_recon_s47            | running/pending |            6 |          1 |
+| wiki_tsd_clock-node_interaction_s44 | running/pending |            3 |          1 |
 | wiki_tsd_clock-node_interaction_s45 | running/pending |            0 |          1 |
 | wiki_tsd_clock-node_interaction_s46 | running/pending |            0 |          1 |
-| wiki_tsd_clock-node_interaction_s47 | running/pending |            2 |          1 |
-| wiki_tsd_clock-node_update_s44      | running/pending |            2 |          1 |
+| wiki_tsd_clock-node_interaction_s47 | running/pending |            4 |          1 |
+| wiki_tsd_clock-node_update_s44      | running/pending |            4 |          1 |
 | wiki_tsd_clock-node_update_s45      | running/pending |            0 |          1 |
-| wiki_tsd_clock-node_update_s46      | running/pending |            2 |          1 |
-| wiki_tsd_clock-node_update_s47      | running/pending |            2 |          1 |
+| wiki_tsd_clock-node_update_s46      | running/pending |            3 |          1 |
+| wiki_tsd_clock-node_update_s47      | running/pending |            7 |          1 |
 | wiki_tsd_tw300_s44                  | running/pending |            0 |          1 |
-| wiki_tsd_tw300_s45                  | running/pending |            0 |          1 |
+| wiki_tsd_tw300_s45                  | running/pending |            1 |          1 |
 | wiki_tsd_tw300_s46                  | running/pending |            0 |          1 |
 | wiki_tsd_tw300_s47                  | running/pending |            1 |          1 |
 
