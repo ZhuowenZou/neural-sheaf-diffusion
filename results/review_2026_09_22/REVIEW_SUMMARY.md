@@ -1,13 +1,13 @@
-# Review campaign summary (auto-generated 2026-09-22 18:34)
+# Review campaign summary (auto-generated 2026-09-22 18:44)
 
-126 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+128 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
 | dataset                                                            | group   | rec   | arm               |     lr |   n |     mean |           std | values                                     |
 |:-------------------------------------------------------------------|:--------|:------|:------------------|-------:|----:|---------:|--------------:|:-------------------------------------------|
 | synth-history:results/review_2026_09_22/synthetic/gen_s1r/data.npz | smoke   | off   | tsd               | 0.001  |   1 | 0.215083 | nan           | 0.2151                                     |
-| tgbl-wiki                                                          | clock   | on    | tsd               | 0.001  |   1 | 0.732249 | nan           | 0.7322                                     |
+| tgbl-wiki                                                          | clock   | on    | tsd               | 0.001  |   2 | 0.745975 |   0.0194125   | 0.7597 / 0.7322                            |
 | tgbl-wiki                                                          | matched | on    | attention-gates   | 0.0003 |   1 | 0.734242 | nan           | 0.7342                                     |
 | tgbl-wiki                                                          | matched | on    | attention-gates   | 0.001  |   1 | 0.752146 | nan           | 0.7521                                     |
 | tgbl-wiki                                                          | matched | on    | core-off          | 0.0003 |   1 | 0.725545 | nan           | 0.7255                                     |
@@ -17,7 +17,7 @@
 | tgbl-wiki                                                          | matched | on    | diagssm-ordinary  | 0.0003 |   1 | 0.717137 | nan           | 0.7171                                     |
 | tgbl-wiki                                                          | matched | on    | diagssm-ordinary  | 0.001  |   3 | 0.764205 |   0.00571675  | 0.7659 / 0.7689 / 0.7578                   |
 | tgbl-wiki                                                          | matched | on    | gru-ordinary      | 0.0003 |   1 | 0.733609 | nan           | 0.7336                                     |
-| tgbl-wiki                                                          | matched | on    | gru-ordinary      | 0.001  |   2 | 0.765658 |   0.00792878  | 0.7713 / 0.7601                            |
+| tgbl-wiki                                                          | matched | on    | gru-ordinary      | 0.001  |   3 | 0.764299 |   0.00608029  | 0.7713 / 0.7616 / 0.7601                   |
 | tgbl-wiki                                                          | matched | on    | identity-maps     | 0.0003 |   1 | 0.735953 | nan           | 0.7360                                     |
 | tgbl-wiki                                                          | matched | on    | identity-maps     | 0.001  |   1 | 0.762824 | nan           | 0.7628                                     |
 | tgbl-wiki                                                          | matched | on    | node-frame        | 0.0003 |   1 | 0.731724 | nan           | 0.7317                                     |
@@ -163,6 +163,8 @@
 | audit   | wiki_f_s46                 | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.730548 |      0.730548 |           0.730548 |                           0 |                         0 |
 | audit   | wiki_f_s47                 | val     |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.743804 |      0.743804 |           0.743804 |                           0 |                         0 |
 | audit   | wiki_f_s47                 | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.733075 |      0.733075 |           0.733075 |                           0 |                         0 |
+| clock   | wiki_tsd_clock-global_s43  | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.747946 |      0.747946 |           0.747946 |                           0 |                         0 |
+| clock   | wiki_tsd_clock-global_s43  | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.759702 |      0.759702 |           0.759702 |                           0 |                         0 |
 | clock   | wiki_tsd_tw1200_s43        | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.717011 |      0.717011 |           0.717011 |                           0 |                         0 |
 | clock   | wiki_tsd_tw1200_s43        | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.732249 |      0.732249 |           0.732249 |                           0 |                         0 |
 | forum   | forum_attention_rec_s43    | val     |   3643658 |                  0 |               0 |         0 |            0 |            0 |      0.603228 |      0.603228 |           0.603228 |                           0 |                         0 |
@@ -285,6 +287,8 @@
 | matched | wiki_gru_s43_lr1e-3        | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.771264 |      0.771264 |           0.771264 |                           0 |                         0 |
 | matched | wiki_gru_s43_lr3e-4        | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.722226 |      0.722226 |           0.722226 |                           0 |                         0 |
 | matched | wiki_gru_s43_lr3e-4        | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.733609 |      0.733609 |           0.733609 |                           0 |                         0 |
+| matched | wiki_gru_s45_lr1e-3        | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.754696 |      0.754696 |           0.754696 |                           0 |                         0 |
+| matched | wiki_gru_s45_lr1e-3        | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.761582 |      0.761582 |           0.761582 |                           0 |                         0 |
 | matched | wiki_gru_s46_lr1e-3        | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.750438 |      0.750438 |           0.750438 |                           0 |                         0 |
 | matched | wiki_gru_s46_lr1e-3        | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.760051 |      0.760051 |           0.760051 |                           0 |                         0 |
 | matched | wiki_identity_s43_lr1e-3   | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.748212 |      0.748212 |           0.748212 |                           0 |                         0 |
@@ -314,122 +318,128 @@
 
 ## Clock / saturation diagnostics (per run x split x activity class)
 
-| group   | run                 | clock   | split        | activity   |       n |   frac_capped |   frac_zero_gap_used |   n_first_update |   n_first_interaction |     mean_dt |   mean_dt_uncapped |   mean_log10_gap_used_pos |   delta_scale |
-|:--------|:--------------------|:--------|:-------------|:-----------|--------:|--------------:|---------------------:|-----------------:|----------------------:|------------:|-------------------:|--------------------------:|--------------:|
-| audit   | forum_f_s43         | global  | train_replay | endpoint   | 3180356 |   0.0626276   |          0.00192934  |           125128 |                136616 | 0.0569263   |        0.421264    |                   2.77779 |           600 |
-| audit   | forum_f_s43         | global  | train_replay | closure    | 8097681 |   0.00295146  |          0.00120047  |            11488 |                 29106 | 0.00316368  |        0.045859    |                   2.77723 |           600 |
-| audit   | forum_f_s43         | global  | val          | endpoint   | 2856301 |   0.0264419   |          0           |             7026 |                  7026 | 0.0460124   |        0.228327    |                   2.77777 |           600 |
-| audit   | forum_f_s43         | global  | val          | closure    | 7467686 |   0.00144931  |          0           |                0 |                     0 | 0.00279961  |        0.0179797   |                   2.77748 |           600 |
-| audit   | forum_f_s43         | global  | test         | endpoint   | 2871270 |   0.0269376   |          0           |             3097 |                  3097 | 0.0473454   |        0.0870642   |                   2.77796 |           600 |
-| audit   | forum_f_s43         | global  | test         | closure    | 6903909 |   0.00100117  |          0           |                0 |                     0 | 0.00270563  |        0.00391417  |                   2.77694 |           600 |
-| audit   | forum_f_s46         | global  | train_replay | endpoint   | 3180356 |   0.978229    |          0.00192934  |           125128 |                136616 | 0.248534    |        2.93634     |                   2.77779 |           600 |
-| audit   | forum_f_s46         | global  | train_replay | closure    | 8097681 |   0.0189684   |          0.00120047  |            11488 |                 29106 | 0.00603243  |        0.0575437   |                   2.77723 |           600 |
-| audit   | forum_f_s46         | global  | val          | endpoint   | 2856301 |   0.974357    |          0           |             7026 |                  7026 | 0.248251    |        2.83289     |                   2.77777 |           600 |
-| audit   | forum_f_s46         | global  | val          | closure    | 7467686 |   0.016635    |          0           |                0 |                     0 | 0.00535987  |        0.0462371   |                   2.77748 |           600 |
-| audit   | forum_f_s46         | global  | test         | endpoint   | 2871270 |   0.973408    |          0           |             3097 |                  3097 | 0.248197    |        2.79304     |                   2.77796 |           600 |
-| audit   | forum_f_s46         | global  | test         | closure    | 6903909 |   0.0180912   |          0           |                0 |                     0 | 0.00579419  |        0.0501042   |                   2.77694 |           600 |
-| audit   | forum_f_s47         | global  | train_replay | endpoint   | 3180356 |   0.999975    |          0.00192934  |           125128 |                136616 | 0.249997    |        4.5682      |                   2.77779 |           600 |
-| audit   | forum_f_s47         | global  | train_replay | closure    | 8097681 |   0.000930019 |          0.00120047  |            11488 |                 29106 | 0.00192604  |        0.0025063   |                   2.77723 |           600 |
-| audit   | forum_f_s47         | global  | val          | endpoint   | 2856301 |   1           |          0           |             7026 |                  7026 | 0.25        |        4.63004     |                   2.77777 |           600 |
-| audit   | forum_f_s47         | global  | val          | closure    | 7467686 |   0.000814576 |          0           |                0 |                     0 | 0.00193225  |        0.00233779  |                   2.77748 |           600 |
-| audit   | forum_f_s47         | global  | test         | endpoint   | 2871270 |   1           |          0           |             3097 |                  3097 | 0.25        |        4.62273     |                   2.77796 |           600 |
-| audit   | forum_f_s47         | global  | test         | closure    | 6903909 |   0.000889062 |          0           |                0 |                     0 | 0.00198772  |        0.00246746  |                   2.77694 |           600 |
-| audit   | polecat_f_s43       | global  | train_replay | endpoint   |  696804 |   1           |          0.000420491 |           109700 |                117435 | 0.25        |     6398.99        |                   4.93649 |         86400 |
-| audit   | polecat_f_s43       | global  | train_replay | closure    | 4320507 |   0.999053    |          0.000662654 |             7735 |                 79201 | 0.249827    |     4057.16        |                   4.93649 |         86400 |
-| audit   | polecat_f_s43       | global  | val          | endpoint   |  157299 |   1           |          0           |            17253 |                 17253 | 0.25        |     6496.6         |                   4.93658 |         86400 |
-| audit   | polecat_f_s43       | global  | val          | closure    |  988285 |   1           |          0           |                0 |                     0 | 0.25        |     4040.86        |                   4.93657 |         86400 |
-| audit   | polecat_f_s43       | global  | test         | endpoint   |  151286 |   1           |          0           |            16243 |                 16243 | 0.25        |     6412.58        |                   4.9365  |         86400 |
-| audit   | polecat_f_s43       | global  | test         | closure    |  868432 |   1           |          0           |                0 |                     0 | 0.25        |     4070.92        |                   4.93651 |         86400 |
-| audit   | polecat_f_s47       | global  | train_replay | endpoint   |  696804 |   1           |          0.000420491 |           109700 |                117435 | 0.25        |     3138.64        |                   4.93649 |         86400 |
-| audit   | polecat_f_s47       | global  | train_replay | closure    | 4320507 |   0.999132    |          0.000662654 |             7735 |                 79201 | 0.249871    |     2016.16        |                   4.93649 |         86400 |
-| audit   | polecat_f_s47       | global  | val          | endpoint   |  157299 |   1           |          0           |            17253 |                 17253 | 0.25        |     3130.32        |                   4.93658 |         86400 |
-| audit   | polecat_f_s47       | global  | val          | closure    |  988285 |   1           |          0           |                0 |                     0 | 0.25        |     1969.74        |                   4.93657 |         86400 |
-| audit   | polecat_f_s47       | global  | test         | endpoint   |  151286 |   1           |          0           |            16243 |                 16243 | 0.25        |     3166.29        |                   4.9365  |         86400 |
-| audit   | polecat_f_s47       | global  | test         | closure    |  868432 |   1           |          0           |                0 |                     0 | 0.25        |     2066.34        |                   4.93651 |         86400 |
-| audit   | sp_f_s43            | global  | train_replay | endpoint   |  471683 |   0.769286    |          0.00505212  |            29692 |                 31556 | 0.205082    |       58.0896      |                   0       |             1 |
-| audit   | sp_f_s43            | global  | train_replay | closure    |  119048 |   0.264364    |          0.00984477  |             1864 |                 15125 | 0.0771727   |        2.27853     |                   0       |             1 |
-| audit   | sp_f_s43            | global  | val          | endpoint   |   93744 |   0.666965    |          0           |             9339 |                  9339 | 0.187035    |       11.7702      |                   0       |             1 |
-| audit   | sp_f_s43            | global  | val          | closure    |   10570 |   0.200946    |          0           |                0 |                     0 | 0.0622102   |        0.940173    |                   0       |             1 |
-| audit   | sp_f_s43            | global  | test         | endpoint   |   95718 |   0.651957    |          0           |             6538 |                  6538 | 0.181579    |        7.07359     |                   0       |             1 |
-| audit   | sp_f_s43            | global  | test         | closure    |   11857 |   0.190942    |          0           |                0 |                     0 | 0.0603203   |        0.650908    |                   0       |             1 |
-| audit   | sp_f_s46            | global  | train_replay | endpoint   |  471683 |   0.00958483  |          0.00505212  |            29692 |                 31556 | 0.00398158  |        0.0311231   |                   0       |             1 |
-| audit   | sp_f_s46            | global  | train_replay | closure    |  119048 |   0.00281399  |          0.00984477  |             1864 |                 15125 | 0.00120816  |        0.00346906  |                   0       |             1 |
-| audit   | sp_f_s46            | global  | val          | endpoint   |   93744 |   0.0072538   |          0           |             9339 |                  9339 | 0.00357353  |        0.0128492   |                   0       |             1 |
-| audit   | sp_f_s46            | global  | val          | closure    |   10570 |   0           |          0           |                0 |                     0 | 2.66421e-05 |        2.66421e-05 |                   0       |             1 |
-| audit   | sp_f_s46            | global  | test         | endpoint   |   95718 |   0.00627886  |          0           |             6538 |                  6538 | 0.00302086  |        0.00945084  |                   0       |             1 |
-| audit   | sp_f_s46            | global  | test         | closure    |   11857 |   0           |          0           |                0 |                     0 | 9.05863e-07 |        9.05863e-07 |                   0       |             1 |
-| audit   | sp_f_s47            | global  | train_replay | endpoint   |  471683 |   0.617275    |          0.00505212  |            29692 |                 31556 | 0.156974    |       23.0432      |                   0       |             1 |
-| audit   | sp_f_s47            | global  | train_replay | closure    |  119048 |   0.884761    |          0.00984477  |             1864 |                 15125 | 0.222796    |       37.4596      |                   0       |             1 |
-| audit   | sp_f_s47            | global  | val          | endpoint   |   93744 |   0.848577    |          0           |             9339 |                  9339 | 0.214354    |       43.902       |                   0       |             1 |
-| audit   | sp_f_s47            | global  | val          | closure    |   10570 |   0.88666     |          0           |                0 |                     0 | 0.222907    |       39.6129      |                   0       |             1 |
-| audit   | sp_f_s47            | global  | test         | endpoint   |   95718 |   0.875342    |          0           |             6538 |                  6538 | 0.220999    |       43.2412      |                   0       |             1 |
-| audit   | sp_f_s47            | global  | test         | closure    |   11857 |   0.879227    |          0           |                0 |                     0 | 0.221227    |       38.1172      |                   0       |             1 |
-| audit   | sw_f_s43            | global  | train_replay | endpoint   | 1303199 |   0.257094    |          0.000412063 |           525811 |                534422 | 0.0806959   |        0.166753    |                   3.55627 |          3600 |
-| audit   | sw_f_s43            | global  | train_replay | closure    | 1061697 |   0.00142884  |          0.00109259  |             8611 |                 36755 | 0.00316541  |        0.00331942  |                   3.55626 |          3600 |
-| audit   | sw_f_s43            | global  | val          | endpoint   |  279765 |   0.255221    |          0           |            81054 |                 81054 | 0.0796798   |        0.164202    |                   3.5546  |          3600 |
-| audit   | sw_f_s43            | global  | val          | closure    |  185742 |   0.00103369  |          0           |                0 |                     0 | 0.0027357   |        0.00283474  |                   3.55419 |          3600 |
-| audit   | sw_f_s43            | global  | test         | endpoint   |  270528 |   0.255863    |          0           |            66451 |                 66451 | 0.0793651   |        0.166654    |                   3.55559 |          3600 |
-| audit   | sw_f_s43            | global  | test         | closure    |  219058 |   0.000826265 |          0           |                0 |                     0 | 0.00262919  |        0.00270938  |                   3.55507 |          3600 |
-| audit   | sw_f_s46            | global  | train_replay | endpoint   | 1303199 |   0.249077    |          0.000412063 |           525811 |                534422 | 0.0822498   |        0.177267    |                   3.55627 |          3600 |
-| audit   | sw_f_s46            | global  | train_replay | closure    | 1061697 |   0.00280306  |          0.00109259  |             8611 |                 36755 | 0.0043743   |        0.00504024  |                   3.55626 |          3600 |
-| audit   | sw_f_s46            | global  | val          | endpoint   |  279765 |   0.244091    |          0           |            81054 |                 81054 | 0.0809779   |        0.171203    |                   3.5546  |          3600 |
-| audit   | sw_f_s46            | global  | val          | closure    |  185742 |   0.00171205  |          0           |                0 |                     0 | 0.0037614   |        0.00411092  |                   3.55419 |          3600 |
-| audit   | sw_f_s46            | global  | test         | endpoint   |  270528 |   0.240918    |          0           |            66451 |                 66451 | 0.0801793   |        0.168496    |                   3.55559 |          3600 |
-| audit   | sw_f_s46            | global  | test         | closure    |  219058 |   0.00131016  |          0           |                0 |                     0 | 0.00362975  |        0.00389548  |                   3.55507 |          3600 |
-| audit   | sw_f_s47            | global  | train_replay | endpoint   | 1303199 |   0.0991729   |          0.000412063 |           525811 |                534422 | 0.0823272   |        0.0977986   |                   3.55627 |          3600 |
-| audit   | sw_f_s47            | global  | train_replay | closure    | 1061697 |   0.000810024 |          0.00109259  |             8611 |                 36755 | 0.021325    |        0.0213742   |                   3.55626 |          3600 |
-| audit   | sw_f_s47            | global  | val          | endpoint   |  279765 |   0.0988222   |          0           |            81054 |                 81054 | 0.0827203   |        0.0966902   |                   3.5546  |          3600 |
-| audit   | sw_f_s47            | global  | val          | closure    |  185742 |   0.000446856 |          0           |                0 |                     0 | 0.0212197   |        0.0212488   |                   3.55419 |          3600 |
-| audit   | sw_f_s47            | global  | test         | endpoint   |  270528 |   0.0944228   |          0           |            66451 |                 66451 | 0.0812836   |        0.096821    |                   3.55559 |          3600 |
-| audit   | sw_f_s47            | global  | test         | closure    |  219058 |   0.000269335 |          0           |                0 |                     0 | 0.0213758   |        0.0213941   |                   3.55507 |          3600 |
-| audit   | wd_f_s43            | global  | train_replay | endpoint   | 2374141 |   0           |          0.0173844   |           382887 |                384705 | 0.0102124   |        0.0102124   |                   0       |             1 |
-| audit   | wd_f_s43            | global  | train_replay | closure    |  428260 |   0           |          0.00424508  |             1818 |                  1818 | 0.0112371   |        0.0112371   |                   0       |             1 |
-| audit   | wd_f_s43            | global  | val          | endpoint   | 1613946 |   0           |          0           |           216363 |                216363 | 0.0104141   |        0.0104141   |                   0       |             1 |
-| audit   | wd_f_s43            | global  | val          | closure    |  222249 |   0           |          0           |                0 |                     0 | 0.0107321   |        0.0107321   |                   0       |             1 |
-| audit   | wd_f_s43            | global  | test         | endpoint   | 1604472 |   0           |          0           |           305272 |                305272 | 0.0106367   |        0.0106367   |                   0       |             1 |
-| audit   | wd_f_s43            | global  | test         | closure    |  234774 |   0           |          0           |                0 |                     0 | 0.0105717   |        0.0105717   |                   0       |             1 |
-| audit   | wd_f_s46            | global  | train_replay | endpoint   | 2374141 |   0           |          0.0173844   |           382887 |                384705 | 0.010375    |        0.010375    |                   0       |             1 |
-| audit   | wd_f_s46            | global  | train_replay | closure    |  428260 |   0           |          0.00424508  |             1818 |                  1818 | 0.0120347   |        0.0120347   |                   0       |             1 |
-| audit   | wd_f_s46            | global  | val          | endpoint   | 1613946 |   0           |          0           |           216363 |                216363 | 0.010657    |        0.010657    |                   0       |             1 |
-| audit   | wd_f_s46            | global  | val          | closure    |  222249 |   0           |          0           |                0 |                     0 | 0.0120505   |        0.0120505   |                   0       |             1 |
-| audit   | wd_f_s46            | global  | test         | endpoint   | 1604472 |   0           |          0           |           305272 |                305272 | 0.0109756   |        0.0109756   |                   0       |             1 |
-| audit   | wd_f_s46            | global  | test         | closure    |  234774 |   0           |          0           |                0 |                     0 | 0.0119996   |        0.0119996   |                   0       |             1 |
-| audit   | wd_f_s47            | global  | train_replay | endpoint   | 2374141 |   0.00678561  |          0.0173844   |           382887 |                384705 | 0.0988589   |        0.0990463   |                   0       |             1 |
-| audit   | wd_f_s47            | global  | train_replay | closure    |  428260 |   0.000217158 |          0.00424508  |             1818 |                  1818 | 0.0872234   |        0.0872281   |                   0       |             1 |
-| audit   | wd_f_s47            | global  | val          | endpoint   | 1613946 |   0.0250987   |          0           |           216363 |                216363 | 0.095956    |        0.0970512   |                   0       |             1 |
-| audit   | wd_f_s47            | global  | val          | closure    |  222249 |   2.69967e-05 |          0           |                0 |                     0 | 0.0870248   |        0.0870253   |                   0       |             1 |
-| audit   | wd_f_s47            | global  | test         | endpoint   | 1604472 |   0.00582809  |          0           |           305272 |                305272 | 0.0904322   |        0.0913112   |                   0       |             1 |
-| audit   | wd_f_s47            | global  | test         | closure    |  234774 |   4.25942e-06 |          0           |                0 |                     0 | 0.0867182   |        0.0867183   |                   0       |             1 |
-| audit   | wiki_f_s43          | global  | train_replay | endpoint   |  127665 |   0.103826    |          0.000148827 |             3503 |                  7475 | 0.0659904   |        0.11395     |                   2.77805 |           600 |
-| audit   | wiki_f_s43          | global  | train_replay | closure    |  894276 |   0.318005    |          6.59752e-05 |             3972 |                132309 | 0.151736    |        0.229971    |                   2.77826 |           600 |
-| audit   | wiki_f_s43          | global  | val          | endpoint   |   26656 |   0.102003    |          0           |              836 |                   836 | 0.0643684   |        0.112824    |                   2.778   |           600 |
-| audit   | wiki_f_s43          | global  | val          | closure    |  136421 |   0.306705    |          0           |                0 |                     0 | 0.140328    |        0.222675    |                   2.77826 |           600 |
-| audit   | wiki_f_s43          | global  | test         | endpoint   |   28587 |   0.118026    |          0           |              916 |                   916 | 0.0687254   |        0.12654     |                   2.77796 |           600 |
-| audit   | wiki_f_s43          | global  | test         | closure    |  175893 |   0.331776    |          0           |                0 |                     0 | 0.148865    |        0.23376     |                   2.77824 |           600 |
-| audit   | wiki_f_s46          | global  | train_replay | endpoint   |  127665 |   0.0118357   |          0.000148827 |             3503 |                  7475 | 0.0454231   |        0.0488664   |                   2.77805 |           600 |
-| audit   | wiki_f_s46          | global  | train_replay | closure    |  894276 |   0.000193453 |          6.59752e-05 |             3972 |                132309 | 0.033705    |        0.0337288   |                   2.77826 |           600 |
-| audit   | wiki_f_s46          | global  | val          | endpoint   |   26656 |   0.00712785  |          0           |              836 |                   836 | 0.0448337   |        0.0470762   |                   2.778   |           600 |
-| audit   | wiki_f_s46          | global  | val          | closure    |  136421 |   0.000344522 |          0           |                0 |                     0 | 0.0340043   |        0.034021    |                   2.77826 |           600 |
-| audit   | wiki_f_s46          | global  | test         | endpoint   |   28587 |   0.0126631   |          0           |              916 |                   916 | 0.0474092   |        0.0508305   |                   2.77796 |           600 |
-| audit   | wiki_f_s46          | global  | test         | closure    |  175893 |   0.000187614 |          0           |                0 |                     0 | 0.0337025   |        0.0337105   |                   2.77824 |           600 |
-| audit   | wiki_f_s47          | global  | train_replay | endpoint   |  127665 |   0.0564838   |          0.000148827 |             3503 |                  7475 | 0.0405183   |        0.180628    |                   2.77805 |           600 |
-| audit   | wiki_f_s47          | global  | train_replay | closure    |  894276 |   0.00622403  |          6.59752e-05 |             3972 |                132309 | 0.0175493   |        0.0220584   |                   2.77826 |           600 |
-| audit   | wiki_f_s47          | global  | val          | endpoint   |   26656 |   0.0365396   |          0           |              836 |                   836 | 0.0338193   |        0.118953    |                   2.778   |           600 |
-| audit   | wiki_f_s47          | global  | val          | closure    |  136421 |   0.00613542  |          0           |                0 |                     0 | 0.0175875   |        0.0221466   |                   2.77826 |           600 |
-| audit   | wiki_f_s47          | global  | test         | endpoint   |   28587 |   0.051352    |          0           |              916 |                   916 | 0.0378475   |        0.175124    |                   2.77796 |           600 |
-| audit   | wiki_f_s47          | global  | test         | closure    |  175893 |   0.00645279  |          0           |                0 |                     0 | 0.0180415   |        0.0228511   |                   2.77824 |           600 |
-| clock   | wiki_tsd_tw1200_s43 | global  | train_replay | endpoint   |  105230 |   9.50299e-06 |          0.000332605 |             3514 |                  7475 | 0.000946486 |        0.000946942 |                   3.07899 |          1200 |
-| clock   | wiki_tsd_tw1200_s43 | global  | train_replay | closure    |  716973 |   0           |          0.000341714 |             3961 |                106608 | 0.000156521 |        0.000156521 |                   3.07907 |          1200 |
-| clock   | wiki_tsd_tw1200_s43 | global  | val          | endpoint   |   21845 |   0           |          0           |              836 |                   836 | 0.00111917  |        0.00111917  |                   3.07829 |          1200 |
-| clock   | wiki_tsd_tw1200_s43 | global  | val          | closure    |  110017 |   0           |          0           |                0 |                     0 | 1.5351e-06  |        1.5351e-06  |                   3.07826 |          1200 |
-| clock   | wiki_tsd_tw1200_s43 | global  | test         | endpoint   |   24031 |   4.16129e-05 |          0           |              916 |                   916 | 0.0010995   |        0.00109961  |                   3.07887 |          1200 |
-| clock   | wiki_tsd_tw1200_s43 | global  | test         | closure    |  141854 |   0           |          0           |                0 |                     0 | 1.6777e-06  |        1.6777e-06  |                   3.07886 |          1200 |
-| smoke   | tsd_clockdiag       | global  | train_replay | endpoint   |   23975 |   0           |          0.00200209  |              873 |                  3072 | 0.0371964   |        0.0371964   |                   2.77756 |           600 |
-| smoke   | tsd_clockdiag       | global  | train_replay | closure    |  123689 |   0           |          0.00126123  |             2199 |                 37138 | 0.0345548   |        0.0345548   |                   2.77762 |           600 |
-| smoke   | tsd_clockdiag       | global  | val          | endpoint   |    4606 |   0           |          0           |              265 |                   265 | 0.0368777   |        0.0368777   |                   2.77797 |           600 |
-| smoke   | tsd_clockdiag       | global  | val          | closure    |   20426 |   0           |          0           |                0 |                     0 | 0.0345546   |        0.0345546   |                   2.778   |           600 |
-| smoke   | tsd_clockdiag       | global  | test         | endpoint   |    4427 |   0.0112943   |          0           |              384 |                   384 | 0.0392191   |        0.0646758   |                   2.80767 |           600 |
-| smoke   | tsd_clockdiag       | global  | test         | closure    |   19269 |   0.0101718   |          0           |                0 |                     0 | 0.0367354   |        0.0591281   |                   2.80487 |           600 |
+| group   | run                       | clock   | split        | activity   |       n |   frac_capped |   frac_zero_gap_used |   n_first_update |   n_first_interaction |     mean_dt |   mean_dt_uncapped |   mean_log10_gap_used_pos |   delta_scale |
+|:--------|:--------------------------|:--------|:-------------|:-----------|--------:|--------------:|---------------------:|-----------------:|----------------------:|------------:|-------------------:|--------------------------:|--------------:|
+| audit   | forum_f_s43               | global  | train_replay | endpoint   | 3180356 |   0.0626276   |          0.00192934  |           125128 |                136616 | 0.0569263   |        0.421264    |                   2.77779 |           600 |
+| audit   | forum_f_s43               | global  | train_replay | closure    | 8097681 |   0.00295146  |          0.00120047  |            11488 |                 29106 | 0.00316368  |        0.045859    |                   2.77723 |           600 |
+| audit   | forum_f_s43               | global  | val          | endpoint   | 2856301 |   0.0264419   |          0           |             7026 |                  7026 | 0.0460124   |        0.228327    |                   2.77777 |           600 |
+| audit   | forum_f_s43               | global  | val          | closure    | 7467686 |   0.00144931  |          0           |                0 |                     0 | 0.00279961  |        0.0179797   |                   2.77748 |           600 |
+| audit   | forum_f_s43               | global  | test         | endpoint   | 2871270 |   0.0269376   |          0           |             3097 |                  3097 | 0.0473454   |        0.0870642   |                   2.77796 |           600 |
+| audit   | forum_f_s43               | global  | test         | closure    | 6903909 |   0.00100117  |          0           |                0 |                     0 | 0.00270563  |        0.00391417  |                   2.77694 |           600 |
+| audit   | forum_f_s46               | global  | train_replay | endpoint   | 3180356 |   0.978229    |          0.00192934  |           125128 |                136616 | 0.248534    |        2.93634     |                   2.77779 |           600 |
+| audit   | forum_f_s46               | global  | train_replay | closure    | 8097681 |   0.0189684   |          0.00120047  |            11488 |                 29106 | 0.00603243  |        0.0575437   |                   2.77723 |           600 |
+| audit   | forum_f_s46               | global  | val          | endpoint   | 2856301 |   0.974357    |          0           |             7026 |                  7026 | 0.248251    |        2.83289     |                   2.77777 |           600 |
+| audit   | forum_f_s46               | global  | val          | closure    | 7467686 |   0.016635    |          0           |                0 |                     0 | 0.00535987  |        0.0462371   |                   2.77748 |           600 |
+| audit   | forum_f_s46               | global  | test         | endpoint   | 2871270 |   0.973408    |          0           |             3097 |                  3097 | 0.248197    |        2.79304     |                   2.77796 |           600 |
+| audit   | forum_f_s46               | global  | test         | closure    | 6903909 |   0.0180912   |          0           |                0 |                     0 | 0.00579419  |        0.0501042   |                   2.77694 |           600 |
+| audit   | forum_f_s47               | global  | train_replay | endpoint   | 3180356 |   0.999975    |          0.00192934  |           125128 |                136616 | 0.249997    |        4.5682      |                   2.77779 |           600 |
+| audit   | forum_f_s47               | global  | train_replay | closure    | 8097681 |   0.000930019 |          0.00120047  |            11488 |                 29106 | 0.00192604  |        0.0025063   |                   2.77723 |           600 |
+| audit   | forum_f_s47               | global  | val          | endpoint   | 2856301 |   1           |          0           |             7026 |                  7026 | 0.25        |        4.63004     |                   2.77777 |           600 |
+| audit   | forum_f_s47               | global  | val          | closure    | 7467686 |   0.000814576 |          0           |                0 |                     0 | 0.00193225  |        0.00233779  |                   2.77748 |           600 |
+| audit   | forum_f_s47               | global  | test         | endpoint   | 2871270 |   1           |          0           |             3097 |                  3097 | 0.25        |        4.62273     |                   2.77796 |           600 |
+| audit   | forum_f_s47               | global  | test         | closure    | 6903909 |   0.000889062 |          0           |                0 |                     0 | 0.00198772  |        0.00246746  |                   2.77694 |           600 |
+| audit   | polecat_f_s43             | global  | train_replay | endpoint   |  696804 |   1           |          0.000420491 |           109700 |                117435 | 0.25        |     6398.99        |                   4.93649 |         86400 |
+| audit   | polecat_f_s43             | global  | train_replay | closure    | 4320507 |   0.999053    |          0.000662654 |             7735 |                 79201 | 0.249827    |     4057.16        |                   4.93649 |         86400 |
+| audit   | polecat_f_s43             | global  | val          | endpoint   |  157299 |   1           |          0           |            17253 |                 17253 | 0.25        |     6496.6         |                   4.93658 |         86400 |
+| audit   | polecat_f_s43             | global  | val          | closure    |  988285 |   1           |          0           |                0 |                     0 | 0.25        |     4040.86        |                   4.93657 |         86400 |
+| audit   | polecat_f_s43             | global  | test         | endpoint   |  151286 |   1           |          0           |            16243 |                 16243 | 0.25        |     6412.58        |                   4.9365  |         86400 |
+| audit   | polecat_f_s43             | global  | test         | closure    |  868432 |   1           |          0           |                0 |                     0 | 0.25        |     4070.92        |                   4.93651 |         86400 |
+| audit   | polecat_f_s47             | global  | train_replay | endpoint   |  696804 |   1           |          0.000420491 |           109700 |                117435 | 0.25        |     3138.64        |                   4.93649 |         86400 |
+| audit   | polecat_f_s47             | global  | train_replay | closure    | 4320507 |   0.999132    |          0.000662654 |             7735 |                 79201 | 0.249871    |     2016.16        |                   4.93649 |         86400 |
+| audit   | polecat_f_s47             | global  | val          | endpoint   |  157299 |   1           |          0           |            17253 |                 17253 | 0.25        |     3130.32        |                   4.93658 |         86400 |
+| audit   | polecat_f_s47             | global  | val          | closure    |  988285 |   1           |          0           |                0 |                     0 | 0.25        |     1969.74        |                   4.93657 |         86400 |
+| audit   | polecat_f_s47             | global  | test         | endpoint   |  151286 |   1           |          0           |            16243 |                 16243 | 0.25        |     3166.29        |                   4.9365  |         86400 |
+| audit   | polecat_f_s47             | global  | test         | closure    |  868432 |   1           |          0           |                0 |                     0 | 0.25        |     2066.34        |                   4.93651 |         86400 |
+| audit   | sp_f_s43                  | global  | train_replay | endpoint   |  471683 |   0.769286    |          0.00505212  |            29692 |                 31556 | 0.205082    |       58.0896      |                   0       |             1 |
+| audit   | sp_f_s43                  | global  | train_replay | closure    |  119048 |   0.264364    |          0.00984477  |             1864 |                 15125 | 0.0771727   |        2.27853     |                   0       |             1 |
+| audit   | sp_f_s43                  | global  | val          | endpoint   |   93744 |   0.666965    |          0           |             9339 |                  9339 | 0.187035    |       11.7702      |                   0       |             1 |
+| audit   | sp_f_s43                  | global  | val          | closure    |   10570 |   0.200946    |          0           |                0 |                     0 | 0.0622102   |        0.940173    |                   0       |             1 |
+| audit   | sp_f_s43                  | global  | test         | endpoint   |   95718 |   0.651957    |          0           |             6538 |                  6538 | 0.181579    |        7.07359     |                   0       |             1 |
+| audit   | sp_f_s43                  | global  | test         | closure    |   11857 |   0.190942    |          0           |                0 |                     0 | 0.0603203   |        0.650908    |                   0       |             1 |
+| audit   | sp_f_s46                  | global  | train_replay | endpoint   |  471683 |   0.00958483  |          0.00505212  |            29692 |                 31556 | 0.00398158  |        0.0311231   |                   0       |             1 |
+| audit   | sp_f_s46                  | global  | train_replay | closure    |  119048 |   0.00281399  |          0.00984477  |             1864 |                 15125 | 0.00120816  |        0.00346906  |                   0       |             1 |
+| audit   | sp_f_s46                  | global  | val          | endpoint   |   93744 |   0.0072538   |          0           |             9339 |                  9339 | 0.00357353  |        0.0128492   |                   0       |             1 |
+| audit   | sp_f_s46                  | global  | val          | closure    |   10570 |   0           |          0           |                0 |                     0 | 2.66421e-05 |        2.66421e-05 |                   0       |             1 |
+| audit   | sp_f_s46                  | global  | test         | endpoint   |   95718 |   0.00627886  |          0           |             6538 |                  6538 | 0.00302086  |        0.00945084  |                   0       |             1 |
+| audit   | sp_f_s46                  | global  | test         | closure    |   11857 |   0           |          0           |                0 |                     0 | 9.05863e-07 |        9.05863e-07 |                   0       |             1 |
+| audit   | sp_f_s47                  | global  | train_replay | endpoint   |  471683 |   0.617275    |          0.00505212  |            29692 |                 31556 | 0.156974    |       23.0432      |                   0       |             1 |
+| audit   | sp_f_s47                  | global  | train_replay | closure    |  119048 |   0.884761    |          0.00984477  |             1864 |                 15125 | 0.222796    |       37.4596      |                   0       |             1 |
+| audit   | sp_f_s47                  | global  | val          | endpoint   |   93744 |   0.848577    |          0           |             9339 |                  9339 | 0.214354    |       43.902       |                   0       |             1 |
+| audit   | sp_f_s47                  | global  | val          | closure    |   10570 |   0.88666     |          0           |                0 |                     0 | 0.222907    |       39.6129      |                   0       |             1 |
+| audit   | sp_f_s47                  | global  | test         | endpoint   |   95718 |   0.875342    |          0           |             6538 |                  6538 | 0.220999    |       43.2412      |                   0       |             1 |
+| audit   | sp_f_s47                  | global  | test         | closure    |   11857 |   0.879227    |          0           |                0 |                     0 | 0.221227    |       38.1172      |                   0       |             1 |
+| audit   | sw_f_s43                  | global  | train_replay | endpoint   | 1303199 |   0.257094    |          0.000412063 |           525811 |                534422 | 0.0806959   |        0.166753    |                   3.55627 |          3600 |
+| audit   | sw_f_s43                  | global  | train_replay | closure    | 1061697 |   0.00142884  |          0.00109259  |             8611 |                 36755 | 0.00316541  |        0.00331942  |                   3.55626 |          3600 |
+| audit   | sw_f_s43                  | global  | val          | endpoint   |  279765 |   0.255221    |          0           |            81054 |                 81054 | 0.0796798   |        0.164202    |                   3.5546  |          3600 |
+| audit   | sw_f_s43                  | global  | val          | closure    |  185742 |   0.00103369  |          0           |                0 |                     0 | 0.0027357   |        0.00283474  |                   3.55419 |          3600 |
+| audit   | sw_f_s43                  | global  | test         | endpoint   |  270528 |   0.255863    |          0           |            66451 |                 66451 | 0.0793651   |        0.166654    |                   3.55559 |          3600 |
+| audit   | sw_f_s43                  | global  | test         | closure    |  219058 |   0.000826265 |          0           |                0 |                     0 | 0.00262919  |        0.00270938  |                   3.55507 |          3600 |
+| audit   | sw_f_s46                  | global  | train_replay | endpoint   | 1303199 |   0.249077    |          0.000412063 |           525811 |                534422 | 0.0822498   |        0.177267    |                   3.55627 |          3600 |
+| audit   | sw_f_s46                  | global  | train_replay | closure    | 1061697 |   0.00280306  |          0.00109259  |             8611 |                 36755 | 0.0043743   |        0.00504024  |                   3.55626 |          3600 |
+| audit   | sw_f_s46                  | global  | val          | endpoint   |  279765 |   0.244091    |          0           |            81054 |                 81054 | 0.0809779   |        0.171203    |                   3.5546  |          3600 |
+| audit   | sw_f_s46                  | global  | val          | closure    |  185742 |   0.00171205  |          0           |                0 |                     0 | 0.0037614   |        0.00411092  |                   3.55419 |          3600 |
+| audit   | sw_f_s46                  | global  | test         | endpoint   |  270528 |   0.240918    |          0           |            66451 |                 66451 | 0.0801793   |        0.168496    |                   3.55559 |          3600 |
+| audit   | sw_f_s46                  | global  | test         | closure    |  219058 |   0.00131016  |          0           |                0 |                     0 | 0.00362975  |        0.00389548  |                   3.55507 |          3600 |
+| audit   | sw_f_s47                  | global  | train_replay | endpoint   | 1303199 |   0.0991729   |          0.000412063 |           525811 |                534422 | 0.0823272   |        0.0977986   |                   3.55627 |          3600 |
+| audit   | sw_f_s47                  | global  | train_replay | closure    | 1061697 |   0.000810024 |          0.00109259  |             8611 |                 36755 | 0.021325    |        0.0213742   |                   3.55626 |          3600 |
+| audit   | sw_f_s47                  | global  | val          | endpoint   |  279765 |   0.0988222   |          0           |            81054 |                 81054 | 0.0827203   |        0.0966902   |                   3.5546  |          3600 |
+| audit   | sw_f_s47                  | global  | val          | closure    |  185742 |   0.000446856 |          0           |                0 |                     0 | 0.0212197   |        0.0212488   |                   3.55419 |          3600 |
+| audit   | sw_f_s47                  | global  | test         | endpoint   |  270528 |   0.0944228   |          0           |            66451 |                 66451 | 0.0812836   |        0.096821    |                   3.55559 |          3600 |
+| audit   | sw_f_s47                  | global  | test         | closure    |  219058 |   0.000269335 |          0           |                0 |                     0 | 0.0213758   |        0.0213941   |                   3.55507 |          3600 |
+| audit   | wd_f_s43                  | global  | train_replay | endpoint   | 2374141 |   0           |          0.0173844   |           382887 |                384705 | 0.0102124   |        0.0102124   |                   0       |             1 |
+| audit   | wd_f_s43                  | global  | train_replay | closure    |  428260 |   0           |          0.00424508  |             1818 |                  1818 | 0.0112371   |        0.0112371   |                   0       |             1 |
+| audit   | wd_f_s43                  | global  | val          | endpoint   | 1613946 |   0           |          0           |           216363 |                216363 | 0.0104141   |        0.0104141   |                   0       |             1 |
+| audit   | wd_f_s43                  | global  | val          | closure    |  222249 |   0           |          0           |                0 |                     0 | 0.0107321   |        0.0107321   |                   0       |             1 |
+| audit   | wd_f_s43                  | global  | test         | endpoint   | 1604472 |   0           |          0           |           305272 |                305272 | 0.0106367   |        0.0106367   |                   0       |             1 |
+| audit   | wd_f_s43                  | global  | test         | closure    |  234774 |   0           |          0           |                0 |                     0 | 0.0105717   |        0.0105717   |                   0       |             1 |
+| audit   | wd_f_s46                  | global  | train_replay | endpoint   | 2374141 |   0           |          0.0173844   |           382887 |                384705 | 0.010375    |        0.010375    |                   0       |             1 |
+| audit   | wd_f_s46                  | global  | train_replay | closure    |  428260 |   0           |          0.00424508  |             1818 |                  1818 | 0.0120347   |        0.0120347   |                   0       |             1 |
+| audit   | wd_f_s46                  | global  | val          | endpoint   | 1613946 |   0           |          0           |           216363 |                216363 | 0.010657    |        0.010657    |                   0       |             1 |
+| audit   | wd_f_s46                  | global  | val          | closure    |  222249 |   0           |          0           |                0 |                     0 | 0.0120505   |        0.0120505   |                   0       |             1 |
+| audit   | wd_f_s46                  | global  | test         | endpoint   | 1604472 |   0           |          0           |           305272 |                305272 | 0.0109756   |        0.0109756   |                   0       |             1 |
+| audit   | wd_f_s46                  | global  | test         | closure    |  234774 |   0           |          0           |                0 |                     0 | 0.0119996   |        0.0119996   |                   0       |             1 |
+| audit   | wd_f_s47                  | global  | train_replay | endpoint   | 2374141 |   0.00678561  |          0.0173844   |           382887 |                384705 | 0.0988589   |        0.0990463   |                   0       |             1 |
+| audit   | wd_f_s47                  | global  | train_replay | closure    |  428260 |   0.000217158 |          0.00424508  |             1818 |                  1818 | 0.0872234   |        0.0872281   |                   0       |             1 |
+| audit   | wd_f_s47                  | global  | val          | endpoint   | 1613946 |   0.0250987   |          0           |           216363 |                216363 | 0.095956    |        0.0970512   |                   0       |             1 |
+| audit   | wd_f_s47                  | global  | val          | closure    |  222249 |   2.69967e-05 |          0           |                0 |                     0 | 0.0870248   |        0.0870253   |                   0       |             1 |
+| audit   | wd_f_s47                  | global  | test         | endpoint   | 1604472 |   0.00582809  |          0           |           305272 |                305272 | 0.0904322   |        0.0913112   |                   0       |             1 |
+| audit   | wd_f_s47                  | global  | test         | closure    |  234774 |   4.25942e-06 |          0           |                0 |                     0 | 0.0867182   |        0.0867183   |                   0       |             1 |
+| audit   | wiki_f_s43                | global  | train_replay | endpoint   |  127665 |   0.103826    |          0.000148827 |             3503 |                  7475 | 0.0659904   |        0.11395     |                   2.77805 |           600 |
+| audit   | wiki_f_s43                | global  | train_replay | closure    |  894276 |   0.318005    |          6.59752e-05 |             3972 |                132309 | 0.151736    |        0.229971    |                   2.77826 |           600 |
+| audit   | wiki_f_s43                | global  | val          | endpoint   |   26656 |   0.102003    |          0           |              836 |                   836 | 0.0643684   |        0.112824    |                   2.778   |           600 |
+| audit   | wiki_f_s43                | global  | val          | closure    |  136421 |   0.306705    |          0           |                0 |                     0 | 0.140328    |        0.222675    |                   2.77826 |           600 |
+| audit   | wiki_f_s43                | global  | test         | endpoint   |   28587 |   0.118026    |          0           |              916 |                   916 | 0.0687254   |        0.12654     |                   2.77796 |           600 |
+| audit   | wiki_f_s43                | global  | test         | closure    |  175893 |   0.331776    |          0           |                0 |                     0 | 0.148865    |        0.23376     |                   2.77824 |           600 |
+| audit   | wiki_f_s46                | global  | train_replay | endpoint   |  127665 |   0.0118357   |          0.000148827 |             3503 |                  7475 | 0.0454231   |        0.0488664   |                   2.77805 |           600 |
+| audit   | wiki_f_s46                | global  | train_replay | closure    |  894276 |   0.000193453 |          6.59752e-05 |             3972 |                132309 | 0.033705    |        0.0337288   |                   2.77826 |           600 |
+| audit   | wiki_f_s46                | global  | val          | endpoint   |   26656 |   0.00712785  |          0           |              836 |                   836 | 0.0448337   |        0.0470762   |                   2.778   |           600 |
+| audit   | wiki_f_s46                | global  | val          | closure    |  136421 |   0.000344522 |          0           |                0 |                     0 | 0.0340043   |        0.034021    |                   2.77826 |           600 |
+| audit   | wiki_f_s46                | global  | test         | endpoint   |   28587 |   0.0126631   |          0           |              916 |                   916 | 0.0474092   |        0.0508305   |                   2.77796 |           600 |
+| audit   | wiki_f_s46                | global  | test         | closure    |  175893 |   0.000187614 |          0           |                0 |                     0 | 0.0337025   |        0.0337105   |                   2.77824 |           600 |
+| audit   | wiki_f_s47                | global  | train_replay | endpoint   |  127665 |   0.0564838   |          0.000148827 |             3503 |                  7475 | 0.0405183   |        0.180628    |                   2.77805 |           600 |
+| audit   | wiki_f_s47                | global  | train_replay | closure    |  894276 |   0.00622403  |          6.59752e-05 |             3972 |                132309 | 0.0175493   |        0.0220584   |                   2.77826 |           600 |
+| audit   | wiki_f_s47                | global  | val          | endpoint   |   26656 |   0.0365396   |          0           |              836 |                   836 | 0.0338193   |        0.118953    |                   2.778   |           600 |
+| audit   | wiki_f_s47                | global  | val          | closure    |  136421 |   0.00613542  |          0           |                0 |                     0 | 0.0175875   |        0.0221466   |                   2.77826 |           600 |
+| audit   | wiki_f_s47                | global  | test         | endpoint   |   28587 |   0.051352    |          0           |              916 |                   916 | 0.0378475   |        0.175124    |                   2.77796 |           600 |
+| audit   | wiki_f_s47                | global  | test         | closure    |  175893 |   0.00645279  |          0           |                0 |                     0 | 0.0180415   |        0.0228511   |                   2.77824 |           600 |
+| clock   | wiki_tsd_clock-global_s43 | global  | train_replay | endpoint   |  127665 |   0.999851    |          0.000148827 |             3503 |                  7475 | 0.249973    |      283.696       |                   2.77805 |           600 |
+| clock   | wiki_tsd_clock-global_s43 | global  | train_replay | closure    |  894276 |   0.999932    |          6.59752e-05 |             3972 |                132309 | 0.249986    |      189.248       |                   2.77826 |           600 |
+| clock   | wiki_tsd_clock-global_s43 | global  | val          | endpoint   |   26656 |   0.999962    |          0           |              836 |                   836 | 0.249999    |      276.252       |                   2.778   |           600 |
+| clock   | wiki_tsd_clock-global_s43 | global  | val          | closure    |  136421 |   1           |          0           |                0 |                     0 | 0.25        |      194.688       |                   2.77826 |           600 |
+| clock   | wiki_tsd_clock-global_s43 | global  | test         | endpoint   |   28587 |   1           |          0           |              916 |                   916 | 0.25        |      281.579       |                   2.77796 |           600 |
+| clock   | wiki_tsd_clock-global_s43 | global  | test         | closure    |  175893 |   1           |          0           |                0 |                     0 | 0.25        |      191.493       |                   2.77824 |           600 |
+| clock   | wiki_tsd_tw1200_s43       | global  | train_replay | endpoint   |  105230 |   9.50299e-06 |          0.000332605 |             3514 |                  7475 | 0.000946486 |        0.000946942 |                   3.07899 |          1200 |
+| clock   | wiki_tsd_tw1200_s43       | global  | train_replay | closure    |  716973 |   0           |          0.000341714 |             3961 |                106608 | 0.000156521 |        0.000156521 |                   3.07907 |          1200 |
+| clock   | wiki_tsd_tw1200_s43       | global  | val          | endpoint   |   21845 |   0           |          0           |              836 |                   836 | 0.00111917  |        0.00111917  |                   3.07829 |          1200 |
+| clock   | wiki_tsd_tw1200_s43       | global  | val          | closure    |  110017 |   0           |          0           |                0 |                     0 | 1.5351e-06  |        1.5351e-06  |                   3.07826 |          1200 |
+| clock   | wiki_tsd_tw1200_s43       | global  | test         | endpoint   |   24031 |   4.16129e-05 |          0           |              916 |                   916 | 0.0010995   |        0.00109961  |                   3.07887 |          1200 |
+| clock   | wiki_tsd_tw1200_s43       | global  | test         | closure    |  141854 |   0           |          0           |                0 |                     0 | 1.6777e-06  |        1.6777e-06  |                   3.07886 |          1200 |
+| smoke   | tsd_clockdiag             | global  | train_replay | endpoint   |   23975 |   0           |          0.00200209  |              873 |                  3072 | 0.0371964   |        0.0371964   |                   2.77756 |           600 |
+| smoke   | tsd_clockdiag             | global  | train_replay | closure    |  123689 |   0           |          0.00126123  |             2199 |                 37138 | 0.0345548   |        0.0345548   |                   2.77762 |           600 |
+| smoke   | tsd_clockdiag             | global  | val          | endpoint   |    4606 |   0           |          0           |              265 |                   265 | 0.0368777   |        0.0368777   |                   2.77797 |           600 |
+| smoke   | tsd_clockdiag             | global  | val          | closure    |   20426 |   0           |          0           |                0 |                     0 | 0.0345546   |        0.0345546   |                   2.778   |           600 |
+| smoke   | tsd_clockdiag             | global  | test         | endpoint   |    4427 |   0.0112943   |          0           |              384 |                   384 | 0.0392191   |        0.0646758   |                   2.80767 |           600 |
+| smoke   | tsd_clockdiag             | global  | test         | closure    |   19269 |   0.0101718   |          0           |                0 |                     0 | 0.0367354   |        0.0591281   |                   2.80487 |           600 |
 
 ## Not finished
 
@@ -439,60 +449,55 @@
 | audit_icews_eval_s46                | running/pending |            0 |          3 |
 | audit_icews_eval_s47                | running/pending |            0 |          2 |
 | audit_polecat_f_s46                 | running/pending |            0 |          3 |
-| synth_gen_s1_attention_recon_s43    | running/pending |            1 |          1 |
+| synth_gen_s1_attention_recon_s43    | running/pending |            2 |          1 |
 | synth_gen_s1_attention_recon_s44    | running/pending |            0 |          1 |
 | synth_gen_s1_attention_recon_s45    | running/pending |            0 |          1 |
 | synth_gen_s1_attention_recon_s47    | running/pending |            0 |          1 |
-| synth_gen_s1_coreoff_recon_s43      | running/pending |            2 |          1 |
-| synth_gen_s1_coreoff_recon_s45      | running/pending |            3 |          1 |
-| synth_gen_s1_curonly_recon_s44      | running/pending |            6 |          1 |
-| synth_gen_s1_curonly_recon_s47      | running/pending |            2 |          1 |
+| synth_gen_s1_coreoff_recon_s43      | running/pending |            3 |          1 |
+| synth_gen_s1_coreoff_recon_s45      | running/pending |            5 |          1 |
+| synth_gen_s1_curonly_recon_s47      | running/pending |            3 |          1 |
 | synth_gen_s1_diag_recon_s44         | running/pending |            0 |          1 |
-| synth_gen_s1_diag_recon_s45         | running/pending |            2 |          1 |
-| synth_gen_s1_diag_recon_s47         | running/pending |            0 |          1 |
-| synth_gen_s1_gru_recon_s43          | running/pending |            5 |          1 |
-| synth_gen_s1_gru_recon_s45          | running/pending |            0 |          1 |
+| synth_gen_s1_diag_recon_s45         | running/pending |            3 |          1 |
+| synth_gen_s1_diag_recon_s47         | running/pending |            1 |          1 |
+| synth_gen_s1_gru_recon_s45          | running/pending |            1 |          1 |
 | synth_gen_s1_gru_recon_s46          | running/pending |            0 |          1 |
-| synth_gen_s1_identity_recon_s43     | running/pending |            2 |          1 |
+| synth_gen_s1_identity_recon_s43     | running/pending |            3 |          1 |
 | synth_gen_s1_identity_recon_s44     | running/pending |            0 |          1 |
-| synth_gen_s1_identity_recon_s45     | running/pending |            6 |          1 |
-| synth_gen_s1_identity_recon_s47     | running/pending |            2 |          1 |
+| synth_gen_s1_identity_recon_s47     | running/pending |            3 |          1 |
 | synth_gen_s1_nodeframe_recon_s43    | running/pending |            0 |          1 |
 | synth_gen_s1_nodeframe_recon_s44    | running/pending |            0 |          1 |
-| synth_gen_s1_nodeframe_recon_s46    | running/pending |            2 |          1 |
+| synth_gen_s1_nodeframe_recon_s46    | running/pending |            3 |          1 |
 | synth_gen_s1_nodeframe_recon_s47    | running/pending |            0 |          1 |
 | synth_gen_s1_tsd_recon_s43          | running/pending |            0 |          1 |
-| synth_gen_s1_tsd_recon_s44          | running/pending |            1 |          1 |
+| synth_gen_s1_tsd_recon_s44          | running/pending |            2 |          1 |
 | synth_gen_s1_tsd_recon_s45          | running/pending |            2 |          1 |
 | synth_gen_s1_tsd_recon_s46          | running/pending |            0 |          1 |
 | synth_gen_s1_tsd_recon_s47          | running/pending |            0 |          1 |
-| wiki_attention_s44_lr1e-3           | running/pending |            4 |          1 |
-| wiki_attention_s45_lr1e-3           | running/pending |            0 |          1 |
-| wiki_attention_s46_lr1e-3           | running/pending |            5 |          1 |
+| wiki_attention_s44_lr1e-3           | running/pending |            5 |          1 |
+| wiki_attention_s45_lr1e-3           | running/pending |            1 |          1 |
+| wiki_attention_s46_lr1e-3           | running/pending |            6 |          1 |
 | wiki_attention_s47_lr1e-3           | running/pending |            6 |          1 |
 | wiki_curonly_s44_lr1e-3             | running/pending |            0 |          1 |
 | wiki_curonly_s45_lr1e-3             | running/pending |            5 |          1 |
 | wiki_curonly_s46_lr1e-3             | running/pending |            1 |          1 |
 | wiki_curonly_s47_lr1e-3             | running/pending |            0 |          1 |
 | wiki_diag_s46_lr1e-3                | running/pending |            0 |          1 |
-| wiki_diag_s47_lr1e-3                | running/pending |            6 |          1 |
-| wiki_gru_s44_lr1e-3                 | running/pending |            3 |          1 |
-| wiki_gru_s45_lr1e-3                 | running/pending |            8 |          1 |
+| wiki_diag_s47_lr1e-3                | running/pending |            7 |          1 |
+| wiki_gru_s44_lr1e-3                 | running/pending |            4 |          1 |
 | wiki_gru_s47_lr1e-3                 | running/pending |            0 |          1 |
-| wiki_identity_s44_lr1e-3            | running/pending |            4 |          1 |
-| wiki_identity_s45_lr1e-3            | running/pending |            0 |          1 |
-| wiki_identity_s46_lr1e-3            | running/pending |            5 |          1 |
+| wiki_identity_s44_lr1e-3            | running/pending |            5 |          1 |
+| wiki_identity_s45_lr1e-3            | running/pending |            1 |          1 |
+| wiki_identity_s46_lr1e-3            | running/pending |            6 |          1 |
 | wiki_identity_s47_lr1e-3            | running/pending |            1 |          1 |
 | wiki_nodeframe_s44_lr1e-3           | running/pending |            0 |          1 |
 | wiki_nodeframe_s45_lr1e-3           | running/pending |            0 |          1 |
-| wiki_nodeframe_s46_lr1e-3           | running/pending |            0 |          1 |
-| wiki_nodeframe_s47_lr1e-3           | running/pending |            0 |          1 |
-| wiki_tsd_clock-global_s43           | running/pending |            8 |          1 |
+| wiki_nodeframe_s46_lr1e-3           | running/pending |            1 |          1 |
+| wiki_nodeframe_s47_lr1e-3           | running/pending |            1 |          1 |
 | wiki_tsd_clock-node_interaction_s43 | running/pending |            6 |          1 |
-| wiki_tsd_clock-node_update_s43      | running/pending |            5 |          1 |
+| wiki_tsd_clock-node_update_s43      | running/pending |            6 |          1 |
 | wiki_tsd_s44_lr1e-3                 | running/pending |            5 |          1 |
-| wiki_tsd_s45_lr1e-3                 | running/pending |            5 |          1 |
-| wiki_tsd_s46_lr1e-3                 | running/pending |            7 |          1 |
-| wiki_tsd_s47_lr1e-3                 | running/pending |            6 |          1 |
+| wiki_tsd_s45_lr1e-3                 | running/pending |            6 |          1 |
+| wiki_tsd_s46_lr1e-3                 | running/pending |            8 |          1 |
+| wiki_tsd_s47_lr1e-3                 | running/pending |            7 |          1 |
 | wiki_tsd_tw300_s43                  | running/pending |            3 |          1 |
 
