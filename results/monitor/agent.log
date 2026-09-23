@@ -320,3 +320,6 @@
 2026-09-22 20:17:03 tick: running [icews_eval_s43 icews_eval_s46 icews_eval_s47 synth_gen_s1_nodeframe_recon_s43 wiki_curonly_s44_lr1e-3 wiki_curonly_s47_lr1e-3 wiki_diag_s46_lr1e-3 wiki_gru_s47_lr1e-3 wiki_nodeframe_s44_lr1e-3 ] pending-launchers 9 free-GiB 19 51 80 68 63 54 80 80 
 2026-09-22 20:27:09 tick: running [icews_eval_s43 icews_eval_s46 icews_eval_s47 wiki_curonly_s44_lr1e-3 wiki_curonly_s47_lr1e-3 wiki_diag_s46_lr1e-3 wiki_gru_s47_lr1e-3 wiki_nodeframe_s44_lr1e-3 ] pending-launchers 8 free-GiB 19 51 80 70 63 54 80 80 
 2026-09-22 20:37:16 tick: running [icews_eval_s43 icews_eval_s46 icews_eval_s47 wiki_curonly_s44_lr1e-3 wiki_curonly_s47_lr1e-3 wiki_diag_s46_lr1e-3 wiki_gru_s47_lr1e-3 wiki_nodeframe_s44_lr1e-3 ] pending-launchers 8 free-GiB 19 51 80 70 63 54 80 80 
+2026-09-22 20:47:23 committed 34 paths (collected 152 finished runs, 7 unfinished; fingerprint 1058929349)
+2026-09-22 20:47:25 pushed to origin/review-2026-09-22 (9b09d5c agent: results snapshot 2026-09-22 20:47 (collected )
+2026-09-22 20:47:26 tick: running [icews_eval_s43 icews_eval_s46 icews_eval_s47 wiki_curonly_s47_lr1e-3 wiki_diag_s46_lr1e-3 wiki_gru_s47_lr1e-3 wiki_nodeframe_s44_lr1e-3 ] pending-launchers 7 free-GiB 19 51 80 72 63 54 80 80 
