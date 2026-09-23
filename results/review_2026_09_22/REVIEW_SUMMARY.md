@@ -1,6 +1,6 @@
-# Review campaign summary (auto-generated 2026-09-23 08:18)
+# Review campaign summary (auto-generated 2026-09-23 08:21)
 
-251 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+252 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
@@ -72,7 +72,7 @@
 | tkgl-smallpedia                                                    | sp      | on    | tsd-no-gap        | 0.01   |   3 | 0.610846 |   0.0053374   | 0.6160 / 0.6054 / 0.6112                                                                                                                               |
 | tkgl-wikidata                                                      | wd      | on    | core-off          | 0.003  |   2 | 0.534037 |   0.000165534 | 0.5339 / 0.5342                                                                                                                                        |
 | tkgl-wikidata                                                      | wd      | on    | current-only-maps | 0.003  |   1 | 0.538142 | nan           | 0.5381                                                                                                                                                 |
-| tkgl-wikidata                                                      | wd      | on    | gru-ordinary      | 0.003  |   2 | 0.536545 |   0.00104662  | 0.5358 / 0.5373                                                                                                                                        |
+| tkgl-wikidata                                                      | wd      | on    | gru-ordinary      | 0.003  |   3 | 0.535807 |   0.00147746  | 0.5358 / 0.5373 / 0.5343                                                                                                                               |
 | tkgl-wikidata                                                      | wd      | on    | identity-maps     | 0.003  |   1 | 0.533632 | nan           | 0.5336                                                                                                                                                 |
 | tkgl-wikidata                                                      | wd      | on    | tsd               | 0.003  |   3 | 0.539807 |   0.00917518  | 0.5371 / 0.5500 / 0.5323                                                                                                                               |
 | tkgl-wikidata                                                      | wd      | on    | tsd-no-gap        | 0.003  |   1 | 0.536214 | nan           | 0.5362                                                                                                                                                 |
@@ -145,7 +145,7 @@
 | tkgl-polecat  | on    | tsd-no-gap        |   0.003  |   0.003  |   2 |   0.243199 |   0.242455 |               -0.000744294 |   0.00647983 |      0.058219   | +0.0038 / -0.0053                               | 1+ 1-   |
 | tkgl-wikidata | on    | core-off          |   0.003  |   0.003  |   2 |   0.543558 |   0.534037 |               -0.00952116  |   0.00899734 |      0.0808379  | -0.0032 / -0.0159                               | 0+ 2-   |
 | tkgl-wikidata | on    | current-only-maps |   0.003  |   0.003  |   1 |   0.537079 |   0.538142 |                0.0010633   | nan          |    nan          | +0.0011                                         | 1+ 0-   |
-| tkgl-wikidata | on    | gru-ordinary      |   0.003  |   0.003  |   2 |   0.543558 |   0.536545 |               -0.00701309  |   0.00811626 |      0.0729217  | -0.0013 / -0.0128                               | 0+ 2-   |
+| tkgl-wikidata | on    | gru-ordinary      |   0.003  |   0.003  |   3 |   0.539807 |   0.535807 |               -0.00400061  |   0.00775642 |      0.019268   | -0.0013 / -0.0128 / +0.0020                     | 1+ 2-   |
 | tkgl-wikidata | on    | identity-maps     |   0.003  |   0.003  |   1 |   0.537079 |   0.533632 |               -0.00344682  | nan          |    nan          | -0.0034                                         | 0+ 1-   |
 | tkgl-wikidata | on    | tsd-no-gap        |   0.003  |   0.003  |   1 |   0.537079 |   0.536214 |               -0.000865356 | nan          |    nan          | -0.0009                                         | 0+ 1-   |
 
@@ -524,6 +524,8 @@
 | wd      | wd_gru_s43                          | test    |   2877500 |                  0 |               0 |         0 |            0 |            0 |      0.535805 |      0.535805 |           0.535805 |                           0 |                         0 |
 | wd      | wd_gru_s46                          | val     |   4069900 |                  0 |               0 |         0 |            0 |            0 |      0.636783 |      0.636783 |           0.636783 |                           0 |                         0 |
 | wd      | wd_gru_s46                          | test    |   2877500 |                  0 |               0 |         0 |            0 |            0 |      0.537285 |      0.537285 |           0.537285 |                           0 |                         0 |
+| wd      | wd_gru_s47                          | val     |   4069900 |                  0 |               0 |         0 |            0 |            0 |      0.645231 |      0.645231 |           0.645231 |                           0 |                         0 |
+| wd      | wd_gru_s47                          | test    |   2877500 |                  0 |               0 |         0 |            0 |            0 |      0.53433  |      0.53433  |           0.53433  |                           0 |                         0 |
 
 ## Clock / saturation diagnostics (per run x split x activity class)
 
@@ -814,5 +816,4 @@
 | sp_tsd_s46               | running/pending |            0 |          1 |
 | sp_tsd_s47               | running/pending |            0 |          1 |
 | wd_coreoff_s47           | running/pending |            0 |          1 |
-| wd_gru_s47               | running/pending |            4 |          1 |
 

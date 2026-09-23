@@ -171,6 +171,7 @@ wd_coreoff_s43,wd,tkgl-wikidata,core-off,43,116.0,0.0,0.0,21.0,0.0,0.0,0.0,0.0,2
 wd_coreoff_s46,wd,tkgl-wikidata,core-off,46,116.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,2869900.0,0.0,0.0,0.0,2877500.0,0.0,True
 wd_gru_s43,wd,tkgl-wikidata,gru-ordinary,43,116.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,2869900.0,0.0,0.0,0.0,2877500.0,0.0,True
 wd_gru_s46,wd,tkgl-wikidata,gru-ordinary,46,116.0,0.0,0.0,16.0,0.0,0.0,0.0,0.0,2869900.0,0.0,0.0,0.0,2877500.0,0.0,True
+wd_gru_s47,wd,tkgl-wikidata,gru-ordinary,47,116.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,2869900.0,0.0,0.0,0.0,2877500.0,0.0,True
 forum_abl_curonly,forum,thgl-forum,current-only-maps,43,,,,,,,,,,,,,,,
 forum_abl_curonly_s46,forum,thgl-forum,current-only-maps,46,,,,,,,,,,,,,,,
 forum_abl_curonly_s47,forum,thgl-forum,current-only-maps,47,,,,,,,,,,,,,,,
