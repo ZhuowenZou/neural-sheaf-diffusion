@@ -1,4 +1,4 @@
-# Review campaign summary (auto-generated 2026-09-23 12:05)
+# Review campaign summary (auto-generated 2026-09-23 12:09)
 
 261 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
@@ -807,12 +807,12 @@
 | icews_tsd_recon_s44      | running/pending |            6 |          1 |
 | icews_tsd_recon_s45      | running/pending |            4 |          1 |
 | polecat_coreoff_s46      | running/pending |           10 |          1 |
-| polecat_gru_s46          | running/pending |            2 |          2 |
-| sp_attention_s43         | running/pending |            1 |          2 |
-| sp_attention_s46         | running/pending |           10 |          2 |
+| polecat_gru_s46          | running/pending |            3 |          2 |
+| sp_attention_s43         | running/pending |            3 |          2 |
+| sp_attention_s46         | running/pending |           11 |          2 |
 | sp_attention_s47         | running/pending |           15 |          2 |
-| sp_coreoff_s46           | running/pending |           13 |          2 |
-| sp_coreoff_s47           | running/pending |           14 |          2 |
+| sp_coreoff_s46           | running/pending |           14 |          2 |
+| sp_coreoff_s47           | running/pending |           15 |          2 |
 | sp_curonly_s46           | running/pending |            6 |          2 |
 | sp_curonly_s47           | running/pending |            0 |          2 |
 | sp_diag_s43              | running/pending |           15 |          2 |
@@ -821,7 +821,7 @@
 | sp_gru_s43               | running/pending |            0 |          2 |
 | sp_gru_s46               | running/pending |            0 |          2 |
 | sp_gru_s47               | running/pending |            8 |          1 |
-| sp_identity_s43          | running/pending |            2 |          2 |
+| sp_identity_s43          | running/pending |            3 |          2 |
 | sp_identity_s46          | running/pending |            0 |          2 |
 | sp_identity_s47          | running/pending |            0 |          2 |
 | sp_nodeframe_s43         | running/pending |            0 |          2 |

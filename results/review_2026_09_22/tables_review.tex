@@ -77,7 +77,7 @@ Core off + REC (head only) & 0.001 & 3 (43,46,47) & 9168 & 0.428 $\pm$ 0.001 & -
 Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
 TSD (memory-conditioned incidence maps) & 0.003 & 3 (43,46,47) & -- & 0.335 $\pm$ 0.003 & -- &  \\
 Current-only maps & 0.003 & 3 (43,46,47) & 660043 & 0.328 $\pm$ 0.000 & -0.0071 $\pm$ 0.0026; $\pm$0.0066 & 0+ 3- \\
-Identity maps & 0.003 & 1 (43) & -- & 0.337 $\pm$ -- & -0.0018 $\pm$ --; $\pm$-- & 0+ 1- \\
+Identity maps & 0.003 & 2 (43,47) & 655755 & 0.340 $\pm$ 0.005 & +0.0046 $\pm$ 0.0090; $\pm$0.0812 & 1+ 1- \\
 GRU + ordinary propagation & 0.003 & 1 (43) & 62247 & 0.337 $\pm$ -- & -0.0019 $\pm$ --; $\pm$-- & 0+ 1- \\
 Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
 History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
@@ -92,11 +92,11 @@ Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ S
 TSD (memory-conditioned incidence maps) & 0.003 & 3 (43,46,47) & -- & 0.244 $\pm$ 0.003 & -- &  \\
 Current-only maps & 0.003 & 2 (43,46) & -- & 0.247 $\pm$ 0.001 & +0.0040 $\pm$ 0.0047; $\pm$0.0421 & 2+ 0- \\
 Identity maps & 0.003 & 2 (43,46) & -- & 0.244 $\pm$ 0.001 & +0.0013 $\pm$ 0.0047; $\pm$0.0426 & 1+ 1- \\
-GRU + ordinary propagation & 0.003 & 1 (47) & 37497 & 0.244 $\pm$ -- & -0.0017 $\pm$ --; $\pm$-- & 0+ 1- \\
+GRU + ordinary propagation & 0.003 & 2 (43,47) & 37497 & 0.245 $\pm$ 0.001 & +0.0022 $\pm$ 0.0055; $\pm$0.0490 & 1+ 1- \\
 Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
 History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
 Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
-Core off + REC (head only) & 0.003 & 1 (47) & 9506 & 0.225 $\pm$ -- & -0.0214 $\pm$ --; $\pm$-- & 0+ 1- \\
+Core off + REC (head only) & 0.003 & 2 (43,47) & 9506 & 0.227 $\pm$ 0.003 & -0.0167 $\pm$ 0.0067; $\pm$0.0601 & 0+ 2- \\
 \bottomrule\end{tabular}\end{table}
 
 \begin{table}[t]\centering\small
@@ -104,13 +104,13 @@ Core off + REC (head only) & 0.003 & 1 (47) & 9506 & 0.225 $\pm$ -- & -0.0214 $\
 \begin{tabular}{lcccrll}\toprule
 Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
 TSD (memory-conditioned incidence maps) & \multicolumn{6}{l}{not evaluated} \\
-Current-only maps & 0.01 & 4 (43,44,46,47) & 652963 & 0.608 $\pm$ 0.008 & -- &  \\
+Current-only maps & 0.01 & 4 (43,44,46,47) & 652963 & 0.606 $\pm$ 0.011 & -- &  \\
 Identity maps & 0.01 & 3 (43,46,47) & -- & 0.613 $\pm$ 0.006 & -- &  \\
 GRU + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
 Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
 History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
 Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
-Core off + REC (head only) & \multicolumn{6}{l}{not evaluated} \\
+Core off + REC (head only) & 0.01 & 1 (43) & 27176 & 0.513 $\pm$ -- & -- &  \\
 \bottomrule\end{tabular}\end{table}
 
 \begin{table}[t]\centering\small
@@ -124,7 +124,7 @@ GRU + ordinary propagation & 0.003 & 3 (43,46,47) & 56337 & 0.536 $\pm$ 0.001 & 
 Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
 History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
 Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
-Core off + REC (head only) & 0.003 & 2 (43,46) & 45242 & 0.534 $\pm$ 0.000 & -0.0095 $\pm$ 0.0090; $\pm$0.0808 & 0+ 2- \\
+Core off + REC (head only) & 0.003 & 3 (43,46,47) & 45242 & 0.534 $\pm$ 0.001 & -0.0061 $\pm$ 0.0087; $\pm$0.0216 & 1+ 2- \\
 \bottomrule\end{tabular}\end{table}
 
 \begin{table}[t]\centering\small
