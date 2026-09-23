@@ -1,12 +1,12 @@
 {
- "prepared": "2026-09-23 05:01:34 PDT",
+ "prepared": "2026-09-23 07:16:20 PDT",
  "repo": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "git": {
-  "sha": "7ba5f19a6716b09bb83a7ca8508a89f1577e4643",
+  "sha": "da685a8dc660f52d2b6b9d6ededdaf6fbdd30dec",
   "branch": "review-2026-09-22",
-  "status": "M exp/review/make_tex.py\n M results/monitor/STATUS.md\n M results/monitor/agent.log\n M results/monitor/gpu_log.csv\n M results/review_2026_09_22/CODE_COMMIT.txt\n M results/review_2026_09_22/REVIEW_SUMMARY.md\n M results/review_2026_09_22/costs.csv\n M results/review_2026_09_22/icews/icews_coreoff_recon_s45/history.csv\n M results/review_2026_09_22/icews/icews_gru_recon_s45/history.csv\n M results/review_2026_09_22/numerical_events.csv\n M results/review_2026_09_22/paired_contrasts.csv\n M results/review_2026_09_22/per_seed_results.csv\n M results/review_2026_09_22/query_validity.csv\n M results/review_2026_09_22/queue/icews_coreoff_recon_s45.log\n M results/review_2026_09_22/queue/icews_gru_recon_s45.log\n M results/review_2026_09_22/queue/sp_curonly_s44.log\n M results/review_2026_09_22/queue/sw_attention_s47.log\n M results/review_2026_09_22/queue/sw_coreoff_s43.log\n M results/review_2026_09_22/queue/sw_nodeframe_s46.log\n M results/review_2026_09_22/sw/sw_attention_s47/history.csv\n M results/review_2026_09_22/sw/sw_coreoff_s43/history.csv\n M results/review_2026_09_22/sw/sw_nodeframe_s46/history.csv\n M results/review_2026_09_22/tables_review.tex\n?? results/review_2026_09_22/queue/sp_curonly_s44.log.launch\n?? results/review_2026_09_22/sp/",
-  "dirty_diff_sha256": "47cb65f43c3474bf49be959ae9776ec094833c25f15f940146a33b568c209b9c",
-  "dirty_diff_lines": 487
+  "status": "M results/monitor/STATUS.md\n M results/monitor/agent.log\n M results/monitor/agent_usage.csv\n M results/monitor/gpu_idle.txt\n M results/monitor/gpu_log.csv\n M results/review_2026_09_22/CODE_COMMIT.txt\n M results/review_2026_09_22/REVIEW_SUMMARY.md\n M results/review_2026_09_22/polecat/polecat_gru_s43/history.csv\n M results/review_2026_09_22/queue/polecat_gru_s43.log\n M results/review_2026_09_22/tables_review.tex",
+  "dirty_diff_sha256": "ef536cc58c7f01f4bd43dabe64f4563272aea13b5637bc78431837dd80ead263",
+  "dirty_diff_lines": 278
  },
  "environment": {
   "python": "3.9.9 | packaged by conda-forge | (main, Dec 20 2021, 02:40:17) \n[GCC 9.4.0]",
@@ -1183,5 +1183,5 @@
    }
   }
  },
- "elapsed_sec": 74.0
+ "elapsed_sec": 94.6
 }

@@ -64,25 +64,11 @@ Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ S
 TSD (memory-conditioned incidence maps) & 0.001 & 3 (43,46,47) & -- & 0.438 $\pm$ 0.002 & -- &  \\
 Current-only maps & 0.001 & 3 (43,46,47) & -- & 0.439 $\pm$ 0.004 & +0.0012 $\pm$ 0.0027; $\pm$0.0066 & 2+ 1- \\
 Identity maps & 0.001 & 3 (43,46,47) & -- & 0.439 $\pm$ 0.003 & +0.0016 $\pm$ 0.0023; $\pm$0.0058 & 2+ 1- \\
-GRU + ordinary propagation & 0.001 & 2 (43,47) & 37159 & 0.437 $\pm$ 0.002 & +0.0004 $\pm$ 0.0025; $\pm$0.0226 & 1+ 1- \\
+GRU + ordinary propagation & 0.001 & 3 (43,46,47) & 37159 & 0.438 $\pm$ 0.003 & +0.0007 $\pm$ 0.0018; $\pm$0.0046 & 2+ 1- \\
 Diagonal SSM + ordinary propagation & 0.001 & 2 (43,47) & 11915 & 0.436 $\pm$ 0.002 & -0.0003 $\pm$ 0.0021; $\pm$0.0189 & 1+ 1- \\
-History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
-Node-frame geometry & 0.001 & 1 (47) & 630859 & 0.439 $\pm$ -- & +0.0026 $\pm$ --; $\pm$-- & 1+ 0- \\
-Core off + REC (head only) & \multicolumn{6}{l}{not evaluated} \\
-\bottomrule\end{tabular}\end{table}
-
-\begin{table}[t]\centering\small
-\caption{Matched controls on tkgl-icews (icews, REC off): test MRR over seeds and paired difference to TSD (same seeds, identical data, negatives, protocol and selection rule; lr locked per arm on seed-43 tracking validation). Active parameters exclude parameters unused by construction.}
-\begin{tabular}{lcccrll}\toprule
-Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
-TSD (memory-conditioned incidence maps) & 0.003 & 2 (43,46) & -- & 0.024 $\pm$ 0.005 & -- &  \\
-Current-only maps & 0.003 & 2 (43,46) & -- & 0.025 $\pm$ 0.004 & +0.0006 $\pm$ 0.0099; $\pm$0.0886 & 1+ 1- \\
-Identity maps & 0.003 & 2 (43,46) & -- & 0.026 $\pm$ 0.001 & +0.0017 $\pm$ 0.0066; $\pm$0.0590 & 1+ 1- \\
-GRU + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
-Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
-History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
-Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
-Core off + REC (head only) & 0.003 & 2 (43,46) & -- & 0.021 $\pm$ 0.006 & -0.0028 $\pm$ 0.0113; $\pm$0.1018 & 1+ 1- \\
+History-conditioned edge gates & 0.001 & 3 (43,46,47) & 630924 & 0.443 $\pm$ 0.001 & +0.0052 $\pm$ 0.0024; $\pm$0.0059 & 3+ 0- \\
+Node-frame geometry & 0.001 & 2 (46,47) & 630859 & 0.440 $\pm$ 0.001 & +0.0014 $\pm$ 0.0017; $\pm$0.0151 & 2+ 0- \\
+Core off + REC (head only) & 0.001 & 2 (43,46) & 9168 & 0.429 $\pm$ 0.000 & -0.0089 $\pm$ 0.0024; $\pm$0.0219 & 0+ 2- \\
 \bottomrule\end{tabular}\end{table}
 
 \begin{table}[t]\centering\small
@@ -90,7 +76,7 @@ Core off + REC (head only) & 0.003 & 2 (43,46) & -- & 0.021 $\pm$ 0.006 & -0.002
 \begin{tabular}{lcccrll}\toprule
 Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
 TSD (memory-conditioned incidence maps) & 0.003 & 3 (43,46,47) & -- & 0.335 $\pm$ 0.003 & -- &  \\
-Current-only maps & 0.003 & 1 (43) & -- & 0.329 $\pm$ -- & -0.0101 $\pm$ --; $\pm$-- & 0+ 1- \\
+Current-only maps & 0.003 & 2 (43,46) & 660043 & 0.328 $\pm$ 0.000 & -0.0081 $\pm$ 0.0028; $\pm$0.0254 & 0+ 2- \\
 Identity maps & 0.003 & 1 (43) & -- & 0.337 $\pm$ -- & -0.0018 $\pm$ --; $\pm$-- & 0+ 1- \\
 GRU + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
 Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
@@ -117,9 +103,9 @@ Core off + REC (head only) & \multicolumn{6}{l}{not evaluated} \\
 \caption{Matched controls on tkgl-smallpedia (sp, REC on): test MRR over seeds and paired difference to TSD (same seeds, identical data, negatives, protocol and selection rule; lr locked per arm on seed-43 tracking validation). Active parameters exclude parameters unused by construction.}
 \begin{tabular}{lcccrll}\toprule
 Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
-TSD (memory-conditioned incidence maps) & 0.01 & 3 (43,46,47) & -- & 0.610 $\pm$ 0.007 & -- &  \\
-Current-only maps & 0.01 & 3 (43,46,47) & -- & 0.605 $\pm$ 0.008 & -0.0049 $\pm$ 0.0144; $\pm$0.0357 & 1+ 2- \\
-Identity maps & 0.01 & 3 (43,46,47) & -- & 0.613 $\pm$ 0.006 & +0.0030 $\pm$ 0.0013; $\pm$0.0031 & 3+ 0- \\
+TSD (memory-conditioned incidence maps) & \multicolumn{6}{l}{not evaluated} \\
+Current-only maps & 0.01 & 4 (43,44,46,47) & 652963 & 0.608 $\pm$ 0.008 & -- &  \\
+Identity maps & 0.01 & 3 (43,46,47) & -- & 0.613 $\pm$ 0.006 & -- &  \\
 GRU + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
 Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
 History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
@@ -134,7 +120,7 @@ Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ S
 TSD (memory-conditioned incidence maps) & 0.003 & 3 (43,46,47) & -- & 0.540 $\pm$ 0.009 & -- &  \\
 Current-only maps & 0.003 & 1 (43) & -- & 0.538 $\pm$ -- & +0.0011 $\pm$ --; $\pm$-- & 1+ 0- \\
 Identity maps & 0.003 & 1 (43) & -- & 0.534 $\pm$ -- & -0.0034 $\pm$ --; $\pm$-- & 0+ 1- \\
-GRU + ordinary propagation & 0.003 & 1 (46) & 56337 & 0.537 $\pm$ -- & -0.0128 $\pm$ --; $\pm$-- & 0+ 1- \\
+GRU + ordinary propagation & 0.003 & 2 (43,46) & 56337 & 0.537 $\pm$ 0.001 & -0.0070 $\pm$ 0.0081; $\pm$0.0729 & 0+ 2- \\
 Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
 History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
 Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
