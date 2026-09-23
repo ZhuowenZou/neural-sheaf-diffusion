@@ -9,3 +9,4 @@ protocol: predict-from-previous-state (leak-free) for training and evaluation
 parameter_count=655883 num_relations=782 num_nodes=87856
 parameters_by_component={'embeddings': 12512, 'ssm_input_selector_B': 620928, 'ssm_other': 4261, 'map_decoder': 128, 'spatial_block': 2534, 'scorer': 15391, 'rec': 129, 'other': 0, 'total': 655883, 'trainable': 655883, 'unused_by_construction': 0, 'active': 655883}
 eval-only: loaded results/event_bench/leakfree2/icews_f_s47/best.pt
+final val_mrr=0.3088 (20133.8s so far)
