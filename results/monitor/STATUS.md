@@ -1,19 +1,19 @@
-# Monitor status (2026-09-22 23:39:29)
+# Monitor status (2026-09-23 01:21:27)
 
 ## GPU free (GiB) and utilisation
-0:19GB(99%) 1:51GB(98%) 2:45GB(0%) 3:62GB(3%) 4:45GB(15%) 5:54GB(98%) 6:46GB(0%) 7:44GB(28%) 
-our GPU processes (pid:MiB): 136253:17648MiB 210437:18008MiB 2673782:18198MiB 2895041:17984MiB 2654122:18014MiB 989557:17768MiB 2668669:18384MiB 2872725:16120MiB 2905507:18198MiB 2703991:18280MiB 2704074:18198MiB 
+0:37GB(97%) 1:51GB(99%) 2:44GB(11%) 3:62GB(19%) 4:45GB(0%) 5:54GB(100%) 6:44GB(30%) 7:44GB(27%) 
+our GPU processes (pid:MiB): 136253:17648MiB 2673782:18198MiB 2895041:18384MiB 2654122:18014MiB 989557:17768MiB 2668669:18384MiB 2872725:18280MiB 2905507:18198MiB 2703991:18280MiB 2704074:18198MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
-- gpu2: ELIGIBLE (idle 442 min)
-- gpu3: ELIGIBLE (idle 670 min)
-- gpu4: ELIGIBLE (idle 1046 min)
+- gpu2: ELIGIBLE (idle 544 min)
+- gpu3: ELIGIBLE (idle 772 min)
+- gpu4: ELIGIBLE (idle 1148 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 202 min)
+- gpu6: ELIGIBLE (idle 304 min)
 - gpu7: OURS
-compensation: colleagues hold 26542 MiB on our GPUs; we hold 124666 MiB on theirs; budget left -98124 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+compensation: colleagues hold 26542 MiB on our GPUs; we hold 127226 MiB on theirs; budget left -100684 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
 our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
@@ -153,7 +153,7 @@ our launcher claims (pid:gpu/MiB):
 - DONE     audit_forum_f_s43: FINAL val_mrr=0.6230 test_mrr=0.6280 test_hits10=0.6826 eval_sec=1159.1
 - DONE     audit_forum_f_s46: FINAL val_mrr=0.6345 test_mrr=0.6412 test_hits10=0.6944 eval_sec=1370.3
 - DONE     audit_forum_f_s47: FINAL val_mrr=0.6019 test_mrr=0.6187 test_hits10=0.6526 eval_sec=672.3
-- RUNNING  audit_icews_eval_s43: final val_mrr=0.3235 (17570.9s so far)
+- DONE     audit_icews_eval_s43: FINAL val_mrr=0.3235 test_mrr=0.3386 test_hits10=0.5405 eval_sec=40340.6
 - RUNNING  audit_icews_eval_s46: final val_mrr=0.3227 (18283.7s so far)
 - RUNNING  audit_icews_eval_s47: final val_mrr=0.3088 (20133.8s so far)
 - DONE     audit_polecat_f_s43: FINAL val_mrr=0.2472 test_mrr=0.2403 test_hits10=0.3942 eval_sec=11837.7

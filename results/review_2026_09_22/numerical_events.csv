@@ -2,6 +2,7 @@ run,group,dataset,arm,seed,train_steps,train_nonfinite_loss,train_nonfinite_grad
 forum_f_s43,audit,thgl-forum,tsd,43,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_f_s46,audit,thgl-forum,tsd,46,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_f_s47,audit,thgl-forum,tsd,47,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
+icews_eval_s43,audit,tkgl-icews,tsd,43,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
 polecat_f_s43,audit,tkgl-polecat,tsd,43,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,533472.0,0.0,0.0,0.0,532636.0,0.0,True
 polecat_f_s46,audit,tkgl-polecat,tsd,46,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,533472.0,0.0,0.0,0.0,532636.0,0.0,True
 polecat_f_s47,audit,tkgl-polecat,tsd,47,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,533472.0,0.0,0.0,0.0,532636.0,0.0,True

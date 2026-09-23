@@ -1,6 +1,6 @@
-# Review campaign summary (auto-generated 2026-09-22 23:41)
+# Review campaign summary (auto-generated 2026-09-23 01:23)
 
-180 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+181 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
@@ -107,6 +107,7 @@
 | forum_f_s43      | thgl-forum      |     43 |         0.622963 |   0.627978 |            0.627985 |                 -7.35037e-06 |                            0 | True                 |
 | forum_f_s46      | thgl-forum      |     46 |         0.634515 |   0.64123  |            0.641231 |                 -7.87055e-07 |                            0 | True                 |
 | forum_f_s47      | thgl-forum      |     47 |         0.601889 |   0.618727 |            0.618727 |                 -2.02006e-08 |                            0 | True                 |
+| icews_eval_s43   | tkgl-icews      |     43 |         0.323524 |   0.338622 |            0.338622 |                 -2.99005e-08 |                            0 | True                 |
 | polecat_f_s43    | tkgl-polecat    |     43 |         0.247229 |   0.2403   |            0.2403   |                 -1.77451e-08 |                            0 | True                 |
 | polecat_f_s46    | tkgl-polecat    |     46 |         0.25182  |   0.246099 |            0.246099 |                  2.29942e-09 |                            0 | True                 |
 | polecat_f_s47    | tkgl-polecat    |     47 |         0.252708 |   0.24619  |            0.246163 |                  2.68279e-05 |                            0 | True                 |
@@ -134,6 +135,8 @@
 | audit   | forum_f_s46                         | test    |   3563653 |                  0 |               0 |         0 |            0 |            0 |      0.64123  |      0.64123  |           0.64123  |                           0 |                         0 |
 | audit   | forum_f_s47                         | val     |   3563658 |                  0 |               0 |         0 |            0 |            0 |      0.601889 |      0.601889 |           0.601889 |                           0 |                         0 |
 | audit   | forum_f_s47                         | test    |   3563653 |                  0 |               0 |         0 |            0 |            0 |      0.618727 |      0.618727 |           0.618727 |                           0 |                         0 |
+| audit   | icews_eval_s43                      | val     |   4652314 |                  0 |               0 |         0 |            0 |            0 |      0.323524 |      0.323524 |           0.323524 |                           0 |                         0 |
+| audit   | icews_eval_s43                      | test    |   4651378 |                  0 |               0 |         0 |            0 |            0 |      0.338622 |      0.338622 |           0.338622 |                           0 |                         0 |
 | audit   | polecat_f_s43                       | val     |    533472 |                  0 |               0 |         0 |            0 |            0 |      0.247229 |      0.247229 |           0.247229 |                           0 |                         0 |
 | audit   | polecat_f_s43                       | test    |    532636 |                  0 |               0 |         0 |            0 |            0 |      0.2403   |      0.2403   |           0.2403   |                           0 |                         0 |
 | audit   | polecat_f_s46                       | val     |    533472 |                  0 |               0 |         0 |            0 |            0 |      0.25182  |      0.25182  |           0.25182  |                           0 |                         0 |
@@ -443,6 +446,12 @@
 | audit   | forum_f_s47                         | global           | val          | closure    | 7467686 |   0.000814576 |          0           |                0 |                     0 | 0.00193225  |        0.00233779  |                   2.77748 |           600 |
 | audit   | forum_f_s47                         | global           | test         | endpoint   | 2871270 |   1           |          0           |             3097 |                  3097 | 0.25        |        4.62273     |                   2.77796 |           600 |
 | audit   | forum_f_s47                         | global           | test         | closure    | 6903909 |   0.000889062 |          0           |                0 |                     0 | 0.00198772  |        0.00246746  |                   2.77694 |           600 |
+| audit   | icews_eval_s43                      | global           | train_replay | endpoint   | 1409419 |   0.0172213   |          0.000657718 |            38809 |                 45726 | 0.00494424  |        0.0556441   |                   4.93651 |         86400 |
+| audit   | icews_eval_s43                      | global           | train_replay | closure    | 6116309 |   4.90492e-07 |          0.000806205 |             6917 |                 57399 | 1.55073e-05 |        4.53567e-05 |                   4.93651 |         86400 |
+| audit   | icews_eval_s43                      | global           | val          | endpoint   | 1520498 |   0.00344953  |          0           |            11714 |                 11714 | 0.00113445  |        0.00279856  |                   4.93651 |         86400 |
+| audit   | icews_eval_s43                      | global           | val          | closure    | 6281310 |   1.59202e-07 |          0           |                0 |                     0 | 3.98006e-08 |        6.14089e-06 |                   4.93651 |         86400 |
+| audit   | icews_eval_s43                      | global           | test         | endpoint   | 1539645 |   0.000800184 |          0           |             6422 |                  6422 | 0.000320672 |        0.000955677 |                   4.93652 |         86400 |
+| audit   | icews_eval_s43                      | global           | test         | closure    | 7482330 |   4.00945e-07 |          0           |                0 |                     0 | 1.00236e-07 |        7.80036e-05 |                   4.93657 |         86400 |
 | audit   | polecat_f_s43                       | global           | train_replay | endpoint   |  696804 |   1           |          0.000420491 |           109700 |                117435 | 0.25        |     6398.99        |                   4.93649 |         86400 |
 | audit   | polecat_f_s43                       | global           | train_replay | closure    | 4320507 |   0.999053    |          0.000662654 |             7735 |                 79201 | 0.249827    |     4057.16        |                   4.93649 |         86400 |
 | audit   | polecat_f_s43                       | global           | val          | endpoint   |  157299 |   1           |          0           |            17253 |                 17253 | 0.25        |     6496.6         |                   4.93658 |         86400 |
@@ -646,7 +655,6 @@
 
 | run                      | state           |   last_epoch |   attempts |
 |:-------------------------|:----------------|-------------:|-----------:|
-| audit_icews_eval_s43     | running/pending |            0 |          2 |
 | audit_icews_eval_s46     | running/pending |            0 |          3 |
 | audit_icews_eval_s47     | running/pending |            0 |          2 |
 | icews_coreoff_recon_s47  | running/pending |            5 |          1 |
