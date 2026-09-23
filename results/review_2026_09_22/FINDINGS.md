@@ -126,6 +126,24 @@ replay, validation and test):**
 | new wiki TSD seed 43 (global clock) | 1e-3 | val / test | all | 367,557 | 1.000 | 190-282 | 0.25 |
 | new wiki TSD seed 43 (node-interaction clock) | 1e-3 | train replay | endpoint | 127,665 | 0.973 | 1756 | 0.244 |
 
+**Saturation in the retained headline checkpoints (training-replay updates; `audit/*/clock_diagnostics.csv`):**
+
+| dataset (lr) | seed | endpoint updates capped | closure updates capped | mean uncapped step (endpoint) |
+|---|---|---|---|---|
+| tgbl-wiki (3e-4) | 43 / 46 / 47 | 10% / 1% / 6% | 32% / 0% / 1% | 0.11 / 0.05 / 0.18 |
+| thgl-software (1e-3) | 43 / 46 / 47 | 26% / 25% / 10% | 0% / 0% / 0% | 0.17 / 0.18 / 0.10 |
+| thgl-forum (1e-3) | 43 / 46 / 47 | 6% / **98%** / **100%** | 0% / 2% / 0% | 0.42 / 2.9 / 4.6 |
+| tkgl-polecat (3e-3) | 43 / 46 / 47 | **100%** / 16% / **100%** | **100%** / 0% / **100%** | 6399 / 1.8 / 3139 |
+| tkgl-smallpedia (1e-2) | 43 / 46 / 47 | **77%** / 1% / **62%** | 26% / 0% / **88%** | 58 / 0.03 / 23 |
+| tkgl-wikidata (3e-3) | 43 / 46 / 47 | 0% / 0% / 1% | 0% / 0% / 0% | 0.01 / 0.01 / 0.10 |
+| tkgl-icews (3e-3) | 43 / 46 / 47 | pending | pending | pending |
+
+Saturation is seed- and dataset-dependent: on forum, polecat and smallpedia the selector collapses to the
+cap on two of three seeds (uncapped means of 10^1 to 10^3 against a cap of 0.25), while the same seeds' test
+scores are indistinguishable from the unsaturated seeds (forum 0.628/0.641/0.619; polecat 0.240/0.246/0.246;
+smallpedia 0.616/0.603/0.611). The learned timing weight stays near its initial value 1.0 in every run
+(0.84-1.29). Zero physical gaps are rare everywhere (< 0.2% of updates; 1.7% on wikidata endpoints).
+
 **Finding:** at the learning rate that every arm selected on tracking validation (1e-3), the selector
 pre-activation grows until **every** memory update takes the capped step: the content- and gap-dependent
 timing channel is inactive in the best-scoring TSD configuration (test MRR 0.7597 at seed 43 vs 0.7357 for the
