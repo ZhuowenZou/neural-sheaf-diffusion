@@ -173,6 +173,8 @@ sp_diag_s43,sp,tkgl-smallpedia,diagssm-ordinary,43,1455.0,0.0,0.0,6.0,0.0,0.0,0.
 sp_gru_s46,sp,tkgl-smallpedia,gru-ordinary,46,1455.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sp_gru_s47,sp,tkgl-smallpedia,gru-ordinary,47,1455.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sp_identity_s43,sp,tkgl-smallpedia,identity-maps,43,1455.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
+sp_identity_s46,sp,tkgl-smallpedia,identity-maps,46,1455.0,0.0,0.0,3.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
+sp_identity_s47,sp,tkgl-smallpedia,identity-maps,47,1455.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sp_nodeframe_s46,sp,tkgl-smallpedia,node-frame,46,1455.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sp_tsd_s43,sp,tkgl-smallpedia,tsd,43,1455.0,0.0,0.0,5.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sp_tsd_s46,sp,tkgl-smallpedia,tsd,46,1455.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True

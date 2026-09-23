@@ -1,19 +1,19 @@
-# Monitor status (2026-09-23 13:37:22)
+# Monitor status (2026-09-23 13:45:00)
 
 ## GPU free (GiB) and utilisation
-0:27GB(14%) 1:30GB(68%) 2:11GB(0%) 3:44GB(54%) 4:20GB(0%) 5:54GB(96%) 6:8GB(89%) 7:22GB(69%) 
-our GPU processes (pid:MiB): 4172763:28748MiB 4186707:25544MiB 4151554:25550MiB 4172534:25550MiB 4095829:15298MiB 4118762:18198MiB 2315028:11748MiB 4091033:25544MiB 4096797:18198MiB 243990:18280MiB 4095645:17954MiB 4177163:18280MiB 4197:25544MiB 2872725:18280MiB 2905507:18198MiB 4096471:18754MiB 4097379:18364MiB 4095975:16976MiB 4138403:16998MiB 4172396:25548MiB 
+0:55GB(0%) 1:29GB(32%) 2:11GB(3%) 3:44GB(3%) 4:17GB(0%) 5:54GB(94%) 6:8GB(23%) 7:16GB(2%) 
+our GPU processes (pid:MiB): 4186707:25544MiB 4151554:26450MiB 4172534:25550MiB 4095829:15298MiB 4118762:18198MiB 2315028:11748MiB 4091033:25544MiB 4096797:18198MiB 243990:18280MiB 4095645:17954MiB 4177163:18280MiB 4197:27744MiB 2872725:18280MiB 2905507:18198MiB 4096471:18754MiB 4097379:18364MiB 4095975:16976MiB 4138403:16998MiB 4172396:31488MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
-- gpu1: ELIGIBLE (idle 159 min)
-- gpu2: ELIGIBLE (idle 1280 min)
-- gpu3: ELIGIBLE (idle 1508 min)
-- gpu4: ELIGIBLE (idle 1884 min)
+- gpu1: ELIGIBLE (idle 167 min)
+- gpu2: ELIGIBLE (idle 1287 min)
+- gpu3: ELIGIBLE (idle 1516 min)
+- gpu4: ELIGIBLE (idle 1891 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 1040 min)
+- gpu6: ELIGIBLE (idle 1047 min)
 - gpu7: OURS
-compensation: colleagues hold 0 MiB on our GPUs; we hold 293740 MiB on theirs; budget left -293740 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+compensation: colleagues hold 0 MiB on our GPUs; we hold 296840 MiB on theirs; budget left -296840 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
 our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
@@ -263,16 +263,16 @@ our launcher claims (pid:gpu/MiB):
 - DONE     sp_curonly_s47: FINAL val_mrr=0.6372 test_mrr=0.6028 test_hits10=0.7120 eval_sec=848.5
 - DONE     sp_diag_s43: FINAL val_mrr=0.6395 test_mrr=0.6078 test_hits10=0.7125 eval_sec=875.9
 - RUNNING  sp_diag_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  sp_diag_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  sp_diag_s47: final val_mrr=0.6406 (422.3s so far)
 - RUNNING  sp_gru_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     sp_gru_s46: FINAL val_mrr=0.6346 test_mrr=0.5989 test_hits10=0.7119 eval_sec=824.8
 - DONE     sp_gru_s47: FINAL val_mrr=0.6353 test_mrr=0.5955 test_hits10=0.7129 eval_sec=830.1
 - DONE     sp_identity_s43: FINAL val_mrr=0.6451 test_mrr=0.6115 test_hits10=0.7133 eval_sec=787.0
-- RUNNING  sp_identity_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  sp_identity_s47: final val_mrr=0.6481 (430.2s so far)
+- RUNNING  sp_identity_s46: final val_mrr=0.6372 (427.4s so far)
+- DONE     sp_identity_s47: FINAL val_mrr=0.6481 test_mrr=0.6168 test_hits10=0.7133 eval_sec=834.5
 - RUNNING  sp_nodeframe_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     sp_nodeframe_s46: FINAL val_mrr=0.6392 test_mrr=0.6069 test_hits10=0.7131 eval_sec=854.4
-- RUNNING  sp_nodeframe_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  sp_nodeframe_s47: epoch 15 (patience 6)
 - DONE     sp_tsd_s43: FINAL val_mrr=0.6463 test_mrr=0.6147 test_hits10=0.7127 eval_sec=850.4
 - DONE     sp_tsd_s46: FINAL val_mrr=0.6400 test_mrr=0.6103 test_hits10=0.7115 eval_sec=829.7
 - DONE     sp_tsd_s47: FINAL val_mrr=0.6375 test_mrr=0.6068 test_hits10=0.7116 eval_sec=850.9
