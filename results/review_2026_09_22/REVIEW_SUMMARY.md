@@ -1,6 +1,6 @@
-# Review campaign summary (auto-generated 2026-09-23 04:25)
+# Review campaign summary (auto-generated 2026-09-23 04:45)
 
-243 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+246 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
@@ -49,6 +49,7 @@
 | thgl-forum                                                         | forum   | on    | tsd-no-gap        | 0.001  |   3 | 0.633693  |   0.0124419   | 0.6475 / 0.6233 / 0.6302                                                                                                                               |
 | thgl-forum                                                         | forum   | on    | tsd-no-memory     | 0.001  |   3 | 0.650116  |   0.00292731  | 0.6491 / 0.6478 / 0.6534                                                                                                                               |
 | thgl-software                                                      | sw      | on    | current-only-maps | 0.001  |   3 | 0.438773  |   0.00425522  | 0.4341 / 0.4425 / 0.4397                                                                                                                               |
+| thgl-software                                                      | sw      | on    | diagssm-ordinary  | 0.001  |   1 | 0.437197  | nan           | 0.4372                                                                                                                                                 |
 | thgl-software                                                      | sw      | on    | identity-maps     | 0.001  |   3 | 0.439174  |   0.00297547  | 0.4357 / 0.4408 / 0.4410                                                                                                                               |
 | thgl-software                                                      | sw      | on    | tsd               | 0.001  |   3 | 0.437616  |   0.0020797   | 0.4360 / 0.4400 / 0.4369                                                                                                                               |
 | thgl-software                                                      | sw      | on    | tsd-no-gap        | 0.001  |   3 | 0.439336  |   0.000338672 | 0.4392 / 0.4397 / 0.4391                                                                                                                               |
@@ -71,7 +72,9 @@
 | tkgl-smallpedia                                                    | sp      | on    | identity-maps     | 0.01   |   3 | 0.613285  |   0.00626411  | 0.6182 / 0.6062 / 0.6154                                                                                                                               |
 | tkgl-smallpedia                                                    | sp      | on    | tsd               | 0.01   |   3 | 0.610292  |   0.00664087  | 0.6164 / 0.6033 / 0.6112                                                                                                                               |
 | tkgl-smallpedia                                                    | sp      | on    | tsd-no-gap        | 0.01   |   3 | 0.610846  |   0.0053374   | 0.6160 / 0.6054 / 0.6112                                                                                                                               |
+| tkgl-wikidata                                                      | wd      | on    | core-off          | 0.003  |   1 | 0.534154  | nan           | 0.5342                                                                                                                                                 |
 | tkgl-wikidata                                                      | wd      | on    | current-only-maps | 0.003  |   1 | 0.538142  | nan           | 0.5381                                                                                                                                                 |
+| tkgl-wikidata                                                      | wd      | on    | gru-ordinary      | 0.003  |   1 | 0.537285  | nan           | 0.5373                                                                                                                                                 |
 | tkgl-wikidata                                                      | wd      | on    | identity-maps     | 0.003  |   1 | 0.533632  | nan           | 0.5336                                                                                                                                                 |
 | tkgl-wikidata                                                      | wd      | on    | tsd               | 0.003  |   3 | 0.539807  |   0.00917518  | 0.5371 / 0.5500 / 0.5323                                                                                                                               |
 | tkgl-wikidata                                                      | wd      | on    | tsd-no-gap        | 0.003  |   1 | 0.536214  | nan           | 0.5362                                                                                                                                                 |
@@ -127,6 +130,7 @@
 | thgl-forum      | on    | tsd-no-gap        |   0.001  |   0.001  |   3 |  0.629315  |  0.633693  |                0.00437799  |   0.0196968   |      0.0489295  | +0.0195 / -0.0179 / +0.0115                     | 2+ 1-   |
 | thgl-forum      | on    | tsd-no-memory     |   0.001  |   0.001  |   3 |  0.629315  |  0.650116  |                0.0208019   |   0.0140486   |      0.0348986  | +0.0211 / +0.0066 / +0.0347                     | 3+ 0-   |
 | thgl-software   | on    | current-only-maps |   0.001  |   0.001  |   3 |  0.437616  |  0.438773  |                0.0011567   |   0.00265301  |      0.00659045 | -0.0019 / +0.0025 / +0.0029                     | 2+ 1-   |
+| thgl-software   | on    | diagssm-ordinary  |   0.001  |   0.001  |   1 |  0.436019  |  0.437197  |                0.00117804  | nan           |    nan          | +0.0012                                         | 1+ 0-   |
 | thgl-software   | on    | identity-maps     |   0.001  |   0.001  |   3 |  0.437616  |  0.439174  |                0.00155791  |   0.00231745  |      0.00575687 | -0.0003 / +0.0008 / +0.0042                     | 2+ 1-   |
 | thgl-software   | on    | tsd-no-gap        |   0.001  |   0.001  |   3 |  0.437616  |  0.439336  |                0.00171991  |   0.00177789  |      0.00441652 | +0.0032 / -0.0003 / +0.0022                     | 2+ 1-   |
 | tkgl-icews      | off   | core-off          |   0.003  |   0.003  |   2 |  0.0241763 |  0.0214221 |               -0.00275427  |   0.0113341   |      0.101833   | -0.0108 / +0.0053                               | 1+ 1-   |
@@ -144,7 +148,9 @@
 | tkgl-smallpedia | on    | current-only-maps |   0.01   |   0.01   |   3 |  0.610292  |  0.605387  |               -0.00490506  |   0.0143748   |      0.0357089  | -0.0205 / +0.0078 / -0.0020                     | 1+ 2-   |
 | tkgl-smallpedia | on    | identity-maps     |   0.01   |   0.01   |   3 |  0.610292  |  0.613285  |                0.00299296  |   0.00126291  |      0.00313723 | +0.0017 / +0.0030 / +0.0043                     | 3+ 0-   |
 | tkgl-smallpedia | on    | tsd-no-gap        |   0.01   |   0.01   |   3 |  0.610292  |  0.610846  |                0.000554617 |   0.00136137  |      0.00338183 | -0.0004 / +0.0021 / -0.0000                     | 1+ 2-   |
+| tkgl-wikidata   | on    | core-off          |   0.003  |   0.003  |   1 |  0.550037  |  0.534154  |               -0.0158832   | nan           |    nan          | -0.0159                                         | 0+ 1-   |
 | tkgl-wikidata   | on    | current-only-maps |   0.003  |   0.003  |   1 |  0.537079  |  0.538142  |                0.0010633   | nan           |    nan          | +0.0011                                         | 1+ 0-   |
+| tkgl-wikidata   | on    | gru-ordinary      |   0.003  |   0.003  |   1 |  0.550037  |  0.537285  |               -0.0127522   | nan           |    nan          | -0.0128                                         | 0+ 1-   |
 | tkgl-wikidata   | on    | identity-maps     |   0.003  |   0.003  |   1 |  0.537079  |  0.533632  |               -0.00344682  | nan           |    nan          | -0.0034                                         | 0+ 1-   |
 | tkgl-wikidata   | on    | tsd-no-gap        |   0.003  |   0.003  |   1 |  0.537079  |  0.536214  |               -0.000865356 | nan           |    nan          | -0.0009                                         | 0+ 1-   |
 
@@ -477,6 +483,12 @@
 | smoke   | tsd                                 | test    |      4000 |                  0 |               0 |         0 |            0 |            0 |      0.526321 |      0.526321 |           0.526321 |                           0 |                         0 |
 | smoke   | tsd_clockdiag                       | val     |      6000 |                  0 |               0 |         0 |            0 |            0 |      0.626814 |      0.626814 |           0.626814 |                           0 |                         0 |
 | smoke   | tsd_clockdiag                       | test    |      4000 |                  0 |               0 |         0 |            0 |            0 |      0.526862 |      0.526862 |           0.526862 |                           0 |                         0 |
+| sw      | sw_diag_s43                         | val     |    483469 |                  0 |               0 |         0 |            0 |            0 |      0.374249 |      0.374249 |           0.374249 |                           0 |                         0 |
+| sw      | sw_diag_s43                         | test    |    223471 |                  0 |               0 |         0 |            0 |            0 |      0.437197 |      0.437197 |           0.437197 |                           0 |                         0 |
+| wd      | wd_coreoff_s46                      | val     |   4069900 |                  0 |               0 |         0 |            0 |            0 |      0.654501 |      0.654501 |           0.654501 |                           0 |                         0 |
+| wd      | wd_coreoff_s46                      | test    |   2877500 |                  0 |               0 |         0 |            0 |            0 |      0.534154 |      0.534154 |           0.534154 |                           0 |                         0 |
+| wd      | wd_gru_s46                          | val     |   4069900 |                  0 |               0 |         0 |            0 |            0 |      0.636783 |      0.636783 |           0.636783 |                           0 |                         0 |
+| wd      | wd_gru_s46                          | test    |   2877500 |                  0 |               0 |         0 |            0 |            0 |      0.537285 |      0.537285 |           0.537285 |                           0 |                         0 |
 
 ## Clock / saturation diagnostics (per run x split x activity class)
 
@@ -721,22 +733,86 @@
 
 | run                      | state           |   last_epoch |   attempts |
 |:-------------------------|:----------------|-------------:|-----------:|
-| icews_coreoff_recon_s44  | running/pending |            0 |          1 |
-| icews_coreoff_recon_s45  | running/pending |            0 |          1 |
+| icews_coreoff_recon_s44  | running/pending |            4 |          1 |
+| icews_coreoff_recon_s45  | running/pending |            2 |          1 |
 | icews_coreoff_recon_s47  | running/pending |            5 |          1 |
-| icews_curonly_recon_s44  | running/pending |            0 |          1 |
-| icews_curonly_recon_s45  | running/pending |            0 |          1 |
+| icews_curonly_recon_s44  | running/pending |            2 |          1 |
+| icews_curonly_recon_s45  | running/pending |            4 |          1 |
 | icews_curonly_recon_s46  | running/pending |            6 |          1 |
 | icews_curonly_recon_s47  | running/pending |            6 |          1 |
 | icews_gru_recon_s43      | running/pending |            6 |          1 |
-| icews_gru_recon_s44      | running/pending |            0 |          1 |
-| icews_gru_recon_s45      | running/pending |            0 |          1 |
+| icews_gru_recon_s44      | running/pending |            1 |          1 |
+| icews_gru_recon_s45      | running/pending |            3 |          1 |
 | icews_gru_recon_s46      | running/pending |            6 |          1 |
 | icews_gru_recon_s47      | running/pending |            6 |          1 |
 | icews_identity_recon_s44 | running/pending |            0 |          1 |
 | icews_identity_recon_s45 | running/pending |            0 |          1 |
 | icews_identity_recon_s46 | running/pending |            6 |          1 |
 | icews_identity_recon_s47 | running/pending |            6 |          1 |
-| icews_tsd_recon_s44      | running/pending |            0 |          1 |
+| icews_tsd_recon_s44      | running/pending |            3 |          1 |
 | icews_tsd_recon_s45      | running/pending |            0 |          1 |
+| polecat_coreoff_s43      | running/pending |            2 |          1 |
+| polecat_coreoff_s46      | running/pending |            2 |          1 |
+| polecat_coreoff_s47      | running/pending |            2 |          1 |
+| polecat_gru_s43          | running/pending |            0 |          1 |
+| polecat_gru_s46          | running/pending |            0 |          1 |
+| polecat_gru_s47          | running/pending |            0 |          1 |
+| sp_attention_s43         | running/pending |            0 |          1 |
+| sp_attention_s44         | running/pending |            0 |          1 |
+| sp_attention_s45         | running/pending |            0 |          1 |
+| sp_attention_s46         | running/pending |            0 |          1 |
+| sp_attention_s47         | running/pending |            0 |          1 |
+| sp_coreoff_s43           | running/pending |            0 |          1 |
+| sp_coreoff_s44           | running/pending |            0 |          1 |
+| sp_coreoff_s45           | running/pending |            0 |          1 |
+| sp_coreoff_s46           | running/pending |            0 |          1 |
+| sp_coreoff_s47           | running/pending |            0 |          1 |
+| sp_curonly_s43           | running/pending |            0 |          1 |
+| sp_curonly_s44           | running/pending |            0 |          1 |
+| sp_curonly_s45           | running/pending |            0 |          1 |
+| sp_curonly_s46           | running/pending |            0 |          1 |
+| sp_curonly_s47           | running/pending |            0 |          1 |
+| sp_diag_s43              | running/pending |            0 |          1 |
+| sp_diag_s44              | running/pending |            0 |          1 |
+| sp_diag_s45              | running/pending |            0 |          1 |
+| sp_diag_s46              | running/pending |            0 |          1 |
+| sp_diag_s47              | running/pending |            0 |          1 |
+| sp_gru_s43               | running/pending |            0 |          1 |
+| sp_gru_s44               | running/pending |            0 |          1 |
+| sp_gru_s45               | running/pending |            0 |          1 |
+| sp_gru_s46               | running/pending |            0 |          1 |
+| sp_gru_s47               | running/pending |            0 |          1 |
+| sp_identity_s43          | running/pending |            0 |          1 |
+| sp_identity_s44          | running/pending |            0 |          1 |
+| sp_identity_s45          | running/pending |            0 |          1 |
+| sp_identity_s46          | running/pending |            0 |          1 |
+| sp_identity_s47          | running/pending |            0 |          1 |
+| sp_nodeframe_s43         | running/pending |            0 |          1 |
+| sp_nodeframe_s44         | running/pending |            0 |          1 |
+| sp_nodeframe_s45         | running/pending |            0 |          1 |
+| sp_nodeframe_s46         | running/pending |            0 |          1 |
+| sp_nodeframe_s47         | running/pending |            0 |          1 |
+| sp_tsd_s43               | running/pending |            0 |          1 |
+| sp_tsd_s44               | running/pending |            0 |          1 |
+| sp_tsd_s45               | running/pending |            0 |          1 |
+| sp_tsd_s46               | running/pending |            0 |          1 |
+| sp_tsd_s47               | running/pending |            0 |          1 |
+| sw_attention_s43         | running/pending |            0 |          1 |
+| sw_attention_s46         | running/pending |            0 |          1 |
+| sw_attention_s47         | running/pending |            1 |          1 |
+| sw_coreoff_s43           | running/pending |            1 |          1 |
+| sw_coreoff_s46           | running/pending |            0 |          1 |
+| sw_coreoff_s47           | running/pending |            0 |          1 |
+| sw_diag_s46              | running/pending |            0 |          1 |
+| sw_diag_s47              | running/pending |            6 |          1 |
+| sw_gru_s43               | running/pending |           13 |          1 |
+| sw_gru_s46               | running/pending |            0 |          1 |
+| sw_gru_s47               | running/pending |            6 |          1 |
+| sw_nodeframe_s43         | running/pending |            0 |          1 |
+| sw_nodeframe_s46         | running/pending |            5 |          1 |
+| sw_nodeframe_s47         | running/pending |           11 |          1 |
+| wd_coreoff_s43           | running/pending |            3 |          1 |
+| wd_coreoff_s47           | running/pending |            0 |          1 |
+| wd_gru_s43               | running/pending |            0 |          1 |
+| wd_gru_s47               | running/pending |            0 |          1 |
 

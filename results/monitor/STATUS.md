@@ -1,20 +1,20 @@
-# Monitor status (2026-09-23 04:23:47)
+# Monitor status (2026-09-23 04:39:59)
 
 ## GPU free (GiB) and utilisation
-0:54GB(36%) 1:51GB(99%) 2:44GB(33%) 3:62GB(0%) 4:62GB(19%) 5:54GB(97%) 6:44GB(96%) 7:44GB(100%) 
-our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 2654122:18014MiB 2668669:18384MiB 2872725:18280MiB 2905507:18198MiB 2703991:18280MiB 2704074:18198MiB 
+0:54GB(0%) 1:51GB(88%) 2:3GB(87%) 3:9GB(99%) 4:4GB(100%) 5:54GB(79%) 6:10GB(100%) 7:25GB(39%) 
+our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 4095829:15526MiB 4096930:11522MiB 4118762:15518MiB 2654122:18014MiB 4096797:15518MiB 4097655:11524MiB 4102102:4524MiB 4114914:4524MiB 4115409:8288MiB 4133554:10394MiB 2668669:18384MiB 4095645:15512MiB 4098149:11522MiB 4102379:10308MiB 4115866:10540MiB 4131532:11526MiB 2872725:18280MiB 2905507:18198MiB 4096471:15514MiB 4097379:15524MiB 4128338:4524MiB 2703991:18280MiB 2704074:18198MiB 4095975:15524MiB 4115110:4524MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
-- gpu2: ELIGIBLE (idle 726 min)
-- gpu3: ELIGIBLE (idle 955 min)
-- gpu4: ELIGIBLE (idle 1330 min)
+- gpu2: ELIGIBLE (idle 742 min)
+- gpu3: ELIGIBLE (idle 971 min)
+- gpu4: ELIGIBLE (idle 1346 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 486 min)
+- gpu6: ELIGIBLE (idle 502 min)
 - gpu7: OURS
-compensation: colleagues hold 26542 MiB on our GPUs; we hold 109458 MiB on theirs; budget left -82916 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
-our launcher claims (pid:gpu/MiB): 
+compensation: colleagues hold 26542 MiB on our GPUs; we hold 301766 MiB on theirs; budget left -275224 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+our launcher claims (pid:gpu/MiB): 4096892:4/12000 4100882:6/5000 4102038:3/11000 
 
 ## leakfree2 benchmark runs
 - DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
@@ -227,85 +227,85 @@ our launcher claims (pid:gpu/MiB):
 - DONE     forum_tsd_recoff_s45: FINAL val_mrr=0.3965 test_mrr=0.3906 test_hits10=0.5333 eval_sec=479.6
 - DONE     forum_tsd_recon_s44: FINAL val_mrr=0.6054 test_mrr=0.6220 test_hits10=0.6706 eval_sec=680.6
 - DONE     forum_tsd_recon_s45: FINAL val_mrr=0.6072 test_mrr=0.6170 test_hits10=0.6622 eval_sec=734.2
-- QUEUED   icews_coreoff_recon_s44
-- QUEUED   icews_coreoff_recon_s45
+- RUNNING  icews_coreoff_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  icews_coreoff_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  icews_coreoff_recon_s47: final val_mrr=0.2922 (17200.9s so far)
-- QUEUED   icews_curonly_recon_s44
-- QUEUED   icews_curonly_recon_s45
+- RUNNING  icews_curonly_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  icews_curonly_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  icews_curonly_recon_s46: final val_mrr=0.3172 (15254.5s so far)
 - RUNNING  icews_curonly_recon_s47: final val_mrr=0.3186 (19920.2s so far)
 - RUNNING  icews_gru_recon_s43: final val_mrr=0.3211 (17228.7s so far)
-- QUEUED   icews_gru_recon_s44
-- QUEUED   icews_gru_recon_s45
+- RUNNING  icews_gru_recon_s44: epochs': 3, 'time_window': None, 'context_edges': 50000, 'train_edges_
+- RUNNING  icews_gru_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  icews_gru_recon_s46: final val_mrr=0.3225 (17203.5s so far)
 - RUNNING  icews_gru_recon_s47: final val_mrr=0.3213 (17509.9s so far)
-- QUEUED   icews_identity_recon_s44
-- QUEUED   icews_identity_recon_s45
+- RUNNING  icews_identity_recon_s44: 
+- RUNNING  icews_identity_recon_s45: 
 - RUNNING  icews_identity_recon_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  icews_identity_recon_s47: final val_mrr=0.3279 (17163.3s so far)
-- QUEUED   icews_tsd_recon_s44
-- QUEUED   icews_tsd_recon_s45
-- QUEUED   polecat_coreoff_s43
-- QUEUED   polecat_coreoff_s46
-- QUEUED   polecat_coreoff_s47
-- QUEUED   polecat_gru_s43
-- QUEUED   polecat_gru_s46
-- QUEUED   polecat_gru_s47
-- QUEUED   sp_attention_s43
-- QUEUED   sp_attention_s44
-- QUEUED   sp_attention_s45
-- QUEUED   sp_attention_s46
-- QUEUED   sp_attention_s47
-- QUEUED   sp_coreoff_s43
-- QUEUED   sp_coreoff_s44
-- QUEUED   sp_coreoff_s45
-- QUEUED   sp_coreoff_s46
-- QUEUED   sp_coreoff_s47
-- QUEUED   sp_curonly_s43
-- QUEUED   sp_curonly_s44
-- QUEUED   sp_curonly_s45
-- QUEUED   sp_curonly_s46
-- QUEUED   sp_curonly_s47
-- QUEUED   sp_diag_s43
-- QUEUED   sp_diag_s44
-- QUEUED   sp_diag_s45
-- QUEUED   sp_diag_s46
-- QUEUED   sp_diag_s47
-- QUEUED   sp_gru_s43
-- QUEUED   sp_gru_s44
-- QUEUED   sp_gru_s45
-- QUEUED   sp_gru_s46
-- QUEUED   sp_gru_s47
-- QUEUED   sp_identity_s43
-- QUEUED   sp_identity_s44
-- QUEUED   sp_identity_s45
-- QUEUED   sp_identity_s46
-- QUEUED   sp_identity_s47
-- QUEUED   sp_nodeframe_s43
-- QUEUED   sp_nodeframe_s44
-- QUEUED   sp_nodeframe_s45
-- QUEUED   sp_nodeframe_s46
-- QUEUED   sp_nodeframe_s47
-- QUEUED   sp_tsd_s43
-- QUEUED   sp_tsd_s44
-- QUEUED   sp_tsd_s45
-- QUEUED   sp_tsd_s46
-- QUEUED   sp_tsd_s47
-- QUEUED   sw_attention_s43
-- QUEUED   sw_attention_s46
-- QUEUED   sw_attention_s47
-- QUEUED   sw_coreoff_s43
-- QUEUED   sw_coreoff_s46
-- QUEUED   sw_coreoff_s47
-- QUEUED   sw_diag_s43
-- QUEUED   sw_diag_s46
-- QUEUED   sw_diag_s47
-- QUEUED   sw_gru_s43
-- QUEUED   sw_gru_s46
-- QUEUED   sw_gru_s47
-- QUEUED   sw_nodeframe_s43
-- QUEUED   sw_nodeframe_s46
-- QUEUED   sw_nodeframe_s47
+- RUNNING  icews_tsd_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  icews_tsd_recon_s45: 
+- RUNNING  polecat_coreoff_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  polecat_coreoff_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  polecat_coreoff_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  polecat_gru_s43: epochs': 4, 'time_window': None, 'context_edges': 50000, 'train_edges_
+- RUNNING  polecat_gru_s46: 
+- RUNNING  polecat_gru_s47: 
+- RUNNING  sp_attention_s43: 
+- RUNNING  sp_attention_s44: 
+- RUNNING  sp_attention_s45: 
+- RUNNING  sp_attention_s46: 
+- RUNNING  sp_attention_s47: 
+- RUNNING  sp_coreoff_s43: 
+- RUNNING  sp_coreoff_s44: 
+- RUNNING  sp_coreoff_s45: 
+- RUNNING  sp_coreoff_s46: 
+- RUNNING  sp_coreoff_s47: 
+- RUNNING  sp_curonly_s43: 
+- RUNNING  sp_curonly_s44: 
+- RUNNING  sp_curonly_s45: 
+- RUNNING  sp_curonly_s46: 
+- RUNNING  sp_curonly_s47: 
+- RUNNING  sp_diag_s43: 
+- RUNNING  sp_diag_s44: 
+- RUNNING  sp_diag_s45: 
+- RUNNING  sp_diag_s46: 
+- RUNNING  sp_diag_s47: 
+- RUNNING  sp_gru_s43: 
+- RUNNING  sp_gru_s44: 
+- RUNNING  sp_gru_s45: 
+- RUNNING  sp_gru_s46: 
+- RUNNING  sp_gru_s47: 
+- RUNNING  sp_identity_s43: 
+- RUNNING  sp_identity_s44: 
+- RUNNING  sp_identity_s45: 
+- RUNNING  sp_identity_s46: 
+- RUNNING  sp_identity_s47: 
+- RUNNING  sp_nodeframe_s43: 
+- RUNNING  sp_nodeframe_s44: 
+- RUNNING  sp_nodeframe_s45: 
+- RUNNING  sp_nodeframe_s46: 
+- RUNNING  sp_nodeframe_s47: 
+- RUNNING  sp_tsd_s43: 
+- RUNNING  sp_tsd_s44: 
+- RUNNING  sp_tsd_s45: 
+- RUNNING  sp_tsd_s46: 
+- RUNNING  sp_tsd_s47: 
+- RUNNING  sw_attention_s43: 
+- RUNNING  sw_attention_s46: 
+- RUNNING  sw_attention_s47: epochs': 8, 'time_window': 3600.0, 'context_edges': 50000, 'train_edge
+- RUNNING  sw_coreoff_s43: 
+- RUNNING  sw_coreoff_s46: 
+- RUNNING  sw_coreoff_s47: 
+- RUNNING  sw_diag_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  sw_diag_s46: 
+- RUNNING  sw_diag_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  sw_gru_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  sw_gru_s46: 
+- RUNNING  sw_gru_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  sw_nodeframe_s43: 
+- RUNNING  sw_nodeframe_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  sw_nodeframe_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     synth_gen_s1_attention_recoff_s43: FINAL val_mrr=0.2017 test_mrr=0.2034 test_hits10=0.4579 eval_sec=667.7
 - DONE     synth_gen_s1_attention_recoff_s44: FINAL val_mrr=0.2007 test_mrr=0.2031 test_hits10=0.4684 eval_sec=300.9
 - DONE     synth_gen_s1_attention_recoff_s45: FINAL val_mrr=0.2031 test_mrr=0.2086 test_hits10=0.4640 eval_sec=739.0
@@ -451,12 +451,12 @@ our launcher claims (pid:gpu/MiB):
 - DONE     synth_gen_s2_tsd_recoff_rel_s45: FINAL val_mrr=0.3191 test_mrr=0.2882 test_hits10=0.5577 eval_sec=457.1
 - DONE     synth_gen_s2_tsd_recoff_rel_s46: FINAL val_mrr=0.3107 test_mrr=0.2932 test_hits10=0.5765 eval_sec=428.9
 - DONE     synth_gen_s2_tsd_recoff_rel_s47: FINAL val_mrr=0.3137 test_mrr=0.2737 test_hits10=0.5417 eval_sec=328.4
-- QUEUED   wd_coreoff_s43
-- QUEUED   wd_coreoff_s46
-- QUEUED   wd_coreoff_s47
-- QUEUED   wd_gru_s43
-- QUEUED   wd_gru_s46
-- QUEUED   wd_gru_s47
+- RUNNING  wd_coreoff_s43: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
+- RUNNING  wd_coreoff_s46: final val_mrr=0.6416 (230.8s so far)
+- RUNNING  wd_coreoff_s47: 
+- RUNNING  wd_gru_s43: 
+- DONE     wd_gru_s46: FINAL val_mrr=0.6468 test_mrr=0.5373 test_hits10=0.6016 eval_sec=428.2
+- RUNNING  wd_gru_s47: 
 - DONE     wiki_attention_s43_lr1e-3: FINAL val_mrr=0.7640 test_mrr=0.7521 test_hits10=0.8529 eval_sec=1291.5
 - DONE     wiki_attention_s43_lr3e-4: FINAL val_mrr=0.7487 test_mrr=0.7342 test_hits10=0.8470 eval_sec=1944.7
 - DONE     wiki_attention_s44_lr1e-3: FINAL val_mrr=0.7730 test_mrr=0.7604 test_hits10=0.8542 eval_sec=670.1
@@ -571,8 +571,8 @@ our launcher claims (pid:gpu/MiB):
 - DONE synth_static_original: test 0.790 novel 0.151 rec 0.791
 
 ## recent actions
-2026-09-22 20:51:18 (re)launching wiki_tsd_clock-node_update_s47 via results/review_2026_09_22/queue/wiki_tsd_clock-node_update_s47.cmd (attempt 1)
-2026-09-22 20:51:18 (re)launching wiki_tsd_tw300_s44 via results/review_2026_09_22/queue/wiki_tsd_tw300_s44.cmd (attempt 1)
-2026-09-22 20:51:18 (re)launching wiki_tsd_tw300_s45 via results/review_2026_09_22/queue/wiki_tsd_tw300_s45.cmd (attempt 1)
-2026-09-22 20:51:18 (re)launching wiki_tsd_tw300_s46 via results/review_2026_09_22/queue/wiki_tsd_tw300_s46.cmd (attempt 1)
-2026-09-22 20:51:18 (re)launching wiki_tsd_tw300_s47 via results/review_2026_09_22/queue/wiki_tsd_tw300_s47.cmd (attempt 1)
+2026-09-23 04:23:47 (re)launching wd_coreoff_s46 via results/review_2026_09_22/queue/wd_coreoff_s46.cmd (attempt 1)
+2026-09-23 04:23:47 (re)launching wd_coreoff_s47 via results/review_2026_09_22/queue/wd_coreoff_s47.cmd (attempt 1)
+2026-09-23 04:23:47 (re)launching wd_gru_s43 via results/review_2026_09_22/queue/wd_gru_s43.cmd (attempt 1)
+2026-09-23 04:23:47 (re)launching wd_gru_s46 via results/review_2026_09_22/queue/wd_gru_s46.cmd (attempt 1)
+2026-09-23 04:23:47 (re)launching wd_gru_s47 via results/review_2026_09_22/queue/wd_gru_s47.cmd (attempt 1)
