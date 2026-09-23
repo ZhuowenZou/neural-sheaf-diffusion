@@ -269,6 +269,13 @@ novel-pair fraction only 11% here, so this variant tests memory rather than nove
 0.531, latent oracle 0.590, chance 0.059. Shortening the delay lets the GRU core extract a small, seed-consistent
 amount of history that the SSM core does not, but no arm comes close to the oracle.
 
+**REC-on stratum (variant 1, separately labelled shortcut quantification; five seeds per arm):** with the
+recurrence head every arm rises to 0.269-0.280 (TSD 0.279 ± 0.002, core-off 0.280 ± 0.002, identity 0.278,
+current-only 0.276, GRU 0.274, node-frame 0.273, attention 0.272, diagonal SSM 0.269): MRR on recurring
+pairs jumps from ~0.33 to ~0.62 while MRR on novel pairs falls from ~0.135 to ~0.067, i.e. the head is a
+recurrence shortcut that trades novel-pair ranking for recurring-pair ranking, and it again leaves no room for
+a core contribution (core-off − TSD = +0.001, 3+ 2−; all other arms within −0.010).
+
 **Synthetic conclusion:** across three generator variants, none of the evaluated cores learns the delayed-cue
 rule under the paper's training protocol (persistent state, one-step gradient truncation, fixed epoch budget);
 the only seed-consistent difference is a small GRU advantage on the short-delay variant, and TSD is never above
