@@ -148,10 +148,12 @@ gru,smoke,tgbl-wiki,gru-sheaf,43,560.0,0.0,0.0,188.0,0.0,0.0,0.0,0.0,4000.0,0.0,
 synth_r,smoke,synth-history:results/review_2026_09_22/synthetic/gen_s1r/data.npz,tsd,43,151.0,0.0,0.0,68.0,0.0,0.0,0.0,0.0,1500.0,0.0,0.0,0.0,1500.0,0.0,True
 tsd,smoke,tgbl-wiki,tsd,43,560.0,0.0,0.0,228.0,0.0,0.0,0.0,0.0,4000.0,0.0,0.0,0.0,4000.0,0.0,True
 tsd_clockdiag,smoke,tgbl-wiki,tsd,43,560.0,0.0,0.0,228.0,0.0,0.0,0.0,0.0,4000.0,0.0,0.0,0.0,4000.0,0.0,True
+sw_coreoff_s43,sw,thgl-software,core-off,43,10640.0,0.0,0.0,128.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
 sw_diag_s43,sw,thgl-software,diagssm-ordinary,43,6916.0,0.0,0.0,51.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
 sw_diag_s47,sw,thgl-software,diagssm-ordinary,47,6384.0,0.0,0.0,57.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
 sw_gru_s43,sw,thgl-software,gru-ordinary,43,8512.0,0.0,0.0,65.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
 sw_gru_s47,sw,thgl-software,gru-ordinary,47,5852.0,0.0,0.0,55.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
+sw_nodeframe_s46,sw,thgl-software,node-frame,46,6916.0,0.0,0.0,42.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
 sw_nodeframe_s47,sw,thgl-software,node-frame,47,6384.0,0.0,0.0,44.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
 wd_coreoff_s43,wd,tkgl-wikidata,core-off,43,116.0,0.0,0.0,21.0,0.0,0.0,0.0,0.0,2869900.0,0.0,0.0,0.0,2877500.0,0.0,True
 wd_coreoff_s46,wd,tkgl-wikidata,core-off,46,116.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,2869900.0,0.0,0.0,0.0,2877500.0,0.0,True
