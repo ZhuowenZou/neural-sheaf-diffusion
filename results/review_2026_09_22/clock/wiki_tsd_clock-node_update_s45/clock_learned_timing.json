@@ -1,0 +1,8 @@
+{
+ "dt_time_params": {
+  "dt_time_weight": 0.9943991899490356,
+  "dt_time_log_scale": 0.009640755131840706
+ },
+ "delta_scale": 600.0,
+ "clock": "node_update"
+}
