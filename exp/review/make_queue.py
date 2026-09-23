@@ -61,7 +61,11 @@ def config_to_flags(cfg):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("what", choices=["wiki-wave1", "wiki-wave2", "wiki-extras", "wiki-clock-seeds", "audits", "synth", "forum", "icews"])
+    ap.add_argument("what", choices=["wiki-wave1", "wiki-wave2", "wiki-extras", "wiki-clock-seeds", "audits", "synth", "forum", "icews", "from-run"])
+    ap.add_argument("--from-run", default=None, help="from-run mode: retained leakfree2 run whose resolved config is the protocol")
+    ap.add_argument("--group", default=None, help="from-run mode: output group directory under the results root")
+    ap.add_argument("--mem", type=int, default=12000)
+    ap.add_argument("--rng-isolation", action="store_true", help="from-run mode: add --rng-isolation (new-protocol RNG regime)")
     ap.add_argument("--gen", default="gen_s1", help="synthetic generator directory under results/review_2026_09_22/synthetic")
     ap.add_argument("--seeds", default="43 44 45 46 47")
     ap.add_argument("--rec", default="off", choices=["off", "on", "both"])
@@ -162,6 +166,30 @@ def main():
             out = f"{RV}/icews/{name}"
             cmd = f"{PY} -m exp.run_event_benchmark {IC} {ARMS[arm]} --seed {seed} --out {out}"
             written.append(write_cmd(name, 16000, cmd, only_gpus=gpus[i % len(gpus)])); i += 1
+    elif args.what == "from-run":
+        # matched arms on any dataset: the protocol (all non-arm flags) is copied from a retained run's resolved config
+        import pandas as pd
+        r = pd.read_csv(os.path.join(ROOT, "results/event_bench/leakfree2", args.from_run, "results.csv")).iloc[0]
+        cfg = json.loads(r["config_json"])
+        for k in ("sheaf_identity", "sheaf_conditioning", "no_delta_t", "no_memory", "layers", "seed", "emb_in_head",
+                  "learn_node_emb", "skip_final_eval", "cache_warm_history"):
+            cfg.pop(k, None)
+        base = config_to_flags(cfg) + " --predict-from-previous --save-checkpoint --dump-query-ranks"
+        base += f" --epochs {cfg.get('epochs', 10)}"
+        if cfg.get("patience") is not None:
+            base += f" --patience {cfg['patience']} --min-epochs {cfg.get('min_epochs', 1)}"
+        if args.rng_isolation:
+            base += " --rng-isolation"
+        arms = [a for a in ARMS if not args.arms or a in args.arms.split(",")]
+        i = 0
+        for arm in arms:
+            for seed in [int(x) for x in args.seeds.split()]:
+                name = f"{args.group}_{arm}_s{seed}"
+                if os.path.exists(os.path.join(ROOT, RV, "queue", f"{name}.cmd")):
+                    continue
+                out = f"{RV}/{args.group}/{name}"
+                cmd = f"{PY} -m exp.run_event_benchmark {base} {ARMS[arm]} --seed {seed} --out {out}"
+                written.append(write_cmd(name, args.mem, cmd, only_gpus=gpus[i % len(gpus)])); i += 1
     elif args.what == "synth":
         SY = (f"--dataset synth-history:{RV}/synthetic/{args.gen}/data.npz --model faithful --time-window 20000 --context-edges 2000 "
               "--track-val-edges 3000 --train-negatives-per-pos 32 --epochs 6 --patience 3 --min-epochs 3 --lr 1e-3 "
