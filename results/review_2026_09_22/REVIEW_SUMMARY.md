@@ -1,53 +1,53 @@
-# Review campaign summary (auto-generated 2026-09-22 21:59)
+# Review campaign summary (auto-generated 2026-09-22 22:20)
 
-167 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+169 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
-| dataset                                                            | group   | rec   | arm               |     lr |   n |     mean |           std | values                                              |
-|:-------------------------------------------------------------------|:--------|:------|:------------------|-------:|----:|---------:|--------------:|:----------------------------------------------------|
-| synth-history:results/review_2026_09_22/synthetic/gen_s1r/data.npz | smoke   | off   | tsd               | 0.001  |   1 | 0.215083 | nan           | 0.2151                                              |
-| tgbl-wiki                                                          | clock   | on    | tsd               | 0.001  |   6 | 0.761103 |   0.0165475   | 0.7597 / 0.7650 / 0.7611 / 0.7650 / 0.7322 / 0.7835 |
-| tgbl-wiki                                                          | matched | on    | attention-gates   | 0.0003 |   1 | 0.734242 | nan           | 0.7342                                              |
-| tgbl-wiki                                                          | matched | on    | attention-gates   | 0.001  |   5 | 0.754834 |   0.00492825  | 0.7521 / 0.7604 / 0.7549 / 0.7481 / 0.7586          |
-| tgbl-wiki                                                          | matched | on    | core-off          | 0.0003 |   1 | 0.725545 | nan           | 0.7255                                              |
-| tgbl-wiki                                                          | matched | on    | core-off          | 0.001  |   5 | 0.734901 |   0.00658663  | 0.7440 / 0.7334 / 0.7315 / 0.7386 / 0.7270          |
-| tgbl-wiki                                                          | matched | on    | current-only-maps | 0.0003 |   1 | 0.726722 | nan           | 0.7267                                              |
-| tgbl-wiki                                                          | matched | on    | current-only-maps | 0.001  |   5 | 0.760115 |   0.00746546  | 0.7656 / 0.7679 / 0.7626 / 0.7535 / 0.7511          |
-| tgbl-wiki                                                          | matched | on    | diagssm-ordinary  | 0.0003 |   1 | 0.717137 | nan           | 0.7171                                              |
-| tgbl-wiki                                                          | matched | on    | diagssm-ordinary  | 0.001  |   5 | 0.761581 |   0.00601265  | 0.7659 / 0.7689 / 0.7578 / 0.7614 / 0.7539          |
-| tgbl-wiki                                                          | matched | on    | gru-ordinary      | 0.0003 |   1 | 0.733609 | nan           | 0.7336                                              |
-| tgbl-wiki                                                          | matched | on    | gru-ordinary      | 0.001  |   5 | 0.763969 |   0.00600545  | 0.7713 / 0.7694 / 0.7616 / 0.7601 / 0.7576          |
-| tgbl-wiki                                                          | matched | on    | identity-maps     | 0.0003 |   1 | 0.735953 | nan           | 0.7360                                              |
-| tgbl-wiki                                                          | matched | on    | identity-maps     | 0.001  |   5 | 0.762966 |   0.00188125  | 0.7628 / 0.7648 / 0.7649 / 0.7612 / 0.7610          |
-| tgbl-wiki                                                          | matched | on    | node-frame        | 0.0003 |   1 | 0.731724 | nan           | 0.7317                                              |
-| tgbl-wiki                                                          | matched | on    | node-frame        | 0.001  |   5 | 0.75432  |   0.00602299  | 0.7640 / 0.7551 / 0.7479 / 0.7529 / 0.7517          |
-| tgbl-wiki                                                          | matched | on    | tsd               | 0.0003 |   1 | 0.733707 | nan           | 0.7337                                              |
-| tgbl-wiki                                                          | matched | on    | tsd               | 0.001  |   5 | 0.762302 |   0.0029512   | 0.7575 / 0.7646 / 0.7631 / 0.7647 / 0.7616          |
-| tgbl-wiki                                                          | smoke   | on    | attention-gates   | 0.0003 |   1 | 0.537425 | nan           | 0.5374                                              |
-| tgbl-wiki                                                          | smoke   | on    | core-off          | 0.0003 |   1 | 0.54059  | nan           | 0.5406                                              |
-| tgbl-wiki                                                          | smoke   | on    | gru-sheaf         | 0.0003 |   1 | 0.525499 | nan           | 0.5255                                              |
-| tgbl-wiki                                                          | smoke   | on    | tsd               | 0.0003 |   2 | 0.526591 |   0.000382704 | 0.5263 / 0.5269                                     |
-| thgl-forum                                                         | forum   | off   | attention-gates   | 0.001  |   4 | 0.326478 |   0.0425901   | 0.2700 / 0.3683 / 0.3479 / 0.3197                   |
-| thgl-forum                                                         | forum   | off   | core-off          | 0.001  |   5 | 0.226204 |   0.00798205  | 0.2221 / 0.2195 / 0.2373 / 0.2202 / 0.2320          |
-| thgl-forum                                                         | forum   | off   | current-only-maps | 0.001  |   4 | 0.392796 |   0.0124325   | 0.3884 / 0.3873 / 0.3842 / 0.4113                   |
-| thgl-forum                                                         | forum   | off   | diagssm-ordinary  | 0.001  |   5 | 0.3747   |   0.0588892   | 0.2728 / 0.4045 / 0.3764 / 0.4175 / 0.4024          |
-| thgl-forum                                                         | forum   | off   | gru-ordinary      | 0.001  |   5 | 0.376179 |   0.026069    | 0.3827 / 0.3932 / 0.3807 / 0.3936 / 0.3308          |
-| thgl-forum                                                         | forum   | off   | identity-maps     | 0.001  |   5 | 0.320952 |   0.0681439   | 0.3144 / 0.4118 / 0.2204 / 0.3325 / 0.3257          |
-| thgl-forum                                                         | forum   | off   | node-frame        | 0.001  |   5 | 0.382245 |   0.0324567   | 0.3980 / 0.4138 / 0.3638 / 0.4011 / 0.3345          |
-| thgl-forum                                                         | forum   | off   | tsd               | 0.001  |   5 | 0.352908 |   0.070677    | 0.2323 / 0.3906 / 0.3940 / 0.4007 / 0.3470          |
-| thgl-forum                                                         | forum   | off   | tsd-no-gap        | 0.001  |   3 | 0.367375 |   0.0201216   | 0.3608 / 0.3514 / 0.3900                            |
-| thgl-forum                                                         | forum   | off   | tsd-no-memory     | 0.001  |   2 | 0.395816 |   0.0182389   | 0.4087 / 0.3829                                     |
-| thgl-forum                                                         | forum   | on    | attention-gates   | 0.001  |   4 | 0.62966  |   0.0100468   | 0.6161 / 0.6378 / 0.6368 / 0.6279                   |
-| thgl-forum                                                         | forum   | on    | core-off          | 0.001  |   5 | 0.615448 |   0.000853282 | 0.6161 / 0.6144 / 0.6151 / 0.6151 / 0.6166          |
-| thgl-forum                                                         | forum   | on    | current-only-maps | 0.001  |   5 | 0.634281 |   0.0148712   | 0.6450 / 0.6354 / 0.6475 / 0.6099 / 0.6336          |
-| thgl-forum                                                         | forum   | on    | diagssm-ordinary  | 0.001  |   5 | 0.647446 |   0.00590957  | 0.6444 / 0.6430 / 0.6564 / 0.6429 / 0.6505          |
-| thgl-forum                                                         | forum   | on    | gru-ordinary      | 0.001  |   5 | 0.642082 |   0.0117166   | 0.6511 / 0.6418 / 0.6414 / 0.6233 / 0.6528          |
-| thgl-forum                                                         | forum   | on    | identity-maps     | 0.001  |   5 | 0.639921 |   0.00799771  | 0.6413 / 0.6445 / 0.6313 / 0.6501 / 0.6324          |
-| thgl-forum                                                         | forum   | on    | node-frame        | 0.001  |   5 | 0.639888 |   0.00998818  | 0.6336 / 0.6430 / 0.6516 / 0.6450 / 0.6262          |
-| thgl-forum                                                         | forum   | on    | tsd               | 0.001  |   5 | 0.625388 |   0.00979199  | 0.6220 / 0.6170 / 0.6280 / 0.6412 / 0.6187          |
-| thgl-forum                                                         | forum   | on    | tsd-no-gap        | 0.001  |   3 | 0.633693 |   0.0124419   | 0.6475 / 0.6233 / 0.6302                            |
-| thgl-forum                                                         | forum   | on    | tsd-no-memory     | 0.001  |   3 | 0.650116 |   0.00292731  | 0.6491 / 0.6478 / 0.6534                            |
+| dataset                                                            | group   | rec   | arm               |     lr |   n |     mean |           std | values                                                                |
+|:-------------------------------------------------------------------|:--------|:------|:------------------|-------:|----:|---------:|--------------:|:----------------------------------------------------------------------|
+| synth-history:results/review_2026_09_22/synthetic/gen_s1r/data.npz | smoke   | off   | tsd               | 0.001  |   1 | 0.215083 | nan           | 0.2151                                                                |
+| tgbl-wiki                                                          | clock   | on    | tsd               | 0.001  |   8 | 0.76247  |   0.0143194   | 0.7597 / 0.7650 / 0.7633 / 0.7611 / 0.7698 / 0.7650 / 0.7322 / 0.7835 |
+| tgbl-wiki                                                          | matched | on    | attention-gates   | 0.0003 |   1 | 0.734242 | nan           | 0.7342                                                                |
+| tgbl-wiki                                                          | matched | on    | attention-gates   | 0.001  |   5 | 0.754834 |   0.00492825  | 0.7521 / 0.7604 / 0.7549 / 0.7481 / 0.7586                            |
+| tgbl-wiki                                                          | matched | on    | core-off          | 0.0003 |   1 | 0.725545 | nan           | 0.7255                                                                |
+| tgbl-wiki                                                          | matched | on    | core-off          | 0.001  |   5 | 0.734901 |   0.00658663  | 0.7440 / 0.7334 / 0.7315 / 0.7386 / 0.7270                            |
+| tgbl-wiki                                                          | matched | on    | current-only-maps | 0.0003 |   1 | 0.726722 | nan           | 0.7267                                                                |
+| tgbl-wiki                                                          | matched | on    | current-only-maps | 0.001  |   5 | 0.760115 |   0.00746546  | 0.7656 / 0.7679 / 0.7626 / 0.7535 / 0.7511                            |
+| tgbl-wiki                                                          | matched | on    | diagssm-ordinary  | 0.0003 |   1 | 0.717137 | nan           | 0.7171                                                                |
+| tgbl-wiki                                                          | matched | on    | diagssm-ordinary  | 0.001  |   5 | 0.761581 |   0.00601265  | 0.7659 / 0.7689 / 0.7578 / 0.7614 / 0.7539                            |
+| tgbl-wiki                                                          | matched | on    | gru-ordinary      | 0.0003 |   1 | 0.733609 | nan           | 0.7336                                                                |
+| tgbl-wiki                                                          | matched | on    | gru-ordinary      | 0.001  |   5 | 0.763969 |   0.00600545  | 0.7713 / 0.7694 / 0.7616 / 0.7601 / 0.7576                            |
+| tgbl-wiki                                                          | matched | on    | identity-maps     | 0.0003 |   1 | 0.735953 | nan           | 0.7360                                                                |
+| tgbl-wiki                                                          | matched | on    | identity-maps     | 0.001  |   5 | 0.762966 |   0.00188125  | 0.7628 / 0.7648 / 0.7649 / 0.7612 / 0.7610                            |
+| tgbl-wiki                                                          | matched | on    | node-frame        | 0.0003 |   1 | 0.731724 | nan           | 0.7317                                                                |
+| tgbl-wiki                                                          | matched | on    | node-frame        | 0.001  |   5 | 0.75432  |   0.00602299  | 0.7640 / 0.7551 / 0.7479 / 0.7529 / 0.7517                            |
+| tgbl-wiki                                                          | matched | on    | tsd               | 0.0003 |   1 | 0.733707 | nan           | 0.7337                                                                |
+| tgbl-wiki                                                          | matched | on    | tsd               | 0.001  |   5 | 0.762302 |   0.0029512   | 0.7575 / 0.7646 / 0.7631 / 0.7647 / 0.7616                            |
+| tgbl-wiki                                                          | smoke   | on    | attention-gates   | 0.0003 |   1 | 0.537425 | nan           | 0.5374                                                                |
+| tgbl-wiki                                                          | smoke   | on    | core-off          | 0.0003 |   1 | 0.54059  | nan           | 0.5406                                                                |
+| tgbl-wiki                                                          | smoke   | on    | gru-sheaf         | 0.0003 |   1 | 0.525499 | nan           | 0.5255                                                                |
+| tgbl-wiki                                                          | smoke   | on    | tsd               | 0.0003 |   2 | 0.526591 |   0.000382704 | 0.5263 / 0.5269                                                       |
+| thgl-forum                                                         | forum   | off   | attention-gates   | 0.001  |   4 | 0.326478 |   0.0425901   | 0.2700 / 0.3683 / 0.3479 / 0.3197                                     |
+| thgl-forum                                                         | forum   | off   | core-off          | 0.001  |   5 | 0.226204 |   0.00798205  | 0.2221 / 0.2195 / 0.2373 / 0.2202 / 0.2320                            |
+| thgl-forum                                                         | forum   | off   | current-only-maps | 0.001  |   4 | 0.392796 |   0.0124325   | 0.3884 / 0.3873 / 0.3842 / 0.4113                                     |
+| thgl-forum                                                         | forum   | off   | diagssm-ordinary  | 0.001  |   5 | 0.3747   |   0.0588892   | 0.2728 / 0.4045 / 0.3764 / 0.4175 / 0.4024                            |
+| thgl-forum                                                         | forum   | off   | gru-ordinary      | 0.001  |   5 | 0.376179 |   0.026069    | 0.3827 / 0.3932 / 0.3807 / 0.3936 / 0.3308                            |
+| thgl-forum                                                         | forum   | off   | identity-maps     | 0.001  |   5 | 0.320952 |   0.0681439   | 0.3144 / 0.4118 / 0.2204 / 0.3325 / 0.3257                            |
+| thgl-forum                                                         | forum   | off   | node-frame        | 0.001  |   5 | 0.382245 |   0.0324567   | 0.3980 / 0.4138 / 0.3638 / 0.4011 / 0.3345                            |
+| thgl-forum                                                         | forum   | off   | tsd               | 0.001  |   5 | 0.352908 |   0.070677    | 0.2323 / 0.3906 / 0.3940 / 0.4007 / 0.3470                            |
+| thgl-forum                                                         | forum   | off   | tsd-no-gap        | 0.001  |   3 | 0.367375 |   0.0201216   | 0.3608 / 0.3514 / 0.3900                                              |
+| thgl-forum                                                         | forum   | off   | tsd-no-memory     | 0.001  |   2 | 0.395816 |   0.0182389   | 0.4087 / 0.3829                                                       |
+| thgl-forum                                                         | forum   | on    | attention-gates   | 0.001  |   4 | 0.62966  |   0.0100468   | 0.6161 / 0.6378 / 0.6368 / 0.6279                                     |
+| thgl-forum                                                         | forum   | on    | core-off          | 0.001  |   5 | 0.615448 |   0.000853282 | 0.6161 / 0.6144 / 0.6151 / 0.6151 / 0.6166                            |
+| thgl-forum                                                         | forum   | on    | current-only-maps | 0.001  |   5 | 0.634281 |   0.0148712   | 0.6450 / 0.6354 / 0.6475 / 0.6099 / 0.6336                            |
+| thgl-forum                                                         | forum   | on    | diagssm-ordinary  | 0.001  |   5 | 0.647446 |   0.00590957  | 0.6444 / 0.6430 / 0.6564 / 0.6429 / 0.6505                            |
+| thgl-forum                                                         | forum   | on    | gru-ordinary      | 0.001  |   5 | 0.642082 |   0.0117166   | 0.6511 / 0.6418 / 0.6414 / 0.6233 / 0.6528                            |
+| thgl-forum                                                         | forum   | on    | identity-maps     | 0.001  |   5 | 0.639921 |   0.00799771  | 0.6413 / 0.6445 / 0.6313 / 0.6501 / 0.6324                            |
+| thgl-forum                                                         | forum   | on    | node-frame        | 0.001  |   5 | 0.639888 |   0.00998818  | 0.6336 / 0.6430 / 0.6516 / 0.6450 / 0.6262                            |
+| thgl-forum                                                         | forum   | on    | tsd               | 0.001  |   5 | 0.625388 |   0.00979199  | 0.6220 / 0.6170 / 0.6280 / 0.6412 / 0.6187                            |
+| thgl-forum                                                         | forum   | on    | tsd-no-gap        | 0.001  |   3 | 0.633693 |   0.0124419   | 0.6475 / 0.6233 / 0.6302                                              |
+| thgl-forum                                                         | forum   | on    | tsd-no-memory     | 0.001  |   3 | 0.650116 |   0.00292731  | 0.6491 / 0.6478 / 0.6534                                              |
 
 ## Paired contrasts (arm minus TSD, per-seed)
 
@@ -170,8 +170,12 @@
 | clock   | wiki_tsd_clock-global_s43           | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.759702 |      0.759702 |           0.759702 |                           0 |                         0 |
 | clock   | wiki_tsd_clock-node_interaction_s43 | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.750045 |      0.750045 |           0.750045 |                           0 |                         0 |
 | clock   | wiki_tsd_clock-node_interaction_s43 | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.765023 |      0.765023 |           0.765023 |                           0 |                         0 |
+| clock   | wiki_tsd_clock-node_interaction_s47 | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.750002 |      0.750002 |           0.750002 |                           0 |                         0 |
+| clock   | wiki_tsd_clock-node_interaction_s47 | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.763305 |      0.763305 |           0.763305 |                           0 |                         0 |
 | clock   | wiki_tsd_clock-node_update_s43      | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.749889 |      0.749889 |           0.749889 |                           0 |                         0 |
 | clock   | wiki_tsd_clock-node_update_s43      | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.761074 |      0.761074 |           0.761074 |                           0 |                         0 |
+| clock   | wiki_tsd_clock-node_update_s44      | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.757436 |      0.757436 |           0.757436 |                           0 |                         0 |
+| clock   | wiki_tsd_clock-node_update_s44      | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.76984  |      0.76984  |           0.76984  |                           0 |                         0 |
 | clock   | wiki_tsd_clock-node_update_s47      | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.753797 |      0.753797 |           0.753797 |                           0 |                         0 |
 | clock   | wiki_tsd_clock-node_update_s47      | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.76502  |      0.76502  |           0.76502  |                           0 |                         0 |
 | clock   | wiki_tsd_tw1200_s43                 | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.717011 |      0.717011 |           0.717011 |                           0 |                         0 |
@@ -519,12 +523,24 @@
 | clock   | wiki_tsd_clock-node_interaction_s43 | node_interaction | val          | closure    |  136421 |   1           |          0           |                0 |                     0 | 0.25        |     1324.3         |                   5.20304 |           600 |
 | clock   | wiki_tsd_clock-node_interaction_s43 | node_interaction | test         | endpoint   |   28587 |   0.968237    |          0.0320425   |              916 |                   916 | 0.243411    |     1741.78        |                   3.76065 |           600 |
 | clock   | wiki_tsd_clock-node_interaction_s43 | node_interaction | test         | closure    |  175893 |   1           |          0           |                0 |                     0 | 0.25        |     1308.09        |                   5.25615 |           600 |
+| clock   | wiki_tsd_clock-node_interaction_s47 | node_interaction | train_replay | endpoint   |  127665 |   8.6163e-05  |          0.0585517   |             3503 |                  7475 | 5.16592e-05 |        0.000308029 |                   3.63008 |           600 |
+| clock   | wiki_tsd_clock-node_interaction_s47 | node_interaction | train_replay | closure    |  894276 |   1.34187e-05 |          0.147951    |             3972 |                132309 | 8.38343e-06 |        5.99933e-05 |                   4.91565 |           600 |
+| clock   | wiki_tsd_clock-node_interaction_s47 | node_interaction | val          | endpoint   |   26656 |   0.000112545 |          0.0313625   |              836 |                   836 | 7.20389e-05 |        0.000388954 |                   3.67516 |           600 |
+| clock   | wiki_tsd_clock-node_interaction_s47 | node_interaction | val          | closure    |  136421 |   0           |          0           |                0 |                     0 | 2.59045e-07 |        2.59045e-07 |                   5.20304 |           600 |
+| clock   | wiki_tsd_clock-node_interaction_s47 | node_interaction | test         | endpoint   |   28587 |   0.000104943 |          0.0320425   |              916 |                   916 | 6.01678e-05 |        0.000179034 |                   3.76065 |           600 |
+| clock   | wiki_tsd_clock-node_interaction_s47 | node_interaction | test         | closure    |  175893 |   0           |          0           |                0 |                     0 | 1.09875e-08 |        1.09875e-08 |                   5.25615 |           600 |
 | clock   | wiki_tsd_clock-node_update_s43      | node_update      | train_replay | endpoint   |  127665 |   0.000563976 |          0.027439    |             3503 |                  7475 | 0.000328916 |        0.00184602  |                   3.29991 |           600 |
 | clock   | wiki_tsd_clock-node_update_s43      | node_update      | train_replay | closure    |  894276 |   0.000525565 |          0.00444158  |             3972 |                132309 | 0.000180928 |        0.00183222  |                   3.31645 |           600 |
 | clock   | wiki_tsd_clock-node_update_s43      | node_update      | val          | endpoint   |   26656 |   0.000262605 |          0.0313625   |              836 |                   836 | 0.000265675 |        0.000836845 |                   3.37706 |           600 |
 | clock   | wiki_tsd_clock-node_update_s43      | node_update      | val          | closure    |  136421 |   0           |          0           |                0 |                     0 | 1.0788e-10  |        1.0788e-10  |                   3.37308 |           600 |
 | clock   | wiki_tsd_clock-node_update_s43      | node_update      | test         | endpoint   |   28587 |   0.000209886 |          0.0320425   |              916 |                   916 | 0.000269363 |        0.000991762 |                   3.44421 |           600 |
 | clock   | wiki_tsd_clock-node_update_s43      | node_update      | test         | closure    |  175893 |   0           |          0           |                0 |                     0 | 6.6645e-11  |        6.6645e-11  |                   3.34686 |           600 |
+| clock   | wiki_tsd_clock-node_update_s44      | node_update      | train_replay | endpoint   |  127665 |   0.972561    |          0.027439    |             3503 |                  7475 | 0.243204    |       92.7867      |                   3.29991 |           600 |
+| clock   | wiki_tsd_clock-node_update_s44      | node_update      | train_replay | closure    |  894276 |   0.995558    |          0.00444158  |             3972 |                132309 | 0.248899    |       65.0077      |                   3.31645 |           600 |
+| clock   | wiki_tsd_clock-node_update_s44      | node_update      | val          | endpoint   |   26656 |   0.968637    |          0.0313625   |              836 |                   836 | 0.242236    |       91.8115      |                   3.37706 |           600 |
+| clock   | wiki_tsd_clock-node_update_s44      | node_update      | val          | closure    |  136421 |   1           |          0           |                0 |                     0 | 0.25        |       66.9201      |                   3.37308 |           600 |
+| clock   | wiki_tsd_clock-node_update_s44      | node_update      | test         | endpoint   |   28587 |   0.967957    |          0.0320425   |              916 |                   916 | 0.242061    |       93.1711      |                   3.44421 |           600 |
+| clock   | wiki_tsd_clock-node_update_s44      | node_update      | test         | closure    |  175893 |   1           |          0           |                0 |                     0 | 0.25        |       65.787       |                   3.34686 |           600 |
 | clock   | wiki_tsd_clock-node_update_s47      | node_update      | train_replay | endpoint   |  127665 |   0.96472     |          0.027439    |             3503 |                  7475 | 0.241313    |       91.6808      |                   3.29991 |           600 |
 | clock   | wiki_tsd_clock-node_update_s47      | node_update      | train_replay | closure    |  894276 |   0.99396     |          0.00444158  |             3972 |                132309 | 0.248519    |       61.342       |                   3.31645 |           600 |
 | clock   | wiki_tsd_clock-node_update_s47      | node_update      | val          | endpoint   |   26656 |   0.964623    |          0.0313625   |              836 |                   836 | 0.241322    |       87.7229      |                   3.37706 |           600 |
@@ -557,25 +573,23 @@
 | audit_icews_eval_s43                | running/pending |            0 |          2 |
 | audit_icews_eval_s46                | running/pending |            0 |          3 |
 | audit_icews_eval_s47                | running/pending |            0 |          2 |
-| forum_attention_recoff_s44          | running/pending |            0 |          1 |
-| forum_attention_recon_s45           | running/pending |            0 |          1 |
+| forum_attention_recoff_s44          | running/pending |            3 |          1 |
+| forum_attention_recon_s45           | running/pending |            2 |          1 |
 | icews_coreoff_recon_s47             | running/pending |            5 |          1 |
 | icews_curonly_recon_s46             | running/pending |            6 |          1 |
-| icews_curonly_recon_s47             | running/pending |            0 |          1 |
+| icews_curonly_recon_s47             | running/pending |            3 |          1 |
 | icews_gru_recon_s43                 | running/pending |            6 |          1 |
-| icews_gru_recon_s46                 | running/pending |            0 |          1 |
+| icews_gru_recon_s46                 | running/pending |            1 |          1 |
 | icews_gru_recon_s47                 | running/pending |            6 |          1 |
-| icews_identity_recon_s46            | running/pending |            1 |          1 |
+| icews_identity_recon_s46            | running/pending |            2 |          1 |
 | icews_identity_recon_s47            | running/pending |            6 |          1 |
-| wiki_tsd_clock-node_interaction_s44 | running/pending |            5 |          1 |
-| wiki_tsd_clock-node_interaction_s45 | running/pending |            0 |          1 |
+| wiki_tsd_clock-node_interaction_s44 | running/pending |            8 |          1 |
+| wiki_tsd_clock-node_interaction_s45 | running/pending |            5 |          1 |
 | wiki_tsd_clock-node_interaction_s46 | running/pending |            0 |          1 |
-| wiki_tsd_clock-node_interaction_s47 | running/pending |            5 |          1 |
-| wiki_tsd_clock-node_update_s44      | running/pending |            5 |          1 |
-| wiki_tsd_clock-node_update_s45      | running/pending |            0 |          1 |
-| wiki_tsd_clock-node_update_s46      | running/pending |            4 |          1 |
+| wiki_tsd_clock-node_update_s45      | running/pending |            4 |          1 |
+| wiki_tsd_clock-node_update_s46      | running/pending |            7 |          1 |
 | wiki_tsd_tw300_s44                  | running/pending |            0 |          1 |
-| wiki_tsd_tw300_s45                  | running/pending |            2 |          1 |
-| wiki_tsd_tw300_s46                  | running/pending |            0 |          1 |
-| wiki_tsd_tw300_s47                  | running/pending |            2 |          1 |
+| wiki_tsd_tw300_s45                  | running/pending |            4 |          1 |
+| wiki_tsd_tw300_s46                  | running/pending |            2 |          1 |
+| wiki_tsd_tw300_s47                  | running/pending |            4 |          1 |
 

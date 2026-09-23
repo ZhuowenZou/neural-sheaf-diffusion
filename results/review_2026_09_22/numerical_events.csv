@@ -20,7 +20,9 @@ wiki_f_s46,audit,tgbl-wiki,tsd,46,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.
 wiki_f_s47,audit,tgbl-wiki,tsd,47,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_tsd_clock-global_s43,clock,tgbl-wiki,tsd,43,24832.0,0.0,0.0,512.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_tsd_clock-node_interaction_s43,clock,tgbl-wiki,tsd,43,24832.0,0.0,0.0,507.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
+wiki_tsd_clock-node_interaction_s47,clock,tgbl-wiki,tsd,47,24832.0,0.0,0.0,540.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_tsd_clock-node_update_s43,clock,tgbl-wiki,tsd,43,24832.0,0.0,0.0,505.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
+wiki_tsd_clock-node_update_s44,clock,tgbl-wiki,tsd,44,24832.0,0.0,0.0,542.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_tsd_clock-node_update_s47,clock,tgbl-wiki,tsd,47,24832.0,0.0,0.0,515.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_tsd_tw1200_s43,clock,tgbl-wiki,tsd,43,12416.0,0.0,0.0,350.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_tsd_tw300_s43,clock,tgbl-wiki,tsd,43,49664.0,0.0,0.0,1277.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
