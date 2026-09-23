@@ -26,6 +26,7 @@ forum_coreoff_recoff_s44,forum,thgl-forum,core-off,44,2956.0,0.0,0.0,8.0,0.0,0.0
 forum_coreoff_recoff_s45,forum,thgl-forum,core-off,45,2956.0,0.0,0.0,3.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_coreoff_recon_s44,forum,thgl-forum,core-off,44,2956.0,0.0,0.0,33.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_coreoff_recon_s45,forum,thgl-forum,core-off,45,2956.0,0.0,0.0,24.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
+forum_curonly_recoff_s44,forum,thgl-forum,current-only-maps,44,2956.0,0.0,0.0,11.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_curonly_recoff_s45,forum,thgl-forum,current-only-maps,45,2956.0,0.0,0.0,11.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_curonly_recon_s44,forum,thgl-forum,current-only-maps,44,2956.0,0.0,0.0,11.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_curonly_recon_s45,forum,thgl-forum,current-only-maps,45,2956.0,0.0,0.0,9.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
@@ -43,6 +44,7 @@ forum_gru_rec_s46,forum,thgl-forum,gru-ordinary,46,2956.0,0.0,0.0,8.0,0.0,0.0,0.
 forum_gru_rec_s47,forum,thgl-forum,gru-ordinary,47,2956.0,0.0,0.0,13.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_gru_recoff_s44,forum,thgl-forum,gru-ordinary,44,2956.0,0.0,0.0,72.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_gru_recoff_s45,forum,thgl-forum,gru-ordinary,45,2956.0,0.0,0.0,95.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
+forum_gru_recon_s44,forum,thgl-forum,gru-ordinary,44,2956.0,0.0,0.0,14.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_gru_recon_s45,forum,thgl-forum,gru-ordinary,45,2956.0,0.0,0.0,19.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_identity_recoff_s44,forum,thgl-forum,identity-maps,44,2956.0,0.0,0.0,40.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_identity_recoff_s45,forum,thgl-forum,identity-maps,45,2956.0,0.0,0.0,14.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
@@ -52,6 +54,7 @@ forum_nodeframe_rec_s43,forum,thgl-forum,node-frame,43,2956.0,0.0,0.0,17.0,0.0,0
 forum_nodeframe_recoff_s43,forum,thgl-forum,node-frame,43,2956.0,0.0,0.0,21.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_nodeframe_recoff_s46,forum,thgl-forum,node-frame,46,2956.0,0.0,0.0,38.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_nodeframe_recoff_s47,forum,thgl-forum,node-frame,47,2956.0,0.0,0.0,17.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
+forum_nodeframe_recon_s46,forum,thgl-forum,node-frame,46,2956.0,0.0,0.0,11.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_tsd_recoff_s44,forum,thgl-forum,tsd,44,2956.0,0.0,0.0,41.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_tsd_recoff_s45,forum,thgl-forum,tsd,45,2956.0,0.0,0.0,11.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_tsd_recon_s44,forum,thgl-forum,tsd,44,2956.0,0.0,0.0,11.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True

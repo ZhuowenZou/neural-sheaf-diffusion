@@ -26,6 +26,7 @@ forum_coreoff_recoff_s44,forum,thgl-forum,core-off,0.001,off,global,44,False,0.2
 forum_coreoff_recoff_s45,forum,thgl-forum,core-off,0.001,off,global,45,False,0.2373428730369663,0.2194822434365747,0.3329406652276485,4,4.0,634300.0,8515.0,0.0,True,,,False,2026-09-22 16:12
 forum_coreoff_recon_s44,forum,thgl-forum,core-off,0.001,on,global,44,False,0.602931866585462,0.6160654511767497,0.6472414677460229,4,4.0,634429.0,8644.0,0.0,True,,,False,2026-09-22 15:48
 forum_coreoff_recon_s45,forum,thgl-forum,core-off,0.001,on,global,45,False,0.6007772757036358,0.6144359337191159,0.6463735388898034,4,4.0,634429.0,8644.0,0.0,True,,,False,2026-09-22 16:38
+forum_curonly_recoff_s44,forum,thgl-forum,current-only-maps,0.001,off,global,44,False,0.3956195496507332,0.388362845709613,0.5487902449751089,2,4.0,634302.0,634302.0,0.0,True,,,False,2026-09-22 17:18
 forum_curonly_recoff_s45,forum,thgl-forum,current-only-maps,0.001,off,global,45,False,0.3928644593453611,0.387317283320688,0.5352866848003197,1,4.0,634302.0,634302.0,0.0,True,,,False,2026-09-22 16:51
 forum_curonly_recon_s44,forum,thgl-forum,current-only-maps,0.001,on,global,44,False,0.6355830872012551,0.64495154461657,0.7029399324694747,2,4.0,634431.0,634431.0,0.0,True,,,False,2026-09-22 15:44
 forum_curonly_recon_s45,forum,thgl-forum,current-only-maps,0.001,on,global,45,False,0.625594627385333,0.635400041869792,0.6789791262754215,2,4.0,634431.0,634431.0,0.0,True,,,False,2026-09-22 16:16
@@ -43,6 +44,7 @@ forum_gru_rec_s46,forum,thgl-forum,gru-ordinary,0.001,on,global,46,False,0.63535
 forum_gru_rec_s47,forum,thgl-forum,gru-ordinary,0.001,on,global,47,False,0.6313186641464578,0.6414196089544304,0.6882272206146484,2,4.0,36763.0,36635.0,0.0,True,,,False,2026-09-22 15:18
 forum_gru_recoff_s44,forum,thgl-forum,gru-ordinary,0.001,off,global,44,False,0.4006612518672501,0.3936080158381661,0.5235804380321689,3,4.0,36634.0,36506.0,0.0,True,,,False,2026-09-22 14:52
 forum_gru_recoff_s45,forum,thgl-forum,gru-ordinary,0.001,off,global,45,False,0.3269869265245945,0.3307540302896738,0.5178930161986217,2,4.0,36634.0,36506.0,0.0,True,,,False,2026-09-22 15:59
+forum_gru_recon_s44,forum,thgl-forum,gru-ordinary,0.001,on,global,44,False,0.614310811487797,0.6232976227237705,0.6686795839906967,1,4.0,36763.0,36635.0,0.0,True,,,False,2026-09-22 17:16
 forum_gru_recon_s45,forum,thgl-forum,gru-ordinary,0.001,on,global,45,False,0.6456145811694726,0.6528150814829959,0.7038176838652164,3,4.0,36763.0,36635.0,0.0,True,,,False,2026-09-22 16:02
 forum_identity_recoff_s44,forum,thgl-forum,identity-maps,0.001,off,global,44,False,0.3195045474949937,0.3143607720908815,0.5305196669864118,3,4.0,630142.0,630014.0,0.0,True,,,False,2026-09-22 16:21
 forum_identity_recoff_s45,forum,thgl-forum,identity-maps,0.001,off,global,45,False,0.4180225102833923,0.411829866998223,0.5658020016271542,2,4.0,630142.0,630014.0,0.0,True,,,False,2026-09-22 16:13
@@ -52,6 +54,7 @@ forum_nodeframe_rec_s43,forum,thgl-forum,node-frame,0.001,on,global,43,False,0.6
 forum_nodeframe_recoff_s43,forum,thgl-forum,node-frame,0.001,off,global,43,False,0.4043872228701511,0.3979765736422356,0.5653252446199326,4,4.0,630206.0,630206.0,0.0,True,,,False,2026-09-22 15:36
 forum_nodeframe_recoff_s46,forum,thgl-forum,node-frame,0.001,off,global,46,False,0.4043478914684701,0.4011103362298743,0.5618285504501646,4,4.0,630206.0,630206.0,0.0,True,,,False,2026-09-22 15:57
 forum_nodeframe_recoff_s47,forum,thgl-forum,node-frame,0.001,off,global,47,False,0.3526994919364464,0.3345182710952508,0.5338782990960653,3,4.0,630206.0,630206.0,0.0,True,,,False,2026-09-22 16:26
+forum_nodeframe_recon_s46,forum,thgl-forum,node-frame,0.001,on,global,46,False,0.6341072775536221,0.644951254927469,0.7006874679588987,3,4.0,630335.0,630335.0,0.0,True,,,False,2026-09-22 17:17
 forum_tsd_recoff_s44,forum,thgl-forum,tsd,0.001,off,global,44,False,0.2301540411082932,0.2322758943876626,0.3730194829632712,4,4.0,630142.0,630142.0,0.0,True,,,False,2026-09-22 15:27
 forum_tsd_recoff_s45,forum,thgl-forum,tsd,0.001,off,global,45,False,0.3964514296808693,0.3905994444989896,0.5332660060305372,3,4.0,630142.0,630142.0,0.0,True,,,False,2026-09-22 15:51
 forum_tsd_recon_s44,forum,thgl-forum,tsd,0.001,on,global,44,False,0.6054145553226816,0.6219533629052207,0.6705958743556476,4,4.0,630271.0,630271.0,0.0,True,,,False,2026-09-22 16:49
