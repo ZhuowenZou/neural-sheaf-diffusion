@@ -154,9 +154,12 @@ seconds), but the selector is still 97% capped. **Consequence for the manuscript
 physically timed memory steps are not supported by the evaluated predictor at its selected learning rate; the
 model behaves as a fixed-step recurrence with capped ZOH transitions.
 
-**Clock comparison (wiki, seed 43, lr 1e-3, identical batching; `clock/`):** global batch gap 0.7597,
-time since the node's last interaction 0.7650 (+0.005, one seed; not evidence), time since last memory
-update: pending. **Batching diagnostic (same seed):** batch width 1200 s gives 0.7322 vs 0.7597 at 600 s
+**Clock comparison (wiki, seed 43, lr 1e-3, identical batching; `clock/`):** global batch gap 0.7597
+(selector 99.99% capped), time since the node's last interaction 0.7650 (97% capped), time since the node's
+last memory update 0.7611 (selector **0.06%** capped, mean uncapped step 0.0018, i.e. the opposite regime).
+Differences of +0.001 to +0.005 on one seed are not evidence for either node clock; the striking fact is that
+the same accuracy is reached whether the selected steps are all at the cap or all near zero, so the memory
+step regime is immaterial for wiki accuracy. **Batching diagnostic (same seed):** batch width 1200 s gives 0.7322 vs 0.7597 at 600 s
 (−0.027; the observation frontier moves later by 600 s on average and the number of processed updates halves);
 300 s pending. Cross-seed confirmation of the clock variants was not run (budget); they are single-seed pilots.
 
