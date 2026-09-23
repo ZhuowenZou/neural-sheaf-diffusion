@@ -1,20 +1,20 @@
-# Monitor status (2026-09-23 05:22:29)
+# Monitor status (2026-09-23 05:36:12)
 
 ## GPU free (GiB) and utilisation
-0:54GB(100%) 1:51GB(40%) 2:1GB(0%) 3:11GB(0%) 4:7GB(0%) 5:54GB(98%) 6:3GB(0%) 7:14GB(0%) 
-our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 4095829:16658MiB 4096930:11522MiB 4118762:15698MiB 2654122:18014MiB 4096797:15698MiB 4097655:11524MiB 65023:25550MiB 2668669:18384MiB 4095645:17954MiB 4098149:11522MiB 4131532:11528MiB 4177163:15520MiB 2872725:18280MiB 2905507:18198MiB 4096471:15554MiB 4097379:16724MiB 94303:10542MiB 2703991:18280MiB 2704074:18198MiB 4095975:15524MiB 4138403:15524MiB 
+0:54GB(98%) 1:51GB(98%) 2:1GB(74%) 3:11GB(69%) 4:6GB(72%) 5:54GB(97%) 6:1GB(7%) 7:2GB(42%) 
+our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 4095829:16658MiB 4096930:11522MiB 4118762:15698MiB 2654122:18014MiB 4096797:15698MiB 4097655:11524MiB 65023:25550MiB 2668669:18384MiB 4095645:17954MiB 4098149:11522MiB 4131532:11528MiB 4177163:16320MiB 2872725:18280MiB 2905507:18198MiB 4096471:15554MiB 4097379:16724MiB 94303:11262MiB 2703991:18280MiB 2704074:18198MiB 4095975:15524MiB 4138403:16724MiB 166942:11526MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
-- gpu2: ELIGIBLE (idle 785 min)
-- gpu3: ELIGIBLE (idle 1013 min)
-- gpu4: ELIGIBLE (idle 1389 min)
+- gpu2: ELIGIBLE (idle 799 min)
+- gpu3: ELIGIBLE (idle 1027 min)
+- gpu4: ELIGIBLE (idle 1402 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 545 min)
+- gpu6: ELIGIBLE (idle 559 min)
 - gpu7: OURS
-compensation: colleagues hold 26542 MiB on our GPUs; we hold 305452 MiB on theirs; budget left -278910 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
-our launcher claims (pid:gpu/MiB): 
+compensation: colleagues hold 26542 MiB on our GPUs; we hold 307952 MiB on theirs; budget left -281410 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+our launcher claims (pid:gpu/MiB): 4097277:7/12000 
 
 ## leakfree2 benchmark runs
 - DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
@@ -250,7 +250,7 @@ our launcher claims (pid:gpu/MiB):
 - RUNNING  polecat_coreoff_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  polecat_gru_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  polecat_gru_s46: 
-- RUNNING  polecat_gru_s47: 
+- RUNNING  polecat_gru_s47: epochs': 4, 'time_window': None, 'context_edges': 50000, 'train_edges_
 - RUNNING  sp_attention_s43: 
 - RUNNING  sp_attention_s44: 
 - RUNNING  sp_attention_s45: 
@@ -295,7 +295,7 @@ our launcher claims (pid:gpu/MiB):
 - RUNNING  sw_attention_s46: 
 - DONE     sw_attention_s47: FINAL val_mrr=0.3856 test_mrr=0.4436 test_hits10=0.4834 eval_sec=49.2
 - DONE     sw_coreoff_s43: FINAL val_mrr=0.3701 test_mrr=0.4288 test_hits10=0.4569 eval_sec=63.6
-- RUNNING  sw_coreoff_s46: 
+- DONE     sw_coreoff_s46: FINAL val_mrr=0.3698 test_mrr=0.4293 test_hits10=0.4570 eval_sec=30.0
 - RUNNING  sw_coreoff_s47: 
 - DONE     sw_diag_s43: FINAL val_mrr=0.3821 test_mrr=0.4372 test_hits10=0.4790 eval_sec=156.2
 - RUNNING  sw_diag_s46: 
@@ -454,7 +454,7 @@ our launcher claims (pid:gpu/MiB):
 - DONE     wd_coreoff_s43: FINAL val_mrr=0.6441 test_mrr=0.5339 test_hits10=0.5957 eval_sec=495.2
 - DONE     wd_coreoff_s46: FINAL val_mrr=0.6416 test_mrr=0.5342 test_hits10=0.5960 eval_sec=456.9
 - RUNNING  wd_coreoff_s47: 
-- RUNNING  wd_gru_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  wd_gru_s43: final val_mrr=0.6441 (739.8s so far)
 - DONE     wd_gru_s46: FINAL val_mrr=0.6468 test_mrr=0.5373 test_hits10=0.6016 eval_sec=428.2
 - RUNNING  wd_gru_s47: 
 - DONE     wiki_attention_s43_lr1e-3: FINAL val_mrr=0.7640 test_mrr=0.7521 test_hits10=0.8529 eval_sec=1291.5
