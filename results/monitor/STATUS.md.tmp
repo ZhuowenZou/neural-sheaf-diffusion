@@ -1,0 +1,406 @@
+# Monitor status (2026-09-22 18:02:10)
+
+## GPU free (GiB) and utilisation
+0:19GB(80%) 1:51GB(98%) 2:80GB(0%) 3:56GB(100%) 4:24GB(100%) 5:54GB(100%) 6:58GB(100%) 7:46GB(100%) 
+our GPU processes (pid:MiB): 136253:17646MiB 210437:18006MiB 1799849:2028MiB 1809972:2028MiB 1810949:2034MiB 1838684:2028MiB 1839647:2026MiB 1857110:2400MiB 1915515:2402MiB 1963098:2024MiB 1963310:2396MiB 2085720:2400MiB 2086005:2398MiB 989557:17766MiB 1095022:2026MiB 1570529:2026MiB 1796203:2026MiB 1799730:2028MiB 1842462:2028MiB 1855799:2028MiB 1856489:2400MiB 1951227:2396MiB 1976135:22048MiB 1809564:2028MiB 1812898:2028MiB 1838359:2028MiB 1839760:2028MiB 1851405:2404MiB 1854160:2402MiB 1854626:2404MiB 1855169:2396MiB 2081236:2396MiB 2083592:2398MiB 1053692:2026MiB 1561682:2026MiB 1810336:2028MiB 1841488:2028MiB 1842703:2028MiB 1858000:2404MiB 1916086:2402MiB 1917307:2396MiB 1918299:2396MiB 1923436:15204MiB 
+
+## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
+- gpu0: OURS
+- gpu1: colleague busy
+- gpu2: ELIGIBLE (idle 104 min)
+- gpu3: ELIGIBLE (idle 333 min)
+- gpu4: ELIGIBLE (idle 708 min)
+- gpu5: colleague busy
+- gpu6: ELIGIBLE (idle 244 min)
+- gpu7: OURS
+compensation: colleagues hold 26542 MiB on our GPUs; we hold 103448 MiB on theirs; budget left -76906 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+our launcher claims (pid:gpu/MiB): 1850265:6/2500 1852006:3/2500 1854225:6/2500 1855208:3/2500 
+
+## leakfree2 benchmark runs
+- DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
+- DONE     forum_abl_curonly_s46: FINAL val_mrr=0.5971 test_mrr=0.6099 test_hits10=0.6602 eval_sec=15402.1
+- DONE     forum_abl_curonly_s47: FINAL val_mrr=0.6196 test_mrr=0.6336 test_hits10=0.7069 eval_sec=15598.7
+- DONE     forum_abl_identity: FINAL val_mrr=0.6208 test_mrr=0.6313 test_hits10=0.6900 eval_sec=15757.5
+- DONE     forum_abl_identity_s46: FINAL val_mrr=0.6438 test_mrr=0.6501 test_hits10=0.7030 eval_sec=13233.2
+- DONE     forum_abl_identity_s47: FINAL val_mrr=0.6223 test_mrr=0.6324 test_hits10=0.6646 eval_sec=15315.4
+- DONE     forum_abl_nodelta: FINAL val_mrr=0.6411 test_mrr=0.6475 test_hits10=0.7021 eval_sec=14480.7
+- DONE     forum_abl_nodelta_s46: FINAL val_mrr=0.6119 test_mrr=0.6233 test_hits10=0.6927 eval_sec=15436.5
+- DONE     forum_abl_nodelta_s47: FINAL val_mrr=0.6164 test_mrr=0.6302 test_hits10=0.6829 eval_sec=13155.2
+- DONE     forum_abl_nomem: FINAL val_mrr=0.6425 test_mrr=0.6491 test_hits10=0.7006 eval_sec=12369.0
+- DONE     forum_abl_nomem_s46: FINAL val_mrr=0.6405 test_mrr=0.6478 test_hits10=0.7022 eval_sec=13280.2
+- DONE     forum_abl_nomem_s47: FINAL val_mrr=0.6468 test_mrr=0.6534 test_hits10=0.7064 eval_sec=18384.4
+- DONE     forum_coreoff_norec: FINAL val_mrr=0.2536 test_mrr=0.2373 test_hits10=0.3462 eval_sec=13282.1
+- DONE     forum_coreoff_norec_s46: FINAL val_mrr=0.2360 test_mrr=0.2202 test_hits10=0.3394 eval_sec=13394.2
+- DONE     forum_coreoff_norec_s47: FINAL val_mrr=0.2488 test_mrr=0.2320 test_hits10=0.3502 eval_sec=15661.9
+- DONE     forum_coreoff_rec: FINAL val_mrr=0.6020 test_mrr=0.6151 test_hits10=0.6475 eval_sec=12356.5
+- DONE     forum_coreoff_rec_s46: FINAL val_mrr=0.6024 test_mrr=0.6151 test_hits10=0.6476 eval_sec=13589.2
+- DONE     forum_coreoff_rec_s47: FINAL val_mrr=0.6042 test_mrr=0.6166 test_hits10=0.6489 eval_sec=14520.1
+- DONE     forum_f_s43: FINAL val_mrr=0.6230 test_mrr=0.6280 test_hits10=0.6826 eval_sec=14452.3
+- DONE     forum_f_s46: FINAL val_mrr=0.6345 test_mrr=0.6412 test_hits10=0.6944 eval_sec=19345.1
+- DONE     forum_f_s47: FINAL val_mrr=0.6019 test_mrr=0.6187 test_hits10=0.6526 eval_sec=14716.3
+- DONE     forum_norec_curonly: FINAL val_mrr=0.3910 test_mrr=0.3842 test_hits10=0.5674 eval_sec=14971.1
+- DONE     forum_norec_curonly_s46: FINAL val_mrr=0.4163 test_mrr=0.4113 test_hits10=0.5450 eval_sec=13630.3
+- DONE     forum_norec_full: FINAL val_mrr=0.4061 test_mrr=0.3940 test_hits10=0.5448 eval_sec=12101.5
+- DONE     forum_norec_full_s46: FINAL val_mrr=0.4091 test_mrr=0.4007 test_hits10=0.5359 eval_sec=13410.1
+- DONE     forum_norec_full_s47: FINAL val_mrr=0.3554 test_mrr=0.3470 test_hits10=0.5586 eval_sec=15436.6
+- DONE     forum_norec_identity: FINAL val_mrr=0.2277 test_mrr=0.2204 test_hits10=0.4598 eval_sec=12034.8
+- DONE     forum_norec_identity_s46: FINAL val_mrr=0.3414 test_mrr=0.3325 test_hits10=0.5274 eval_sec=13654.8
+- DONE     forum_norec_identity_s47: FINAL val_mrr=0.3536 test_mrr=0.3257 test_hits10=0.5538 eval_sec=14931.7
+- CRASHED  forum_norec_nodelta.fail1: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.14 GiB. GPU 0 ha
+- DONE     forum_norec_nodelta: FINAL val_mrr=0.3654 test_mrr=0.3608 test_hits10=0.5053 eval_sec=13979.9
+- DONE     forum_norec_nodelta_s46: FINAL val_mrr=0.3619 test_mrr=0.3514 test_hits10=0.5307 eval_sec=13516.1
+- DONE     forum_norec_nodelta_s47: FINAL val_mrr=0.3913 test_mrr=0.3900 test_hits10=0.5559 eval_sec=14536.0
+- DONE     forum_norec_nomem: FINAL val_mrr=0.4172 test_mrr=0.4087 test_hits10=0.5558 eval_sec=12361.0
+- DONE     forum_norec_nomem_s46: FINAL val_mrr=0.3913 test_mrr=0.3829 test_hits10=0.5354 eval_sec=13478.9
+- DONE     icews_abl_curonly: FINAL val_mrr=0.3158 test_mrr=0.3285 test_hits10=0.5268 eval_sec=31006.0
+- DONE     icews_abl_identity: FINAL val_mrr=0.3220 test_mrr=0.3369 test_hits10=0.5400 eval_sec=31352.3
+- DONE     icews_abl_nodelta_eval: FINAL val_mrr=0.3217 test_mrr=0.3375 test_hits10=0.5405 eval_sec=30072.7
+- STOPPED? icews_abl_nodelta: eval_sec': 9897.9, 'peak_gpu_mem_mb': 8031.1} checkpoint saved: results/event_bench/leakfr
+- DONE     icews_abl_nomem: FINAL val_mrr=0.3173 test_mrr=0.3295 test_hits10=0.5243 eval_sec=30898.4
+- DONE     icews_abl_nomem_s46: FINAL val_mrr=0.3123 test_mrr=0.3269 test_hits10=0.5220 eval_sec=43085.6
+- DONE     icews_coreoff_norec: FINAL val_mrr=0.0199 test_mrr=0.0172 test_hits10=0.0386 eval_sec=27904.6
+- DONE     icews_coreoff_norec_s46: FINAL val_mrr=0.0244 test_mrr=0.0256 test_hits10=0.0594 eval_sec=37343.9
+- DONE     icews_coreoff_rec: FINAL val_mrr=0.2980 test_mrr=0.3191 test_hits10=0.5215 eval_sec=31623.2
+- CRASHED  icews_coreoff_rec_s46.fail1: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.85 GiB. GPU 0 ha
+- DONE     icews_coreoff_rec_s46: FINAL val_mrr=0.2996 test_mrr=0.3114 test_hits10=0.5075 eval_sec=47950.5
+- STOPPED? icews_eval_s43.fail1: A_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=$GPU PYTORCH_CUDA_ALLOC_CONF=expandable_seg
+- DONE     icews_eval_s43: FINAL val_mrr=0.3235 test_mrr=0.3386 test_hits10=0.5405 eval_sec=48431.1
+- DONE     icews_eval_s46: FINAL val_mrr=0.3227 test_mrr=0.3342 test_hits10=0.5288 eval_sec=39969.2
+- DONE     icews_eval_s47: FINAL val_mrr=0.3088 test_mrr=0.3326 test_hits10=0.5270 eval_sec=35295.5
+- TRAINED  icews_f_s43 (no final evaluation in this run): "best_track_val_mrr":0.273691654937466
+- TRAINED  icews_f_s46 (no final evaluation in this run): "best_track_val_mrr":0.27220127267390487
+- TRAINED  icews_f_s47 (no final evaluation in this run): "best_track_val_mrr":0.23980839967081943
+- DONE     icews_norec_curonly: FINAL val_mrr=0.0253 test_mrr=0.0216 test_hits10=0.0567 eval_sec=30255.4
+- STOPPED? icews_norec_curonly_s46.fail1: 28/magma-2.6.1/control/magma_internal.h:115: void magma_queue::setup_ptrArray(): Assertion
+- DONE     icews_norec_curonly_s46: FINAL val_mrr=0.0305 test_mrr=0.0279 test_hits10=0.0596 eval_sec=36503.0
+- DONE     icews_norec_full: FINAL val_mrr=0.0309 test_mrr=0.0280 test_hits10=0.0647 eval_sec=31366.9
+- DONE     icews_norec_full_s46: FINAL val_mrr=0.0268 test_mrr=0.0204 test_hits10=0.0414 eval_sec=36045.2
+- DONE     icews_norec_identity: FINAL val_mrr=0.0299 test_mrr=0.0250 test_hits10=0.0599 eval_sec=30654.2
+- DONE     icews_norec_identity_s46: FINAL val_mrr=0.0308 test_mrr=0.0267 test_hits10=0.0608 eval_sec=39752.8
+- DONE     icews_norec_nodelta: FINAL val_mrr=0.0297 test_mrr=0.0279 test_hits10=0.0705 eval_sec=31210.5
+- DONE     icews_norec_nodelta_s46: FINAL val_mrr=0.0275 test_mrr=0.0240 test_hits10=0.0503 eval_sec=42848.8
+- DONE     icews_norec_nomem: FINAL val_mrr=0.0304 test_mrr=0.0264 test_hits10=0.0563 eval_sec=30394.2
+- DONE     icews_norec_nomem_s46: FINAL val_mrr=0.0230 test_mrr=0.0192 test_hits10=0.0478 eval_sec=38107.0
+- DONE     polecat_abl_curonly: FINAL val_mrr=0.2544 test_mrr=0.2476 test_hits10=0.4007 eval_sec=8902.2
+- DONE     polecat_abl_curonly_s46: FINAL val_mrr=0.2530 test_mrr=0.2468 test_hits10=0.3987 eval_sec=9213.1
+- DONE     polecat_abl_identity: FINAL val_mrr=0.2508 test_mrr=0.2449 test_hits10=0.3971 eval_sec=8913.2
+- DONE     polecat_abl_identity_s46: FINAL val_mrr=0.2501 test_mrr=0.2440 test_hits10=0.3942 eval_sec=9416.3
+- DONE     polecat_abl_nodelta: FINAL val_mrr=0.2501 test_mrr=0.2441 test_hits10=0.3977 eval_sec=8365.3
+- DONE     polecat_abl_nodelta_s46: FINAL val_mrr=0.2467 test_mrr=0.2408 test_hits10=0.3941 eval_sec=9158.4
+- DONE     polecat_f_s43: FINAL val_mrr=0.2472 test_mrr=0.2403 test_hits10=0.3942 eval_sec=6834.8
+- DONE     polecat_f_s46: FINAL val_mrr=0.2518 test_mrr=0.2461 test_hits10=0.3992 eval_sec=12421.2
+- CRASHED  polecat_f_s46.oom: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 152.00 MiB. GPU 0 
+- CRASHED  polecat_f_s47.fail1: torch.AcceleratorError: CUDA error: unspecified launch failure
+- DONE     polecat_f_s47: FINAL val_mrr=0.2527 test_mrr=0.2462 test_hits10=0.3975 eval_sec=9563.2
+- CRASHED  polecat_f_s47.oom: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.58 GiB. GPU 0 ha
+- CRASHED  polecat_o_s43: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.70 GiB. GPU 0 ha
+- DONE     sp_abl_curonly: FINAL val_mrr=0.6302 test_mrr=0.5959 test_hits10=0.7102 eval_sec=434.6
+- CRASHED  sp_abl_curonly_s46.fail1: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 3.10 GiB. GPU 0 ha
+- CRASHED  sp_abl_curonly_s46.fail2: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 3.10 GiB. GPU 0 ha
+- DONE     sp_abl_curonly_s46: FINAL val_mrr=0.6414 test_mrr=0.6110 test_hits10=0.7118 eval_sec=445.4
+- CRASHED  sp_abl_curonly_s47.fail1: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 3.44 GiB. GPU 0 ha
+- DONE     sp_abl_curonly_s47: FINAL val_mrr=0.6430 test_mrr=0.6092 test_hits10=0.7119 eval_sec=432.3
+- DONE     sp_abl_identity: FINAL val_mrr=0.6467 test_mrr=0.6182 test_hits10=0.7119 eval_sec=595.0
+- DONE     sp_abl_identity_s46: FINAL val_mrr=0.6387 test_mrr=0.6062 test_hits10=0.7120 eval_sec=431.6
+- CRASHED  sp_abl_identity_s47.fail1: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.33 GiB. GPU 0 ha
+- DONE     sp_abl_identity_s47: FINAL val_mrr=0.6457 test_mrr=0.6154 test_hits10=0.7122 eval_sec=432.4
+- DONE     sp_abl_nodelta: FINAL val_mrr=0.6453 test_mrr=0.6160 test_hits10=0.7129 eval_sec=447.2
+- DONE     sp_abl_nodelta_s46: FINAL val_mrr=0.6386 test_mrr=0.6054 test_hits10=0.7125 eval_sec=460.9
+- CRASHED  sp_abl_nodelta_s47.fail1: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.66 GiB. GPU 0 ha
+- DONE     sp_abl_nodelta_s47: FINAL val_mrr=0.6413 test_mrr=0.6112 test_hits10=0.7139 eval_sec=430.9
+- DONE     sp_f_s43: FINAL val_mrr=0.6460 test_mrr=0.6164 test_hits10=0.7146 eval_sec=609.1
+- DONE     sp_f_s46: FINAL val_mrr=0.6383 test_mrr=0.6033 test_hits10=0.7132 eval_sec=631.7
+- DONE     sp_f_s47: FINAL val_mrr=0.6442 test_mrr=0.6112 test_hits10=0.7107 eval_sec=576.2
+- DONE     sp_o_s43: FINAL val_mrr=0.0263 test_mrr=0.0139 test_hits10=0.0207 eval_sec=652.5
+- DONE     sw_abl_curonly: FINAL val_mrr=0.3805 test_mrr=0.4341 test_hits10=0.4720 eval_sec=1881.3
+- DONE     sw_abl_curonly_s46: FINAL val_mrr=0.3854 test_mrr=0.4425 test_hits10=0.4863 eval_sec=741.0
+- DONE     sw_abl_curonly_s47: FINAL val_mrr=0.3830 test_mrr=0.4397 test_hits10=0.4790 eval_sec=752.6
+- DONE     sw_abl_identity: FINAL val_mrr=0.3802 test_mrr=0.4357 test_hits10=0.4742 eval_sec=1772.6
+- DONE     sw_abl_identity_s46: FINAL val_mrr=0.3837 test_mrr=0.4408 test_hits10=0.4851 eval_sec=801.5
+- DONE     sw_abl_identity_s47: FINAL val_mrr=0.3844 test_mrr=0.4410 test_hits10=0.4828 eval_sec=770.3
+- DONE     sw_abl_nodelta: FINAL val_mrr=0.3828 test_mrr=0.4392 test_hits10=0.4814 eval_sec=1856.4
+- DONE     sw_abl_nodelta_s46: FINAL val_mrr=0.3830 test_mrr=0.4397 test_hits10=0.4814 eval_sec=768.4
+- DONE     sw_abl_nodelta_s47: FINAL val_mrr=0.3854 test_mrr=0.4391 test_hits10=0.4826 eval_sec=769.8
+- DONE     sw_f_s43: FINAL val_mrr=0.3796 test_mrr=0.4360 test_hits10=0.4736 eval_sec=996.0
+- DONE     sw_f_s46: FINAL val_mrr=0.3844 test_mrr=0.4400 test_hits10=0.4796 eval_sec=850.8
+- DONE     sw_f_s47: FINAL val_mrr=0.3798 test_mrr=0.4369 test_hits10=0.4744 eval_sec=720.8
+- DONE     sw_o_s43: FINAL val_mrr=0.0532 test_mrr=0.0623 test_hits10=0.1280 eval_sec=954.1
+- DONE     wd_abl_curonly: FINAL val_mrr=0.6378 test_mrr=0.5381 test_hits10=0.6091 eval_sec=2486.3
+- DONE     wd_abl_identity: FINAL val_mrr=0.6421 test_mrr=0.5336 test_hits10=0.5950 eval_sec=2739.5
+- DONE     wd_abl_nodelta: FINAL val_mrr=0.6434 test_mrr=0.5362 test_hits10=0.5982 eval_sec=2572.1
+- DONE     wd_f_s43: FINAL val_mrr=0.6440 test_mrr=0.5371 test_hits10=0.6018 eval_sec=2615.6
+- CRASHED  wd_f_s43.oom: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 18.00 MiB. GPU 0 h
+- DONE     wd_f_s46: FINAL val_mrr=0.6408 test_mrr=0.5500 test_hits10=0.6206 eval_sec=2745.6
+- DONE     wd_f_s47: FINAL val_mrr=0.6405 test_mrr=0.5323 test_hits10=0.5952 eval_sec=3026.9
+- DONE     wd_o_s43: FINAL val_mrr=0.0259 test_mrr=0.0245 test_hits10=0.0453 eval_sec=2470.4
+- DONE     wiki_abl_curonly: FINAL val_mrr=0.7375 test_mrr=0.7253 test_hits10=0.8494 eval_sec=4025.7
+- DONE     wiki_abl_curonly_s46: FINAL val_mrr=0.7464 test_mrr=0.7345 test_hits10=0.8507 eval_sec=1182.2
+- DONE     wiki_abl_curonly_s47: FINAL val_mrr=0.7463 test_mrr=0.7332 test_hits10=0.8515 eval_sec=1372.5
+- DONE     wiki_abl_identity: FINAL val_mrr=0.7402 test_mrr=0.7267 test_hits10=0.8484 eval_sec=4030.4
+- DONE     wiki_abl_identity_s46: FINAL val_mrr=0.7441 test_mrr=0.7334 test_hits10=0.8493 eval_sec=1298.5
+- DONE     wiki_abl_identity_s47: FINAL val_mrr=0.7412 test_mrr=0.7275 test_hits10=0.8492 eval_sec=1375.2
+- DONE     wiki_abl_nodelta: FINAL val_mrr=0.7387 test_mrr=0.7295 test_hits10=0.8499 eval_sec=4044.2
+- DONE     wiki_abl_nodelta_s46: FINAL val_mrr=0.7394 test_mrr=0.7246 test_hits10=0.8489 eval_sec=1346.7
+- DONE     wiki_abl_nodelta_s47: FINAL val_mrr=0.7370 test_mrr=0.7252 test_hits10=0.8492 eval_sec=1315.7
+- DONE     wiki_embhead: FINAL val_mrr=0.7369 test_mrr=0.7145 test_hits10=0.8467 eval_sec=4028.1
+- DONE     wiki_f_s43: FINAL val_mrr=0.7521 test_mrr=0.7357 test_hits10=0.8478 eval_sec=1252.7
+- DONE     wiki_f_s46: FINAL val_mrr=0.7447 test_mrr=0.7305 test_hits10=0.8499 eval_sec=1281.3
+- DONE     wiki_f_s47: FINAL val_mrr=0.7438 test_mrr=0.7331 test_hits10=0.8509 eval_sec=1520.7
+- DONE     wiki_o_s43: FINAL val_mrr=0.0201 test_mrr=0.0110 test_hits10=0.0163 eval_sec=971.4
+
+## review 2026-09-22 runs (results/review_2026_09_22/queue)
+- DONE     audit2_sp_f_s47: FINAL val_mrr=0.6446 test_mrr=0.6103 test_hits10=0.7109 eval_sec=1237.2
+- DONE     audit_forum_f_s43: FINAL val_mrr=0.6230 test_mrr=0.6280 test_hits10=0.6826 eval_sec=1159.1
+- DONE     audit_forum_f_s46: FINAL val_mrr=0.6345 test_mrr=0.6412 test_hits10=0.6944 eval_sec=1370.3
+- DONE     audit_forum_f_s47: FINAL val_mrr=0.6019 test_mrr=0.6187 test_hits10=0.6526 eval_sec=672.3
+- RUNNING  audit_icews_eval_s43: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
+- RUNNING  audit_icews_eval_s46: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
+- RUNNING  audit_icews_eval_s47: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
+- DONE     audit_polecat_f_s43: FINAL val_mrr=0.2472 test_mrr=0.2403 test_hits10=0.3942 eval_sec=11837.7
+- RUNNING  audit_polecat_f_s46: final val_mrr=0.2518 (3100.5s so far)
+- DONE     audit_polecat_f_s47: FINAL val_mrr=0.2527 test_mrr=0.2462 test_hits10=0.3974 eval_sec=9163.9
+- DONE     audit_sp_f_s43: FINAL val_mrr=0.6460 test_mrr=0.6164 test_hits10=0.7146 eval_sec=1319.1
+- DONE     audit_sp_f_s46: FINAL val_mrr=0.6383 test_mrr=0.6033 test_hits10=0.7132 eval_sec=2447.9
+- DONE     audit_sp_f_s47: FINAL val_mrr=0.6447 test_mrr=0.6104 test_hits10=0.7110 eval_sec=1007.7
+- DONE     audit_sw_f_s43: FINAL val_mrr=0.3796 test_mrr=0.4360 test_hits10=0.4736 eval_sec=1010.2
+- DONE     audit_sw_f_s46: FINAL val_mrr=0.3844 test_mrr=0.4400 test_hits10=0.4796 eval_sec=1049.5
+- DONE     audit_sw_f_s47: FINAL val_mrr=0.3798 test_mrr=0.4369 test_hits10=0.4744 eval_sec=1034.5
+- DONE     audit_wd_f_s43: FINAL val_mrr=0.6440 test_mrr=0.5371 test_hits10=0.6018 eval_sec=4854.7
+- DONE     audit_wd_f_s46: FINAL val_mrr=0.6408 test_mrr=0.5500 test_hits10=0.6206 eval_sec=4551.7
+- DONE     audit_wd_f_s47: FINAL val_mrr=0.6405 test_mrr=0.5323 test_hits10=0.5952 eval_sec=2710.1
+- DONE     audit_wiki_f_s43: FINAL val_mrr=0.7521 test_mrr=0.7357 test_hits10=0.8478 eval_sec=1335.3
+- DONE     audit_wiki_f_s46: FINAL val_mrr=0.7447 test_mrr=0.7305 test_hits10=0.8499 eval_sec=1365.4
+- DONE     audit_wiki_f_s47: FINAL val_mrr=0.7438 test_mrr=0.7331 test_hits10=0.8509 eval_sec=1344.9
+- DONE     forum_attention_recoff_s43: FINAL val_mrr=0.2813 test_mrr=0.2700 test_hits10=0.5395 eval_sec=272.5
+- DONE     forum_attention_recoff_s46: FINAL val_mrr=0.3512 test_mrr=0.3479 test_hits10=0.5726 eval_sec=607.6
+- DONE     forum_attention_recoff_s47: FINAL val_mrr=0.3344 test_mrr=0.3197 test_hits10=0.4391 eval_sec=558.3
+- DONE     forum_attention_recon_s46: FINAL val_mrr=0.6267 test_mrr=0.6368 test_hits10=0.6896 eval_sec=1017.9
+- RUNNING  forum_attention_recon_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     forum_attention_rec_s43: FINAL val_mrr=0.6036 test_mrr=0.6161 test_hits10=0.6592 eval_sec=1101.4
+- DONE     forum_coreoff_recoff_s44: FINAL val_mrr=0.2401 test_mrr=0.2221 test_hits10=0.3488 eval_sec=318.8
+- DONE     forum_coreoff_recoff_s45: FINAL val_mrr=0.2373 test_mrr=0.2195 test_hits10=0.3329 eval_sec=118.6
+- DONE     forum_coreoff_recon_s44: FINAL val_mrr=0.6029 test_mrr=0.6161 test_hits10=0.6472 eval_sec=952.3
+- DONE     forum_coreoff_recon_s45: FINAL val_mrr=0.6008 test_mrr=0.6144 test_hits10=0.6464 eval_sec=373.5
+- DONE     forum_curonly_recoff_s44: FINAL val_mrr=0.3956 test_mrr=0.3884 test_hits10=0.5488 eval_sec=527.9
+- DONE     forum_curonly_recoff_s45: FINAL val_mrr=0.3929 test_mrr=0.3873 test_hits10=0.5353 eval_sec=494.3
+- DONE     forum_curonly_recon_s44: FINAL val_mrr=0.6356 test_mrr=0.6450 test_hits10=0.7029 eval_sec=1288.4
+- DONE     forum_curonly_recon_s45: FINAL val_mrr=0.6256 test_mrr=0.6354 test_hits10=0.6790 eval_sec=581.8
+- DONE     forum_diag_recoff_s43: FINAL val_mrr=0.2870 test_mrr=0.2728 test_hits10=0.5264 eval_sec=478.3
+- DONE     forum_diag_recoff_s46: FINAL val_mrr=0.4201 test_mrr=0.4175 test_hits10=0.5615 eval_sec=396.2
+- DONE     forum_diag_recoff_s47: FINAL val_mrr=0.4104 test_mrr=0.4024 test_hits10=0.5729 eval_sec=482.2
+- DONE     forum_diag_recon_s43: FINAL val_mrr=0.6331 test_mrr=0.6444 test_hits10=0.6974 eval_sec=885.5
+- DONE     forum_diag_recon_s46: FINAL val_mrr=0.6312 test_mrr=0.6429 test_hits10=0.7048 eval_sec=1240.8
+- DONE     forum_diag_recon_s47: FINAL val_mrr=0.6414 test_mrr=0.6505 test_hits10=0.7100 eval_sec=1119.6
+- DONE     forum_gru_norec_s43: FINAL val_mrr=0.3859 test_mrr=0.3827 test_hits10=0.5052 eval_sec=277.3
+- DONE     forum_gru_norec_s46: FINAL val_mrr=0.3984 test_mrr=0.3932 test_hits10=0.5123 eval_sec=378.8
+- DONE     forum_gru_norec_s47: FINAL val_mrr=0.3836 test_mrr=0.3807 test_hits10=0.5357 eval_sec=498.7
+- DONE     forum_gru_recoff_s44: FINAL val_mrr=0.4007 test_mrr=0.3936 test_hits10=0.5236 eval_sec=666.3
+- DONE     forum_gru_recoff_s45: FINAL val_mrr=0.3270 test_mrr=0.3308 test_hits10=0.5179 eval_sec=431.7
+- DONE     forum_gru_recon_s44: FINAL val_mrr=0.6143 test_mrr=0.6233 test_hits10=0.6687 eval_sec=1008.6
+- DONE     forum_gru_recon_s45: FINAL val_mrr=0.6456 test_mrr=0.6528 test_hits10=0.7038 eval_sec=979.2
+- DONE     forum_gru_rec_s43: FINAL val_mrr=0.6414 test_mrr=0.6511 test_hits10=0.7034 eval_sec=1283.5
+- DONE     forum_gru_rec_s46: FINAL val_mrr=0.6354 test_mrr=0.6418 test_hits10=0.6839 eval_sec=1156.1
+- DONE     forum_gru_rec_s47: FINAL val_mrr=0.6313 test_mrr=0.6414 test_hits10=0.6882 eval_sec=1338.9
+- DONE     forum_identity_recoff_s44: FINAL val_mrr=0.3195 test_mrr=0.3144 test_hits10=0.5305 eval_sec=360.6
+- DONE     forum_identity_recoff_s45: FINAL val_mrr=0.4180 test_mrr=0.4118 test_hits10=0.5658 eval_sec=362.3
+- DONE     forum_identity_recon_s44: FINAL val_mrr=0.6299 test_mrr=0.6413 test_hits10=0.6996 eval_sec=141.3
+- DONE     forum_identity_recon_s45: FINAL val_mrr=0.6340 test_mrr=0.6445 test_hits10=0.6897 eval_sec=650.9
+- DONE     forum_nodeframe_recoff_s43: FINAL val_mrr=0.4044 test_mrr=0.3980 test_hits10=0.5653 eval_sec=470.7
+- DONE     forum_nodeframe_recoff_s46: FINAL val_mrr=0.4043 test_mrr=0.4011 test_hits10=0.5618 eval_sec=560.1
+- DONE     forum_nodeframe_recoff_s47: FINAL val_mrr=0.3527 test_mrr=0.3345 test_hits10=0.5339 eval_sec=424.2
+- DONE     forum_nodeframe_recon_s46: FINAL val_mrr=0.6341 test_mrr=0.6450 test_hits10=0.7007 eval_sec=791.2
+- DONE     forum_nodeframe_recon_s47: FINAL val_mrr=0.6101 test_mrr=0.6262 test_hits10=0.6702 eval_sec=784.2
+- DONE     forum_nodeframe_rec_s43: FINAL val_mrr=0.6249 test_mrr=0.6336 test_hits10=0.6778 eval_sec=1135.3
+- DONE     forum_tsd_recoff_s44: FINAL val_mrr=0.2302 test_mrr=0.2323 test_hits10=0.3730 eval_sec=649.7
+- DONE     forum_tsd_recoff_s45: FINAL val_mrr=0.3965 test_mrr=0.3906 test_hits10=0.5333 eval_sec=479.6
+- DONE     forum_tsd_recon_s44: FINAL val_mrr=0.6054 test_mrr=0.6220 test_hits10=0.6706 eval_sec=680.6
+- DONE     forum_tsd_recon_s45: FINAL val_mrr=0.6072 test_mrr=0.6170 test_hits10=0.6622 eval_sec=734.2
+- DONE     synth_gen_s1_attention_recoff_s43: FINAL val_mrr=0.2017 test_mrr=0.2034 test_hits10=0.4579 eval_sec=667.7
+- DONE     synth_gen_s1_attention_recoff_s44: FINAL val_mrr=0.2007 test_mrr=0.2031 test_hits10=0.4684 eval_sec=300.9
+- DONE     synth_gen_s1_attention_recoff_s45: FINAL val_mrr=0.2031 test_mrr=0.2086 test_hits10=0.4640 eval_sec=739.0
+- DONE     synth_gen_s1_attention_recoff_s46: FINAL val_mrr=0.2008 test_mrr=0.2061 test_hits10=0.4608 eval_sec=582.7
+- DONE     synth_gen_s1_attention_recoff_s47: FINAL val_mrr=0.2041 test_mrr=0.2038 test_hits10=0.4620 eval_sec=613.6
+- RUNNING  synth_gen_s1_attention_recon_s43: 
+- RUNNING  synth_gen_s1_attention_recon_s44: 
+- RUNNING  synth_gen_s1_attention_recon_s45: 
+- RUNNING  synth_gen_s1_attention_recon_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1_attention_recon_s47: 
+- DONE     synth_gen_s1_coreoff_recoff_s43: FINAL val_mrr=0.2085 test_mrr=0.2142 test_hits10=0.4748 eval_sec=426.6
+- DONE     synth_gen_s1_coreoff_recoff_s44: FINAL val_mrr=0.2084 test_mrr=0.2083 test_hits10=0.4684 eval_sec=444.0
+- DONE     synth_gen_s1_coreoff_recoff_s45: FINAL val_mrr=0.2067 test_mrr=0.2096 test_hits10=0.4707 eval_sec=400.5
+- DONE     synth_gen_s1_coreoff_recoff_s46: FINAL val_mrr=0.2071 test_mrr=0.2113 test_hits10=0.4742 eval_sec=261.1
+- DONE     synth_gen_s1_coreoff_recoff_s47: FINAL val_mrr=0.2076 test_mrr=0.2102 test_hits10=0.4693 eval_sec=441.6
+- RUNNING  synth_gen_s1_coreoff_recon_s43: 
+- DONE     synth_gen_s1_coreoff_recon_s44: FINAL val_mrr=0.2739 test_mrr=0.2798 test_hits10=0.4943 eval_sec=347.2
+- RUNNING  synth_gen_s1_coreoff_recon_s45: epochs': 3, 'time_window': 20000.0, 'context_edges': 2000, 'train_edge
+- DONE     synth_gen_s1_coreoff_recon_s46: FINAL val_mrr=0.2725 test_mrr=0.2794 test_hits10=0.4952 eval_sec=343.3
+- DONE     synth_gen_s1_coreoff_recon_s47: FINAL val_mrr=0.2736 test_mrr=0.2803 test_hits10=0.4901 eval_sec=345.8
+- DONE     synth_gen_s1_curonly_recoff_s43: FINAL val_mrr=0.2046 test_mrr=0.2099 test_hits10=0.4717 eval_sec=709.2
+- DONE     synth_gen_s1_curonly_recoff_s44: FINAL val_mrr=0.2094 test_mrr=0.2050 test_hits10=0.4622 eval_sec=736.5
+- DONE     synth_gen_s1_curonly_recoff_s45: FINAL val_mrr=0.2031 test_mrr=0.2059 test_hits10=0.4653 eval_sec=759.3
+- DONE     synth_gen_s1_curonly_recoff_s46: FINAL val_mrr=0.2047 test_mrr=0.2106 test_hits10=0.4661 eval_sec=514.3
+- DONE     synth_gen_s1_curonly_recoff_s47: FINAL val_mrr=0.2070 test_mrr=0.2095 test_hits10=0.4713 eval_sec=578.4
+- RUNNING  synth_gen_s1_curonly_recon_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1_curonly_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1_curonly_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1_curonly_recon_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1_curonly_recon_s47: epochs': 3, 'time_window': 20000.0, 'context_edges': 2000, 'train_edge
+- DONE     synth_gen_s1_diag_recoff_s43: FINAL val_mrr=0.2082 test_mrr=0.2068 test_hits10=0.4686 eval_sec=454.9
+- DONE     synth_gen_s1_diag_recoff_s44: FINAL val_mrr=0.2053 test_mrr=0.2079 test_hits10=0.4670 eval_sec=565.5
+- DONE     synth_gen_s1_diag_recoff_s45: FINAL val_mrr=0.2086 test_mrr=0.2108 test_hits10=0.4753 eval_sec=521.4
+- DONE     synth_gen_s1_diag_recoff_s46: FINAL val_mrr=0.2049 test_mrr=0.2084 test_hits10=0.4742 eval_sec=638.1
+- DONE     synth_gen_s1_diag_recoff_s47: FINAL val_mrr=0.2059 test_mrr=0.2082 test_hits10=0.4652 eval_sec=636.0
+- RUNNING  synth_gen_s1_diag_recon_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1_diag_recon_s44: 
+- RUNNING  synth_gen_s1_diag_recon_s45: 
+- RUNNING  synth_gen_s1_diag_recon_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1_diag_recon_s47: 
+- DONE     synth_gen_s1_gru_recoff_s43: FINAL val_mrr=0.2022 test_mrr=0.2088 test_hits10=0.4562 eval_sec=714.7
+- DONE     synth_gen_s1_gru_recoff_s44: FINAL val_mrr=0.1976 test_mrr=0.2036 test_hits10=0.4567 eval_sec=618.2
+- DONE     synth_gen_s1_gru_recoff_s45: FINAL val_mrr=0.2044 test_mrr=0.2087 test_hits10=0.4704 eval_sec=610.7
+- DONE     synth_gen_s1_gru_recoff_s46: FINAL val_mrr=0.2061 test_mrr=0.2062 test_hits10=0.4696 eval_sec=679.6
+- DONE     synth_gen_s1_gru_recoff_s47: FINAL val_mrr=0.2156 test_mrr=0.2105 test_hits10=0.4761 eval_sec=517.2
+- RUNNING  synth_gen_s1_gru_recon_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1_gru_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1_gru_recon_s45: 
+- RUNNING  synth_gen_s1_gru_recon_s46: 
+- RUNNING  synth_gen_s1_gru_recon_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     synth_gen_s1_identity_recoff_s43: FINAL val_mrr=0.2017 test_mrr=0.2050 test_hits10=0.4603 eval_sec=624.3
+- DONE     synth_gen_s1_identity_recoff_s44: FINAL val_mrr=0.2016 test_mrr=0.1994 test_hits10=0.4584 eval_sec=547.0
+- DONE     synth_gen_s1_identity_recoff_s45: FINAL val_mrr=0.2047 test_mrr=0.2104 test_hits10=0.4666 eval_sec=499.4
+- DONE     synth_gen_s1_identity_recoff_s46: FINAL val_mrr=0.2048 test_mrr=0.2057 test_hits10=0.4688 eval_sec=688.0
+- DONE     synth_gen_s1_identity_recoff_s47: FINAL val_mrr=0.2197 test_mrr=0.2094 test_hits10=0.4768 eval_sec=626.1
+- RUNNING  synth_gen_s1_identity_recon_s43: epochs': 3, 'time_window': 20000.0, 'context_edges': 2000, 'train_edge
+- RUNNING  synth_gen_s1_identity_recon_s44: 
+- RUNNING  synth_gen_s1_identity_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1_identity_recon_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1_identity_recon_s47: 
+- DONE     synth_gen_s1_nodeframe_recoff_s43: FINAL val_mrr=0.2075 test_mrr=0.2066 test_hits10=0.4652 eval_sec=519.5
+- DONE     synth_gen_s1_nodeframe_recoff_s44: FINAL val_mrr=0.2048 test_mrr=0.2113 test_hits10=0.4736 eval_sec=742.0
+- DONE     synth_gen_s1_nodeframe_recoff_s45: FINAL val_mrr=0.2060 test_mrr=0.2076 test_hits10=0.4673 eval_sec=633.3
+- DONE     synth_gen_s1_nodeframe_recoff_s46: FINAL val_mrr=0.2054 test_mrr=0.2079 test_hits10=0.4723 eval_sec=430.0
+- DONE     synth_gen_s1_nodeframe_recoff_s47: FINAL val_mrr=0.2093 test_mrr=0.2110 test_hits10=0.4742 eval_sec=711.9
+- RUNNING  synth_gen_s1_nodeframe_recon_s43: 
+- RUNNING  synth_gen_s1_nodeframe_recon_s44: 
+- RUNNING  synth_gen_s1_nodeframe_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  synth_gen_s1_nodeframe_recon_s46: epochs': 3, 'time_window': 20000.0, 'context_edges': 2000, 'train_edge
+- RUNNING  synth_gen_s1_nodeframe_recon_s47: 
+- DONE     synth_gen_s1r_attention_recoff_rel_s43: FINAL val_mrr=0.2329 test_mrr=0.2339 test_hits10=0.4939 eval_sec=707.9
+- DONE     synth_gen_s1r_attention_recoff_rel_s44: FINAL val_mrr=0.2369 test_mrr=0.2359 test_hits10=0.4910 eval_sec=462.2
+- DONE     synth_gen_s1r_attention_recoff_rel_s45: FINAL val_mrr=0.2507 test_mrr=0.2303 test_hits10=0.4708 eval_sec=295.1
+- DONE     synth_gen_s1r_attention_recoff_rel_s46: FINAL val_mrr=0.2788 test_mrr=0.2389 test_hits10=0.4972 eval_sec=564.8
+- DONE     synth_gen_s1r_attention_recoff_rel_s47: FINAL val_mrr=0.2310 test_mrr=0.2384 test_hits10=0.4998 eval_sec=374.7
+- DONE     synth_gen_s1r_coreoff_recoff_rel_s43: FINAL val_mrr=0.2327 test_mrr=0.2387 test_hits10=0.5018 eval_sec=421.7
+- DONE     synth_gen_s1r_coreoff_recoff_rel_s44: FINAL val_mrr=0.2329 test_mrr=0.2387 test_hits10=0.5007 eval_sec=336.4
+- DONE     synth_gen_s1r_coreoff_recoff_rel_s45: FINAL val_mrr=0.2342 test_mrr=0.2402 test_hits10=0.4997 eval_sec=353.9
+- DONE     synth_gen_s1r_coreoff_recoff_rel_s46: FINAL val_mrr=0.2322 test_mrr=0.2390 test_hits10=0.4982 eval_sec=420.4
+- DONE     synth_gen_s1r_coreoff_recoff_rel_s47: FINAL val_mrr=0.2333 test_mrr=0.2407 test_hits10=0.5041 eval_sec=225.9
+- DONE     synth_gen_s1r_curonly_recoff_rel_s43: FINAL val_mrr=0.2292 test_mrr=0.2363 test_hits10=0.4942 eval_sec=382.3
+- DONE     synth_gen_s1r_curonly_recoff_rel_s44: FINAL val_mrr=0.2309 test_mrr=0.2379 test_hits10=0.4999 eval_sec=169.5
+- DONE     synth_gen_s1r_curonly_recoff_rel_s45: FINAL val_mrr=0.2430 test_mrr=0.2422 test_hits10=0.5074 eval_sec=592.8
+- DONE     synth_gen_s1r_curonly_recoff_rel_s46: FINAL val_mrr=0.2259 test_mrr=0.2299 test_hits10=0.4788 eval_sec=542.5
+- DONE     synth_gen_s1r_curonly_recoff_rel_s47: FINAL val_mrr=0.2313 test_mrr=0.2391 test_hits10=0.5021 eval_sec=292.6
+- DONE     synth_gen_s1r_diag_recoff_rel_s43: FINAL val_mrr=0.2292 test_mrr=0.2368 test_hits10=0.4984 eval_sec=177.8
+- DONE     synth_gen_s1r_diag_recoff_rel_s44: FINAL val_mrr=0.2335 test_mrr=0.2379 test_hits10=0.4966 eval_sec=520.5
+- DONE     synth_gen_s1r_diag_recoff_rel_s45: FINAL val_mrr=0.2337 test_mrr=0.2383 test_hits10=0.4967 eval_sec=664.7
+- DONE     synth_gen_s1r_diag_recoff_rel_s46: FINAL val_mrr=0.2284 test_mrr=0.2353 test_hits10=0.4936 eval_sec=488.1
+- DONE     synth_gen_s1r_diag_recoff_rel_s47: FINAL val_mrr=0.2292 test_mrr=0.2370 test_hits10=0.4978 eval_sec=184.7
+- DONE     synth_gen_s1r_gru_recoff_rel_s43: FINAL val_mrr=0.2461 test_mrr=0.2374 test_hits10=0.4960 eval_sec=226.5
+- DONE     synth_gen_s1r_gru_recoff_rel_s44: FINAL val_mrr=0.2378 test_mrr=0.2306 test_hits10=0.4834 eval_sec=665.3
+- DONE     synth_gen_s1r_gru_recoff_rel_s45: FINAL val_mrr=0.2552 test_mrr=0.2399 test_hits10=0.5058 eval_sec=259.0
+- DONE     synth_gen_s1r_gru_recoff_rel_s46: FINAL val_mrr=0.2316 test_mrr=0.2378 test_hits10=0.5000 eval_sec=294.1
+- DONE     synth_gen_s1r_gru_recoff_rel_s47: FINAL val_mrr=0.2436 test_mrr=0.2305 test_hits10=0.4907 eval_sec=670.1
+- DONE     synth_gen_s1r_identity_recoff_rel_s43: FINAL val_mrr=0.2422 test_mrr=0.2345 test_hits10=0.4888 eval_sec=945.8
+- DONE     synth_gen_s1r_identity_recoff_rel_s44: FINAL val_mrr=0.2508 test_mrr=0.2370 test_hits10=0.4903 eval_sec=219.2
+- DONE     synth_gen_s1r_identity_recoff_rel_s45: FINAL val_mrr=0.2587 test_mrr=0.2365 test_hits10=0.5012 eval_sec=413.1
+- DONE     synth_gen_s1r_identity_recoff_rel_s46: FINAL val_mrr=0.2295 test_mrr=0.2400 test_hits10=0.4959 eval_sec=692.6
+- DONE     synth_gen_s1r_identity_recoff_rel_s47: FINAL val_mrr=0.2328 test_mrr=0.2390 test_hits10=0.5012 eval_sec=313.8
+- DONE     synth_gen_s1r_nodeframe_recoff_rel_s43: FINAL val_mrr=0.2302 test_mrr=0.2338 test_hits10=0.4973 eval_sec=538.8
+- DONE     synth_gen_s1r_nodeframe_recoff_rel_s44: FINAL val_mrr=0.2314 test_mrr=0.2363 test_hits10=0.4957 eval_sec=300.9
+- DONE     synth_gen_s1r_nodeframe_recoff_rel_s45: FINAL val_mrr=0.2451 test_mrr=0.2377 test_hits10=0.4902 eval_sec=357.9
+- DONE     synth_gen_s1r_nodeframe_recoff_rel_s46: FINAL val_mrr=0.2449 test_mrr=0.2382 test_hits10=0.4972 eval_sec=157.6
+- DONE     synth_gen_s1r_nodeframe_recoff_rel_s47: FINAL val_mrr=0.2318 test_mrr=0.2359 test_hits10=0.4936 eval_sec=948.0
+- DONE     synth_gen_s1r_tsd_recoff_rel_s43: FINAL val_mrr=0.2363 test_mrr=0.2351 test_hits10=0.4910 eval_sec=642.9
+- DONE     synth_gen_s1r_tsd_recoff_rel_s44: FINAL val_mrr=0.2368 test_mrr=0.2348 test_hits10=0.4954 eval_sec=595.7
+- DONE     synth_gen_s1r_tsd_recoff_rel_s45: FINAL val_mrr=0.2711 test_mrr=0.2326 test_hits10=0.4964 eval_sec=450.1
+- DONE     synth_gen_s1r_tsd_recoff_rel_s46: FINAL val_mrr=0.2314 test_mrr=0.2366 test_hits10=0.4953 eval_sec=527.2
+- DONE     synth_gen_s1r_tsd_recoff_rel_s47: FINAL val_mrr=0.2302 test_mrr=0.2360 test_hits10=0.4887 eval_sec=946.3
+- DONE     synth_gen_s1_tsd_recoff_s43: FINAL val_mrr=0.2032 test_mrr=0.2069 test_hits10=0.4594 eval_sec=583.1
+- DONE     synth_gen_s1_tsd_recoff_s44: FINAL val_mrr=0.2065 test_mrr=0.2090 test_hits10=0.4698 eval_sec=585.3
+- DONE     synth_gen_s1_tsd_recoff_s45: FINAL val_mrr=0.2001 test_mrr=0.2065 test_hits10=0.4603 eval_sec=662.3
+- DONE     synth_gen_s1_tsd_recoff_s46: FINAL val_mrr=0.2042 test_mrr=0.2088 test_hits10=0.4721 eval_sec=675.3
+- DONE     synth_gen_s1_tsd_recoff_s47: FINAL val_mrr=0.2109 test_mrr=0.2086 test_hits10=0.4673 eval_sec=607.4
+- RUNNING  synth_gen_s1_tsd_recon_s43: 
+- RUNNING  synth_gen_s1_tsd_recon_s44: 
+- RUNNING  synth_gen_s1_tsd_recon_s45: 
+- RUNNING  synth_gen_s1_tsd_recon_s46: 
+- RUNNING  synth_gen_s1_tsd_recon_s47: 
+- DONE     synth_gen_s2_coreoff_recoff_rel_s43: FINAL val_mrr=0.3185 test_mrr=0.2917 test_hits10=0.5793 eval_sec=340.1
+- DONE     synth_gen_s2_coreoff_recoff_rel_s44: FINAL val_mrr=0.3107 test_mrr=0.2826 test_hits10=0.5755 eval_sec=288.4
+- DONE     synth_gen_s2_coreoff_recoff_rel_s45: FINAL val_mrr=0.3113 test_mrr=0.2972 test_hits10=0.5790 eval_sec=372.5
+- DONE     synth_gen_s2_coreoff_recoff_rel_s46: FINAL val_mrr=0.3262 test_mrr=0.2924 test_hits10=0.5868 eval_sec=159.0
+- DONE     synth_gen_s2_coreoff_recoff_rel_s47: FINAL val_mrr=0.3070 test_mrr=0.2894 test_hits10=0.5818 eval_sec=303.8
+- DONE     synth_gen_s2_curonly_recoff_rel_s43: FINAL val_mrr=0.3257 test_mrr=0.2857 test_hits10=0.5448 eval_sec=518.4
+- DONE     synth_gen_s2_curonly_recoff_rel_s44: FINAL val_mrr=0.3132 test_mrr=0.2811 test_hits10=0.5347 eval_sec=456.0
+- DONE     synth_gen_s2_curonly_recoff_rel_s45: FINAL val_mrr=0.3331 test_mrr=0.2885 test_hits10=0.5462 eval_sec=330.6
+- DONE     synth_gen_s2_curonly_recoff_rel_s46: FINAL val_mrr=0.3157 test_mrr=0.2939 test_hits10=0.5892 eval_sec=487.6
+- DONE     synth_gen_s2_curonly_recoff_rel_s47: FINAL val_mrr=0.3286 test_mrr=0.3064 test_hits10=0.5705 eval_sec=388.2
+- DONE     synth_gen_s2_gru_recoff_rel_s43: FINAL val_mrr=0.3277 test_mrr=0.2971 test_hits10=0.5665 eval_sec=259.0
+- DONE     synth_gen_s2_gru_recoff_rel_s44: FINAL val_mrr=0.3381 test_mrr=0.3159 test_hits10=0.5983 eval_sec=402.0
+- DONE     synth_gen_s2_gru_recoff_rel_s45: FINAL val_mrr=0.3526 test_mrr=0.2967 test_hits10=0.5633 eval_sec=341.4
+- DONE     synth_gen_s2_gru_recoff_rel_s46: FINAL val_mrr=0.3448 test_mrr=0.3076 test_hits10=0.5953 eval_sec=364.0
+- DONE     synth_gen_s2_gru_recoff_rel_s47: FINAL val_mrr=0.3477 test_mrr=0.2932 test_hits10=0.5608 eval_sec=378.0
+- DONE     synth_gen_s2_identity_recoff_rel_s43: FINAL val_mrr=0.3334 test_mrr=0.2971 test_hits10=0.5710 eval_sec=524.4
+- DONE     synth_gen_s2_identity_recoff_rel_s44: FINAL val_mrr=0.3434 test_mrr=0.3284 test_hits10=0.6297 eval_sec=408.1
+- DONE     synth_gen_s2_identity_recoff_rel_s45: FINAL val_mrr=0.3125 test_mrr=0.2797 test_hits10=0.5745 eval_sec=434.8
+- DONE     synth_gen_s2_identity_recoff_rel_s46: FINAL val_mrr=0.3325 test_mrr=0.3067 test_hits10=0.5920 eval_sec=438.8
+- DONE     synth_gen_s2_identity_recoff_rel_s47: FINAL val_mrr=0.3272 test_mrr=0.2725 test_hits10=0.5192 eval_sec=461.3
+- DONE     synth_gen_s2_tsd_recoff_rel_s43: FINAL val_mrr=0.3160 test_mrr=0.2900 test_hits10=0.5505 eval_sec=435.5
+- DONE     synth_gen_s2_tsd_recoff_rel_s44: FINAL val_mrr=0.3111 test_mrr=0.2881 test_hits10=0.5707 eval_sec=409.0
+- DONE     synth_gen_s2_tsd_recoff_rel_s45: FINAL val_mrr=0.3191 test_mrr=0.2882 test_hits10=0.5577 eval_sec=457.1
+- DONE     synth_gen_s2_tsd_recoff_rel_s46: FINAL val_mrr=0.3107 test_mrr=0.2932 test_hits10=0.5765 eval_sec=428.9
+- DONE     synth_gen_s2_tsd_recoff_rel_s47: FINAL val_mrr=0.3137 test_mrr=0.2737 test_hits10=0.5417 eval_sec=328.4
+- DONE     wiki_attention_s43_lr1e-3: FINAL val_mrr=0.7640 test_mrr=0.7521 test_hits10=0.8529 eval_sec=1291.5
+- DONE     wiki_attention_s43_lr3e-4: FINAL val_mrr=0.7487 test_mrr=0.7342 test_hits10=0.8470 eval_sec=1944.7
+- RUNNING  wiki_attention_s44_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  wiki_attention_s45_lr1e-3: 
+- RUNNING  wiki_attention_s46_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  wiki_attention_s47_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     wiki_coreoff_s43_lr1e-3: FINAL val_mrr=0.7674 test_mrr=0.7440 test_hits10=0.8456 eval_sec=56.5
+- DONE     wiki_coreoff_s43_lr3e-4: FINAL val_mrr=0.7455 test_mrr=0.7255 test_hits10=0.8460 eval_sec=52.3
+- DONE     wiki_coreoff_s44_lr1e-3: FINAL val_mrr=0.7565 test_mrr=0.7334 test_hits10=0.8441 eval_sec=744.4
+- DONE     wiki_coreoff_s45_lr1e-3: FINAL val_mrr=0.7549 test_mrr=0.7315 test_hits10=0.8459 eval_sec=538.0
+- DONE     wiki_coreoff_s46_lr1e-3: FINAL val_mrr=0.7642 test_mrr=0.7386 test_hits10=0.8467 eval_sec=810.1
+- DONE     wiki_coreoff_s47_lr1e-3: FINAL val_mrr=0.7524 test_mrr=0.7270 test_hits10=0.8445 eval_sec=642.3
+- DONE     wiki_curonly_s43_lr1e-3: FINAL val_mrr=0.7818 test_mrr=0.7656 test_hits10=0.8542 eval_sec=2054.5
+- DONE     wiki_curonly_s43_lr3e-4: FINAL val_mrr=0.7396 test_mrr=0.7267 test_hits10=0.8491 eval_sec=1241.1
+- RUNNING  wiki_curonly_s44_lr1e-3: 
+- RUNNING  wiki_curonly_s45_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  wiki_curonly_s46_lr1e-3: 
+- RUNNING  wiki_curonly_s47_lr1e-3: 
+- DONE     wiki_diag_s43_lr1e-3: FINAL val_mrr=0.7842 test_mrr=0.7659 test_hits10=0.8512 eval_sec=1924.0
+- DONE     wiki_diag_s43_lr3e-4: FINAL val_mrr=0.7330 test_mrr=0.7171 test_hits10=0.8501 eval_sec=2037.7
+- RUNNING  wiki_diag_s44_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  wiki_diag_s45_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  wiki_diag_s46_lr1e-3: 
+- RUNNING  wiki_diag_s47_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     wiki_gru_s43_lr1e-3: FINAL val_mrr=0.7841 test_mrr=0.7713 test_hits10=0.8552 eval_sec=2084.5
+- DONE     wiki_gru_s43_lr3e-4: FINAL val_mrr=0.7476 test_mrr=0.7336 test_hits10=0.8504 eval_sec=1943.3
+- RUNNING  wiki_gru_s44_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  wiki_gru_s45_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  wiki_gru_s46_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  wiki_gru_s47_lr1e-3: 
+- DONE     wiki_identity_s43_lr1e-3: FINAL val_mrr=0.7743 test_mrr=0.7628 test_hits10=0.8543 eval_sec=1291.5
+- DONE     wiki_identity_s43_lr3e-4: FINAL val_mrr=0.7490 test_mrr=0.7360 test_hits10=0.8494 eval_sec=1605.2
+- RUNNING  wiki_identity_s44_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  wiki_identity_s45_lr1e-3: 
+- RUNNING  wiki_identity_s46_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  wiki_identity_s47_lr1e-3: 
+- DONE     wiki_nodeframe_s43_lr1e-3: FINAL val_mrr=0.7793 test_mrr=0.7640 test_hits10=0.8511 eval_sec=1365.0
+- DONE     wiki_nodeframe_s43_lr3e-4: FINAL val_mrr=0.7467 test_mrr=0.7317 test_hits10=0.8506 eval_sec=2071.8
+- RUNNING  wiki_nodeframe_s44_lr1e-3: 
+- RUNNING  wiki_nodeframe_s45_lr1e-3: 
+- RUNNING  wiki_nodeframe_s46_lr1e-3: 
+- RUNNING  wiki_nodeframe_s47_lr1e-3: 
+- RUNNING  wiki_tsd_clock-global_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  wiki_tsd_clock-node_interaction_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
