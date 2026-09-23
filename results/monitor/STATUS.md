@@ -1,19 +1,19 @@
-# Monitor status (2026-09-23 06:15:20)
+# Monitor status (2026-09-23 06:23:58)
 
 ## GPU free (GiB) and utilisation
-0:54GB(98%) 1:51GB(99%) 2:2GB(21%) 3:18GB(2%) 4:9GB(100%) 5:54GB(98%) 6:10GB(59%) 7:2GB(63%) 
-our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 4095829:13638MiB 4096930:11762MiB 4118762:18198MiB 2654122:18014MiB 4096797:18198MiB 4097655:11524MiB 243990:15520MiB 4095645:17954MiB 4098149:11522MiB 4131532:11528MiB 4177163:18280MiB 256792:8648MiB 257101:4524MiB 2872725:18280MiB 2905507:18198MiB 4096471:16614MiB 4097379:18364MiB 2703991:18280MiB 2704074:18198MiB 4095975:15524MiB 4138403:16658MiB 166942:11528MiB 
+0:54GB(98%) 1:51GB(99%) 2:1GB(5%) 3:18GB(1%) 4:8GB(100%) 5:54GB(98%) 6:10GB(1%) 7:1GB(10%) 
+our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 4095829:14498MiB 4096930:11762MiB 4118762:18198MiB 2654122:18014MiB 4096797:18198MiB 4097655:11524MiB 243990:15520MiB 4095645:17954MiB 4098149:11522MiB 4131532:11528MiB 4177163:18280MiB 256792:9388MiB 257101:4524MiB 2872725:18280MiB 2905507:18198MiB 4096471:16614MiB 4097379:18364MiB 2703991:18280MiB 2704074:18198MiB 4095975:15524MiB 4138403:16978MiB 166942:11748MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
-- gpu2: ELIGIBLE (idle 838 min)
-- gpu3: ELIGIBLE (idle 1066 min)
-- gpu4: ELIGIBLE (idle 1442 min)
+- gpu2: ELIGIBLE (idle 846 min)
+- gpu3: ELIGIBLE (idle 1075 min)
+- gpu4: ELIGIBLE (idle 1450 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 598 min)
+- gpu6: ELIGIBLE (idle 606 min)
 - gpu7: OURS
-compensation: colleagues hold 26542 MiB on our GPUs; we hold 287348 MiB on theirs; budget left -260806 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+compensation: colleagues hold 26542 MiB on our GPUs; we hold 288948 MiB on theirs; budget left -262406 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
 our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
