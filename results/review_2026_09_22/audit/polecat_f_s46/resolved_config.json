@@ -12,6 +12,7 @@
   "d": 2,
   "dataset": "tkgl-polecat",
   "delta_time_scale": "auto",
+  "dump_query_ranks": false,
   "emb_in_head": false,
   "epochs": 0,
   "eval_only": "results/event_bench/leakfree2/polecat_f_s46/best.pt",
@@ -112,12 +113,12 @@
   "--out",
   "results/review_2026_09_22/audit/polecat_f_s46"
  ],
- "commit": "b34d01cc5fd5baee6cb73c99485977ffb3d7d760",
+ "commit": "907f6130a6d26f15b15c0041210028250c219148",
  "cwd": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "env": {
   "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
   "CUDA_MODULE_LOADING": "LAZY",
-  "CUDA_VISIBLE_DEVICES": "0",
+  "CUDA_VISIBLE_DEVICES": "7",
   "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True",
   "TSD_ONLY_GPUS": "0 7",
   "TSD_RESERVE_GPU_MB": "10976"
