@@ -62,8 +62,11 @@ forum_identity_recon_s44,forum,thgl-forum,identity-maps,44,2956.0,0.0,0.0,7.0,0.
 forum_identity_recon_s45,forum,thgl-forum,identity-maps,45,2956.0,0.0,0.0,11.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_nodeframe_rec_s43,forum,thgl-forum,node-frame,43,2956.0,0.0,0.0,17.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_nodeframe_recoff_s43,forum,thgl-forum,node-frame,43,2956.0,0.0,0.0,21.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
+forum_nodeframe_recoff_s44,forum,thgl-forum,node-frame,44,2956.0,0.0,0.0,12.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
+forum_nodeframe_recoff_s45,forum,thgl-forum,node-frame,45,2956.0,0.0,0.0,39.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_nodeframe_recoff_s46,forum,thgl-forum,node-frame,46,2956.0,0.0,0.0,38.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_nodeframe_recoff_s47,forum,thgl-forum,node-frame,47,2956.0,0.0,0.0,17.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
+forum_nodeframe_recon_s44,forum,thgl-forum,node-frame,44,2956.0,0.0,0.0,9.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_nodeframe_recon_s46,forum,thgl-forum,node-frame,46,2956.0,0.0,0.0,11.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_nodeframe_recon_s47,forum,thgl-forum,node-frame,47,2956.0,0.0,0.0,12.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_tsd_recoff_s44,forum,thgl-forum,tsd,44,2956.0,0.0,0.0,41.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
@@ -87,6 +90,7 @@ wiki_curonly_s43_lr3e-4,matched,tgbl-wiki,current-only-maps,43,24832.0,0.0,0.0,1
 wiki_curonly_s44_lr1e-3,matched,tgbl-wiki,current-only-maps,44,24832.0,0.0,0.0,542.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_curonly_s45_lr1e-3,matched,tgbl-wiki,current-only-maps,45,24832.0,0.0,0.0,680.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_curonly_s46_lr1e-3,matched,tgbl-wiki,current-only-maps,46,24832.0,0.0,0.0,479.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
+wiki_curonly_s47_lr1e-3,matched,tgbl-wiki,current-only-maps,47,24832.0,0.0,0.0,699.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_diag_s43_lr1e-3,matched,tgbl-wiki,diagssm-ordinary,43,24832.0,0.0,0.0,531.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_diag_s43_lr3e-4,matched,tgbl-wiki,diagssm-ordinary,43,24832.0,0.0,0.0,1363.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_diag_s44_lr1e-3,matched,tgbl-wiki,diagssm-ordinary,44,24832.0,0.0,0.0,795.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
