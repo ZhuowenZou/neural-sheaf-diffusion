@@ -3,3 +3,10 @@ device=cuda:0 sha=2dad1b287282 config={'dataset': 'tkgl-icews', 'seed': 46, 'mod
 split_source=official_tgb_masks
 destination_range=None
 snapshots: train=1263 (edges=2000000) track_val=14 final_val=1341 final_test=1696 | prep_sec=8.4
+negative-sample sets loaded in 36.4s
+delta_time_scale=86400 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=660043 num_relations=782 num_nodes=87856
+parameters_by_component={'embeddings': 12512, 'ssm_input_selector_B': 620928, 'ssm_other': 4261, 'map_decoder': 4288, 'spatial_block': 2534, 'scorer': 15391, 'rec': 129, 'other': 0, 'total': 660043, 'trainable': 660043, 'unused_by_construction': 0, 'active': 660043}
+[epoch 1/6] {'epoch': 1, 'train_loss': 0.07386422979980471, 'track_val_mrr': 0.19786121357629696, 'track_val_loss': 0.8037413358688354, 'train_sec': 280.3, 'track_eval_sec': 209.2, 'peak_gpu_mem_mb': 6936.1, 'peak_gpu_reserved_mb': 15012.0, 'epoch_steps': 1262, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 12, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 2/6] {'epoch': 2, 'train_loss': 0.05672019861916024, 'track_val_mrr': 0.22283073093394437, 'track_val_loss': 0.7167182564735413, 'train_sec': 314.5, 'track_eval_sec': 277.8, 'peak_gpu_mem_mb': 7479.0, 'peak_gpu_reserved_mb': 15012.0, 'epoch_steps': 1262, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 1, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
