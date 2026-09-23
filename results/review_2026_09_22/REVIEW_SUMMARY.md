@@ -1,6 +1,6 @@
-# Review campaign summary (auto-generated 2026-09-23 12:26)
+# Review campaign summary (auto-generated 2026-09-23 12:36)
 
-266 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+267 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
@@ -69,7 +69,7 @@
 | tkgl-polecat                                                       | polecat | on    | identity-maps     | 0.003  |   2 | 0.244472 |   0.000641277 | 0.2449 / 0.2440                                                                                                                                        |
 | tkgl-polecat                                                       | polecat | on    | tsd               | 0.003  |   3 | 0.244187 |   0.00336667  | 0.2403 / 0.2461 / 0.2462                                                                                                                               |
 | tkgl-polecat                                                       | polecat | on    | tsd-no-gap        | 0.003  |   2 | 0.242455 |   0.00237966  | 0.2441 / 0.2408                                                                                                                                        |
-| tkgl-smallpedia                                                    | sp      | on    | attention-gates   | 0.01   |   1 | 0.608333 | nan           | 0.6083                                                                                                                                                 |
+| tkgl-smallpedia                                                    | sp      | on    | attention-gates   | 0.01   |   2 | 0.609945 |   0.00228057  | 0.6116 / 0.6083                                                                                                                                        |
 | tkgl-smallpedia                                                    | sp      | on    | core-off          | 0.01   |   3 | 0.574831 |   0.053856    | 0.5128 / 0.6015 / 0.6102                                                                                                                               |
 | tkgl-smallpedia                                                    | sp      | on    | current-only-maps | 0.01   |   5 | 0.604061 |   0.0106608   | 0.5897 / 0.6144 / 0.5959 / 0.6110 / 0.6092                                                                                                             |
 | tkgl-smallpedia                                                    | sp      | on    | diagssm-ordinary  | 0.01   |   1 | 0.607806 | nan           | 0.6078                                                                                                                                                 |
@@ -505,6 +505,8 @@
 | smoke   | tsd                                 | test    |      4000 |                  0 |               0 |         0 |            0 |            0 |      0.526321 |      0.526321 |           0.526321 |                           0 |                         0 |
 | smoke   | tsd_clockdiag                       | val     |      6000 |                  0 |               0 |         0 |            0 |            0 |      0.626814 |      0.626814 |           0.626814 |                           0 |                         0 |
 | smoke   | tsd_clockdiag                       | test    |      4000 |                  0 |               0 |         0 |            0 |            0 |      0.526862 |      0.526862 |           0.526862 |                           0 |                         0 |
+| sp      | sp_attention_s46                    | val     |    912066 |                  0 |               0 |         0 |            0 |            0 |      0.696474 |      0.696474 |           0.696474 |                           0 |                         0 |
+| sp      | sp_attention_s46                    | test    |    163172 |                  0 |               0 |         0 |            0 |            0 |      0.611558 |      0.611558 |           0.611558 |                           0 |                         0 |
 | sp      | sp_attention_s47                    | val     |    912066 |                  0 |               0 |         0 |            0 |            0 |      0.699699 |      0.699699 |           0.699699 |                           0 |                         0 |
 | sp      | sp_attention_s47                    | test    |    163172 |                  0 |               0 |         0 |            0 |            0 |      0.608333 |      0.608333 |           0.608333 |                           0 |                         0 |
 | sp      | sp_coreoff_s43                      | val     |    912066 |                  0 |               0 |         0 |            0 |            0 |      0.600402 |      0.600402 |           0.600402 |                           0 |                         0 |
@@ -818,23 +820,22 @@
 | icews_tsd_recon_s44      | running/pending |            6 |          1 |
 | icews_tsd_recon_s45      | running/pending |            4 |          1 |
 | polecat_coreoff_s46      | running/pending |           10 |          1 |
-| polecat_gru_s46          | running/pending |            4 |          2 |
-| sp_attention_s43         | running/pending |           12 |          2 |
-| sp_attention_s46         | running/pending |           15 |          2 |
-| sp_curonly_s46           | running/pending |            9 |          2 |
-| sp_curonly_s47           | running/pending |            8 |          2 |
+| polecat_gru_s46          | running/pending |            5 |          2 |
+| sp_attention_s43         | running/pending |           15 |          2 |
+| sp_curonly_s46           | running/pending |           12 |          2 |
+| sp_curonly_s47           | running/pending |           12 |          2 |
 | sp_diag_s46              | running/pending |            0 |          2 |
 | sp_diag_s47              | running/pending |            0 |          2 |
 | sp_gru_s43               | running/pending |            0 |          2 |
-| sp_gru_s46               | running/pending |            2 |          2 |
-| sp_gru_s47               | running/pending |           11 |          1 |
-| sp_identity_s43          | running/pending |           10 |          2 |
+| sp_gru_s46               | running/pending |            7 |          2 |
+| sp_gru_s47               | running/pending |           13 |          1 |
+| sp_identity_s43          | running/pending |           14 |          2 |
 | sp_identity_s46          | running/pending |            0 |          2 |
 | sp_identity_s47          | running/pending |            0 |          2 |
 | sp_nodeframe_s43         | running/pending |            0 |          2 |
 | sp_nodeframe_s46         | running/pending |            0 |          2 |
 | sp_nodeframe_s47         | running/pending |            0 |          2 |
-| sp_tsd_s43               | running/pending |            3 |          2 |
-| sp_tsd_s46               | running/pending |            0 |          2 |
-| sp_tsd_s47               | running/pending |            0 |          2 |
+| sp_tsd_s43               | running/pending |            9 |          2 |
+| sp_tsd_s46               | running/pending |            5 |          2 |
+| sp_tsd_s47               | running/pending |            4 |          2 |
 
