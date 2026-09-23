@@ -1,19 +1,19 @@
-# Monitor status (2026-09-23 05:53:49)
+# Monitor status (2026-09-23 06:15:20)
 
 ## GPU free (GiB) and utilisation
-0:54GB(98%) 1:51GB(97%) 2:1GB(5%) 3:33GB(41%) 4:24GB(100%) 5:54GB(91%) 6:13GB(13%) 7:2GB(54%) 
-our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 4095829:16660MiB 4096930:11722MiB 4118762:15698MiB 2654122:18014MiB 4096797:15758MiB 4097655:11524MiB 4095645:17954MiB 4098149:11522MiB 4131532:11528MiB 4177163:16320MiB 2872725:18280MiB 2905507:18198MiB 4096471:15734MiB 4097379:16724MiB 2703991:18280MiB 2704074:18198MiB 4095975:15524MiB 4138403:16724MiB 166942:11528MiB 
+0:54GB(98%) 1:51GB(99%) 2:2GB(21%) 3:18GB(2%) 4:9GB(100%) 5:54GB(98%) 6:10GB(59%) 7:2GB(63%) 
+our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 4095829:13638MiB 4096930:11762MiB 4118762:18198MiB 2654122:18014MiB 4096797:18198MiB 4097655:11524MiB 243990:15520MiB 4095645:17954MiB 4098149:11522MiB 4131532:11528MiB 4177163:18280MiB 256792:8648MiB 257101:4524MiB 2872725:18280MiB 2905507:18198MiB 4096471:16614MiB 4097379:18364MiB 2703991:18280MiB 2704074:18198MiB 4095975:15524MiB 4138403:16658MiB 166942:11528MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
-- gpu2: ELIGIBLE (idle 816 min)
-- gpu3: ELIGIBLE (idle 1045 min)
-- gpu4: ELIGIBLE (idle 1420 min)
+- gpu2: ELIGIBLE (idle 838 min)
+- gpu3: ELIGIBLE (idle 1066 min)
+- gpu4: ELIGIBLE (idle 1442 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 576 min)
+- gpu6: ELIGIBLE (idle 598 min)
 - gpu7: OURS
-compensation: colleagues hold 26542 MiB on our GPUs; we hold 254658 MiB on theirs; budget left -228116 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+compensation: colleagues hold 26542 MiB on our GPUs; we hold 287348 MiB on theirs; budget left -260806 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
 our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
@@ -239,7 +239,7 @@ our launcher claims (pid:gpu/MiB):
 - RUNNING  icews_gru_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  icews_gru_recon_s46: final val_mrr=0.3225 (17203.5s so far)
 - RUNNING  icews_gru_recon_s47: final val_mrr=0.3213 (17509.9s so far)
-- RUNNING  icews_identity_recon_s44: 
+- RUNNING  icews_identity_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  icews_identity_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  icews_identity_recon_s46: final val_mrr=0.3176 (22102.1s so far)
 - RUNNING  icews_identity_recon_s47: final val_mrr=0.3279 (17163.3s so far)
@@ -276,8 +276,8 @@ our launcher claims (pid:gpu/MiB):
 - RUNNING  sp_tsd_s43: 
 - RUNNING  sp_tsd_s46: 
 - RUNNING  sp_tsd_s47: 
-- RUNNING  sw_attention_s43: 
-- RUNNING  sw_attention_s46: 
+- RUNNING  sw_attention_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     sw_attention_s46: FINAL val_mrr=0.3863 test_mrr=0.4424 test_hits10=0.4838 eval_sec=38.9
 - DONE     sw_attention_s47: FINAL val_mrr=0.3856 test_mrr=0.4436 test_hits10=0.4834 eval_sec=49.2
 - DONE     sw_coreoff_s43: FINAL val_mrr=0.3701 test_mrr=0.4288 test_hits10=0.4569 eval_sec=63.6
 - DONE     sw_coreoff_s46: FINAL val_mrr=0.3698 test_mrr=0.4293 test_hits10=0.4570 eval_sec=30.0
@@ -286,7 +286,7 @@ our launcher claims (pid:gpu/MiB):
 - RUNNING  sw_diag_s46: 
 - DONE     sw_diag_s47: FINAL val_mrr=0.3815 test_mrr=0.4351 test_hits10=0.4737 eval_sec=100.9
 - DONE     sw_gru_s43: FINAL val_mrr=0.3801 test_mrr=0.4382 test_hits10=0.4752 eval_sec=132.5
-- RUNNING  sw_gru_s46: 
+- RUNNING  sw_gru_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     sw_gru_s47: FINAL val_mrr=0.3799 test_mrr=0.4355 test_hits10=0.4750 eval_sec=87.9
 - RUNNING  sw_nodeframe_s43: 
 - DONE     sw_nodeframe_s46: FINAL val_mrr=0.3833 test_mrr=0.4402 test_hits10=0.4808 eval_sec=74.0
