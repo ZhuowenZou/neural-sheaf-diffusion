@@ -1,12 +1,12 @@
 {
- "prepared": "2026-09-22 09:41:22 PDT",
+ "prepared": "2026-09-23 04:58:47 PDT",
  "repo": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "git": {
-  "sha": "9809f41194f70eb2261c0ef021ddd954816fe4fc",
+  "sha": "e8d993ae54cce37f8f803517a1d76e4ebe6ae793",
   "branch": "review-2026-09-22",
-  "status": "M exp/run_event_benchmark.py\n M exp/temporal_benchmark_utils.py\n M exp/temporal_utils.py\n M models/faithful_event_model.py\n M models/temporal_sheaf_ssm.py\n M results/event_bench/queues/gpu_monitor.sh\n M results/event_bench/queues/wait_launch.sh\n M results/monitor/STATUS.md\n M results/monitor/actions.log\n M results/monitor/gpu_log.csv\n?? exp/review/\n?? models/diagnostics.py\n?? models/test_review_controls.py\n?? results/review_2026_09_22/",
-  "dirty_diff_sha256": "8b3d5757bab66fa49b2cf61b6ff298cc411832cf1d05d824efa46e8388901fe1",
-  "dirty_diff_lines": 1167
+  "status": "M results/monitor/agent.log\n M results/review_2026_09_22/CODE_COMMIT.txt\n M results/review_2026_09_22/REVIEW_SUMMARY.md\n M results/review_2026_09_22/icews/icews_tsd_recon_s44/history.csv\n M results/review_2026_09_22/polecat/polecat_coreoff_s47/history.csv\n M results/review_2026_09_22/polecat/polecat_gru_s43/history.csv\n M results/review_2026_09_22/queue/icews_identity_recon_s45.log\n M results/review_2026_09_22/queue/icews_tsd_recon_s44.log\n M results/review_2026_09_22/queue/polecat_coreoff_s47.log\n M results/review_2026_09_22/queue/polecat_gru_s43.log\n M results/review_2026_09_22/queue/sw_attention_s47.log\n M results/review_2026_09_22/queue/sw_coreoff_s43.log\n M results/review_2026_09_22/queue/sw_diag_s47.log\n M results/review_2026_09_22/queue/sw_nodeframe_s46.log\n M results/review_2026_09_22/run_event_benchmark_help.txt\n M results/review_2026_09_22/sw/sw_attention_s47/history.csv\n M results/review_2026_09_22/sw/sw_coreoff_s43/history.csv\n M results/review_2026_09_22/sw/sw_diag_s47/history.csv\n M results/review_2026_09_22/sw/sw_nodeframe_s46/history.csv\n M results/review_2026_09_22/synthetic/synthetic_analysis/paired_vs_tsd.csv\n M results/review_2026_09_22/synthetic/synthetic_analysis/per_arm_stratified.csv\n M results/review_2026_09_22/synthetic/synthetic_analysis/per_run_stratified.csv\n M results/review_2026_09_22/synthetic/synthetic_analysis_r/paired_vs_tsd.csv\n M results/review_2026_09_22/synthetic/synthetic_analysis_r/per_arm_stratified.csv\n M results/review_2026_09_22/synthetic/synthetic_analysis_r/per_run_stratified.csv\n?? results/review_2026_09_22/icews/icews_identity_recon_s45/history.csv",
+  "dirty_diff_sha256": "da672163a6c5c13733946ebef27b7e5f72e731688d67876f6f65aafe8956febd",
+  "dirty_diff_lines": 331
  },
  "environment": {
   "python": "3.9.9 | packaged by conda-forge | (main, Dec 20 2021, 02:40:17) \n[GCC 9.4.0]",
@@ -156,6 +156,7 @@
    "SQLAlchemy==2.0.49",
    "stack_data @ file:///home/conda/feedstock_root/build_artifacts/stack_data_1733569443808/work",
    "sympy==1.14.0",
+   "tabulate==0.9.0",
    "tbb==2021.13.1",
    "threadpoolctl @ file:///home/conda/feedstock_root/build_artifacts/threadpoolctl_1741878222898/work",
    "tokenizers==0.22.2",
@@ -206,9 +207,9 @@
   }
  },
  "repo_sources_sha256": {
-  "exp/temporal_benchmark_utils.py": "f0ba5ab47de6a534039552f13931bfd570913f750af2b47f1289f5108a646d14",
+  "exp/temporal_benchmark_utils.py": "83f76dddeeb58fa644dc74f228136ead217c88258205972da565532415f2a737",
   "exp/temporal_utils.py": "d0e73093c7eedb1e5ebc2aa221054b57e05e944a61109cefdb91f2e67d91748c",
-  "exp/run_event_benchmark.py": "9e6486bf1a45af15653827a7d6d9cbcdfcd7e7307cc44db27a7b8ec17ad600d7",
+  "exp/run_event_benchmark.py": "5210d1d6ba9a007bb6dd0d52126099c45f9d31e1fc65264a4a22a6de72621843",
   "exp/run_faithful_trade.py": "e732ac810ffaa45023f1c2a710516ed264beaf5ea8acfa13fde1fe806c63e781",
   "exp/faithful_temporal_studies.py": "88791cae2dc01c5ff38c8123d13d9f596b82e9ca500713e65f6a5023bd32cf76",
   "exp/temporal_mamba_studies.py": "157fce1596a82e8f53af6fd8201628c7619a2275bce45ebee4e7a86ed980461e",
@@ -595,7 +596,7 @@
     "ml_thgl-forum.pkl": {
      "bytes": 1330432334,
      "mtime": "2026-09-02 08:07:46",
-     "sha256": "531772ddf2ff8e96484db22f57d6186fb4d41c6f044012b34427a63e866be7e1"
+     "sha256": "skipped(>1GiB)"
     },
     "ml_thgl-forum_edge.pkl": {
      "bytes": 380123453,
@@ -620,7 +621,7 @@
     "thgl-forum.zip": {
      "bytes": 2373351958,
      "mtime": "2026-09-02 08:05:29",
-     "sha256": "d025f70be7529ee1f2bbab47d9b255ab33caa18d41d024e6c8575069a76f7c58"
+     "sha256": "skipped(>1GiB)"
     },
     "thgl-forum_edgelist.csv": {
      "bytes": 712660202,
@@ -635,12 +636,12 @@
     "thgl-forum_test_ns.pkl": {
      "bytes": 3150651986,
      "mtime": "2026-09-02 08:05:56",
-     "sha256": "4307c5e644d3fb6f1f4831f6c8c10fdf5e209abbacc8467ade08e9654c5a0058"
+     "sha256": "skipped(>1GiB)"
     },
     "thgl-forum_val_ns.pkl": {
      "bytes": 3150673202,
      "mtime": "2026-09-02 08:06:18",
-     "sha256": "721b06c0e45386a97794e545cd8c7167c18c18698357a636890a718c2a5e69d1"
+     "sha256": "skipped(>1GiB)"
     },
     "thgl_forum_ns_gen.py": {
      "bytes": 2355,
@@ -1000,7 +1001,7 @@
     "tkgl-wikidata.zip": {
      "bytes": 11442234389,
      "mtime": "2026-09-09 22:12:15",
-     "sha256": "e1eb6ce24076c349857374626d8cea36775903d87c881c094e766b242132c68e"
+     "sha256": "skipped(>1GiB)"
     },
     "tkgl-wikidata_edgelist.csv": {
      "bytes": 279977768,
@@ -1010,17 +1011,17 @@
     "tkgl-wikidata_static_edgelist.csv": {
      "bytes": 1738224277,
      "mtime": "2026-09-09 22:12:32",
-     "sha256": "6af209f516e11621c52c2d9153dbb461ade17ca92a97d73c7677011a8a9f2b20"
+     "sha256": "skipped(>1GiB)"
     },
     "tkgl-wikidata_test_ns.pkl": {
      "bytes": 14249840168,
      "mtime": "2026-09-09 22:14:25",
-     "sha256": "0f7ab1e94daee81e01f75756790f35f50fe376782d71f8787d4d6748766e4bdc"
+     "sha256": "skipped(>1GiB)"
     },
     "tkgl-wikidata_val_ns.pkl": {
      "bytes": 14156948180,
      "mtime": "2026-09-09 22:16:26",
-     "sha256": "48233ad877c6bd655fb7214e2437e34640ef1338a4ea91eec36a69a3dc6ff2dc"
+     "sha256": "skipped(>1GiB)"
     },
     "tkgl_wikidata_mining.py": {
      "bytes": 7073,
@@ -1100,7 +1101,7 @@
     "thgl-software.zip": {
      "bytes": 1492169637,
      "mtime": "2026-04-30 11:45:03",
-     "sha256": "98f85ee4098832edfce570a32d466a39a9ea42852d14db1cea07404cc97718cd"
+     "sha256": "skipped(>1GiB)"
     },
     "thgl-software_edgelist.csv": {
      "bytes": 40647320,
@@ -1125,12 +1126,12 @@
     "thgl-software_test_ns.pkl": {
      "bytes": 1801496688,
      "mtime": "2026-04-30 11:45:21",
-     "sha256": "d1f6739fcf759fcb3df3d9d0f164d44dc4b823c19a54edbac5bcfbfe56f6b600"
+     "sha256": "skipped(>1GiB)"
     },
     "thgl-software_val_ns.pkl": {
      "bytes": 1804181243,
      "mtime": "2026-04-30 11:45:38",
-     "sha256": "8f3ad461aa2aa87970fd9189cf14fe6139e8fe07b1790fa12517324ba0a57d9e"
+     "sha256": "skipped(>1GiB)"
     },
     "thgl_software.py": {
      "bytes": 5550,
@@ -1182,5 +1183,5 @@
    }
   }
  },
- "elapsed_sec": 154.7
+ "elapsed_sec": 84.9
 }

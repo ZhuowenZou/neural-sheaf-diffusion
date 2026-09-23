@@ -1,4 +1,4 @@
-# Review campaign summary (auto-generated 2026-09-23 04:56)
+# Review campaign summary (auto-generated 2026-09-23 04:58)
 
 250 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
@@ -758,14 +758,14 @@
 | icews_gru_recon_s46      | running/pending |            6 |          1 |
 | icews_gru_recon_s47      | running/pending |            6 |          1 |
 | icews_identity_recon_s44 | running/pending |            0 |          1 |
-| icews_identity_recon_s45 | running/pending |            0 |          1 |
+| icews_identity_recon_s45 | running/pending |            1 |          1 |
 | icews_identity_recon_s46 | running/pending |            6 |          1 |
 | icews_identity_recon_s47 | running/pending |            6 |          1 |
-| icews_tsd_recon_s44      | running/pending |            4 |          1 |
+| icews_tsd_recon_s44      | running/pending |            5 |          1 |
 | icews_tsd_recon_s45      | running/pending |            1 |          1 |
 | polecat_coreoff_s43      | running/pending |            3 |          1 |
 | polecat_coreoff_s46      | running/pending |            3 |          1 |
-| polecat_coreoff_s47      | running/pending |            3 |          1 |
+| polecat_coreoff_s47      | running/pending |            4 |          1 |
 | polecat_gru_s43          | running/pending |            1 |          1 |
 | polecat_gru_s46          | running/pending |            0 |          1 |
 | polecat_gru_s47          | running/pending |            0 |          1 |
@@ -811,15 +811,15 @@
 | sp_tsd_s47               | running/pending |            0 |          1 |
 | sw_attention_s43         | running/pending |            0 |          1 |
 | sw_attention_s46         | running/pending |            0 |          1 |
-| sw_attention_s47         | running/pending |            6 |          1 |
-| sw_coreoff_s43           | running/pending |            9 |          1 |
+| sw_attention_s47         | running/pending |            7 |          1 |
+| sw_coreoff_s43           | running/pending |           11 |          1 |
 | sw_coreoff_s46           | running/pending |            0 |          1 |
 | sw_coreoff_s47           | running/pending |            0 |          1 |
 | sw_diag_s46              | running/pending |            0 |          1 |
-| sw_diag_s47              | running/pending |           10 |          1 |
+| sw_diag_s47              | running/pending |           11 |          1 |
 | sw_gru_s46               | running/pending |            0 |          1 |
 | sw_nodeframe_s43         | running/pending |            0 |          1 |
-| sw_nodeframe_s46         | running/pending |            9 |          1 |
+| sw_nodeframe_s46         | running/pending |           10 |          1 |
 | wd_coreoff_s47           | running/pending |            0 |          1 |
 | wd_gru_s43               | running/pending |            0 |          1 |
 | wd_gru_s47               | running/pending |            0 |          1 |

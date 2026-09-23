@@ -35,8 +35,9 @@ usage: run_event_benchmark.py [-h] --dataset DATASET [--seed SEED]
                               [--spatial {sheaf,identity,node_frame,attention}]
                               [--clock {global,node_update,node_interaction}]
                               [--fast-core-off] [--rng-isolation]
-                              [--no-query-audit] [--clock-diagnostics]
-                              [--audit-eval-only] --out OUT
+                              [--no-query-audit] [--dump-query-ranks]
+                              [--clock-diagnostics] [--audit-eval-only] --out
+                              OUT
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -148,6 +149,8 @@ optional arguments:
                         RNG consumption.
   --no-query-audit      Disable the per-query score-validity audit
                         (query_validity*.csv in --out).
+  --dump-query-ranks    Also store every val/test query's reciprocal rank with
+                        its global edge id (query_ranks.csv.gz).
   --clock-diagnostics   Record bounded clock/saturation diagnostics during the
                         final evaluation (clock_*.csv in --out).
   --audit-eval-only     With --eval-only: label the outputs as a checkpoint
