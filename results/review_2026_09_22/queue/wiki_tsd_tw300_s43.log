@@ -1,0 +1,10 @@
+reserved 1500 MiB of GPU memory on cuda:0 in the caching allocator (requested 1500; now reserved 1500 MiB)
+device=cuda:0 sha=a3cd76b8bc00 config={'dataset': 'tgbl-wiki', 'seed': 43, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'history', 'epochs': 8, 'patience': 5, 'min_epochs': 4, 'time_window': 300.0, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 8000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': False, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'no_memory': False, 'recurrency_symmetric': False, 'recurrency_untyped': False, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': False, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'backbone': 'tsd', 'spatial': None, 'clock': 'global', 'fast_core_off': False, 'rng_isolation': True, 'no_query_audit': False, 'dump_query_ranks': True, 'clock_diagnostics': True, 'audit_eval_only': False, 'out': 'results/review_2026_09_22/clock/wiki_tsd_tw300_s43'}
+split_source=official_tgb_masks
+destination_range=(8227, 9226)
+snapshots: train=6209 (edges=110232) track_val=383 final_val=1186 final_test=1534 | prep_sec=1.4
+negative-sample sets loaded in 0.7s
+delta_time_scale=300 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=444686 num_relations=1 num_nodes=9227
+parameters_by_component={'embeddings': 0, 'ssm_input_selector_B': 435584, 'ssm_other': 4245, 'map_decoder': 128, 'spatial_block': 2534, 'scorer': 2114, 'rec': 81, 'other': 0, 'total': 444686, 'trainable': 444686, 'unused_by_construction': 0, 'active': 444686}

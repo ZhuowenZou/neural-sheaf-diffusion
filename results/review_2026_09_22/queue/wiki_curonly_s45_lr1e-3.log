@@ -1,0 +1,10 @@
+reserved 1500 MiB of GPU memory on cuda:0 in the caching allocator (requested 1500; now reserved 1500 MiB)
+device=cuda:0 sha=a3cd76b8bc00 config={'dataset': 'tgbl-wiki', 'seed': 45, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'current_only', 'epochs': 8, 'patience': 5, 'min_epochs': 4, 'time_window': 600.0, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 8000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': False, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'no_memory': False, 'recurrency_symmetric': False, 'recurrency_untyped': False, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': False, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'backbone': 'tsd', 'spatial': None, 'clock': 'global', 'fast_core_off': False, 'rng_isolation': True, 'no_query_audit': False, 'dump_query_ranks': True, 'clock_diagnostics': False, 'audit_eval_only': False, 'out': 'results/review_2026_09_22/matched/wiki_curonly_s45_lr1e-3'}
+split_source=official_tgb_masks
+destination_range=(8227, 9226)
+snapshots: train=3105 (edges=110232) track_val=192 final_val=593 final_test=767 | prep_sec=0.9
+negative-sample sets loaded in 0.6s
+delta_time_scale=600 (Delta_k is measured in units of the median training inter-snapshot gap)
+protocol: predict-from-previous-state (leak-free) for training and evaluation
+parameter_count=448846 num_relations=1 num_nodes=9227
+parameters_by_component={'embeddings': 0, 'ssm_input_selector_B': 435584, 'ssm_other': 4245, 'map_decoder': 4288, 'spatial_block': 2534, 'scorer': 2114, 'rec': 81, 'other': 0, 'total': 448846, 'trainable': 448846, 'unused_by_construction': 0, 'active': 448846}

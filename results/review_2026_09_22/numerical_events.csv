@@ -3,6 +3,7 @@ forum_f_s43,audit,thgl-forum,tsd,43,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3563658.0,0.
 forum_f_s46,audit,thgl-forum,tsd,46,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_f_s47,audit,thgl-forum,tsd,47,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 polecat_f_s43,audit,tkgl-polecat,tsd,43,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,533472.0,0.0,0.0,0.0,532636.0,0.0,True
+polecat_f_s47,audit,tkgl-polecat,tsd,47,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,533472.0,0.0,0.0,0.0,532636.0,0.0,True
 sp_f_s43,audit,tkgl-smallpedia,tsd,43,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sp_f_s46,audit,tkgl-smallpedia,tsd,46,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sp_f_s47,audit,tkgl-smallpedia,tsd,47,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
@@ -25,6 +26,7 @@ forum_coreoff_recoff_s44,forum,thgl-forum,core-off,44,2956.0,0.0,0.0,8.0,0.0,0.0
 forum_coreoff_recoff_s45,forum,thgl-forum,core-off,45,2956.0,0.0,0.0,3.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_coreoff_recon_s44,forum,thgl-forum,core-off,44,2956.0,0.0,0.0,33.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_coreoff_recon_s45,forum,thgl-forum,core-off,45,2956.0,0.0,0.0,24.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
+forum_curonly_recoff_s45,forum,thgl-forum,current-only-maps,45,2956.0,0.0,0.0,11.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_curonly_recon_s44,forum,thgl-forum,current-only-maps,44,2956.0,0.0,0.0,11.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_curonly_recon_s45,forum,thgl-forum,current-only-maps,45,2956.0,0.0,0.0,9.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_diag_recoff_s43,forum,thgl-forum,diagssm-ordinary,43,2956.0,0.0,0.0,42.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
@@ -58,7 +60,9 @@ wiki_attention_s43_lr3e-4,matched,tgbl-wiki,attention-gates,43,24832.0,0.0,0.0,1
 wiki_coreoff_s43_lr1e-3,matched,tgbl-wiki,core-off,43,24832.0,0.0,0.0,487.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_coreoff_s43_lr3e-4,matched,tgbl-wiki,core-off,43,24832.0,0.0,0.0,2833.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_coreoff_s44_lr1e-3,matched,tgbl-wiki,core-off,44,24832.0,0.0,0.0,550.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
+wiki_coreoff_s45_lr1e-3,matched,tgbl-wiki,core-off,45,24832.0,0.0,0.0,548.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_coreoff_s46_lr1e-3,matched,tgbl-wiki,core-off,46,24832.0,0.0,0.0,504.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
+wiki_coreoff_s47_lr1e-3,matched,tgbl-wiki,core-off,47,24832.0,0.0,0.0,577.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_curonly_s43_lr1e-3,matched,tgbl-wiki,current-only-maps,43,24832.0,0.0,0.0,516.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_curonly_s43_lr3e-4,matched,tgbl-wiki,current-only-maps,43,24832.0,0.0,0.0,1097.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_diag_s43_lr1e-3,matched,tgbl-wiki,diagssm-ordinary,43,24832.0,0.0,0.0,531.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
