@@ -1,20 +1,20 @@
-# Monitor status (2026-09-23 11:02:01)
+# Monitor status (2026-09-23 11:22:05)
 
 ## GPU free (GiB) and utilisation
-0:80GB(0%) 1:80GB(0%) 2:22GB(34%) 3:29GB(3%) 4:45GB(10%) 5:54GB(98%) 6:8GB(14%) 7:11GB(16%) 
-our GPU processes (pid:MiB): 4095829:15298MiB 4118762:18198MiB 1810690:25552MiB 4096797:18198MiB 4097655:15764MiB 243990:18280MiB 4095645:17954MiB 4177163:18280MiB 2872725:18280MiB 2905507:18198MiB 4096471:18754MiB 4097379:18364MiB 2703991:18280MiB 2704074:18198MiB 4095975:16976MiB 4138403:16998MiB 
+0:80GB(0%) 1:80GB(0%) 2:22GB(34%) 3:29GB(7%) 4:45GB(0%) 5:54GB(98%) 6:8GB(0%) 7:4GB(8%) 
+our GPU processes (pid:MiB): 4095829:15298MiB 4118762:18198MiB 1810690:25550MiB 4096797:18198MiB 4097655:15764MiB 243990:18280MiB 4095645:17954MiB 4177163:18280MiB 2872725:18280MiB 2905507:18198MiB 4096471:18754MiB 4097379:18364MiB 2704074:18198MiB 4095975:16976MiB 4138403:16998MiB 1912676:25544MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
-- gpu1: idle 4 min (eligible in 55 min)
-- gpu2: ELIGIBLE (idle 1124 min)
-- gpu3: ELIGIBLE (idle 1353 min)
-- gpu4: ELIGIBLE (idle 1728 min)
+- gpu1: idle 24 min (eligible in 35 min)
+- gpu2: ELIGIBLE (idle 1144 min)
+- gpu3: ELIGIBLE (idle 1373 min)
+- gpu4: ELIGIBLE (idle 1748 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 884 min)
+- gpu6: ELIGIBLE (idle 904 min)
 - gpu7: OURS
 compensation: colleagues hold 0 MiB on our GPUs; we hold 221118 MiB on theirs; budget left -221118 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
-our launcher claims (pid:gpu/MiB): 4098742:2/26000 
+our launcher claims (pid:gpu/MiB): 4099407:7/26000 
 
 ## leakfree2 benchmark runs
 - DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
@@ -227,7 +227,7 @@ our launcher claims (pid:gpu/MiB): 4098742:2/26000
 - DONE     forum_tsd_recoff_s45: FINAL val_mrr=0.3965 test_mrr=0.3906 test_hits10=0.5333 eval_sec=479.6
 - DONE     forum_tsd_recon_s44: FINAL val_mrr=0.6054 test_mrr=0.6220 test_hits10=0.6706 eval_sec=680.6
 - DONE     forum_tsd_recon_s45: FINAL val_mrr=0.6072 test_mrr=0.6170 test_hits10=0.6622 eval_sec=734.2
-- RUNNING  icews_coreoff_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  icews_coreoff_recon_s44: final val_mrr=0.2921 (22533.2s so far)
 - RUNNING  icews_coreoff_recon_s45: epoch 5 (patience 3)
 - DONE     icews_coreoff_recon_s47: FINAL val_mrr=0.2922 test_mrr=0.3005 test_hits10=0.4917 eval_sec=34811.8
 - RUNNING  icews_curonly_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
@@ -236,13 +236,13 @@ our launcher claims (pid:gpu/MiB): 4098742:2/26000
 - DONE     icews_curonly_recon_s47: FINAL val_mrr=0.3186 test_mrr=0.3275 test_hits10=0.5232 eval_sec=41702.5
 - DONE     icews_gru_recon_s43: FINAL val_mrr=0.3211 test_mrr=0.3367 test_hits10=0.5374 eval_sec=35441.9
 - RUNNING  icews_gru_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  icews_gru_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- RUNNING  icews_gru_recon_s45: final val_mrr=0.3176 (22078.7s so far)
 - RUNNING  icews_gru_recon_s46: final val_mrr=0.3225 (17203.5s so far)
 - RUNNING  icews_gru_recon_s47: final val_mrr=0.3213 (17509.9s so far)
 - RUNNING  icews_identity_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  icews_identity_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  icews_identity_recon_s46: final val_mrr=0.3176 (22102.1s so far)
-- RUNNING  icews_identity_recon_s47: final val_mrr=0.3279 (17163.3s so far)
+- DONE     icews_identity_recon_s47: FINAL val_mrr=0.3279 test_mrr=0.3437 test_hits10=0.5460 eval_sec=48918.6
 - RUNNING  icews_tsd_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  icews_tsd_recon_s45: epoch 4 (patience 3)
 - DONE     polecat_coreoff_s43: FINAL val_mrr=0.2370 test_mrr=0.2283 test_hits10=0.3780 eval_sec=19215.1
@@ -266,7 +266,7 @@ our launcher claims (pid:gpu/MiB): 4098742:2/26000
 - RUNNING  sp_diag_s47: 
 - RUNNING  sp_gru_s43: 
 - RUNNING  sp_gru_s46: 
-- RUNNING  sp_gru_s47: 
+- RUNNING  sp_gru_s47: epochs': 6, 'time_window': None, 'context_edges': 50000, 'train_edges_
 - RUNNING  sp_identity_s43: 
 - RUNNING  sp_identity_s46: 
 - RUNNING  sp_identity_s47: 
