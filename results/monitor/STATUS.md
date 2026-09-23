@@ -1,19 +1,19 @@
-# Monitor status (2026-09-23 05:45:11)
+# Monitor status (2026-09-23 05:53:49)
 
 ## GPU free (GiB) and utilisation
-0:54GB(98%) 1:51GB(98%) 2:1GB(19%) 3:8GB(57%) 4:6GB(13%) 5:54GB(98%) 6:13GB(98%) 7:2GB(98%) 
-our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 4095829:16660MiB 4096930:11522MiB 4118762:15698MiB 2654122:18014MiB 4096797:15758MiB 4097655:11524MiB 65023:28010MiB 2668669:18384MiB 4095645:17954MiB 4098149:11522MiB 4131532:11528MiB 4177163:16320MiB 2872725:18280MiB 2905507:18198MiB 4096471:15554MiB 4097379:16724MiB 2703991:18280MiB 2704074:18198MiB 4095975:15524MiB 4138403:16724MiB 166942:11528MiB 
+0:54GB(98%) 1:51GB(97%) 2:1GB(5%) 3:33GB(41%) 4:24GB(100%) 5:54GB(91%) 6:13GB(13%) 7:2GB(54%) 
+our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 4095829:16660MiB 4096930:11722MiB 4118762:15698MiB 2654122:18014MiB 4096797:15758MiB 4097655:11524MiB 4095645:17954MiB 4098149:11522MiB 4131532:11528MiB 4177163:16320MiB 2872725:18280MiB 2905507:18198MiB 4096471:15734MiB 4097379:16724MiB 2703991:18280MiB 2704074:18198MiB 4095975:15524MiB 4138403:16724MiB 166942:11528MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
-- gpu2: ELIGIBLE (idle 807 min)
-- gpu3: ELIGIBLE (idle 1036 min)
-- gpu4: ELIGIBLE (idle 1411 min)
+- gpu2: ELIGIBLE (idle 816 min)
+- gpu3: ELIGIBLE (idle 1045 min)
+- gpu4: ELIGIBLE (idle 1420 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 568 min)
+- gpu6: ELIGIBLE (idle 576 min)
 - gpu7: OURS
-compensation: colleagues hold 26542 MiB on our GPUs; we hold 298232 MiB on theirs; budget left -271690 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+compensation: colleagues hold 26542 MiB on our GPUs; we hold 254658 MiB on theirs; budget left -228116 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
 our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
@@ -232,7 +232,7 @@ our launcher claims (pid:gpu/MiB):
 - RUNNING  icews_coreoff_recon_s47: final val_mrr=0.2922 (17200.9s so far)
 - RUNNING  icews_curonly_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  icews_curonly_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  icews_curonly_recon_s46: final val_mrr=0.3172 (15254.5s so far)
+- DONE     icews_curonly_recon_s46: FINAL val_mrr=0.3172 test_mrr=0.3281 test_hits10=0.5230 eval_sec=28826.2
 - RUNNING  icews_curonly_recon_s47: final val_mrr=0.3186 (19920.2s so far)
 - RUNNING  icews_gru_recon_s43: final val_mrr=0.3211 (17228.7s so far)
 - RUNNING  icews_gru_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
@@ -258,7 +258,7 @@ our launcher claims (pid:gpu/MiB):
 - RUNNING  sp_coreoff_s46: 
 - RUNNING  sp_coreoff_s47: 
 - RUNNING  sp_curonly_s43: 
-- RUNNING  sp_curonly_s44: final val_mrr=0.6481 (544.4s so far)
+- DONE     sp_curonly_s44: FINAL val_mrr=0.6481 test_mrr=0.6144 test_hits10=0.7123 eval_sec=967.2
 - RUNNING  sp_curonly_s46: 
 - RUNNING  sp_curonly_s47: 
 - RUNNING  sp_diag_s43: 
