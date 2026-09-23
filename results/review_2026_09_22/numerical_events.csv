@@ -166,7 +166,9 @@ sp_coreoff_s46,sp,tkgl-smallpedia,core-off,46,1455.0,0.0,0.0,8.0,0.0,0.0,0.0,0.0
 sp_coreoff_s47,sp,tkgl-smallpedia,core-off,47,1455.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sp_curonly_s43,sp,tkgl-smallpedia,current-only-maps,43,1455.0,0.0,0.0,3.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sp_curonly_s44,sp,tkgl-smallpedia,current-only-maps,44,1455.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
+sp_curonly_s47,sp,tkgl-smallpedia,current-only-maps,47,1455.0,0.0,0.0,5.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sp_diag_s43,sp,tkgl-smallpedia,diagssm-ordinary,43,1455.0,0.0,0.0,6.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
+sp_identity_s43,sp,tkgl-smallpedia,identity-maps,43,1455.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,162066.0,0.0,0.0,0.0,163172.0,0.0,True
 sw_attention_s43,sw,thgl-software,attention-gates,43,6384.0,0.0,0.0,33.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
 sw_attention_s46,sw,thgl-software,attention-gates,46,6916.0,0.0,0.0,54.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
 sw_attention_s47,sw,thgl-software,attention-gates,47,9044.0,0.0,0.0,49.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
