@@ -56,7 +56,10 @@ def collect():
         run = res.split("/")[-2]; group = res.split("/")[-3]
         d.update(run=run, group=group, arm=arm_of(cfg), lr=cfg.get("lr"), rec="on" if cfg.get("recurrency_decoder") else "off",
                  clock=cfg.get("clock", "global"), is_audit=bool(cfg.get("audit_eval_only")), reused_retained=False,
-                 finished=time.strftime("%Y-%m-%d %H:%M", time.localtime(os.path.getmtime(res))))
+                 finished=time.strftime("%Y-%m-%d %H:%M", time.localtime(os.path.getmtime(res))),
+                 _proto=tuple(cfg.get(k) for k in ("lr", "train_edges_cap", "time_window", "temporal_d_model", "recurrency_decoder",
+                                                    "recurrency_untyped", "recurrency_symmetric", "relation_in_input", "node_type_emb",
+                                                    "epochs", "patience", "min_epochs", "track_val_edges")))
         d.pop("config_json", None)
         if cfg.get("audit_eval_only"):
             # parity with the retained metric of the replayed run (P0 gate)
@@ -67,23 +70,45 @@ def collect():
                 d["retained_val_mrr"] = float(o.get("validation_mrr", np.nan))
                 d["replay_minus_retained_test"] = float(d.get("test_mrr", np.nan)) - d["retained_test_mrr"]
         rows.append(d)
-    # retained thgl-forum runs (results/event_bench/leakfree2/forum_*) reused under the provenance rule: their
-    # checkpoint replays reproduce the stored test MRR exactly (audit/forum_f_s4x), the protocol is identical
-    # (same flags; old-protocol negative RNG regime shared with the new forum runs), code equivalence pinned by tests
-    for res in sorted(glob.glob("results/event_bench/leakfree2/forum_*/results.csv")):
+    # retained runs (results/event_bench/leakfree2) reused under the provenance rule: checkpoint replays reproduce
+    # the stored test MRR (audit/), the protocol is identical (matched on the flags below against the NEW runs of
+    # the same dataset group), code equivalence pinned by tests.  wiki is excluded (the review re-tuned its lr).
+    GROUP = {"thgl-forum": "forum", "tkgl-smallpedia": "sp", "thgl-software": "sw", "tkgl-polecat": "polecat",
+             "tkgl-wikidata": "wd", "tkgl-icews": "icews"}
+    KEYS = ("lr", "train_edges_cap", "time_window", "temporal_d_model", "recurrency_decoder", "recurrency_untyped",
+            "recurrency_symmetric", "relation_in_input", "node_type_emb", "epochs", "patience", "min_epochs", "track_val_edges")
+    def proto(cfg):
+        return tuple(cfg.get(k) for k in KEYS)
+    new_protos = {}
+    for d in rows:
+        if d.get("is_audit") or d.get("group") not in GROUP.values():
+            continue
+        new_protos.setdefault(d["group"], set()).add(d.get("_proto"))
+    for res in sorted(glob.glob("results/event_bench/leakfree2/*/results.csv")):
         d = pd.read_csv(res).iloc[0].to_dict()
         try:
             cfg = json.loads(d.get("config_json", "{}"))
         except Exception:
             cfg = {}
-        if cfg.get("model", "faithful") != "faithful" or pd.isna(d.get("test_mrr", np.nan)):
+        ds = cfg.get("dataset"); run = res.split("/")[-2]
+        if ds not in GROUP or cfg.get("model", "faithful") != "faithful" or pd.isna(d.get("test_mrr", np.nan)) or cfg.get("eval_only") and not run.startswith("icews_eval"):
             continue
-        run = res.split("/")[-2]
-        d.update(run=run, group="forum", arm=arm_of(cfg), lr=cfg.get("lr"), rec="on" if cfg.get("recurrency_decoder") else "off",
+        if run.startswith("icews_eval"):   # metrics live in the eval-only run; the budget is the training run's
+            tr = f"results/event_bench/leakfree2/icews_f_s{cfg.get('seed')}/results.csv"
+            if os.path.exists(tr):
+                tcfg = json.loads(pd.read_csv(tr).iloc[0]["config_json"])
+                for k in ("epochs", "patience", "min_epochs"):
+                    cfg[k] = tcfg.get(k)
+        group = GROUP[ds]
+        if new_protos.get(group) and proto(cfg) not in new_protos[group]:
+            continue   # different budget/protocol than the review runs of this group (e.g. 40-epoch smallpedia)
+        d.update(run=run, group=group, arm=arm_of(cfg), lr=cfg.get("lr"), rec="on" if cfg.get("recurrency_decoder") else "off",
                  clock="global", is_audit=False, reused_retained=True,
                  finished=time.strftime("%Y-%m-%d %H:%M", time.localtime(os.path.getmtime(res))))
-        d.pop("config_json", None)
+        d.pop("config_json", None); d.pop("_proto", None)
         rows.append(d)
+    for d in rows:
+        d.pop("_proto", None)
     for log in sorted(glob.glob(f"{RV}/queue/*.log")):
         n = os.path.basename(log)[:-4]
         if re.search(r"\.fail\d+$", n):

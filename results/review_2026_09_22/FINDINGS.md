@@ -20,10 +20,9 @@ The audit runs in EVERY new evaluation and in the checkpoint replays of the reta
 (`audit/<run>/`); parity of the three metrics is recorded per split (`query_audit_parity`).
 
 Status: see REVIEW_SUMMARY.md "Score-validity audit" and "Checkpoint-replay audits" (`replay_minus_retained_test`
-is the replayed test MRR minus the metric stored in the retained run). Completed replays so far: every one has
-**zero** affected queries (no non-finite positive or negative logit before substitution; no non-finite state or
-REC entry at any snapshot) and the three metrics agree exactly (parity). Replay reproducibility: tgbl-wiki
-seeds 43/46/47 and thgl-software 43/46 reproduce the retained test MRR to 1e-6 or better; tkgl-smallpedia
+is the replayed test MRR minus the metric stored in the retained run). All 22 replays (wiki, smallpedia, software, wikidata, polecat, forum, icews; three seeds each, plus a second
+smallpedia replay) are complete: every one has **zero** affected queries (no non-finite positive or negative logit before substitution; no non-finite state or
+REC entry at any snapshot) and the three metrics agree exactly (parity). Replay reproducibility: tgbl-wiki, thgl-software, tkgl-wikidata, tkgl-polecat, thgl-forum and tkgl-icews (three seeds each) reproduce the retained test MRR to 6e-5 or better (most to 1e-7); tkgl-smallpedia
 seed 47 reproduces it to 8e-4 (retained 0.61118; replay 1 0.61041; an independent replay 2 0.61031), i.e.
 the smallpedia evaluation is non-deterministic at the 1e-4 to 1e-3 level (its relation-aggregate input uses
 float `index_add_` on CUDA, whose summation order is not deterministic), and the retained value lies at the
@@ -154,14 +153,24 @@ seconds), but the selector is still 97% capped. **Consequence for the manuscript
 physically timed memory steps are not supported by the evaluated predictor at its selected learning rate; the
 model behaves as a fixed-step recurrence with capped ZOH transitions.
 
-**Clock comparison (wiki, seed 43, lr 1e-3, identical batching; `clock/`):** global batch gap 0.7597
-(selector 99.99% capped), time since the node's last interaction 0.7650 (97% capped), time since the node's
-last memory update 0.7611 (selector **0.06%** capped, mean uncapped step 0.0018, i.e. the opposite regime).
-Differences of +0.001 to +0.005 on one seed are not evidence for either node clock; the striking fact is that
-the same accuracy is reached whether the selected steps are all at the cap or all near zero, so the memory
-step regime is immaterial for wiki accuracy. **Batching diagnostic (same seed, same raw splits and queries; `clock/wiki_tsd_tw*`):** batch width 300 s
+**Clock comparison (wiki, lr 1e-3, identical batching, five paired seeds vs the matched TSD runs; `clock/`):**
+
+| clock / width | seeds | test MRR mean ± SD | Δ vs TSD (global clock, 600 s) | signs |
+|---|---|---|---|---|
+| global batch gap (TSD, matched) | 5 | 0.7623 ± 0.0030 | – | – |
+| clock-node_update | 5 | 0.7654 ± 0.0032 | +0.0031 ± 0.0016 | 5+ 0− |
+| clock-node_interaction | 5 | 0.7636 ± 0.0033 | +0.0013 ± 0.0045 | 3+ 2− |
+| tw300 | 5 | 0.7810 ± 0.0026 | +0.0187 ± 0.0042 | 5+ 0− |
+
+Both node clocks are marginally above the global gap (+0.001 to +0.003; the node-update clock on 5 of 5
+seeds but within its own SD); the selector is fully saturated under the global and node-interaction clocks
+and fully unsaturated (mean uncapped step 0.002) under the node-update clock, so the same accuracy is
+reached in opposite step regimes — the memory step regime is immaterial for wiki accuracy. Halving the batch
+width (300 s) gains +0.019 on every seed, more than any architectural or clock contrast.
+
+**Batching diagnostic (same seed, same raw splits and queries; `clock/wiki_tsd_tw*`):** batch width 300 s
 gives test MRR **0.7835** (6,209 training snapshots), 600 s (the benchmark setting) 0.7597 (3,105), 1200 s
-0.7322 (1,553). Halving the width gains +0.024 and doubling it loses −0.027: the observation frontier (how
+0.7322 (1,553). Halving the width gains +0.024 on seed 43 (+0.019 ± 0.003 over five seeds: 0.7810 ± 0.0026 vs 0.7623 ± 0.0030) and doubling it loses −0.027: the observation frontier (how
 recent the ingested events are when a batch is scored) and the number of processed updates are a
 first-order factor on wiki, larger than any architectural contrast in the matched matrix. Cross-method
 comparisons must therefore state the batch width; our benchmark numbers use 600 s. Cross-seed confirmation of the clock variants was not run (budget); they are single-seed pilots.
@@ -206,7 +215,7 @@ edge gates lose on recurring pairs (−0.013 and −0.009, 4 of 4). The wiki ben
 among recurring destinations after long inactivity, not generalisation to unseen pairs.
 
 
-**thgl-forum matched matrix (complete; `forum/` plus the replay-verified retained seeds; same head, REC
+**thgl-forum matched matrix (complete, every arm at five seeds; `forum/` plus the replay-verified retained seeds; same head, REC
 channels, data, batching, negatives regime, budget and selection rule; paired per seed; `paired_contrasts.csv`):**
 
 | REC | arm | seeds | TSD mean | arm mean | Δ arm − TSD (mean ± SD; 95% t half-width) | signs |
@@ -214,18 +223,18 @@ channels, data, batching, negatives regime, budget and selection rule; paired pe
 | on | GRU + ordinary | 5 | 0.625 | 0.642 | +0.017 ± 0.015; ±0.019 | 5+ 0− |
 | on | identity maps | 5 | 0.625 | 0.640 | +0.015 ± 0.009; ±0.012 | 5+ 0− |
 | on | current-only maps | 5 | 0.625 | 0.634 | +0.009 ± 0.023; ±0.028 | 4+ 1− |
-| on | diagonal SSM + ordinary | 3 | 0.629 | 0.646 | +0.017 ± 0.015; ±0.037 | 3+ 0− |
-| on | node-frame geometry | 3 | 0.629 | 0.635 | +0.006 ± 0.002; ±0.005 | 3+ 0− |
-| on | attention gates | 3 | 0.629 | 0.627 | −0.002 ± 0.011; ±0.026 | 1+ 2− |
+| on | diagonal SSM + ordinary | 5 | 0.625 | 0.647 | +0.022 ± 0.015; ±0.018 | 5+ 0- |
+| on | node-frame geometry | 5 | 0.625 | 0.640 | +0.014 ± 0.013; ±0.016 | 5+ 0- |
+| on | attention gates | 5 | 0.625 | 0.630 | +0.005 ± 0.013; ±0.016 | 3+ 2- |
 | on | TSD no-memory (retained) | 3 | 0.629 | 0.650 | +0.021 ± 0.014; ±0.035 | 3+ 0− |
 | on | TSD no-gap (retained) | 3 | 0.629 | 0.634 | +0.004 ± 0.020; ±0.049 | 2+ 1− |
 | on | core-off (head only) | 5 | 0.625 | 0.615 | −0.010 ± 0.010; ±0.012 | 0+ 5− |
 | off | GRU + ordinary | 5 | 0.353 | 0.376 | +0.023 ± 0.084; ±0.104 | 2+ 3− |
 | off | current-only maps | 4 | 0.354 | 0.393 | +0.038 ± 0.079; ±0.126 | 2+ 2− |
 | off | identity maps | 5 | 0.353 | 0.321 | −0.032 ± 0.097; ±0.120 | 2+ 3− |
-| off | diagonal SSM + ordinary | 3 | 0.381 | 0.364 | −0.016 ± 0.093; ±0.231 | 2+ 1− |
-| off | node-frame geometry | 3 | 0.381 | 0.378 | −0.003 ± 0.009; ±0.021 | 2+ 1− |
-| off | attention gates | 3 | 0.381 | 0.313 | −0.068 ± 0.050; ±0.125 | 0+ 3− |
+| off | diagonal SSM + ordinary | 5 | 0.353 | 0.375 | +0.022 ± 0.107; ±0.132 | 3+ 2- |
+| off | node-frame geometry | 5 | 0.353 | 0.382 | +0.029 ± 0.086; ±0.107 | 3+ 2- |
+| off | attention gates | 5 | 0.353 | 0.330 | -0.023 ± 0.085; ±0.105 | 1+ 4- |
 | off | TSD no-memory (retained) | 2 | 0.397 | 0.396 | −0.002 ± 0.023 | 1+ 1− |
 | off | TSD no-gap (retained) | 3 | 0.381 | 0.367 | −0.013 ± 0.049; ±0.123 | 1+ 2− |
 | off | core-off (head only) | 5 | 0.353 | 0.226 | −0.127 ± 0.070; ±0.087 | 0+ 5− |
