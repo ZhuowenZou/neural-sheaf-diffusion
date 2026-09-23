@@ -1,278 +1,149 @@
 diff --git a/results/monitor/STATUS.md b/results/monitor/STATUS.md
-index df09335..c87a112 100644
+index b5d9207..311f6af 100644
 --- a/results/monitor/STATUS.md
 +++ b/results/monitor/STATUS.md
-@@ -1,19 +1,19 @@
--# Monitor status (2026-09-23 06:36:53)
-+# Monitor status (2026-09-23 07:15:02)
+@@ -1,20 +1,20 @@
+-# Monitor status (2026-09-23 08:09:46)
++# Monitor status (2026-09-23 08:18:04)
  
  ## GPU free (GiB) and utilisation
--0:54GB(95%) 1:51GB(87%) 2:1GB(0%) 3:16GB(10%) 4:21GB(11%) 5:54GB(98%) 6:10GB(17%) 7:1GB(0%) 
--our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 4095829:14158MiB 4096930:11762MiB 4118762:18198MiB 2654122:18014MiB 4096797:18198MiB 4097655:12184MiB 243990:16680MiB 4095645:17954MiB 4098149:12182MiB 4131532:11528MiB 4177163:18280MiB 2872725:18280MiB 2905507:18198MiB 4096471:16754MiB 4097379:18364MiB 2703991:18280MiB 2704074:18198MiB 4095975:15524MiB 4138403:16998MiB 166942:11868MiB 
-+0:80GB(0%) 1:51GB(47%) 2:1GB(8%) 3:15GB(0%) 4:20GB(0%) 5:54GB(54%) 6:10GB(0%) 7:3GB(0%) 
-+our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 4095829:14138MiB 4096930:11762MiB 4118762:18198MiB 2654122:18014MiB 4096797:18198MiB 4097655:13604MiB 243990:16680MiB 4095645:17954MiB 4098149:13602MiB 4131532:11748MiB 4177163:18280MiB 2872725:18280MiB 2905507:18198MiB 4096471:16754MiB 4097379:18364MiB 2703991:18280MiB 2704074:18198MiB 4095975:13216MiB 4138403:16998MiB 166942:12110MiB 
+-0:80GB(0%) 1:51GB(98%) 2:7GB(18%) 3:31GB(9%) 4:20GB(5%) 5:54GB(98%) 6:8GB(0%) 7:1GB(0%) 
+-our GPU processes (pid:MiB): 2895041:18384MiB 4095829:14838MiB 4096930:13242MiB 4118762:18198MiB 708420:10394MiB 4096797:18198MiB 4097655:13604MiB 243990:18280MiB 4095645:17954MiB 4098149:13602MiB 4131532:11868MiB 4177163:18280MiB 2872725:18280MiB 2905507:18198MiB 4096471:18754MiB 4097379:18364MiB 2703991:18280MiB 2704074:18198MiB 4095975:15176MiB 4138403:16998MiB 166942:11868MiB 
++0:80GB(0%) 1:51GB(99%) 2:5GB(0%) 3:31GB(6%) 4:20GB(10%) 5:54GB(98%) 6:8GB(0%) 7:3GB(10%) 
++our GPU processes (pid:MiB): 2895041:18384MiB 4095829:14838MiB 4096930:13242MiB 4118762:18198MiB 708420:12242MiB 4096797:18198MiB 4097655:13604MiB 243990:18280MiB 4095645:17954MiB 4098149:13602MiB 4131532:11868MiB 4177163:18280MiB 2872725:18280MiB 2905507:18198MiB 4096471:18754MiB 4097379:18364MiB 2703991:18280MiB 2704074:18198MiB 4095975:15796MiB 4138403:16998MiB 166942:9530MiB 
  
  ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
  - gpu0: OURS
  - gpu1: colleague busy
--- gpu2: ELIGIBLE (idle 859 min)
--- gpu3: ELIGIBLE (idle 1088 min)
--- gpu4: ELIGIBLE (idle 1463 min)
-+- gpu2: ELIGIBLE (idle 897 min)
-+- gpu3: ELIGIBLE (idle 1126 min)
-+- gpu4: ELIGIBLE (idle 1501 min)
+-- gpu2: ELIGIBLE (idle 952 min)
+-- gpu3: ELIGIBLE (idle 1181 min)
+-- gpu4: ELIGIBLE (idle 1556 min)
++- gpu2: ELIGIBLE (idle 960 min)
++- gpu3: ELIGIBLE (idle 1189 min)
++- gpu4: ELIGIBLE (idle 1564 min)
  - gpu5: colleague busy
--- gpu6: ELIGIBLE (idle 619 min)
-+- gpu6: ELIGIBLE (idle 657 min)
+-- gpu6: ELIGIBLE (idle 712 min)
++- gpu6: ELIGIBLE (idle 720 min)
  - gpu7: OURS
--compensation: colleagues hold 26542 MiB on our GPUs; we hold 277316 MiB on theirs; budget left -250774 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
-+compensation: colleagues hold 0 MiB on our GPUs; we hold 280356 MiB on theirs; budget left -280356 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
- our launcher claims (pid:gpu/MiB): 
+-compensation: colleagues hold 0 MiB on our GPUs; we hold 260438 MiB on theirs; budget left -260438 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+-our launcher claims (pid:gpu/MiB): 4102471:2/11000 
++compensation: colleagues hold 0 MiB on our GPUs; we hold 262286 MiB on theirs; budget left -262286 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
++our launcher claims (pid:gpu/MiB): 
  
  ## leakfree2 benchmark runs
+ - DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
+@@ -441,7 +441,7 @@ our launcher claims (pid:gpu/MiB): 4102471:2/11000
+ - RUNNING  wd_coreoff_s47: 
+ - DONE     wd_gru_s43: FINAL val_mrr=0.6441 test_mrr=0.5358 test_hits10=0.6006 eval_sec=1518.9
+ - DONE     wd_gru_s46: FINAL val_mrr=0.6468 test_mrr=0.5373 test_hits10=0.6016 eval_sec=428.2
+-- RUNNING  wd_gru_s47: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
++- RUNNING  wd_gru_s47: final val_mrr=0.6428 (194.6s so far)
+ - DONE     wiki_attention_s43_lr1e-3: FINAL val_mrr=0.7640 test_mrr=0.7521 test_hits10=0.8529 eval_sec=1291.5
+ - DONE     wiki_attention_s43_lr3e-4: FINAL val_mrr=0.7487 test_mrr=0.7342 test_hits10=0.8470 eval_sec=1944.7
+ - DONE     wiki_attention_s44_lr1e-3: FINAL val_mrr=0.7730 test_mrr=0.7604 test_hits10=0.8542 eval_sec=670.1
 diff --git a/results/monitor/agent.log b/results/monitor/agent.log
-index 1b0f0ec..9f24088 100644
+index f385539..4b49ab4 100644
 --- a/results/monitor/agent.log
 +++ b/results/monitor/agent.log
-@@ -430,3 +430,9 @@
- 2026-09-23 06:28:49 committed 26 paths (collected 245 finished runs, 53 unfinished; fingerprint 259604153)
- 2026-09-23 06:28:53 pushed to origin/review-2026-09-22 (fea8de7 agent: results snapshot 2026-09-23 06:28 (collected )
- 2026-09-23 06:28:53 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_coreoff_recon_s47 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_curonly_recon_s47 icews_gru_recon_s43 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_gru_recon_s47 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_identity_recon_s47 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_coreoff_s43 polecat_coreoff_s46 polecat_coreoff_s47 polecat_gru_s43 polecat_gru_s46 polecat_gru_s47 sp_attention_s43 sp_attention_s46 sp_attention_s47 sp_coreoff_s43 sp_coreoff_s46 sp_coreoff_s47 sp_curonly_s43 sp_curonly_s46 sp_curonly_s47 sp_diag_s43 sp_diag_s46 sp_diag_s47 sp_gru_s43 sp_gru_s46 sp_gru_s47 sp_identity_s43 sp_identity_s46 sp_identity_s47 sp_nodeframe_s43 sp_nodeframe_s46 sp_nodeframe_s47 sp_tsd_s43 sp_tsd_s46 sp_tsd_s47 sw_coreoff_s47 sw_diag_s46 sw_gru_s46 sw_nodeframe_s43 wd_coreoff_s47 wd_gru_s47 ] pending-launchers 57 free-GiB 54 51 1 18 18 54 10 1 
-+2026-09-23 06:39:05 committed 22 paths (collected 246 finished runs, 52 unfinished; fingerprint 1611559350)
-+2026-09-23 06:39:09 pushed to origin/review-2026-09-22 (da685a8 agent: results snapshot 2026-09-23 06:39 (collected )
-+2026-09-23 06:39:09 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_coreoff_recon_s47 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_curonly_recon_s47 icews_gru_recon_s43 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_gru_recon_s47 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_identity_recon_s47 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_coreoff_s43 polecat_coreoff_s46 polecat_coreoff_s47 polecat_gru_s43 polecat_gru_s46 polecat_gru_s47 sp_attention_s43 sp_attention_s46 sp_attention_s47 sp_coreoff_s43 sp_coreoff_s46 sp_coreoff_s47 sp_curonly_s43 sp_curonly_s46 sp_curonly_s47 sp_diag_s43 sp_diag_s46 sp_diag_s47 sp_gru_s43 sp_gru_s46 sp_gru_s47 sp_identity_s43 sp_identity_s46 sp_identity_s47 sp_nodeframe_s43 sp_nodeframe_s46 sp_nodeframe_s47 sp_tsd_s43 sp_tsd_s46 sp_tsd_s47 sw_coreoff_s47 sw_diag_s46 sw_nodeframe_s43 wd_coreoff_s47 wd_gru_s47 ] pending-launchers 63 free-GiB 54 51 1 16 21 54 10 1 
-+2026-09-23 06:49:19 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_coreoff_recon_s47 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_curonly_recon_s47 icews_gru_recon_s43 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_gru_recon_s47 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_identity_recon_s47 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_coreoff_s43 polecat_coreoff_s46 polecat_coreoff_s47 polecat_gru_s43 polecat_gru_s46 polecat_gru_s47 sp_attention_s43 sp_attention_s46 sp_attention_s47 sp_coreoff_s43 sp_coreoff_s46 sp_coreoff_s47 sp_curonly_s43 sp_curonly_s46 sp_curonly_s47 sp_diag_s43 sp_diag_s46 sp_diag_s47 sp_gru_s43 sp_gru_s46 sp_gru_s47 sp_identity_s43 sp_identity_s46 sp_identity_s47 sp_nodeframe_s43 sp_nodeframe_s46 sp_nodeframe_s47 sp_tsd_s43 sp_tsd_s46 sp_tsd_s47 sw_coreoff_s47 sw_diag_s46 sw_nodeframe_s43 wd_coreoff_s47 wd_gru_s47 ] pending-launchers 76 free-GiB 80 51 1 16 21 54 10 2 
-+2026-09-23 06:59:29 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_coreoff_recon_s47 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_curonly_recon_s47 icews_gru_recon_s43 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_gru_recon_s47 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_identity_recon_s47 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_coreoff_s43 polecat_coreoff_s46 polecat_coreoff_s47 polecat_gru_s43 polecat_gru_s46 polecat_gru_s47 sp_attention_s43 sp_attention_s46 sp_attention_s47 sp_coreoff_s43 sp_coreoff_s46 sp_coreoff_s47 sp_curonly_s43 sp_curonly_s46 sp_curonly_s47 sp_diag_s43 sp_diag_s46 sp_diag_s47 sp_gru_s43 sp_gru_s46 sp_gru_s47 sp_identity_s43 sp_identity_s46 sp_identity_s47 sp_nodeframe_s43 sp_nodeframe_s46 sp_nodeframe_s47 sp_tsd_s43 sp_tsd_s46 sp_tsd_s47 sw_coreoff_s47 sw_diag_s46 sw_nodeframe_s43 wd_coreoff_s47 wd_gru_s47 ] pending-launchers 104 free-GiB 80 51 2 15 21 54 10 2 
-+2026-09-23 07:09:39 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_coreoff_recon_s47 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_curonly_recon_s47 icews_gru_recon_s43 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_gru_recon_s47 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_identity_recon_s47 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_coreoff_s43 polecat_coreoff_s46 polecat_coreoff_s47 polecat_gru_s43 polecat_gru_s46 polecat_gru_s47 sp_attention_s43 sp_attention_s46 sp_attention_s47 sp_coreoff_s43 sp_coreoff_s46 sp_coreoff_s47 sp_curonly_s43 sp_curonly_s46 sp_curonly_s47 sp_diag_s43 sp_diag_s46 sp_diag_s47 sp_gru_s43 sp_gru_s46 sp_gru_s47 sp_identity_s43 sp_identity_s46 sp_identity_s47 sp_nodeframe_s43 sp_nodeframe_s46 sp_nodeframe_s47 sp_tsd_s43 sp_tsd_s46 sp_tsd_s47 sw_coreoff_s47 sw_diag_s46 sw_nodeframe_s43 wd_coreoff_s47 wd_gru_s47 ] pending-launchers 68 free-GiB 80 51 1 15 20 54 10 3 
-diff --git a/results/monitor/agent_usage.csv b/results/monitor/agent_usage.csv
-index ffccf15..f0bc2e5 100644
---- a/results/monitor/agent_usage.csv
-+++ b/results/monitor/agent_usage.csv
-@@ -2134,3 +2134,27 @@
- 2026-09-23 06:38:54,5,0,26822
- 2026-09-23 06:38:54,6,71596,0
- 2026-09-23 06:38:54,7,80868,0
-+2026-09-23 06:49:10,0,0,0
-+2026-09-23 06:49:10,1,0,29784
-+2026-09-23 06:49:10,2,80700,0
-+2026-09-23 06:49:10,3,65076,0
-+2026-09-23 06:49:10,4,59944,0
-+2026-09-23 06:49:10,5,0,26822
-+2026-09-23 06:49:10,6,71596,0
-+2026-09-23 06:49:10,7,80328,0
-+2026-09-23 06:59:19,0,0,0
-+2026-09-23 06:59:19,1,0,29784
-+2026-09-23 06:59:19,2,79838,0
-+2026-09-23 06:59:19,3,66496,0
-+2026-09-23 06:59:19,4,60164,0
-+2026-09-23 06:59:19,5,0,26822
-+2026-09-23 06:59:19,6,71596,0
-+2026-09-23 06:59:19,7,79666,0
-+2026-09-23 07:09:29,0,0,0
-+2026-09-23 07:09:29,1,0,29784
-+2026-09-23 07:09:29,2,81020,0
-+2026-09-23 07:09:29,3,66496,0
-+2026-09-23 07:09:29,4,61584,0
-+2026-09-23 07:09:29,5,0,26822
-+2026-09-23 07:09:29,6,71596,0
-+2026-09-23 07:09:29,7,78640,0
-diff --git a/results/monitor/gpu_idle.txt b/results/monitor/gpu_idle.txt
-index 8316b93..40c7aa8 100644
---- a/results/monitor/gpu_idle.txt
-+++ b/results/monitor/gpu_idle.txt
-@@ -1,4 +1,4 @@
--0 0
-+0 1790171380
- 1 0
- 2 1790119032
- 3 1790105324
+@@ -447,3 +447,6 @@
+ 2026-09-23 08:00:38 committed 30 paths (collected 250 finished runs, 48 unfinished; fingerprint 3731171041)
+ 2026-09-23 08:00:44 pushed to origin/review-2026-09-22 (4d7f6c9 agent: results snapshot 2026-09-23 08:00 (collected )
+ 2026-09-23 08:00:45 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_curonly_recon_s47 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_gru_recon_s47 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_identity_recon_s47 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_coreoff_s43 polecat_coreoff_s46 polecat_coreoff_s47 polecat_gru_s43 polecat_gru_s46 polecat_gru_s47 sp_attention_s43 sp_attention_s46 sp_attention_s47 sp_coreoff_s43 sp_coreoff_s46 sp_coreoff_s47 sp_curonly_s43 sp_curonly_s46 sp_curonly_s47 sp_diag_s43 sp_diag_s46 sp_diag_s47 sp_gru_s43 sp_gru_s46 sp_gru_s47 sp_identity_s43 sp_identity_s46 sp_identity_s47 sp_nodeframe_s43 sp_nodeframe_s46 sp_nodeframe_s47 sp_tsd_s43 sp_tsd_s46 sp_tsd_s47 sw_nodeframe_s43 wd_coreoff_s47 wd_gru_s47 ] pending-launchers 68 free-GiB 80 51 7 31 20 54 8 3 
++2026-09-23 08:10:55 committed 20 paths (collected 251 finished runs, 47 unfinished; fingerprint 1112101122)
++2026-09-23 08:11:09 pushed to origin/review-2026-09-22 (ec5de15 agent: results snapshot 2026-09-23 08:10 (collected )
++2026-09-23 08:11:10 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_curonly_recon_s47 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_gru_recon_s47 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_identity_recon_s47 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_coreoff_s43 polecat_coreoff_s46 polecat_coreoff_s47 polecat_gru_s43 polecat_gru_s46 polecat_gru_s47 sp_attention_s43 sp_attention_s46 sp_attention_s47 sp_coreoff_s43 sp_coreoff_s46 sp_coreoff_s47 sp_curonly_s43 sp_curonly_s46 sp_curonly_s47 sp_diag_s43 sp_diag_s46 sp_diag_s47 sp_gru_s43 sp_gru_s46 sp_gru_s47 sp_identity_s43 sp_identity_s46 sp_identity_s47 sp_nodeframe_s43 sp_nodeframe_s46 sp_nodeframe_s47 sp_tsd_s43 sp_tsd_s46 sp_tsd_s47 wd_coreoff_s47 wd_gru_s47 ] pending-launchers 72 free-GiB 80 51 7 31 20 54 8 1 
 diff --git a/results/monitor/gpu_log.csv b/results/monitor/gpu_log.csv
-index fecfda8..af9fb49 100644
+index 897c774..18cd7f2 100644
 --- a/results/monitor/gpu_log.csv
 +++ b/results/monitor/gpu_log.csv
-@@ -49086,3 +49086,75 @@
- 2026-09-23 06:36:53,5,26833,81920,98
- 2026-09-23 06:36:53,6,71624,81920,3
- 2026-09-23 06:36:53,7,80902,81920,0
-+2026-09-23 06:41:07,0,26553,81920,98
-+2026-09-23 06:41:07,1,29795,81920,98
-+2026-09-23 06:41:07,2,80732,81920,16
-+2026-09-23 06:41:07,3,65108,81920,10
-+2026-09-23 06:41:07,4,59976,81920,12
-+2026-09-23 06:41:07,5,26833,81920,98
-+2026-09-23 06:41:07,6,71624,81920,0
-+2026-09-23 06:41:07,7,80902,81920,9
-+2026-09-23 06:45:24,0,26553,81920,98
-+2026-09-23 06:45:24,1,29795,81920,99
-+2026-09-23 06:45:24,2,80732,81920,0
-+2026-09-23 06:45:24,3,65108,81920,10
-+2026-09-23 06:45:24,4,59976,81920,37
-+2026-09-23 06:45:24,5,26833,81920,99
-+2026-09-23 06:45:24,6,71624,81920,6
-+2026-09-23 06:45:24,7,80662,81920,22
-+2026-09-23 06:49:40,0,4,81920,0
-+2026-09-23 06:49:40,1,29795,81920,44
-+2026-09-23 06:49:40,2,80732,81920,82
-+2026-09-23 06:49:40,3,65108,81920,96
-+2026-09-23 06:49:40,4,59976,81920,4
-+2026-09-23 06:49:40,5,26833,81920,98
-+2026-09-23 06:49:40,6,71624,81920,30
-+2026-09-23 06:49:40,7,80362,81920,28
-+2026-09-23 06:53:53,0,4,81920,0
-+2026-09-23 06:53:53,1,29795,81920,99
-+2026-09-23 06:53:53,2,80912,81920,15
-+2026-09-23 06:53:53,3,66528,81920,12
-+2026-09-23 06:53:53,4,59976,81920,14
-+2026-09-23 06:53:53,5,26833,81920,98
-+2026-09-23 06:53:53,6,71624,81920,13
-+2026-09-23 06:53:53,7,80800,81920,0
-+2026-09-23 06:58:07,0,4,81920,0
-+2026-09-23 06:58:07,1,29795,81920,98
-+2026-09-23 06:58:07,2,80732,81920,14
-+2026-09-23 06:58:07,3,66528,81920,0
-+2026-09-23 06:58:07,4,60196,81920,25
-+2026-09-23 06:58:07,5,26833,81920,98
-+2026-09-23 06:58:07,6,71624,81920,0
-+2026-09-23 06:58:07,7,80842,81920,5
-+2026-09-23 07:02:20,0,4,81920,0
-+2026-09-23 07:02:20,1,29795,81920,97
-+2026-09-23 07:02:20,2,78190,81920,19
-+2026-09-23 07:02:20,3,66528,81920,75
-+2026-09-23 07:02:20,4,61616,81920,10
-+2026-09-23 07:02:20,5,26833,81920,0
-+2026-09-23 07:02:20,6,71624,81920,19
-+2026-09-23 07:02:20,7,79480,81920,0
-+2026-09-23 07:06:35,0,4,81920,0
-+2026-09-23 07:06:35,1,29795,81920,98
-+2026-09-23 07:06:35,2,80052,81920,0
-+2026-09-23 07:06:35,3,66528,81920,0
-+2026-09-23 07:06:35,4,61616,81920,6
-+2026-09-23 07:06:35,5,26833,81920,100
-+2026-09-23 07:06:35,6,71624,81920,0
-+2026-09-23 07:06:35,7,78614,81920,0
-+2026-09-23 07:10:48,0,4,81920,0
-+2026-09-23 07:10:48,1,29795,81920,99
-+2026-09-23 07:10:48,2,80710,81920,0
-+2026-09-23 07:10:48,3,66528,81920,0
-+2026-09-23 07:10:48,4,61616,81920,0
-+2026-09-23 07:10:48,5,26833,81920,98
-+2026-09-23 07:10:48,6,71624,81920,0
-+2026-09-23 07:10:48,7,78674,81920,9
-+2026-09-23 07:15:02,0,4,81920,0
-+2026-09-23 07:15:02,1,29795,81920,98
-+2026-09-23 07:15:02,2,80712,81920,31
-+2026-09-23 07:15:02,3,66528,81920,44
-+2026-09-23 07:15:02,4,61616,81920,0
-+2026-09-23 07:15:02,5,26833,81920,98
-+2026-09-23 07:15:02,6,71624,81920,0
-+2026-09-23 07:15:02,7,78836,81920,0
+@@ -49262,3 +49262,19 @@
+ 2026-09-23 08:09:46,5,26833,81920,98
+ 2026-09-23 08:09:46,6,73624,81920,24
+ 2026-09-23 08:09:46,7,80554,81920,21
++2026-09-23 08:13:56,0,4,81920,0
++2026-09-23 08:13:56,1,29795,81920,100
++2026-09-23 08:13:56,2,75238,81920,33
++2026-09-23 08:13:56,3,50109,81920,0
++2026-09-23 08:13:56,4,61736,81920,0
++2026-09-23 08:13:56,5,26833,81920,98
++2026-09-23 08:13:56,6,73624,81920,0
++2026-09-23 08:13:56,7,80064,81920,19
++2026-09-23 08:18:04,0,4,81920,0
++2026-09-23 08:18:04,1,29795,81920,98
++2026-09-23 08:18:04,2,76938,81920,0
++2026-09-23 08:18:04,3,50109,81920,5
++2026-09-23 08:18:04,4,61736,81920,24
++2026-09-23 08:18:04,5,26833,81920,87
++2026-09-23 08:18:04,6,73624,81920,6
++2026-09-23 08:18:04,7,78836,81920,44
 diff --git a/results/review_2026_09_22/CODE_COMMIT.txt b/results/review_2026_09_22/CODE_COMMIT.txt
-index 14fc94e..bb1f7b3 100644
+index bb1f7b3..d07c1c4 100644
 --- a/results/review_2026_09_22/CODE_COMMIT.txt
 +++ b/results/review_2026_09_22/CODE_COMMIT.txt
 @@ -1 +1 @@
--7ba5f19a6716b09bb83a7ca8508a89f1577e4643
-+da685a8dc660f52d2b6b9d6ededdaf6fbdd30dec
+-da685a8dc660f52d2b6b9d6ededdaf6fbdd30dec
++ec5de156d0371f859ee1d5b17f69a6ece82323be
 diff --git a/results/review_2026_09_22/REVIEW_SUMMARY.md b/results/review_2026_09_22/REVIEW_SUMMARY.md
-index 1c6f190..7b7e7b8 100644
+index c7df022..4c03113 100644
 --- a/results/review_2026_09_22/REVIEW_SUMMARY.md
 +++ b/results/review_2026_09_22/REVIEW_SUMMARY.md
 @@ -1,4 +1,4 @@
--# Review campaign summary (auto-generated 2026-09-23 06:39)
-+# Review campaign summary (auto-generated 2026-09-23 07:15)
+-# Review campaign summary (auto-generated 2026-09-23 08:10)
++# Review campaign summary (auto-generated 2026-09-23 08:18)
  
- 246 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+ 251 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
  
-@@ -776,7 +776,7 @@
- | polecat_coreoff_s43      | running/pending |            7 |          1 |
- | polecat_coreoff_s46      | running/pending |           10 |          1 |
- | polecat_coreoff_s47      | running/pending |           10 |          1 |
--| polecat_gru_s43          | running/pending |            9 |          1 |
-+| polecat_gru_s43          | running/pending |           10 |          1 |
- | polecat_gru_s46          | running/pending |            0 |          1 |
- | polecat_gru_s47          | running/pending |           10 |          1 |
- | sp_attention_s43         | running/pending |            0 |          1 |
-diff --git a/results/review_2026_09_22/polecat/polecat_gru_s43/history.csv b/results/review_2026_09_22/polecat/polecat_gru_s43/history.csv
-index 11c65cd..b2ea6ee 100644
---- a/results/review_2026_09_22/polecat/polecat_gru_s43/history.csv
-+++ b/results/review_2026_09_22/polecat/polecat_gru_s43/history.csv
-@@ -8,3 +8,4 @@ epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_
- 7,0.14002815005213223,0.2380557409370939,0.2928714156150818,48.3,754.6,5154.9,11018.0,1192,0,0,16,0,0,0,0
- 8,0.13969400768862075,0.24711782286117473,0.2802640497684479,106.5,832.3,5154.9,11018.0,1192,0,0,14,0,0,0,0
- 9,0.14105794794119944,0.2516148054420948,0.30255916714668274,139.8,859.6,5154.9,11018.0,1192,0,0,86,0,0,0,0
-+10,0.1406981237076423,0.24512753150363764,0.26334649324417114,30.3,737.8,5154.9,11018.0,1192,0,0,90,0,0,0,0
-diff --git a/results/review_2026_09_22/queue/polecat_gru_s43.log b/results/review_2026_09_22/queue/polecat_gru_s43.log
-index 98c21d8..37aff6d 100644
---- a/results/review_2026_09_22/queue/polecat_gru_s43.log
-+++ b/results/review_2026_09_22/queue/polecat_gru_s43.log
-@@ -17,3 +17,5 @@ parameters_by_component={'embeddings': 512, 'ssm_input_selector_B': 0, 'ssm_othe
- [epoch 7/10] {'epoch': 7, 'train_loss': 0.14002815005213223, 'track_val_mrr': 0.2380557409370939, 'track_val_loss': 0.2928714156150818, 'train_sec': 48.3, 'track_eval_sec': 754.6, 'peak_gpu_mem_mb': 5154.9, 'peak_gpu_reserved_mb': 11018.0, 'epoch_steps': 1192, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 16, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 8/10] {'epoch': 8, 'train_loss': 0.13969400768862075, 'track_val_mrr': 0.24711782286117473, 'track_val_loss': 0.2802640497684479, 'train_sec': 106.5, 'track_eval_sec': 832.3, 'peak_gpu_mem_mb': 5154.9, 'peak_gpu_reserved_mb': 11018.0, 'epoch_steps': 1192, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 14, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 9/10] {'epoch': 9, 'train_loss': 0.14105794794119944, 'track_val_mrr': 0.2516148054420948, 'track_val_loss': 0.30255916714668274, 'train_sec': 139.8, 'track_eval_sec': 859.6, 'peak_gpu_mem_mb': 5154.9, 'peak_gpu_reserved_mb': 11018.0, 'epoch_steps': 1192, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 86, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 10/10] {'epoch': 10, 'train_loss': 0.1406981237076423, 'track_val_mrr': 0.24512753150363764, 'track_val_loss': 0.26334649324417114, 'train_sec': 30.3, 'track_eval_sec': 737.8, 'peak_gpu_mem_mb': 5154.9, 'peak_gpu_reserved_mb': 11018.0, 'epoch_steps': 1192, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 90, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+checkpoint saved: results/review_2026_09_22/polecat/polecat_gru_s43/best.pt
+@@ -814,5 +814,5 @@
+ | sp_tsd_s46               | running/pending |            0 |          1 |
+ | sp_tsd_s47               | running/pending |            0 |          1 |
+ | wd_coreoff_s47           | running/pending |            0 |          1 |
+-| wd_gru_s47               | running/pending |            0 |          1 |
++| wd_gru_s47               | running/pending |            4 |          1 |
+ 
+diff --git a/results/review_2026_09_22/queue/wd_gru_s47.log b/results/review_2026_09_22/queue/wd_gru_s47.log
+index bd21a33..d9ab607 100644
+--- a/results/review_2026_09_22/queue/wd_gru_s47.log
++++ b/results/review_2026_09_22/queue/wd_gru_s47.log
+@@ -8,3 +8,10 @@ delta_time_scale=1 (Delta_k is measured in units of the median training inter-sn
+ protocol: predict-from-previous-state (leak-free) for training and evaluation
+ parameter_count=56401 num_relations=1192 num_nodes=1226440
+ parameters_by_component={'embeddings': 19072, 'ssm_input_selector_B': 0, 'ssm_other': 12769, 'map_decoder': 64, 'spatial_block': 1958, 'scorer': 22361, 'rec': 177, 'other': 0, 'total': 56401, 'trainable': 56401, 'unused_by_construction': 64, 'active': 56337}
++[epoch 1/4] {'epoch': 1, 'train_loss': 0.494834001722007, 'track_val_mrr': 0.4783873204464093, 'track_val_loss': 0.5753120183944702, 'train_sec': 8.1, 'track_eval_sec': 21.6, 'peak_gpu_mem_mb': 3968.7, 'peak_gpu_reserved_mb': 10032.0, 'epoch_steps': 29, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
++[epoch 2/4] {'epoch': 2, 'train_loss': 0.20373256144852475, 'track_val_mrr': 0.6742988666477551, 'track_val_loss': 0.44211626052856445, 'train_sec': 6.9, 'track_eval_sec': 20.4, 'peak_gpu_mem_mb': 4193.2, 'peak_gpu_reserved_mb': 10032.0, 'epoch_steps': 29, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
++[epoch 3/4] {'epoch': 3, 'train_loss': 0.15289805726758365, 'track_val_mrr': 0.7244417311759541, 'track_val_loss': 0.3740350604057312, 'train_sec': 6.9, 'track_eval_sec': 20.6, 'peak_gpu_mem_mb': 4193.2, 'peak_gpu_reserved_mb': 10032.0, 'epoch_steps': 29, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
++[epoch 4/4] {'epoch': 4, 'train_loss': 0.1424891447712635, 'track_val_mrr': 0.7270270808935662, 'track_val_loss': 0.39046207070350647, 'train_sec': 6.8, 'track_eval_sec': 20.3, 'peak_gpu_mem_mb': 4193.2, 'peak_gpu_reserved_mb': 10032.0, 'epoch_steps': 29, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
++checkpoint saved: results/review_2026_09_22/wd/wd_gru_s47/best.pt
++final val_mrr=0.6428 (194.6s so far)
++FINAL val_mrr=0.6428 test_mrr=0.5343 test_hits10=0.5981 eval_sec=391.5
 diff --git a/results/review_2026_09_22/tables_review.tex b/results/review_2026_09_22/tables_review.tex
-index d10796f..965fef9 100644
+index 965fef9..d4b229f 100644
 --- a/results/review_2026_09_22/tables_review.tex
 +++ b/results/review_2026_09_22/tables_review.tex
-@@ -64,25 +64,11 @@ Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ S
- TSD (memory-conditioned incidence maps) & 0.001 & 3 (43,46,47) & -- & 0.438 $\pm$ 0.002 & -- &  \\
+@@ -65,10 +65,10 @@ TSD (memory-conditioned incidence maps) & 0.001 & 3 (43,46,47) & -- & 0.438 $\pm
  Current-only maps & 0.001 & 3 (43,46,47) & -- & 0.439 $\pm$ 0.004 & +0.0012 $\pm$ 0.0027; $\pm$0.0066 & 2+ 1- \\
  Identity maps & 0.001 & 3 (43,46,47) & -- & 0.439 $\pm$ 0.003 & +0.0016 $\pm$ 0.0023; $\pm$0.0058 & 2+ 1- \\
--GRU + ordinary propagation & 0.001 & 2 (43,47) & 37159 & 0.437 $\pm$ 0.002 & +0.0004 $\pm$ 0.0025; $\pm$0.0226 & 1+ 1- \\
-+GRU + ordinary propagation & 0.001 & 3 (43,46,47) & 37159 & 0.438 $\pm$ 0.003 & +0.0007 $\pm$ 0.0018; $\pm$0.0046 & 2+ 1- \\
- Diagonal SSM + ordinary propagation & 0.001 & 2 (43,47) & 11915 & 0.436 $\pm$ 0.002 & -0.0003 $\pm$ 0.0021; $\pm$0.0189 & 1+ 1- \\
--History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
--Node-frame geometry & 0.001 & 1 (47) & 630859 & 0.439 $\pm$ -- & +0.0026 $\pm$ --; $\pm$-- & 1+ 0- \\
--Core off + REC (head only) & \multicolumn{6}{l}{not evaluated} \\
--\bottomrule\end{tabular}\end{table}
--
--\begin{table}[t]\centering\small
--\caption{Matched controls on tkgl-icews (icews, REC off): test MRR over seeds and paired difference to TSD (same seeds, identical data, negatives, protocol and selection rule; lr locked per arm on seed-43 tracking validation). Active parameters exclude parameters unused by construction.}
--\begin{tabular}{lcccrll}\toprule
--Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
--TSD (memory-conditioned incidence maps) & 0.003 & 2 (43,46) & -- & 0.024 $\pm$ 0.005 & -- &  \\
--Current-only maps & 0.003 & 2 (43,46) & -- & 0.025 $\pm$ 0.004 & +0.0006 $\pm$ 0.0099; $\pm$0.0886 & 1+ 1- \\
--Identity maps & 0.003 & 2 (43,46) & -- & 0.026 $\pm$ 0.001 & +0.0017 $\pm$ 0.0066; $\pm$0.0590 & 1+ 1- \\
--GRU + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
--Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
--History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
--Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
--Core off + REC (head only) & 0.003 & 2 (43,46) & -- & 0.021 $\pm$ 0.006 & -0.0028 $\pm$ 0.0113; $\pm$0.1018 & 1+ 1- \\
-+History-conditioned edge gates & 0.001 & 3 (43,46,47) & 630924 & 0.443 $\pm$ 0.001 & +0.0052 $\pm$ 0.0024; $\pm$0.0059 & 3+ 0- \\
-+Node-frame geometry & 0.001 & 2 (46,47) & 630859 & 0.440 $\pm$ 0.001 & +0.0014 $\pm$ 0.0017; $\pm$0.0151 & 2+ 0- \\
-+Core off + REC (head only) & 0.001 & 2 (43,46) & 9168 & 0.429 $\pm$ 0.000 & -0.0089 $\pm$ 0.0024; $\pm$0.0219 & 0+ 2- \\
+ GRU + ordinary propagation & 0.001 & 3 (43,46,47) & 37159 & 0.438 $\pm$ 0.003 & +0.0007 $\pm$ 0.0018; $\pm$0.0046 & 2+ 1- \\
+-Diagonal SSM + ordinary propagation & 0.001 & 2 (43,47) & 11915 & 0.436 $\pm$ 0.002 & -0.0003 $\pm$ 0.0021; $\pm$0.0189 & 1+ 1- \\
++Diagonal SSM + ordinary propagation & 0.001 & 3 (43,46,47) & 11915 & 0.437 $\pm$ 0.002 & -0.0003 $\pm$ 0.0015; $\pm$0.0037 & 1+ 2- \\
+ History-conditioned edge gates & 0.001 & 3 (43,46,47) & 630924 & 0.443 $\pm$ 0.001 & +0.0052 $\pm$ 0.0024; $\pm$0.0059 & 3+ 0- \\
+-Node-frame geometry & 0.001 & 2 (46,47) & 630859 & 0.440 $\pm$ 0.001 & +0.0014 $\pm$ 0.0017; $\pm$0.0151 & 2+ 0- \\
+-Core off + REC (head only) & 0.001 & 2 (43,46) & 9168 & 0.429 $\pm$ 0.000 & -0.0089 $\pm$ 0.0024; $\pm$0.0219 & 0+ 2- \\
++Node-frame geometry & 0.001 & 3 (43,46,47) & 630859 & 0.439 $\pm$ 0.002 & +0.0012 $\pm$ 0.0013; $\pm$0.0031 & 3+ 0- \\
++Core off + REC (head only) & 0.001 & 3 (43,46,47) & 9168 & 0.428 $\pm$ 0.001 & -0.0092 $\pm$ 0.0018; $\pm$0.0044 & 0+ 3- \\
  \bottomrule\end{tabular}\end{table}
  
  \begin{table}[t]\centering\small
-@@ -90,7 +76,7 @@ Core off + REC (head only) & 0.003 & 2 (43,46) & -- & 0.021 $\pm$ 0.006 & -0.002
- \begin{tabular}{lcccrll}\toprule
- Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
+@@ -78,11 +78,11 @@ Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ S
  TSD (memory-conditioned incidence maps) & 0.003 & 3 (43,46,47) & -- & 0.335 $\pm$ 0.003 & -- &  \\
--Current-only maps & 0.003 & 1 (43) & -- & 0.329 $\pm$ -- & -0.0101 $\pm$ --; $\pm$-- & 0+ 1- \\
-+Current-only maps & 0.003 & 2 (43,46) & 660043 & 0.328 $\pm$ 0.000 & -0.0081 $\pm$ 0.0028; $\pm$0.0254 & 0+ 2- \\
+ Current-only maps & 0.003 & 2 (43,46) & 660043 & 0.328 $\pm$ 0.000 & -0.0081 $\pm$ 0.0028; $\pm$0.0254 & 0+ 2- \\
  Identity maps & 0.003 & 1 (43) & -- & 0.337 $\pm$ -- & -0.0018 $\pm$ --; $\pm$-- & 0+ 1- \\
- GRU + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
- Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
-@@ -117,9 +103,9 @@ Core off + REC (head only) & \multicolumn{6}{l}{not evaluated} \\
- \caption{Matched controls on tkgl-smallpedia (sp, REC on): test MRR over seeds and paired difference to TSD (same seeds, identical data, negatives, protocol and selection rule; lr locked per arm on seed-43 tracking validation). Active parameters exclude parameters unused by construction.}
- \begin{tabular}{lcccrll}\toprule
- Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
--TSD (memory-conditioned incidence maps) & 0.01 & 3 (43,46,47) & -- & 0.610 $\pm$ 0.007 & -- &  \\
--Current-only maps & 0.01 & 3 (43,46,47) & -- & 0.605 $\pm$ 0.008 & -0.0049 $\pm$ 0.0144; $\pm$0.0357 & 1+ 2- \\
--Identity maps & 0.01 & 3 (43,46,47) & -- & 0.613 $\pm$ 0.006 & +0.0030 $\pm$ 0.0013; $\pm$0.0031 & 3+ 0- \\
-+TSD (memory-conditioned incidence maps) & \multicolumn{6}{l}{not evaluated} \\
-+Current-only maps & 0.01 & 4 (43,44,46,47) & 652963 & 0.608 $\pm$ 0.008 & -- &  \\
-+Identity maps & 0.01 & 3 (43,46,47) & -- & 0.613 $\pm$ 0.006 & -- &  \\
- GRU + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
- Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
- History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
-@@ -134,7 +120,7 @@ Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ S
- TSD (memory-conditioned incidence maps) & 0.003 & 3 (43,46,47) & -- & 0.540 $\pm$ 0.009 & -- &  \\
- Current-only maps & 0.003 & 1 (43) & -- & 0.538 $\pm$ -- & +0.0011 $\pm$ --; $\pm$-- & 1+ 0- \\
- Identity maps & 0.003 & 1 (43) & -- & 0.534 $\pm$ -- & -0.0034 $\pm$ --; $\pm$-- & 0+ 1- \\
--GRU + ordinary propagation & 0.003 & 1 (46) & 56337 & 0.537 $\pm$ -- & -0.0128 $\pm$ --; $\pm$-- & 0+ 1- \\
-+GRU + ordinary propagation & 0.003 & 2 (43,46) & 56337 & 0.537 $\pm$ 0.001 & -0.0070 $\pm$ 0.0081; $\pm$0.0729 & 0+ 2- \\
+-GRU + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
++GRU + ordinary propagation & 0.003 & 1 (43) & 62247 & 0.337 $\pm$ -- & -0.0019 $\pm$ --; $\pm$-- & 0+ 1- \\
  Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
  History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
  Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
+-Core off + REC (head only) & 0.003 & 2 (43,46) & -- & 0.315 $\pm$ 0.005 & -0.0212 $\pm$ 0.0023; $\pm$0.0206 & 0+ 2- \\
++Core off + REC (head only) & 0.003 & 3 (43,46,47) & 34256 & 0.310 $\pm$ 0.009 & -0.0248 $\pm$ 0.0065; $\pm$0.0162 & 0+ 3- \\
+ \bottomrule\end{tabular}\end{table}
+ 
+ \begin{table}[t]\centering\small

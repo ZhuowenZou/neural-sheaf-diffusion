@@ -1,4 +1,4 @@
-# Review campaign summary (auto-generated 2026-09-23 08:10)
+# Review campaign summary (auto-generated 2026-09-23 08:18)
 
 251 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
@@ -814,5 +814,5 @@
 | sp_tsd_s46               | running/pending |            0 |          1 |
 | sp_tsd_s47               | running/pending |            0 |          1 |
 | wd_coreoff_s47           | running/pending |            0 |          1 |
-| wd_gru_s47               | running/pending |            0 |          1 |
+| wd_gru_s47               | running/pending |            4 |          1 |
 
