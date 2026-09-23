@@ -28,6 +28,7 @@ forum_attention_recoff_s43,forum,thgl-forum,attention-gates,0.001,off,global,43,
 forum_attention_recoff_s45,forum,thgl-forum,attention-gates,0.001,off,global,45,False,0.3785354114032835,0.3682651567706189,0.5419548415982761,2,4.0,630271.0,630271.0,0.0,True,,,False,2026-09-22 21:17
 forum_attention_recoff_s46,forum,thgl-forum,attention-gates,0.001,off,global,46,False,0.3512282297998535,0.3479494783481247,0.5725504142686334,2,4.0,630271.0,630271.0,0.0,True,,,False,2026-09-22 15:08
 forum_attention_recoff_s47,forum,thgl-forum,attention-gates,0.001,off,global,47,False,0.3343708721033405,0.3196843079552501,0.4390859599649895,2,4.0,630271.0,630271.0,0.0,True,,,False,2026-09-22 16:20
+forum_attention_recon_s44,forum,thgl-forum,attention-gates,0.001,on,global,44,False,0.6259422379133597,0.6378221562462703,0.6978165381599425,3,4.0,630400.0,630400.0,0.0,True,,,False,2026-09-22 21:29
 forum_attention_recon_s46,forum,thgl-forum,attention-gates,0.001,on,global,46,False,0.6266912959268713,0.6367697419815812,0.6896173670260929,2,4.0,630400.0,630400.0,0.0,True,,,False,2026-09-22 15:36
 forum_attention_recon_s47,forum,thgl-forum,attention-gates,0.001,on,global,47,False,0.6218869889746617,0.6278993491881228,0.6670946916362136,3,4.0,630400.0,630400.0,0.0,True,,,False,2026-09-22 18:12
 forum_coreoff_recoff_s44,forum,thgl-forum,core-off,0.001,off,global,44,False,0.2400763293194148,0.2220696006777333,0.3488434481470819,4,4.0,634300.0,8515.0,0.0,True,,,False,2026-09-22 15:30
@@ -44,6 +45,8 @@ forum_diag_recoff_s45,forum,thgl-forum,diagssm-ordinary,0.001,off,global,45,Fals
 forum_diag_recoff_s46,forum,thgl-forum,diagssm-ordinary,0.001,off,global,46,False,0.4201303377100226,0.4174767553190865,0.5614668434235619,2,4.0,11390.0,11262.0,0.0,True,,,False,2026-09-22 16:15
 forum_diag_recoff_s47,forum,thgl-forum,diagssm-ordinary,0.001,off,global,47,False,0.4103686895534771,0.4023891365318135,0.5728820971437033,2,4.0,11390.0,11262.0,0.0,True,,,False,2026-09-22 15:20
 forum_diag_recon_s43,forum,thgl-forum,diagssm-ordinary,0.001,on,global,43,False,0.6330845286216829,0.6444358640534109,0.6974315404055381,4,4.0,11519.0,11391.0,0.0,True,,,False,2026-09-22 16:25
+forum_diag_recon_s44,forum,thgl-forum,diagssm-ordinary,0.001,on,global,44,False,0.6346351723995581,0.6429508057481556,0.6921277128118305,2,4.0,11519.0,11391.0,0.0,True,,,False,2026-09-22 21:36
+forum_diag_recon_s45,forum,thgl-forum,diagssm-ordinary,0.001,on,global,45,False,0.6492820469900007,0.6564373006782418,0.7006919583121822,3,4.0,11519.0,11391.0,0.0,True,,,False,2026-09-22 21:35
 forum_diag_recon_s46,forum,thgl-forum,diagssm-ordinary,0.001,on,global,46,False,0.6312237196505405,0.6429305860421158,0.704806556170426,3,4.0,11519.0,11391.0,0.0,True,,,False,2026-09-22 15:50
 forum_diag_recon_s47,forum,thgl-forum,diagssm-ordinary,0.001,on,global,47,False,0.6414284596786567,0.6504778210844007,0.7099540827793089,4,4.0,11519.0,11391.0,0.0,True,,,False,2026-09-22 15:29
 forum_gru_norec_s43,forum,thgl-forum,gru-ordinary,0.001,off,global,43,False,0.3859092983720559,0.3826520963172611,0.5052439178398926,2,4.0,36634.0,36506.0,0.0,True,,,False,2026-09-22 14:14
@@ -67,6 +70,7 @@ forum_nodeframe_recoff_s45,forum,thgl-forum,node-frame,0.001,off,global,45,False
 forum_nodeframe_recoff_s46,forum,thgl-forum,node-frame,0.001,off,global,46,False,0.4043478914684701,0.4011103362298743,0.5618285504501646,4,4.0,630206.0,630206.0,0.0,True,,,False,2026-09-22 15:57
 forum_nodeframe_recoff_s47,forum,thgl-forum,node-frame,0.001,off,global,47,False,0.3526994919364464,0.3345182710952508,0.5338782990960653,3,4.0,630206.0,630206.0,0.0,True,,,False,2026-09-22 16:26
 forum_nodeframe_recon_s44,forum,thgl-forum,node-frame,0.001,on,global,44,False,0.6337648864534048,0.6429960434267246,0.6992223997250815,2,4.0,630335.0,630335.0,0.0,True,,,False,2026-09-22 21:27
+forum_nodeframe_recon_s45,forum,thgl-forum,node-frame,0.001,on,global,45,False,0.6445898620488714,0.6516327113037111,0.7127924630543465,2,4.0,630335.0,630335.0,0.0,True,,,False,2026-09-22 21:36
 forum_nodeframe_recon_s46,forum,thgl-forum,node-frame,0.001,on,global,46,False,0.6341072775536221,0.644951254927469,0.7006874679588987,3,4.0,630335.0,630335.0,0.0,True,,,False,2026-09-22 17:17
 forum_nodeframe_recon_s47,forum,thgl-forum,node-frame,0.001,on,global,47,False,0.6100674500245004,0.626221910930718,0.6701530707793115,4,4.0,630335.0,630335.0,0.0,True,,,False,2026-09-22 17:59
 forum_tsd_recoff_s44,forum,thgl-forum,tsd,0.001,off,global,44,False,0.2301540411082932,0.2322758943876626,0.3730194829632712,4,4.0,630142.0,630142.0,0.0,True,,,False,2026-09-22 15:27
@@ -111,6 +115,7 @@ wiki_identity_s46_lr1e-3,matched,tgbl-wiki,identity-maps,0.001,on,global,46,Fals
 wiki_identity_s47_lr1e-3,matched,tgbl-wiki,identity-maps,0.001,on,global,47,False,0.7743163637573716,0.7610349241040268,0.8514034125333636,8,8.0,444686.0,444558.0,0.0,True,,,False,2026-09-22 20:00
 wiki_nodeframe_s43_lr1e-3,matched,tgbl-wiki,node-frame,0.001,on,global,43,False,0.7792795283829428,0.7640372573229185,0.8511070656645717,8,8.0,444750.0,444750.0,0.0,True,,,False,2026-09-22 17:22
 wiki_nodeframe_s43_lr3e-4,matched,tgbl-wiki,node-frame,0.0003,on,global,43,False,0.7466917640293519,0.7317244227292561,0.8505567081149903,8,8.0,444750.0,444750.0,0.0,True,,,False,2026-09-22 15:11
+wiki_nodeframe_s44_lr1e-3,matched,tgbl-wiki,node-frame,0.001,on,global,44,False,0.7656376967986872,0.7550841160924483,0.8493713219191742,8,8.0,444750.0,444750.0,0.0,True,,,False,2026-09-22 21:30
 wiki_nodeframe_s45_lr1e-3,matched,tgbl-wiki,node-frame,0.001,on,global,45,False,0.7579908114609379,0.7479105030158993,0.8508107194316704,8,8.0,444750.0,444750.0,0.0,True,,,False,2026-09-22 20:16
 wiki_nodeframe_s46_lr1e-3,matched,tgbl-wiki,node-frame,0.001,on,global,46,False,0.7653560493371513,0.7528823528010306,0.854874899844999,5,8.0,444750.0,444750.0,0.0,True,,,False,2026-09-22 20:13
 wiki_nodeframe_s47_lr1e-3,matched,tgbl-wiki,node-frame,0.001,on,global,47,False,0.7630615009024981,0.7516840160218551,0.8511494011409821,6,8.0,444750.0,444750.0,0.0,True,,,False,2026-09-22 20:04
