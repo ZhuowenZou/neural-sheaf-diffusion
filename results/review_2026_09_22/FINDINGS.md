@@ -258,6 +258,33 @@ Seed 44 makes the trainability effect visible: TSD REC-off scores 0.232 (GRU 0.3
 events and modest clipping; its tracking validation rises 0.134 → 0.135 → 0.154 → 0.246 over the fixed
 4-epoch budget and is still climbing at the cut-off, whereas the GRU core is at 0.39 after epoch 1.
 
+
+<!-- review-append: sw -->
+
+### thgl-software matched matrix (`sw/` plus replay-verified retained seeds; `paired_contrasts.csv`, `per_seed_results.csv`)
+
+
+**REC on, lr 0.001 (protocol copied from the retained run; paired per seed):**
+
+| REC | arm | seeds (n) | TSD mean | arm mean | Δ arm − TSD (mean ± SD; 95% t half-width) | per-seed Δ | signs | note |
+|---|---|---|---|---|---|---|---|---|
+| on | current-only maps | 43/46/47 (3) | 0.4376 | 0.4388 | +0.0012 ± 0.0027; ±0.0066 | -0.0019 / +0.0025 / +0.0029 | 2+ 1- |  |
+| on | identity maps | 43/46/47 (3) | 0.4376 | 0.4392 | +0.0016 ± 0.0023; ±0.0058 | -0.0003 / +0.0008 / +0.0042 | 2+ 1- |  |
+| on | GRU + ordinary propagation | 43/46/47 (3) | 0.4376 | 0.4383 | +0.0007 ± 0.0018; ±0.0046 | +0.0022 / +0.0012 / -0.0013 | 2+ 1- |  |
+| on | diagonal SSM + ordinary propagation | 43/46/47 (3) | 0.4376 | 0.4373 | -0.0003 ± 0.0015; ±0.0037 | +0.0012 / -0.0003 / -0.0018 | 1+ 2- |  |
+| on | history-conditioned edge gates | 43/46/47 (3) | 0.4376 | 0.4428 | +0.0052 ± 0.0024; ±0.0059 | +0.0063 / +0.0025 / +0.0067 | 3+ 0- |  |
+| on | node-frame geometry | 43/46/47 (3) | 0.4376 | 0.4388 | +0.0012 ± 0.0013; ±0.0031 | +0.0007 / +0.0002 / +0.0026 | 3+ 0- |  |
+| on | core-off + REC (head only) | 43/46/47 (3) | 0.4376 | 0.4284 | -0.0092 ± 0.0018; ±0.0044 | -0.0072 / -0.0106 / -0.0097 | 0+ 3- |  |
+| on | TSD no-gap | 43/46/47 (3) | 0.4376 | 0.4393 | +0.0017 ± 0.0018; ±0.0044 | +0.0032 / -0.0003 / +0.0022 | 2+ 1- |  |
+| on | TSD no-memory | – | – | – | – | – | – | not evaluated |
+
+Per-seed TSD test MRR (REC on): seed 43: 0.4360; seed 46: 0.4400; seed 47: 0.4369.
+Cells backed by replay-verified retained runs reused under the provenance rule (`reused_retained=True`; checkpoint replays reproduce the stored test MRR, protocol matched on the collector's key set): current-only maps seeds 43/46/47; identity maps seeds 43/46/47; TSD (memory-conditioned incidence maps) seeds 43/46/47; TSD no-gap seeds 43/46/47.
+Cells from new runs of this campaign: history-conditioned edge gates seeds 43/46/47; core-off + REC (head only) seeds 43/46/47; diagonal SSM + ordinary propagation seeds 43/46/47; GRU + ordinary propagation seeds 43/46/47; node-frame geometry seeds 43/46/47.
+Cells with fewer than three paired seeds are pilots; every number is descriptive (mean, sample SD, 95% t-interval with n − 1 df), not a hypothesis test.
+
+Facts (software, three paired seeds, REC on): core-off + REC is below TSD on 3 of 3 seeds (−0.0092 ± 0.0018); history-conditioned edge gates are above TSD on 3 of 3 seeds (+0.0052 ± 0.0024); every other arm (current-only maps, identity maps, GRU + ordinary, diagonal SSM + ordinary, node-frame, no-gap) lies within ±0.002 of TSD with mixed or small-magnitude signs. TSD no-memory was not evaluated on software.
+
 ## 4. Synthetic history-dependent task (synthetic/)
 
 **Generator (`exp/review/synthetic_history.py`, "cued target drift"):** 400 nodes in 8 hidden communities, 60k
