@@ -196,8 +196,14 @@ configuration; the tracking-validation gap between the two learning rates was 0.
 memory-conditioned maps do not beat current-only maps, identity maps, a GRU or a diagonal SSM with ordinary
 propagation; the last two reach the same accuracy with 13x and 44x fewer active parameters. **Negative:**
 node-frame geometry and history-conditioned edge gates are slightly but consistently worse than identity
-transport (−0.008; 4-5 of 5 seeds). Stratification by recurring vs novel pairs is available per run in
-`query_ranks.csv.gz` (not tabulated here for lack of time).
+transport (−0.008; 4-5 of 5 seeds). **Stratified (identical test queries, seeds 44-47; `matched/wiki_strata/`):** 89.2% of wiki test queries
+are recurring (source, destination) pairs. Every arm scores ~0.85 MRR on recurring pairs and ~0.01 on novel
+pairs (TSD 0.854 / 0.012; core-off 0.819 / 0.014; GRU 0.853 / 0.011; identity 0.854 / 0.010). The core's gain
+over the head-only model is entirely on recurring pairs (+0.035, 4 of 4 seeds) and on the longest
+source-inactivity quartile (gap > 8,162 s: +0.040, 4 of 4); on novel pairs core-off is marginally *better*
+(+0.002, 3 of 4). Between cores no stratum separates TSD from GRU, identity or diagonal SSM; node-frame and
+edge gates lose on recurring pairs (−0.013 and −0.009, 4 of 4). The wiki benchmark therefore rewards ranking
+among recurring destinations after long inactivity, not generalisation to unseen pairs.
 
 
 **thgl-forum matched matrix (complete; `forum/` plus the replay-verified retained seeds; same head, REC
