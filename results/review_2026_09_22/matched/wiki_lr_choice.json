@@ -6,6 +6,7 @@
   "diag": "1e-3",
   "gru": "1e-3",
   "identity": "1e-3",
+  "nodeframe": "1e-3",
   "tsd": "1e-3"
  },
  "rule": "highest tracking-validation MRR at seed 43; ties -> first",
@@ -93,6 +94,13 @@
    "best_track_val_mrr": 0.7358966022990644,
    "best_epoch": 8,
    "final_val": 0.7490415002017233
+  },
+  {
+   "arm": "nodeframe",
+   "lr": "1e-3",
+   "best_track_val_mrr": 0.7738000946864486,
+   "best_epoch": 8,
+   "final_val": 0.7792795283829428
   },
   {
    "arm": "nodeframe",

@@ -1,1 +1,1 @@
-{"attention": "1e-3", "coreoff": "1e-3", "curonly": "1e-3", "diag": "1e-3", "gru": "1e-3", "identity": "1e-3", "tsd": "1e-3"}
+{"attention": "1e-3", "coreoff": "1e-3", "curonly": "1e-3", "diag": "1e-3", "gru": "1e-3", "identity": "1e-3", "nodeframe": "1e-3", "tsd": "1e-3"}
