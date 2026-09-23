@@ -68,6 +68,7 @@ forum_tsd_recon_s44,forum,thgl-forum,tsd,44,2956.0,0.0,0.0,11.0,0.0,0.0,0.0,0.0,
 forum_tsd_recon_s45,forum,thgl-forum,tsd,45,2956.0,0.0,0.0,12.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 wiki_attention_s43_lr1e-3,matched,tgbl-wiki,attention-gates,43,24832.0,0.0,0.0,546.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_attention_s43_lr3e-4,matched,tgbl-wiki,attention-gates,43,24832.0,0.0,0.0,1372.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
+wiki_attention_s44_lr1e-3,matched,tgbl-wiki,attention-gates,44,24832.0,0.0,0.0,568.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_attention_s46_lr1e-3,matched,tgbl-wiki,attention-gates,46,24832.0,0.0,0.0,505.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_attention_s47_lr1e-3,matched,tgbl-wiki,attention-gates,47,24832.0,0.0,0.0,529.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_coreoff_s43_lr1e-3,matched,tgbl-wiki,core-off,43,24832.0,0.0,0.0,487.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
@@ -86,10 +87,12 @@ wiki_diag_s45_lr1e-3,matched,tgbl-wiki,diagssm-ordinary,45,24832.0,0.0,0.0,534.0
 wiki_diag_s47_lr1e-3,matched,tgbl-wiki,diagssm-ordinary,47,24832.0,0.0,0.0,625.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_gru_s43_lr1e-3,matched,tgbl-wiki,gru-ordinary,43,24832.0,0.0,0.0,476.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_gru_s43_lr3e-4,matched,tgbl-wiki,gru-ordinary,43,24832.0,0.0,0.0,1138.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
+wiki_gru_s44_lr1e-3,matched,tgbl-wiki,gru-ordinary,44,24832.0,0.0,0.0,552.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_gru_s45_lr1e-3,matched,tgbl-wiki,gru-ordinary,45,24832.0,0.0,0.0,435.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_gru_s46_lr1e-3,matched,tgbl-wiki,gru-ordinary,46,24832.0,0.0,0.0,519.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_identity_s43_lr1e-3,matched,tgbl-wiki,identity-maps,43,24832.0,0.0,0.0,682.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_identity_s43_lr3e-4,matched,tgbl-wiki,identity-maps,43,24832.0,0.0,0.0,1245.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
+wiki_identity_s44_lr1e-3,matched,tgbl-wiki,identity-maps,44,24832.0,0.0,0.0,522.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_identity_s46_lr1e-3,matched,tgbl-wiki,identity-maps,46,24832.0,0.0,0.0,453.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_nodeframe_s43_lr1e-3,matched,tgbl-wiki,node-frame,43,24832.0,0.0,0.0,564.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_nodeframe_s43_lr3e-4,matched,tgbl-wiki,node-frame,43,24832.0,0.0,0.0,1091.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True

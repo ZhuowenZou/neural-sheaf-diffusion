@@ -1,20 +1,20 @@
-# Monitor status (2026-09-22 19:43:25)
+# Monitor status (2026-09-22 19:55:04)
 
 ## GPU free (GiB) and utilisation
-0:19GB(100%) 1:51GB(97%) 2:80GB(0%) 3:59GB(100%) 4:50GB(100%) 5:54GB(100%) 6:66GB(100%) 7:70GB(100%) 
-our GPU processes (pid:MiB): 136253:17646MiB 210437:18006MiB 1838684:2028MiB 1839647:2028MiB 1963098:2026MiB 2241312:2396MiB 2241512:2402MiB 2241925:2028MiB 2373529:2402MiB 2373907:2024MiB 2397890:2022MiB 2408284:2024MiB 989557:17766MiB 2151763:2028MiB 2152300:2028MiB 2230123:2026MiB 2267736:2404MiB 2314752:2402MiB 2363737:2402MiB 2127720:2028MiB 2280946:2402MiB 2281249:2402MiB 2373082:2402MiB 2387527:2396MiB 2387973:2402MiB 1842703:2028MiB 2115264:2028MiB 2130790:2028MiB 2154289:2028MiB 2280184:2402MiB 
+0:19GB(100%) 1:51GB(99%) 2:80GB(0%) 3:68GB(100%) 4:52GB(100%) 5:54GB(98%) 6:66GB(100%) 7:72GB(100%) 
+our GPU processes (pid:MiB): 136253:17646MiB 210437:18006MiB 2241925:2028MiB 2373529:2402MiB 2373907:2024MiB 2397890:2024MiB 2408284:2030MiB 2435993:2024MiB 989557:17766MiB 2151763:2028MiB 2152300:2028MiB 2230123:2026MiB 2314752:2402MiB 2363737:2402MiB 2127720:2028MiB 2280946:2402MiB 2281249:2402MiB 2373082:2404MiB 2387527:2396MiB 2387973:2404MiB 1842703:2028MiB 2115264:2028MiB 2130790:2028MiB 2154289:2028MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
-- gpu2: ELIGIBLE (idle 206 min)
-- gpu3: ELIGIBLE (idle 434 min)
-- gpu4: ELIGIBLE (idle 810 min)
+- gpu2: ELIGIBLE (idle 217 min)
+- gpu3: ELIGIBLE (idle 446 min)
+- gpu4: ELIGIBLE (idle 821 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 345 min)
+- gpu6: ELIGIBLE (idle 356 min)
 - gpu7: OURS
-compensation: colleagues hold 26542 MiB on our GPUs; we hold 66468 MiB on theirs; budget left -39926 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
-our launcher claims (pid:gpu/MiB): 1819327:3/2000 
+compensation: colleagues hold 26542 MiB on our GPUs; we hold 55220 MiB on theirs; budget left -28678 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
 - DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
@@ -221,7 +221,7 @@ our launcher claims (pid:gpu/MiB): 1819327:3/2000
 - DONE     synth_gen_s1_attention_recoff_s46: FINAL val_mrr=0.2008 test_mrr=0.2061 test_hits10=0.4608 eval_sec=582.7
 - DONE     synth_gen_s1_attention_recoff_s47: FINAL val_mrr=0.2041 test_mrr=0.2038 test_hits10=0.4620 eval_sec=613.6
 - DONE     synth_gen_s1_attention_recon_s43: FINAL val_mrr=0.2674 test_mrr=0.2746 test_hits10=0.4892 eval_sec=434.6
-- RUNNING  synth_gen_s1_attention_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     synth_gen_s1_attention_recon_s44: FINAL val_mrr=0.2624 test_mrr=0.2666 test_hits10=0.4881 eval_sec=231.9
 - RUNNING  synth_gen_s1_attention_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     synth_gen_s1_attention_recon_s46: FINAL val_mrr=0.2722 test_mrr=0.2780 test_hits10=0.4870 eval_sec=525.6
 - RUNNING  synth_gen_s1_attention_recon_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
@@ -263,7 +263,7 @@ our launcher claims (pid:gpu/MiB): 1819327:3/2000
 - DONE     synth_gen_s1_gru_recon_s43: FINAL val_mrr=0.2596 test_mrr=0.2631 test_hits10=0.4912 eval_sec=437.9
 - DONE     synth_gen_s1_gru_recon_s44: FINAL val_mrr=0.2651 test_mrr=0.2724 test_hits10=0.4848 eval_sec=406.1
 - DONE     synth_gen_s1_gru_recon_s45: FINAL val_mrr=0.2674 test_mrr=0.2689 test_hits10=0.4937 eval_sec=403.9
-- RUNNING  synth_gen_s1_gru_recon_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     synth_gen_s1_gru_recon_s46: FINAL val_mrr=0.2720 test_mrr=0.2785 test_hits10=0.4976 eval_sec=362.4
 - DONE     synth_gen_s1_gru_recon_s47: FINAL val_mrr=0.2733 test_mrr=0.2784 test_hits10=0.4939 eval_sec=421.2
 - DONE     synth_gen_s1_identity_recoff_s43: FINAL val_mrr=0.2017 test_mrr=0.2050 test_hits10=0.4603 eval_sec=624.3
 - DONE     synth_gen_s1_identity_recoff_s44: FINAL val_mrr=0.2016 test_mrr=0.1994 test_hits10=0.4584 eval_sec=547.0
@@ -284,7 +284,7 @@ our launcher claims (pid:gpu/MiB): 1819327:3/2000
 - RUNNING  synth_gen_s1_nodeframe_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     synth_gen_s1_nodeframe_recon_s45: FINAL val_mrr=0.2707 test_mrr=0.2767 test_hits10=0.4868 eval_sec=374.1
 - DONE     synth_gen_s1_nodeframe_recon_s46: FINAL val_mrr=0.2615 test_mrr=0.2645 test_hits10=0.4859 eval_sec=456.9
-- RUNNING  synth_gen_s1_nodeframe_recon_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     synth_gen_s1_nodeframe_recon_s47: FINAL val_mrr=0.2685 test_mrr=0.2774 test_hits10=0.4848 eval_sec=299.4
 - DONE     synth_gen_s1r_attention_recoff_rel_s43: FINAL val_mrr=0.2329 test_mrr=0.2339 test_hits10=0.4939 eval_sec=707.9
 - DONE     synth_gen_s1r_attention_recoff_rel_s44: FINAL val_mrr=0.2369 test_mrr=0.2359 test_hits10=0.4910 eval_sec=462.2
 - DONE     synth_gen_s1r_attention_recoff_rel_s45: FINAL val_mrr=0.2507 test_mrr=0.2303 test_hits10=0.4708 eval_sec=295.1
@@ -330,7 +330,7 @@ our launcher claims (pid:gpu/MiB): 1819327:3/2000
 - DONE     synth_gen_s1_tsd_recoff_s45: FINAL val_mrr=0.2001 test_mrr=0.2065 test_hits10=0.4603 eval_sec=662.3
 - DONE     synth_gen_s1_tsd_recoff_s46: FINAL val_mrr=0.2042 test_mrr=0.2088 test_hits10=0.4721 eval_sec=675.3
 - DONE     synth_gen_s1_tsd_recoff_s47: FINAL val_mrr=0.2109 test_mrr=0.2086 test_hits10=0.4673 eval_sec=607.4
-- RUNNING  synth_gen_s1_tsd_recon_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     synth_gen_s1_tsd_recon_s43: FINAL val_mrr=0.2685 test_mrr=0.2758 test_hits10=0.4897 eval_sec=323.8
 - DONE     synth_gen_s1_tsd_recon_s44: FINAL val_mrr=0.2723 test_mrr=0.2759 test_hits10=0.4867 eval_sec=435.8
 - DONE     synth_gen_s1_tsd_recon_s45: FINAL val_mrr=0.2701 test_mrr=0.2757 test_hits10=0.4890 eval_sec=329.5
 - RUNNING  synth_gen_s1_tsd_recon_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
@@ -362,7 +362,7 @@ our launcher claims (pid:gpu/MiB): 1819327:3/2000
 - DONE     synth_gen_s2_tsd_recoff_rel_s47: FINAL val_mrr=0.3137 test_mrr=0.2737 test_hits10=0.5417 eval_sec=328.4
 - DONE     wiki_attention_s43_lr1e-3: FINAL val_mrr=0.7640 test_mrr=0.7521 test_hits10=0.8529 eval_sec=1291.5
 - DONE     wiki_attention_s43_lr3e-4: FINAL val_mrr=0.7487 test_mrr=0.7342 test_hits10=0.8470 eval_sec=1944.7
-- RUNNING  wiki_attention_s44_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     wiki_attention_s44_lr1e-3: FINAL val_mrr=0.7730 test_mrr=0.7604 test_hits10=0.8542 eval_sec=670.1
 - RUNNING  wiki_attention_s45_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     wiki_attention_s46_lr1e-3: FINAL val_mrr=0.7588 test_mrr=0.7481 test_hits10=0.8535 eval_sec=678.2
 - DONE     wiki_attention_s47_lr1e-3: FINAL val_mrr=0.7808 test_mrr=0.7586 test_hits10=0.8497 eval_sec=584.9
@@ -377,7 +377,7 @@ our launcher claims (pid:gpu/MiB): 1819327:3/2000
 - RUNNING  wiki_curonly_s44_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     wiki_curonly_s45_lr1e-3: FINAL val_mrr=0.7740 test_mrr=0.7626 test_hits10=0.8525 eval_sec=591.2
 - RUNNING  wiki_curonly_s46_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
-- RUNNING  wiki_curonly_s47_lr1e-3: epochs': 4, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
+- RUNNING  wiki_curonly_s47_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     wiki_diag_s43_lr1e-3: FINAL val_mrr=0.7842 test_mrr=0.7659 test_hits10=0.8512 eval_sec=1924.0
 - DONE     wiki_diag_s43_lr3e-4: FINAL val_mrr=0.7330 test_mrr=0.7171 test_hits10=0.8501 eval_sec=2037.7
 - DONE     wiki_diag_s44_lr1e-3: FINAL val_mrr=0.7834 test_mrr=0.7689 test_hits10=0.8555 eval_sec=605.4
@@ -386,19 +386,19 @@ our launcher claims (pid:gpu/MiB): 1819327:3/2000
 - DONE     wiki_diag_s47_lr1e-3: FINAL val_mrr=0.7643 test_mrr=0.7539 test_hits10=0.8525 eval_sec=619.7
 - DONE     wiki_gru_s43_lr1e-3: FINAL val_mrr=0.7841 test_mrr=0.7713 test_hits10=0.8552 eval_sec=2084.5
 - DONE     wiki_gru_s43_lr3e-4: FINAL val_mrr=0.7476 test_mrr=0.7336 test_hits10=0.8504 eval_sec=1943.3
-- RUNNING  wiki_gru_s44_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     wiki_gru_s44_lr1e-3: FINAL val_mrr=0.7876 test_mrr=0.7694 test_hits10=0.8510 eval_sec=584.3
 - DONE     wiki_gru_s45_lr1e-3: FINAL val_mrr=0.7762 test_mrr=0.7616 test_hits10=0.8499 eval_sec=610.6
 - DONE     wiki_gru_s46_lr1e-3: FINAL val_mrr=0.7710 test_mrr=0.7601 test_hits10=0.8528 eval_sec=560.7
-- RUNNING  wiki_gru_s47_lr1e-3: epochs': 4, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
+- RUNNING  wiki_gru_s47_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     wiki_identity_s43_lr1e-3: FINAL val_mrr=0.7743 test_mrr=0.7628 test_hits10=0.8543 eval_sec=1291.5
 - DONE     wiki_identity_s43_lr3e-4: FINAL val_mrr=0.7490 test_mrr=0.7360 test_hits10=0.8494 eval_sec=1605.2
-- RUNNING  wiki_identity_s44_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     wiki_identity_s44_lr1e-3: FINAL val_mrr=0.7798 test_mrr=0.7648 test_hits10=0.8497 eval_sec=672.5
 - RUNNING  wiki_identity_s45_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     wiki_identity_s46_lr1e-3: FINAL val_mrr=0.7771 test_mrr=0.7612 test_hits10=0.8499 eval_sec=675.0
 - RUNNING  wiki_identity_s47_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     wiki_nodeframe_s43_lr1e-3: FINAL val_mrr=0.7793 test_mrr=0.7640 test_hits10=0.8511 eval_sec=1365.0
 - DONE     wiki_nodeframe_s43_lr3e-4: FINAL val_mrr=0.7467 test_mrr=0.7317 test_hits10=0.8506 eval_sec=2071.8
-- RUNNING  wiki_nodeframe_s44_lr1e-3: 
+- RUNNING  wiki_nodeframe_s44_lr1e-3: epochs': 4, 'time_window': 600.0, 'context_edges': 50000, 'train_edges
 - RUNNING  wiki_nodeframe_s45_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  wiki_nodeframe_s46_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - RUNNING  wiki_nodeframe_s47_lr1e-3: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
