@@ -1,4 +1,4 @@
 #!/bin/bash
 cd /home/zhuowez1/project/neural-sheaf-diffusion
-export TSD_ONLY_GPUS="7"
+export TSD_ONLY_GPUS="0 1 2 3 4 6 7"
 exec results/event_bench/queues/wait_launch.sh 26000 results/review_2026_09_22/queue/sp_attention_s47.log /home/zhuowez1/miniconda3/envs/nsd/bin/python -m exp.run_event_benchmark --bptt-steps 1 --candidate-chunk-size 1024 --closure-hops 1 --context-edges 50000 --d 2 --dataset tkgl-smallpedia --feedback-dim 16 --grad-clip 1.0 --hidden-channels 8 --lr 0.01 --max-score-elements 4000000 --model faithful --predict-from-previous --recurrency-decoder --recurrency-symmetric --recurrency-untyped --relation-in-input --temporal-d-model 64 --track-val-edges 50000 --train-loss softplus --train-negatives-per-pos 32 --weight-decay 0.0 --predict-from-previous --save-checkpoint --dump-query-ranks --epochs 15 --patience 6 --min-epochs 6 --spatial attention --seed 47 --out results/review_2026_09_22/sp/sp_attention_s47 > results/review_2026_09_22/queue/sp_attention_s47.log 2>&1

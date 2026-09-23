@@ -1,4 +1,4 @@
 #!/bin/bash
 cd /home/zhuowez1/project/neural-sheaf-diffusion
-export TSD_ONLY_GPUS="6"
+export TSD_ONLY_GPUS="0 1 2 3 4 6 7"
 exec results/event_bench/queues/wait_launch.sh 12000 results/review_2026_09_22/queue/polecat_gru_s46.log /home/zhuowez1/miniconda3/envs/nsd/bin/python -m exp.run_event_benchmark --bptt-steps 1 --candidate-chunk-size 1024 --closure-hops 1 --context-edges 50000 --d 2 --dataset tkgl-polecat --feedback-dim 16 --grad-clip 1.0 --hidden-channels 8 --lr 0.003 --max-score-elements 4000000 --model faithful --predict-from-previous --recurrency-decoder --recurrency-untyped --relation-in-input --temporal-d-model 64 --track-val-edges 30000 --train-loss softplus --train-negatives-per-pos 32 --weight-decay 0.0 --predict-from-previous --save-checkpoint --dump-query-ranks --epochs 10 --patience 5 --min-epochs 4 --backbone gru --spatial identity --seed 46 --out results/review_2026_09_22/polecat/polecat_gru_s46 > results/review_2026_09_22/queue/polecat_gru_s46.log 2>&1
