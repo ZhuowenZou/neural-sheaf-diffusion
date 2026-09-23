@@ -114,8 +114,36 @@ training-time effect. The saturation diagnostics of the replayed wiki checkpoint
 for about 5-6% of endpoint updates and under 1% of closure updates (closure updates outnumber endpoint
 updates 7:1), so the cap is not the binding constraint on wiki.
 
-(Clock/saturation aggregates from all checkpoint replays and the node-clock / batching-width runs are
-collected in `clock_diagnostics.csv`.)
+**Saturation of the step selector (`clock_diagnostics.csv`; exact per-update counters over the full training
+replay, validation and test):**
+
+| run | lr | split | activity | updates | fraction capped at 0.25 | mean uncapped step | mean capped step |
+|---|---|---|---|---|---|---|---|
+| retained wiki seed 47 (replay) | 3e-4 | train replay | endpoint | 127,665 | 0.056 | 0.18 | 0.041 |
+| retained wiki seed 47 (replay) | 3e-4 | train replay | closure | 894,276 | 0.006 | 0.022 | 0.018 |
+| new wiki TSD seed 43 (global clock) | 1e-3 | train replay | endpoint | 127,665 | **0.9999** | 284 | 0.25 |
+| new wiki TSD seed 43 (global clock) | 1e-3 | train replay | closure | 894,276 | **0.9999** | 189 | 0.25 |
+| new wiki TSD seed 43 (global clock) | 1e-3 | val / test | all | 367,557 | 1.000 | 190-282 | 0.25 |
+| new wiki TSD seed 43 (node-interaction clock) | 1e-3 | train replay | endpoint | 127,665 | 0.973 | 1756 | 0.244 |
+
+**Finding:** at the learning rate that every arm selected on tracking validation (1e-3), the selector
+pre-activation grows until **every** memory update takes the capped step: the content- and gap-dependent
+timing channel is inactive in the best-scoring TSD configuration (test MRR 0.7597 at seed 43 vs 0.7357 for the
+retained lr 3e-4 model whose selector was only 5.6% capped). Closure updates outnumber endpoint updates 7:1;
+zero physical gaps are rare (< 0.1%). Under the node-interaction clock 5.9% of endpoint updates have a zero gap
+(first observation, seen mask false) and the supplied gaps are ~10x larger on average (log10 3.6 vs 2.8 in
+seconds), but the selector is still 97% capped. **Consequence for the manuscript:** claims about selective,
+physically timed memory steps are not supported by the evaluated predictor at its selected learning rate; the
+model behaves as a fixed-step recurrence with capped ZOH transitions.
+
+**Clock comparison (wiki, seed 43, lr 1e-3, identical batching; `clock/`):** global batch gap 0.7597,
+time since the node's last interaction 0.7650 (+0.005, one seed; not evidence), time since last memory
+update: pending. **Batching diagnostic (same seed):** batch width 1200 s gives 0.7322 vs 0.7597 at 600 s
+(−0.027; the observation frontier moves later by 600 s on average and the number of processed updates halves);
+300 s pending. Cross-seed confirmation of the clock variants was not run (budget); they are single-seed pilots.
+
+(All aggregates, histograms of steps and gaps by activity class and split, and the learned timing parameters
+are in `clock_diagnostics.csv` and each run's `clock_*.csv` / `clock_learned_timing.json`.)
 
 ## 3. Matched comparisons (tgbl-wiki five seeds; thgl-forum subset)
 (wiki: filled from per_seed_results.csv / paired_contrasts.csv when wave 2 completes)
