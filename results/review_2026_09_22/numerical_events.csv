@@ -177,6 +177,7 @@ sw_nodeframe_s46,sw,thgl-software,node-frame,46,6916.0,0.0,0.0,42.0,0.0,0.0,0.0,
 sw_nodeframe_s47,sw,thgl-software,node-frame,47,6384.0,0.0,0.0,44.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
 wd_coreoff_s43,wd,tkgl-wikidata,core-off,43,116.0,0.0,0.0,21.0,0.0,0.0,0.0,0.0,2869900.0,0.0,0.0,0.0,2877500.0,0.0,True
 wd_coreoff_s46,wd,tkgl-wikidata,core-off,46,116.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,2869900.0,0.0,0.0,0.0,2877500.0,0.0,True
+wd_coreoff_s47,wd,tkgl-wikidata,core-off,47,116.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,2869900.0,0.0,0.0,0.0,2877500.0,0.0,True
 wd_gru_s43,wd,tkgl-wikidata,gru-ordinary,43,116.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,2869900.0,0.0,0.0,0.0,2877500.0,0.0,True
 wd_gru_s46,wd,tkgl-wikidata,gru-ordinary,46,116.0,0.0,0.0,16.0,0.0,0.0,0.0,0.0,2869900.0,0.0,0.0,0.0,2877500.0,0.0,True
 wd_gru_s47,wd,tkgl-wikidata,gru-ordinary,47,116.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,2869900.0,0.0,0.0,0.0,2877500.0,0.0,True

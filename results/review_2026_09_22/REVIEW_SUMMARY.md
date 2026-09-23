@@ -1,6 +1,6 @@
-# Review campaign summary (auto-generated 2026-09-23 11:45)
+# Review campaign summary (auto-generated 2026-09-23 12:05)
 
-260 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+261 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
@@ -73,7 +73,7 @@
 | tkgl-smallpedia                                                    | sp      | on    | current-only-maps | 0.01   |   5 | 0.604061 |   0.0106608   | 0.5897 / 0.6144 / 0.5959 / 0.6110 / 0.6092                                                                                                             |
 | tkgl-smallpedia                                                    | sp      | on    | identity-maps     | 0.01   |   3 | 0.613285 |   0.00626411  | 0.6182 / 0.6062 / 0.6154                                                                                                                               |
 | tkgl-smallpedia                                                    | sp      | on    | tsd-no-gap        | 0.01   |   3 | 0.610846 |   0.0053374   | 0.6160 / 0.6054 / 0.6112                                                                                                                               |
-| tkgl-wikidata                                                      | wd      | on    | core-off          | 0.003  |   2 | 0.534037 |   0.000165534 | 0.5339 / 0.5342                                                                                                                                        |
+| tkgl-wikidata                                                      | wd      | on    | core-off          | 0.003  |   3 | 0.533702 |   0.000590983 | 0.5339 / 0.5342 / 0.5330                                                                                                                               |
 | tkgl-wikidata                                                      | wd      | on    | current-only-maps | 0.003  |   1 | 0.538142 | nan           | 0.5381                                                                                                                                                 |
 | tkgl-wikidata                                                      | wd      | on    | gru-ordinary      | 0.003  |   3 | 0.535807 |   0.00147746  | 0.5358 / 0.5373 / 0.5343                                                                                                                               |
 | tkgl-wikidata                                                      | wd      | on    | identity-maps     | 0.003  |   1 | 0.533632 | nan           | 0.5336                                                                                                                                                 |
@@ -148,7 +148,7 @@
 | tkgl-polecat  | on    | gru-ordinary      |   0.003  |   0.003  |   2 |   0.243232 |   0.245384 |                0.00215269  |   0.00545513 |      0.0490124  | +0.0060 / -0.0017                               | 1+ 1-   |
 | tkgl-polecat  | on    | identity-maps     |   0.003  |   0.003  |   2 |   0.243199 |   0.244472 |                0.00127276  |   0.00474145 |      0.0426002  | +0.0046 / -0.0021                               | 1+ 1-   |
 | tkgl-polecat  | on    | tsd-no-gap        |   0.003  |   0.003  |   2 |   0.243199 |   0.242455 |               -0.000744294 |   0.00647983 |      0.058219   | +0.0038 / -0.0053                               | 1+ 1-   |
-| tkgl-wikidata | on    | core-off          |   0.003  |   0.003  |   2 |   0.543558 |   0.534037 |               -0.00952116  |   0.00899734 |      0.0808379  | -0.0032 / -0.0159                               | 0+ 2-   |
+| tkgl-wikidata | on    | core-off          |   0.003  |   0.003  |   3 |   0.539807 |   0.533702 |               -0.00610484  |   0.00868849 |      0.0215834  | -0.0032 / -0.0159 / +0.0007                     | 1+ 2-   |
 | tkgl-wikidata | on    | current-only-maps |   0.003  |   0.003  |   1 |   0.537079 |   0.538142 |                0.0010633   | nan          |    nan          | +0.0011                                         | 1+ 0-   |
 | tkgl-wikidata | on    | gru-ordinary      |   0.003  |   0.003  |   3 |   0.539807 |   0.535807 |               -0.00400061  |   0.00775642 |      0.019268   | -0.0013 / -0.0128 / +0.0020                     | 1+ 2-   |
 | tkgl-wikidata | on    | identity-maps     |   0.003  |   0.003  |   1 |   0.537079 |   0.533632 |               -0.00344682  | nan          |    nan          | -0.0034                                         | 0+ 1-   |
@@ -541,6 +541,8 @@
 | wd      | wd_coreoff_s43                      | test    |   2877500 |                  0 |               0 |         0 |            0 |            0 |      0.53392  |      0.53392  |           0.53392  |                           0 |                         0 |
 | wd      | wd_coreoff_s46                      | val     |   4069900 |                  0 |               0 |         0 |            0 |            0 |      0.654501 |      0.654501 |           0.654501 |                           0 |                         0 |
 | wd      | wd_coreoff_s46                      | test    |   2877500 |                  0 |               0 |         0 |            0 |            0 |      0.534154 |      0.534154 |           0.534154 |                           0 |                         0 |
+| wd      | wd_coreoff_s47                      | val     |   4069900 |                  0 |               0 |         0 |            0 |            0 |      0.660323 |      0.660323 |           0.660323 |                           0 |                         0 |
+| wd      | wd_coreoff_s47                      | test    |   2877500 |                  0 |               0 |         0 |            0 |            0 |      0.533034 |      0.533034 |           0.533034 |                           0 |                         0 |
 | wd      | wd_gru_s43                          | val     |   4069900 |                  0 |               0 |         0 |            0 |            0 |      0.633929 |      0.633929 |           0.633929 |                           0 |                         0 |
 | wd      | wd_gru_s43                          | test    |   2877500 |                  0 |               0 |         0 |            0 |            0 |      0.535805 |      0.535805 |           0.535805 |                           0 |                         0 |
 | wd      | wd_gru_s46                          | val     |   4069900 |                  0 |               0 |         0 |            0 |            0 |      0.636783 |      0.636783 |           0.636783 |                           0 |                         0 |
@@ -805,21 +807,21 @@
 | icews_tsd_recon_s44      | running/pending |            6 |          1 |
 | icews_tsd_recon_s45      | running/pending |            4 |          1 |
 | polecat_coreoff_s46      | running/pending |           10 |          1 |
-| polecat_gru_s46          | running/pending |            0 |          2 |
-| sp_attention_s43         | running/pending |            0 |          2 |
-| sp_attention_s46         | running/pending |            0 |          2 |
-| sp_attention_s47         | running/pending |            6 |          2 |
-| sp_coreoff_s46           | running/pending |            4 |          2 |
-| sp_coreoff_s47           | running/pending |            6 |          2 |
-| sp_curonly_s46           | running/pending |            2 |          2 |
+| polecat_gru_s46          | running/pending |            2 |          2 |
+| sp_attention_s43         | running/pending |            1 |          2 |
+| sp_attention_s46         | running/pending |           10 |          2 |
+| sp_attention_s47         | running/pending |           15 |          2 |
+| sp_coreoff_s46           | running/pending |           13 |          2 |
+| sp_coreoff_s47           | running/pending |           14 |          2 |
+| sp_curonly_s46           | running/pending |            6 |          2 |
 | sp_curonly_s47           | running/pending |            0 |          2 |
-| sp_diag_s43              | running/pending |            6 |          2 |
+| sp_diag_s43              | running/pending |           15 |          2 |
 | sp_diag_s46              | running/pending |            0 |          2 |
 | sp_diag_s47              | running/pending |            0 |          2 |
 | sp_gru_s43               | running/pending |            0 |          2 |
 | sp_gru_s46               | running/pending |            0 |          2 |
-| sp_gru_s47               | running/pending |            4 |          1 |
-| sp_identity_s43          | running/pending |            0 |          2 |
+| sp_gru_s47               | running/pending |            8 |          1 |
+| sp_identity_s43          | running/pending |            2 |          2 |
 | sp_identity_s46          | running/pending |            0 |          2 |
 | sp_identity_s47          | running/pending |            0 |          2 |
 | sp_nodeframe_s43         | running/pending |            0 |          2 |
@@ -828,5 +830,4 @@
 | sp_tsd_s43               | running/pending |            0 |          2 |
 | sp_tsd_s46               | running/pending |            0 |          2 |
 | sp_tsd_s47               | running/pending |            0 |          2 |
-| wd_coreoff_s47           | running/pending |            0 |          2 |
 
