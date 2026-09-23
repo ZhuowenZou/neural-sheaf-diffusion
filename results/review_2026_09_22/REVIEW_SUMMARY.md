@@ -1,4 +1,4 @@
-# Review campaign summary (auto-generated 2026-09-23 10:13)
+# Review campaign summary (auto-generated 2026-09-23 10:21)
 
 255 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
@@ -801,7 +801,7 @@
 | sp_attention_s43         | running/pending |            0 |          1 |
 | sp_attention_s46         | running/pending |            0 |          1 |
 | sp_attention_s47         | running/pending |            0 |          1 |
-| sp_coreoff_s43           | running/pending |            0 |          1 |
+| sp_coreoff_s43           | running/pending |            5 |          1 |
 | sp_coreoff_s46           | running/pending |            0 |          1 |
 | sp_coreoff_s47           | running/pending |            0 |          1 |
 | sp_curonly_s43           | running/pending |            0 |          1 |

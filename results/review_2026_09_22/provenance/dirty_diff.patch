@@ -1,149 +1,408 @@
 diff --git a/results/monitor/STATUS.md b/results/monitor/STATUS.md
-index b5d9207..311f6af 100644
+index 912a32f..58c02b2 100644
 --- a/results/monitor/STATUS.md
 +++ b/results/monitor/STATUS.md
-@@ -1,20 +1,20 @@
--# Monitor status (2026-09-23 08:09:46)
-+# Monitor status (2026-09-23 08:18:04)
+@@ -1,19 +1,19 @@
+-# Monitor status (2026-09-23 10:09:00)
++# Monitor status (2026-09-23 10:21:13)
  
  ## GPU free (GiB) and utilisation
--0:80GB(0%) 1:51GB(98%) 2:7GB(18%) 3:31GB(9%) 4:20GB(5%) 5:54GB(98%) 6:8GB(0%) 7:1GB(0%) 
--our GPU processes (pid:MiB): 2895041:18384MiB 4095829:14838MiB 4096930:13242MiB 4118762:18198MiB 708420:10394MiB 4096797:18198MiB 4097655:13604MiB 243990:18280MiB 4095645:17954MiB 4098149:13602MiB 4131532:11868MiB 4177163:18280MiB 2872725:18280MiB 2905507:18198MiB 4096471:18754MiB 4097379:18364MiB 2703991:18280MiB 2704074:18198MiB 4095975:15176MiB 4138403:16998MiB 166942:11868MiB 
-+0:80GB(0%) 1:51GB(99%) 2:5GB(0%) 3:31GB(6%) 4:20GB(10%) 5:54GB(98%) 6:8GB(0%) 7:3GB(10%) 
-+our GPU processes (pid:MiB): 2895041:18384MiB 4095829:14838MiB 4096930:13242MiB 4118762:18198MiB 708420:12242MiB 4096797:18198MiB 4097655:13604MiB 243990:18280MiB 4095645:17954MiB 4098149:13602MiB 4131532:11868MiB 4177163:18280MiB 2872725:18280MiB 2905507:18198MiB 4096471:18754MiB 4097379:18364MiB 2703991:18280MiB 2704074:18198MiB 4095975:15796MiB 4138403:16998MiB 166942:9530MiB 
+-0:80GB(0%) 1:51GB(97%) 2:15GB(20%) 3:29GB(0%) 4:29GB(7%) 5:54GB(100%) 6:8GB(6%) 7:11GB(0%) 
+-our GPU processes (pid:MiB): 2895041:18384MiB 4095829:15298MiB 4096930:14742MiB 4118762:18198MiB 4096797:18198MiB 4097655:15764MiB 243990:18280MiB 4095645:17954MiB 4131532:16108MiB 4177163:18280MiB 2872725:18280MiB 2905507:18198MiB 4096471:18754MiB 4097379:18364MiB 2703991:18280MiB 2704074:18198MiB 4095975:16976MiB 4138403:16998MiB 
++0:80GB(0%) 1:51GB(99%) 2:7GB(25%) 3:29GB(0%) 4:29GB(10%) 5:54GB(98%) 6:8GB(15%) 7:11GB(11%) 
++our GPU processes (pid:MiB): 4095829:15298MiB 4096930:15502MiB 4118762:18198MiB 1123413:25538MiB 4096797:18198MiB 4097655:15764MiB 243990:18280MiB 4095645:17954MiB 4131532:16108MiB 4177163:18280MiB 2872725:18280MiB 2905507:18198MiB 4096471:18754MiB 4097379:18364MiB 2703991:18280MiB 2704074:18198MiB 4095975:16976MiB 4138403:16998MiB 
  
  ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
  - gpu0: OURS
  - gpu1: colleague busy
--- gpu2: ELIGIBLE (idle 952 min)
--- gpu3: ELIGIBLE (idle 1181 min)
--- gpu4: ELIGIBLE (idle 1556 min)
-+- gpu2: ELIGIBLE (idle 960 min)
-+- gpu3: ELIGIBLE (idle 1189 min)
-+- gpu4: ELIGIBLE (idle 1564 min)
+-- gpu2: ELIGIBLE (idle 1071 min)
+-- gpu3: ELIGIBLE (idle 1300 min)
+-- gpu4: ELIGIBLE (idle 1675 min)
++- gpu2: ELIGIBLE (idle 1084 min)
++- gpu3: ELIGIBLE (idle 1312 min)
++- gpu4: ELIGIBLE (idle 1687 min)
  - gpu5: colleague busy
--- gpu6: ELIGIBLE (idle 712 min)
-+- gpu6: ELIGIBLE (idle 720 min)
+-- gpu6: ELIGIBLE (idle 831 min)
++- gpu6: ELIGIBLE (idle 844 min)
  - gpu7: OURS
--compensation: colleagues hold 0 MiB on our GPUs; we hold 260438 MiB on theirs; budget left -260438 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
--our launcher claims (pid:gpu/MiB): 4102471:2/11000 
-+compensation: colleagues hold 0 MiB on our GPUs; we hold 262286 MiB on theirs; budget left -262286 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
-+our launcher claims (pid:gpu/MiB): 
+-compensation: colleagues hold 0 MiB on our GPUs; we hold 244802 MiB on theirs; budget left -244802 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
++compensation: colleagues hold 0 MiB on our GPUs; we hold 252716 MiB on theirs; budget left -252716 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+ our launcher claims (pid:gpu/MiB): 
  
  ## leakfree2 benchmark runs
- - DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
-@@ -441,7 +441,7 @@ our launcher claims (pid:gpu/MiB): 4102471:2/11000
- - RUNNING  wd_coreoff_s47: 
- - DONE     wd_gru_s43: FINAL val_mrr=0.6441 test_mrr=0.5358 test_hits10=0.6006 eval_sec=1518.9
- - DONE     wd_gru_s46: FINAL val_mrr=0.6468 test_mrr=0.5373 test_hits10=0.6016 eval_sec=428.2
--- RUNNING  wd_gru_s47: epochs': 1, 'time_window': None, 'context_edges': 50000, 'train_edges_
-+- RUNNING  wd_gru_s47: final val_mrr=0.6428 (194.6s so far)
- - DONE     wiki_attention_s43_lr1e-3: FINAL val_mrr=0.7640 test_mrr=0.7521 test_hits10=0.8529 eval_sec=1291.5
- - DONE     wiki_attention_s43_lr3e-4: FINAL val_mrr=0.7487 test_mrr=0.7342 test_hits10=0.8470 eval_sec=1944.7
- - DONE     wiki_attention_s44_lr1e-3: FINAL val_mrr=0.7730 test_mrr=0.7604 test_hits10=0.8542 eval_sec=670.1
+@@ -233,7 +233,7 @@ our launcher claims (pid:gpu/MiB):
+ - RUNNING  icews_curonly_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+ - RUNNING  icews_curonly_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+ - DONE     icews_curonly_recon_s46: FINAL val_mrr=0.3172 test_mrr=0.3281 test_hits10=0.5230 eval_sec=28826.2
+-- RUNNING  icews_curonly_recon_s47: final val_mrr=0.3186 (19920.2s so far)
++- DONE     icews_curonly_recon_s47: FINAL val_mrr=0.3186 test_mrr=0.3275 test_hits10=0.5232 eval_sec=41702.5
+ - DONE     icews_gru_recon_s43: FINAL val_mrr=0.3211 test_mrr=0.3367 test_hits10=0.5374 eval_sec=35441.9
+ - RUNNING  icews_gru_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+ - RUNNING  icews_gru_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+@@ -254,7 +254,7 @@ our launcher claims (pid:gpu/MiB):
+ - RUNNING  sp_attention_s43: 
+ - RUNNING  sp_attention_s46: 
+ - RUNNING  sp_attention_s47: 
+-- RUNNING  sp_coreoff_s43: 
++- RUNNING  sp_coreoff_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+ - RUNNING  sp_coreoff_s46: 
+ - RUNNING  sp_coreoff_s47: 
+ - RUNNING  sp_curonly_s43: 
+diff --git a/results/monitor/STATUS.md.tmp b/results/monitor/STATUS.md.tmp
+deleted file mode 100644
+index 0823ab7..0000000
+--- a/results/monitor/STATUS.md.tmp
++++ /dev/null
+@@ -1,242 +0,0 @@
+-# Monitor status (2026-09-23 10:13:04)
+-
+-## GPU free (GiB) and utilisation
+-0:80GB(0%) 1:51GB(98%) 2:7GB(0%) 3:29GB(8%) 4:29GB(0%) 5:54GB(98%) 6:8GB(22%) 7:11GB(0%) 
+-our GPU processes (pid:MiB): 4095829:15298MiB 4096930:15502MiB 4118762:18198MiB 1123413:25538MiB 4096797:18198MiB 4097655:15764MiB 243990:18280MiB 4095645:17954MiB 4131532:16108MiB 4177163:18280MiB 2872725:18280MiB 2905507:18198MiB 4096471:18754MiB 4097379:18364MiB 2703991:18280MiB 2704074:18198MiB 4095975:16976MiB 4138403:16998MiB 
+-
+-## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
+-- gpu0: OURS
+-- gpu1: colleague busy
+-- gpu2: ELIGIBLE (idle 1075 min)
+-- gpu3: ELIGIBLE (idle 1304 min)
+-- gpu4: ELIGIBLE (idle 1679 min)
+-- gpu5: colleague busy
+-- gpu6: ELIGIBLE (idle 835 min)
+-- gpu7: OURS
+-compensation: colleagues hold 0 MiB on our GPUs; we hold 252716 MiB on theirs; budget left -252716 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+-our launcher claims (pid:gpu/MiB): 4098171:2/26000 
+-
+-## leakfree2 benchmark runs
+-- DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
+-- DONE     forum_abl_curonly_s46: FINAL val_mrr=0.5971 test_mrr=0.6099 test_hits10=0.6602 eval_sec=15402.1
+-- DONE     forum_abl_curonly_s47: FINAL val_mrr=0.6196 test_mrr=0.6336 test_hits10=0.7069 eval_sec=15598.7
+-- DONE     forum_abl_identity: FINAL val_mrr=0.6208 test_mrr=0.6313 test_hits10=0.6900 eval_sec=15757.5
+-- DONE     forum_abl_identity_s46: FINAL val_mrr=0.6438 test_mrr=0.6501 test_hits10=0.7030 eval_sec=13233.2
+-- DONE     forum_abl_identity_s47: FINAL val_mrr=0.6223 test_mrr=0.6324 test_hits10=0.6646 eval_sec=15315.4
+-- DONE     forum_abl_nodelta: FINAL val_mrr=0.6411 test_mrr=0.6475 test_hits10=0.7021 eval_sec=14480.7
+-- DONE     forum_abl_nodelta_s46: FINAL val_mrr=0.6119 test_mrr=0.6233 test_hits10=0.6927 eval_sec=15436.5
+-- DONE     forum_abl_nodelta_s47: FINAL val_mrr=0.6164 test_mrr=0.6302 test_hits10=0.6829 eval_sec=13155.2
+-- DONE     forum_abl_nomem: FINAL val_mrr=0.6425 test_mrr=0.6491 test_hits10=0.7006 eval_sec=12369.0
+-- DONE     forum_abl_nomem_s46: FINAL val_mrr=0.6405 test_mrr=0.6478 test_hits10=0.7022 eval_sec=13280.2
+-- DONE     forum_abl_nomem_s47: FINAL val_mrr=0.6468 test_mrr=0.6534 test_hits10=0.7064 eval_sec=18384.4
+-- DONE     forum_coreoff_norec: FINAL val_mrr=0.2536 test_mrr=0.2373 test_hits10=0.3462 eval_sec=13282.1
+-- DONE     forum_coreoff_norec_s46: FINAL val_mrr=0.2360 test_mrr=0.2202 test_hits10=0.3394 eval_sec=13394.2
+-- DONE     forum_coreoff_norec_s47: FINAL val_mrr=0.2488 test_mrr=0.2320 test_hits10=0.3502 eval_sec=15661.9
+-- DONE     forum_coreoff_rec: FINAL val_mrr=0.6020 test_mrr=0.6151 test_hits10=0.6475 eval_sec=12356.5
+-- DONE     forum_coreoff_rec_s46: FINAL val_mrr=0.6024 test_mrr=0.6151 test_hits10=0.6476 eval_sec=13589.2
+-- DONE     forum_coreoff_rec_s47: FINAL val_mrr=0.6042 test_mrr=0.6166 test_hits10=0.6489 eval_sec=14520.1
+-- DONE     forum_f_s43: FINAL val_mrr=0.6230 test_mrr=0.6280 test_hits10=0.6826 eval_sec=14452.3
+-- DONE     forum_f_s46: FINAL val_mrr=0.6345 test_mrr=0.6412 test_hits10=0.6944 eval_sec=19345.1
+-- DONE     forum_f_s47: FINAL val_mrr=0.6019 test_mrr=0.6187 test_hits10=0.6526 eval_sec=14716.3
+-- DONE     forum_norec_curonly: FINAL val_mrr=0.3910 test_mrr=0.3842 test_hits10=0.5674 eval_sec=14971.1
+-- DONE     forum_norec_curonly_s46: FINAL val_mrr=0.4163 test_mrr=0.4113 test_hits10=0.5450 eval_sec=13630.3
+-- DONE     forum_norec_full: FINAL val_mrr=0.4061 test_mrr=0.3940 test_hits10=0.5448 eval_sec=12101.5
+-- DONE     forum_norec_full_s46: FINAL val_mrr=0.4091 test_mrr=0.4007 test_hits10=0.5359 eval_sec=13410.1
+-- DONE     forum_norec_full_s47: FINAL val_mrr=0.3554 test_mrr=0.3470 test_hits10=0.5586 eval_sec=15436.6
+-- DONE     forum_norec_identity: FINAL val_mrr=0.2277 test_mrr=0.2204 test_hits10=0.4598 eval_sec=12034.8
+-- DONE     forum_norec_identity_s46: FINAL val_mrr=0.3414 test_mrr=0.3325 test_hits10=0.5274 eval_sec=13654.8
+-- DONE     forum_norec_identity_s47: FINAL val_mrr=0.3536 test_mrr=0.3257 test_hits10=0.5538 eval_sec=14931.7
+-- CRASHED  forum_norec_nodelta.fail1: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.14 GiB. GPU 0 ha
+-- DONE     forum_norec_nodelta: FINAL val_mrr=0.3654 test_mrr=0.3608 test_hits10=0.5053 eval_sec=13979.9
+-- DONE     forum_norec_nodelta_s46: FINAL val_mrr=0.3619 test_mrr=0.3514 test_hits10=0.5307 eval_sec=13516.1
+-- DONE     forum_norec_nodelta_s47: FINAL val_mrr=0.3913 test_mrr=0.3900 test_hits10=0.5559 eval_sec=14536.0
+-- DONE     forum_norec_nomem: FINAL val_mrr=0.4172 test_mrr=0.4087 test_hits10=0.5558 eval_sec=12361.0
+-- DONE     forum_norec_nomem_s46: FINAL val_mrr=0.3913 test_mrr=0.3829 test_hits10=0.5354 eval_sec=13478.9
+-- DONE     icews_abl_curonly: FINAL val_mrr=0.3158 test_mrr=0.3285 test_hits10=0.5268 eval_sec=31006.0
+-- DONE     icews_abl_identity: FINAL val_mrr=0.3220 test_mrr=0.3369 test_hits10=0.5400 eval_sec=31352.3
+-- DONE     icews_abl_nodelta_eval: FINAL val_mrr=0.3217 test_mrr=0.3375 test_hits10=0.5405 eval_sec=30072.7
+-- STOPPED? icews_abl_nodelta: eval_sec': 9897.9, 'peak_gpu_mem_mb': 8031.1} checkpoint saved: results/event_bench/leakfr
+-- DONE     icews_abl_nomem: FINAL val_mrr=0.3173 test_mrr=0.3295 test_hits10=0.5243 eval_sec=30898.4
+-- DONE     icews_abl_nomem_s46: FINAL val_mrr=0.3123 test_mrr=0.3269 test_hits10=0.5220 eval_sec=43085.6
+-- DONE     icews_coreoff_norec: FINAL val_mrr=0.0199 test_mrr=0.0172 test_hits10=0.0386 eval_sec=27904.6
+-- DONE     icews_coreoff_norec_s46: FINAL val_mrr=0.0244 test_mrr=0.0256 test_hits10=0.0594 eval_sec=37343.9
+-- DONE     icews_coreoff_rec: FINAL val_mrr=0.2980 test_mrr=0.3191 test_hits10=0.5215 eval_sec=31623.2
+-- CRASHED  icews_coreoff_rec_s46.fail1: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.85 GiB. GPU 0 ha
+-- DONE     icews_coreoff_rec_s46: FINAL val_mrr=0.2996 test_mrr=0.3114 test_hits10=0.5075 eval_sec=47950.5
+-- STOPPED? icews_eval_s43.fail1: A_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=$GPU PYTORCH_CUDA_ALLOC_CONF=expandable_seg
+-- DONE     icews_eval_s43: FINAL val_mrr=0.3235 test_mrr=0.3386 test_hits10=0.5405 eval_sec=48431.1
+-- DONE     icews_eval_s46: FINAL val_mrr=0.3227 test_mrr=0.3342 test_hits10=0.5288 eval_sec=39969.2
+-- DONE     icews_eval_s47: FINAL val_mrr=0.3088 test_mrr=0.3326 test_hits10=0.5270 eval_sec=35295.5
+-- TRAINED  icews_f_s43 (no final evaluation in this run): "best_track_val_mrr":0.273691654937466
+-- TRAINED  icews_f_s46 (no final evaluation in this run): "best_track_val_mrr":0.27220127267390487
+-- TRAINED  icews_f_s47 (no final evaluation in this run): "best_track_val_mrr":0.23980839967081943
+-- DONE     icews_norec_curonly: FINAL val_mrr=0.0253 test_mrr=0.0216 test_hits10=0.0567 eval_sec=30255.4
+-- STOPPED? icews_norec_curonly_s46.fail1: 28/magma-2.6.1/control/magma_internal.h:115: void magma_queue::setup_ptrArray(): Assertion
+-- DONE     icews_norec_curonly_s46: FINAL val_mrr=0.0305 test_mrr=0.0279 test_hits10=0.0596 eval_sec=36503.0
+-- DONE     icews_norec_full: FINAL val_mrr=0.0309 test_mrr=0.0280 test_hits10=0.0647 eval_sec=31366.9
+-- DONE     icews_norec_full_s46: FINAL val_mrr=0.0268 test_mrr=0.0204 test_hits10=0.0414 eval_sec=36045.2
+-- DONE     icews_norec_identity: FINAL val_mrr=0.0299 test_mrr=0.0250 test_hits10=0.0599 eval_sec=30654.2
+-- DONE     icews_norec_identity_s46: FINAL val_mrr=0.0308 test_mrr=0.0267 test_hits10=0.0608 eval_sec=39752.8
+-- DONE     icews_norec_nodelta: FINAL val_mrr=0.0297 test_mrr=0.0279 test_hits10=0.0705 eval_sec=31210.5
+-- DONE     icews_norec_nodelta_s46: FINAL val_mrr=0.0275 test_mrr=0.0240 test_hits10=0.0503 eval_sec=42848.8
+-- DONE     icews_norec_nomem: FINAL val_mrr=0.0304 test_mrr=0.0264 test_hits10=0.0563 eval_sec=30394.2
+-- DONE     icews_norec_nomem_s46: FINAL val_mrr=0.0230 test_mrr=0.0192 test_hits10=0.0478 eval_sec=38107.0
+-- DONE     polecat_abl_curonly: FINAL val_mrr=0.2544 test_mrr=0.2476 test_hits10=0.4007 eval_sec=8902.2
+-- DONE     polecat_abl_curonly_s46: FINAL val_mrr=0.2530 test_mrr=0.2468 test_hits10=0.3987 eval_sec=9213.1
+-- DONE     polecat_abl_identity: FINAL val_mrr=0.2508 test_mrr=0.2449 test_hits10=0.3971 eval_sec=8913.2
+-- DONE     polecat_abl_identity_s46: FINAL val_mrr=0.2501 test_mrr=0.2440 test_hits10=0.3942 eval_sec=9416.3
+-- DONE     polecat_abl_nodelta: FINAL val_mrr=0.2501 test_mrr=0.2441 test_hits10=0.3977 eval_sec=8365.3
+-- DONE     polecat_abl_nodelta_s46: FINAL val_mrr=0.2467 test_mrr=0.2408 test_hits10=0.3941 eval_sec=9158.4
+-- DONE     polecat_f_s43: FINAL val_mrr=0.2472 test_mrr=0.2403 test_hits10=0.3942 eval_sec=6834.8
+-- DONE     polecat_f_s46: FINAL val_mrr=0.2518 test_mrr=0.2461 test_hits10=0.3992 eval_sec=12421.2
+-- CRASHED  polecat_f_s46.oom: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 152.00 MiB. GPU 0 
+-- CRASHED  polecat_f_s47.fail1: torch.AcceleratorError: CUDA error: unspecified launch failure
+-- DONE     polecat_f_s47: FINAL val_mrr=0.2527 test_mrr=0.2462 test_hits10=0.3975 eval_sec=9563.2
+-- CRASHED  polecat_f_s47.oom: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.58 GiB. GPU 0 ha
+-- CRASHED  polecat_o_s43: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.70 GiB. GPU 0 ha
+-- DONE     sp_abl_curonly: FINAL val_mrr=0.6302 test_mrr=0.5959 test_hits10=0.7102 eval_sec=434.6
+-- CRASHED  sp_abl_curonly_s46.fail1: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 3.10 GiB. GPU 0 ha
+-- CRASHED  sp_abl_curonly_s46.fail2: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 3.10 GiB. GPU 0 ha
+-- DONE     sp_abl_curonly_s46: FINAL val_mrr=0.6414 test_mrr=0.6110 test_hits10=0.7118 eval_sec=445.4
+-- CRASHED  sp_abl_curonly_s47.fail1: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 3.44 GiB. GPU 0 ha
+-- DONE     sp_abl_curonly_s47: FINAL val_mrr=0.6430 test_mrr=0.6092 test_hits10=0.7119 eval_sec=432.3
+-- DONE     sp_abl_identity: FINAL val_mrr=0.6467 test_mrr=0.6182 test_hits10=0.7119 eval_sec=595.0
+-- DONE     sp_abl_identity_s46: FINAL val_mrr=0.6387 test_mrr=0.6062 test_hits10=0.7120 eval_sec=431.6
+-- CRASHED  sp_abl_identity_s47.fail1: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.33 GiB. GPU 0 ha
+-- DONE     sp_abl_identity_s47: FINAL val_mrr=0.6457 test_mrr=0.6154 test_hits10=0.7122 eval_sec=432.4
+-- DONE     sp_abl_nodelta: FINAL val_mrr=0.6453 test_mrr=0.6160 test_hits10=0.7129 eval_sec=447.2
+-- DONE     sp_abl_nodelta_s46: FINAL val_mrr=0.6386 test_mrr=0.6054 test_hits10=0.7125 eval_sec=460.9
+-- CRASHED  sp_abl_nodelta_s47.fail1: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.66 GiB. GPU 0 ha
+-- DONE     sp_abl_nodelta_s47: FINAL val_mrr=0.6413 test_mrr=0.6112 test_hits10=0.7139 eval_sec=430.9
+-- DONE     sp_f_s43: FINAL val_mrr=0.6460 test_mrr=0.6164 test_hits10=0.7146 eval_sec=609.1
+-- DONE     sp_f_s46: FINAL val_mrr=0.6383 test_mrr=0.6033 test_hits10=0.7132 eval_sec=631.7
+-- DONE     sp_f_s47: FINAL val_mrr=0.6442 test_mrr=0.6112 test_hits10=0.7107 eval_sec=576.2
+-- DONE     sp_o_s43: FINAL val_mrr=0.0263 test_mrr=0.0139 test_hits10=0.0207 eval_sec=652.5
+-- DONE     sw_abl_curonly: FINAL val_mrr=0.3805 test_mrr=0.4341 test_hits10=0.4720 eval_sec=1881.3
+-- DONE     sw_abl_curonly_s46: FINAL val_mrr=0.3854 test_mrr=0.4425 test_hits10=0.4863 eval_sec=741.0
+-- DONE     sw_abl_curonly_s47: FINAL val_mrr=0.3830 test_mrr=0.4397 test_hits10=0.4790 eval_sec=752.6
+-- DONE     sw_abl_identity: FINAL val_mrr=0.3802 test_mrr=0.4357 test_hits10=0.4742 eval_sec=1772.6
+-- DONE     sw_abl_identity_s46: FINAL val_mrr=0.3837 test_mrr=0.4408 test_hits10=0.4851 eval_sec=801.5
+-- DONE     sw_abl_identity_s47: FINAL val_mrr=0.3844 test_mrr=0.4410 test_hits10=0.4828 eval_sec=770.3
+-- DONE     sw_abl_nodelta: FINAL val_mrr=0.3828 test_mrr=0.4392 test_hits10=0.4814 eval_sec=1856.4
+-- DONE     sw_abl_nodelta_s46: FINAL val_mrr=0.3830 test_mrr=0.4397 test_hits10=0.4814 eval_sec=768.4
+-- DONE     sw_abl_nodelta_s47: FINAL val_mrr=0.3854 test_mrr=0.4391 test_hits10=0.4826 eval_sec=769.8
+-- DONE     sw_f_s43: FINAL val_mrr=0.3796 test_mrr=0.4360 test_hits10=0.4736 eval_sec=996.0
+-- DONE     sw_f_s46: FINAL val_mrr=0.3844 test_mrr=0.4400 test_hits10=0.4796 eval_sec=850.8
+-- DONE     sw_f_s47: FINAL val_mrr=0.3798 test_mrr=0.4369 test_hits10=0.4744 eval_sec=720.8
+-- DONE     sw_o_s43: FINAL val_mrr=0.0532 test_mrr=0.0623 test_hits10=0.1280 eval_sec=954.1
+-- DONE     wd_abl_curonly: FINAL val_mrr=0.6378 test_mrr=0.5381 test_hits10=0.6091 eval_sec=2486.3
+-- DONE     wd_abl_identity: FINAL val_mrr=0.6421 test_mrr=0.5336 test_hits10=0.5950 eval_sec=2739.5
+-- DONE     wd_abl_nodelta: FINAL val_mrr=0.6434 test_mrr=0.5362 test_hits10=0.5982 eval_sec=2572.1
+-- DONE     wd_f_s43: FINAL val_mrr=0.6440 test_mrr=0.5371 test_hits10=0.6018 eval_sec=2615.6
+-- CRASHED  wd_f_s43.oom: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 18.00 MiB. GPU 0 h
+-- DONE     wd_f_s46: FINAL val_mrr=0.6408 test_mrr=0.5500 test_hits10=0.6206 eval_sec=2745.6
+-- DONE     wd_f_s47: FINAL val_mrr=0.6405 test_mrr=0.5323 test_hits10=0.5952 eval_sec=3026.9
+-- DONE     wd_o_s43: FINAL val_mrr=0.0259 test_mrr=0.0245 test_hits10=0.0453 eval_sec=2470.4
+-- DONE     wiki_abl_curonly: FINAL val_mrr=0.7375 test_mrr=0.7253 test_hits10=0.8494 eval_sec=4025.7
+-- DONE     wiki_abl_curonly_s46: FINAL val_mrr=0.7464 test_mrr=0.7345 test_hits10=0.8507 eval_sec=1182.2
+-- DONE     wiki_abl_curonly_s47: FINAL val_mrr=0.7463 test_mrr=0.7332 test_hits10=0.8515 eval_sec=1372.5
+-- DONE     wiki_abl_identity: FINAL val_mrr=0.7402 test_mrr=0.7267 test_hits10=0.8484 eval_sec=4030.4
+-- DONE     wiki_abl_identity_s46: FINAL val_mrr=0.7441 test_mrr=0.7334 test_hits10=0.8493 eval_sec=1298.5
+-- DONE     wiki_abl_identity_s47: FINAL val_mrr=0.7412 test_mrr=0.7275 test_hits10=0.8492 eval_sec=1375.2
+-- DONE     wiki_abl_nodelta: FINAL val_mrr=0.7387 test_mrr=0.7295 test_hits10=0.8499 eval_sec=4044.2
+-- DONE     wiki_abl_nodelta_s46: FINAL val_mrr=0.7394 test_mrr=0.7246 test_hits10=0.8489 eval_sec=1346.7
+-- DONE     wiki_abl_nodelta_s47: FINAL val_mrr=0.7370 test_mrr=0.7252 test_hits10=0.8492 eval_sec=1315.7
+-- DONE     wiki_embhead: FINAL val_mrr=0.7369 test_mrr=0.7145 test_hits10=0.8467 eval_sec=4028.1
+-- DONE     wiki_f_s43: FINAL val_mrr=0.7521 test_mrr=0.7357 test_hits10=0.8478 eval_sec=1252.7
+-- DONE     wiki_f_s46: FINAL val_mrr=0.7447 test_mrr=0.7305 test_hits10=0.8499 eval_sec=1281.3
+-- DONE     wiki_f_s47: FINAL val_mrr=0.7438 test_mrr=0.7331 test_hits10=0.8509 eval_sec=1520.7
+-- DONE     wiki_o_s43: FINAL val_mrr=0.0201 test_mrr=0.0110 test_hits10=0.0163 eval_sec=971.4
+-
+-## review 2026-09-22 runs (results/review_2026_09_22/queue)
+-- DONE     audit2_sp_f_s47: FINAL val_mrr=0.6446 test_mrr=0.6103 test_hits10=0.7109 eval_sec=1237.2
+-- DONE     audit_forum_f_s43: FINAL val_mrr=0.6230 test_mrr=0.6280 test_hits10=0.6826 eval_sec=1159.1
+-- DONE     audit_forum_f_s46: FINAL val_mrr=0.6345 test_mrr=0.6412 test_hits10=0.6944 eval_sec=1370.3
+-- DONE     audit_forum_f_s47: FINAL val_mrr=0.6019 test_mrr=0.6187 test_hits10=0.6526 eval_sec=672.3
+-- DONE     audit_icews_eval_s43: FINAL val_mrr=0.3235 test_mrr=0.3386 test_hits10=0.5405 eval_sec=40340.6
+-- DONE     audit_icews_eval_s46: FINAL val_mrr=0.3227 test_mrr=0.3341 test_hits10=0.5288 eval_sec=40368.0
+-- DONE     audit_icews_eval_s47: FINAL val_mrr=0.3088 test_mrr=0.3326 test_hits10=0.5270 eval_sec=43434.6
+-- DONE     audit_polecat_f_s43: FINAL val_mrr=0.2472 test_mrr=0.2403 test_hits10=0.3942 eval_sec=11837.7
+-- DONE     audit_polecat_f_s46: FINAL val_mrr=0.2518 test_mrr=0.2461 test_hits10=0.3992 eval_sec=6365.5
+-- DONE     audit_polecat_f_s47: FINAL val_mrr=0.2527 test_mrr=0.2462 test_hits10=0.3974 eval_sec=9163.9
+-- DONE     audit_sp_f_s43: FINAL val_mrr=0.6460 test_mrr=0.6164 test_hits10=0.7146 eval_sec=1319.1
+-- DONE     audit_sp_f_s46: FINAL val_mrr=0.6383 test_mrr=0.6033 test_hits10=0.7132 eval_sec=2447.9
+-- DONE     audit_sp_f_s47: FINAL val_mrr=0.6447 test_mrr=0.6104 test_hits10=0.7110 eval_sec=1007.7
+-- DONE     audit_sw_f_s43: FINAL val_mrr=0.3796 test_mrr=0.4360 test_hits10=0.4736 eval_sec=1010.2
+-- DONE     audit_sw_f_s46: FINAL val_mrr=0.3844 test_mrr=0.4400 test_hits10=0.4796 eval_sec=1049.5
+-- DONE     audit_sw_f_s47: FINAL val_mrr=0.3798 test_mrr=0.4369 test_hits10=0.4744 eval_sec=1034.5
+-- DONE     audit_wd_f_s43: FINAL val_mrr=0.6440 test_mrr=0.5371 test_hits10=0.6018 eval_sec=4854.7
+-- DONE     audit_wd_f_s46: FINAL val_mrr=0.6408 test_mrr=0.5500 test_hits10=0.6206 eval_sec=4551.7
+-- DONE     audit_wd_f_s47: FINAL val_mrr=0.6405 test_mrr=0.5323 test_hits10=0.5952 eval_sec=2710.1
+-- DONE     audit_wiki_f_s43: FINAL val_mrr=0.7521 test_mrr=0.7357 test_hits10=0.8478 eval_sec=1335.3
+-- DONE     audit_wiki_f_s46: FINAL val_mrr=0.7447 test_mrr=0.7305 test_hits10=0.8499 eval_sec=1365.4
+-- DONE     audit_wiki_f_s47: FINAL val_mrr=0.7438 test_mrr=0.7331 test_hits10=0.8509 eval_sec=1344.9
+-- DONE     forum_attention_recoff_s43: FINAL val_mrr=0.2813 test_mrr=0.2700 test_hits10=0.5395 eval_sec=272.5
+-- DONE     forum_attention_recoff_s44: FINAL val_mrr=0.3527 test_mrr=0.3425 test_hits10=0.4362 eval_sec=393.4
+-- DONE     forum_attention_recoff_s45: FINAL val_mrr=0.3785 test_mrr=0.3683 test_hits10=0.5420 eval_sec=342.2
+-- DONE     forum_attention_recoff_s46: FINAL val_mrr=0.3512 test_mrr=0.3479 test_hits10=0.5726 eval_sec=607.6
+-- DONE     forum_attention_recoff_s47: FINAL val_mrr=0.3344 test_mrr=0.3197 test_hits10=0.4391 eval_sec=558.3
+-- DONE     forum_attention_recon_s44: FINAL val_mrr=0.6259 test_mrr=0.6378 test_hits10=0.6978 eval_sec=506.0
+-- DONE     forum_attention_recon_s45: FINAL val_mrr=0.6225 test_mrr=0.6337 test_hits10=0.6917 eval_sec=426.6
+-- DONE     forum_attention_recon_s46: FINAL val_mrr=0.6267 test_mrr=0.6368 test_hits10=0.6896 eval_sec=1017.9
+-- DONE     forum_attention_recon_s47: FINAL val_mrr=0.6219 test_mrr=0.6279 test_hits10=0.6671 eval_sec=679.9
+-- DONE     forum_attention_rec_s43: FINAL val_mrr=0.6036 test_mrr=0.6161 test_hits10=0.6592 eval_sec=1101.4
+-- DONE     forum_coreoff_recoff_s44: FINAL val_mrr=0.2401 test_mrr=0.2221 test_hits10=0.3488 eval_sec=318.8
+-- DONE     forum_coreoff_recoff_s45: FINAL val_mrr=0.2373 test_mrr=0.2195 test_hits10=0.3329 eval_sec=118.6
+-- DONE     forum_coreoff_recon_s44: FINAL val_mrr=0.6029 test_mrr=0.6161 test_hits10=0.6472 eval_sec=952.3
+-- DONE     forum_coreoff_recon_s45: FINAL val_mrr=0.6008 test_mrr=0.6144 test_hits10=0.6464 eval_sec=373.5
+-- DONE     forum_curonly_recoff_s44: FINAL val_mrr=0.3956 test_mrr=0.3884 test_hits10=0.5488 eval_sec=527.9
+-- DONE     forum_curonly_recoff_s45: FINAL val_mrr=0.3929 test_mrr=0.3873 test_hits10=0.5353 eval_sec=494.3
+-- DONE     forum_curonly_recon_s44: FINAL val_mrr=0.6356 test_mrr=0.6450 test_hits10=0.7029 eval_sec=1288.4
+-- DONE     forum_curonly_recon_s45: FINAL val_mrr=0.6256 test_mrr=0.6354 test_hits10=0.6790 eval_sec=581.8
+-- DONE     forum_diag_recoff_s43: FINAL val_mrr=0.2870 test_mrr=0.2728 test_hits10=0.5264 eval_sec=478.3
+-- DONE     forum_diag_recoff_s44: FINAL val_mrr=0.4122 test_mrr=0.4045 test_hits10=0.5510 eval_sec=356.2
+-- DONE     forum_diag_recoff_s45: FINAL val_mrr=0.3831 test_mrr=0.3764 test_hits10=0.5047 eval_sec=59.6
+-- DONE     forum_diag_recoff_s46: FINAL val_mrr=0.4201 test_mrr=0.4175 test_hits10=0.5615 eval_sec=396.2
+-- DONE     forum_diag_recoff_s47: FINAL val_mrr=0.4104 test_mrr=0.4024 test_hits10=0.5729 eval_sec=482.2
+-- DONE     forum_diag_recon_s43: FINAL val_mrr=0.6331 test_mrr=0.6444 test_hits10=0.6974 eval_sec=885.5
+-- DONE     forum_diag_recon_s44: FINAL val_mrr=0.6346 test_mrr=0.6430 test_hits10=0.6921 eval_sec=312.9
+-- DONE     forum_diag_recon_s45: FINAL val_mrr=0.6493 test_mrr=0.6564 test_hits10=0.7007 eval_sec=347.6
+-- DONE     forum_diag_recon_s46: FINAL val_mrr=0.6312 test_mrr=0.6429 test_hits10=0.7048 eval_sec=1240.8
+-- DONE     forum_diag_recon_s47: FINAL val_mrr=0.6414 test_mrr=0.6505 test_hits10=0.7100 eval_sec=1119.6
+-- DONE     forum_gru_norec_s43: FINAL val_mrr=0.3859 test_mrr=0.3827 test_hits10=0.5052 eval_sec=277.3
+-- DONE     forum_gru_norec_s46: FINAL val_mrr=0.3984 test_mrr=0.3932 test_hits10=0.5123 eval_sec=378.8
+-- DONE     forum_gru_norec_s47: FINAL val_mrr=0.3836 test_mrr=0.3807 test_hits10=0.5357 eval_sec=498.7
+-- DONE     forum_gru_recoff_s44: FINAL val_mrr=0.4007 test_mrr=0.3936 test_hits10=0.5236 eval_sec=666.3
+-- DONE     forum_gru_recoff_s45: FINAL val_mrr=0.3270 test_mrr=0.3308 test_hits10=0.5179 eval_sec=431.7
+-- DONE     forum_gru_recon_s44: FINAL val_mrr=0.6143 test_mrr=0.6233 test_hits10=0.6687 eval_sec=1008.6
+-- DONE     forum_gru_recon_s45: FINAL val_mrr=0.6456 test_mrr=0.6528 test_hits10=0.7038 eval_sec=979.2
+-- DONE     forum_gru_rec_s43: FINAL val_mrr=0.6414 test_mrr=0.6511 test_hits10=0.7034 eval_sec=1283.5
+-- DONE     forum_gru_rec_s46: FINAL val_mrr=0.6354 test_mrr=0.6418 test_hits10=0.6839 eval_sec=1156.1
+-- DONE     forum_gru_rec_s47: FINAL val_mrr=0.6313 test_mrr=0.6414 test_hits10=0.6882 eval_sec=1338.9
+-- DONE     forum_identity_recoff_s44: FINAL val_mrr=0.3195 test_mrr=0.3144 test_hits10=0.5305 eval_sec=360.6
+-- DONE     forum_identity_recoff_s45: FINAL val_mrr=0.4180 test_mrr=0.4118 test_hits10=0.5658 eval_sec=362.3
+-- DONE     forum_identity_recon_s44: FINAL val_mrr=0.6299 test_mrr=0.6413 test_hits10=0.6996 eval_sec=141.3
+-- DONE     forum_identity_recon_s45: FINAL val_mrr=0.6340 test_mrr=0.6445 test_hits10=0.6897 eval_sec=650.9
+-- DONE     forum_nodeframe_recoff_s43: FINAL val_mrr=0.4044 test_mrr=0.3980 test_hits10=0.5653 eval_sec=470.7
+-- DONE     forum_nodeframe_recoff_s44: FINAL val_mrr=0.4222 test_mrr=0.4138 test_hits10=0.5538 eval_sec=388.8
+-- DONE     forum_nodeframe_recoff_s45: FINAL val_mrr=0.3749 test_mrr=0.3638 test_hits10=0.5210 eval_sec=380.0
+-- DONE     forum_nodeframe_recoff_s46: FINAL val_mrr=0.4043 test_mrr=0.4011 test_hits10=0.5618 eval_sec=560.1
+-- DONE     forum_nodeframe_recoff_s47: FINAL val_mrr=0.3527 test_mrr=0.3345 test_hits10=0.5339 eval_sec=424.2
+-- DONE     forum_nodeframe_recon_s44: FINAL val_mrr=0.6338 test_mrr=0.6430 test_hits10=0.6992 eval_sec=328.0
+-- DONE     forum_nodeframe_recon_s45: FINAL val_mrr=0.6446 test_mrr=0.6516 test_hits10=0.7128 eval_sec=375.6
+-- DONE     forum_nodeframe_recon_s46: FINAL val_mrr=0.6341 test_mrr=0.6450 test_hits10=0.7007 eval_sec=791.2
+-- DONE     forum_nodeframe_recon_s47: FINAL val_mrr=0.6101 test_mrr=0.6262 test_hits10=0.6702 eval_sec=784.2
+-- DONE     forum_nodeframe_rec_s43: FINAL val_mrr=0.6249 test_mrr=0.6336 test_hits10=0.6778 eval_sec=1135.3
+-- DONE     forum_tsd_recoff_s44: FINAL val_mrr=0.2302 test_mrr=0.2323 test_hits10=0.3730 eval_sec=649.7
+-- DONE     forum_tsd_recoff_s45: FINAL val_mrr=0.3965 test_mrr=0.3906 test_hits10=0.5333 eval_sec=479.6
+-- DONE     forum_tsd_recon_s44: FINAL val_mrr=0.6054 test_mrr=0.6220 test_hits10=0.6706 eval_sec=680.6
+-- DONE     forum_tsd_recon_s45: FINAL val_mrr=0.6072 test_mrr=0.6170 test_hits10=0.6622 eval_sec=734.2
+-- RUNNING  icews_coreoff_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+-- RUNNING  icews_coreoff_recon_s45: epoch 5 (patience 3)
+-- DONE     icews_coreoff_recon_s47: FINAL val_mrr=0.2922 test_mrr=0.3005 test_hits10=0.4917 eval_sec=34811.8
+-- RUNNING  icews_curonly_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+-- RUNNING  icews_curonly_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+-- DONE     icews_curonly_recon_s46: FINAL val_mrr=0.3172 test_mrr=0.3281 test_hits10=0.5230 eval_sec=28826.2
+-- DONE     icews_curonly_recon_s47: FINAL val_mrr=0.3186 test_mrr=0.3275 test_hits10=0.5232 eval_sec=41702.5
+-- DONE     icews_gru_recon_s43: FINAL val_mrr=0.3211 test_mrr=0.3367 test_hits10=0.5374 eval_sec=35441.9
+-- RUNNING  icews_gru_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+-- RUNNING  icews_gru_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+-- RUNNING  icews_gru_recon_s46: final val_mrr=0.3225 (17203.5s so far)
+-- RUNNING  icews_gru_recon_s47: final val_mrr=0.3213 (17509.9s so far)
+-- RUNNING  icews_identity_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 diff --git a/results/monitor/agent.log b/results/monitor/agent.log
-index f385539..4b49ab4 100644
+index ad301b5..75c7b55 100644
 --- a/results/monitor/agent.log
 +++ b/results/monitor/agent.log
-@@ -447,3 +447,6 @@
- 2026-09-23 08:00:38 committed 30 paths (collected 250 finished runs, 48 unfinished; fingerprint 3731171041)
- 2026-09-23 08:00:44 pushed to origin/review-2026-09-22 (4d7f6c9 agent: results snapshot 2026-09-23 08:00 (collected )
- 2026-09-23 08:00:45 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_curonly_recon_s47 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_gru_recon_s47 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_identity_recon_s47 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_coreoff_s43 polecat_coreoff_s46 polecat_coreoff_s47 polecat_gru_s43 polecat_gru_s46 polecat_gru_s47 sp_attention_s43 sp_attention_s46 sp_attention_s47 sp_coreoff_s43 sp_coreoff_s46 sp_coreoff_s47 sp_curonly_s43 sp_curonly_s46 sp_curonly_s47 sp_diag_s43 sp_diag_s46 sp_diag_s47 sp_gru_s43 sp_gru_s46 sp_gru_s47 sp_identity_s43 sp_identity_s46 sp_identity_s47 sp_nodeframe_s43 sp_nodeframe_s46 sp_nodeframe_s47 sp_tsd_s43 sp_tsd_s46 sp_tsd_s47 sw_nodeframe_s43 wd_coreoff_s47 wd_gru_s47 ] pending-launchers 68 free-GiB 80 51 7 31 20 54 8 3 
-+2026-09-23 08:10:55 committed 20 paths (collected 251 finished runs, 47 unfinished; fingerprint 1112101122)
-+2026-09-23 08:11:09 pushed to origin/review-2026-09-22 (ec5de15 agent: results snapshot 2026-09-23 08:10 (collected )
-+2026-09-23 08:11:10 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_curonly_recon_s47 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_gru_recon_s47 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_identity_recon_s47 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_coreoff_s43 polecat_coreoff_s46 polecat_coreoff_s47 polecat_gru_s43 polecat_gru_s46 polecat_gru_s47 sp_attention_s43 sp_attention_s46 sp_attention_s47 sp_coreoff_s43 sp_coreoff_s46 sp_coreoff_s47 sp_curonly_s43 sp_curonly_s46 sp_curonly_s47 sp_diag_s43 sp_diag_s46 sp_diag_s47 sp_gru_s43 sp_gru_s46 sp_gru_s47 sp_identity_s43 sp_identity_s46 sp_identity_s47 sp_nodeframe_s43 sp_nodeframe_s46 sp_nodeframe_s47 sp_tsd_s43 sp_tsd_s46 sp_tsd_s47 wd_coreoff_s47 wd_gru_s47 ] pending-launchers 72 free-GiB 80 51 7 31 20 54 8 1 
+@@ -467,3 +467,6 @@
+ 2026-09-23 10:03:11 committed 19 paths (collected 254 finished runs, 44 unfinished; fingerprint 756721453)
+ 2026-09-23 10:03:16 pushed to origin/review-2026-09-22 (5009164 agent: results snapshot 2026-09-23 10:03 (collected )
+ 2026-09-23 10:03:17 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_curonly_recon_s47 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_gru_recon_s47 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_identity_recon_s47 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_coreoff_s43 polecat_coreoff_s46 polecat_gru_s43 polecat_gru_s46 sp_attention_s43 sp_attention_s46 sp_attention_s47 sp_coreoff_s43 sp_coreoff_s46 sp_coreoff_s47 sp_curonly_s43 sp_curonly_s46 sp_curonly_s47 sp_diag_s43 sp_diag_s46 sp_diag_s47 sp_gru_s43 sp_gru_s46 sp_gru_s47 sp_identity_s43 sp_identity_s46 sp_identity_s47 sp_nodeframe_s43 sp_nodeframe_s46 sp_nodeframe_s47 sp_tsd_s43 sp_tsd_s46 sp_tsd_s47 wd_coreoff_s47 ] pending-launchers 47 free-GiB 80 51 15 30 29 54 8 11 
++2026-09-23 10:13:27 committed 19 paths (collected 255 finished runs, 43 unfinished; fingerprint 602827505)
++2026-09-23 10:13:29 pushed to origin/review-2026-09-22 (bc5ef4c agent: results snapshot 2026-09-23 10:13 (collected )
++2026-09-23 10:13:30 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_gru_recon_s47 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_identity_recon_s47 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_coreoff_s43 polecat_coreoff_s46 polecat_gru_s43 polecat_gru_s46 sp_attention_s43 sp_attention_s46 sp_attention_s47 sp_coreoff_s43 sp_coreoff_s46 sp_coreoff_s47 sp_curonly_s43 sp_curonly_s46 sp_curonly_s47 sp_diag_s43 sp_diag_s46 sp_diag_s47 sp_gru_s43 sp_gru_s46 sp_gru_s47 sp_identity_s43 sp_identity_s46 sp_identity_s47 sp_nodeframe_s43 sp_nodeframe_s46 sp_nodeframe_s47 sp_tsd_s43 sp_tsd_s46 sp_tsd_s47 wd_coreoff_s47 ] pending-launchers 44 free-GiB 80 51 7 29 29 54 8 11 
 diff --git a/results/monitor/gpu_log.csv b/results/monitor/gpu_log.csv
-index 897c774..18cd7f2 100644
+index e1421a4..fdd6bf7 100644
 --- a/results/monitor/gpu_log.csv
 +++ b/results/monitor/gpu_log.csv
-@@ -49262,3 +49262,19 @@
- 2026-09-23 08:09:46,5,26833,81920,98
- 2026-09-23 08:09:46,6,73624,81920,24
- 2026-09-23 08:09:46,7,80554,81920,21
-+2026-09-23 08:13:56,0,4,81920,0
-+2026-09-23 08:13:56,1,29795,81920,100
-+2026-09-23 08:13:56,2,75238,81920,33
-+2026-09-23 08:13:56,3,50109,81920,0
-+2026-09-23 08:13:56,4,61736,81920,0
-+2026-09-23 08:13:56,5,26833,81920,98
-+2026-09-23 08:13:56,6,73624,81920,0
-+2026-09-23 08:13:56,7,80064,81920,19
-+2026-09-23 08:18:04,0,4,81920,0
-+2026-09-23 08:18:04,1,29795,81920,98
-+2026-09-23 08:18:04,2,76938,81920,0
-+2026-09-23 08:18:04,3,50109,81920,5
-+2026-09-23 08:18:04,4,61736,81920,24
-+2026-09-23 08:18:04,5,26833,81920,87
-+2026-09-23 08:18:04,6,73624,81920,6
-+2026-09-23 08:18:04,7,78836,81920,44
+@@ -49502,3 +49502,19 @@
+ 2026-09-23 10:13:04,5,26833,81920,71
+ 2026-09-23 10:13:04,6,73624,81920,0
+ 2026-09-23 10:13:04,7,70480,81920,36
++2026-09-23 10:17:09,0,4,81920,0
++2026-09-23 10:17:09,1,29795,81920,99
++2026-09-23 10:17:09,2,74564,81920,5
++2026-09-23 10:17:09,3,52269,81920,9
++2026-09-23 10:17:09,4,52369,81920,14
++2026-09-23 10:17:09,5,26833,81920,98
++2026-09-23 10:17:09,6,73624,81920,7
++2026-09-23 10:17:09,7,70480,81920,6
++2026-09-23 10:21:13,0,4,81920,0
++2026-09-23 10:21:13,1,29795,81920,100
++2026-09-23 10:21:13,2,74564,81920,68
++2026-09-23 10:21:13,3,52269,81920,9
++2026-09-23 10:21:13,4,52369,81920,11
++2026-09-23 10:21:13,5,26833,81920,100
++2026-09-23 10:21:13,6,73624,81920,16
++2026-09-23 10:21:13,7,70480,81920,15
 diff --git a/results/review_2026_09_22/CODE_COMMIT.txt b/results/review_2026_09_22/CODE_COMMIT.txt
-index bb1f7b3..d07c1c4 100644
+index d07c1c4..fc4b297 100644
 --- a/results/review_2026_09_22/CODE_COMMIT.txt
 +++ b/results/review_2026_09_22/CODE_COMMIT.txt
 @@ -1 +1 @@
--da685a8dc660f52d2b6b9d6ededdaf6fbdd30dec
-+ec5de156d0371f859ee1d5b17f69a6ece82323be
+-ec5de156d0371f859ee1d5b17f69a6ece82323be
++bc5ef4cabb1babcebcfacfcd2e3820be67ddf707
 diff --git a/results/review_2026_09_22/REVIEW_SUMMARY.md b/results/review_2026_09_22/REVIEW_SUMMARY.md
-index c7df022..4c03113 100644
+index ad95a6a..0323706 100644
 --- a/results/review_2026_09_22/REVIEW_SUMMARY.md
 +++ b/results/review_2026_09_22/REVIEW_SUMMARY.md
 @@ -1,4 +1,4 @@
--# Review campaign summary (auto-generated 2026-09-23 08:10)
-+# Review campaign summary (auto-generated 2026-09-23 08:18)
+-# Review campaign summary (auto-generated 2026-09-23 10:13)
++# Review campaign summary (auto-generated 2026-09-23 10:21)
  
- 251 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+ 255 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
  
-@@ -814,5 +814,5 @@
- | sp_tsd_s46               | running/pending |            0 |          1 |
- | sp_tsd_s47               | running/pending |            0 |          1 |
- | wd_coreoff_s47           | running/pending |            0 |          1 |
--| wd_gru_s47               | running/pending |            0 |          1 |
-+| wd_gru_s47               | running/pending |            4 |          1 |
- 
-diff --git a/results/review_2026_09_22/queue/wd_gru_s47.log b/results/review_2026_09_22/queue/wd_gru_s47.log
-index bd21a33..d9ab607 100644
---- a/results/review_2026_09_22/queue/wd_gru_s47.log
-+++ b/results/review_2026_09_22/queue/wd_gru_s47.log
-@@ -8,3 +8,10 @@ delta_time_scale=1 (Delta_k is measured in units of the median training inter-sn
+@@ -801,7 +801,7 @@
+ | sp_attention_s43         | running/pending |            0 |          1 |
+ | sp_attention_s46         | running/pending |            0 |          1 |
+ | sp_attention_s47         | running/pending |            0 |          1 |
+-| sp_coreoff_s43           | running/pending |            0 |          1 |
++| sp_coreoff_s43           | running/pending |            5 |          1 |
+ | sp_coreoff_s46           | running/pending |            0 |          1 |
+ | sp_coreoff_s47           | running/pending |            0 |          1 |
+ | sp_curonly_s43           | running/pending |            0 |          1 |
+diff --git a/results/review_2026_09_22/queue/sp_coreoff_s43.log b/results/review_2026_09_22/queue/sp_coreoff_s43.log
+index 4e8f8a9..6011946 100644
+--- a/results/review_2026_09_22/queue/sp_coreoff_s43.log
++++ b/results/review_2026_09_22/queue/sp_coreoff_s43.log
+@@ -8,3 +8,8 @@ delta_time_scale=1 (Delta_k is measured in units of the median training inter-sn
  protocol: predict-from-previous-state (leak-free) for training and evaluation
- parameter_count=56401 num_relations=1192 num_nodes=1226440
- parameters_by_component={'embeddings': 19072, 'ssm_input_selector_B': 0, 'ssm_other': 12769, 'map_decoder': 64, 'spatial_block': 1958, 'scorer': 22361, 'rec': 177, 'other': 0, 'total': 56401, 'trainable': 56401, 'unused_by_construction': 64, 'active': 56337}
-+[epoch 1/4] {'epoch': 1, 'train_loss': 0.494834001722007, 'track_val_mrr': 0.4783873204464093, 'track_val_loss': 0.5753120183944702, 'train_sec': 8.1, 'track_eval_sec': 21.6, 'peak_gpu_mem_mb': 3968.7, 'peak_gpu_reserved_mb': 10032.0, 'epoch_steps': 29, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 2/4] {'epoch': 2, 'train_loss': 0.20373256144852475, 'track_val_mrr': 0.6742988666477551, 'track_val_loss': 0.44211626052856445, 'train_sec': 6.9, 'track_eval_sec': 20.4, 'peak_gpu_mem_mb': 4193.2, 'peak_gpu_reserved_mb': 10032.0, 'epoch_steps': 29, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 3/4] {'epoch': 3, 'train_loss': 0.15289805726758365, 'track_val_mrr': 0.7244417311759541, 'track_val_loss': 0.3740350604057312, 'train_sec': 6.9, 'track_eval_sec': 20.6, 'peak_gpu_mem_mb': 4193.2, 'peak_gpu_reserved_mb': 10032.0, 'epoch_steps': 29, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 4/4] {'epoch': 4, 'train_loss': 0.1424891447712635, 'track_val_mrr': 0.7270270808935662, 'track_val_loss': 0.39046207070350647, 'train_sec': 6.8, 'track_eval_sec': 20.3, 'peak_gpu_mem_mb': 4193.2, 'peak_gpu_reserved_mb': 10032.0, 'epoch_steps': 29, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+checkpoint saved: results/review_2026_09_22/wd/wd_gru_s47/best.pt
-+final val_mrr=0.6428 (194.6s so far)
-+FINAL val_mrr=0.6428 test_mrr=0.5343 test_hits10=0.5981 eval_sec=391.5
+ parameter_count=652961 num_relations=566 num_nodes=47433
+ parameters_by_component={'embeddings': 9056, 'ssm_input_selector_B': 620928, 'ssm_other': 4261, 'map_decoder': 4288, 'spatial_block': 2532, 'scorer': 11719, 'rec': 177, 'other': 0, 'total': 652961, 'trainable': 652961, 'unused_by_construction': 625785, 'active': 27176}
++[epoch 1/15] {'epoch': 1, 'train_loss': 0.13803549099367918, 'track_val_mrr': 0.529108073580265, 'track_val_loss': 0.15153740346431732, 'train_sec': 5.0, 'track_eval_sec': 114.8, 'peak_gpu_mem_mb': 9230.2, 'peak_gpu_reserved_mb': 25028.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 5, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
++[epoch 2/15] {'epoch': 2, 'train_loss': 0.06426548433595712, 'track_val_mrr': 0.53165145555377, 'track_val_loss': 0.14581526815891266, 'train_sec': 4.2, 'track_eval_sec': 108.2, 'peak_gpu_mem_mb': 9244.6, 'peak_gpu_reserved_mb': 25028.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
++[epoch 3/15] {'epoch': 3, 'train_loss': 0.061873108206182414, 'track_val_mrr': 0.5434591813325882, 'track_val_loss': 0.14420998096466064, 'train_sec': 4.3, 'track_eval_sec': 115.3, 'peak_gpu_mem_mb': 9244.6, 'peak_gpu_reserved_mb': 25028.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
++[epoch 4/15] {'epoch': 4, 'train_loss': 0.0611945927219907, 'track_val_mrr': 0.5573572494888306, 'track_val_loss': 0.14255638420581818, 'train_sec': 4.0, 'track_eval_sec': 117.6, 'peak_gpu_mem_mb': 9244.6, 'peak_gpu_reserved_mb': 25028.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
++[epoch 5/15] {'epoch': 5, 'train_loss': 0.06074063153457396, 'track_val_mrr': 0.5668412332570553, 'track_val_loss': 0.14143376052379608, 'train_sec': 4.4, 'track_eval_sec': 116.4, 'peak_gpu_mem_mb': 9244.6, 'peak_gpu_reserved_mb': 25028.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
 diff --git a/results/review_2026_09_22/tables_review.tex b/results/review_2026_09_22/tables_review.tex
-index 965fef9..d4b229f 100644
+index d4b229f..e5fdd9d 100644
 --- a/results/review_2026_09_22/tables_review.tex
 +++ b/results/review_2026_09_22/tables_review.tex
-@@ -65,10 +65,10 @@ TSD (memory-conditioned incidence maps) & 0.001 & 3 (43,46,47) & -- & 0.438 $\pm
- Current-only maps & 0.001 & 3 (43,46,47) & -- & 0.439 $\pm$ 0.004 & +0.0012 $\pm$ 0.0027; $\pm$0.0066 & 2+ 1- \\
- Identity maps & 0.001 & 3 (43,46,47) & -- & 0.439 $\pm$ 0.003 & +0.0016 $\pm$ 0.0023; $\pm$0.0058 & 2+ 1- \\
- GRU + ordinary propagation & 0.001 & 3 (43,46,47) & 37159 & 0.438 $\pm$ 0.003 & +0.0007 $\pm$ 0.0018; $\pm$0.0046 & 2+ 1- \\
--Diagonal SSM + ordinary propagation & 0.001 & 2 (43,47) & 11915 & 0.436 $\pm$ 0.002 & -0.0003 $\pm$ 0.0021; $\pm$0.0189 & 1+ 1- \\
-+Diagonal SSM + ordinary propagation & 0.001 & 3 (43,46,47) & 11915 & 0.437 $\pm$ 0.002 & -0.0003 $\pm$ 0.0015; $\pm$0.0037 & 1+ 2- \\
- History-conditioned edge gates & 0.001 & 3 (43,46,47) & 630924 & 0.443 $\pm$ 0.001 & +0.0052 $\pm$ 0.0024; $\pm$0.0059 & 3+ 0- \\
--Node-frame geometry & 0.001 & 2 (46,47) & 630859 & 0.440 $\pm$ 0.001 & +0.0014 $\pm$ 0.0017; $\pm$0.0151 & 2+ 0- \\
--Core off + REC (head only) & 0.001 & 2 (43,46) & 9168 & 0.429 $\pm$ 0.000 & -0.0089 $\pm$ 0.0024; $\pm$0.0219 & 0+ 2- \\
-+Node-frame geometry & 0.001 & 3 (43,46,47) & 630859 & 0.439 $\pm$ 0.002 & +0.0012 $\pm$ 0.0013; $\pm$0.0031 & 3+ 0- \\
-+Core off + REC (head only) & 0.001 & 3 (43,46,47) & 9168 & 0.428 $\pm$ 0.001 & -0.0092 $\pm$ 0.0018; $\pm$0.0044 & 0+ 3- \\
- \bottomrule\end{tabular}\end{table}
- 
- \begin{table}[t]\centering\small
-@@ -78,11 +78,11 @@ Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ S
+@@ -76,7 +76,7 @@ Core off + REC (head only) & 0.001 & 3 (43,46,47) & 9168 & 0.428 $\pm$ 0.001 & -
+ \begin{tabular}{lcccrll}\toprule
+ Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
  TSD (memory-conditioned incidence maps) & 0.003 & 3 (43,46,47) & -- & 0.335 $\pm$ 0.003 & -- &  \\
- Current-only maps & 0.003 & 2 (43,46) & 660043 & 0.328 $\pm$ 0.000 & -0.0081 $\pm$ 0.0028; $\pm$0.0254 & 0+ 2- \\
+-Current-only maps & 0.003 & 2 (43,46) & 660043 & 0.328 $\pm$ 0.000 & -0.0081 $\pm$ 0.0028; $\pm$0.0254 & 0+ 2- \\
++Current-only maps & 0.003 & 3 (43,46,47) & 660043 & 0.328 $\pm$ 0.000 & -0.0071 $\pm$ 0.0026; $\pm$0.0066 & 0+ 3- \\
  Identity maps & 0.003 & 1 (43) & -- & 0.337 $\pm$ -- & -0.0018 $\pm$ --; $\pm$-- & 0+ 1- \\
+ GRU + ordinary propagation & 0.003 & 1 (43) & 62247 & 0.337 $\pm$ -- & -0.0019 $\pm$ --; $\pm$-- & 0+ 1- \\
+ Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
+@@ -92,11 +92,11 @@ Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ S
+ TSD (memory-conditioned incidence maps) & 0.003 & 3 (43,46,47) & -- & 0.244 $\pm$ 0.003 & -- &  \\
+ Current-only maps & 0.003 & 2 (43,46) & -- & 0.247 $\pm$ 0.001 & +0.0040 $\pm$ 0.0047; $\pm$0.0421 & 2+ 0- \\
+ Identity maps & 0.003 & 2 (43,46) & -- & 0.244 $\pm$ 0.001 & +0.0013 $\pm$ 0.0047; $\pm$0.0426 & 1+ 1- \\
 -GRU + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
-+GRU + ordinary propagation & 0.003 & 1 (43) & 62247 & 0.337 $\pm$ -- & -0.0019 $\pm$ --; $\pm$-- & 0+ 1- \\
++GRU + ordinary propagation & 0.003 & 1 (47) & 37497 & 0.244 $\pm$ -- & -0.0017 $\pm$ --; $\pm$-- & 0+ 1- \\
  Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
  History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
  Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
--Core off + REC (head only) & 0.003 & 2 (43,46) & -- & 0.315 $\pm$ 0.005 & -0.0212 $\pm$ 0.0023; $\pm$0.0206 & 0+ 2- \\
-+Core off + REC (head only) & 0.003 & 3 (43,46,47) & 34256 & 0.310 $\pm$ 0.009 & -0.0248 $\pm$ 0.0065; $\pm$0.0162 & 0+ 3- \\
+-Core off + REC (head only) & \multicolumn{6}{l}{not evaluated} \\
++Core off + REC (head only) & 0.003 & 1 (47) & 9506 & 0.225 $\pm$ -- & -0.0214 $\pm$ --; $\pm$-- & 0+ 1- \\
  \bottomrule\end{tabular}\end{table}
  
  \begin{table}[t]\centering\small
+@@ -120,7 +120,7 @@ Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ S
+ TSD (memory-conditioned incidence maps) & 0.003 & 3 (43,46,47) & -- & 0.540 $\pm$ 0.009 & -- &  \\
+ Current-only maps & 0.003 & 1 (43) & -- & 0.538 $\pm$ -- & +0.0011 $\pm$ --; $\pm$-- & 1+ 0- \\
+ Identity maps & 0.003 & 1 (43) & -- & 0.534 $\pm$ -- & -0.0034 $\pm$ --; $\pm$-- & 0+ 1- \\
+-GRU + ordinary propagation & 0.003 & 2 (43,46) & 56337 & 0.537 $\pm$ 0.001 & -0.0070 $\pm$ 0.0081; $\pm$0.0729 & 0+ 2- \\
++GRU + ordinary propagation & 0.003 & 3 (43,46,47) & 56337 & 0.536 $\pm$ 0.001 & -0.0040 $\pm$ 0.0078; $\pm$0.0193 & 1+ 2- \\
+ Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
+ History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
+ Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\

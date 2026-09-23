@@ -1,12 +1,12 @@
 {
- "prepared": "2026-09-23 08:19:16 PDT",
+ "prepared": "2026-09-23 10:22:14 PDT",
  "repo": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "git": {
-  "sha": "ec5de156d0371f859ee1d5b17f69a6ece82323be",
+  "sha": "bc5ef4cabb1babcebcfacfcd2e3820be67ddf707",
   "branch": "review-2026-09-22",
-  "status": "M results/monitor/STATUS.md\n M results/monitor/agent.log\n M results/monitor/gpu_log.csv\n M results/review_2026_09_22/CODE_COMMIT.txt\n M results/review_2026_09_22/REVIEW_SUMMARY.md\n M results/review_2026_09_22/queue/wd_gru_s47.log\n M results/review_2026_09_22/tables_review.tex\n?? results/review_2026_09_22/wd/wd_gru_s47/history.csv\n?? results/review_2026_09_22/wd/wd_gru_s47/query_ranks.csv.gz\n?? results/review_2026_09_22/wd/wd_gru_s47/query_validity.csv\n?? results/review_2026_09_22/wd/wd_gru_s47/query_validity_failures.csv\n?? results/review_2026_09_22/wd/wd_gru_s47/state_validity_failures.csv",
-  "dirty_diff_sha256": "e46b1fe3154e982ce2f306a986f8d199ed4fe432075dd252c5b7537348fe824b",
-  "dirty_diff_lines": 149
+  "status": "M results/monitor/STATUS.md\n D results/monitor/STATUS.md.tmp\n M results/monitor/agent.log\n M results/monitor/gpu_log.csv\n M results/review_2026_09_22/CODE_COMMIT.txt\n M results/review_2026_09_22/REVIEW_SUMMARY.md\n M results/review_2026_09_22/queue/sp_coreoff_s43.log\n M results/review_2026_09_22/tables_review.tex\n?? results/review_2026_09_22/sp/sp_coreoff_s43/history.csv",
+  "dirty_diff_sha256": "8d5c776fd08c21a15aa71ed744b71ce45a73dea06d599279eac2c96f7c131651",
+  "dirty_diff_lines": 408
  },
  "environment": {
   "python": "3.9.9 | packaged by conda-forge | (main, Dec 20 2021, 02:40:17) \n[GCC 9.4.0]",
@@ -1183,5 +1183,5 @@
    }
   }
  },
- "elapsed_sec": 87.8
+ "elapsed_sec": 78.9
 }
