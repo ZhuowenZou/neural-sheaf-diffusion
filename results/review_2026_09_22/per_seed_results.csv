@@ -81,6 +81,7 @@ wiki_coreoff_s46_lr1e-3,matched,tgbl-wiki,core-off,0.001,on,global,46,False,0.76
 wiki_coreoff_s47_lr1e-3,matched,tgbl-wiki,core-off,0.001,on,global,47,False,0.7523591623374506,0.7270039306290138,0.8445451083014626,8,8.0,448844.0,8419.0,0.0,True,,,False,2026-09-22 16:51
 wiki_curonly_s43_lr1e-3,matched,tgbl-wiki,current-only-maps,0.001,on,global,43,False,0.7818168982182746,0.7656129958324683,0.8542398713665688,8,8.0,448846.0,448846.0,0.0,True,,,False,2026-09-22 15:10
 wiki_curonly_s43_lr3e-4,matched,tgbl-wiki,current-only-maps,0.0003,on,global,43,False,0.7396343204117786,0.726722291958917,0.8491173109355796,8,8.0,448846.0,448846.0,0.0,True,,,False,2026-09-22 16:37
+wiki_curonly_s44_lr1e-3,matched,tgbl-wiki,current-only-maps,0.001,on,global,44,False,0.7869202995157975,0.7678597306757049,0.8505143727180662,8,8.0,448846.0,448846.0,0.0,True,,,False,2026-09-22 20:37
 wiki_curonly_s45_lr1e-3,matched,tgbl-wiki,current-only-maps,0.001,on,global,45,False,0.7740298500223439,0.7626001755231665,0.8525464628414591,8,8.0,448846.0,448846.0,0.0,True,,,False,2026-09-22 19:30
 wiki_curonly_s46_lr1e-3,matched,tgbl-wiki,current-only-maps,0.001,on,global,46,False,0.7663895321091176,0.7534528344416668,0.8503450319164012,8,8.0,448846.0,448846.0,0.0,True,,,False,2026-09-22 20:02
 wiki_diag_s43_lr1e-3,matched,tgbl-wiki,diagssm-ordinary,0.001,on,global,43,False,0.7842297486440126,0.7658907968602492,0.851234071714035,8,8.0,10254.0,10126.0,0.0,True,,,False,2026-09-22 15:01

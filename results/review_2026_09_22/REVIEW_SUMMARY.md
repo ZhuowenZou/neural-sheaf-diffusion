@@ -1,6 +1,6 @@
-# Review campaign summary (auto-generated 2026-09-22 20:16)
+# Review campaign summary (auto-generated 2026-09-22 20:47)
 
-151 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+152 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
@@ -13,7 +13,7 @@
 | tgbl-wiki                                                          | matched | on    | core-off          | 0.0003 |   1 | 0.725545 | nan           | 0.7255                                     |
 | tgbl-wiki                                                          | matched | on    | core-off          | 0.001  |   5 | 0.734901 |   0.00658663  | 0.7440 / 0.7334 / 0.7315 / 0.7386 / 0.7270 |
 | tgbl-wiki                                                          | matched | on    | current-only-maps | 0.0003 |   1 | 0.726722 | nan           | 0.7267                                     |
-| tgbl-wiki                                                          | matched | on    | current-only-maps | 0.001  |   3 | 0.760555 |   0.00633273  | 0.7656 / 0.7626 / 0.7535                   |
+| tgbl-wiki                                                          | matched | on    | current-only-maps | 0.001  |   4 | 0.762381 |   0.00633042  | 0.7656 / 0.7679 / 0.7626 / 0.7535          |
 | tgbl-wiki                                                          | matched | on    | diagssm-ordinary  | 0.0003 |   1 | 0.717137 | nan           | 0.7171                                     |
 | tgbl-wiki                                                          | matched | on    | diagssm-ordinary  | 0.001  |   4 | 0.761636 |   0.00694138  | 0.7659 / 0.7689 / 0.7578 / 0.7539          |
 | tgbl-wiki                                                          | matched | on    | gru-ordinary      | 0.0003 |   1 | 0.733609 | nan           | 0.7336                                     |
@@ -72,7 +72,7 @@
 | tgbl-wiki  | on    | core-off          |   0.0003 |   0.001  |   1 |   0.757525 |   0.725545 |               -0.0319808   | nan          |    nan          | -0.0320                                         | 0+ 1-   |
 | tgbl-wiki  | on    | core-off          |   0.001  |   0.001  |   5 |   0.762302 |   0.734901 |               -0.0274014   |   0.00835987 |      0.0103802  | -0.0135 / -0.0312 / -0.0316 / -0.0260 / -0.0346 | 0+ 5-   |
 | tgbl-wiki  | on    | current-only-maps |   0.0003 |   0.001  |   1 |   0.757525 |   0.726722 |               -0.0308032   | nan          |    nan          | -0.0308                                         | 0+ 1-   |
-| tgbl-wiki  | on    | current-only-maps |   0.001  |   0.001  |   3 |   0.761762 |   0.760555 |               -0.00120634  |   0.00966179 |      0.0240012  | +0.0081 / -0.0005 / -0.0112                     | 1+ 2-   |
+| tgbl-wiki  | on    | current-only-maps |   0.001  |   0.001  |   4 |   0.762476 |   0.762381 |               -9.47552e-05 |   0.0081961  |      0.0130418  | +0.0081 / +0.0032 / -0.0005 / -0.0112           | 2+ 2-   |
 | tgbl-wiki  | on    | diagssm-ordinary  |   0.0003 |   0.001  |   1 |   0.757525 |   0.717137 |               -0.0403881   | nan          |    nan          | -0.0404                                         | 0+ 1-   |
 | tgbl-wiki  | on    | diagssm-ordinary  |   0.001  |   0.001  |   4 |   0.761715 |   0.761636 |               -7.94774e-05 |   0.00763636 |      0.0121512  | +0.0084 / +0.0043 / -0.0053 / -0.0077           | 2+ 2-   |
 | tgbl-wiki  | on    | gru-ordinary      |   0.0003 |   0.001  |   1 |   0.757525 |   0.733609 |               -0.0239165   | nan          |    nan          | -0.0239                                         | 0+ 1-   |
@@ -292,6 +292,8 @@
 | matched | wiki_curonly_s43_lr1e-3             | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.765613 |      0.765613 |           0.765613 |                           0 |                         0 |
 | matched | wiki_curonly_s43_lr3e-4             | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.716325 |      0.716325 |           0.716325 |                           0 |                         0 |
 | matched | wiki_curonly_s43_lr3e-4             | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.726722 |      0.726722 |           0.726722 |                           0 |                         0 |
+| matched | wiki_curonly_s44_lr1e-3             | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.76424  |      0.76424  |           0.76424  |                           0 |                         0 |
+| matched | wiki_curonly_s44_lr1e-3             | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.76786  |      0.76786  |           0.76786  |                           0 |                         0 |
 | matched | wiki_curonly_s45_lr1e-3             | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.750124 |      0.750124 |           0.750124 |                           0 |                         0 |
 | matched | wiki_curonly_s45_lr1e-3             | test    |     23621 |                  0 |               0 |         0 |            0 |            0 |      0.7626   |      0.7626   |           0.7626   |                           0 |                         0 |
 | matched | wiki_curonly_s46_lr1e-3             | val     |     87621 |                  0 |               0 |         0 |            0 |            0 |      0.751065 |      0.751065 |           0.751065 |                           0 |                         0 |
@@ -514,15 +516,13 @@
 
 ## Not finished
 
-| run                              | state           |   last_epoch |   attempts |
-|:---------------------------------|:----------------|-------------:|-----------:|
-| audit_icews_eval_s43             | running/pending |            0 |          2 |
-| audit_icews_eval_s46             | running/pending |            0 |          3 |
-| audit_icews_eval_s47             | running/pending |            0 |          2 |
-| synth_gen_s1_nodeframe_recon_s43 | running/pending |            5 |          1 |
-| wiki_curonly_s44_lr1e-3          | running/pending |            6 |          1 |
-| wiki_curonly_s47_lr1e-3          | running/pending |            3 |          1 |
-| wiki_diag_s46_lr1e-3             | running/pending |            4 |          1 |
-| wiki_gru_s47_lr1e-3              | running/pending |            3 |          1 |
-| wiki_nodeframe_s44_lr1e-3        | running/pending |            2 |          1 |
+| run                       | state           |   last_epoch |   attempts |
+|:--------------------------|:----------------|-------------:|-----------:|
+| audit_icews_eval_s43      | running/pending |            0 |          2 |
+| audit_icews_eval_s46      | running/pending |            0 |          3 |
+| audit_icews_eval_s47      | running/pending |            0 |          2 |
+| wiki_curonly_s47_lr1e-3   | running/pending |            6 |          1 |
+| wiki_diag_s46_lr1e-3      | running/pending |            8 |          1 |
+| wiki_gru_s47_lr1e-3       | running/pending |            7 |          1 |
+| wiki_nodeframe_s44_lr1e-3 | running/pending |            5 |          1 |
 

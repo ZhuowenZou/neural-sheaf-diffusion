@@ -81,6 +81,7 @@ wiki_coreoff_s46_lr1e-3,matched,tgbl-wiki,core-off,46,24832.0,0.0,0.0,504.0,0.0,
 wiki_coreoff_s47_lr1e-3,matched,tgbl-wiki,core-off,47,24832.0,0.0,0.0,577.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_curonly_s43_lr1e-3,matched,tgbl-wiki,current-only-maps,43,24832.0,0.0,0.0,516.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_curonly_s43_lr3e-4,matched,tgbl-wiki,current-only-maps,43,24832.0,0.0,0.0,1097.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
+wiki_curonly_s44_lr1e-3,matched,tgbl-wiki,current-only-maps,44,24832.0,0.0,0.0,542.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_curonly_s45_lr1e-3,matched,tgbl-wiki,current-only-maps,45,24832.0,0.0,0.0,680.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_curonly_s46_lr1e-3,matched,tgbl-wiki,current-only-maps,46,24832.0,0.0,0.0,479.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_diag_s43_lr1e-3,matched,tgbl-wiki,diagssm-ordinary,43,24832.0,0.0,0.0,531.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True

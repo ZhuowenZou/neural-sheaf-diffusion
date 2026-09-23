@@ -315,3 +315,8 @@
 2026-09-22 20:06:47 committed 79 paths (collected 146 finished runs, 18 unfinished; fingerprint 4130087515)
 2026-09-22 20:06:51 pushed to origin/review-2026-09-22 (dc27334 agent: results snapshot 2026-09-22 20:06 (collected )
 2026-09-22 20:06:51 tick: running [icews_eval_s43 icews_eval_s46 icews_eval_s47 synth_gen_s1_attention_recon_s45 synth_gen_s1_diag_recon_s44 synth_gen_s1_nodeframe_recon_s43 synth_gen_s1_nodeframe_recon_s44 synth_gen_s1_tsd_recon_s46 wiki_attention_s45_lr1e-3 wiki_curonly_s44_lr1e-3 wiki_curonly_s47_lr1e-3 wiki_diag_s46_lr1e-3 wiki_gru_s47_lr1e-3 wiki_identity_s45_lr1e-3 wiki_nodeframe_s44_lr1e-3 wiki_nodeframe_s45_lr1e-3 wiki_nodeframe_s46_lr1e-3 wiki_tsd_tw300_s43 ] pending-launchers 18 free-GiB 19 51 80 68 54 54 71 78 
+2026-09-22 20:16:59 committed 90 paths (collected 151 finished runs, 9 unfinished; fingerprint 1032272464)
+2026-09-22 20:17:02 pushed to origin/review-2026-09-22 (1196210 agent: results snapshot 2026-09-22 20:16 (collected )
+2026-09-22 20:17:03 tick: running [icews_eval_s43 icews_eval_s46 icews_eval_s47 synth_gen_s1_nodeframe_recon_s43 wiki_curonly_s44_lr1e-3 wiki_curonly_s47_lr1e-3 wiki_diag_s46_lr1e-3 wiki_gru_s47_lr1e-3 wiki_nodeframe_s44_lr1e-3 ] pending-launchers 9 free-GiB 19 51 80 68 63 54 80 80 
+2026-09-22 20:27:09 tick: running [icews_eval_s43 icews_eval_s46 icews_eval_s47 wiki_curonly_s44_lr1e-3 wiki_curonly_s47_lr1e-3 wiki_diag_s46_lr1e-3 wiki_gru_s47_lr1e-3 wiki_nodeframe_s44_lr1e-3 ] pending-launchers 8 free-GiB 19 51 80 70 63 54 80 80 
+2026-09-22 20:37:16 tick: running [icews_eval_s43 icews_eval_s46 icews_eval_s47 wiki_curonly_s44_lr1e-3 wiki_curonly_s47_lr1e-3 wiki_diag_s46_lr1e-3 wiki_gru_s47_lr1e-3 wiki_nodeframe_s44_lr1e-3 ] pending-launchers 8 free-GiB 19 51 80 70 63 54 80 80 
