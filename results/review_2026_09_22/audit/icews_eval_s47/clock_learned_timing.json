@@ -1,0 +1,8 @@
+{
+ "dt_time_params": {
+  "dt_time_weight": 1.1435933113098145,
+  "dt_time_log_scale": -0.14935018122196198
+ },
+ "delta_scale": 86400.0,
+ "clock": "global"
+}
