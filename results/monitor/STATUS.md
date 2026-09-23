@@ -1,19 +1,19 @@
-# Monitor status (2026-09-22 23:18:11)
+# Monitor status (2026-09-22 23:39:29)
 
 ## GPU free (GiB) and utilisation
-0:19GB(99%) 1:51GB(99%) 2:46GB(21%) 3:62GB(0%) 4:45GB(0%) 5:54GB(100%) 6:45GB(97%) 7:44GB(33%) 
-our GPU processes (pid:MiB): 136253:17648MiB 210437:18008MiB 2673782:18198MiB 2895041:16424MiB 2654122:18014MiB 989557:17768MiB 2668669:18384MiB 2872725:15520MiB 2895349:2408MiB 2896964:2410MiB 2905507:15698MiB 2703991:18280MiB 2704074:18198MiB 
+0:19GB(99%) 1:51GB(98%) 2:45GB(0%) 3:62GB(3%) 4:45GB(15%) 5:54GB(98%) 6:46GB(0%) 7:44GB(28%) 
+our GPU processes (pid:MiB): 136253:17648MiB 210437:18008MiB 2673782:18198MiB 2895041:17984MiB 2654122:18014MiB 989557:17768MiB 2668669:18384MiB 2872725:16120MiB 2905507:18198MiB 2703991:18280MiB 2704074:18198MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
-- gpu2: ELIGIBLE (idle 420 min)
-- gpu3: ELIGIBLE (idle 649 min)
-- gpu4: ELIGIBLE (idle 1024 min)
+- gpu2: ELIGIBLE (idle 442 min)
+- gpu3: ELIGIBLE (idle 670 min)
+- gpu4: ELIGIBLE (idle 1046 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 181 min)
+- gpu6: ELIGIBLE (idle 202 min)
 - gpu7: OURS
-compensation: colleagues hold 26542 MiB on our GPUs; we hold 124824 MiB on theirs; budget left -98282 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+compensation: colleagues hold 26542 MiB on our GPUs; we hold 124666 MiB on theirs; budget left -98124 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
 our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
@@ -426,7 +426,7 @@ our launcher claims (pid:gpu/MiB):
 - DONE     wiki_tsd_clock-node_interaction_s43: FINAL val_mrr=0.7764 test_mrr=0.7650 test_hits10=0.8543 eval_sec=718.1
 - DONE     wiki_tsd_clock-node_interaction_s44: FINAL val_mrr=0.7830 test_mrr=0.7680 test_hits10=0.8525 eval_sec=249.5
 - DONE     wiki_tsd_clock-node_interaction_s45: FINAL val_mrr=0.7781 test_mrr=0.7590 test_hits10=0.8518 eval_sec=240.9
-- RUNNING  wiki_tsd_clock-node_interaction_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     wiki_tsd_clock-node_interaction_s46: FINAL val_mrr=0.7787 test_mrr=0.7629 test_hits10=0.8542 eval_sec=177.5
 - DONE     wiki_tsd_clock-node_interaction_s47: FINAL val_mrr=0.7757 test_mrr=0.7633 test_hits10=0.8515 eval_sec=236.9
 - DONE     wiki_tsd_clock-node_update_s43: FINAL val_mrr=0.7772 test_mrr=0.7611 test_hits10=0.8506 eval_sec=722.0
 - DONE     wiki_tsd_clock-node_update_s44: FINAL val_mrr=0.7843 test_mrr=0.7698 test_hits10=0.8527 eval_sec=237.8
@@ -441,7 +441,7 @@ our launcher claims (pid:gpu/MiB):
 - DONE     wiki_tsd_s47_lr1e-3: FINAL val_mrr=0.7771 test_mrr=0.7616 test_hits10=0.8507 eval_sec=708.5
 - DONE     wiki_tsd_tw1200_s43: FINAL val_mrr=0.7430 test_mrr=0.7322 test_hits10=0.8443 eval_sec=418.3
 - DONE     wiki_tsd_tw300_s43: FINAL val_mrr=0.8010 test_mrr=0.7835 test_hits10=0.8602 eval_sec=129.2
-- RUNNING  wiki_tsd_tw300_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     wiki_tsd_tw300_s44: FINAL val_mrr=0.8000 test_mrr=0.7823 test_hits10=0.8586 eval_sec=127.3
 - DONE     wiki_tsd_tw300_s45: FINAL val_mrr=0.7931 test_mrr=0.7794 test_hits10=0.8614 eval_sec=127.6
 - DONE     wiki_tsd_tw300_s46: FINAL val_mrr=0.8006 test_mrr=0.7824 test_hits10=0.8627 eval_sec=131.4
 - DONE     wiki_tsd_tw300_s47: FINAL val_mrr=0.7924 test_mrr=0.7773 test_hits10=0.8587 eval_sec=123.7
