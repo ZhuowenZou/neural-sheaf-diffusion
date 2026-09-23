@@ -120,39 +120,48 @@ collected in `clock_diagnostics.csv`.)
 ## 3. Matched comparisons (tgbl-wiki five seeds; thgl-forum subset)
 (wiki: filled from per_seed_results.csv / paired_contrasts.csv when wave 2 completes)
 
-**thgl-forum, principal simple temporal baseline (GRU + ordinary propagation, same head/REC/data/protocol as
-the retained TSD seeds; old-protocol negative RNG regime to match those seeds; `forum/`):**
+**thgl-forum matched matrix (complete; `forum/` plus the replay-verified retained seeds; same head, REC
+channels, data, batching, negatives regime, budget and selection rule; paired per seed; `paired_contrasts.csv`):**
 
-| REC | seed | TSD (retained) | GRU + ordinary | Δ (GRU − TSD) |
-|---|---|---|---|---|
-| on | 43 | 0.6280 | 0.6511 | +0.023 |
-| on | 46 | 0.6412 | 0.6418 | +0.001 |
-| on | 47 | 0.6187 | 0.6414 | +0.023 |
-| on | mean ± SD | 0.629 ± 0.011 | 0.645 ± 0.006 | +0.016 ± 0.013 (3+ 0−) |
-| off | 43 | 0.3940 | 0.3827 | −0.011 |
-| off | 46 | 0.4007 | 0.3932 | −0.008 |
-| off | 47 | 0.3470 | 0.3807 | +0.034 |
-| off | mean ± SD | 0.381 ± 0.029 | 0.386 ± 0.007 | +0.005 ± 0.025 (1+ 2−) |
+| REC | arm | seeds | TSD mean | arm mean | Δ arm − TSD (mean ± SD; 95% t half-width) | signs |
+|---|---|---|---|---|---|---|
+| on | GRU + ordinary | 5 | 0.625 | 0.642 | +0.017 ± 0.015; ±0.019 | 5+ 0− |
+| on | identity maps | 5 | 0.625 | 0.640 | +0.015 ± 0.009; ±0.012 | 5+ 0− |
+| on | current-only maps | 5 | 0.625 | 0.634 | +0.009 ± 0.023; ±0.028 | 4+ 1− |
+| on | diagonal SSM + ordinary | 3 | 0.629 | 0.646 | +0.017 ± 0.015; ±0.037 | 3+ 0− |
+| on | node-frame geometry | 3 | 0.629 | 0.635 | +0.006 ± 0.002; ±0.005 | 3+ 0− |
+| on | attention gates | 3 | 0.629 | 0.627 | −0.002 ± 0.011; ±0.026 | 1+ 2− |
+| on | TSD no-memory (retained) | 3 | 0.629 | 0.650 | +0.021 ± 0.014; ±0.035 | 3+ 0− |
+| on | TSD no-gap (retained) | 3 | 0.629 | 0.634 | +0.004 ± 0.020; ±0.049 | 2+ 1− |
+| on | core-off (head only) | 5 | 0.625 | 0.615 | −0.010 ± 0.010; ±0.012 | 0+ 5− |
+| off | GRU + ordinary | 5 | 0.353 | 0.376 | +0.023 ± 0.084; ±0.104 | 2+ 3− |
+| off | current-only maps | 4 | 0.354 | 0.393 | +0.038 ± 0.079; ±0.126 | 2+ 2− |
+| off | identity maps | 5 | 0.353 | 0.321 | −0.032 ± 0.097; ±0.120 | 2+ 3− |
+| off | diagonal SSM + ordinary | 3 | 0.381 | 0.364 | −0.016 ± 0.093; ±0.231 | 2+ 1− |
+| off | node-frame geometry | 3 | 0.381 | 0.378 | −0.003 ± 0.009; ±0.021 | 2+ 1− |
+| off | attention gates | 3 | 0.381 | 0.313 | −0.068 ± 0.050; ±0.125 | 0+ 3− |
+| off | TSD no-memory (retained) | 2 | 0.397 | 0.396 | −0.002 ± 0.023 | 1+ 1− |
+| off | TSD no-gap (retained) | 3 | 0.381 | 0.367 | −0.013 ± 0.049; ±0.123 | 1+ 2− |
+| off | core-off (head only) | 5 | 0.353 | 0.226 | −0.127 ± 0.070; ±0.087 | 0+ 5− |
 
-**Finding (forum):** a GRU memory with identity transport equals TSD without the REC head and exceeds it on
-every seed with the REC head. The retained SSM-with-identity-maps ablation (REC off: 0.220 / 0.332 / 0.326)
-is therefore not evidence that learned restriction maps are necessary on forum: the low identity-map scores
-are specific to the SSM core (unstable across seeds), and a simpler core with the same identity transport
-recovers TSD's accuracy. The earlier claim "learned restriction maps are the robust mechanism on forum" must be
-withdrawn or narrowed to "within the SSM core". Seed 44 (new, same protocol) makes the mechanism visible: TSD
-REC-off scores 0.232 (GRU 0.394) with zero non-finite events and modest clipping; its tracking validation rises
-0.134 → 0.135 → 0.154 → 0.246 over the fixed 4-epoch budget and is still climbing at the cut-off, whereas the GRU
-core is at 0.39 after epoch 1. The SSM core without the REC head is a slow starter on some seeds under this
-budget (the identity-map lows 0.220/0.332/0.326 are the same phenomenon), i.e. a trainability difference, not
-a difference in what the cores can represent. Diagonal-SSM, attention-gate and node-frame cells and seeds
-44/45 are being added (`forum/`); the fast builder makes a forum run ~80 min.
+Per-seed TSD: REC on 0.628 / 0.622 / 0.640 / 0.641 / 0.619 (seeds 43-47); REC off 0.394 / 0.232 / 0.391 /
+0.401 / 0.347.
 
-**Core-off anchor, executed cost (`matched/coreoff_cost_wiki/coreoff_cost.csv`):** on the same 20k-edge
-tgbl-wiki slice (561 snapshots, same GPU, three repeats) the reference core-off path (`--no-memory --layers 0`,
-which still evaluates the unused SSM transition and map decoder) takes 156 s per pass; the verified bypass
-(`--fast-core-off`) takes 3.9 s with bit-identical outputs (max |diff| = 0). The shortcut is labelled
-"core off + REC (head only)": it retains the pointwise input encoder, the current-input spatial projection
-Z0 = P_z[x; 0], the scorer and REC; it is not a REC-only predictor. All new core-off runs use the bypass.
+**Supported (forum):** (i) a recurrent core adds to the head (core-off is below TSD on 5 of 5 seeds in both
+REC settings: −0.010 with the head, −0.127 without); (ii) the *kind* of core and the *kind* of transport do
+not matter with the REC head: a GRU or a diagonal SSM with identity transport, identity maps, current-only
+maps and node-frame geometry are all at or slightly above TSD on every paired seed (+0.006 to +0.021); the
+retained no-memory ablation is also above TSD. **Negative:** memory-conditioned incidence-specific maps give no
+paired benefit over current-only maps, identity maps or node frames on forum. **Without the head** no control
+differs from TSD consistently except core-off and attention gates (both worse); TSD itself is seed-unstable
+under the 4-epoch budget (seed 44: 0.232, slow start; see below), and the node-frame control is the most
+stable close match (SD of the paired difference 0.009). The earlier claim that learned restriction maps are
+"the robust mechanism" on forum is withdrawn: the low identity-map scores were a trainability effect of the
+SSM core without the head, not evidence for learned transport.
+
+Seed 44 makes the trainability effect visible: TSD REC-off scores 0.232 (GRU 0.394) with zero non-finite
+events and modest clipping; its tracking validation rises 0.134 → 0.135 → 0.154 → 0.246 over the fixed
+4-epoch budget and is still climbing at the cut-off, whereas the GRU core is at 0.39 after epoch 1.
 
 ## 4. Synthetic history-dependent task (synthetic/)
 
