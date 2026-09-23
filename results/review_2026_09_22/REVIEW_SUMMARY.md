@@ -1,4 +1,4 @@
-# Review campaign summary (auto-generated 2026-09-23 04:22)
+# Review campaign summary (auto-generated 2026-09-23 04:25)
 
 243 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
@@ -721,12 +721,22 @@
 
 | run                      | state           |   last_epoch |   attempts |
 |:-------------------------|:----------------|-------------:|-----------:|
+| icews_coreoff_recon_s44  | running/pending |            0 |          1 |
+| icews_coreoff_recon_s45  | running/pending |            0 |          1 |
 | icews_coreoff_recon_s47  | running/pending |            5 |          1 |
+| icews_curonly_recon_s44  | running/pending |            0 |          1 |
+| icews_curonly_recon_s45  | running/pending |            0 |          1 |
 | icews_curonly_recon_s46  | running/pending |            6 |          1 |
 | icews_curonly_recon_s47  | running/pending |            6 |          1 |
 | icews_gru_recon_s43      | running/pending |            6 |          1 |
+| icews_gru_recon_s44      | running/pending |            0 |          1 |
+| icews_gru_recon_s45      | running/pending |            0 |          1 |
 | icews_gru_recon_s46      | running/pending |            6 |          1 |
 | icews_gru_recon_s47      | running/pending |            6 |          1 |
+| icews_identity_recon_s44 | running/pending |            0 |          1 |
+| icews_identity_recon_s45 | running/pending |            0 |          1 |
 | icews_identity_recon_s46 | running/pending |            6 |          1 |
 | icews_identity_recon_s47 | running/pending |            6 |          1 |
+| icews_tsd_recon_s44      | running/pending |            0 |          1 |
+| icews_tsd_recon_s45      | running/pending |            0 |          1 |
 
