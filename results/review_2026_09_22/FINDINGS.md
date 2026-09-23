@@ -285,6 +285,33 @@ Cells with fewer than three paired seeds are pilots; every number is descriptive
 
 Facts (software, three paired seeds, REC on): core-off + REC is below TSD on 3 of 3 seeds (−0.0092 ± 0.0018); history-conditioned edge gates are above TSD on 3 of 3 seeds (+0.0052 ± 0.0024); every other arm (current-only maps, identity maps, GRU + ordinary, diagonal SSM + ordinary, node-frame, no-gap) lies within ±0.002 of TSD with mixed or small-magnitude signs. TSD no-memory was not evaluated on software.
 
+
+<!-- review-append: wd -->
+
+### tkgl-wikidata matched matrix (`wd/` plus replay-verified retained seeds; `paired_contrasts.csv`, `per_seed_results.csv`)
+
+
+**REC on, lr 0.003 (protocol copied from the retained run; paired per seed):**
+
+| REC | arm | seeds (n) | TSD mean | arm mean | Δ arm − TSD (mean ± SD; 95% t half-width) | per-seed Δ | signs | note |
+|---|---|---|---|---|---|---|---|---|
+| on | current-only maps | 43 (1) | 0.5371 | 0.5381 | +0.0011 (single seed) | +0.0011 | 1+ 0- | pilot (n < 3) |
+| on | identity maps | 43 (1) | 0.5371 | 0.5336 | -0.0034 (single seed) | -0.0034 | 0+ 1- | pilot (n < 3) |
+| on | GRU + ordinary propagation | 43/46/47 (3) | 0.5398 | 0.5358 | -0.0040 ± 0.0078; ±0.0193 | -0.0013 / -0.0128 / +0.0020 | 1+ 2- |  |
+| on | diagonal SSM + ordinary propagation | – | – | – | – | – | – | not evaluated |
+| on | history-conditioned edge gates | – | – | – | – | – | – | not evaluated |
+| on | node-frame geometry | – | – | – | – | – | – | not evaluated |
+| on | core-off + REC (head only) | 43/46/47 (3) | 0.5398 | 0.5337 | -0.0061 ± 0.0087; ±0.0216 | -0.0032 / -0.0159 / +0.0007 | 1+ 2- |  |
+| on | TSD no-gap | 43 (1) | 0.5371 | 0.5362 | -0.0009 (single seed) | -0.0009 | 0+ 1- | pilot (n < 3) |
+| on | TSD no-memory | – | – | – | – | – | – | not evaluated |
+
+Per-seed TSD test MRR (REC on): seed 43: 0.5371; seed 46: 0.5500; seed 47: 0.5323.
+Cells backed by replay-verified retained runs reused under the provenance rule (`reused_retained=True`; checkpoint replays reproduce the stored test MRR, protocol matched on the collector's key set): current-only maps seeds 43; identity maps seeds 43; TSD (memory-conditioned incidence maps) seeds 43/46/47; TSD no-gap seeds 43.
+Cells from new runs of this campaign: core-off + REC (head only) seeds 43/46/47; GRU + ordinary propagation seeds 43/46/47.
+Cells with fewer than three paired seeds are pilots; every number is descriptive (mean, sample SD, 95% t-interval with n − 1 df), not a hypothesis test.
+
+Facts (wikidata, REC on): with three paired seeds, GRU + ordinary (−0.0040 ± 0.0078) and core-off + REC (−0.0061 ± 0.0087) are both below TSD on 2 of 3 seeds, and both 95% intervals include zero; the largest gap is at seed 46 (TSD 0.5500), and seed 47 is positive for both. Current-only maps, identity maps and no-gap are single-seed pilots; diagonal SSM, edge gates, node-frame and no-memory were not evaluated on wikidata.
+
 ## 4. Synthetic history-dependent task (synthetic/)
 
 **Generator (`exp/review/synthetic_history.py`, "cued target drift"):** 400 nodes in 8 hidden communities, 60k
