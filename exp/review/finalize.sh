@@ -15,5 +15,5 @@ $PY -m exp.run_event_benchmark --help > $RV/run_event_benchmark_help.txt 2>&1
 $PY -m exp.review.provenance --out $RV/provenance --datasets tgbn-trade tgbn-genre tgbl-wiki thgl-forum tkgl-icews tkgl-smallpedia tkgl-polecat tkgl-wikidata thgl-software --skip-large-hashes 2>&1 | tail -1
 git add -A $RV exp/review && git commit -q -m "review: final assembly $(date '+%F %H:%M') (collect, tables, strata, manifest)
 
-Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>" || true
+Co-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>" || true
 git push -q origin review-2026-09-22 && echo "pushed $(git rev-parse --short HEAD)"
