@@ -285,13 +285,47 @@ memory as implemented captures delayed cues either. The sanity conditions (a) an
 weakly (GRU on variant 3). We report this as a negative result and did not tune the generator further.
 
 ## 5. Not evaluated (explicit)
-- ICEWS matrix beyond the retained seeds: not retrained (cost 20+ h per run); checkpoint-replay audits of the
-  three retained seeds are in `audit/`.
-- Forum: only the GRU-ordinary baseline (REC on and REC off, seeds 43/46/47) and single-seed attention /
-  node-frame pilots were launched; diagonal-SSM and five-seed forum cells are **not evaluated**.
-- Heat-style transport, relation-conditioned maps, BPTT-length and initialisation controls (section 5 of the
-  handoff): not run.
-- TSNN official reproduction: not run; cite with published numbers marked as such.
+- **ICEWS matrix**: not retrained (a run costs 20+ h); the three retained seeds were replayed for the P0 audit
+  (`audit/icews_eval_s4x`). The retained ICEWS factorial (core-off+REC 0.319/0.311 vs TSD 0.339/0.334;
+  REC-off arms 0.02-0.03) is reused as descriptive evidence only; GRU / diagonal-SSM / attention / node-frame
+  cells on ICEWS are **not evaluated**.
+- **Forum**: diagonal SSM, attention gates and node-frame have three seeds (43/46/47), not five.
+- **Clock comparison and batching widths**: single-seed pilots on wiki (seed 43); not expanded to five seeds.
+- **Heat-style transport, relation-conditioned edge maps, BPTT-length and initialisation controls** (handoff
+  section 5): not run.
+- **TSNN official reproduction**: not run; cite with published numbers marked as published-only.
+- **Trade/genre matched-protocol ranks**: withheld (label-set differences at the split boundaries for trade;
+  the label transformation of genre is not exactly reproducible from the edge weights available to the runner).
+
+## 6. Manuscript changes implied by this evidence
+1. **Central claim narrowed.** Memory-conditioned incidence maps give no paired benefit over current-only maps,
+   identity maps or node-frame geometry on wiki (five seeds, locked lr, isolated RNG) or forum (five seeds
+   with the REC head, retained seeds replay-verified), and a GRU or a diagonal SSM with ordinary propagation is
+   at least as good. The supportable claim is that *a recurrent core adds to the recurrence head* (core-off is
+   below TSD on every paired seed: wiki −0.027, forum −0.010 with REC and −0.127 without), not that
+   temporal conditioning of geometry or learned transport is the mechanism.
+2. **Remove the forum "learned restriction maps are the robust mechanism" narrative** (`COMPONENT_ATTRIBUTION.md`,
+   `appendix_faithful_model.tex` factorial discussion): the low identity-map REC-off scores are a slow-start
+   trainability effect of the SSM core under the 4-epoch budget; the GRU with identity transport matches TSD.
+3. **Timing claims.** State that the step selector saturates at the cap for most or all updates on several
+   datasets/seeds (forum 46/47, polecat 43/47, smallpedia 43/47; all wiki runs at lr 1e-3), that the trained
+   wiki model is insensitive to the magnitude of the supplied gap (16x span, 0.004 MRR), that the neural score
+   is exactly invariant to the query time, and that the no-gap control is an order-only recurrence whose
+   difference from TSD is within seed noise on every dataset. Do not claim selective or physically timed memory.
+4. **Benchmark numbers.** The wiki TSD configuration used for the leaderboard row should be the locked one
+   (lr 1e-3, 600 s batches): five-seed mean 0.762 (rank 5 of 22 by the existing rule) instead of 0.733; state
+   the batch width and that 300 s batches give 0.784 on seed 43. Node-property rows: report as descriptive
+   scores under the documented schedule (Appendix paragraph in `appendix_protocol_trace.tex`), no rank claims.
+5. **Appendix A additions** from the bundle's `scorer_spec.tex` plus the numerical-reporting paragraph:
+   every new run serialises non-finite loss/gradient/skipped-step counters and per-query score validity; the
+   retained runs' training skip rates remain unknown; the P0 audit found zero affected queries in 22 replays.
+6. **Cost reporting.** Core-off reference vs bypass (156 s vs 3.9 s per pass, identical outputs); the vectorised
+   builder changed forum wall-clock from ~16 h to ~80 min per run (timings before/after are not comparable;
+   scores are). Parameter counts by component with unused-by-construction parameters excluded from "active".
+7. **Synthetic task.** Report the three variants as a negative result on delayed-cue learning under one-step
+   truncation; do not present the earlier nearly-all-recurring generator as a mechanism test.
+8. **Related work**: cite TSNN and ST-Sheaf GNN as in `novelty_audit.md`; the node-frame control here is an
+   internal ablation, not a TSNN reproduction.
 
 ## Code identity note
 Runs launched before commit `2ca9fe5` used the original per-edge Python index builder in `lib/laplace.py`;
