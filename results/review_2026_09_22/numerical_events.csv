@@ -96,6 +96,7 @@ forum_tsd_recon_s44,forum,thgl-forum,tsd,44,2956.0,0.0,0.0,11.0,0.0,0.0,0.0,0.0,
 forum_tsd_recon_s45,forum,thgl-forum,tsd,45,2956.0,0.0,0.0,12.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 icews_coreoff_recon_s47,icews,tkgl-icews,core-off,47,6310.0,0.0,0.0,12.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
 icews_curonly_recon_s46,icews,tkgl-icews,current-only-maps,46,7572.0,0.0,0.0,262.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
+icews_gru_recon_s43,icews,tkgl-icews,gru-ordinary,43,7572.0,0.0,0.0,586.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
 wiki_attention_s43_lr1e-3,matched,tgbl-wiki,attention-gates,43,24832.0,0.0,0.0,546.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_attention_s43_lr3e-4,matched,tgbl-wiki,attention-gates,43,24832.0,0.0,0.0,1372.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_attention_s44_lr1e-3,matched,tgbl-wiki,attention-gates,44,24832.0,0.0,0.0,568.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
