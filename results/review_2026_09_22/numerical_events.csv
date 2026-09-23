@@ -17,6 +17,7 @@ wd_f_s47,audit,tkgl-wikidata,tsd,47,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,2869900.0,0.
 wiki_f_s43,audit,tgbl-wiki,tsd,43,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_f_s46,audit,tgbl-wiki,tsd,46,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_f_s47,audit,tgbl-wiki,tsd,47,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
+wiki_tsd_tw1200_s43,clock,tgbl-wiki,tsd,43,12416.0,0.0,0.0,350.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 forum_attention_rec_s43,forum,thgl-forum,attention-gates,43,2956.0,0.0,0.0,12.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_attention_recoff_s43,forum,thgl-forum,attention-gates,43,2956.0,0.0,0.0,9.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_attention_recoff_s46,forum,thgl-forum,attention-gates,46,2956.0,0.0,0.0,9.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
@@ -73,6 +74,7 @@ wiki_curonly_s43_lr1e-3,matched,tgbl-wiki,current-only-maps,43,24832.0,0.0,0.0,5
 wiki_curonly_s43_lr3e-4,matched,tgbl-wiki,current-only-maps,43,24832.0,0.0,0.0,1097.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_diag_s43_lr1e-3,matched,tgbl-wiki,diagssm-ordinary,43,24832.0,0.0,0.0,531.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_diag_s43_lr3e-4,matched,tgbl-wiki,diagssm-ordinary,43,24832.0,0.0,0.0,1363.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
+wiki_diag_s45_lr1e-3,matched,tgbl-wiki,diagssm-ordinary,45,24832.0,0.0,0.0,534.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_gru_s43_lr1e-3,matched,tgbl-wiki,gru-ordinary,43,24832.0,0.0,0.0,476.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_gru_s43_lr3e-4,matched,tgbl-wiki,gru-ordinary,43,24832.0,0.0,0.0,1138.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_gru_s46_lr1e-3,matched,tgbl-wiki,gru-ordinary,46,24832.0,0.0,0.0,519.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
