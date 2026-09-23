@@ -74,6 +74,7 @@ wiki_curonly_s43_lr1e-3,matched,tgbl-wiki,current-only-maps,43,24832.0,0.0,0.0,5
 wiki_curonly_s43_lr3e-4,matched,tgbl-wiki,current-only-maps,43,24832.0,0.0,0.0,1097.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_diag_s43_lr1e-3,matched,tgbl-wiki,diagssm-ordinary,43,24832.0,0.0,0.0,531.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_diag_s43_lr3e-4,matched,tgbl-wiki,diagssm-ordinary,43,24832.0,0.0,0.0,1363.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
+wiki_diag_s44_lr1e-3,matched,tgbl-wiki,diagssm-ordinary,44,24832.0,0.0,0.0,795.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_diag_s45_lr1e-3,matched,tgbl-wiki,diagssm-ordinary,45,24832.0,0.0,0.0,534.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_gru_s43_lr1e-3,matched,tgbl-wiki,gru-ordinary,43,24832.0,0.0,0.0,476.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
 wiki_gru_s43_lr3e-4,matched,tgbl-wiki,gru-ordinary,43,24832.0,0.0,0.0,1138.0,0.0,0.0,0.0,0.0,23621.0,0.0,0.0,0.0,23621.0,0.0,True
