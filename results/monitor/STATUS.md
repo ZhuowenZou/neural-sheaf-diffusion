@@ -1,20 +1,20 @@
-# Monitor status (2026-09-23 07:36:06)
+# Monitor status (2026-09-23 07:57:06)
 
 ## GPU free (GiB) and utilisation
-0:80GB(0%) 1:51GB(98%) 2:10GB(100%) 3:31GB(100%) 4:20GB(11%) 5:54GB(98%) 6:8GB(0%) 7:3GB(6%) 
-our GPU processes (pid:MiB): 2895041:18384MiB 4095829:13938MiB 4096930:11822MiB 4118762:18198MiB 561503:4518MiB 561981:4524MiB 4096797:18198MiB 4097655:13604MiB 243990:18280MiB 4095645:17954MiB 4098149:13602MiB 4131532:11868MiB 4177163:18280MiB 2872725:18280MiB 2905507:18198MiB 4096471:18754MiB 4097379:18364MiB 2703991:18280MiB 2704074:18198MiB 4095975:11912MiB 4138403:16998MiB 166942:13870MiB 
+0:80GB(0%) 1:51GB(98%) 2:8GB(98%) 3:31GB(5%) 4:20GB(0%) 5:54GB(100%) 6:8GB(0%) 7:2GB(16%) 
+our GPU processes (pid:MiB): 2895041:18384MiB 4095829:14838MiB 4096930:13242MiB 4118762:18198MiB 618352:9088MiB 4096797:18198MiB 4097655:13604MiB 243990:18280MiB 4095645:17954MiB 4098149:13602MiB 4131532:11868MiB 4177163:18280MiB 2872725:18280MiB 2905507:18198MiB 4096471:18754MiB 4097379:18364MiB 2703991:18280MiB 2704074:18198MiB 4095975:13776MiB 4138403:16998MiB 166942:12568MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
 - gpu1: colleague busy
-- gpu2: ELIGIBLE (idle 918 min)
-- gpu3: ELIGIBLE (idle 1147 min)
-- gpu4: ELIGIBLE (idle 1522 min)
+- gpu2: ELIGIBLE (idle 939 min)
+- gpu3: ELIGIBLE (idle 1168 min)
+- gpu4: ELIGIBLE (idle 1543 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 679 min)
+- gpu6: ELIGIBLE (idle 700 min)
 - gpu7: OURS
-compensation: colleagues hold 0 MiB on our GPUs; we hold 256766 MiB on theirs; budget left -256766 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
-our launcher claims (pid:gpu/MiB): 4100502:2/5000 4100547:2/5000 
+compensation: colleagues hold 0 MiB on our GPUs; we hold 259132 MiB on theirs; budget left -259132 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+our launcher claims (pid:gpu/MiB): 616810:2/5000 
 
 ## leakfree2 benchmark runs
 - DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
@@ -281,14 +281,14 @@ our launcher claims (pid:gpu/MiB): 4100502:2/5000 4100547:2/5000
 - DONE     sw_attention_s47: FINAL val_mrr=0.3856 test_mrr=0.4436 test_hits10=0.4834 eval_sec=49.2
 - DONE     sw_coreoff_s43: FINAL val_mrr=0.3701 test_mrr=0.4288 test_hits10=0.4569 eval_sec=63.6
 - DONE     sw_coreoff_s46: FINAL val_mrr=0.3698 test_mrr=0.4293 test_hits10=0.4570 eval_sec=30.0
-- RUNNING  sw_coreoff_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+- DONE     sw_coreoff_s47: FINAL val_mrr=0.3695 test_mrr=0.4272 test_hits10=0.4545 eval_sec=41.0
 - DONE     sw_diag_s43: FINAL val_mrr=0.3821 test_mrr=0.4372 test_hits10=0.4790 eval_sec=156.2
-- RUNNING  sw_diag_s46: epochs': 8, 'time_window': 3600.0, 'context_edges': 50000, 'train_edge
+- DONE     sw_diag_s46: FINAL val_mrr=0.3828 test_mrr=0.4396 test_hits10=0.4786 eval_sec=54.6
 - DONE     sw_diag_s47: FINAL val_mrr=0.3815 test_mrr=0.4351 test_hits10=0.4737 eval_sec=100.9
 - DONE     sw_gru_s43: FINAL val_mrr=0.3801 test_mrr=0.4382 test_hits10=0.4752 eval_sec=132.5
 - DONE     sw_gru_s46: FINAL val_mrr=0.3821 test_mrr=0.4412 test_hits10=0.4796 eval_sec=29.1
 - DONE     sw_gru_s47: FINAL val_mrr=0.3799 test_mrr=0.4355 test_hits10=0.4750 eval_sec=87.9
-- RUNNING  sw_nodeframe_s43: 
+- RUNNING  sw_nodeframe_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
 - DONE     sw_nodeframe_s46: FINAL val_mrr=0.3833 test_mrr=0.4402 test_hits10=0.4808 eval_sec=74.0
 - DONE     sw_nodeframe_s47: FINAL val_mrr=0.3838 test_mrr=0.4395 test_hits10=0.4819 eval_sec=36.5
 - DONE     synth_gen_s1_attention_recoff_s43: FINAL val_mrr=0.2017 test_mrr=0.2034 test_hits10=0.4579 eval_sec=667.7
@@ -556,8 +556,8 @@ our launcher claims (pid:gpu/MiB): 4100502:2/5000 4100547:2/5000
 - DONE synth_static_original: test 0.790 novel 0.151 rec 0.791
 
 ## recent actions
-2026-09-23 04:23:47 (re)launching wd_coreoff_s46 via results/review_2026_09_22/queue/wd_coreoff_s46.cmd (attempt 1)
 2026-09-23 04:23:47 (re)launching wd_coreoff_s47 via results/review_2026_09_22/queue/wd_coreoff_s47.cmd (attempt 1)
 2026-09-23 04:23:47 (re)launching wd_gru_s43 via results/review_2026_09_22/queue/wd_gru_s43.cmd (attempt 1)
 2026-09-23 04:23:47 (re)launching wd_gru_s46 via results/review_2026_09_22/queue/wd_gru_s46.cmd (attempt 1)
 2026-09-23 04:23:47 (re)launching wd_gru_s47 via results/review_2026_09_22/queue/wd_gru_s47.cmd (attempt 1)
+2026-09-23 07:52:53 (re)launching sw_nodeframe_s43 via results/review_2026_09_22/queue/sw_nodeframe_s43.cmd (attempt 1)

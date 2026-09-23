@@ -15,3 +15,111 @@ parameters_by_component={'embeddings': 480, 'ssm_input_selector_B': 620928, 'ssm
 [epoch 4/20] {'epoch': 4, 'train_loss': 0.2751559990465193, 'track_val_mrr': 0.3595382414355874, 'track_val_loss': 0.49388617277145386, 'train_sec': 27.0, 'track_eval_sec': 15.8, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 8, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
 [epoch 5/20] {'epoch': 5, 'train_loss': 0.26126267662958097, 'track_val_mrr': 0.3597129609704018, 'track_val_loss': 0.48119688034057617, 'train_sec': 25.6, 'track_eval_sec': 17.1, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 8, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
 [epoch 6/20] {'epoch': 6, 'train_loss': 0.2493428599677588, 'track_val_mrr': 0.3606354532942176, 'track_val_loss': 0.48423436284065247, 'train_sec': 28.7, 'track_eval_sec': 11.8, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 6, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 7/20] {'epoch': 7, 'train_loss': 0.24150900639369524, 'track_val_mrr': 0.36058116082251074, 'track_val_loss': 0.4700281620025635, 'train_sec': 29.7, 'track_eval_sec': 15.5, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 6, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 8/20] {'epoch': 8, 'train_loss': 0.23946168737247922, 'track_val_mrr': 0.3610889612600207, 'track_val_loss': 0.4909619987010956, 'train_sec': 27.3, 'track_eval_sec': 15.4, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 5, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 9/20] {'epoch': 9, 'train_loss': 0.23673408098967003, 'track_val_mrr': 0.36147014639526603, 'track_val_loss': 0.47687777876853943, 'train_sec': 24.6, 'track_eval_sec': 16.2, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 3, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 10/20] {'epoch': 10, 'train_loss': 0.23625141212758713, 'track_val_mrr': 0.3613062128633261, 'track_val_loss': 0.4800187051296234, 'train_sec': 28.8, 'track_eval_sec': 11.0, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 11/20] {'epoch': 11, 'train_loss': 0.23409966473236568, 'track_val_mrr': 0.36222356952279805, 'track_val_loss': 0.4826563894748688, 'train_sec': 29.4, 'track_eval_sec': 15.0, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 12/20] {'epoch': 12, 'train_loss': 0.23376817858420817, 'track_val_mrr': 0.36197621877491476, 'track_val_loss': 0.48076707124710083, 'train_sec': 27.8, 'track_eval_sec': 15.5, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 13/20] {'epoch': 13, 'train_loss': 0.23352701963394656, 'track_val_mrr': 0.3620795273408294, 'track_val_loss': 0.48008954524993896, 'train_sec': 26.3, 'track_eval_sec': 16.5, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 14/20] {'epoch': 14, 'train_loss': 0.23351862295565748, 'track_val_mrr': 0.3618979838564992, 'track_val_loss': 0.46764159202575684, 'train_sec': 29.9, 'track_eval_sec': 9.4, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 15/20] {'epoch': 15, 'train_loss': 0.23287935627806455, 'track_val_mrr': 0.3616699353590608, 'track_val_loss': 0.4767552316188812, 'train_sec': 31.7, 'track_eval_sec': 31.2, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 16/20] {'epoch': 16, 'train_loss': 0.23264265784475588, 'track_val_mrr': 0.36180486492067576, 'track_val_loss': 0.4804006516933441, 'train_sec': 54.2, 'track_eval_sec': 25.9, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 17/20] {'epoch': 17, 'train_loss': 0.23261662443777673, 'track_val_mrr': 0.3618900311782956, 'track_val_loss': 0.4847204089164734, 'train_sec': 54.6, 'track_eval_sec': 29.9, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 18/20] {'epoch': 18, 'train_loss': 0.23222712019836544, 'track_val_mrr': 0.36199525942504407, 'track_val_loss': 0.4865835905075073, 'train_sec': 46.8, 'track_eval_sec': 25.5, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+[epoch 19/20] {'epoch': 19, 'train_loss': 0.23223165230811538, 'track_val_mrr': 0.36191679301261903, 'track_val_loss': 0.47915568947792053, 'train_sec': 29.4, 'track_eval_sec': 10.4, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+early stop at epoch 19 (patience 8)
+checkpoint saved: results/review_2026_09_22/sw/sw_coreoff_s47/best.pt
+final val_mrr=0.3695 (27.9s so far)
+FINAL val_mrr=0.3695 test_mrr=0.4272 test_hits10=0.4545 eval_sec=41.0
+[query-audit] split=val queries=603469 affected=0 pos_nonfinite=0 neg_nan=0 neg_posinf=0 neg_neginf=0 mrr_raw=0.363952 mrr_guarded=0.363952 mrr_conservative=0.363952 parity=True
+[query-audit] split=test queries=223471 affected=0 pos_nonfinite=0 neg_nan=0 neg_posinf=0 neg_neginf=0 mrr_raw=0.427172 mrr_guarded=0.427172 mrr_conservative=0.427172 parity=True
+{
+  "dataset": "thgl-software",
+  "model": "FaithfulEventTemporalSheaf",
+  "seed": 47,
+  "epochs": 20,
+  "best_track_epoch": 11,
+  "best_track_val_mrr": 0.36222356952279805,
+  "parameter_count": 634953,
+  "commit_hash": "6227b8e378e370364f34667db1f41ca48378bbdf",
+  "train_edges": 1042866,
+  "final_val_edges": 223469,
+  "final_test_edges": 223471,
+  "prep_sec": 1.7,
+  "negatives_load_sec": 8.5,
+  "train_epochs_run": 19,
+  "train_sec_total": 592.8,
+  "selection_eval_sec_total": 327.5,
+  "reserved_buffer_mib": 3976,
+  "backbone": "tsd",
+  "spatial": "sheaf",
+  "clock": "global",
+  "rng_isolation": false,
+  "params_embeddings": 480,
+  "params_ssm_input_selector_B": 620928,
+  "params_ssm_other": 4261,
+  "params_map_decoder": 4288,
+  "params_spatial_block": 2532,
+  "params_scorer": 2335,
+  "params_rec": 129,
+  "params_other": 0,
+  "params_total": 634953,
+  "params_trainable": 634953,
+  "params_unused_by_construction": 625785,
+  "params_active": 9168,
+  "train_steps": 10108,
+  "train_nonfinite_loss": 0,
+  "train_nonfinite_grad": 0,
+  "train_clipped": 92,
+  "train_skipped_steps": 0,
+  "hw_hostname": "biaslab0.ics.uci.edu",
+  "hw_python": "3.9.9",
+  "hw_torch": "2.8.0+cu128",
+  "hw_cuda_runtime": "12.8",
+  "hw_cudnn": 91002,
+  "hw_torch_geometric": "2.6.1",
+  "hw_py_tgb": "2.2.0",
+  "hw_cpu_model": "AMD EPYC 7713 64-Core Processor",
+  "hw_cpu_cores": 256,
+  "hw_ram_gib": 2003.8,
+  "hw_gpu_model": "NVIDIA A100-SXM4-80GB",
+  "hw_gpu_vram_gib": 79.3,
+  "hw_gpu_visible": "2",
+  "hw_gpu_count_visible": 1,
+  "hw_precision": "float32",
+  "hw_sync": "torch.cuda.synchronize-free wall clock (perf_counter)",
+  "hw_gpu_driver": "560.35.05",
+  "hw_gpu_other_processes_at_start": 23,
+  "validation_mrr": 0.3694673384510981,
+  "test_mrr": 0.4271716401356694,
+  "final_val_loss": 0.47884702682495117,
+  "final_test_loss": 0.4891146719455719,
+  "final_eval_sec": 41.0,
+  "final_replay_sec": 14.0,
+  "final_val_sec": 13.9,
+  "final_test_sec": 13.1,
+  "final_eval_peak_gpu_mem_mb": 2423.3,
+  "final_eval_peak_gpu_reserved_mb": 4008.0,
+  "val_nonfinite_positives": 0,
+  "val_nonfinite_negatives": 0,
+  "val_skipped_queries": 0,
+  "val_metric_examples": 223469,
+  "test_nonfinite_positives": 0,
+  "test_nonfinite_negatives": 0,
+  "test_skipped_queries": 0,
+  "test_metric_examples": 223471,
+  "cpu_rss_mib": 5921.2,
+  "rec_keys_typed": 1368217,
+  "rec_keys_untyped": 880274,
+  "rec_keys_total": 2248491,
+  "rec_cache_bytes": 53963784,
+  "rec_cache_device": "cuda:0",
+  "tracked_nodes": 681927,
+  "core_state_bytes": 218216640,
+  "checkpoint_bytes": 7995232,
+  "test_hits10": 0.45445270393814735,
+  "query_audit_affected_total": 0,
+  "query_audit_parity": true,
+  "end_to_end_sec": 980.1
+}
