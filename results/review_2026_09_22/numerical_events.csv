@@ -158,6 +158,7 @@ sw_coreoff_s46,sw,thgl-software,core-off,46,10640.0,0.0,0.0,106.0,0.0,0.0,0.0,0.
 sw_diag_s43,sw,thgl-software,diagssm-ordinary,43,6916.0,0.0,0.0,51.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
 sw_diag_s47,sw,thgl-software,diagssm-ordinary,47,6384.0,0.0,0.0,57.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
 sw_gru_s43,sw,thgl-software,gru-ordinary,43,8512.0,0.0,0.0,65.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
+sw_gru_s46,sw,thgl-software,gru-ordinary,46,10640.0,0.0,0.0,68.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
 sw_gru_s47,sw,thgl-software,gru-ordinary,47,5852.0,0.0,0.0,55.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
 sw_nodeframe_s46,sw,thgl-software,node-frame,46,6916.0,0.0,0.0,42.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
 sw_nodeframe_s47,sw,thgl-software,node-frame,47,6384.0,0.0,0.0,44.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
