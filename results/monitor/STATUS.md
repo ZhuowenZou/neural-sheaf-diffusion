@@ -1,17 +1,17 @@
-# Monitor status (2026-09-23 14:07:17)
+# Monitor status (2026-09-23 14:18:16)
 
 ## GPU free (GiB) and utilisation
-0:55GB(0%) 1:80GB(0%) 2:36GB(4%) 3:44GB(0%) 4:45GB(0%) 5:54GB(98%) 6:8GB(14%) 7:47GB(0%) 
+0:55GB(65%) 1:80GB(0%) 2:36GB(7%) 3:44GB(0%) 4:45GB(53%) 5:54GB(100%) 6:8GB(69%) 7:47GB(0%) 
 our GPU processes (pid:MiB): 4186707:25546MiB 4095829:15298MiB 4118762:18198MiB 2315028:11868MiB 4096797:18198MiB 243990:18280MiB 4095645:17954MiB 4177163:18280MiB 2872725:18280MiB 2905507:18198MiB 4096471:18754MiB 4097379:18364MiB 4095975:16976MiB 4138403:16998MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
-- gpu1: ELIGIBLE (idle 189 min)
-- gpu2: ELIGIBLE (idle 1310 min)
-- gpu3: ELIGIBLE (idle 1538 min)
-- gpu4: ELIGIBLE (idle 1914 min)
+- gpu1: ELIGIBLE (idle 200 min)
+- gpu2: ELIGIBLE (idle 1321 min)
+- gpu3: ELIGIBLE (idle 1549 min)
+- gpu4: ELIGIBLE (idle 1924 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 1070 min)
+- gpu6: ELIGIBLE (idle 1081 min)
 - gpu7: OURS
 compensation: colleagues hold 0 MiB on our GPUs; we hold 191672 MiB on theirs; budget left -191672 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
 our launcher claims (pid:gpu/MiB): 

@@ -98,6 +98,7 @@ icews_coreoff_recon_s47,icews,tkgl-icews,core-off,0.003,on,global,47,False,0.292
 icews_curonly_recon_s46,icews,tkgl-icews,current-only-maps,0.003,on,global,46,False,0.3172495556136679,0.3280833707624208,0.5230176952749808,4,6.0,660043.0,660043.0,0.0,True,,,False,2026-09-23 05:51
 icews_curonly_recon_s47,icews,tkgl-icews,current-only-maps,0.003,on,global,47,False,0.3186298265101607,0.3275226435823866,0.5232096812497739,6,6.0,660043.0,660043.0,0.0,True,,,False,2026-09-23 10:11
 icews_gru_recon_s43,icews,tkgl-icews,gru-ordinary,0.003,on,global,43,False,0.3210799588327764,0.3367459775490862,0.5374065498570652,5,6.0,62375.0,62247.0,0.0,True,,,False,2026-09-23 07:34
+icews_gru_recon_s46,icews,tkgl-icews,gru-ordinary,0.003,on,global,46,False,0.3224768679153227,0.3353148588243766,0.5358311025734345,6,6.0,62375.0,62247.0,0.0,True,,,False,2026-09-23 14:19
 icews_gru_recon_s47,icews,tkgl-icews,gru-ordinary,0.003,on,global,47,False,0.3213383581269187,0.3320897463766176,0.5290700954837372,5,6.0,62375.0,62247.0,0.0,True,,,False,2026-09-23 12:24
 icews_identity_recon_s47,icews,tkgl-icews,identity-maps,0.003,on,global,47,False,0.3279447909726118,0.3436584800035835,0.5459975521456701,4,6.0,655883.0,655755.0,0.0,True,,,False,2026-09-23 11:20
 wiki_attention_s43_lr1e-3,matched,tgbl-wiki,attention-gates,0.001,on,global,43,False,0.763972737540753,0.7521457176730129,0.8529274800852188,8,8.0,444815.0,444815.0,0.0,True,,,False,2026-09-22 16:46

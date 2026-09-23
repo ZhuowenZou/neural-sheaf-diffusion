@@ -16,3 +16,6 @@ parameters_by_component={'embeddings': 12512, 'ssm_input_selector_B': 0, 'ssm_ot
 [epoch 6/6] {'epoch': 6, 'train_loss': 0.08661229155880949, 'track_val_mrr': 0.2678357599039872, 'track_val_loss': 0.4031180441379547, 'train_sec': 201.4, 'track_eval_sec': 189.2, 'peak_gpu_mem_mb': 5806.7, 'peak_gpu_reserved_mb': 15008.0, 'epoch_steps': 1262, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 594, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
 checkpoint saved: results/review_2026_09_22/icews/icews_gru_recon_s46/best.pt
 final val_mrr=0.3225 (17203.5s so far)
+FINAL val_mrr=0.3225 test_mrr=0.3353 test_hits10=0.5358 eval_sec=55217.6
+[query-audit] split=val queries=4832314 affected=0 pos_nonfinite=0 neg_nan=0 neg_posinf=0 neg_neginf=0 mrr_raw=0.319088 mrr_guarded=0.319088 mrr_conservative=0.319088 parity=True
+[query-audit] split=test queries=4651378 affected=0 pos_nonfinite=0 neg_nan=0 neg_posinf=0 neg_neginf=0 mrr_raw=0.335315 mrr_guarded=0.335315 mrr_conservative=0.335315 parity=True
