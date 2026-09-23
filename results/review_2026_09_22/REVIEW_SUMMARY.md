@@ -1,6 +1,6 @@
-# Review campaign summary (auto-generated 2026-09-23 04:58)
+# Review campaign summary (auto-generated 2026-09-23 05:01)
 
-250 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+251 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
@@ -49,7 +49,7 @@
 | thgl-forum                                                         | forum   | on    | tsd-no-gap        | 0.001  |   3 | 0.633693  |   0.0124419   | 0.6475 / 0.6233 / 0.6302                                                                                                                               |
 | thgl-forum                                                         | forum   | on    | tsd-no-memory     | 0.001  |   3 | 0.650116  |   0.00292731  | 0.6491 / 0.6478 / 0.6534                                                                                                                               |
 | thgl-software                                                      | sw      | on    | current-only-maps | 0.001  |   3 | 0.438773  |   0.00425522  | 0.4341 / 0.4425 / 0.4397                                                                                                                               |
-| thgl-software                                                      | sw      | on    | diagssm-ordinary  | 0.001  |   1 | 0.437197  | nan           | 0.4372                                                                                                                                                 |
+| thgl-software                                                      | sw      | on    | diagssm-ordinary  | 0.001  |   2 | 0.436131  |   0.00150821  | 0.4372 / 0.4351                                                                                                                                        |
 | thgl-software                                                      | sw      | on    | gru-ordinary      | 0.001  |   2 | 0.43687   |   0.00191472  | 0.4382 / 0.4355                                                                                                                                        |
 | thgl-software                                                      | sw      | on    | identity-maps     | 0.001  |   3 | 0.439174  |   0.00297547  | 0.4357 / 0.4408 / 0.4410                                                                                                                               |
 | thgl-software                                                      | sw      | on    | node-frame        | 0.001  |   1 | 0.439452  | nan           | 0.4395                                                                                                                                                 |
@@ -132,7 +132,7 @@
 | thgl-forum      | on    | tsd-no-gap        |   0.001  |   0.001  |   3 |  0.629315  |  0.633693  |                0.00437799  |   0.0196968   |      0.0489295  | +0.0195 / -0.0179 / +0.0115                     | 2+ 1-   |
 | thgl-forum      | on    | tsd-no-memory     |   0.001  |   0.001  |   3 |  0.629315  |  0.650116  |                0.0208019   |   0.0140486   |      0.0348986  | +0.0211 / +0.0066 / +0.0347                     | 3+ 0-   |
 | thgl-software   | on    | current-only-maps |   0.001  |   0.001  |   3 |  0.437616  |  0.438773  |                0.0011567   |   0.00265301  |      0.00659045 | -0.0019 / +0.0025 / +0.0029                     | 2+ 1-   |
-| thgl-software   | on    | diagssm-ordinary  |   0.001  |   0.001  |   1 |  0.436019  |  0.437197  |                0.00117804  | nan           |    nan          | +0.0012                                         | 1+ 0-   |
+| thgl-software   | on    | diagssm-ordinary  |   0.001  |   0.001  |   2 |  0.436441  |  0.436131  |               -0.000309679 |   0.00210395  |      0.0189033  | +0.0012 / -0.0018                               | 1+ 1-   |
 | thgl-software   | on    | gru-ordinary      |   0.001  |   0.001  |   2 |  0.436441  |  0.43687   |                0.000429099 |   0.00251047  |      0.0225556  | +0.0022 / -0.0013                               | 1+ 1-   |
 | thgl-software   | on    | identity-maps     |   0.001  |   0.001  |   3 |  0.437616  |  0.439174  |                0.00155791  |   0.00231745  |      0.00575687 | -0.0003 / +0.0008 / +0.0042                     | 2+ 1-   |
 | thgl-software   | on    | node-frame        |   0.001  |   0.001  |   1 |  0.436862  |  0.439452  |                0.00259059  | nan           |    nan          | +0.0026                                         | 1+ 0-   |
@@ -489,6 +489,8 @@
 | smoke   | tsd_clockdiag                       | test    |      4000 |                  0 |               0 |         0 |            0 |            0 |      0.526862 |      0.526862 |           0.526862 |                           0 |                         0 |
 | sw      | sw_diag_s43                         | val     |    483469 |                  0 |               0 |         0 |            0 |            0 |      0.374249 |      0.374249 |           0.374249 |                           0 |                         0 |
 | sw      | sw_diag_s43                         | test    |    223471 |                  0 |               0 |         0 |            0 |            0 |      0.437197 |      0.437197 |           0.437197 |                           0 |                         0 |
+| sw      | sw_diag_s47                         | val     |    463469 |                  0 |               0 |         0 |            0 |            0 |      0.374737 |      0.374737 |           0.374737 |                           0 |                         0 |
+| sw      | sw_diag_s47                         | test    |    223471 |                  0 |               0 |         0 |            0 |            0 |      0.435064 |      0.435064 |           0.435064 |                           0 |                         0 |
 | sw      | sw_gru_s43                          | val     |    543469 |                  0 |               0 |         0 |            0 |            0 |      0.373915 |      0.373915 |           0.373915 |                           0 |                         0 |
 | sw      | sw_gru_s43                          | test    |    223471 |                  0 |               0 |         0 |            0 |            0 |      0.438224 |      0.438224 |           0.438224 |                           0 |                         0 |
 | sw      | sw_gru_s47                          | val     |    443469 |                  0 |               0 |         0 |            0 |            0 |      0.374228 |      0.374228 |           0.374228 |                           0 |                         0 |
@@ -753,7 +755,7 @@
 | icews_curonly_recon_s46  | running/pending |            6 |          1 |
 | icews_curonly_recon_s47  | running/pending |            6 |          1 |
 | icews_gru_recon_s43      | running/pending |            6 |          1 |
-| icews_gru_recon_s44      | running/pending |            3 |          1 |
+| icews_gru_recon_s44      | running/pending |            4 |          1 |
 | icews_gru_recon_s45      | running/pending |            5 |          1 |
 | icews_gru_recon_s46      | running/pending |            6 |          1 |
 | icews_gru_recon_s47      | running/pending |            6 |          1 |
@@ -762,11 +764,11 @@
 | icews_identity_recon_s46 | running/pending |            6 |          1 |
 | icews_identity_recon_s47 | running/pending |            6 |          1 |
 | icews_tsd_recon_s44      | running/pending |            5 |          1 |
-| icews_tsd_recon_s45      | running/pending |            1 |          1 |
-| polecat_coreoff_s43      | running/pending |            3 |          1 |
+| icews_tsd_recon_s45      | running/pending |            2 |          1 |
+| polecat_coreoff_s43      | running/pending |            4 |          1 |
 | polecat_coreoff_s46      | running/pending |            3 |          1 |
 | polecat_coreoff_s47      | running/pending |            4 |          1 |
-| polecat_gru_s43          | running/pending |            1 |          1 |
+| polecat_gru_s43          | running/pending |            2 |          1 |
 | polecat_gru_s46          | running/pending |            0 |          1 |
 | polecat_gru_s47          | running/pending |            0 |          1 |
 | sp_attention_s43         | running/pending |            0 |          1 |
@@ -811,15 +813,14 @@
 | sp_tsd_s47               | running/pending |            0 |          1 |
 | sw_attention_s43         | running/pending |            0 |          1 |
 | sw_attention_s46         | running/pending |            0 |          1 |
-| sw_attention_s47         | running/pending |            7 |          1 |
-| sw_coreoff_s43           | running/pending |           11 |          1 |
+| sw_attention_s47         | running/pending |            8 |          1 |
+| sw_coreoff_s43           | running/pending |           13 |          1 |
 | sw_coreoff_s46           | running/pending |            0 |          1 |
 | sw_coreoff_s47           | running/pending |            0 |          1 |
 | sw_diag_s46              | running/pending |            0 |          1 |
-| sw_diag_s47              | running/pending |           11 |          1 |
 | sw_gru_s46               | running/pending |            0 |          1 |
 | sw_nodeframe_s43         | running/pending |            0 |          1 |
-| sw_nodeframe_s46         | running/pending |           10 |          1 |
+| sw_nodeframe_s46         | running/pending |           12 |          1 |
 | wd_coreoff_s47           | running/pending |            0 |          1 |
 | wd_gru_s43               | running/pending |            0 |          1 |
 | wd_gru_s47               | running/pending |            0 |          1 |

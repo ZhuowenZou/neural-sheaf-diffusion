@@ -41,7 +41,7 @@ def main():
             ga = ga[ga.lr == lr].drop_duplicates("seed")
             d = pc[(pc.dataset == ds) & (pc.group == group) & (pc.rec == rec) & (pc.arm == arm) & (pc.arm_lr == lr)] if len(pc) else pd.DataFrame()
             rows.append((arm, dict(lr=lr, n=len(ga), mean=ga.test_mrr.mean(), sd=ga.test_mrr.std(ddof=1) if len(ga) > 1 else np.nan,
-                                   seeds=",".join(str(s) for s in sorted(ga.seed)), params=int(ga.params_active.median()) if "params_active" in ga else None,
+                                   seeds=",".join(str(s) for s in sorted(ga.seed)), params=int(ga.params_active.median()) if "params_active" in ga and not pd.isna(ga.params_active.median()) else None,
                                    delta=d.delta_arm_minus_tsd_mean.iloc[0] if len(d) else np.nan, dsd=d.delta_sd.iloc[0] if len(d) else np.nan,
                                    half=d.t95_halfwidth.iloc[0] if len(d) else np.nan, signs=d.signs.iloc[0] if len(d) else "")))
         lines += [f"\\begin{{table}}[t]\\centering\\small", f"\\caption{{Matched controls on {ds} ({group}, REC {rec}): test MRR over seeds and paired difference to TSD (same seeds, identical data, negatives, protocol and selection rule; lr locked per arm on seed-43 tracking validation). Active parameters exclude parameters unused by construction.}}",

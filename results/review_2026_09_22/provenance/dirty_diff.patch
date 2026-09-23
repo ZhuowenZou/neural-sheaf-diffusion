@@ -1,3 +1,72 @@
+diff --git a/exp/review/make_tex.py b/exp/review/make_tex.py
+index 0c3341d..6f797e1 100644
+--- a/exp/review/make_tex.py
++++ b/exp/review/make_tex.py
+@@ -41,7 +41,7 @@ def main():
+             ga = ga[ga.lr == lr].drop_duplicates("seed")
+             d = pc[(pc.dataset == ds) & (pc.group == group) & (pc.rec == rec) & (pc.arm == arm) & (pc.arm_lr == lr)] if len(pc) else pd.DataFrame()
+             rows.append((arm, dict(lr=lr, n=len(ga), mean=ga.test_mrr.mean(), sd=ga.test_mrr.std(ddof=1) if len(ga) > 1 else np.nan,
+-                                   seeds=",".join(str(s) for s in sorted(ga.seed)), params=int(ga.params_active.median()) if "params_active" in ga else None,
++                                   seeds=",".join(str(s) for s in sorted(ga.seed)), params=int(ga.params_active.median()) if "params_active" in ga and not pd.isna(ga.params_active.median()) else None,
+                                    delta=d.delta_arm_minus_tsd_mean.iloc[0] if len(d) else np.nan, dsd=d.delta_sd.iloc[0] if len(d) else np.nan,
+                                    half=d.t95_halfwidth.iloc[0] if len(d) else np.nan, signs=d.signs.iloc[0] if len(d) else "")))
+         lines += [f"\\begin{{table}}[t]\\centering\\small", f"\\caption{{Matched controls on {ds} ({group}, REC {rec}): test MRR over seeds and paired difference to TSD (same seeds, identical data, negatives, protocol and selection rule; lr locked per arm on seed-43 tracking validation). Active parameters exclude parameters unused by construction.}}",
+diff --git a/results/monitor/STATUS.md b/results/monitor/STATUS.md
+index 8cd3be7..f597218 100644
+--- a/results/monitor/STATUS.md
++++ b/results/monitor/STATUS.md
+@@ -1,20 +1,20 @@
+-# Monitor status (2026-09-23 04:54:26)
++# Monitor status (2026-09-23 04:59:11)
+ 
+ ## GPU free (GiB) and utilisation
+-0:54GB(97%) 1:51GB(98%) 2:3GB(41%) 3:8GB(100%) 4:9GB(84%) 5:54GB(98%) 6:5GB(99%) 7:5GB(98%) 
+-our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 4095829:15526MiB 4096930:11522MiB 4118762:15518MiB 2654122:18014MiB 4096797:15518MiB 4097655:11524MiB 4102102:4524MiB 4114914:4524MiB 4115409:9108MiB 4133554:10940MiB 2668669:18384MiB 4095645:16054MiB 4098149:11522MiB 4131532:11528MiB 4177163:15520MiB 2872725:18280MiB 2905507:18198MiB 4096471:15514MiB 4097379:15526MiB 4128338:4524MiB 4145411:4518MiB 2703991:18280MiB 2704074:18198MiB 4095975:15524MiB 4137627:9288MiB 4138403:15524MiB 
++0:54GB(100%) 1:51GB(71%) 2:2GB(74%) 3:23GB(99%) 4:7GB(100%) 5:54GB(97%) 6:10GB(99%) 7:5GB(99%) 
++our GPU processes (pid:MiB): 2673782:18198MiB 2895041:18384MiB 4095829:16726MiB 4096930:11522MiB 4118762:15518MiB 2654122:18014MiB 4096797:15518MiB 4097655:11524MiB 4114914:4524MiB 4115409:9108MiB 2668669:18384MiB 4095645:17954MiB 4098149:11522MiB 4131532:11528MiB 4177163:15520MiB 2872725:18280MiB 2905507:18198MiB 4096471:15514MiB 4097379:15524MiB 4145411:4518MiB 2703991:18280MiB 2704074:18198MiB 4095975:15524MiB 4137627:9548MiB 4138403:15524MiB 
+ 
+ ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
+ - gpu0: OURS
+ - gpu1: colleague busy
+-- gpu2: ELIGIBLE (idle 757 min)
+-- gpu3: ELIGIBLE (idle 985 min)
+-- gpu4: ELIGIBLE (idle 1361 min)
++- gpu2: ELIGIBLE (idle 761 min)
++- gpu3: ELIGIBLE (idle 990 min)
++- gpu4: ELIGIBLE (idle 1365 min)
+ - gpu5: colleague busy
+-- gpu6: ELIGIBLE (idle 517 min)
++- gpu6: ELIGIBLE (idle 522 min)
+ - gpu7: OURS
+-compensation: colleagues hold 26542 MiB on our GPUs; we hold 302866 MiB on theirs; budget left -276324 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+-our launcher claims (pid:gpu/MiB): 4095997:4/16000 
++compensation: colleagues hold 26542 MiB on our GPUs; we hold 285978 MiB on theirs; budget left -259436 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
++our launcher claims (pid:gpu/MiB): 
+ 
+ ## leakfree2 benchmark runs
+ - DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
+@@ -240,7 +240,7 @@ our launcher claims (pid:gpu/MiB): 4095997:4/16000
+ - RUNNING  icews_gru_recon_s46: final val_mrr=0.3225 (17203.5s so far)
+ - RUNNING  icews_gru_recon_s47: final val_mrr=0.3213 (17509.9s so far)
+ - RUNNING  icews_identity_recon_s44: 
+-- RUNNING  icews_identity_recon_s45: epochs': 3, 'time_window': None, 'context_edges': 50000, 'train_edges_
++- RUNNING  icews_identity_recon_s45: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+ - RUNNING  icews_identity_recon_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+ - RUNNING  icews_identity_recon_s47: final val_mrr=0.3279 (17163.3s so far)
+ - RUNNING  icews_tsd_recon_s44: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+@@ -299,10 +299,10 @@ our launcher claims (pid:gpu/MiB): 4095997:4/16000
+ - RUNNING  sw_coreoff_s47: 
+ - DONE     sw_diag_s43: FINAL val_mrr=0.3821 test_mrr=0.4372 test_hits10=0.4790 eval_sec=156.2
+ - RUNNING  sw_diag_s46: 
+-- RUNNING  sw_diag_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
++- DONE     sw_diag_s47: FINAL val_mrr=0.3815 test_mrr=0.4351 test_hits10=0.4737 eval_sec=100.9
+ - DONE     sw_gru_s43: FINAL val_mrr=0.3801 test_mrr=0.4382 test_hits10=0.4752 eval_sec=132.5
+ - RUNNING  sw_gru_s46: 
+-- RUNNING  sw_gru_s47: final val_mrr=0.3799 (63.6s so far)
++- DONE     sw_gru_s47: FINAL val_mrr=0.3799 test_mrr=0.4355 test_hits10=0.4750 eval_sec=87.9
+ - RUNNING  sw_nodeframe_s43: 
+ - RUNNING  sw_nodeframe_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
+ - DONE     sw_nodeframe_s47: FINAL val_mrr=0.3838 test_mrr=0.4395 test_hits10=0.4819 eval_sec=36.5
 diff --git a/results/monitor/agent.log b/results/monitor/agent.log
 index 56525ff..e07db6e 100644
 --- a/results/monitor/agent.log
@@ -9,323 +78,410 @@ index 56525ff..e07db6e 100644
 +2026-09-23 04:56:25 committed 74 paths (collected 250 finished runs, 78 unfinished; fingerprint 2184314854)
 +2026-09-23 04:56:35 pushed to origin/review-2026-09-22 (e8d993a agent: results snapshot 2026-09-23 04:56 (collected )
 +2026-09-23 04:56:35 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_coreoff_recon_s47 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_curonly_recon_s46 icews_curonly_recon_s47 icews_gru_recon_s43 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_gru_recon_s47 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_identity_recon_s47 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_coreoff_s43 polecat_coreoff_s46 polecat_coreoff_s47 polecat_gru_s43 polecat_gru_s46 polecat_gru_s47 sp_attention_s43 sp_attention_s44 sp_attention_s45 sp_attention_s46 sp_attention_s47 sp_coreoff_s43 sp_coreoff_s44 sp_coreoff_s45 sp_coreoff_s46 sp_coreoff_s47 sp_curonly_s43 sp_curonly_s44 sp_curonly_s45 sp_curonly_s46 sp_curonly_s47 sp_diag_s43 sp_diag_s44 sp_diag_s45 sp_diag_s46 sp_diag_s47 sp_gru_s43 sp_gru_s44 sp_gru_s45 sp_gru_s46 sp_gru_s47 sp_identity_s43 sp_identity_s44 sp_identity_s45 sp_identity_s46 sp_identity_s47 sp_nodeframe_s43 sp_nodeframe_s44 sp_nodeframe_s45 sp_nodeframe_s46 sp_nodeframe_s47 sp_tsd_s43 sp_tsd_s44 sp_tsd_s45 sp_tsd_s46 sp_tsd_s47 sw_attention_s43 sw_attention_s46 sw_attention_s47 sw_coreoff_s43 sw_coreoff_s46 sw_coreoff_s47 sw_diag_s46 sw_diag_s47 sw_gru_s46 sw_nodeframe_s43 sw_nodeframe_s46 wd_coreoff_s47 wd_gru_s43 wd_gru_s47 ] pending-launchers 79 free-GiB 54 51 3 23 7 54 10 5 
+diff --git a/results/monitor/gpu_log.csv b/results/monitor/gpu_log.csv
+index 8feb137..437084d 100644
+--- a/results/monitor/gpu_log.csv
++++ b/results/monitor/gpu_log.csv
+@@ -48902,3 +48902,11 @@
+ 2026-09-23 04:54:26,5,26833,81920,98
+ 2026-09-23 04:54:26,6,76599,81920,97
+ 2026-09-23 04:54:26,7,76848,81920,100
++2026-09-23 04:59:11,0,26553,81920,98
++2026-09-23 04:59:11,1,29795,81920,98
++2026-09-23 04:59:11,2,80380,81920,26
++2026-09-23 04:59:11,3,58726,81920,99
++2026-09-23 04:59:11,4,74946,81920,100
++2026-09-23 04:59:11,5,26833,81920,98
++2026-09-23 04:59:11,6,72068,81920,91
++2026-09-23 04:59:11,7,77108,81920,95
 diff --git a/results/review_2026_09_22/CODE_COMMIT.txt b/results/review_2026_09_22/CODE_COMMIT.txt
-index dd7a2ff..c1c02e1 100644
+index c1c02e1..14fc94e 100644
 --- a/results/review_2026_09_22/CODE_COMMIT.txt
 +++ b/results/review_2026_09_22/CODE_COMMIT.txt
 @@ -1 +1 @@
--0e3195e714cb529415021fc7eeb63cb1a0499b27
-+e8d993ae54cce37f8f803517a1d76e4ebe6ae793
+-e8d993ae54cce37f8f803517a1d76e4ebe6ae793
++7ba5f19a6716b09bb83a7ca8508a89f1577e4643
 diff --git a/results/review_2026_09_22/REVIEW_SUMMARY.md b/results/review_2026_09_22/REVIEW_SUMMARY.md
-index c4d5d57..8d0d6b7 100644
+index 8d0d6b7..669b99e 100644
 --- a/results/review_2026_09_22/REVIEW_SUMMARY.md
 +++ b/results/review_2026_09_22/REVIEW_SUMMARY.md
-@@ -1,4 +1,4 @@
--# Review campaign summary (auto-generated 2026-09-23 04:56)
-+# Review campaign summary (auto-generated 2026-09-23 04:58)
+@@ -1,6 +1,6 @@
+-# Review campaign summary (auto-generated 2026-09-23 04:58)
++# Review campaign summary (auto-generated 2026-09-23 05:01)
  
- 250 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+-250 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
++251 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
  
-@@ -758,14 +758,14 @@
+ ## Test MRR by dataset x arm x lr
+ 
+@@ -49,7 +49,7 @@
+ | thgl-forum                                                         | forum   | on    | tsd-no-gap        | 0.001  |   3 | 0.633693  |   0.0124419   | 0.6475 / 0.6233 / 0.6302                                                                                                                               |
+ | thgl-forum                                                         | forum   | on    | tsd-no-memory     | 0.001  |   3 | 0.650116  |   0.00292731  | 0.6491 / 0.6478 / 0.6534                                                                                                                               |
+ | thgl-software                                                      | sw      | on    | current-only-maps | 0.001  |   3 | 0.438773  |   0.00425522  | 0.4341 / 0.4425 / 0.4397                                                                                                                               |
+-| thgl-software                                                      | sw      | on    | diagssm-ordinary  | 0.001  |   1 | 0.437197  | nan           | 0.4372                                                                                                                                                 |
++| thgl-software                                                      | sw      | on    | diagssm-ordinary  | 0.001  |   2 | 0.436131  |   0.00150821  | 0.4372 / 0.4351                                                                                                                                        |
+ | thgl-software                                                      | sw      | on    | gru-ordinary      | 0.001  |   2 | 0.43687   |   0.00191472  | 0.4382 / 0.4355                                                                                                                                        |
+ | thgl-software                                                      | sw      | on    | identity-maps     | 0.001  |   3 | 0.439174  |   0.00297547  | 0.4357 / 0.4408 / 0.4410                                                                                                                               |
+ | thgl-software                                                      | sw      | on    | node-frame        | 0.001  |   1 | 0.439452  | nan           | 0.4395                                                                                                                                                 |
+@@ -132,7 +132,7 @@
+ | thgl-forum      | on    | tsd-no-gap        |   0.001  |   0.001  |   3 |  0.629315  |  0.633693  |                0.00437799  |   0.0196968   |      0.0489295  | +0.0195 / -0.0179 / +0.0115                     | 2+ 1-   |
+ | thgl-forum      | on    | tsd-no-memory     |   0.001  |   0.001  |   3 |  0.629315  |  0.650116  |                0.0208019   |   0.0140486   |      0.0348986  | +0.0211 / +0.0066 / +0.0347                     | 3+ 0-   |
+ | thgl-software   | on    | current-only-maps |   0.001  |   0.001  |   3 |  0.437616  |  0.438773  |                0.0011567   |   0.00265301  |      0.00659045 | -0.0019 / +0.0025 / +0.0029                     | 2+ 1-   |
+-| thgl-software   | on    | diagssm-ordinary  |   0.001  |   0.001  |   1 |  0.436019  |  0.437197  |                0.00117804  | nan           |    nan          | +0.0012                                         | 1+ 0-   |
++| thgl-software   | on    | diagssm-ordinary  |   0.001  |   0.001  |   2 |  0.436441  |  0.436131  |               -0.000309679 |   0.00210395  |      0.0189033  | +0.0012 / -0.0018                               | 1+ 1-   |
+ | thgl-software   | on    | gru-ordinary      |   0.001  |   0.001  |   2 |  0.436441  |  0.43687   |                0.000429099 |   0.00251047  |      0.0225556  | +0.0022 / -0.0013                               | 1+ 1-   |
+ | thgl-software   | on    | identity-maps     |   0.001  |   0.001  |   3 |  0.437616  |  0.439174  |                0.00155791  |   0.00231745  |      0.00575687 | -0.0003 / +0.0008 / +0.0042                     | 2+ 1-   |
+ | thgl-software   | on    | node-frame        |   0.001  |   0.001  |   1 |  0.436862  |  0.439452  |                0.00259059  | nan           |    nan          | +0.0026                                         | 1+ 0-   |
+@@ -489,6 +489,8 @@
+ | smoke   | tsd_clockdiag                       | test    |      4000 |                  0 |               0 |         0 |            0 |            0 |      0.526862 |      0.526862 |           0.526862 |                           0 |                         0 |
+ | sw      | sw_diag_s43                         | val     |    483469 |                  0 |               0 |         0 |            0 |            0 |      0.374249 |      0.374249 |           0.374249 |                           0 |                         0 |
+ | sw      | sw_diag_s43                         | test    |    223471 |                  0 |               0 |         0 |            0 |            0 |      0.437197 |      0.437197 |           0.437197 |                           0 |                         0 |
++| sw      | sw_diag_s47                         | val     |    463469 |                  0 |               0 |         0 |            0 |            0 |      0.374737 |      0.374737 |           0.374737 |                           0 |                         0 |
++| sw      | sw_diag_s47                         | test    |    223471 |                  0 |               0 |         0 |            0 |            0 |      0.435064 |      0.435064 |           0.435064 |                           0 |                         0 |
+ | sw      | sw_gru_s43                          | val     |    543469 |                  0 |               0 |         0 |            0 |            0 |      0.373915 |      0.373915 |           0.373915 |                           0 |                         0 |
+ | sw      | sw_gru_s43                          | test    |    223471 |                  0 |               0 |         0 |            0 |            0 |      0.438224 |      0.438224 |           0.438224 |                           0 |                         0 |
+ | sw      | sw_gru_s47                          | val     |    443469 |                  0 |               0 |         0 |            0 |            0 |      0.374228 |      0.374228 |           0.374228 |                           0 |                         0 |
+@@ -753,7 +755,7 @@
+ | icews_curonly_recon_s46  | running/pending |            6 |          1 |
+ | icews_curonly_recon_s47  | running/pending |            6 |          1 |
+ | icews_gru_recon_s43      | running/pending |            6 |          1 |
+-| icews_gru_recon_s44      | running/pending |            3 |          1 |
++| icews_gru_recon_s44      | running/pending |            4 |          1 |
+ | icews_gru_recon_s45      | running/pending |            5 |          1 |
  | icews_gru_recon_s46      | running/pending |            6 |          1 |
  | icews_gru_recon_s47      | running/pending |            6 |          1 |
- | icews_identity_recon_s44 | running/pending |            0 |          1 |
--| icews_identity_recon_s45 | running/pending |            0 |          1 |
-+| icews_identity_recon_s45 | running/pending |            1 |          1 |
+@@ -762,11 +764,11 @@
  | icews_identity_recon_s46 | running/pending |            6 |          1 |
  | icews_identity_recon_s47 | running/pending |            6 |          1 |
--| icews_tsd_recon_s44      | running/pending |            4 |          1 |
-+| icews_tsd_recon_s44      | running/pending |            5 |          1 |
- | icews_tsd_recon_s45      | running/pending |            1 |          1 |
- | polecat_coreoff_s43      | running/pending |            3 |          1 |
+ | icews_tsd_recon_s44      | running/pending |            5 |          1 |
+-| icews_tsd_recon_s45      | running/pending |            1 |          1 |
+-| polecat_coreoff_s43      | running/pending |            3 |          1 |
++| icews_tsd_recon_s45      | running/pending |            2 |          1 |
++| polecat_coreoff_s43      | running/pending |            4 |          1 |
  | polecat_coreoff_s46      | running/pending |            3 |          1 |
--| polecat_coreoff_s47      | running/pending |            3 |          1 |
-+| polecat_coreoff_s47      | running/pending |            4 |          1 |
- | polecat_gru_s43          | running/pending |            1 |          1 |
+ | polecat_coreoff_s47      | running/pending |            4 |          1 |
+-| polecat_gru_s43          | running/pending |            1 |          1 |
++| polecat_gru_s43          | running/pending |            2 |          1 |
  | polecat_gru_s46          | running/pending |            0 |          1 |
  | polecat_gru_s47          | running/pending |            0 |          1 |
-@@ -811,15 +811,15 @@
+ | sp_attention_s43         | running/pending |            0 |          1 |
+@@ -811,15 +813,14 @@
  | sp_tsd_s47               | running/pending |            0 |          1 |
  | sw_attention_s43         | running/pending |            0 |          1 |
  | sw_attention_s46         | running/pending |            0 |          1 |
--| sw_attention_s47         | running/pending |            6 |          1 |
--| sw_coreoff_s43           | running/pending |            9 |          1 |
-+| sw_attention_s47         | running/pending |            7 |          1 |
-+| sw_coreoff_s43           | running/pending |           11 |          1 |
+-| sw_attention_s47         | running/pending |            7 |          1 |
+-| sw_coreoff_s43           | running/pending |           11 |          1 |
++| sw_attention_s47         | running/pending |            8 |          1 |
++| sw_coreoff_s43           | running/pending |           13 |          1 |
  | sw_coreoff_s46           | running/pending |            0 |          1 |
  | sw_coreoff_s47           | running/pending |            0 |          1 |
  | sw_diag_s46              | running/pending |            0 |          1 |
--| sw_diag_s47              | running/pending |           10 |          1 |
-+| sw_diag_s47              | running/pending |           11 |          1 |
+-| sw_diag_s47              | running/pending |           11 |          1 |
  | sw_gru_s46               | running/pending |            0 |          1 |
  | sw_nodeframe_s43         | running/pending |            0 |          1 |
--| sw_nodeframe_s46         | running/pending |            9 |          1 |
-+| sw_nodeframe_s46         | running/pending |           10 |          1 |
+-| sw_nodeframe_s46         | running/pending |           10 |          1 |
++| sw_nodeframe_s46         | running/pending |           12 |          1 |
  | wd_coreoff_s47           | running/pending |            0 |          1 |
  | wd_gru_s43               | running/pending |            0 |          1 |
  | wd_gru_s47               | running/pending |            0 |          1 |
-diff --git a/results/review_2026_09_22/icews/icews_tsd_recon_s44/history.csv b/results/review_2026_09_22/icews/icews_tsd_recon_s44/history.csv
-index 4570653..03826ea 100644
---- a/results/review_2026_09_22/icews/icews_tsd_recon_s44/history.csv
-+++ b/results/review_2026_09_22/icews/icews_tsd_recon_s44/history.csv
+diff --git a/results/review_2026_09_22/costs.csv b/results/review_2026_09_22/costs.csv
+index 928af07..75ed449 100644
+--- a/results/review_2026_09_22/costs.csv
++++ b/results/review_2026_09_22/costs.csv
+@@ -149,6 +149,7 @@ synth_r,smoke,synth-history:results/review_2026_09_22/synthetic/gen_s1r/data.npz
+ tsd,smoke,tgbl-wiki,tsd,43,0.0003,4000,4000,0.4,0.8,75.6,59.8,1500.0,0.0,435584.0,4245.0,128.0,2534.0,2114.0,81.0,0.0,444686.0,444686.0,0.0,444686.0,biaslab0.ics.uci.edu,3.9.9,2.8.0+cu128,12.8,91002.0,2.6.1,2.2.0,AMD EPYC 7713 64-Core Processor,256.0,2003.8,NVIDIA A100-SXM4-80GB,79.3,7.0,1.0,float32,torch.cuda.synchronize-free wall clock (perf_counter),560.35.05,10.0,0.1547320932149887,0.2272480279207229,74.4,53.7,10.3,10.4,131.1,1514.0,2403.3,4826.0,,4826.0,115824.0,cuda:0,9227.0,2952640.0,1778748.0,213.2,
+ tsd_clockdiag,smoke,tgbl-wiki,tsd,43,0.0003,4000,4000,1.6,3.3,88.4,75.4,0.0,0.0,435584.0,4245.0,128.0,2534.0,2114.0,81.0,0.0,444686.0,444686.0,0.0,444686.0,biaslab0.ics.uci.edu,3.9.9,2.8.0+cu128,12.8,91002.0,2.6.1,2.2.0,AMD EPYC 7713 64-Core Processor,256.0,2003.8,NVIDIA A100-SXM4-80GB,79.3,7.0,1.0,float32,torch.cuda.synchronize-free wall clock (perf_counter),560.35.05,29.0,0.1547533422708511,0.2271938174962997,102.1,72.7,14.0,15.4,131.5,1998.0,2387.3,4826.0,,4826.0,115824.0,cuda:0,9227.0,2952640.0,1778748.0,282.1,
+ sw_diag_s43,sw,thgl-software,diagssm-ordinary,43,0.001,223469,223471,1.9,8.3,396.1,236.4,3976.0,480.0,0.0,6437.0,128.0,2534.0,2335.0,129.0,0.0,12043.0,12043.0,128.0,11915.0,biaslab0.ics.uci.edu,3.9.9,2.8.0+cu128,12.8,91002.0,2.6.1,2.2.0,AMD EPYC 7713 64-Core Processor,256.0,2003.8,NVIDIA A100-SXM4-80GB,79.3,7.0,1.0,float32,torch.cuda.synchronize-free wall clock (perf_counter),560.35.05,25.0,0.4358325004577636,0.4580713808536529,156.2,76.5,34.7,45.0,2421.0,4014.0,5932.7,1368217.0,880274.0,2248491.0,53963784.0,cuda:0,681927.0,218216640.0,5503592.0,806.8,
++sw_diag_s47,sw,thgl-software,diagssm-ordinary,47,0.001,223469,223471,2.7,7.0,955.8,612.9,3976.0,480.0,0.0,6437.0,128.0,2534.0,2335.0,129.0,0.0,12043.0,12043.0,128.0,11915.0,biaslab0.ics.uci.edu,3.9.9,2.8.0+cu128,12.8,91002.0,2.6.1,2.2.0,AMD EPYC 7713 64-Core Processor,256.0,2003.8,NVIDIA A100-SXM4-80GB,79.3,3.0,1.0,float32,torch.cuda.synchronize-free wall clock (perf_counter),560.35.05,24.0,0.4069298803806305,0.4169691503047943,100.9,38.0,31.7,31.1,2421.0,4014.0,5941.7,1368217.0,880274.0,2248491.0,53963784.0,cuda:0,681927.0,218216640.0,5503592.0,1686.8,
+ sw_gru_s43,sw,thgl-software,gru-ordinary,43,0.001,223469,223471,1.4,6.9,911.4,580.3,3976.0,480.0,0.0,31681.0,128.0,2534.0,2335.0,129.0,0.0,37287.0,37287.0,128.0,37159.0,biaslab0.ics.uci.edu,3.9.9,2.8.0+cu128,12.8,91002.0,2.6.1,2.2.0,AMD EPYC 7713 64-Core Processor,256.0,2003.8,NVIDIA A100-SXM4-80GB,79.3,3.0,1.0,float32,torch.cuda.synchronize-free wall clock (perf_counter),560.35.05,21.0,0.3702726364135742,0.370680958032608,132.5,56.0,42.6,33.9,2421.4,4014.0,5949.5,1368217.0,880274.0,2248491.0,53963784.0,cuda:0,681927.0,218216640.0,5604568.0,1640.0,
+ sw_gru_s47,sw,thgl-software,gru-ordinary,47,0.001,223469,223471,2.3,6.7,643.9,397.6,3976.0,480.0,0.0,31681.0,128.0,2534.0,2335.0,129.0,0.0,37287.0,37287.0,128.0,37159.0,biaslab0.ics.uci.edu,3.9.9,2.8.0+cu128,12.8,91002.0,2.6.1,2.2.0,AMD EPYC 7713 64-Core Processor,256.0,2003.8,NVIDIA A100-SXM4-80GB,79.3,6.0,1.0,float32,torch.cuda.synchronize-free wall clock (perf_counter),560.35.05,29.0,0.371600329875946,0.3739766776561737,87.9,41.6,21.9,24.4,2421.4,4014.0,5916.7,1368217.0,880274.0,2248491.0,53963784.0,cuda:0,681927.0,218216640.0,5604568.0,1145.7,
+ sw_nodeframe_s47,sw,thgl-software,node-frame,47,0.001,223469,223471,1.8,7.9,771.5,349.0,3976.0,480.0,620928.0,4261.0,192.0,2534.0,2335.0,129.0,0.0,630859.0,630859.0,0.0,630859.0,biaslab0.ics.uci.edu,3.9.9,2.8.0+cu128,12.8,91002.0,2.6.1,2.2.0,AMD EPYC 7713 64-Core Processor,256.0,2003.8,NVIDIA A100-SXM4-80GB,79.3,4.0,1.0,float32,torch.cuda.synchronize-free wall clock (perf_counter),560.35.05,22.0,0.383790910243988,0.3947170972824096,36.5,12.9,12.1,11.5,2488.2,9796.0,5982.8,1368217.0,880274.0,2248491.0,53963784.0,cuda:0,681927.0,218216640.0,7978856.0,1173.7,
+diff --git a/results/review_2026_09_22/icews/icews_coreoff_recon_s45/history.csv b/results/review_2026_09_22/icews/icews_coreoff_recon_s45/history.csv
+index fd369d7..a5da728 100644
+--- a/results/review_2026_09_22/icews/icews_coreoff_recon_s45/history.csv
++++ b/results/review_2026_09_22/icews/icews_coreoff_recon_s45/history.csv
 @@ -3,3 +3,4 @@ epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_
- 2,0.05719227571241121,0.23015412308772404,0.5067558884620667,113.4,174.9,7301.6,15012.0,1262,0,0,1,0,0,0,0
- 3,0.05723944267851379,0.24581476375758649,0.4401927590370178,157.5,177.2,7989.6,15012.0,1262,0,0,0,0,0,0,0
- 4,0.061255223705195684,0.2594243432953954,0.31633979082107544,218.9,212.8,7989.6,15012.0,1262,0,0,4,0,0,0,0
-+5,0.061062537403792,0.25661764281292754,0.3801516592502594,238.7,216.4,9578.7,15012.0,1262,0,0,0,0,0,0,0
-diff --git a/results/review_2026_09_22/polecat/polecat_coreoff_s47/history.csv b/results/review_2026_09_22/polecat/polecat_coreoff_s47/history.csv
-index 455332d..71dc68c 100644
---- a/results/review_2026_09_22/polecat/polecat_coreoff_s47/history.csv
-+++ b/results/review_2026_09_22/polecat/polecat_coreoff_s47/history.csv
-@@ -2,3 +2,4 @@ epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_
- 1,0.18235520047804454,0.19546219457040231,0.3071308732032776,43.9,290.8,5110.7,11012.0,1192,0,0,11,0,0,0,0
- 2,0.15428332107191617,0.2110070562283198,0.2903594970703125,86.8,435.6,5156.8,11012.0,1192,0,0,0,0,0,0,0
- 3,0.15237031847038526,0.22459295180191596,0.28448721766471863,153.8,398.9,5156.8,11012.0,1192,0,0,0,0,0,0,0
-+4,0.15151320777883465,0.23497224757522345,0.2866170108318329,42.6,466.0,5156.8,11012.0,1192,0,0,0,0,0,0,0
-diff --git a/results/review_2026_09_22/polecat/polecat_gru_s43/history.csv b/results/review_2026_09_22/polecat/polecat_gru_s43/history.csv
-index ae42f69..b79c9ff 100644
---- a/results/review_2026_09_22/polecat/polecat_gru_s43/history.csv
-+++ b/results/review_2026_09_22/polecat/polecat_gru_s43/history.csv
-@@ -1,2 +1,3 @@
- epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_mem_mb,peak_gpu_reserved_mb,epoch_steps,epoch_nonfinite_loss,epoch_nonfinite_grad,epoch_clipped,epoch_skipped_steps,track_nonfinite_positives,track_nonfinite_negatives,track_skipped_queries
- 1,0.1530754853402508,0.2112404321928819,0.24328599870204926,167.2,527.9,5108.8,11016.0,1192,0,0,2,0,0,0,0
-+2,0.13846783880644398,0.21785299086421728,0.26096010208129883,79.1,431.1,5154.9,11018.0,1192,0,0,2,0,0,0,0
-diff --git a/results/review_2026_09_22/queue/icews_identity_recon_s45.log b/results/review_2026_09_22/queue/icews_identity_recon_s45.log
-index 08a7e18..d0d7f6e 100644
---- a/results/review_2026_09_22/queue/icews_identity_recon_s45.log
-+++ b/results/review_2026_09_22/queue/icews_identity_recon_s45.log
-@@ -8,3 +8,4 @@ delta_time_scale=86400 (Delta_k is measured in units of the median training inte
- protocol: predict-from-previous-state (leak-free) for training and evaluation
- parameter_count=655883 num_relations=782 num_nodes=87856
- parameters_by_component={'embeddings': 12512, 'ssm_input_selector_B': 620928, 'ssm_other': 4261, 'map_decoder': 128, 'spatial_block': 2534, 'scorer': 15391, 'rec': 129, 'other': 0, 'total': 655883, 'trainable': 655883, 'unused_by_construction': 128, 'active': 655755}
-+[epoch 1/6] {'epoch': 1, 'train_loss': 0.07852607488148092, 'track_val_mrr': 0.23075556533684333, 'track_val_loss': 0.5233160853385925, 'train_sec': 96.1, 'track_eval_sec': 139.7, 'peak_gpu_mem_mb': 8036.5, 'peak_gpu_reserved_mb': 15008.0, 'epoch_steps': 1262, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 13, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-diff --git a/results/review_2026_09_22/queue/icews_tsd_recon_s44.log b/results/review_2026_09_22/queue/icews_tsd_recon_s44.log
-index 8b25154..c8539e8 100644
---- a/results/review_2026_09_22/queue/icews_tsd_recon_s44.log
-+++ b/results/review_2026_09_22/queue/icews_tsd_recon_s44.log
-@@ -12,3 +12,4 @@ parameters_by_component={'embeddings': 12512, 'ssm_input_selector_B': 620928, 's
- [epoch 2/6] {'epoch': 2, 'train_loss': 0.05719227571241121, 'track_val_mrr': 0.23015412308772404, 'track_val_loss': 0.5067558884620667, 'train_sec': 113.4, 'track_eval_sec': 174.9, 'peak_gpu_mem_mb': 7301.6, 'peak_gpu_reserved_mb': 15012.0, 'epoch_steps': 1262, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 1, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 3/6] {'epoch': 3, 'train_loss': 0.05723944267851379, 'track_val_mrr': 0.24581476375758649, 'track_val_loss': 0.4401927590370178, 'train_sec': 157.5, 'track_eval_sec': 177.2, 'peak_gpu_mem_mb': 7989.6, 'peak_gpu_reserved_mb': 15012.0, 'epoch_steps': 1262, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 4/6] {'epoch': 4, 'train_loss': 0.061255223705195684, 'track_val_mrr': 0.2594243432953954, 'track_val_loss': 0.31633979082107544, 'train_sec': 218.9, 'track_eval_sec': 212.8, 'peak_gpu_mem_mb': 7989.6, 'peak_gpu_reserved_mb': 15012.0, 'epoch_steps': 1262, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 5/6] {'epoch': 5, 'train_loss': 0.061062537403792, 'track_val_mrr': 0.25661764281292754, 'track_val_loss': 0.3801516592502594, 'train_sec': 238.7, 'track_eval_sec': 216.4, 'peak_gpu_mem_mb': 9578.7, 'peak_gpu_reserved_mb': 15012.0, 'epoch_steps': 1262, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-diff --git a/results/review_2026_09_22/queue/polecat_coreoff_s47.log b/results/review_2026_09_22/queue/polecat_coreoff_s47.log
-index 077097c..14d0422 100644
---- a/results/review_2026_09_22/queue/polecat_coreoff_s47.log
-+++ b/results/review_2026_09_22/queue/polecat_coreoff_s47.log
-@@ -11,3 +11,4 @@ parameters_by_component={'embeddings': 512, 'ssm_input_selector_B': 620928, 'ssm
- [epoch 1/10] {'epoch': 1, 'train_loss': 0.18235520047804454, 'track_val_mrr': 0.19546219457040231, 'track_val_loss': 0.3071308732032776, 'train_sec': 43.9, 'track_eval_sec': 290.8, 'peak_gpu_mem_mb': 5110.7, 'peak_gpu_reserved_mb': 11012.0, 'epoch_steps': 1192, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 11, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 2/10] {'epoch': 2, 'train_loss': 0.15428332107191617, 'track_val_mrr': 0.2110070562283198, 'track_val_loss': 0.2903594970703125, 'train_sec': 86.8, 'track_eval_sec': 435.6, 'peak_gpu_mem_mb': 5156.8, 'peak_gpu_reserved_mb': 11012.0, 'epoch_steps': 1192, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 3/10] {'epoch': 3, 'train_loss': 0.15237031847038526, 'track_val_mrr': 0.22459295180191596, 'track_val_loss': 0.28448721766471863, 'train_sec': 153.8, 'track_eval_sec': 398.9, 'peak_gpu_mem_mb': 5156.8, 'peak_gpu_reserved_mb': 11012.0, 'epoch_steps': 1192, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 4/10] {'epoch': 4, 'train_loss': 0.15151320777883465, 'track_val_mrr': 0.23497224757522345, 'track_val_loss': 0.2866170108318329, 'train_sec': 42.6, 'track_eval_sec': 466.0, 'peak_gpu_mem_mb': 5156.8, 'peak_gpu_reserved_mb': 11012.0, 'epoch_steps': 1192, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-diff --git a/results/review_2026_09_22/queue/polecat_gru_s43.log b/results/review_2026_09_22/queue/polecat_gru_s43.log
-index 8df8214..0194208 100644
---- a/results/review_2026_09_22/queue/polecat_gru_s43.log
-+++ b/results/review_2026_09_22/queue/polecat_gru_s43.log
-@@ -9,3 +9,4 @@ protocol: predict-from-previous-state (leak-free) for training and evaluation
- parameter_count=37625 num_relations=32 num_nodes=150931
- parameters_by_component={'embeddings': 512, 'ssm_input_selector_B': 0, 'ssm_other': 31681, 'map_decoder': 128, 'spatial_block': 2534, 'scorer': 2641, 'rec': 129, 'other': 0, 'total': 37625, 'trainable': 37625, 'unused_by_construction': 128, 'active': 37497}
- [epoch 1/10] {'epoch': 1, 'train_loss': 0.1530754853402508, 'track_val_mrr': 0.2112404321928819, 'track_val_loss': 0.24328599870204926, 'train_sec': 167.2, 'track_eval_sec': 527.9, 'peak_gpu_mem_mb': 5108.8, 'peak_gpu_reserved_mb': 11016.0, 'epoch_steps': 1192, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 2, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 2/10] {'epoch': 2, 'train_loss': 0.13846783880644398, 'track_val_mrr': 0.21785299086421728, 'track_val_loss': 0.26096010208129883, 'train_sec': 79.1, 'track_eval_sec': 431.1, 'peak_gpu_mem_mb': 5154.9, 'peak_gpu_reserved_mb': 11018.0, 'epoch_steps': 1192, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 2, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+ 2,0.0675052780593065,0.2576248167321086,0.30657777190208435,100.8,291.6,5808.4,15004.0,1262,0,0,0,0,0,0,0
+ 3,0.06658059792525228,0.2555714025348425,0.3048071563243866,89.9,306.1,5808.4,15004.0,1262,0,0,0,0,0,0,0
+ 4,0.06618020876876053,0.25575859563748043,0.30089977383613586,130.3,353.1,5808.4,15004.0,1262,0,0,0,0,0,0,0
++5,0.06601335222370887,0.2562556782066822,0.28865867853164673,103.1,298.0,5808.4,15004.0,1262,0,0,0,0,0,0,0
+diff --git a/results/review_2026_09_22/icews/icews_gru_recon_s45/history.csv b/results/review_2026_09_22/icews/icews_gru_recon_s45/history.csv
+index 432b703..beb7fa3 100644
+--- a/results/review_2026_09_22/icews/icews_gru_recon_s45/history.csv
++++ b/results/review_2026_09_22/icews/icews_gru_recon_s45/history.csv
+@@ -4,3 +4,4 @@ epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_
+ 3,0.06112158562096571,0.24571404927571613,0.3651205003261566,196.6,218.1,5806.7,15008.0,1262,0,0,5,0,0,0,0
+ 4,0.06090846408317943,0.24563909755150476,0.35592976212501526,241.7,251.4,5806.7,15008.0,1262,0,0,13,0,0,0,0
+ 5,0.06295547524700311,0.26588630996396145,0.34760230779647827,218.0,243.0,5806.7,15008.0,1262,0,0,124,0,0,0,0
++6,0.06145673408283721,0.2560228809768955,0.3603511452674866,154.3,181.3,5806.7,15008.0,1262,0,0,96,0,0,0,0
+diff --git a/results/review_2026_09_22/numerical_events.csv b/results/review_2026_09_22/numerical_events.csv
+index e345b51..c650a08 100644
+--- a/results/review_2026_09_22/numerical_events.csv
++++ b/results/review_2026_09_22/numerical_events.csv
+@@ -149,6 +149,7 @@ synth_r,smoke,synth-history:results/review_2026_09_22/synthetic/gen_s1r/data.npz
+ tsd,smoke,tgbl-wiki,tsd,43,560.0,0.0,0.0,228.0,0.0,0.0,0.0,0.0,4000.0,0.0,0.0,0.0,4000.0,0.0,True
+ tsd_clockdiag,smoke,tgbl-wiki,tsd,43,560.0,0.0,0.0,228.0,0.0,0.0,0.0,0.0,4000.0,0.0,0.0,0.0,4000.0,0.0,True
+ sw_diag_s43,sw,thgl-software,diagssm-ordinary,43,6916.0,0.0,0.0,51.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
++sw_diag_s47,sw,thgl-software,diagssm-ordinary,47,6384.0,0.0,0.0,57.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
+ sw_gru_s43,sw,thgl-software,gru-ordinary,43,8512.0,0.0,0.0,65.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
+ sw_gru_s47,sw,thgl-software,gru-ordinary,47,5852.0,0.0,0.0,55.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
+ sw_nodeframe_s47,sw,thgl-software,node-frame,47,6384.0,0.0,0.0,44.0,0.0,0.0,0.0,0.0,223469.0,0.0,0.0,0.0,223471.0,0.0,True
+diff --git a/results/review_2026_09_22/paired_contrasts.csv b/results/review_2026_09_22/paired_contrasts.csv
+index 340ba09..a817cea 100644
+--- a/results/review_2026_09_22/paired_contrasts.csv
++++ b/results/review_2026_09_22/paired_contrasts.csv
+@@ -46,7 +46,7 @@ thgl-forum,forum,on,0.001,node-frame,0.001,"[43, 44, 45, 46, 47]",5,0.6253882373
+ thgl-forum,forum,on,0.001,tsd-no-gap,0.001,"[43, 46, 47]",3,0.6293146096889329,0.633692596408726,0.004377986719793096,0.019696756009268214,0.048929454401161754,+0.0195 / -0.0179 / +0.0115,2+ 1-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
+ thgl-forum,forum,on,0.001,tsd-no-memory,0.001,"[43, 46, 47]",3,0.6293146096889329,0.650116469948545,0.02080186025961206,0.014048567928366971,0.03489857738651013,+0.0211 / +0.0066 / +0.0347,3+ 0-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
+ thgl-software,sw,on,0.001,current-only-maps,0.001,"[43, 46, 47]",3,0.4376163776847997,0.4387730789622563,0.001156701277456577,0.0026530118028233827,0.006590446669030624,-0.0019 / +0.0025 / +0.0029,2+ 1-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
+-thgl-software,sw,on,0.001,diagssm-ordinary,0.001,[43],1,0.4360192940843008,0.437197335392646,0.0011780413083452013,,,+0.0012,1+ 0-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
++thgl-software,sw,on,0.001,diagssm-ordinary,0.001,"[43, 47]",2,0.43644054945762334,0.43613087006284035,-0.0003096793947829912,0.0021039547953871267,0.018903283844575524,+0.0012 / -0.0018,1+ 1-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
+ thgl-software,sw,on,0.001,gru-ordinary,0.001,"[43, 47]",2,0.43644054945762334,0.43686964804954864,0.0004290985919253032,0.0025104658601498887,0.022555640853394805,+0.0022 / -0.0013,1+ 1-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
+ thgl-software,sw,on,0.001,identity-maps,0.001,"[43, 46, 47]",3,0.4376163776847997,0.43917428835091404,0.001557910666114289,0.002317450615919237,0.0057568664700526654,-0.0003 / +0.0008 / +0.0042,2+ 1-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
+ thgl-software,sw,on,0.001,node-frame,0.001,[47],1,0.4368618048309459,0.4394523954822342,0.002590590651288305,,,+0.0026,1+ 0-,"paired per-seed differences; mean, sample SD, 95% t-interval (n-1 df); descriptive only"
+diff --git a/results/review_2026_09_22/per_seed_results.csv b/results/review_2026_09_22/per_seed_results.csv
+index 1200a20..7c55fcf 100644
+--- a/results/review_2026_09_22/per_seed_results.csv
++++ b/results/review_2026_09_22/per_seed_results.csv
+@@ -149,6 +149,7 @@ synth_r,smoke,synth-history:results/review_2026_09_22/synthetic/gen_s1r/data.npz
+ tsd,smoke,tgbl-wiki,tsd,0.0003,on,global,43,False,0.6251902469769121,0.526320749759674,0.7492500002682209,1,1.0,444686.0,444686.0,0.0,True,,,False,2026-09-22 09:44
+ tsd_clockdiag,smoke,tgbl-wiki,tsd,0.0003,on,global,43,False,0.6249151859357953,0.5268619748428464,0.7490000002682209,1,1.0,444686.0,444686.0,0.0,True,,,False,2026-09-22 10:01
+ sw_diag_s43,sw,thgl-software,diagssm-ordinary,0.001,on,global,43,False,0.3820817868263355,0.437197335392646,0.4790241244071088,5,13.0,12043.0,11915.0,0.0,True,,,False,2026-09-23 04:45
++sw_diag_s47,sw,thgl-software,diagssm-ordinary,0.001,on,global,47,False,0.3814879910982615,0.4350644047330347,0.4736632502591489,4,12.0,12043.0,11915.0,0.0,True,,,False,2026-09-23 05:00
+ sw_gru_s43,sw,thgl-software,gru-ordinary,0.001,on,global,43,False,0.3800920441270808,0.4382235601098754,0.4751936477872487,8,16.0,37287.0,37159.0,0.0,True,,,False,2026-09-23 04:54
+ sw_gru_s47,sw,thgl-software,gru-ordinary,0.001,on,global,47,False,0.3799074049226293,0.4355157359892219,0.4750459786315651,3,11.0,37287.0,37159.0,0.0,True,,,False,2026-09-23 04:55
+ sw_nodeframe_s47,sw,thgl-software,node-frame,0.001,on,global,47,False,0.3838447335174807,0.4394523954822342,0.4818790803346546,4,12.0,630859.0,630859.0,0.0,True,,,False,2026-09-23 04:46
+diff --git a/results/review_2026_09_22/query_validity.csv b/results/review_2026_09_22/query_validity.csv
+index 7fc3bbb..52c88c9 100644
+--- a/results/review_2026_09_22/query_validity.csv
++++ b/results/review_2026_09_22/query_validity.csv
+@@ -299,6 +299,8 @@ tsd_clockdiag,val,6000,144,5994000,0,0,0,0,0,0,0,0,0,0,0,3760.8846777479457,3760
+ tsd_clockdiag,test,4000,97,3996000,0,0,0,0,0,0,0,0,0,0,0,2107.44789321331,2107.44789321331,2107.44789321331,2996.0,0,0,0.5268619733033276,0.5268619733033276,0.5268619733033276,0.749,True,True,tsd_clockdiag,smoke
+ sw_diag_s43,val,483469,191,483469000,0,0,0,0,0,0,0,0,0,0,0,180937.7598946353,180937.7598946353,180937.7598946353,191437.0,0,0,0.3742489381834932,0.3742489381834932,0.3742489381834932,0.3959654083302135,True,True,sw_diag_s43,sw
+ sw_diag_s43,test,223471,125,223471000,0,0,0,0,0,0,0,0,0,0,0,97700.92511706268,97700.92511706268,97700.92511706268,107048.0,0,0,0.4371973326161456,0.4371973326161456,0.4371973326161456,0.4790241239355442,True,True,sw_diag_s43,sw
++sw_diag_s47,val,463469,183,463469000,0,0,0,0,0,0,0,0,0,0,0,173678.8779642364,173678.8779642364,173678.8779642364,183136.0,0,0,0.3747367741191674,0.3747367741191674,0.3747367741191674,0.3951418541477423,True,True,sw_diag_s47,sw
++sw_diag_s47,test,223471,125,223471000,0,0,0,0,0,0,0,0,0,0,0,97224.27716114336,97224.27716114336,97224.27716114336,105850.0,0,0,0.4350644028135344,0.4350644028135344,0.4350644028135344,0.4736632493701643,True,True,sw_diag_s47,sw
+ sw_gru_s43,val,543469,215,543469000,0,0,0,0,0,0,0,0,0,0,0,203211.05210420265,203211.05210420265,203211.05210420265,213261.0,0,0,0.3739147073783466,0.3739147073783466,0.3739147073783466,0.3924069266140295,True,True,sw_gru_s43,sw
+ sw_gru_s43,test,223471,125,223471000,0,0,0,0,0,0,0,0,0,0,0,97930.25718502435,97930.25718502435,97930.25718502435,106192.0,0,0,0.4382235600369817,0.4382235600369817,0.4382235600369817,0.475193649287827,True,True,sw_gru_s43,sw
+ sw_gru_s47,val,443469,175,443469000,0,0,0,0,0,0,0,0,0,0,0,165958.70052521597,165958.70052521597,165958.70052521597,175362.0,0,0,0.3742284139933478,0.3742284139933478,0.3742284139933478,0.3954323752054822,True,True,sw_gru_s47,sw
+diff --git a/results/review_2026_09_22/queue/icews_coreoff_recon_s45.log b/results/review_2026_09_22/queue/icews_coreoff_recon_s45.log
+index c2340b3..3209d46 100644
+--- a/results/review_2026_09_22/queue/icews_coreoff_recon_s45.log
++++ b/results/review_2026_09_22/queue/icews_coreoff_recon_s45.log
+@@ -12,3 +12,6 @@ parameters_by_component={'embeddings': 12512, 'ssm_input_selector_B': 620928, 's
+ [epoch 2/6] {'epoch': 2, 'train_loss': 0.0675052780593065, 'track_val_mrr': 0.2576248167321086, 'track_val_loss': 0.30657777190208435, 'train_sec': 100.8, 'track_eval_sec': 291.6, 'peak_gpu_mem_mb': 5808.4, 'peak_gpu_reserved_mb': 15004.0, 'epoch_steps': 1262, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+ [epoch 3/6] {'epoch': 3, 'train_loss': 0.06658059792525228, 'track_val_mrr': 0.2555714025348425, 'track_val_loss': 0.3048071563243866, 'train_sec': 89.9, 'track_eval_sec': 306.1, 'peak_gpu_mem_mb': 5808.4, 'peak_gpu_reserved_mb': 15004.0, 'epoch_steps': 1262, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+ [epoch 4/6] {'epoch': 4, 'train_loss': 0.06618020876876053, 'track_val_mrr': 0.25575859563748043, 'track_val_loss': 0.30089977383613586, 'train_sec': 130.3, 'track_eval_sec': 353.1, 'peak_gpu_mem_mb': 5808.4, 'peak_gpu_reserved_mb': 15004.0, 'epoch_steps': 1262, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
++[epoch 5/6] {'epoch': 5, 'train_loss': 0.06601335222370887, 'track_val_mrr': 0.2562556782066822, 'track_val_loss': 0.28865867853164673, 'train_sec': 103.1, 'track_eval_sec': 298.0, 'peak_gpu_mem_mb': 5808.4, 'peak_gpu_reserved_mb': 15004.0, 'epoch_steps': 1262, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
++early stop at epoch 5 (patience 3)
++checkpoint saved: results/review_2026_09_22/icews/icews_coreoff_recon_s45/best.pt
+diff --git a/results/review_2026_09_22/queue/icews_gru_recon_s45.log b/results/review_2026_09_22/queue/icews_gru_recon_s45.log
+index 4e7219c..e3a959d 100644
+--- a/results/review_2026_09_22/queue/icews_gru_recon_s45.log
++++ b/results/review_2026_09_22/queue/icews_gru_recon_s45.log
+@@ -13,3 +13,5 @@ parameters_by_component={'embeddings': 12512, 'ssm_input_selector_B': 0, 'ssm_ot
+ [epoch 3/6] {'epoch': 3, 'train_loss': 0.06112158562096571, 'track_val_mrr': 0.24571404927571613, 'track_val_loss': 0.3651205003261566, 'train_sec': 196.6, 'track_eval_sec': 218.1, 'peak_gpu_mem_mb': 5806.7, 'peak_gpu_reserved_mb': 15008.0, 'epoch_steps': 1262, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 5, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+ [epoch 4/6] {'epoch': 4, 'train_loss': 0.06090846408317943, 'track_val_mrr': 0.24563909755150476, 'track_val_loss': 0.35592976212501526, 'train_sec': 241.7, 'track_eval_sec': 251.4, 'peak_gpu_mem_mb': 5806.7, 'peak_gpu_reserved_mb': 15008.0, 'epoch_steps': 1262, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 13, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+ [epoch 5/6] {'epoch': 5, 'train_loss': 0.06295547524700311, 'track_val_mrr': 0.26588630996396145, 'track_val_loss': 0.34760230779647827, 'train_sec': 218.0, 'track_eval_sec': 243.0, 'peak_gpu_mem_mb': 5806.7, 'peak_gpu_reserved_mb': 15008.0, 'epoch_steps': 1262, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 124, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
++[epoch 6/6] {'epoch': 6, 'train_loss': 0.06145673408283721, 'track_val_mrr': 0.2560228809768955, 'track_val_loss': 0.3603511452674866, 'train_sec': 154.3, 'track_eval_sec': 181.3, 'peak_gpu_mem_mb': 5806.7, 'peak_gpu_reserved_mb': 15008.0, 'epoch_steps': 1262, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 96, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
++checkpoint saved: results/review_2026_09_22/icews/icews_gru_recon_s45/best.pt
+diff --git a/results/review_2026_09_22/queue/sp_curonly_s44.log b/results/review_2026_09_22/queue/sp_curonly_s44.log
+index e69de29..959a0c1 100644
+--- a/results/review_2026_09_22/queue/sp_curonly_s44.log
++++ b/results/review_2026_09_22/queue/sp_curonly_s44.log
+@@ -0,0 +1,10 @@
++reserved 24976 MiB of GPU memory on cuda:0 in the caching allocator (requested 24976; now reserved 24980 MiB)
++device=cuda:0 sha=7ba5f19a6716 config={'dataset': 'tkgl-smallpedia', 'seed': 44, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'current_only', 'epochs': 15, 'patience': 6, 'min_epochs': 6, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 50000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': False, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'no_memory': False, 'recurrency_symmetric': True, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.01, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'backbone': 'tsd', 'spatial': None, 'clock': 'global', 'fast_core_off': False, 'rng_isolation': False, 'no_query_audit': False, 'dump_query_ranks': True, 'clock_diagnostics': False, 'audit_eval_only': False, 'out': 'results/review_2026_09_22/sp/sp_curonly_s44'}
++split_source=official_tgb_masks
++destination_range=None
++snapshots: train=98 (edges=775514) track_val=7 final_val=10 final_test=17 | prep_sec=1.4
++negative-sample sets loaded in 1.4s
++delta_time_scale=1 (Delta_k is measured in units of the median training inter-snapshot gap)
++protocol: predict-from-previous-state (leak-free) for training and evaluation
++parameter_count=652963 num_relations=566 num_nodes=47433
++parameters_by_component={'embeddings': 9056, 'ssm_input_selector_B': 620928, 'ssm_other': 4261, 'map_decoder': 4288, 'spatial_block': 2534, 'scorer': 11719, 'rec': 177, 'other': 0, 'total': 652963, 'trainable': 652963, 'unused_by_construction': 0, 'active': 652963}
 diff --git a/results/review_2026_09_22/queue/sw_attention_s47.log b/results/review_2026_09_22/queue/sw_attention_s47.log
-index cec0a34..01ce508 100644
+index 01ce508..39c47bf 100644
 --- a/results/review_2026_09_22/queue/sw_attention_s47.log
 +++ b/results/review_2026_09_22/queue/sw_attention_s47.log
-@@ -15,3 +15,4 @@ parameters_by_component={'embeddings': 480, 'ssm_input_selector_B': 620928, 'ssm
- [epoch 4/20] {'epoch': 4, 'train_loss': 0.2310309581794685, 'track_val_mrr': 0.36952151667773725, 'track_val_loss': 0.4156360328197479, 'train_sec': 48.4, 'track_eval_sec': 14.0, 'peak_gpu_mem_mb': 7759.2, 'peak_gpu_reserved_mb': 8496.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+@@ -16,3 +16,4 @@ parameters_by_component={'embeddings': 480, 'ssm_input_selector_B': 620928, 'ssm
  [epoch 5/20] {'epoch': 5, 'train_loss': 0.23316951202494757, 'track_val_mrr': 0.37724363788366316, 'track_val_loss': 0.3965913653373718, 'train_sec': 40.7, 'track_eval_sec': 45.1, 'peak_gpu_mem_mb': 8271.4, 'peak_gpu_reserved_mb': 8756.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 7, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
  [epoch 6/20] {'epoch': 6, 'train_loss': 0.22830588415377123, 'track_val_mrr': 0.3700562121763825, 'track_val_loss': 0.4134657382965088, 'train_sec': 97.9, 'track_eval_sec': 44.7, 'peak_gpu_mem_mb': 8487.8, 'peak_gpu_reserved_mb': 8776.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 6, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 7/20] {'epoch': 7, 'train_loss': 0.22798094084780468, 'track_val_mrr': 0.37116329182088376, 'track_val_loss': 0.3932598829269409, 'train_sec': 104.8, 'track_eval_sec': 66.4, 'peak_gpu_mem_mb': 8782.8, 'peak_gpu_reserved_mb': 9036.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 5, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+ [epoch 7/20] {'epoch': 7, 'train_loss': 0.22798094084780468, 'track_val_mrr': 0.37116329182088376, 'track_val_loss': 0.3932598829269409, 'train_sec': 104.8, 'track_eval_sec': 66.4, 'peak_gpu_mem_mb': 8782.8, 'peak_gpu_reserved_mb': 9036.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 5, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
++[epoch 8/20] {'epoch': 8, 'train_loss': 0.22436263196562467, 'track_val_mrr': 0.37041714937239884, 'track_val_loss': 0.397148996591568, 'train_sec': 103.6, 'track_eval_sec': 65.5, 'peak_gpu_mem_mb': 8782.8, 'peak_gpu_reserved_mb': 9036.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 1, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
 diff --git a/results/review_2026_09_22/queue/sw_coreoff_s43.log b/results/review_2026_09_22/queue/sw_coreoff_s43.log
-index 52e7565..1824ade 100644
+index 6537b5a..91e5fd7 100644
 --- a/results/review_2026_09_22/queue/sw_coreoff_s43.log
 +++ b/results/review_2026_09_22/queue/sw_coreoff_s43.log
-@@ -18,3 +18,5 @@ parameters_by_component={'embeddings': 480, 'ssm_input_selector_B': 620928, 'ssm
- [epoch 7/20] {'epoch': 7, 'train_loss': 0.2387169335121499, 'track_val_mrr': 0.36203289704322816, 'track_val_loss': 0.48829373717308044, 'train_sec': 65.2, 'track_eval_sec': 36.9, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 10, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 8/20] {'epoch': 8, 'train_loss': 0.23453240753396562, 'track_val_mrr': 0.3616275915771723, 'track_val_loss': 0.4918542206287384, 'train_sec': 50.8, 'track_eval_sec': 36.6, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 7, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 9/20] {'epoch': 9, 'train_loss': 0.23288411301161563, 'track_val_mrr': 0.36253619738966225, 'track_val_loss': 0.4913998246192932, 'train_sec': 44.7, 'track_eval_sec': 17.2, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 7, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 10/20] {'epoch': 10, 'train_loss': 0.23247929064458922, 'track_val_mrr': 0.36154271648526193, 'track_val_loss': 0.47744810581207275, 'train_sec': 29.7, 'track_eval_sec': 14.8, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 5, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 11/20] {'epoch': 11, 'train_loss': 0.23302310245825833, 'track_val_mrr': 0.36268146064281465, 'track_val_loss': 0.4825644791126251, 'train_sec': 13.7, 'track_eval_sec': 29.3, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 7, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-diff --git a/results/review_2026_09_22/queue/sw_diag_s47.log b/results/review_2026_09_22/queue/sw_diag_s47.log
-index c672db4..ecb2804 100644
---- a/results/review_2026_09_22/queue/sw_diag_s47.log
-+++ b/results/review_2026_09_22/queue/sw_diag_s47.log
-@@ -19,3 +19,7 @@ parameters_by_component={'embeddings': 480, 'ssm_input_selector_B': 0, 'ssm_othe
- [epoch 8/20] {'epoch': 8, 'train_loss': 0.22912056479406984, 'track_val_mrr': 0.3676543205022812, 'track_val_loss': 0.45568254590034485, 'train_sec': 85.5, 'track_eval_sec': 56.5, 'peak_gpu_mem_mb': 2130.5, 'peak_gpu_reserved_mb': 4014.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 3, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 9/20] {'epoch': 9, 'train_loss': 0.22719007086260876, 'track_val_mrr': 0.37410166736096145, 'track_val_loss': 0.4328174591064453, 'train_sec': 87.3, 'track_eval_sec': 56.8, 'peak_gpu_mem_mb': 2130.5, 'peak_gpu_reserved_mb': 4014.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 3, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 10/20] {'epoch': 10, 'train_loss': 0.22729008506171236, 'track_val_mrr': 0.37263472934663294, 'track_val_loss': 0.4283730089664459, 'train_sec': 94.9, 'track_eval_sec': 50.5, 'peak_gpu_mem_mb': 2130.5, 'peak_gpu_reserved_mb': 4014.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 6, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 11/20] {'epoch': 11, 'train_loss': 0.2265741718386797, 'track_val_mrr': 0.36644268534332514, 'track_val_loss': 0.43829283118247986, 'train_sec': 55.2, 'track_eval_sec': 45.7, 'peak_gpu_mem_mb': 2130.5, 'peak_gpu_reserved_mb': 4014.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 12/20] {'epoch': 12, 'train_loss': 0.22548852365155866, 'track_val_mrr': 0.3695700519621372, 'track_val_loss': 0.4404350817203522, 'train_sec': 60.8, 'track_eval_sec': 39.6, 'peak_gpu_mem_mb': 2130.5, 'peak_gpu_reserved_mb': 4014.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 3, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+early stop at epoch 12 (patience 8)
-+checkpoint saved: results/review_2026_09_22/sw/sw_diag_s47/best.pt
+@@ -21,3 +21,5 @@ parameters_by_component={'embeddings': 480, 'ssm_input_selector_B': 620928, 'ssm
+ [epoch 10/20] {'epoch': 10, 'train_loss': 0.23247929064458922, 'track_val_mrr': 0.36154271648526193, 'track_val_loss': 0.47744810581207275, 'train_sec': 29.7, 'track_eval_sec': 14.8, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 5, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+ [epoch 11/20] {'epoch': 11, 'train_loss': 0.23302310245825833, 'track_val_mrr': 0.36268146064281465, 'track_val_loss': 0.4825644791126251, 'train_sec': 13.7, 'track_eval_sec': 29.3, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 7, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+ [epoch 12/20] {'epoch': 12, 'train_loss': 0.23219150330003044, 'track_val_mrr': 0.36206967436671256, 'track_val_loss': 0.4818487763404846, 'train_sec': 55.9, 'track_eval_sec': 32.2, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
++[epoch 13/20] {'epoch': 13, 'train_loss': 0.23290813029428623, 'track_val_mrr': 0.36218658589422703, 'track_val_loss': 0.4882160425186157, 'train_sec': 51.2, 'track_eval_sec': 31.7, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
++[epoch 14/20] {'epoch': 14, 'train_loss': 0.2320292657171201, 'track_val_mrr': 0.3629042261913419, 'track_val_loss': 0.4757760763168335, 'train_sec': 37.0, 'track_eval_sec': 25.7, 'peak_gpu_mem_mb': 2132.8, 'peak_gpu_reserved_mb': 4008.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
 diff --git a/results/review_2026_09_22/queue/sw_nodeframe_s46.log b/results/review_2026_09_22/queue/sw_nodeframe_s46.log
-index 3918d01..eea4ac4 100644
+index b7d1e45..ed31e7a 100644
 --- a/results/review_2026_09_22/queue/sw_nodeframe_s46.log
 +++ b/results/review_2026_09_22/queue/sw_nodeframe_s46.log
-@@ -18,3 +18,4 @@ parameters_by_component={'embeddings': 480, 'ssm_input_selector_B': 620928, 'ssm
- [epoch 7/20] {'epoch': 7, 'train_loss': 0.2311640786273139, 'track_val_mrr': 0.3704095102131367, 'track_val_loss': 0.4009217917919159, 'train_sec': 106.6, 'track_eval_sec': 55.7, 'peak_gpu_mem_mb': 7862.1, 'peak_gpu_reserved_mb': 8436.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 2, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 8/20] {'epoch': 8, 'train_loss': 0.23041315418773128, 'track_val_mrr': 0.368223938164115, 'track_val_loss': 0.42216262221336365, 'train_sec': 108.4, 'track_eval_sec': 62.8, 'peak_gpu_mem_mb': 7862.1, 'peak_gpu_reserved_mb': 8436.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+@@ -20,3 +20,4 @@ parameters_by_component={'embeddings': 480, 'ssm_input_selector_B': 620928, 'ssm
  [epoch 9/20] {'epoch': 9, 'train_loss': 0.22607294887416346, 'track_val_mrr': 0.3765641507014632, 'track_val_loss': 0.4063951373100281, 'train_sec': 99.3, 'track_eval_sec': 38.5, 'peak_gpu_mem_mb': 7862.1, 'peak_gpu_reserved_mb': 8596.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 10/20] {'epoch': 10, 'train_loss': 0.22468165490300135, 'track_val_mrr': 0.3715560412451625, 'track_val_loss': 0.42364296317100525, 'train_sec': 80.7, 'track_eval_sec': 39.9, 'peak_gpu_mem_mb': 7862.1, 'peak_gpu_reserved_mb': 8596.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-diff --git a/results/review_2026_09_22/run_event_benchmark_help.txt b/results/review_2026_09_22/run_event_benchmark_help.txt
-index dbfcacb..43d0d4c 100644
---- a/results/review_2026_09_22/run_event_benchmark_help.txt
-+++ b/results/review_2026_09_22/run_event_benchmark_help.txt
-@@ -35,8 +35,9 @@ usage: run_event_benchmark.py [-h] --dataset DATASET [--seed SEED]
-                               [--spatial {sheaf,identity,node_frame,attention}]
-                               [--clock {global,node_update,node_interaction}]
-                               [--fast-core-off] [--rng-isolation]
--                              [--no-query-audit] [--clock-diagnostics]
--                              [--audit-eval-only] --out OUT
-+                              [--no-query-audit] [--dump-query-ranks]
-+                              [--clock-diagnostics] [--audit-eval-only] --out
-+                              OUT
- 
- optional arguments:
-   -h, --help            show this help message and exit
-@@ -148,6 +149,8 @@ optional arguments:
-                         RNG consumption.
-   --no-query-audit      Disable the per-query score-validity audit
-                         (query_validity*.csv in --out).
-+  --dump-query-ranks    Also store every val/test query's reciprocal rank with
-+                        its global edge id (query_ranks.csv.gz).
-   --clock-diagnostics   Record bounded clock/saturation diagnostics during the
-                         final evaluation (clock_*.csv in --out).
-   --audit-eval-only     With --eval-only: label the outputs as a checkpoint
+ [epoch 10/20] {'epoch': 10, 'train_loss': 0.22468165490300135, 'track_val_mrr': 0.3715560412451625, 'track_val_loss': 0.42364296317100525, 'train_sec': 80.7, 'track_eval_sec': 39.9, 'peak_gpu_mem_mb': 7862.1, 'peak_gpu_reserved_mb': 8596.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
+ [epoch 11/20] {'epoch': 11, 'train_loss': 0.2241328835375327, 'track_val_mrr': 0.37597230016738176, 'track_val_loss': 0.41432443261146545, 'train_sec': 75.6, 'track_eval_sec': 33.3, 'peak_gpu_mem_mb': 7862.1, 'peak_gpu_reserved_mb': 8596.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 2, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
++[epoch 12/20] {'epoch': 12, 'train_loss': 0.22378454647286045, 'track_val_mrr': 0.37663031253665685, 'track_val_loss': 0.40804409980773926, 'train_sec': 48.1, 'track_eval_sec': 13.0, 'peak_gpu_mem_mb': 7940.2, 'peak_gpu_reserved_mb': 8636.0, 'epoch_steps': 532, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 3, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
 diff --git a/results/review_2026_09_22/sw/sw_attention_s47/history.csv b/results/review_2026_09_22/sw/sw_attention_s47/history.csv
-index c94b751..9e6cfc6 100644
+index 9e6cfc6..2c11beb 100644
 --- a/results/review_2026_09_22/sw/sw_attention_s47/history.csv
 +++ b/results/review_2026_09_22/sw/sw_attention_s47/history.csv
-@@ -5,3 +5,4 @@ epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_
- 4,0.2310309581794685,0.36952151667773725,0.4156360328197479,48.4,14.0,7759.2,8496.0,532,0,0,4,0,0,0,0
+@@ -6,3 +6,4 @@ epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_
  5,0.23316951202494757,0.37724363788366316,0.3965913653373718,40.7,45.1,8271.4,8756.0,532,0,0,7,0,0,0,0
  6,0.22830588415377123,0.3700562121763825,0.4134657382965088,97.9,44.7,8487.8,8776.0,532,0,0,6,0,0,0,0
-+7,0.22798094084780468,0.37116329182088376,0.3932598829269409,104.8,66.4,8782.8,9036.0,532,0,0,5,0,0,0,0
+ 7,0.22798094084780468,0.37116329182088376,0.3932598829269409,104.8,66.4,8782.8,9036.0,532,0,0,5,0,0,0,0
++8,0.22436263196562467,0.37041714937239884,0.397148996591568,103.6,65.5,8782.8,9036.0,532,0,0,1,0,0,0,0
 diff --git a/results/review_2026_09_22/sw/sw_coreoff_s43/history.csv b/results/review_2026_09_22/sw/sw_coreoff_s43/history.csv
-index 2092234..036c73a 100644
+index 2006ab8..2539980 100644
 --- a/results/review_2026_09_22/sw/sw_coreoff_s43/history.csv
 +++ b/results/review_2026_09_22/sw/sw_coreoff_s43/history.csv
-@@ -8,3 +8,5 @@ epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_
- 7,0.2387169335121499,0.36203289704322816,0.48829373717308044,65.2,36.9,2132.8,4008.0,532,0,0,10,0,0,0,0
- 8,0.23453240753396562,0.3616275915771723,0.4918542206287384,50.8,36.6,2132.8,4008.0,532,0,0,7,0,0,0,0
- 9,0.23288411301161563,0.36253619738966225,0.4913998246192932,44.7,17.2,2132.8,4008.0,532,0,0,7,0,0,0,0
-+10,0.23247929064458922,0.36154271648526193,0.47744810581207275,29.7,14.8,2132.8,4008.0,532,0,0,5,0,0,0,0
-+11,0.23302310245825833,0.36268146064281465,0.4825644791126251,13.7,29.3,2132.8,4008.0,532,0,0,7,0,0,0,0
-diff --git a/results/review_2026_09_22/sw/sw_diag_s47/history.csv b/results/review_2026_09_22/sw/sw_diag_s47/history.csv
-index f60b49f..0c871ec 100644
---- a/results/review_2026_09_22/sw/sw_diag_s47/history.csv
-+++ b/results/review_2026_09_22/sw/sw_diag_s47/history.csv
-@@ -9,3 +9,5 @@ epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_
- 8,0.22912056479406984,0.3676543205022812,0.45568254590034485,85.5,56.5,2130.5,4014.0,532,0,0,3,0,0,0,0
- 9,0.22719007086260876,0.37410166736096145,0.4328174591064453,87.3,56.8,2130.5,4014.0,532,0,0,3,0,0,0,0
- 10,0.22729008506171236,0.37263472934663294,0.4283730089664459,94.9,50.5,2130.5,4014.0,532,0,0,6,0,0,0,0
-+11,0.2265741718386797,0.36644268534332514,0.43829283118247986,55.2,45.7,2130.5,4014.0,532,0,0,4,0,0,0,0
-+12,0.22548852365155866,0.3695700519621372,0.4404350817203522,60.8,39.6,2130.5,4014.0,532,0,0,3,0,0,0,0
+@@ -11,3 +11,5 @@ epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_
+ 10,0.23247929064458922,0.36154271648526193,0.47744810581207275,29.7,14.8,2132.8,4008.0,532,0,0,5,0,0,0,0
+ 11,0.23302310245825833,0.36268146064281465,0.4825644791126251,13.7,29.3,2132.8,4008.0,532,0,0,7,0,0,0,0
+ 12,0.23219150330003044,0.36206967436671256,0.4818487763404846,55.9,32.2,2132.8,4008.0,532,0,0,4,0,0,0,0
++13,0.23290813029428623,0.36218658589422703,0.4882160425186157,51.2,31.7,2132.8,4008.0,532,0,0,4,0,0,0,0
++14,0.2320292657171201,0.3629042261913419,0.4757760763168335,37.0,25.7,2132.8,4008.0,532,0,0,4,0,0,0,0
 diff --git a/results/review_2026_09_22/sw/sw_nodeframe_s46/history.csv b/results/review_2026_09_22/sw/sw_nodeframe_s46/history.csv
-index fec8cac..3976708 100644
+index bab51ef..12b08e1 100644
 --- a/results/review_2026_09_22/sw/sw_nodeframe_s46/history.csv
 +++ b/results/review_2026_09_22/sw/sw_nodeframe_s46/history.csv
-@@ -8,3 +8,4 @@ epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_
- 7,0.2311640786273139,0.3704095102131367,0.4009217917919159,106.6,55.7,7862.1,8436.0,532,0,0,2,0,0,0,0
- 8,0.23041315418773128,0.368223938164115,0.42216262221336365,108.4,62.8,7862.1,8436.0,532,0,0,0,0,0,0,0
+@@ -10,3 +10,4 @@ epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_
  9,0.22607294887416346,0.3765641507014632,0.4063951373100281,99.3,38.5,7862.1,8596.0,532,0,0,0,0,0,0,0
-+10,0.22468165490300135,0.3715560412451625,0.42364296317100525,80.7,39.9,7862.1,8596.0,532,0,0,0,0,0,0,0
-diff --git a/results/review_2026_09_22/synthetic/synthetic_analysis/paired_vs_tsd.csv b/results/review_2026_09_22/synthetic/synthetic_analysis/paired_vs_tsd.csv
-index 79909e7..8329483 100644
---- a/results/review_2026_09_22/synthetic/synthetic_analysis/paired_vs_tsd.csv
-+++ b/results/review_2026_09_22/synthetic/synthetic_analysis/paired_vs_tsd.csv
-@@ -12,4 +12,4 @@ on,current-only-maps,5,-0.0026418394433283866,0.0068485175920199965,2+ 3-
- on,diagssm-ordinary,5,-0.010341277008038519,0.007397453565989563,0+ 5-
- on,gru-ordinary,5,-0.005082765383604226,0.005125538698569422,1+ 4-
- on,identity-maps,5,-0.0006449187155968094,0.003459705686900266,3+ 2-
--on,node-frame,4,-0.006538089290888935,0.00747958830070082,1+ 3-
-+on,node-frame,5,-0.00513339004954515,0.007198894404986397,2+ 3-
-diff --git a/results/review_2026_09_22/synthetic/synthetic_analysis/per_arm_stratified.csv b/results/review_2026_09_22/synthetic/synthetic_analysis/per_arm_stratified.csv
-index 78e28de..7a680b2 100644
---- a/results/review_2026_09_22/synthetic/synthetic_analysis/per_arm_stratified.csv
-+++ b/results/review_2026_09_22/synthetic/synthetic_analysis/per_arm_stratified.csv
-@@ -12,6 +12,6 @@ gru-ordinary,on,5,0.2738238342780632,0.006601869652556554,0.06691671547979348,0.
- identity-maps,off,5,0.2072469798593904,0.005049637165247762,0.13424594947554336,0.32587640028454046,0.20658388892778773,0.5846819234410393,0.600202351878954,0.058823529411764705
- identity-maps,on,5,0.2782616809460706,0.0023450223071181543,0.06692014009953111,0.6216996347743323,0.2725645913499873,0.5846819234410393,0.600202351878954,0.058823529411764705
- node-frame,off,5,0.21090824698182892,0.0018869891391442117,0.13504290818443743,0.3341922763245656,0.2102998003914646,0.5846819234410393,0.600202351878954,0.058823529411764705
--node-frame,on,4,0.27270300274203396,0.00673145008857745,0.06650314206173186,0.6077855328875745,0.2667071441533162,0.5846819234410393,0.600202351878954,0.058823529411764705
-+node-frame,on,5,0.27377320961212226,0.006301668742894887,0.06662645982774336,0.6103944701705473,0.2678144816725595,0.5846819234410393,0.600202351878954,0.058823529411764705
- tsd,off,5,0.20977998426604255,0.0008489882132920637,0.13457003135315887,0.33199898689305785,0.20925785150509194,0.5846819234410393,0.600202351878954,0.058823529411764705
- tsd,on,5,0.2789065996616674,0.002019064417080128,0.06674667673692777,0.6236744551517649,0.2733086465101717,0.5846819234410393,0.600202351878954,0.058823529411764705
-diff --git a/results/review_2026_09_22/synthetic/synthetic_analysis/per_run_stratified.csv b/results/review_2026_09_22/synthetic/synthetic_analysis/per_run_stratified.csv
-index 02095f8..24d67ff 100644
---- a/results/review_2026_09_22/synthetic/synthetic_analysis/per_run_stratified.csv
-+++ b/results/review_2026_09_22/synthetic/synthetic_analysis/per_run_stratified.csv
-@@ -64,6 +64,7 @@ synth_gen_s1_nodeframe_recoff_s44,node-frame,off,44,0.2113020530238256,9000,0.21
- synth_gen_s1_nodeframe_recoff_s45,node-frame,off,45,0.20756597963498552,9000,0.20958364172536503,8723,0.14402783373469405,0.13491210440754342,5400,0.3309276987570343,3323,0.20858092079882182,0.24852034838894455,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1_nodeframe_recoff_s46,node-frame,off,46,0.20789711949567102,9000,0.21060310698090715,8723,0.12268293598045572,0.13543201619844691,5400,0.33275895718412274,3323,0.21029798302474947,0.22245139064832634,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1_nodeframe_recoff_s47,node-frame,off,47,0.21096098690536658,9000,0.21260890174138514,8723,0.15906654244836327,0.1357732165911759,5400,0.33746978040859243,3323,0.21182046192553453,0.24322484783268034,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
-+synth_gen_s1_nodeframe_recon_s43,node-frame,on,43,0.2765764086492114,9000,0.2780540370924756,8723,0.2300444486831696,0.0671197308917894,5400,0.6208302193024382,3323,0.2722438317495329,0.5036704126010833,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1_nodeframe_recon_s44,node-frame,on,44,0.26651813789449186,9000,0.26804841647964694,8723,0.21832817364067345,0.06622750828595707,5400,0.5960149841130883,3323,0.2619748707450266,0.5038905759646305,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1_nodeframe_recon_s45,node-frame,on,45,0.2766738923741972,9000,0.2779797145105358,8723,0.23555228047787088,0.06739740697187876,5400,0.6201838856537042,3323,0.2724806027998832,0.49151599755798175,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1_nodeframe_recon_s46,node-frame,on,46,0.2645145122400378,9000,0.26582555283733444,8723,0.22322856592155899,0.06661763426877114,5400,0.5895459140381294,3323,0.2593853499137701,0.5159053960427723,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
-diff --git a/results/review_2026_09_22/synthetic/synthetic_analysis_r/paired_vs_tsd.csv b/results/review_2026_09_22/synthetic/synthetic_analysis_r/paired_vs_tsd.csv
-index 4b530d8..c6bda68 100644
---- a/results/review_2026_09_22/synthetic/synthetic_analysis_r/paired_vs_tsd.csv
-+++ b/results/review_2026_09_22/synthetic/synthetic_analysis_r/paired_vs_tsd.csv
-@@ -1,8 +1,8 @@
- rec,arm,n,delta_mean,delta_sd,signs
--off,attention-gates,3,0.00015880105654279367,0.0023841329567294033,2+ 1-
--off,core-off,3,0.0050502333183010395,0.0020491729616392952,3+ 0-
--off,current-only-maps,3,0.005100651413823913,0.0039107977687604795,3+ 0-
--off,diagssm-ordinary,2,0.0030427084040084568,0.003057310188055486,2+ 0-
--off,gru-ordinary,3,-0.0009970254928212778,0.007314152969927856,1+ 2-
--off,identity-maps,2,0.0021672817543284956,0.0011604220196567213,2+ 0-
--off,node-frame,2,0.0027689303883733363,0.0031440523972127844,2+ 0-
-+off,attention-gates,5,0.00038117889951324034,0.002109994116535954,3+ 2-
-+off,core-off,5,0.0038441521647513298,0.0022007236050908827,5+ 0-
-+off,current-only-maps,5,0.0015585250725075716,0.0060495036905951795,3+ 2-
-+off,diagssm-ordinary,5,0.001278912576494845,0.002690070613485008,4+ 1-
-+off,gru-ordinary,5,-0.0002084863193268227,0.005290971465970153,3+ 2-
-+off,identity-maps,5,0.0019200954072697229,0.0023636946763727516,4+ 1-
-+off,node-frame,5,0.0011857904688853116,0.0025760505484756693,4+ 1-
-diff --git a/results/review_2026_09_22/synthetic/synthetic_analysis_r/per_arm_stratified.csv b/results/review_2026_09_22/synthetic/synthetic_analysis_r/per_arm_stratified.csv
-index 72ba594..49511c9 100644
---- a/results/review_2026_09_22/synthetic/synthetic_analysis_r/per_arm_stratified.csv
-+++ b/results/review_2026_09_22/synthetic/synthetic_analysis_r/per_arm_stratified.csv
-@@ -2,8 +2,8 @@ arm,rec,n,mrr,sd,novel,recurring,cue_known,oracle_permitted,oracle_latent,chance
- attention-gates,off,5,0.21200014413713159,0.0034718998090883173,0.13232360066152637,0.3414775244465712,0.21019507145164584,0.5846819234410393,0.600202351878954,0.058823529411764705
- core-off,off,5,0.21546311740236965,0.0009707702738911618,0.13812697898548748,0.34113725145327656,0.2148571686526875,0.5846819234410393,0.600202351878954,0.058823529411764705
- current-only-maps,off,5,0.21317749031012587,0.0045956819551801545,0.13767692976239518,0.3358687412754421,0.21258401303284385,0.5846819234410393,0.600202351878954,0.058823529411764705
--diagssm-ordinary,off,4,0.21268906148336458,0.0012675495586475529,0.13781405214438996,0.3343637682033354,0.21204816528782128,0.5846819234410393,0.600202351878954,0.058823529411764705
-+diagssm-ordinary,off,5,0.21289787781411315,0.0011929093480466772,0.13790873003384788,0.3347580637946827,0.21224957176132592,0.5846819234410393,0.600202351878954,0.058823529411764705
- gru-ordinary,off,5,0.21141047891829148,0.004589695449625205,0.1343612039883994,0.33661844901200716,0.21058246708480172,0.5846819234410393,0.600202351878954,0.058823529411764705
--identity-maps,off,4,0.21362236709691007,0.0023491725306257743,0.13475545757982654,0.34178406176806597,0.21240370883505694,0.5846819234410393,0.600202351878954,0.058823529411764705
--node-frame,off,4,0.21284953767512488,0.0019073900762675814,0.1333523300310513,0.3420354905123194,0.21160057509132343,0.5846819234410393,0.600202351878954,0.058823529411764705
--tsd,off,3,0.21079768830959858,0.001631672175952246,0.1326912774940972,0.3377235439832993,0.20943954146377067,0.5846819234410393,0.600202351878954,0.0588235294117647
-+identity-maps,off,5,0.21353906064488806,0.0020429533789902074,0.13393709533559642,0.3428952486286903,0.21216621504443417,0.5846819234410393,0.600202351878954,0.058823529411764705
-+node-frame,off,5,0.21280475570650365,0.0016548806001796714,0.13383903983920606,0.3411270144135174,0.21172930537602058,0.5846819234410393,0.600202351878954,0.058823529411764705
-+tsd,off,5,0.2116189652376183,0.0016250006187338488,0.13414036615146466,0.337524603234979,0.21049542223771814,0.5846819234410393,0.600202351878954,0.058823529411764705
-diff --git a/results/review_2026_09_22/synthetic/synthetic_analysis_r/per_run_stratified.csv b/results/review_2026_09_22/synthetic/synthetic_analysis_r/per_run_stratified.csv
-index cf45121..c9d3c3f 100644
---- a/results/review_2026_09_22/synthetic/synthetic_analysis_r/per_run_stratified.csv
-+++ b/results/review_2026_09_22/synthetic/synthetic_analysis_r/per_run_stratified.csv
-@@ -15,6 +15,7 @@ synth_gen_s1r_curonly_recoff_rel_s45,current-only-maps,off,45,0.2421792553026582
- synth_gen_s1r_curonly_recoff_rel_s46,current-only-maps,off,46,0.22985095615615375,9000,0.2061017163902385,8723,0.9777376654632972,0.1359453321370025,5400,0.32010847984719726,3323,0.20545094096053743,0.2313720097883095,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1r_curonly_recoff_rel_s47,current-only-maps,off,47,0.23909007304806223,9000,0.21521387795856473,8723,0.9909747292418772,0.13884904031490575,5400,0.33930961171594026,3323,0.21447792472881624,0.24379171478861694,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1r_diag_recoff_rel_s43,diagssm-ordinary,off,43,0.23680000096610015,9000,0.21279376461021457,8723,0.9927797833935018,0.13816941704851882,5400,0.3340611365130605,3323,0.21244573313311038,0.2263081923786815,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
-+synth_gen_s1r_diag_recoff_rel_s44,diagssm-ordinary,off,44,0.2378771341761097,9000,0.2137331431371074,8723,0.9981949458483754,0.1382874415916794,5400,0.3363352461600719,3323,0.21305519765534459,0.24005847819149448,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1r_diag_recoff_rel_s45,diagssm-ordinary,off,45,0.23831688634334583,9000,0.21412953996218187,8723,1.0,0.13850728017348407,5400,0.3370185567719828,3323,0.21314511215242257,0.2523559056890911,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1r_diag_recoff_rel_s46,diagssm-ordinary,off,46,0.23526579978450676,9000,0.21103888548212324,8723,0.9981949458483754,0.1371226051192392,5400,0.3311556215518114,3323,0.21020528690006432,0.24340839389230146,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1r_diag_recoff_rel_s47,diagssm-ordinary,off,47,0.23696694993688694,9000,0.2127940558789387,8723,0.9981949458483754,0.13745690623631782,5400,0.33521975797648695,3323,0.2123965289656878,0.22823044341448978,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
-@@ -25,12 +26,16 @@ synth_gen_s1r_gru_recoff_rel_s46,gru-ordinary,off,46,0.2378129016623342,9000,0.2
- synth_gen_s1r_gru_recoff_rel_s47,gru-ordinary,off,47,0.23046041283364974,9000,0.2065967804084429,8723,0.9819494584837545,0.13526918505370084,5400,0.32250680596234216,3323,0.20693736689738665,0.19337144934918446,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1r_identity_recoff_rel_s43,identity-maps,off,43,0.23446822161605885,9000,0.21067453795076577,8723,0.983754512635379,0.13217380249144373,5400,0.33824118600383196,3323,0.20892802037106792,0.27849364981264063,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1r_identity_recoff_rel_s44,identity-maps,off,44,0.23696803407573805,9000,0.21290162537088317,8723,0.9948427024239298,0.13054702040557756,5400,0.3467309563406847,3323,0.21092541181563648,0.28964007319653606,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
-+synth_gen_s1r_identity_recoff_rel_s45,identity-maps,off,45,0.23647099352509446,9000,0.21320583483679992,8723,0.96911351784998,0.13066364635867578,5400,0.3473399960711877,3323,0.21121623988194305,0.29046389646284015,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1r_identity_recoff_rel_s46,identity-maps,off,46,0.23997502168084964,9000,0.21601228879143036,8723,0.9945848375451264,0.1387943140667462,5400,0.34149440239759793,3323,0.21547512474765868,0.23687093275597115,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1r_identity_recoff_rel_s47,identity-maps,off,47,0.23895350721811054,9000,0.21490101627456096,8723,0.9963898916967509,0.13750669335553875,5400,0.3406697023301492,3323,0.21428627840586473,0.23877193333114802,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1r_nodeframe_recoff_rel_s43,node-frame,off,43,0.23381443839702742,9000,0.2103439121372517,8723,0.9729241877256317,0.1336665818888121,5400,0.3349474581323085,3323,0.2092976128187197,0.2509728135290151,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
-+synth_gen_s1r_nodeframe_recoff_rel_s44,node-frame,off,44,0.2363070727343334,9000,0.21262562783201855,8723,0.982058855705065,0.13578587907182518,5400,0.33749311001830923,3323,0.21224422651480906,0.22743584153772287,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1r_nodeframe_recoff_rel_s45,node-frame,off,45,0.2376665383805917,9000,0.21391709795085698,8723,0.9855595667870036,0.1300769641196109,5400,0.35016046920837396,3323,0.21208774467585317,0.2849528068578553,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1r_nodeframe_recoff_rel_s46,node-frame,off,46,0.23819552473307573,9000,0.21467819875339753,8723,0.9787790428584652,0.13375775118839386,5400,0.34617696999956654,3323,0.2131104293408255,0.2755563315593896,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1r_nodeframe_recoff_rel_s47,node-frame,off,47,0.23586437220399986,9000,0.21245894185899336,8723,0.9729241877256317,0.13590802292738827,5400,0.3368570647090287,3323,0.21190651352989534,0.23391031405374027,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
-+synth_gen_s1r_tsd_recoff_rel_s43,tsd,off,43,0.23511533528693562,9000,0.21255164709187446,8723,0.9456678700361011,0.1355983003653429,5400,0.33760373024663537,3323,0.21157146893456685,0.25061299435097767,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1r_tsd_recoff_rel_s44,tsd,off,44,0.23479369662979135,9000,0.21155488589569213,8723,0.9666064981949458,0.13376621844329964,5400,0.3379643966519122,3323,0.21065047186767974,0.2466742324446291,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1r_tsd_recoff_rel_s45,tsd,off,45,0.23255029553185463,9000,0.20892498679200866,8723,0.9765342960288809,0.12889323961096455,5400,0.3389795864843464,3323,0.20702556707033737,0.28268144940886986,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
-+synth_gen_s1r_tsd_recoff_rel_s46,tsd,off,46,0.23664538287582398,9000,0.2131501141674213,8723,0.9765342960288809,0.13702969790968877,5400,0.3368486539783619,3323,0.21258701786271178,0.23501573505897352,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
- synth_gen_s1r_tsd_recoff_rel_s47,tsd,off,47,0.23600208621323018,9000,0.211913192241095,8723,0.9945848375451264,0.13541437442802742,5400,0.33622664881363934,3323,0.21064258545329495,0.26125218823858953,0.5846819234410393,0.600202351878954,0.058823529411764705,0.5044893164691142,0.7149979263445587
+ 10,0.22468165490300135,0.3715560412451625,0.42364296317100525,80.7,39.9,7862.1,8596.0,532,0,0,0,0,0,0,0
+ 11,0.2241328835375327,0.37597230016738176,0.41432443261146545,75.6,33.3,7862.1,8596.0,532,0,0,2,0,0,0,0
++12,0.22378454647286045,0.37663031253665685,0.40804409980773926,48.1,13.0,7940.2,8636.0,532,0,0,3,0,0,0,0
+diff --git a/results/review_2026_09_22/tables_review.tex b/results/review_2026_09_22/tables_review.tex
+index 7c3be90..d10796f 100644
+--- a/results/review_2026_09_22/tables_review.tex
++++ b/results/review_2026_09_22/tables_review.tex
+@@ -5,7 +5,7 @@
+ \caption{Matched controls on tgbl-wiki (clock, REC on): test MRR over seeds and paired difference to TSD (same seeds, identical data, negatives, protocol and selection rule; lr locked per arm on seed-43 tracking validation). Active parameters exclude parameters unused by construction.}
+ \begin{tabular}{lcccrll}\toprule
+ Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
+-TSD (memory-conditioned incidence maps) & 0.001 & 1 (43) & 444686 & 0.760 $\pm$ -- & -- &  \\
++TSD (memory-conditioned incidence maps) & 0.001 & 5 (43,44,45,46,47) & 444686 & 0.763 $\pm$ 0.004 & -- &  \\
+ Current-only maps & \multicolumn{6}{l}{not evaluated} \\
+ Identity maps & \multicolumn{6}{l}{not evaluated} \\
+ GRU + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
+@@ -38,7 +38,7 @@ Current-only maps & 0.001 & 4 (43,44,45,46) & 634302 & 0.393 $\pm$ 0.012 & +0.03
+ Identity maps & 0.001 & 5 (43,44,45,46,47) & 630014 & 0.321 $\pm$ 0.068 & -0.0320 $\pm$ 0.0966; $\pm$0.1200 & 2+ 3- \\
+ GRU + ordinary propagation & 0.001 & 5 (43,44,45,46,47) & 36506 & 0.376 $\pm$ 0.026 & +0.0233 $\pm$ 0.0840; $\pm$0.1043 & 2+ 3- \\
+ Diagonal SSM + ordinary propagation & 0.001 & 5 (43,44,45,46,47) & 11262 & 0.375 $\pm$ 0.059 & +0.0218 $\pm$ 0.1067; $\pm$0.1325 & 3+ 2- \\
+-History-conditioned edge gates & 0.001 & 4 (43,45,46,47) & 630271 & 0.326 $\pm$ 0.043 & -0.0566 $\pm$ 0.0469; $\pm$0.0746 & 0+ 4- \\
++History-conditioned edge gates & 0.001 & 5 (43,44,45,46,47) & 630271 & 0.330 $\pm$ 0.038 & -0.0232 $\pm$ 0.0849; $\pm$0.1055 & 1+ 4- \\
+ Node-frame geometry & 0.001 & 5 (43,44,45,46,47) & 630206 & 0.382 $\pm$ 0.032 & +0.0293 $\pm$ 0.0859; $\pm$0.1067 & 3+ 2- \\
+ Core off + REC (head only) & 0.001 & 5 (43,44,45,46,47) & 8515 & 0.226 $\pm$ 0.008 & -0.1267 $\pm$ 0.0698; $\pm$0.0867 & 0+ 5- \\
+ \bottomrule\end{tabular}\end{table}
+@@ -52,11 +52,95 @@ Current-only maps & 0.001 & 5 (43,44,45,46,47) & 634431 & 0.634 $\pm$ 0.015 & +0
+ Identity maps & 0.001 & 5 (43,44,45,46,47) & 630143 & 0.640 $\pm$ 0.008 & +0.0145 $\pm$ 0.0093; $\pm$0.0116 & 5+ 0- \\
+ GRU + ordinary propagation & 0.001 & 5 (43,44,45,46,47) & 36635 & 0.642 $\pm$ 0.012 & +0.0167 $\pm$ 0.0153; $\pm$0.0190 & 5+ 0- \\
+ Diagonal SSM + ordinary propagation & 0.001 & 5 (43,44,45,46,47) & 11391 & 0.647 $\pm$ 0.006 & +0.0221 $\pm$ 0.0145; $\pm$0.0180 & 5+ 0- \\
+-History-conditioned edge gates & 0.001 & 4 (43,44,46,47) & 630400 & 0.630 $\pm$ 0.010 & +0.0022 $\pm$ 0.0126; $\pm$0.0201 & 2+ 2- \\
++History-conditioned edge gates & 0.001 & 5 (43,44,45,46,47) & 630400 & 0.630 $\pm$ 0.009 & +0.0051 $\pm$ 0.0127; $\pm$0.0157 & 3+ 2- \\
+ Node-frame geometry & 0.001 & 5 (43,44,45,46,47) & 630335 & 0.640 $\pm$ 0.010 & +0.0145 $\pm$ 0.0131; $\pm$0.0163 & 5+ 0- \\
+ Core off + REC (head only) & 0.001 & 5 (43,44,45,46,47) & 8644 & 0.615 $\pm$ 0.001 & -0.0099 $\pm$ 0.0100; $\pm$0.0124 & 0+ 5- \\
+ \bottomrule\end{tabular}\end{table}
+ 
++\begin{table}[t]\centering\small
++\caption{Matched controls on thgl-software (sw, REC on): test MRR over seeds and paired difference to TSD (same seeds, identical data, negatives, protocol and selection rule; lr locked per arm on seed-43 tracking validation). Active parameters exclude parameters unused by construction.}
++\begin{tabular}{lcccrll}\toprule
++Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
++TSD (memory-conditioned incidence maps) & 0.001 & 3 (43,46,47) & -- & 0.438 $\pm$ 0.002 & -- &  \\
++Current-only maps & 0.001 & 3 (43,46,47) & -- & 0.439 $\pm$ 0.004 & +0.0012 $\pm$ 0.0027; $\pm$0.0066 & 2+ 1- \\
++Identity maps & 0.001 & 3 (43,46,47) & -- & 0.439 $\pm$ 0.003 & +0.0016 $\pm$ 0.0023; $\pm$0.0058 & 2+ 1- \\
++GRU + ordinary propagation & 0.001 & 2 (43,47) & 37159 & 0.437 $\pm$ 0.002 & +0.0004 $\pm$ 0.0025; $\pm$0.0226 & 1+ 1- \\
++Diagonal SSM + ordinary propagation & 0.001 & 2 (43,47) & 11915 & 0.436 $\pm$ 0.002 & -0.0003 $\pm$ 0.0021; $\pm$0.0189 & 1+ 1- \\
++History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
++Node-frame geometry & 0.001 & 1 (47) & 630859 & 0.439 $\pm$ -- & +0.0026 $\pm$ --; $\pm$-- & 1+ 0- \\
++Core off + REC (head only) & \multicolumn{6}{l}{not evaluated} \\
++\bottomrule\end{tabular}\end{table}
++
++\begin{table}[t]\centering\small
++\caption{Matched controls on tkgl-icews (icews, REC off): test MRR over seeds and paired difference to TSD (same seeds, identical data, negatives, protocol and selection rule; lr locked per arm on seed-43 tracking validation). Active parameters exclude parameters unused by construction.}
++\begin{tabular}{lcccrll}\toprule
++Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
++TSD (memory-conditioned incidence maps) & 0.003 & 2 (43,46) & -- & 0.024 $\pm$ 0.005 & -- &  \\
++Current-only maps & 0.003 & 2 (43,46) & -- & 0.025 $\pm$ 0.004 & +0.0006 $\pm$ 0.0099; $\pm$0.0886 & 1+ 1- \\
++Identity maps & 0.003 & 2 (43,46) & -- & 0.026 $\pm$ 0.001 & +0.0017 $\pm$ 0.0066; $\pm$0.0590 & 1+ 1- \\
++GRU + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
++Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
++History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
++Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
++Core off + REC (head only) & 0.003 & 2 (43,46) & -- & 0.021 $\pm$ 0.006 & -0.0028 $\pm$ 0.0113; $\pm$0.1018 & 1+ 1- \\
++\bottomrule\end{tabular}\end{table}
++
++\begin{table}[t]\centering\small
++\caption{Matched controls on tkgl-icews (icews, REC on): test MRR over seeds and paired difference to TSD (same seeds, identical data, negatives, protocol and selection rule; lr locked per arm on seed-43 tracking validation). Active parameters exclude parameters unused by construction.}
++\begin{tabular}{lcccrll}\toprule
++Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
++TSD (memory-conditioned incidence maps) & 0.003 & 3 (43,46,47) & -- & 0.335 $\pm$ 0.003 & -- &  \\
++Current-only maps & 0.003 & 1 (43) & -- & 0.329 $\pm$ -- & -0.0101 $\pm$ --; $\pm$-- & 0+ 1- \\
++Identity maps & 0.003 & 1 (43) & -- & 0.337 $\pm$ -- & -0.0018 $\pm$ --; $\pm$-- & 0+ 1- \\
++GRU + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
++Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
++History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
++Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
++Core off + REC (head only) & 0.003 & 2 (43,46) & -- & 0.315 $\pm$ 0.005 & -0.0212 $\pm$ 0.0023; $\pm$0.0206 & 0+ 2- \\
++\bottomrule\end{tabular}\end{table}
++
++\begin{table}[t]\centering\small
++\caption{Matched controls on tkgl-polecat (polecat, REC on): test MRR over seeds and paired difference to TSD (same seeds, identical data, negatives, protocol and selection rule; lr locked per arm on seed-43 tracking validation). Active parameters exclude parameters unused by construction.}
++\begin{tabular}{lcccrll}\toprule
++Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
++TSD (memory-conditioned incidence maps) & 0.003 & 3 (43,46,47) & -- & 0.244 $\pm$ 0.003 & -- &  \\
++Current-only maps & 0.003 & 2 (43,46) & -- & 0.247 $\pm$ 0.001 & +0.0040 $\pm$ 0.0047; $\pm$0.0421 & 2+ 0- \\
++Identity maps & 0.003 & 2 (43,46) & -- & 0.244 $\pm$ 0.001 & +0.0013 $\pm$ 0.0047; $\pm$0.0426 & 1+ 1- \\
++GRU + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
++Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
++History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
++Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
++Core off + REC (head only) & \multicolumn{6}{l}{not evaluated} \\
++\bottomrule\end{tabular}\end{table}
++
++\begin{table}[t]\centering\small
++\caption{Matched controls on tkgl-smallpedia (sp, REC on): test MRR over seeds and paired difference to TSD (same seeds, identical data, negatives, protocol and selection rule; lr locked per arm on seed-43 tracking validation). Active parameters exclude parameters unused by construction.}
++\begin{tabular}{lcccrll}\toprule
++Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
++TSD (memory-conditioned incidence maps) & 0.01 & 3 (43,46,47) & -- & 0.610 $\pm$ 0.007 & -- &  \\
++Current-only maps & 0.01 & 3 (43,46,47) & -- & 0.605 $\pm$ 0.008 & -0.0049 $\pm$ 0.0144; $\pm$0.0357 & 1+ 2- \\
++Identity maps & 0.01 & 3 (43,46,47) & -- & 0.613 $\pm$ 0.006 & +0.0030 $\pm$ 0.0013; $\pm$0.0031 & 3+ 0- \\
++GRU + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
++Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
++History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
++Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
++Core off + REC (head only) & \multicolumn{6}{l}{not evaluated} \\
++\bottomrule\end{tabular}\end{table}
++
++\begin{table}[t]\centering\small
++\caption{Matched controls on tkgl-wikidata (wd, REC on): test MRR over seeds and paired difference to TSD (same seeds, identical data, negatives, protocol and selection rule; lr locked per arm on seed-43 tracking validation). Active parameters exclude parameters unused by construction.}
++\begin{tabular}{lcccrll}\toprule
++Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
++TSD (memory-conditioned incidence maps) & 0.003 & 3 (43,46,47) & -- & 0.540 $\pm$ 0.009 & -- &  \\
++Current-only maps & 0.003 & 1 (43) & -- & 0.538 $\pm$ -- & +0.0011 $\pm$ --; $\pm$-- & 1+ 0- \\
++Identity maps & 0.003 & 1 (43) & -- & 0.534 $\pm$ -- & -0.0034 $\pm$ --; $\pm$-- & 0+ 1- \\
++GRU + ordinary propagation & 0.003 & 1 (46) & 56337 & 0.537 $\pm$ -- & -0.0128 $\pm$ --; $\pm$-- & 0+ 1- \\
++Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
++History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
++Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
++Core off + REC (head only) & 0.003 & 2 (43,46) & 45242 & 0.534 $\pm$ 0.000 & -0.0095 $\pm$ 0.0090; $\pm$0.0808 & 0+ 2- \\
++\bottomrule\end{tabular}\end{table}
++
+ \begin{table}[t]\centering\small
+ \caption{P0 checkpoint-replay audit of the retained headline runs: replayed test MRR vs the retained metric, and the number of queries with any non-finite positive or negative logit (before substitution).}
+ \begin{tabular}{llrrrr}\toprule
+@@ -70,6 +154,9 @@ forum\_f\_s47 & thgl-forum & 0.6187 & 0.6187 & -0.00000 & 0 \\
+ sw\_f\_s43 & thgl-software & 0.4360 & 0.4360 & 0.00000 & 0 \\
+ sw\_f\_s46 & thgl-software & 0.4400 & 0.4400 & 0.00000 & 0 \\
+ sw\_f\_s47 & thgl-software & 0.4369 & 0.4369 & 0.00000 & 0 \\
++icews\_eval\_s43 & tkgl-icews & 0.3386 & 0.3386 & -0.00000 & 0 \\
++icews\_eval\_s46 & tkgl-icews & 0.3341 & 0.3342 & -0.00006 & 0 \\
++icews\_eval\_s47 & tkgl-icews & 0.3326 & 0.3326 & 0.00000 & 0 \\
+ polecat\_f\_s43 & tkgl-polecat & 0.2403 & 0.2403 & -0.00000 & 0 \\
+ polecat\_f\_s46 & tkgl-polecat & 0.2461 & 0.2461 & 0.00000 & 0 \\
+ polecat\_f\_s47 & tkgl-polecat & 0.2462 & 0.2462 & 0.00003 & 0 \\
