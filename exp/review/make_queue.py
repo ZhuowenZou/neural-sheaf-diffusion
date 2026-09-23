@@ -61,7 +61,7 @@ def config_to_flags(cfg):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("what", choices=["wiki-wave1", "wiki-wave2", "wiki-extras", "audits", "synth", "forum"])
+    ap.add_argument("what", choices=["wiki-wave1", "wiki-wave2", "wiki-extras", "wiki-clock-seeds", "audits", "synth", "forum", "icews"])
     ap.add_argument("--gen", default="gen_s1", help="synthetic generator directory under results/review_2026_09_22/synthetic")
     ap.add_argument("--seeds", default="43 44 45 46 47")
     ap.add_argument("--rec", default="off", choices=["off", "on", "both"])
@@ -135,6 +135,33 @@ def main():
                     mem = 18000 if arm in ("attention", "nodeframe") else 14000
                     cmd = f"{PY} -m exp.run_event_benchmark {FO}{REC[rec]} {ARMS[arm]} --seed {seed} --out {out}"
                     written.append(write_cmd(name, mem, cmd, only_gpus=gpus[i % len(gpus)])); i += 1
+    elif args.what == "wiki-clock-seeds":
+        # five-seed expansion of the clock comparison and the 300 s batching width (TSD, locked lr)
+        lrs = json.load(open(args.lr_json)); lr = lrs["tsd"]; i = 0
+        for seed in [int(x) for x in args.seeds.split()]:
+            for name, extra, tw in ((f"wiki_tsd_clock-node_update_s{seed}", "--clock node_update --clock-diagnostics", 600),
+                                    (f"wiki_tsd_clock-node_interaction_s{seed}", "--clock node_interaction --clock-diagnostics", 600),
+                                    (f"wiki_tsd_tw300_s{seed}", "--clock-diagnostics", 300)):
+                if os.path.exists(os.path.join(ROOT, RV, "queue", f"{name}.cmd")):
+                    continue
+                base = WIKI_BASE.replace("--time-window 600", f"--time-window {tw}")
+                out = f"{RV}/clock/{name}"
+                cmd = f"{PY} -m exp.run_event_benchmark {base} {extra} --lr {lr} --seed {seed} --out {out}"
+                written.append(write_cmd(name, 2500, cmd, only_gpus=gpus[i % len(gpus)])); i += 1
+    elif args.what == "icews":
+        # tkgl-icews subset (old-protocol RNG regime matching the retained seeds; final evaluation included)
+        IC = ("--dataset tkgl-icews --model faithful --epochs 6 --patience 3 --min-epochs 3 --train-edges-cap 2000000 "
+              "--track-val-edges 30000 --temporal-d-model 64 --lr 3e-3 --relation-in-input --recurrency-decoder "
+              "--recurrency-untyped --predict-from-previous --save-checkpoint")
+        i = 0
+        for spec in args.runs:   # arm:seed
+            arm, seed = spec.split(":")
+            name = f"icews_{arm}_recon_s{seed}"
+            if os.path.exists(os.path.join(ROOT, RV, "queue", f"{name}.cmd")):
+                continue
+            out = f"{RV}/icews/{name}"
+            cmd = f"{PY} -m exp.run_event_benchmark {IC} {ARMS[arm]} --seed {seed} --out {out}"
+            written.append(write_cmd(name, 16000, cmd, only_gpus=gpus[i % len(gpus)])); i += 1
     elif args.what == "synth":
         SY = (f"--dataset synth-history:{RV}/synthetic/{args.gen}/data.npz --model faithful --time-window 20000 --context-edges 2000 "
               "--track-val-edges 3000 --train-negatives-per-pos 32 --epochs 6 --patience 3 --min-epochs 3 --lr 1e-3 "
