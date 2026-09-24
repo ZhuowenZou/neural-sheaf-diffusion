@@ -1,19 +1,19 @@
-# Monitor status (2026-09-23 19:00:36)
+# Monitor status (2026-09-23 19:20:27)
 
 ## GPU free (GiB) and utilisation
-0:80GB(0%) 1:80GB(0%) 2:65GB(2%) 3:80GB(0%) 4:62GB(27%) 5:54GB(98%) 6:80GB(0%) 7:80GB(0%) 
-our GPU processes (pid:MiB): 4095829:15438MiB 4177163:18280MiB 
+0:80GB(0%) 1:80GB(0%) 2:80GB(0%) 3:80GB(0%) 4:62GB(0%) 5:54GB(55%) 6:80GB(0%) 7:80GB(0%) 
+our GPU processes (pid:MiB): 4177163:18280MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
-- gpu1: ELIGIBLE (idle 482 min)
-- gpu2: ELIGIBLE (idle 1603 min)
-- gpu3: ELIGIBLE (idle 1831 min)
-- gpu4: ELIGIBLE (idle 2207 min)
+- gpu1: ELIGIBLE (idle 502 min)
+- gpu2: ELIGIBLE (idle 1623 min)
+- gpu3: ELIGIBLE (idle 1851 min)
+- gpu4: ELIGIBLE (idle 2227 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 1363 min)
+- gpu6: ELIGIBLE (idle 1383 min)
 - gpu7: OURS
-compensation: colleagues hold 0 MiB on our GPUs; we hold 33718 MiB on theirs; budget left -33718 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+compensation: colleagues hold 0 MiB on our GPUs; we hold 18280 MiB on theirs; budget left -18280 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
 our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
@@ -231,7 +231,7 @@ our launcher claims (pid:gpu/MiB):
 - DONE     icews_coreoff_recon_s45: FINAL val_mrr=0.3018 test_mrr=0.3129 test_hits10=0.5131 eval_sec=43474.9
 - DONE     icews_coreoff_recon_s47: FINAL val_mrr=0.2922 test_mrr=0.3005 test_hits10=0.4917 eval_sec=34811.8
 - DONE     icews_curonly_recon_s44: FINAL val_mrr=0.3252 test_mrr=0.3386 test_hits10=0.5398 eval_sec=44714.8
-- RUNNING  icews_curonly_recon_s45: final val_mrr=0.3146 (36065.6s so far)
+- DONE     icews_curonly_recon_s45: FINAL val_mrr=0.3146 test_mrr=0.3154 test_hits10=0.5229 eval_sec=51722.3
 - DONE     icews_curonly_recon_s46: FINAL val_mrr=0.3172 test_mrr=0.3281 test_hits10=0.5230 eval_sec=28826.2
 - DONE     icews_curonly_recon_s47: FINAL val_mrr=0.3186 test_mrr=0.3275 test_hits10=0.5232 eval_sec=41702.5
 - DONE     icews_gru_recon_s43: FINAL val_mrr=0.3211 test_mrr=0.3367 test_hits10=0.5374 eval_sec=35441.9

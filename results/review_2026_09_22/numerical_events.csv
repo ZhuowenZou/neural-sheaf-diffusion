@@ -98,6 +98,7 @@ icews_coreoff_recon_s44,icews,tkgl-icews,core-off,44,7572.0,0.0,0.0,11.0,0.0,0.0
 icews_coreoff_recon_s45,icews,tkgl-icews,core-off,45,6310.0,0.0,0.0,12.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
 icews_coreoff_recon_s47,icews,tkgl-icews,core-off,47,6310.0,0.0,0.0,12.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
 icews_curonly_recon_s44,icews,tkgl-icews,current-only-maps,44,7572.0,0.0,0.0,535.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
+icews_curonly_recon_s45,icews,tkgl-icews,current-only-maps,45,7572.0,0.0,0.0,554.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
 icews_curonly_recon_s46,icews,tkgl-icews,current-only-maps,46,7572.0,0.0,0.0,262.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
 icews_curonly_recon_s47,icews,tkgl-icews,current-only-maps,47,7572.0,0.0,0.0,119.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
 icews_gru_recon_s43,icews,tkgl-icews,gru-ordinary,43,7572.0,0.0,0.0,586.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
