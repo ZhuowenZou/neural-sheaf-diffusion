@@ -115,3 +115,15 @@ def test_paper_literal_recursions_match():
     Mp = hc.moment_recursion_paper(edges, Qs, N)
     assert np.max(np.abs(hc.G_from_moments(Mp, N) - K)) < 1e-10
     assert np.max(np.abs(hc.hcur_recursion_paper(edges, Xs, Qs, N) - np.linalg.solve(Qs[-1], C))) < 1e-10
+
+
+def test_hist_solver_on_degenerate_path_that_broke_openblas_syevd():
+    """Regression: a delayed-switch draw whose Gram matrix made numpy.linalg.eigh fail to converge under OpenBLAS."""
+    from dataclasses import replace
+    from exp.histgeom.sweep import Cfg, build
+    d = build(replace(Cfg(), regime="R3", perturb="drift"), 24)
+    p = d["Ls"][0].shape[0]; Xs = list(d["X"]["A"])
+    C, G = hc.gram_recursion(d["edges"], Xs, d["Ls"], 16)
+    S = hc.HistSolver(G)
+    for a in (0.1, 3.0, 100.0):
+        assert np.allclose(S.solve(C, a), hc.dense_solve(G, C, a), atol=1e-9)

@@ -101,7 +101,16 @@ class HistSolver:
     """All-alpha solver for H_hist = (I + alpha G)^{-1} C via one eigendecomposition of G."""
     def __init__(self, G):
         self.N, _, self.p, _ = G.shape
-        self.lam, self.V = np.linalg.eigh(big(G))
+        B = big(G)
+        B = 0.5 * (B + B.T)          # exact symmetry (the recursion leaves ~1e-16 asymmetry)
+        # G is highly degenerate (consistent readings span a large kernel).  numpy's eigh (LAPACK *syevd) fails to
+        # converge on a few such matrices under OpenBLAS (7 of 2,160 sweep draws in a clean pip environment);
+        # the MRRR driver (*syevr) is robust.  Fall back to numpy only if SciPy's driver itself fails.
+        try:
+            from scipy.linalg import eigh as _eigh
+            self.lam, self.V = _eigh(B, driver="evr")
+        except Exception:
+            self.lam, self.V = np.linalg.eigh(B)
 
     def solve(self, C, alpha):
         c = C.T.reshape(-1)
