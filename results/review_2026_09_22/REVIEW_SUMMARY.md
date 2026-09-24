@@ -1,6 +1,6 @@
-# Review campaign summary (auto-generated 2026-09-23 16:51)
+# Review campaign summary (auto-generated 2026-09-23 17:11)
 
-288 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+289 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
@@ -57,7 +57,7 @@
 | thgl-software                                                      | sw      | on    | node-frame        | 0.001  |   3 | 0.438768 |   0.00185117  | 0.4367 / 0.4402 / 0.4395                                                                                                                               |
 | thgl-software                                                      | sw      | on    | tsd               | 0.001  |   3 | 0.437616 |   0.0020797   | 0.4360 / 0.4400 / 0.4369                                                                                                                               |
 | thgl-software                                                      | sw      | on    | tsd-no-gap        | 0.001  |   3 | 0.439336 |   0.000338672 | 0.4392 / 0.4397 / 0.4391                                                                                                                               |
-| tkgl-icews                                                         | icews   | on    | core-off          | 0.003  |   3 | 0.310328 |   0.00930869  | 0.3005 / 0.3191 / 0.3114                                                                                                                               |
+| tkgl-icews                                                         | icews   | on    | core-off          | 0.003  |   4 | 0.310983 |   0.00771228  | 0.3129 / 0.3005 / 0.3191 / 0.3114                                                                                                                      |
 | tkgl-icews                                                         | icews   | on    | current-only-maps | 0.003  |   3 | 0.328039 |   0.000496107 | 0.3281 / 0.3275 / 0.3285                                                                                                                               |
 | tkgl-icews                                                         | icews   | on    | gru-ordinary      | 0.003  |   3 | 0.334717 |   0.00238502  | 0.3367 / 0.3353 / 0.3321                                                                                                                               |
 | tkgl-icews                                                         | icews   | on    | identity-maps     | 0.003  |   2 | 0.34026  |   0.00480647  | 0.3437 / 0.3369                                                                                                                                        |
@@ -143,7 +143,7 @@
 | thgl-software   | on    | identity-maps     |   0.001  |   0.001  |   3 |   0.437616 |   0.439174 |                0.00155791  |   0.00231745  |     0.00575687  | -0.0003 / +0.0008 / +0.0042                     | 2+ 1-   |
 | thgl-software   | on    | node-frame        |   0.001  |   0.001  |   3 |   0.437616 |   0.438768 |                0.00115206  |   0.00126517  |     0.00314285  | +0.0007 / +0.0002 / +0.0026                     | 3+ 0-   |
 | thgl-software   | on    | tsd-no-gap        |   0.001  |   0.001  |   3 |   0.437616 |   0.439336 |                0.00171991  |   0.00177789  |     0.00441652  | +0.0032 / -0.0003 / +0.0022                     | 2+ 1-   |
-| tkgl-icews      | on    | core-off          |   0.003  |   0.003  |   3 |   0.335154 |   0.310328 |               -0.0248258   |   0.00651444  |     0.0161828   | -0.0196 / -0.0228 / -0.0321                     | 0+ 3-   |
+| tkgl-icews      | on    | core-off          |   0.003  |   0.003  |   4 |   0.328811 |   0.310983 |               -0.0178286   |   0.0149711   |     0.0238223   | -0.0196 / +0.0032 / -0.0228 / -0.0321           | 1+ 3-   |
 | tkgl-icews      | on    | current-only-maps |   0.003  |   0.003  |   3 |   0.335154 |   0.328039 |               -0.00711488  |   0.00264046  |     0.00655927  | -0.0101 / -0.0061 / -0.0051                     | 0+ 3-   |
 | tkgl-icews      | on    | gru-ordinary      |   0.003  |   0.003  |   3 |   0.335154 |   0.334717 |               -0.000437328 |   0.00150152  |     0.00372998  | -0.0019 / +0.0011 / -0.0006                     | 1+ 2-   |
 | tkgl-icews      | on    | identity-maps     |   0.003  |   0.003  |   2 |   0.335634 |   0.34026  |                0.0046259   |   0.00903213  |     0.0811505   | -0.0018 / +0.0110                               | 1+ 1-   |
@@ -388,6 +388,8 @@
 | forum   | forum_tsd_recon_s44                 | test    |   3563653 |                  0 |               0 |         0 |            0 |            0 |      0.621953 |      0.621953 |           0.621953 |                           0 |                         0 |
 | forum   | forum_tsd_recon_s45                 | val     |   3643658 |                  0 |               0 |         0 |            0 |            0 |      0.606496 |      0.606496 |           0.606496 |                           0 |                         0 |
 | forum   | forum_tsd_recon_s45                 | test    |   3563653 |                  0 |               0 |         0 |            0 |            0 |      0.617044 |      0.617044 |           0.617044 |                           0 |                         0 |
+| icews   | icews_coreoff_recon_s45             | val     |   4802314 |                  0 |               0 |         0 |            0 |            0 |      0.30032  |      0.30032  |           0.30032  |                           0 |                         0 |
+| icews   | icews_coreoff_recon_s45             | test    |   4651378 |                  0 |               0 |         0 |            0 |            0 |      0.312945 |      0.312945 |           0.312945 |                           0 |                         0 |
 | icews   | icews_coreoff_recon_s47             | val     |   4802314 |                  0 |               0 |         0 |            0 |            0 |      0.290487 |      0.290487 |           0.290487 |                           0 |                         0 |
 | icews   | icews_coreoff_recon_s47             | test    |   4651378 |                  0 |               0 |         0 |            0 |            0 |      0.300535 |      0.300535 |           0.300535 |                           0 |                         0 |
 | icews   | icews_curonly_recon_s46             | val     |   4832314 |                  0 |               0 |         0 |            0 |            0 |      0.314185 |      0.314185 |           0.314185 |                           0 |                         0 |
@@ -861,7 +863,6 @@
 | run                      | state           |   last_epoch |   attempts |
 |:-------------------------|:----------------|-------------:|-----------:|
 | icews_coreoff_recon_s44  | running/pending |            6 |          1 |
-| icews_coreoff_recon_s45  | running/pending |            5 |          1 |
 | icews_curonly_recon_s44  | running/pending |            6 |          1 |
 | icews_curonly_recon_s45  | running/pending |            6 |          1 |
 | icews_gru_recon_s44      | running/pending |            6 |          1 |

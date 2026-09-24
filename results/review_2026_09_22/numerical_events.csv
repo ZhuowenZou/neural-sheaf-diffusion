@@ -94,6 +94,7 @@ forum_tsd_recoff_s44,forum,thgl-forum,tsd,44,2956.0,0.0,0.0,41.0,0.0,0.0,0.0,0.0
 forum_tsd_recoff_s45,forum,thgl-forum,tsd,45,2956.0,0.0,0.0,11.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_tsd_recon_s44,forum,thgl-forum,tsd,44,2956.0,0.0,0.0,11.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
 forum_tsd_recon_s45,forum,thgl-forum,tsd,45,2956.0,0.0,0.0,12.0,0.0,0.0,0.0,0.0,3563658.0,0.0,0.0,0.0,3563653.0,0.0,True
+icews_coreoff_recon_s45,icews,tkgl-icews,core-off,45,6310.0,0.0,0.0,12.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
 icews_coreoff_recon_s47,icews,tkgl-icews,core-off,47,6310.0,0.0,0.0,12.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
 icews_curonly_recon_s46,icews,tkgl-icews,current-only-maps,46,7572.0,0.0,0.0,262.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
 icews_curonly_recon_s47,icews,tkgl-icews,current-only-maps,47,7572.0,0.0,0.0,119.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
