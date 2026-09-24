@@ -1,19 +1,19 @@
-# Monitor status (2026-09-23 19:20:27)
+# Monitor status (2026-09-23 20:23:07)
 
 ## GPU free (GiB) and utilisation
-0:80GB(0%) 1:80GB(0%) 2:80GB(0%) 3:80GB(0%) 4:62GB(0%) 5:54GB(55%) 6:80GB(0%) 7:80GB(0%) 
-our GPU processes (pid:MiB): 4177163:18280MiB 
+0:80GB(0%) 1:80GB(0%) 2:80GB(0%) 3:80GB(0%) 4:80GB(0%) 5:54GB(85%) 6:80GB(0%) 7:80GB(0%) 
+our GPU processes (pid:MiB): none
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
-- gpu1: ELIGIBLE (idle 502 min)
-- gpu2: ELIGIBLE (idle 1623 min)
-- gpu3: ELIGIBLE (idle 1851 min)
-- gpu4: ELIGIBLE (idle 2227 min)
+- gpu1: ELIGIBLE (idle 565 min)
+- gpu2: ELIGIBLE (idle 1685 min)
+- gpu3: ELIGIBLE (idle 1914 min)
+- gpu4: ELIGIBLE (idle 2289 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 1383 min)
+- gpu6: ELIGIBLE (idle 1446 min)
 - gpu7: OURS
-compensation: colleagues hold 0 MiB on our GPUs; we hold 18280 MiB on theirs; budget left -18280 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+compensation: colleagues hold 0 MiB on our GPUs; we hold 0 MiB on theirs; budget left 0 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
 our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
@@ -240,7 +240,7 @@ our launcher claims (pid:gpu/MiB):
 - DONE     icews_gru_recon_s46: FINAL val_mrr=0.3225 test_mrr=0.3353 test_hits10=0.5358 eval_sec=55217.6
 - DONE     icews_gru_recon_s47: FINAL val_mrr=0.3213 test_mrr=0.3321 test_hits10=0.5291 eval_sec=52992.6
 - DONE     icews_identity_recon_s44: FINAL val_mrr=0.3113 test_mrr=0.3254 test_hits10=0.5255 eval_sec=41964.1
-- RUNNING  icews_identity_recon_s45: final val_mrr=0.3241 (35833.9s so far)
+- DONE     icews_identity_recon_s45: FINAL val_mrr=0.3241 test_mrr=0.3392 test_hits10=0.5361 eval_sec=53479.3
 - DONE     icews_identity_recon_s46: FINAL val_mrr=0.3176 test_mrr=0.3233 test_hits10=0.5152 eval_sec=67486.7
 - DONE     icews_identity_recon_s47: FINAL val_mrr=0.3279 test_mrr=0.3437 test_hits10=0.5460 eval_sec=48918.6
 - DONE     icews_tsd_recon_s44: FINAL val_mrr=0.3179 test_mrr=0.3316 test_hits10=0.5290 eval_sec=42227.6
