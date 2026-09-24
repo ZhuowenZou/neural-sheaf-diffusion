@@ -135,7 +135,6 @@ replay, validation and test):**
 | tkgl-polecat (3e-3) | 43 / 46 / 47 | **100%** / 16% / **100%** | **100%** / 0% / **100%** | 6399 / 1.8 / 3139 |
 | tkgl-smallpedia (1e-2) | 43 / 46 / 47 | **77%** / 1% / **62%** | 26% / 0% / **88%** | 58 / 0.03 / 23 |
 | tkgl-wikidata (3e-3) | 43 / 46 / 47 | 0% / 0% / 1% | 0% / 0% / 0% | 0.01 / 0.01 / 0.10 |
-| tkgl-icews (3e-3) | 43 / 46 / 47 | pending | pending | pending |
 
 Saturation is seed- and dataset-dependent: on forum, polecat and smallpedia the selector collapses to the
 cap on two of three seeds (uncapped means of 10^1 to 10^3 against a cap of 0.25), while the same seeds' test
@@ -312,6 +311,90 @@ Cells with fewer than three paired seeds are pilots; every number is descriptive
 
 Facts (wikidata, REC on): with three paired seeds, GRU + ordinary (−0.0040 ± 0.0078) and core-off + REC (−0.0061 ± 0.0087) are both below TSD on 2 of 3 seeds, and both 95% intervals include zero; the largest gap is at seed 46 (TSD 0.5500), and seed 47 is positive for both. Current-only maps, identity maps and no-gap are single-seed pilots; diagonal SSM, edge gates, node-frame and no-memory were not evaluated on wikidata.
 
+
+**tkgl-icews, matched controls (REC on; `icews/` plus replay-verified retained seeds, 9 of 27 rows reused under the provenance rule; same flags, budget and selection as the retained runs):**
+
+| arm | seeds | TSD mean | arm mean | Δ arm − TSD (mean ± SD; 95% t) | per-seed Δ | signs |
+|---|---|---|---|---|---|---|
+| TSD | 5 | 0.3294 ± 0.0113 | – | – | – | – |
+| current-only maps | 5 | 0.3294 | 0.3276 | -0.0017 ± 0.0076; ±0.0094 | -0.0101 / +0.0070 / +0.0056 / -0.0061 / -0.0051 | 2+ 3- |
+| identity maps | 5 | 0.3294 | 0.3337 | +0.0043 ± 0.0162; ±0.0201 | -0.0018 / -0.0061 / +0.0294 / -0.0109 / +0.0110 | 2+ 3- |
+| GRU + ordinary propagation | 5 | 0.3294 | 0.3342 | +0.0048 ± 0.0098; ±0.0121 | -0.0019 / +0.0035 / +0.0219 / +0.0011 / -0.0006 | 3+ 2- |
+| diagonal SSM + ordinary propagation | – | – | – | not evaluated | – | – |
+| history-conditioned edge gates | – | – | – | not evaluated | – | – |
+| node-frame geometry | – | – | – | not evaluated | – | – |
+| TSD no-gap (retained) | – | – | – | not evaluated | – | – |
+| TSD no-memory (retained) (pilot) | 2 | 0.3364 | 0.3282 | -0.0082 ± 0.0013; ±0.0116 | -0.0091 / -0.0073 | 0+ 2- |
+| core-off + REC (head only) | 5 | 0.3294 | 0.3103 | -0.0191 ± 0.0133; ±0.0165 | -0.0196 / -0.0242 / +0.0032 / -0.0228 / -0.0321 | 1+ 4- |
+
+**tkgl-smallpedia (15-epoch ablation budget), matched controls (REC on; `sp/` plus replay-verified retained seeds, 9 of 34 rows reused under the provenance rule; same flags, budget and selection as the retained runs):**
+
+| arm | seeds | TSD mean | arm mean | Δ arm − TSD (mean ± SD; 95% t) | per-seed Δ | signs |
+|---|---|---|---|---|---|---|
+| TSD | 3 | 0.6106 ± 0.0040 | – | – | – | – |
+| current-only maps | 3 | 0.6106 | 0.6054 | -0.0052 ± 0.0118; ±0.0293 | -0.0188 / +0.0008 / +0.0024 | 2+ 1- |
+| identity maps | 3 | 0.6106 | 0.6133 | +0.0027 ± 0.0064; ±0.0158 | +0.0034 / -0.0040 / +0.0086 | 2+ 1- |
+| GRU + ordinary propagation | 3 | 0.6106 | 0.5992 | -0.0114 ± 0.0000; ±0.0001 | -0.0114 / -0.0114 / -0.0113 | 0+ 3- |
+| diagonal SSM + ordinary propagation | 3 | 0.6106 | 0.6071 | -0.0035 ± 0.0081; ±0.0202 | -0.0069 / -0.0093 / +0.0058 | 1+ 2- |
+| history-conditioned edge gates | 3 | 0.6106 | 0.6118 | +0.0012 ± 0.0004; ±0.0010 | +0.0008 / +0.0013 / +0.0015 | 3+ 0- |
+| node-frame geometry | 3 | 0.6106 | 0.6033 | -0.0073 ± 0.0135; ±0.0336 | -0.0223 / -0.0034 / +0.0039 | 1+ 2- |
+| TSD no-gap (retained) | 3 | 0.6106 | 0.6108 | +0.0002 ± 0.0047; ±0.0117 | +0.0013 / -0.0049 / +0.0043 | 2+ 1- |
+| TSD no-memory (retained) | – | – | – | not evaluated | – | – |
+| core-off + REC (head only) | 3 | 0.6106 | 0.5748 | -0.0358 ± 0.0576; ±0.1430 | -0.1019 / -0.0088 / +0.0034 | 1+ 2- |
+
+**thgl-software, matched controls (REC on; `sw/` plus replay-verified retained seeds, 12 of 27 rows reused under the provenance rule; same flags, budget and selection as the retained runs):**
+
+| arm | seeds | TSD mean | arm mean | Δ arm − TSD (mean ± SD; 95% t) | per-seed Δ | signs |
+|---|---|---|---|---|---|---|
+| TSD | 3 | 0.4376 ± 0.0021 | – | – | – | – |
+| current-only maps | 3 | 0.4376 | 0.4388 | +0.0012 ± 0.0027; ±0.0066 | -0.0019 / +0.0025 / +0.0029 | 2+ 1- |
+| identity maps | 3 | 0.4376 | 0.4392 | +0.0016 ± 0.0023; ±0.0058 | -0.0003 / +0.0008 / +0.0042 | 2+ 1- |
+| GRU + ordinary propagation | 3 | 0.4376 | 0.4383 | +0.0007 ± 0.0018; ±0.0046 | +0.0022 / +0.0012 / -0.0013 | 2+ 1- |
+| diagonal SSM + ordinary propagation | 3 | 0.4376 | 0.4373 | -0.0003 ± 0.0015; ±0.0037 | +0.0012 / -0.0003 / -0.0018 | 1+ 2- |
+| history-conditioned edge gates | 3 | 0.4376 | 0.4428 | +0.0052 ± 0.0024; ±0.0059 | +0.0063 / +0.0025 / +0.0067 | 3+ 0- |
+| node-frame geometry | 3 | 0.4376 | 0.4388 | +0.0012 ± 0.0013; ±0.0031 | +0.0007 / +0.0002 / +0.0026 | 3+ 0- |
+| TSD no-gap (retained) | 3 | 0.4376 | 0.4393 | +0.0017 ± 0.0018; ±0.0044 | +0.0032 / -0.0003 / +0.0022 | 2+ 1- |
+| TSD no-memory (retained) | – | – | – | not evaluated | – | – |
+| core-off + REC (head only) | 3 | 0.4376 | 0.4284 | -0.0092 ± 0.0018; ±0.0044 | -0.0072 / -0.0106 / -0.0097 | 0+ 3- |
+
+**tkgl-polecat, matched controls (REC on; `polecat/` plus replay-verified retained seeds, 9 of 15 rows reused under the provenance rule; same flags, budget and selection as the retained runs):**
+
+| arm | seeds | TSD mean | arm mean | Δ arm − TSD (mean ± SD; 95% t) | per-seed Δ | signs |
+|---|---|---|---|---|---|---|
+| TSD | 3 | 0.2442 ± 0.0034 | – | – | – | – |
+| current-only maps (pilot) | 2 | 0.2432 | 0.2472 | +0.0040 ± 0.0047; ±0.0421 | +0.0073 / +0.0007 | 2+ 0- |
+| identity maps (pilot) | 2 | 0.2432 | 0.2445 | +0.0013 ± 0.0047; ±0.0426 | +0.0046 / -0.0021 | 1+ 1- |
+| GRU + ordinary propagation | 3 | 0.2442 | 0.2446 | +0.0004 ± 0.0049; ±0.0122 | +0.0060 / -0.0031 / -0.0017 | 1+ 2- |
+| diagonal SSM + ordinary propagation | – | – | – | not evaluated | – | – |
+| history-conditioned edge gates | – | – | – | not evaluated | – | – |
+| node-frame geometry | – | – | – | not evaluated | – | – |
+| TSD no-gap (retained) (pilot) | 2 | 0.2432 | 0.2425 | -0.0007 ± 0.0065; ±0.0582 | +0.0038 / -0.0053 | 1+ 1- |
+| TSD no-memory (retained) | – | – | – | not evaluated | – | – |
+| core-off + REC (head only) | 3 | 0.2442 | 0.2248 | -0.0194 ± 0.0067; ±0.0166 | -0.0120 / -0.0249 / -0.0214 | 0+ 3- |
+
+**tkgl-wikidata, matched controls (REC on; `wd/` plus replay-verified retained seeds, 6 of 12 rows reused under the provenance rule; same flags, budget and selection as the retained runs):**
+
+| arm | seeds | TSD mean | arm mean | Δ arm − TSD (mean ± SD; 95% t) | per-seed Δ | signs |
+|---|---|---|---|---|---|---|
+| TSD | 3 | 0.5398 ± 0.0092 | – | – | – | – |
+| current-only maps (pilot) | 1 | 0.5371 | 0.5381 | +0.0011 | +0.0011 | 1+ 0- |
+| identity maps (pilot) | 1 | 0.5371 | 0.5336 | -0.0034 | -0.0034 | 0+ 1- |
+| GRU + ordinary propagation | 3 | 0.5398 | 0.5358 | -0.0040 ± 0.0078; ±0.0193 | -0.0013 / -0.0128 / +0.0020 | 1+ 2- |
+| diagonal SSM + ordinary propagation | – | – | – | not evaluated | – | – |
+| history-conditioned edge gates | – | – | – | not evaluated | – | – |
+| node-frame geometry | – | – | – | not evaluated | – | – |
+| TSD no-gap (retained) (pilot) | 1 | 0.5371 | 0.5362 | -0.0009 | -0.0009 | 0+ 1- |
+| TSD no-memory (retained) | – | – | – | not evaluated | – | – |
+| core-off + REC (head only) | 3 | 0.5398 | 0.5337 | -0.0061 ± 0.0087; ±0.0216 | -0.0032 / -0.0159 / +0.0007 | 1+ 2- |
+
+**Supported across the five additional datasets:** the recurrent core adds to the REC head on ICEWS (core-off
+−0.019, 4 of 5 seeds), polecat (−0.019, 3 of 3) and software (−0.009, 3 of 3); on smallpedia and wikidata the
+core-off difference is not consistent (smallpedia seed 43 core-off 0.513 is an outlier; wikidata −0.006, 1+ 2−).
+**Null:** no dataset shows a consistent advantage of TSD over current-only maps, identity maps, the GRU or the
+diagonal SSM with ordinary propagation; the only seed-consistent differences between cores are the GRU below
+TSD on smallpedia (−0.011, 3 of 3) and edge gates slightly above TSD on smallpedia (+0.001, 3 of 3) and
+software (+0.005, 3 of 3). Every difference among cores is within ±0.012 MRR.
+
 ## 4. Synthetic history-dependent task (synthetic/)
 
 **Generator (`exp/review/synthetic_history.py`, "cued target drift"):** 400 nodes in 8 hidden communities, 60k
@@ -382,11 +465,11 @@ memory as implemented captures delayed cues either. The sanity conditions (a) an
 weakly (GRU on variant 3). We report this as a negative result and did not tune the generator further.
 
 ## 5. Not evaluated (explicit)
-- **ICEWS matrix**: not retrained (a run costs 20+ h); the three retained seeds were replayed for the P0 audit
-  (`audit/icews_eval_s4x`). The retained ICEWS factorial (core-off+REC 0.319/0.311 vs TSD 0.339/0.334;
-  REC-off arms 0.02-0.03) is reused as descriptive evidence only; GRU / diagonal-SSM / attention / node-frame
-  cells on ICEWS are **not evaluated**.
-- **Forum**: diagonal SSM, attention gates and node-frame have three seeds (43/46/47), not five.
+- **ICEWS**: TSD, current-only, identity, GRU and core-off at five seeds (retained seeds 43/46/47 replay-verified
+  plus new 44/45); diagonal SSM, edge gates and node-frame on ICEWS are **not evaluated** (cost).
+- **Smallpedia**: all eight arms at seeds 43/46/47; seeds 44/45 were trimmed for time (15 cmds in `hold/`;
+  only current-only seed 44 ran). **Software**: new arms at three seeds. **Polecat / wikidata**: GRU and
+  core-off at three seeds; the other controls there are the retained 1-2 seed ablations (pilots).
 - **Clock comparison and batching widths**: single-seed pilots on wiki (seed 43); not expanded to five seeds.
 - **Heat-style transport, relation-conditioned edge maps, BPTT-length and initialisation controls** (handoff
   section 5): not run.

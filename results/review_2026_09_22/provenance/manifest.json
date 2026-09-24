@@ -1,12 +1,12 @@
 {
- "prepared": "2026-09-24 04:36:52 PDT",
+ "prepared": "2026-09-24 04:39:19 PDT",
  "repo": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "git": {
-  "sha": "abcf8efe009d538409cb96d7675e97f77d502624",
+  "sha": "582170ced28b259238823c2d4cca83c19735ae96",
   "branch": "review-2026-09-22",
-  "status": "M results/review_2026_09_22/CODE_COMMIT.txt\n M results/review_2026_09_22/REVIEW_SUMMARY.md\n M results/review_2026_09_22/tables_review.tex",
-  "dirty_diff_sha256": "16c9a8ba3f4a1cafa9f845ea842d126fb6dba63f5f894870c627a92f49321e0d",
-  "dirty_diff_lines": 77
+  "status": "M results/review_2026_09_22/CODE_COMMIT.txt\n M results/review_2026_09_22/FINDINGS.md\n M results/review_2026_09_22/REVIEW_SUMMARY.md\n?? results/review_2026_09_22/CLOSING_REPORT.md",
+  "dirty_diff_sha256": "c9ee6f9de7ea62c7de98745fec7f9739f3d956e495e52d6a967b09614d1c4b90",
+  "dirty_diff_lines": 136
  },
  "environment": {
   "python": "3.9.9 | packaged by conda-forge | (main, Dec 20 2021, 02:40:17) \n[GCC 9.4.0]",
@@ -1183,5 +1183,5 @@
    }
   }
  },
- "elapsed_sec": 67.8
+ "elapsed_sec": 66.4
 }
