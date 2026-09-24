@@ -1,302 +1,77 @@
-diff --git a/results/monitor/STATUS.md b/results/monitor/STATUS.md
-index 2071ca8..b8a1b7f 100644
---- a/results/monitor/STATUS.md
-+++ b/results/monitor/STATUS.md
-@@ -1,20 +1,20 @@
--# Monitor status (2026-09-23 12:02:47)
-+# Monitor status (2026-09-23 12:06:49)
- 
- ## GPU free (GiB) and utilisation
--0:5GB(33%) 1:30GB(59%) 2:11GB(8%) 3:4GB(5%) 4:20GB(15%) 5:54GB(98%) 6:8GB(17%) 7:4GB(0%) 
--our GPU processes (pid:MiB): 2154245:25550MiB 2159888:25538MiB 2167217:25548MiB 2998611:25546MiB 3073257:25548MiB 4095829:15298MiB 4118762:18198MiB 2315028:11528MiB 2424699:25548MiB 4096797:18198MiB 4097655:15764MiB 243990:18280MiB 2312148:25538MiB 4095645:17954MiB 4177163:18280MiB 2163588:25544MiB 2872725:18280MiB 2905507:18198MiB 4096471:18754MiB 4097379:18364MiB 2704074:18198MiB 4095975:16976MiB 4138403:16998MiB 1912676:25546MiB 
-+0:5GB(13%) 1:5GB(0%) 2:11GB(9%) 3:4GB(21%) 4:20GB(0%) 5:54GB(100%) 6:8GB(13%) 7:4GB(1%) 
-+our GPU processes (pid:MiB): 2154245:25550MiB 2159888:25538MiB 2167217:25548MiB 2998611:25546MiB 3073257:25548MiB 3374424:25548MiB 4095829:15298MiB 4118762:18198MiB 2315028:11528MiB 2424699:25548MiB 4096797:18198MiB 4097655:15764MiB 243990:18280MiB 2312148:25538MiB 4095645:17954MiB 4177163:18280MiB 2163588:25544MiB 2872725:18280MiB 2905507:18198MiB 4096471:18754MiB 4097379:18364MiB 2704074:18198MiB 4095975:16976MiB 4138403:16998MiB 1912676:25546MiB 
- 
- ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
- - gpu0: OURS
--- gpu1: ELIGIBLE (idle 64 min)
--- gpu2: ELIGIBLE (idle 1185 min)
--- gpu3: ELIGIBLE (idle 1414 min)
--- gpu4: ELIGIBLE (idle 1789 min)
-+- gpu1: ELIGIBLE (idle 68 min)
-+- gpu2: ELIGIBLE (idle 1189 min)
-+- gpu3: ELIGIBLE (idle 1418 min)
-+- gpu4: ELIGIBLE (idle 1793 min)
- - gpu5: colleague busy
--- gpu6: ELIGIBLE (idle 945 min)
-+- gpu6: ELIGIBLE (idle 949 min)
- - gpu7: OURS
--compensation: colleagues hold 0 MiB on our GPUs; we hold 334820 MiB on theirs; budget left -334820 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
--our launcher claims (pid:gpu/MiB): 2141175:1/26000 2164491:1/26000 
-+compensation: colleagues hold 0 MiB on our GPUs; we hold 360368 MiB on theirs; budget left -360368 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
-+our launcher claims (pid:gpu/MiB): 2152249:1/26000 
- 
- ## leakfree2 benchmark runs
- - DONE     forum_abl_curonly: FINAL val_mrr=0.6390 test_mrr=0.6475 test_hits10=0.7028 eval_sec=16469.5
-@@ -251,7 +251,7 @@ our launcher claims (pid:gpu/MiB): 2141175:1/26000 2164491:1/26000
- - DONE     polecat_gru_s43: FINAL val_mrr=0.2529 test_mrr=0.2463 test_hits10=0.3992 eval_sec=14764.8
- - RUNNING  polecat_gru_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
- - DONE     polecat_gru_s47: FINAL val_mrr=0.2504 test_mrr=0.2445 test_hits10=0.3994 eval_sec=8458.8
--- RUNNING  sp_attention_s43: epochs': 6, 'time_window': None, 'context_edges': 50000, 'train_edges_
-+- RUNNING  sp_attention_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
- - RUNNING  sp_attention_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
- - RUNNING  sp_attention_s47: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
- - DONE     sp_coreoff_s43: FINAL val_mrr=0.5606 test_mrr=0.5128 test_hits10=0.6705 eval_sec=829.0
-@@ -260,7 +260,7 @@ our launcher claims (pid:gpu/MiB): 2141175:1/26000 2164491:1/26000
- - DONE     sp_curonly_s43: FINAL val_mrr=0.6272 test_mrr=0.5897 test_hits10=0.7093 eval_sec=762.5
- - DONE     sp_curonly_s44: FINAL val_mrr=0.6481 test_mrr=0.6144 test_hits10=0.7123 eval_sec=967.2
- - RUNNING  sp_curonly_s46: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
--- RUNNING  sp_curonly_s47: 
-+- RUNNING  sp_curonly_s47: epochs': 6, 'time_window': None, 'context_edges': 50000, 'train_edges_
- - RUNNING  sp_diag_s43: epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfin
- - RUNNING  sp_diag_s46: 
- - RUNNING  sp_diag_s47: 
-diff --git a/results/monitor/agent.log b/results/monitor/agent.log
-index d860376..0efa467 100644
---- a/results/monitor/agent.log
-+++ b/results/monitor/agent.log
-@@ -487,3 +487,6 @@
- 2026-09-23 11:45:15 pushed to origin/review-2026-09-22 (257dda7 agent: results snapshot 2026-09-23 11:45 (collected )
- 2026-09-23 11:45:16 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_gru_recon_s47 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_coreoff_s46 polecat_gru_s46 sp_attention_s43 sp_attention_s46 sp_attention_s47 sp_coreoff_s46 sp_coreoff_s47 sp_curonly_s46 sp_curonly_s47 sp_diag_s43 sp_diag_s46 sp_diag_s47 sp_gru_s43 sp_gru_s46 sp_gru_s47 sp_identity_s43 sp_identity_s46 sp_identity_s47 sp_nodeframe_s43 sp_nodeframe_s46 sp_nodeframe_s47 sp_tsd_s43 sp_tsd_s46 sp_tsd_s47 wd_coreoff_s47 ] pending-launchers 48 free-GiB 5 80 11 4 20 54 8 4 
- 2026-09-23 11:55:26 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_gru_recon_s47 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_coreoff_s46 polecat_gru_s46 sp_attention_s43 sp_attention_s46 sp_attention_s47 sp_coreoff_s46 sp_coreoff_s47 sp_curonly_s46 sp_curonly_s47 sp_diag_s43 sp_diag_s46 sp_diag_s47 sp_gru_s43 sp_gru_s46 sp_gru_s47 sp_identity_s43 sp_identity_s46 sp_identity_s47 sp_nodeframe_s43 sp_nodeframe_s46 sp_nodeframe_s47 sp_tsd_s43 sp_tsd_s46 sp_tsd_s47 wd_coreoff_s47 ] pending-launchers 44 free-GiB 5 80 11 4 9 54 8 4 
-+2026-09-23 12:05:38 committed 43 paths (collected 261 finished runs, 37 unfinished; fingerprint 82442671)
-+2026-09-23 12:05:46 pushed to origin/review-2026-09-22 (c909c00 agent: results snapshot 2026-09-23 12:05 (collected )
-+2026-09-23 12:05:47 tick: running [icews_coreoff_recon_s44 icews_coreoff_recon_s45 icews_curonly_recon_s44 icews_curonly_recon_s45 icews_gru_recon_s44 icews_gru_recon_s45 icews_gru_recon_s46 icews_gru_recon_s47 icews_identity_recon_s44 icews_identity_recon_s45 icews_identity_recon_s46 icews_tsd_recon_s44 icews_tsd_recon_s45 polecat_coreoff_s46 polecat_gru_s46 sp_attention_s43 sp_attention_s46 sp_attention_s47 sp_coreoff_s46 sp_coreoff_s47 sp_curonly_s46 sp_curonly_s47 sp_diag_s43 sp_diag_s46 sp_diag_s47 sp_gru_s43 sp_gru_s46 sp_gru_s47 sp_identity_s43 sp_identity_s46 sp_identity_s47 sp_nodeframe_s43 sp_nodeframe_s46 sp_nodeframe_s47 sp_tsd_s43 sp_tsd_s46 sp_tsd_s47 ] pending-launchers 38 free-GiB 5 30 11 4 20 54 8 4 
-diff --git a/results/monitor/gpu_log.csv b/results/monitor/gpu_log.csv
-index 61312d9..231d927 100644
---- a/results/monitor/gpu_log.csv
-+++ b/results/monitor/gpu_log.csv
-@@ -49718,3 +49718,11 @@
- 2026-09-23 12:02:47,5,26833,81920,96
- 2026-09-23 12:02:47,6,73624,81920,58
- 2026-09-23 12:02:47,7,77746,81920,0
-+2026-09-23 12:06:49,0,76657,81920,13
-+2026-09-23 12:06:49,1,76659,81920,73
-+2026-09-23 12:06:49,2,70600,81920,0
-+2026-09-23 12:06:49,3,77812,81920,77
-+2026-09-23 12:06:49,4,61805,81920,12
-+2026-09-23 12:06:49,5,26833,81920,98
-+2026-09-23 12:06:49,6,73624,81920,0
-+2026-09-23 12:06:49,7,77746,81920,0
 diff --git a/results/review_2026_09_22/CODE_COMMIT.txt b/results/review_2026_09_22/CODE_COMMIT.txt
-index fc4b297..1f2c287 100644
+index 1f2c287..5f00d1c 100644
 --- a/results/review_2026_09_22/CODE_COMMIT.txt
 +++ b/results/review_2026_09_22/CODE_COMMIT.txt
 @@ -1 +1 @@
--bc5ef4cabb1babcebcfacfcd2e3820be67ddf707
-+c909c0010205c423ae0e0afee19760aded43fe4d
+-c909c0010205c423ae0e0afee19760aded43fe4d
++abcf8efe009d538409cb96d7675e97f77d502624
 diff --git a/results/review_2026_09_22/REVIEW_SUMMARY.md b/results/review_2026_09_22/REVIEW_SUMMARY.md
-index af4d92d..9ba0825 100644
+index eb25882..14b7dbe 100644
 --- a/results/review_2026_09_22/REVIEW_SUMMARY.md
 +++ b/results/review_2026_09_22/REVIEW_SUMMARY.md
 @@ -1,4 +1,4 @@
--# Review campaign summary (auto-generated 2026-09-23 12:05)
-+# Review campaign summary (auto-generated 2026-09-23 12:09)
+-# Review campaign summary (auto-generated 2026-09-24 01:56)
++# Review campaign summary (auto-generated 2026-09-24 04:36)
  
- 261 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+ 298 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
  
-@@ -807,12 +807,12 @@
- | icews_tsd_recon_s44      | running/pending |            6 |          1 |
- | icews_tsd_recon_s45      | running/pending |            4 |          1 |
- | polecat_coreoff_s46      | running/pending |           10 |          1 |
--| polecat_gru_s46          | running/pending |            2 |          2 |
--| sp_attention_s43         | running/pending |            1 |          2 |
--| sp_attention_s46         | running/pending |           10 |          2 |
-+| polecat_gru_s46          | running/pending |            3 |          2 |
-+| sp_attention_s43         | running/pending |            3 |          2 |
-+| sp_attention_s46         | running/pending |           11 |          2 |
- | sp_attention_s47         | running/pending |           15 |          2 |
--| sp_coreoff_s46           | running/pending |           13 |          2 |
--| sp_coreoff_s47           | running/pending |           14 |          2 |
-+| sp_coreoff_s46           | running/pending |           14 |          2 |
-+| sp_coreoff_s47           | running/pending |           15 |          2 |
- | sp_curonly_s46           | running/pending |            6 |          2 |
- | sp_curonly_s47           | running/pending |            0 |          2 |
- | sp_diag_s43              | running/pending |           15 |          2 |
-@@ -821,7 +821,7 @@
- | sp_gru_s43               | running/pending |            0 |          2 |
- | sp_gru_s46               | running/pending |            0 |          2 |
- | sp_gru_s47               | running/pending |            8 |          1 |
--| sp_identity_s43          | running/pending |            2 |          2 |
-+| sp_identity_s43          | running/pending |            3 |          2 |
- | sp_identity_s46          | running/pending |            0 |          2 |
- | sp_identity_s47          | running/pending |            0 |          2 |
- | sp_nodeframe_s43         | running/pending |            0 |          2 |
-diff --git a/results/review_2026_09_22/polecat/polecat_gru_s46/history.csv b/results/review_2026_09_22/polecat/polecat_gru_s46/history.csv
-index 49a2811..37b4c10 100644
---- a/results/review_2026_09_22/polecat/polecat_gru_s46/history.csv
-+++ b/results/review_2026_09_22/polecat/polecat_gru_s46/history.csv
-@@ -1,3 +1,4 @@
- epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_mem_mb,peak_gpu_reserved_mb,epoch_steps,epoch_nonfinite_loss,epoch_nonfinite_grad,epoch_clipped,epoch_skipped_steps,track_nonfinite_positives,track_nonfinite_negatives,track_skipped_queries
- 1,0.15107160512257942,0.23003557461500168,0.2727149724960327,31.7,630.7,5108.8,11016.0,1192,0,0,5,0,0,0,0
- 2,0.1406944298135404,0.23933858236720165,0.30799660086631775,38.4,544.6,5154.9,11018.0,1192,0,0,2,0,0,0,0
-+3,0.13860115363268843,0.2408205847163995,0.28708526492118835,33.5,624.9,5154.9,11018.0,1192,0,0,4,0,0,0,0
-diff --git a/results/review_2026_09_22/queue/polecat_gru_s46.log b/results/review_2026_09_22/queue/polecat_gru_s46.log
-index 4bba1c5..c466ca8 100644
---- a/results/review_2026_09_22/queue/polecat_gru_s46.log
-+++ b/results/review_2026_09_22/queue/polecat_gru_s46.log
-@@ -10,3 +10,4 @@ parameter_count=37625 num_relations=32 num_nodes=150931
- parameters_by_component={'embeddings': 512, 'ssm_input_selector_B': 0, 'ssm_other': 31681, 'map_decoder': 128, 'spatial_block': 2534, 'scorer': 2641, 'rec': 129, 'other': 0, 'total': 37625, 'trainable': 37625, 'unused_by_construction': 128, 'active': 37497}
- [epoch 1/10] {'epoch': 1, 'train_loss': 0.15107160512257942, 'track_val_mrr': 0.23003557461500168, 'track_val_loss': 0.2727149724960327, 'train_sec': 31.7, 'track_eval_sec': 630.7, 'peak_gpu_mem_mb': 5108.8, 'peak_gpu_reserved_mb': 11016.0, 'epoch_steps': 1192, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 5, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 2/10] {'epoch': 2, 'train_loss': 0.1406944298135404, 'track_val_mrr': 0.23933858236720165, 'track_val_loss': 0.30799660086631775, 'train_sec': 38.4, 'track_eval_sec': 544.6, 'peak_gpu_mem_mb': 5154.9, 'peak_gpu_reserved_mb': 11018.0, 'epoch_steps': 1192, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 2, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 3/10] {'epoch': 3, 'train_loss': 0.13860115363268843, 'track_val_mrr': 0.2408205847163995, 'track_val_loss': 0.28708526492118835, 'train_sec': 33.5, 'track_eval_sec': 624.9, 'peak_gpu_mem_mb': 5154.9, 'peak_gpu_reserved_mb': 11018.0, 'epoch_steps': 1192, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-diff --git a/results/review_2026_09_22/queue/sp_attention_s43.log b/results/review_2026_09_22/queue/sp_attention_s43.log
-index 93051a3..1602136 100644
---- a/results/review_2026_09_22/queue/sp_attention_s43.log
-+++ b/results/review_2026_09_22/queue/sp_attention_s43.log
-@@ -9,3 +9,5 @@ protocol: predict-from-previous-state (leak-free) for training and evaluation
- parameter_count=648932 num_relations=566 num_nodes=47433
- parameters_by_component={'embeddings': 9056, 'ssm_input_selector_B': 620928, 'ssm_other': 4261, 'map_decoder': 257, 'spatial_block': 2534, 'scorer': 11719, 'rec': 177, 'other': 0, 'total': 648932, 'trainable': 648932, 'unused_by_construction': 0, 'active': 648932}
- [epoch 1/15] {'epoch': 1, 'train_loss': 0.10373734271864302, 'track_val_mrr': 0.5547897939062119, 'track_val_loss': 0.09123121201992035, 'train_sec': 10.3, 'track_eval_sec': 134.5, 'peak_gpu_mem_mb': 9237.4, 'peak_gpu_reserved_mb': 25036.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 3, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 2/15] {'epoch': 2, 'train_loss': 0.05317979294461073, 'track_val_mrr': 0.5859477962946892, 'track_val_loss': 0.0798138827085495, 'train_sec': 9.6, 'track_eval_sec': 101.1, 'peak_gpu_mem_mb': 10326.7, 'peak_gpu_reserved_mb': 25036.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 3/15] {'epoch': 3, 'train_loss': 0.05031985284510961, 'track_val_mrr': 0.6332024603426456, 'track_val_loss': 0.07563517987728119, 'train_sec': 10.5, 'track_eval_sec': 105.0, 'peak_gpu_mem_mb': 10326.7, 'peak_gpu_reserved_mb': 25036.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-diff --git a/results/review_2026_09_22/queue/sp_attention_s46.log b/results/review_2026_09_22/queue/sp_attention_s46.log
-index 4890187..2def7d1 100644
---- a/results/review_2026_09_22/queue/sp_attention_s46.log
-+++ b/results/review_2026_09_22/queue/sp_attention_s46.log
-@@ -18,3 +18,4 @@ parameters_by_component={'embeddings': 9056, 'ssm_input_selector_B': 620928, 'ss
- [epoch 8/15] {'epoch': 8, 'train_loss': 0.043195432128826365, 'track_val_mrr': 0.7306481017363071, 'track_val_loss': 0.0636814758181572, 'train_sec': 10.9, 'track_eval_sec': 126.3, 'peak_gpu_mem_mb': 9910.3, 'peak_gpu_reserved_mb': 25036.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 9/15] {'epoch': 9, 'train_loss': 0.04382753635267007, 'track_val_mrr': 0.7297625023388863, 'track_val_loss': 0.06032082438468933, 'train_sec': 10.4, 'track_eval_sec': 134.0, 'peak_gpu_mem_mb': 9910.3, 'peak_gpu_reserved_mb': 25036.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 10/15] {'epoch': 10, 'train_loss': 0.04282398065840153, 'track_val_mrr': 0.7291551970946789, 'track_val_loss': 0.06982766836881638, 'train_sec': 9.8, 'track_eval_sec': 134.6, 'peak_gpu_mem_mb': 9910.3, 'peak_gpu_reserved_mb': 25036.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 11/15] {'epoch': 11, 'train_loss': 0.04598811123827376, 'track_val_mrr': 0.7301687294375896, 'track_val_loss': 0.06510846316814423, 'train_sec': 9.3, 'track_eval_sec': 131.1, 'peak_gpu_mem_mb': 9910.3, 'peak_gpu_reserved_mb': 25036.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-diff --git a/results/review_2026_09_22/queue/sp_coreoff_s46.log b/results/review_2026_09_22/queue/sp_coreoff_s46.log
-index 2ff8c8b..637c69a 100644
---- a/results/review_2026_09_22/queue/sp_coreoff_s46.log
-+++ b/results/review_2026_09_22/queue/sp_coreoff_s46.log
-@@ -21,3 +21,4 @@ parameters_by_component={'embeddings': 9056, 'ssm_input_selector_B': 620928, 'ss
- [epoch 11/15] {'epoch': 11, 'train_loss': 0.05756637361860767, 'track_val_mrr': 0.720623702890873, 'track_val_loss': 0.137648805975914, 'train_sec': 4.7, 'track_eval_sec': 128.1, 'peak_gpu_mem_mb': 9244.6, 'peak_gpu_reserved_mb': 25028.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 12/15] {'epoch': 12, 'train_loss': 0.05706270822544688, 'track_val_mrr': 0.7217833327579498, 'track_val_loss': 0.13772420585155487, 'train_sec': 4.2, 'track_eval_sec': 138.4, 'peak_gpu_mem_mb': 9244.6, 'peak_gpu_reserved_mb': 25028.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 13/15] {'epoch': 13, 'train_loss': 0.056686293180148624, 'track_val_mrr': 0.7197953136849403, 'track_val_loss': 0.1373949944972992, 'train_sec': 4.0, 'track_eval_sec': 134.7, 'peak_gpu_mem_mb': 9244.6, 'peak_gpu_reserved_mb': 25028.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 14/15] {'epoch': 14, 'train_loss': 0.05691709962779099, 'track_val_mrr': 0.7200497436141968, 'track_val_loss': 0.1366991549730301, 'train_sec': 4.2, 'track_eval_sec': 136.8, 'peak_gpu_mem_mb': 9244.6, 'peak_gpu_reserved_mb': 25028.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-diff --git a/results/review_2026_09_22/queue/sp_coreoff_s47.log b/results/review_2026_09_22/queue/sp_coreoff_s47.log
-index 61aa86f..b2e89cc 100644
---- a/results/review_2026_09_22/queue/sp_coreoff_s47.log
-+++ b/results/review_2026_09_22/queue/sp_coreoff_s47.log
-@@ -22,3 +22,5 @@ parameters_by_component={'embeddings': 9056, 'ssm_input_selector_B': 620928, 'ss
- [epoch 12/15] {'epoch': 12, 'train_loss': 0.05773234319364287, 'track_val_mrr': 0.7316463150179386, 'track_val_loss': 0.13854873180389404, 'train_sec': 4.0, 'track_eval_sec': 135.3, 'peak_gpu_mem_mb': 9244.6, 'peak_gpu_reserved_mb': 25028.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 13/15] {'epoch': 13, 'train_loss': 0.05765674685694508, 'track_val_mrr': 0.731618370680809, 'track_val_loss': 0.13830070197582245, 'train_sec': 4.1, 'track_eval_sec': 135.6, 'peak_gpu_mem_mb': 9244.6, 'peak_gpu_reserved_mb': 25028.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 14/15] {'epoch': 14, 'train_loss': 0.05741208590106251, 'track_val_mrr': 0.7321519956660271, 'track_val_loss': 0.13800449669361115, 'train_sec': 3.8, 'track_eval_sec': 139.9, 'peak_gpu_mem_mb': 9244.6, 'peak_gpu_reserved_mb': 25028.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 15/15] {'epoch': 15, 'train_loss': 0.05738351839719359, 'track_val_mrr': 0.7323144820570946, 'track_val_loss': 0.1376434862613678, 'train_sec': 3.9, 'track_eval_sec': 147.4, 'peak_gpu_mem_mb': 9244.6, 'peak_gpu_reserved_mb': 25028.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+checkpoint saved: results/review_2026_09_22/sp/sp_coreoff_s47/best.pt
-diff --git a/results/review_2026_09_22/queue/sp_curonly_s47.log b/results/review_2026_09_22/queue/sp_curonly_s47.log
-index e69de29..5438c9b 100644
---- a/results/review_2026_09_22/queue/sp_curonly_s47.log
-+++ b/results/review_2026_09_22/queue/sp_curonly_s47.log
-@@ -0,0 +1,11 @@
-+reserved 24976 MiB of GPU memory on cuda:0 in the caching allocator (requested 24976; now reserved 24980 MiB)
-+device=cuda:0 sha=c909c0010205 config={'dataset': 'tkgl-smallpedia', 'seed': 47, 'model': 'faithful', 'feedback_dim': 16, 'no_memory_readout': False, 'sheaf_conditioning': 'current_only', 'epochs': 15, 'patience': 6, 'min_epochs': 6, 'time_window': None, 'context_edges': 50000, 'train_edges_cap': None, 'val_edges_cap': None, 'test_edges_cap': None, 'track_val_edges': 50000, 'train_loss': 'softplus', 'learn_node_emb': False, 'emb_in_head': False, 'node_type_emb': False, 'predict_from_previous': True, 'reserve_gpu_mb': None, 'delta_time_scale': 'auto', 'sheaf_identity': False, 'no_delta_t': False, 'no_memory': False, 'recurrency_symmetric': True, 'recurrency_untyped': True, 'cache_warm_history': False, 'recurrency_decoder': True, 'relation_in_input': True, 'no_dst_range': False, 'd': 2, 'layers': 2, 'hidden_channels': 8, 'temporal_d_model': 64, 'closure_hops': 1, 'train_negatives_per_pos': 32, 'candidate_chunk_size': 1024, 'max_score_elements': 4000000, 'bptt_steps': 1, 'lr': 0.01, 'weight_decay': 0.0, 'grad_clip': 1.0, 'skip_final_eval': False, 'save_checkpoint': True, 'eval_only': None, 'backbone': 'tsd', 'spatial': None, 'clock': 'global', 'fast_core_off': False, 'rng_isolation': False, 'no_query_audit': False, 'dump_query_ranks': True, 'clock_diagnostics': False, 'audit_eval_only': False, 'out': 'results/review_2026_09_22/sp/sp_curonly_s47'}
-+split_source=official_tgb_masks
-+destination_range=None
-+snapshots: train=98 (edges=775514) track_val=7 final_val=10 final_test=17 | prep_sec=2.3
-+negative-sample sets loaded in 1.3s
-+delta_time_scale=1 (Delta_k is measured in units of the median training inter-snapshot gap)
-+protocol: predict-from-previous-state (leak-free) for training and evaluation
-+parameter_count=652963 num_relations=566 num_nodes=47433
-+parameters_by_component={'embeddings': 9056, 'ssm_input_selector_B': 620928, 'ssm_other': 4261, 'map_decoder': 4288, 'spatial_block': 2534, 'scorer': 11719, 'rec': 177, 'other': 0, 'total': 652963, 'trainable': 652963, 'unused_by_construction': 0, 'active': 652963}
-+[epoch 1/15] {'epoch': 1, 'train_loss': 0.11087416853640497, 'track_val_mrr': 0.6601504029893875, 'track_val_loss': 0.09081272780895233, 'train_sec': 10.0, 'track_eval_sec': 158.4, 'peak_gpu_mem_mb': 9237.6, 'peak_gpu_reserved_mb': 25036.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 5, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-diff --git a/results/review_2026_09_22/queue/sp_identity_s43.log b/results/review_2026_09_22/queue/sp_identity_s43.log
-index ad854e9..1956cfc 100644
---- a/results/review_2026_09_22/queue/sp_identity_s43.log
-+++ b/results/review_2026_09_22/queue/sp_identity_s43.log
-@@ -10,3 +10,4 @@ parameter_count=648803 num_relations=566 num_nodes=47433
- parameters_by_component={'embeddings': 9056, 'ssm_input_selector_B': 620928, 'ssm_other': 4261, 'map_decoder': 128, 'spatial_block': 2534, 'scorer': 11719, 'rec': 177, 'other': 0, 'total': 648803, 'trainable': 648803, 'unused_by_construction': 128, 'active': 648675}
- [epoch 1/15] {'epoch': 1, 'train_loss': 0.10651937545728438, 'track_val_mrr': 0.5850921445059777, 'track_val_loss': 0.09418772906064987, 'train_sec': 9.8, 'track_eval_sec': 132.1, 'peak_gpu_mem_mb': 9237.4, 'peak_gpu_reserved_mb': 25034.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 4, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
- [epoch 2/15] {'epoch': 2, 'train_loss': 0.049471339537310845, 'track_val_mrr': 0.638299424943924, 'track_val_loss': 0.05986258015036583, 'train_sec': 8.7, 'track_eval_sec': 123.0, 'peak_gpu_mem_mb': 9251.9, 'peak_gpu_reserved_mb': 25034.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-+[epoch 3/15] {'epoch': 3, 'train_loss': 0.04563267504047487, 'track_val_mrr': 0.6760778019976615, 'track_val_loss': 0.052609797567129135, 'train_sec': 9.1, 'track_eval_sec': 135.7, 'peak_gpu_mem_mb': 9251.9, 'peak_gpu_reserved_mb': 25034.0, 'epoch_steps': 97, 'epoch_nonfinite_loss': 0, 'epoch_nonfinite_grad': 0, 'epoch_clipped': 0, 'epoch_skipped_steps': 0, 'track_nonfinite_positives': 0, 'track_nonfinite_negatives': 0, 'track_skipped_queries': 0}
-diff --git a/results/review_2026_09_22/sp/sp_attention_s43/history.csv b/results/review_2026_09_22/sp/sp_attention_s43/history.csv
-index 94a49d3..f73aa09 100644
---- a/results/review_2026_09_22/sp/sp_attention_s43/history.csv
-+++ b/results/review_2026_09_22/sp/sp_attention_s43/history.csv
-@@ -1,2 +1,4 @@
- epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_mem_mb,peak_gpu_reserved_mb,epoch_steps,epoch_nonfinite_loss,epoch_nonfinite_grad,epoch_clipped,epoch_skipped_steps,track_nonfinite_positives,track_nonfinite_negatives,track_skipped_queries
- 1,0.10373734271864302,0.5547897939062119,0.09123121201992035,10.3,134.5,9237.4,25036.0,97,0,0,3,0,0,0,0
-+2,0.05317979294461073,0.5859477962946892,0.0798138827085495,9.6,101.1,10326.7,25036.0,97,0,0,0,0,0,0,0
-+3,0.05031985284510961,0.6332024603426456,0.07563517987728119,10.5,105.0,10326.7,25036.0,97,0,0,0,0,0,0,0
-diff --git a/results/review_2026_09_22/sp/sp_attention_s46/history.csv b/results/review_2026_09_22/sp/sp_attention_s46/history.csv
-index aea1a05..a819035 100644
---- a/results/review_2026_09_22/sp/sp_attention_s46/history.csv
-+++ b/results/review_2026_09_22/sp/sp_attention_s46/history.csv
-@@ -9,3 +9,4 @@ epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_
- 8,0.043195432128826365,0.7306481017363071,0.0636814758181572,10.9,126.3,9910.3,25036.0,97,0,0,0,0,0,0,0
- 9,0.04382753635267007,0.7297625023388863,0.06032082438468933,10.4,134.0,9910.3,25036.0,97,0,0,0,0,0,0,0
- 10,0.04282398065840153,0.7291551970946789,0.06982766836881638,9.8,134.6,9910.3,25036.0,97,0,0,0,0,0,0,0
-+11,0.04598811123827376,0.7301687294375896,0.06510846316814423,9.3,131.1,9910.3,25036.0,97,0,0,0,0,0,0,0
-diff --git a/results/review_2026_09_22/sp/sp_coreoff_s46/history.csv b/results/review_2026_09_22/sp/sp_coreoff_s46/history.csv
-index 886b138..3f5581d 100644
---- a/results/review_2026_09_22/sp/sp_coreoff_s46/history.csv
-+++ b/results/review_2026_09_22/sp/sp_coreoff_s46/history.csv
-@@ -12,3 +12,4 @@ epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_
- 11,0.05756637361860767,0.720623702890873,0.137648805975914,4.7,128.1,9244.6,25028.0,97,0,0,0,0,0,0,0
- 12,0.05706270822544688,0.7217833327579498,0.13772420585155487,4.2,138.4,9244.6,25028.0,97,0,0,0,0,0,0,0
- 13,0.056686293180148624,0.7197953136849403,0.1373949944972992,4.0,134.7,9244.6,25028.0,97,0,0,0,0,0,0,0
-+14,0.05691709962779099,0.7200497436141968,0.1366991549730301,4.2,136.8,9244.6,25028.0,97,0,0,0,0,0,0,0
-diff --git a/results/review_2026_09_22/sp/sp_coreoff_s47/history.csv b/results/review_2026_09_22/sp/sp_coreoff_s47/history.csv
-index 766486b..04ef0b3 100644
---- a/results/review_2026_09_22/sp/sp_coreoff_s47/history.csv
-+++ b/results/review_2026_09_22/sp/sp_coreoff_s47/history.csv
-@@ -13,3 +13,4 @@ epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_
- 12,0.05773234319364287,0.7316463150179386,0.13854873180389404,4.0,135.3,9244.6,25028.0,97,0,0,0,0,0,0,0
- 13,0.05765674685694508,0.731618370680809,0.13830070197582245,4.1,135.6,9244.6,25028.0,97,0,0,0,0,0,0,0
- 14,0.05741208590106251,0.7321519956660271,0.13800449669361115,3.8,139.9,9244.6,25028.0,97,0,0,0,0,0,0,0
-+15,0.05738351839719359,0.7323144820570946,0.1376434862613678,3.9,147.4,9244.6,25028.0,97,0,0,0,0,0,0,0
-diff --git a/results/review_2026_09_22/sp/sp_identity_s43/history.csv b/results/review_2026_09_22/sp/sp_identity_s43/history.csv
-index d229402..8d5a9e3 100644
---- a/results/review_2026_09_22/sp/sp_identity_s43/history.csv
-+++ b/results/review_2026_09_22/sp/sp_identity_s43/history.csv
-@@ -1,3 +1,4 @@
- epoch,train_loss,track_val_mrr,track_val_loss,train_sec,track_eval_sec,peak_gpu_mem_mb,peak_gpu_reserved_mb,epoch_steps,epoch_nonfinite_loss,epoch_nonfinite_grad,epoch_clipped,epoch_skipped_steps,track_nonfinite_positives,track_nonfinite_negatives,track_skipped_queries
- 1,0.10651937545728438,0.5850921445059777,0.09418772906064987,9.8,132.1,9237.4,25034.0,97,0,0,4,0,0,0,0
- 2,0.049471339537310845,0.638299424943924,0.05986258015036583,8.7,123.0,9251.9,25034.0,97,0,0,0,0,0,0,0
-+3,0.04563267504047487,0.6760778019976615,0.052609797567129135,9.1,135.7,9251.9,25034.0,97,0,0,0,0,0,0,0
 diff --git a/results/review_2026_09_22/tables_review.tex b/results/review_2026_09_22/tables_review.tex
-index e5fdd9d..b5362bb 100644
+index b5362bb..5d10751 100644
 --- a/results/review_2026_09_22/tables_review.tex
 +++ b/results/review_2026_09_22/tables_review.tex
-@@ -77,7 +77,7 @@ Core off + REC (head only) & 0.001 & 3 (43,46,47) & 9168 & 0.428 $\pm$ 0.001 & -
+@@ -75,14 +75,14 @@ Core off + REC (head only) & 0.001 & 3 (43,46,47) & 9168 & 0.428 $\pm$ 0.001 & -
+ \caption{Matched controls on tkgl-icews (icews, REC on): test MRR over seeds and paired difference to TSD (same seeds, identical data, negatives, protocol and selection rule; lr locked per arm on seed-43 tracking validation). Active parameters exclude parameters unused by construction.}
+ \begin{tabular}{lcccrll}\toprule
  Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
- TSD (memory-conditioned incidence maps) & 0.003 & 3 (43,46,47) & -- & 0.335 $\pm$ 0.003 & -- &  \\
- Current-only maps & 0.003 & 3 (43,46,47) & 660043 & 0.328 $\pm$ 0.000 & -0.0071 $\pm$ 0.0026; $\pm$0.0066 & 0+ 3- \\
--Identity maps & 0.003 & 1 (43) & -- & 0.337 $\pm$ -- & -0.0018 $\pm$ --; $\pm$-- & 0+ 1- \\
-+Identity maps & 0.003 & 2 (43,47) & 655755 & 0.340 $\pm$ 0.005 & +0.0046 $\pm$ 0.0090; $\pm$0.0812 & 1+ 1- \\
- GRU + ordinary propagation & 0.003 & 1 (43) & 62247 & 0.337 $\pm$ -- & -0.0019 $\pm$ --; $\pm$-- & 0+ 1- \\
+-TSD (memory-conditioned incidence maps) & 0.003 & 3 (43,46,47) & -- & 0.335 $\pm$ 0.003 & -- &  \\
+-Current-only maps & 0.003 & 3 (43,46,47) & 660043 & 0.328 $\pm$ 0.000 & -0.0071 $\pm$ 0.0026; $\pm$0.0066 & 0+ 3- \\
+-Identity maps & 0.003 & 2 (43,47) & 655755 & 0.340 $\pm$ 0.005 & +0.0046 $\pm$ 0.0090; $\pm$0.0812 & 1+ 1- \\
+-GRU + ordinary propagation & 0.003 & 1 (43) & 62247 & 0.337 $\pm$ -- & -0.0019 $\pm$ --; $\pm$-- & 0+ 1- \\
++TSD (memory-conditioned incidence maps) & 0.003 & 5 (43,44,45,46,47) & 655883 & 0.329 $\pm$ 0.011 & -- &  \\
++Current-only maps & 0.003 & 5 (43,44,45,46,47) & 660043 & 0.328 $\pm$ 0.008 & -0.0017 $\pm$ 0.0076; $\pm$0.0094 & 2+ 3- \\
++Identity maps & 0.003 & 5 (43,44,45,46,47) & 655755 & 0.334 $\pm$ 0.009 & +0.0043 $\pm$ 0.0162; $\pm$0.0201 & 2+ 3- \\
++GRU + ordinary propagation & 0.003 & 5 (43,44,45,46,47) & 62247 & 0.334 $\pm$ 0.002 & +0.0048 $\pm$ 0.0098; $\pm$0.0121 & 3+ 2- \\
  Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
  History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
-@@ -92,11 +92,11 @@ Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ S
+ Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
+-Core off + REC (head only) & 0.003 & 3 (43,46,47) & 34256 & 0.310 $\pm$ 0.009 & -0.0248 $\pm$ 0.0065; $\pm$0.0162 & 0+ 3- \\
++Core off + REC (head only) & 0.003 & 5 (43,44,45,46,47) & 34256 & 0.310 $\pm$ 0.007 & -0.0191 $\pm$ 0.0133; $\pm$0.0165 & 1+ 4- \\
+ \bottomrule\end{tabular}\end{table}
+ 
+ \begin{table}[t]\centering\small
+@@ -92,25 +92,25 @@ Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ S
  TSD (memory-conditioned incidence maps) & 0.003 & 3 (43,46,47) & -- & 0.244 $\pm$ 0.003 & -- &  \\
  Current-only maps & 0.003 & 2 (43,46) & -- & 0.247 $\pm$ 0.001 & +0.0040 $\pm$ 0.0047; $\pm$0.0421 & 2+ 0- \\
  Identity maps & 0.003 & 2 (43,46) & -- & 0.244 $\pm$ 0.001 & +0.0013 $\pm$ 0.0047; $\pm$0.0426 & 1+ 1- \\
--GRU + ordinary propagation & 0.003 & 1 (47) & 37497 & 0.244 $\pm$ -- & -0.0017 $\pm$ --; $\pm$-- & 0+ 1- \\
-+GRU + ordinary propagation & 0.003 & 2 (43,47) & 37497 & 0.245 $\pm$ 0.001 & +0.0022 $\pm$ 0.0055; $\pm$0.0490 & 1+ 1- \\
+-GRU + ordinary propagation & 0.003 & 2 (43,47) & 37497 & 0.245 $\pm$ 0.001 & +0.0022 $\pm$ 0.0055; $\pm$0.0490 & 1+ 1- \\
++GRU + ordinary propagation & 0.003 & 3 (43,46,47) & 37497 & 0.245 $\pm$ 0.002 & +0.0004 $\pm$ 0.0049; $\pm$0.0122 & 1+ 2- \\
  Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
  History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
  Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
--Core off + REC (head only) & 0.003 & 1 (47) & 9506 & 0.225 $\pm$ -- & -0.0214 $\pm$ --; $\pm$-- & 0+ 1- \\
-+Core off + REC (head only) & 0.003 & 2 (43,47) & 9506 & 0.227 $\pm$ 0.003 & -0.0167 $\pm$ 0.0067; $\pm$0.0601 & 0+ 2- \\
+-Core off + REC (head only) & 0.003 & 2 (43,47) & 9506 & 0.227 $\pm$ 0.003 & -0.0167 $\pm$ 0.0067; $\pm$0.0601 & 0+ 2- \\
++Core off + REC (head only) & 0.003 & 3 (43,46,47) & 9506 & 0.225 $\pm$ 0.004 & -0.0194 $\pm$ 0.0067; $\pm$0.0166 & 0+ 3- \\
  \bottomrule\end{tabular}\end{table}
  
  \begin{table}[t]\centering\small
-@@ -104,13 +104,13 @@ Core off + REC (head only) & 0.003 & 1 (47) & 9506 & 0.225 $\pm$ -- & -0.0214 $\
+ \caption{Matched controls on tkgl-smallpedia (sp, REC on): test MRR over seeds and paired difference to TSD (same seeds, identical data, negatives, protocol and selection rule; lr locked per arm on seed-43 tracking validation). Active parameters exclude parameters unused by construction.}
  \begin{tabular}{lcccrll}\toprule
  Arm & lr & seeds & active params & mean $\pm$ SD & $\Delta$ vs TSD (mean $\pm$ SD; 95\% t) & signs \\ \midrule
- TSD (memory-conditioned incidence maps) & \multicolumn{6}{l}{not evaluated} \\
--Current-only maps & 0.01 & 4 (43,44,46,47) & 652963 & 0.608 $\pm$ 0.008 & -- &  \\
-+Current-only maps & 0.01 & 4 (43,44,46,47) & 652963 & 0.606 $\pm$ 0.011 & -- &  \\
- Identity maps & 0.01 & 3 (43,46,47) & -- & 0.613 $\pm$ 0.006 & -- &  \\
- GRU + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
- Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
- History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
- Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
--Core off + REC (head only) & \multicolumn{6}{l}{not evaluated} \\
-+Core off + REC (head only) & 0.01 & 1 (43) & 27176 & 0.513 $\pm$ -- & -- &  \\
- \bottomrule\end{tabular}\end{table}
- 
- \begin{table}[t]\centering\small
-@@ -124,7 +124,7 @@ GRU + ordinary propagation & 0.003 & 3 (43,46,47) & 56337 & 0.536 $\pm$ 0.001 &
- Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
- History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
- Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
--Core off + REC (head only) & 0.003 & 2 (43,46) & 45242 & 0.534 $\pm$ 0.000 & -0.0095 $\pm$ 0.0090; $\pm$0.0808 & 0+ 2- \\
-+Core off + REC (head only) & 0.003 & 3 (43,46,47) & 45242 & 0.534 $\pm$ 0.001 & -0.0061 $\pm$ 0.0087; $\pm$0.0216 & 1+ 2- \\
+-TSD (memory-conditioned incidence maps) & \multicolumn{6}{l}{not evaluated} \\
+-Current-only maps & 0.01 & 4 (43,44,46,47) & 652963 & 0.606 $\pm$ 0.011 & -- &  \\
+-Identity maps & 0.01 & 3 (43,46,47) & -- & 0.613 $\pm$ 0.006 & -- &  \\
+-GRU + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
+-Diagonal SSM + ordinary propagation & \multicolumn{6}{l}{not evaluated} \\
+-History-conditioned edge gates & \multicolumn{6}{l}{not evaluated} \\
+-Node-frame geometry & \multicolumn{6}{l}{not evaluated} \\
+-Core off + REC (head only) & 0.01 & 1 (43) & 27176 & 0.513 $\pm$ -- & -- &  \\
++TSD (memory-conditioned incidence maps) & 0.01 & 3 (43,46,47) & 648803 & 0.611 $\pm$ 0.004 & -- &  \\
++Current-only maps & 0.01 & 4 (43,44,46,47) & 652963 & 0.602 $\pm$ 0.010 & -0.0052 $\pm$ 0.0118; $\pm$0.0293 & 2+ 1- \\
++Identity maps & 0.01 & 3 (43,46,47) & 648675 & 0.610 $\pm$ 0.007 & +0.0027 $\pm$ 0.0064; $\pm$0.0158 & 2+ 1- \\
++GRU + ordinary propagation & 0.01 & 3 (43,46,47) & 55167 & 0.599 $\pm$ 0.004 & -0.0114 $\pm$ 0.0000; $\pm$0.0001 & 0+ 3- \\
++Diagonal SSM + ordinary propagation & 0.01 & 3 (43,46,47) & 29923 & 0.607 $\pm$ 0.006 & -0.0035 $\pm$ 0.0081; $\pm$0.0202 & 1+ 2- \\
++History-conditioned edge gates & 0.01 & 3 (43,46,47) & 648932 & 0.612 $\pm$ 0.004 & +0.0012 $\pm$ 0.0004; $\pm$0.0010 & 3+ 0- \\
++Node-frame geometry & 0.01 & 3 (43,46,47) & 648867 & 0.603 $\pm$ 0.010 & -0.0073 $\pm$ 0.0135; $\pm$0.0336 & 1+ 2- \\
++Core off + REC (head only) & 0.01 & 3 (43,46,47) & 27176 & 0.575 $\pm$ 0.054 & -0.0358 $\pm$ 0.0576; $\pm$0.1430 & 1+ 2- \\
  \bottomrule\end{tabular}\end{table}
  
  \begin{table}[t]\centering\small

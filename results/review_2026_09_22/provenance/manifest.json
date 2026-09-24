@@ -1,12 +1,12 @@
 {
- "prepared": "2026-09-23 12:09:41 PDT",
+ "prepared": "2026-09-24 04:36:52 PDT",
  "repo": "/home/zhuowez1/project/neural-sheaf-diffusion",
  "git": {
-  "sha": "c909c0010205c423ae0e0afee19760aded43fe4d",
+  "sha": "abcf8efe009d538409cb96d7675e97f77d502624",
   "branch": "review-2026-09-22",
-  "status": "M results/monitor/STATUS.md\n M results/monitor/agent.log\n M results/monitor/gpu_log.csv\n M results/review_2026_09_22/CODE_COMMIT.txt\n M results/review_2026_09_22/REVIEW_SUMMARY.md\n M results/review_2026_09_22/polecat/polecat_gru_s46/history.csv\n M results/review_2026_09_22/queue/polecat_gru_s46.log\n M results/review_2026_09_22/queue/sp_attention_s43.log\n M results/review_2026_09_22/queue/sp_attention_s46.log\n M results/review_2026_09_22/queue/sp_coreoff_s46.log\n M results/review_2026_09_22/queue/sp_coreoff_s47.log\n M results/review_2026_09_22/queue/sp_curonly_s47.log\n M results/review_2026_09_22/queue/sp_identity_s43.log\n M results/review_2026_09_22/sp/sp_attention_s43/history.csv\n M results/review_2026_09_22/sp/sp_attention_s46/history.csv\n M results/review_2026_09_22/sp/sp_coreoff_s46/history.csv\n M results/review_2026_09_22/sp/sp_coreoff_s47/history.csv\n M results/review_2026_09_22/sp/sp_identity_s43/history.csv\n M results/review_2026_09_22/tables_review.tex\n?? results/review_2026_09_22/queue/sp_curonly_s47.log.launch\n?? results/review_2026_09_22/sp/sp_curonly_s47/",
-  "dirty_diff_sha256": "e51af0b5fb15eb04ff6163f2fa6344df9b82fc6c8407abd8645795b4e5006531",
-  "dirty_diff_lines": 302
+  "status": "M results/review_2026_09_22/CODE_COMMIT.txt\n M results/review_2026_09_22/REVIEW_SUMMARY.md\n M results/review_2026_09_22/tables_review.tex",
+  "dirty_diff_sha256": "16c9a8ba3f4a1cafa9f845ea842d126fb6dba63f5f894870c627a92f49321e0d",
+  "dirty_diff_lines": 77
  },
  "environment": {
   "python": "3.9.9 | packaged by conda-forge | (main, Dec 20 2021, 02:40:17) \n[GCC 9.4.0]",
@@ -1183,5 +1183,5 @@
    }
   }
  },
- "elapsed_sec": 99.5
+ "elapsed_sec": 67.8
 }

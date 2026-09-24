@@ -1,4 +1,4 @@
-# Review campaign summary (auto-generated 2026-09-24 01:56)
+# Review campaign summary (auto-generated 2026-09-24 04:36)
 
 298 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
