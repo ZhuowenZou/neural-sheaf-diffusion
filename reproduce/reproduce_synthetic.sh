@@ -7,8 +7,8 @@ set -euo pipefail
 HERE=$(cd "$(dirname "$0")" && pwd)
 WORK=${1:-$(mktemp -d)}; mkdir -p "$WORK"
 REPO=${REPO:-git@github.com:ZhuowenZou/neural-sheaf-diffusion.git}
-REV=${REV:-synthetic-v1}                  # code: record revision 071e1db + portable Gram eigensolver (tag)
-RECORD_REV=${RECORD_REV:-071e1db}         # revision whose results/histgeom_2026_09_24 records are compared against
+REV=${REV:-synthetic-v2}                  # code revision of the synthetic study
+RECORD_REV=${RECORD_REV:-synthetic-v2}  # revision whose results/histgeom_2026_09_24 records are compared against
 PROCS=${PROCS:-32}; CONDA=${CONDA:-conda}
 echo "[1/6] fresh environment in $WORK/env"; t0=$(date +%s)
 $CONDA create -y -q -p "$WORK/env" python=3.9 >/dev/null
