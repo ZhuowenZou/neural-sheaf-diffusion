@@ -18,7 +18,7 @@ import pandas as pd
 
 from exp.histgeom import core as hc
 
-ALPHAS = [0.0, 0.01, 0.03, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0, 100.0]
+ALPHAS = [0.0, 0.01, 0.03, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0, 100.0, 300.0, 1000.0]
 METHODS = ["hist", "cur", "in", "legs", "point"]
 
 
@@ -38,6 +38,7 @@ class Cfg:
     snr_db: float = 10.0
     dev: float = 0.2
     n_sin: int = 5
+    alpha0: float = 1.0          # Regime 1: strength of the (correct) historical prior
     fmax: float = 4.0            # calibrated: noise-free LegS error ~6% at N=16 (target 5-10%, fixed before comparing methods)
 
 
@@ -179,7 +180,7 @@ def rel_err(y, yh, mask):
 def run_task(args):
     cfg, seed, split = args
     t0 = time.perf_counter()
-    data = build_R1(cfg, seed) if cfg.regime == "R1" else build(cfg, seed)
+    data = build_R1(cfg, seed, alpha0=cfg.alpha0) if cfg.regime == "R1" else build(cfg, seed)
     edges, Ls, fine, pre = data["edges"], data["Ls"], data["fine"], data["pre"]
     N, T = cfg.N, cfg.T
     p = Ls[0].shape[0]
@@ -194,7 +195,7 @@ def run_task(args):
         if id(L) not in eigL:
             eigL[id(L)] = np.linalg.eigh(L)
     lamT, VT = np.linalg.eigh(Ls[-1])
-    segs = {"pre": pre, "post": ~pre, "all": np.ones_like(pre)}
+    segs = {"pre": pre, "post": ~pre, "all": np.ones_like(pre), "end": fine >= 0.98}   # end = current value
     rows = []
     for sc, Xm in data["X"].items():
         y = data["y"][sc]
@@ -219,6 +220,14 @@ def run_task(args):
     return rows, time.perf_counter() - t0
 
 
+def cells_stress():
+    """Stress test towards the Gram memory's ideal regime (E1 well-specified strong prior; E2 physical ideal)."""
+    b = Cfg()
+    out = [replace(b, name=f"E1_a{int(a)}_N{N}", regime="R1", alpha0=a, N=N) for a in (1, 10, 100) for N in (4, 8, 16)]
+    out += [replace(b, name=f"E2_N{N}_snr{s}", dev=0.0, theta=90.0, frac=1.0, N=N, snr_db=s) for N in (4, 8, 16) for s in (-10, 0, 10)]
+    return out
+
+
 def cells():
     b = Cfg()
     out = [replace(b, name=f"theta{int(t)}", theta=t) for t in (0, 5, 10, 20, 30, 45, 60, 90)]
@@ -238,12 +247,14 @@ def main():
     ap.add_argument("--out", required=True); ap.add_argument("--procs", type=int, default=64)
     ap.add_argument("--n-eval", type=int, default=50); ap.add_argument("--n-tune", type=int, default=10)
     ap.add_argument("--only", default=None, help="comma-separated cell names")
+    ap.add_argument("--stress", action="store_true", help="run the stress-test cells (E1, E2)")
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
-    cs = cells()
+    ap_cells = cells_stress() if a.stress else cells()
+    cs = ap_cells
     if a.only:
         cs = [c for c in cs if c.name in a.only.split(",")]
-    json.dump([asdict(c) for c in cells()], open(os.path.join(a.out, "cells.json"), "w"), indent=1)
+    json.dump([asdict(c) for c in cs], open(os.path.join(a.out, "cells.json"), "w"), indent=1)
     tasks = [(c, s, "eval") for c in cs for s in range(a.n_eval)] + [(c, 100000 + s, "tune") for c in cs for s in range(a.n_tune)]
     tasks.sort(key=lambda x: -x[0].N)          # longest first
     t0 = time.perf_counter(); rows, secs = [], []
