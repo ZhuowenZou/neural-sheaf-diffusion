@@ -101,6 +101,7 @@ icews_curonly_recon_s47,icews,tkgl-icews,current-only-maps,47,7572.0,0.0,0.0,119
 icews_gru_recon_s43,icews,tkgl-icews,gru-ordinary,43,7572.0,0.0,0.0,586.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
 icews_gru_recon_s46,icews,tkgl-icews,gru-ordinary,46,7572.0,0.0,0.0,791.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
 icews_gru_recon_s47,icews,tkgl-icews,gru-ordinary,47,7572.0,0.0,0.0,446.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
+icews_identity_recon_s46,icews,tkgl-icews,identity-maps,46,7572.0,0.0,0.0,252.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
 icews_identity_recon_s47,icews,tkgl-icews,identity-maps,47,7572.0,0.0,0.0,87.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
 icews_tsd_recon_s44,icews,tkgl-icews,tsd,44,7572.0,0.0,0.0,63.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
 icews_tsd_recon_s45,icews,tkgl-icews,tsd,45,5048.0,0.0,0.0,45.0,0.0,0.0,0.0,0.0,4652314.0,0.0,0.0,0.0,4651378.0,0.0,True
