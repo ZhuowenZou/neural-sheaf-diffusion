@@ -1,19 +1,19 @@
-# Monitor status (2026-09-23 18:30:40)
+# Monitor status (2026-09-23 19:00:36)
 
 ## GPU free (GiB) and utilisation
-0:80GB(0%) 1:80GB(0%) 2:65GB(7%) 3:62GB(0%) 4:45GB(20%) 5:54GB(98%) 6:80GB(0%) 7:80GB(0%) 
-our GPU processes (pid:MiB): 4095829:15438MiB 4096797:18198MiB 4095645:17954MiB 4177163:18280MiB 
+0:80GB(0%) 1:80GB(0%) 2:65GB(2%) 3:80GB(0%) 4:62GB(27%) 5:54GB(98%) 6:80GB(0%) 7:80GB(0%) 
+our GPU processes (pid:MiB): 4095829:15438MiB 4177163:18280MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
-- gpu1: ELIGIBLE (idle 452 min)
-- gpu2: ELIGIBLE (idle 1573 min)
-- gpu3: ELIGIBLE (idle 1801 min)
-- gpu4: ELIGIBLE (idle 2177 min)
+- gpu1: ELIGIBLE (idle 482 min)
+- gpu2: ELIGIBLE (idle 1603 min)
+- gpu3: ELIGIBLE (idle 1831 min)
+- gpu4: ELIGIBLE (idle 2207 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 1333 min)
+- gpu6: ELIGIBLE (idle 1363 min)
 - gpu7: OURS
-compensation: colleagues hold 0 MiB on our GPUs; we hold 69870 MiB on theirs; budget left -69870 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+compensation: colleagues hold 0 MiB on our GPUs; we hold 33718 MiB on theirs; budget left -33718 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
 our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
@@ -227,7 +227,7 @@ our launcher claims (pid:gpu/MiB):
 - DONE     forum_tsd_recoff_s45: FINAL val_mrr=0.3965 test_mrr=0.3906 test_hits10=0.5333 eval_sec=479.6
 - DONE     forum_tsd_recon_s44: FINAL val_mrr=0.6054 test_mrr=0.6220 test_hits10=0.6706 eval_sec=680.6
 - DONE     forum_tsd_recon_s45: FINAL val_mrr=0.6072 test_mrr=0.6170 test_hits10=0.6622 eval_sec=734.2
-- RUNNING  icews_coreoff_recon_s44: final val_mrr=0.2921 (22533.2s so far)
+- DONE     icews_coreoff_recon_s44: FINAL val_mrr=0.2921 test_mrr=0.3073 test_hits10=0.5038 eval_sec=50573.9
 - DONE     icews_coreoff_recon_s45: FINAL val_mrr=0.3018 test_mrr=0.3129 test_hits10=0.5131 eval_sec=43474.9
 - DONE     icews_coreoff_recon_s47: FINAL val_mrr=0.2922 test_mrr=0.3005 test_hits10=0.4917 eval_sec=34811.8
 - DONE     icews_curonly_recon_s44: FINAL val_mrr=0.3252 test_mrr=0.3386 test_hits10=0.5398 eval_sec=44714.8
@@ -236,7 +236,7 @@ our launcher claims (pid:gpu/MiB):
 - DONE     icews_curonly_recon_s47: FINAL val_mrr=0.3186 test_mrr=0.3275 test_hits10=0.5232 eval_sec=41702.5
 - DONE     icews_gru_recon_s43: FINAL val_mrr=0.3211 test_mrr=0.3367 test_hits10=0.5374 eval_sec=35441.9
 - DONE     icews_gru_recon_s44: FINAL val_mrr=0.3169 test_mrr=0.3351 test_hits10=0.5334 eval_sec=46028.1
-- RUNNING  icews_gru_recon_s45: final val_mrr=0.3176 (22078.7s so far)
+- DONE     icews_gru_recon_s45: FINAL val_mrr=0.3176 test_mrr=0.3317 test_hits10=0.5274 eval_sec=48629.6
 - DONE     icews_gru_recon_s46: FINAL val_mrr=0.3225 test_mrr=0.3353 test_hits10=0.5358 eval_sec=55217.6
 - DONE     icews_gru_recon_s47: FINAL val_mrr=0.3213 test_mrr=0.3321 test_hits10=0.5291 eval_sec=52992.6
 - DONE     icews_identity_recon_s44: FINAL val_mrr=0.3113 test_mrr=0.3254 test_hits10=0.5255 eval_sec=41964.1
