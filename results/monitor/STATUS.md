@@ -1,19 +1,19 @@
-# Monitor status (2026-09-23 17:50:11)
+# Monitor status (2026-09-23 18:10:33)
 
 ## GPU free (GiB) and utilisation
-0:80GB(0%) 1:80GB(0%) 2:47GB(9%) 3:44GB(13%) 4:45GB(0%) 5:54GB(98%) 6:80GB(0%) 7:63GB(0%) 
-our GPU processes (pid:MiB): 4095829:15438MiB 4118762:18198MiB 4096797:18198MiB 243990:18280MiB 4095645:17954MiB 4177163:18280MiB 4095975:16976MiB 
+0:80GB(0%) 1:80GB(0%) 2:65GB(0%) 3:62GB(0%) 4:45GB(0%) 5:54GB(98%) 6:80GB(0%) 7:80GB(0%) 
+our GPU processes (pid:MiB): 4095829:15438MiB 4096797:18198MiB 4095645:17954MiB 4177163:18280MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
-- gpu1: ELIGIBLE (idle 412 min)
-- gpu2: ELIGIBLE (idle 1532 min)
-- gpu3: ELIGIBLE (idle 1761 min)
-- gpu4: ELIGIBLE (idle 2136 min)
+- gpu1: ELIGIBLE (idle 432 min)
+- gpu2: ELIGIBLE (idle 1553 min)
+- gpu3: ELIGIBLE (idle 1781 min)
+- gpu4: ELIGIBLE (idle 2157 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 1293 min)
+- gpu6: ELIGIBLE (idle 1313 min)
 - gpu7: OURS
-compensation: colleagues hold 0 MiB on our GPUs; we hold 106348 MiB on theirs; budget left -106348 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+compensation: colleagues hold 0 MiB on our GPUs; we hold 69870 MiB on theirs; budget left -69870 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
 our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
@@ -230,16 +230,16 @@ our launcher claims (pid:gpu/MiB):
 - RUNNING  icews_coreoff_recon_s44: final val_mrr=0.2921 (22533.2s so far)
 - DONE     icews_coreoff_recon_s45: FINAL val_mrr=0.3018 test_mrr=0.3129 test_hits10=0.5131 eval_sec=43474.9
 - DONE     icews_coreoff_recon_s47: FINAL val_mrr=0.2922 test_mrr=0.3005 test_hits10=0.4917 eval_sec=34811.8
-- RUNNING  icews_curonly_recon_s44: final val_mrr=0.3252 (26699.6s so far)
+- DONE     icews_curonly_recon_s44: FINAL val_mrr=0.3252 test_mrr=0.3386 test_hits10=0.5398 eval_sec=44714.8
 - RUNNING  icews_curonly_recon_s45: final val_mrr=0.3146 (36065.6s so far)
 - DONE     icews_curonly_recon_s46: FINAL val_mrr=0.3172 test_mrr=0.3281 test_hits10=0.5230 eval_sec=28826.2
 - DONE     icews_curonly_recon_s47: FINAL val_mrr=0.3186 test_mrr=0.3275 test_hits10=0.5232 eval_sec=41702.5
 - DONE     icews_gru_recon_s43: FINAL val_mrr=0.3211 test_mrr=0.3367 test_hits10=0.5374 eval_sec=35441.9
-- RUNNING  icews_gru_recon_s44: final val_mrr=0.3169 (22534.7s so far)
+- DONE     icews_gru_recon_s44: FINAL val_mrr=0.3169 test_mrr=0.3351 test_hits10=0.5334 eval_sec=46028.1
 - RUNNING  icews_gru_recon_s45: final val_mrr=0.3176 (22078.7s so far)
 - DONE     icews_gru_recon_s46: FINAL val_mrr=0.3225 test_mrr=0.3353 test_hits10=0.5358 eval_sec=55217.6
 - DONE     icews_gru_recon_s47: FINAL val_mrr=0.3213 test_mrr=0.3321 test_hits10=0.5291 eval_sec=52992.6
-- RUNNING  icews_identity_recon_s44: final val_mrr=0.3113 (21383.7s so far)
+- DONE     icews_identity_recon_s44: FINAL val_mrr=0.3113 test_mrr=0.3254 test_hits10=0.5255 eval_sec=41964.1
 - RUNNING  icews_identity_recon_s45: final val_mrr=0.3241 (35833.9s so far)
 - DONE     icews_identity_recon_s46: FINAL val_mrr=0.3176 test_mrr=0.3233 test_hits10=0.5152 eval_sec=67486.7
 - DONE     icews_identity_recon_s47: FINAL val_mrr=0.3279 test_mrr=0.3437 test_hits10=0.5460 eval_sec=48918.6
