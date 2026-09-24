@@ -1,6 +1,6 @@
-# Review campaign summary (auto-generated 2026-09-23 17:11)
+# Review campaign summary (auto-generated 2026-09-23 17:21)
 
-289 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
+290 finished runs under `results/review_2026_09_22`; arms derived from resolved configs.
 
 ## Test MRR by dataset x arm x lr
 
@@ -65,7 +65,7 @@
 | tkgl-icews                                                         | icews   | on    | tsd-no-memory     | 0.003  |   2 | 0.328202 |   0.001834    | 0.3295 / 0.3269                                                                                                                                        |
 | tkgl-polecat                                                       | polecat | on    | core-off          | 0.003  |   3 | 0.224775 |   0.00356082  | 0.2283 / 0.2212 / 0.2248                                                                                                                               |
 | tkgl-polecat                                                       | polecat | on    | current-only-maps | 0.003  |   2 | 0.247201 |   0.000581658 | 0.2476 / 0.2468                                                                                                                                        |
-| tkgl-polecat                                                       | polecat | on    | gru-ordinary      | 0.003  |   2 | 0.245384 |   0.00130905  | 0.2463 / 0.2445                                                                                                                                        |
+| tkgl-polecat                                                       | polecat | on    | gru-ordinary      | 0.003  |   3 | 0.244593 |   0.00165366  | 0.2463 / 0.2430 / 0.2445                                                                                                                               |
 | tkgl-polecat                                                       | polecat | on    | identity-maps     | 0.003  |   2 | 0.244472 |   0.000641277 | 0.2449 / 0.2440                                                                                                                                        |
 | tkgl-polecat                                                       | polecat | on    | tsd               | 0.003  |   3 | 0.244187 |   0.00336667  | 0.2403 / 0.2461 / 0.2462                                                                                                                               |
 | tkgl-polecat                                                       | polecat | on    | tsd-no-gap        | 0.003  |   2 | 0.242455 |   0.00237966  | 0.2441 / 0.2408                                                                                                                                        |
@@ -150,7 +150,7 @@
 | tkgl-icews      | on    | tsd-no-memory     |   0.003  |   0.003  |   2 |   0.336408 |   0.328202 |               -0.00820633  |   0.00129643  |     0.011648    | -0.0091 / -0.0073                               | 0+ 2-   |
 | tkgl-polecat    | on    | core-off          |   0.003  |   0.003  |   3 |   0.244187 |   0.224775 |               -0.0194124   |   0.00668728  |     0.0166121   | -0.0120 / -0.0249 / -0.0214                     | 0+ 3-   |
 | tkgl-polecat    | on    | current-only-maps |   0.003  |   0.003  |   2 |   0.243199 |   0.247201 |                0.00400199  |   0.00468183  |     0.0420646   | +0.0073 / +0.0007                               | 2+ 0-   |
-| tkgl-polecat    | on    | gru-ordinary      |   0.003  |   0.003  |   2 |   0.243232 |   0.245384 |                0.00215269  |   0.00545513  |     0.0490124   | +0.0060 / -0.0017                               | 1+ 1-   |
+| tkgl-polecat    | on    | gru-ordinary      |   0.003  |   0.003  |   3 |   0.244187 |   0.244593 |                0.000405932 |   0.00490231  |     0.012178    | +0.0060 / -0.0031 / -0.0017                     | 1+ 2-   |
 | tkgl-polecat    | on    | identity-maps     |   0.003  |   0.003  |   2 |   0.243199 |   0.244472 |                0.00127276  |   0.00474145  |     0.0426002   | +0.0046 / -0.0021                               | 1+ 1-   |
 | tkgl-polecat    | on    | tsd-no-gap        |   0.003  |   0.003  |   2 |   0.243199 |   0.242455 |               -0.000744294 |   0.00647983  |     0.058219    | +0.0038 / -0.0053                               | 1+ 1-   |
 | tkgl-smallpedia | on    | attention-gates   |   0.01   |   0.01   |   3 |   0.610608 |   0.611796 |                0.00118846  |   0.000383715 |     0.000953201 | +0.0008 / +0.0013 / +0.0015                     | 3+ 0-   |
@@ -512,6 +512,8 @@
 | polecat | polecat_coreoff_s47                 | test    |    532636 |                  0 |               0 |         0 |            0 |            0 |      0.224755 |      0.224755 |           0.224755 |                           0 |                         0 |
 | polecat | polecat_gru_s43                     | val     |    833472 |                  0 |               0 |         0 |            0 |            0 |      0.247835 |      0.247835 |           0.247835 |                           0 |                         0 |
 | polecat | polecat_gru_s43                     | test    |    532636 |                  0 |               0 |         0 |            0 |            0 |      0.24631  |      0.24631  |           0.24631  |                           0 |                         0 |
+| polecat | polecat_gru_s46                     | val     |    833472 |                  0 |               0 |         0 |            0 |            0 |      0.246623 |      0.246623 |           0.246623 |                           0 |                         0 |
+| polecat | polecat_gru_s46                     | test    |    532636 |                  0 |               0 |         0 |            0 |            0 |      0.243011 |      0.243011 |           0.243011 |                           0 |                         0 |
 | polecat | polecat_gru_s47                     | val     |    833472 |                  0 |               0 |         0 |            0 |            0 |      0.243391 |      0.243391 |           0.243391 |                           0 |                         0 |
 | polecat | polecat_gru_s47                     | test    |    532636 |                  0 |               0 |         0 |            0 |            0 |      0.244459 |      0.244459 |           0.244459 |                           0 |                         0 |
 | smoke   | attention                           | val     |      6000 |                  0 |               0 |         0 |            0 |            0 |      0.642936 |      0.642936 |           0.642936 |                           0 |                         0 |
@@ -870,5 +872,4 @@
 | icews_identity_recon_s44 | running/pending |            6 |          1 |
 | icews_identity_recon_s45 | running/pending |            6 |          1 |
 | icews_identity_recon_s46 | running/pending |            6 |          1 |
-| polecat_gru_s46          | running/pending |           10 |          2 |
 

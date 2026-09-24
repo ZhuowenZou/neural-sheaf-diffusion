@@ -1,19 +1,19 @@
-# Monitor status (2026-09-23 17:08:45)
+# Monitor status (2026-09-23 17:19:10)
 
 ## GPU free (GiB) and utilisation
-0:80GB(0%) 1:80GB(0%) 2:31GB(0%) 3:44GB(18%) 4:45GB(51%) 5:54GB(99%) 6:62GB(6%) 7:63GB(0%) 
-our GPU processes (pid:MiB): 4095829:15438MiB 4118762:18198MiB 2315028:16108MiB 4096797:18198MiB 243990:18280MiB 4095645:17954MiB 4177163:18280MiB 2872725:18280MiB 4095975:16976MiB 
+0:80GB(0%) 1:80GB(0%) 2:47GB(30%) 3:44GB(0%) 4:45GB(22%) 5:54GB(98%) 6:62GB(4%) 7:63GB(0%) 
+our GPU processes (pid:MiB): 4095829:15438MiB 4118762:18198MiB 4096797:18198MiB 243990:18280MiB 4095645:17954MiB 4177163:18280MiB 2872725:18280MiB 4095975:16976MiB 
 
 ## placement policy: ours = GPUs 0 7; colleagues' GPUs become eligible after 3600s without any other user's process
 - gpu0: OURS
-- gpu1: ELIGIBLE (idle 370 min)
-- gpu2: ELIGIBLE (idle 1491 min)
-- gpu3: ELIGIBLE (idle 1720 min)
-- gpu4: ELIGIBLE (idle 2095 min)
+- gpu1: ELIGIBLE (idle 381 min)
+- gpu2: ELIGIBLE (idle 1501 min)
+- gpu3: ELIGIBLE (idle 1730 min)
+- gpu4: ELIGIBLE (idle 2105 min)
 - gpu5: colleague busy
-- gpu6: ELIGIBLE (idle 1251 min)
+- gpu6: ELIGIBLE (idle 1262 min)
 - gpu7: OURS
-compensation: colleagues hold 0 MiB on our GPUs; we hold 140736 MiB on theirs; budget left -140736 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
+compensation: colleagues hold 0 MiB on our GPUs; we hold 124628 MiB on theirs; budget left -124628 MiB (a job may go to a colleague GPU while it fits in this budget and in that card's free memory)
 our launcher claims (pid:gpu/MiB): 
 
 ## leakfree2 benchmark runs
@@ -249,7 +249,7 @@ our launcher claims (pid:gpu/MiB):
 - DONE     polecat_coreoff_s46: FINAL val_mrr=0.2323 test_mrr=0.2212 test_hits10=0.3772 eval_sec=24896.0
 - DONE     polecat_coreoff_s47: FINAL val_mrr=0.2353 test_mrr=0.2248 test_hits10=0.3765 eval_sec=12801.8
 - DONE     polecat_gru_s43: FINAL val_mrr=0.2529 test_mrr=0.2463 test_hits10=0.3992 eval_sec=14764.8
-- RUNNING  polecat_gru_s46: final val_mrr=0.2497 (7630.3s so far)
+- DONE     polecat_gru_s46: FINAL val_mrr=0.2497 test_mrr=0.2430 test_hits10=0.3929 eval_sec=13945.1
 - DONE     polecat_gru_s47: FINAL val_mrr=0.2504 test_mrr=0.2445 test_hits10=0.3994 eval_sec=8458.8
 - DONE     sp_attention_s43: FINAL val_mrr=0.6462 test_mrr=0.6155 test_hits10=0.7126 eval_sec=836.6
 - DONE     sp_attention_s46: FINAL val_mrr=0.6451 test_mrr=0.6116 test_hits10=0.7145 eval_sec=883.4

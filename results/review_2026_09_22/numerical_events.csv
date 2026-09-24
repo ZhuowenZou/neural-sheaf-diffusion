@@ -156,6 +156,7 @@ polecat_coreoff_s43,polecat,tkgl-polecat,core-off,43,8344.0,0.0,0.0,4.0,0.0,0.0,
 polecat_coreoff_s46,polecat,tkgl-polecat,core-off,46,11920.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,533472.0,0.0,0.0,0.0,532636.0,0.0,True
 polecat_coreoff_s47,polecat,tkgl-polecat,core-off,47,11920.0,0.0,0.0,11.0,0.0,0.0,0.0,0.0,533472.0,0.0,0.0,0.0,532636.0,0.0,True
 polecat_gru_s43,polecat,tkgl-polecat,gru-ordinary,43,11920.0,0.0,0.0,217.0,0.0,0.0,0.0,0.0,533472.0,0.0,0.0,0.0,532636.0,0.0,True
+polecat_gru_s46,polecat,tkgl-polecat,gru-ordinary,46,11920.0,0.0,0.0,763.0,0.0,0.0,0.0,0.0,533472.0,0.0,0.0,0.0,532636.0,0.0,True
 polecat_gru_s47,polecat,tkgl-polecat,gru-ordinary,47,11920.0,0.0,0.0,57.0,0.0,0.0,0.0,0.0,533472.0,0.0,0.0,0.0,532636.0,0.0,True
 attention,smoke,tgbl-wiki,attention-gates,43,560.0,0.0,0.0,185.0,0.0,0.0,0.0,0.0,4000.0,0.0,0.0,0.0,4000.0,0.0,True
 coreoff,smoke,tgbl-wiki,core-off,43,560.0,0.0,0.0,357.0,0.0,0.0,0.0,0.0,4000.0,0.0,0.0,0.0,4000.0,0.0,True
