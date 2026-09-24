@@ -155,7 +155,9 @@ def build_R1(cfg, seed, alpha0=1.0, ridge=0.01):
     lam, V = np.linalg.eigh(hc.big(G))
     M, sigma = cfg.T, 0.3
     prec = (M / sigma ** 2) * (alpha0 * lam + ridge)
-    h = V @ (rng.normal(size=len(lam)) / np.sqrt(prec))
+    # symmetric square root P^{-1/2} z: unique for any eigenvector basis, so the draw does not depend on how the
+    # LAPACK build resolves G's (large) degenerate eigenspaces (the former V (z / sqrt(prec)) did: MKL vs OpenBLAS)
+    h = V @ ((V.T @ rng.normal(size=len(lam))) / np.sqrt(prec))
     H = h.reshape(cfg.N, p).T
     fine = base["fine"]; mids = 0.5 * (edges[1:] + edges[:-1])
     y = H @ hc.basis(cfg.N, fine, 1.0).T
