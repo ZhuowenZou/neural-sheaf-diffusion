@@ -30,10 +30,14 @@ for f, vals, k in (("tuned_errors.csv", ["mean", "std"], ["cell", "scenario", "m
                    ("paired_differences.csv", ["mean_diff", "ci_lo", "ci_hi"], ["cell", "scenario", "segment", "pair"])):
     x = archived(f).merge(pd.read_csv(f"{new_dir}/{f}"), on=k, suffixes=("_a", "_n"))
     dd = max(float((x[v + "_n"] - x[v + "_a"]).abs().max()) for v in vals)
-    same_signs = True
+    same_signs, extra = True, ""
     if f == "paired_differences.csv":
-        same_signs = bool(((x.n_neg_a == x.n_neg_n) & (x.n_pos_a == x.n_pos_n)).all())
-    check(f, dd < 1e-8 and same_signs, f"{len(x)} rows, max abs diff {dd:.2e}" + ("" if f != "paired_differences.csv" else f", sign counts identical: {same_signs}"))
+        # sign counts are meaningful only for resolved differences; where two methods coincide by construction
+        # (theta = 0, alpha = 0 selected at 30 dB, ...) the per-draw differences are floating-point noise (|mean| <~1e-13)
+        res = x.mean_diff_a.abs() > 1e-9
+        same_signs = bool(((x.n_neg_a == x.n_neg_n) & (x.n_pos_a == x.n_pos_n))[res].all())
+        extra = f", sign counts identical on all {int(res.sum())} resolved contrasts (|mean| > 1e-9): {same_signs}; {int((~res).sum())} exact ties (|mean| <= {x.mean_diff_a.abs()[~res].max():.1e}) not sign-compared"
+    check(f, dd < 1e-8 and same_signs, f"{len(x)} rows, max abs diff {dd:.2e}" + extra)
 # 4. numbers quoted in the paper, re-derived from the REGENERATED records
 te = pd.read_csv(f"{new_dir}/tuned_errors.csv"); pc = pd.read_csv(f"{new_dir}/paired_differences.csv")
 g = lambda c, s, m_, seg: te[(te.cell == c) & (te.scenario == s) & (te.method == m_) & (te.segment == seg)].iloc[0]

@@ -12,3 +12,7 @@
   Regime-1 records (cells `R1_theta0`, `R1_theta45`) were regenerated; **all other records are bit-identical to
   071e1db**, and no number quoted in the paper comes from Regime 1. Regenerated Regime-1 pre-change errors
   (θ = 45°): H_hist 0.3069, H_in 0.3069, H_cur 0.3591, LegS 0.3872 (θ = 0°: all compressed methods 0.2977).
+- **synthetic-v3** — checker only (no code or record change): the clean reproduction of v2 matched every record
+  (raw errors to 3e-10 across MKL/OpenBLAS, paired intervals to 2e-11) except sign counts of 50 exact ties
+  (|mean difference| <= 2e-13; methods coincide by construction). Sign counts are now compared on resolved
+  contrasts only.
