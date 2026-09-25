@@ -4,7 +4,7 @@ Run on biaslab0.ics.uci.edu (AMD EPYC 7713 64-Core Processor, 96 worker processe
 
 Procedure (`bash reproduce/reproduce_synthetic.sh`, one command, from a fresh `git clone` of tag `synthetic-v3`):
 1. new conda environment, Python 3.9, **only** `reproduce/requirements-synthetic.txt` installed from PyPI wheels
-   (resolved: contourpy==1.3.0, cycler==0.12.1, exceptiongroup==1.3.1, fonttools==4.60.2, importlib_resources==6.5.2, iniconfig==2.1.0, kiwisolver==1.4.7, matplotlib==3.9.2, numpy==2.0.1, packaging==26.3, pandas==2.3.3, pillow==11.3.0, pluggy==1.6.0, pyparsing==3.3.3, pytest==8.3.3, python-dateutil==2.9.0.post0, pytz==2026.4, scipy==1.13.1, six==1.17.0, tabulate==0.9.0, tomli==2.4.1, typing_extensions==4.16.0, tzdata==2026.4, zipp==3.23.1); NumPy linked against ? / LAPACK ?
+   (resolved: contourpy==1.3.0, cycler==0.12.1, exceptiongroup==1.3.1, fonttools==4.60.2, importlib_resources==6.5.2, iniconfig==2.1.0, kiwisolver==1.4.7, matplotlib==3.9.2, numpy==2.0.1, packaging==26.3, pandas==2.3.3, pillow==11.3.0, pluggy==1.6.0, pyparsing==3.3.3, pytest==8.3.3, python-dateutil==2.9.0.post0, pytz==2026.4, scipy==1.13.1, six==1.17.0, tabulate==0.9.0, tomli==2.4.1, typing_extensions==4.16.0, tzdata==2026.4, zipp==3.23.1); NumPy/SciPy PyPI wheels (bundled OpenBLAS)
    (the archived records were produced with MKL);
 2. fresh clone of the repository at the tag; 3. unit tests; 4. full sweep (2,160 draws) + tuning/analysis;
 5. exactness table, cost benchmark, figures; 6. comparison with the records committed at the tag.
